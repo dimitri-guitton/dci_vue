@@ -1,16 +1,16 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import store from "@/store";
-import { Actions, Mutations } from "@/store/enums/StoreEnums";
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router';
+import store from '@/store';
+import { Actions, Mutations } from '@/store/enums/StoreEnums';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
-    redirect: "/dashboard",
-    component: () => import("@/layout/Layout.vue"),
-    children: [
+    path:      '/',
+    redirect:  '/dashboard',
+    component: () => import('@/layout/Layout.vue'),
+    children:  [
       {
-        path: "/dashboard",
-        name: "dashboard",
+        path:      '/dashboard',
+        name:      'dashboard',
         component: () => import("@/views/Dashboard.vue")
       }
     ]
@@ -27,10 +27,11 @@ const routes: Array<RouteRecordRaw> = [
   }
 ];
 
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes
-});
+const router = createRouter( {
+                               // history: createWebHashHistory(),
+                               history: process.env.IS_ELECTRON ? createWebHashHistory() : createWebHistory(),
+                               routes,
+                             });
 
 router.beforeEach(() => {
   // reset config to initial state
