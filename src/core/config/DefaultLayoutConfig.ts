@@ -1,4 +1,4 @@
-import LayoutConfigTypes from "@/core/config/LayoutConfigTypes";
+import LayoutConfigTypes from '@/core/config/LayoutConfigTypes';
 
 const config: LayoutConfigTypes = {
   themeName: "Metronic",
@@ -38,13 +38,13 @@ const config: LayoutConfigTypes = {
     }
   },
   aside: {
-    display: true,
-    theme: "dark",
-    fixed: true,
-    menuIcon: "svg",
+    display:   false,
+    theme:     'dark',
+    fixed:     true,
+    menuIcon:  'svg',
     minimized: false,
-    minimize: true,
-    hoverable: true
+    minimize:  true,
+    hoverable: true,
   },
   content: {
     width: "fixed"

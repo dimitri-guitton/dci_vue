@@ -39,39 +39,37 @@
   </div>
   <!-- end:: Body -->
   <KTScrollTop></KTScrollTop>
-  <KTExplore></KTExplore>
   <KTDrawerMessenger></KTDrawerMessenger>
   <KTUserMenu></KTUserMenu>
   <KTCreateApp></KTCreateApp>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted, watch } from "vue";
-import { useStore } from "vuex";
-import { useRoute, useRouter } from "vue-router";
-import KTAside from "@/layout/aside/Aside.vue";
-import KTHeader from "@/layout/header/Header.vue";
-import HtmlClass from "@/core/services/LayoutService";
-import KTMobilePageTitle from "@/layout/toolbar/MobilePageTitle.vue";
-import KTScrollTop from "@/layout/extras/ScrollTop.vue";
-import KTUserMenu from "@/layout/header/partials/ActivityDrawer.vue";
-import KTLoader from "@/components/Loader.vue";
-import KTCreateApp from "@/components/modals/wizards/CreateAppModal.vue";
-import KTExplore from "@/layout/extras/Explore.vue";
-import KTDrawerMessenger from "@/layout/extras/DrawerMessenger.vue";
-import { Actions } from "@/store/enums/StoreEnums";
-import { MenuComponent, DrawerComponent } from "@/assets/ts/components/index";
-import { removeModalBackdrop } from "@/core/helpers/dom";
+import { computed, defineComponent, onMounted, watch } from 'vue';
+import { useStore } from 'vuex';
+import { useRoute, useRouter } from 'vue-router';
+import KTAside from '@/layout/aside/Aside.vue';
+import KTHeader from '@/layout/header/Header.vue';
+import HtmlClass from '@/core/services/LayoutService';
+import KTMobilePageTitle from '@/layout/toolbar/MobilePageTitle.vue';
+import KTScrollTop from '@/layout/extras/ScrollTop.vue';
+import KTUserMenu from '@/layout/header/partials/ActivityDrawer.vue';
+import KTLoader from '@/components/Loader.vue';
+import KTCreateApp from '@/components/modals/wizards/CreateAppModal.vue';
+import KTDrawerMessenger from '@/layout/extras/DrawerMessenger.vue';
+import { Actions } from '@/store/enums/StoreEnums';
+import { DrawerComponent, MenuComponent } from '@/assets/ts/components/index';
+import { removeModalBackdrop } from '@/core/helpers/dom';
 import {
-  toolbarDisplay,
-  loaderEnabled,
-  contentWidthFluid,
-  loaderLogo,
   asideEnabled,
+  contentWidthFluid,
+  loaderEnabled,
+  loaderLogo,
   subheaderDisplay,
+  themeDarkLogo,
   themeLightLogo,
-  themeDarkLogo
-} from "@/core/helpers/config";
+  toolbarDisplay,
+} from '@/core/helpers/config';
 
 export default defineComponent({
   name: "Layout",
@@ -81,7 +79,6 @@ export default defineComponent({
     KTScrollTop,
     KTCreateApp,
     KTUserMenu,
-    KTExplore,
     KTDrawerMessenger,
     KTLoader,
     KTMobilePageTitle

@@ -11,9 +11,19 @@ const routes: Array<RouteRecordRaw> = [
       {
         path:      '/dashboard',
         name:      'dashboard',
-        component: () => import("@/views/Dashboard.vue")
-      }
-    ]
+        component: () => import('@/views/Dashboard.vue'),
+      },
+      {
+        path:      '/page_1',
+        name:      'page_1',
+        component: () => import('@/views/Page1.vue'),
+      },
+      {
+        path:      '/page_2',
+        name:      'page_2',
+        component: () => import('@/views/Page2.vue'),
+      },
+    ],
   },
   {
     // the 404 route, when none of the above matches
@@ -29,9 +39,11 @@ const routes: Array<RouteRecordRaw> = [
 
 const router = createRouter( {
                                // history: createWebHashHistory(),
-                               history: process.env.IS_ELECTRON ? createWebHashHistory() : createWebHistory(),
+                               history: process.env.IS_ELECTRON
+                                            ? createWebHashHistory()
+                                            : createWebHistory(),
                                routes,
-                             });
+                             } );
 
 router.beforeEach(() => {
   // reset config to initial state
