@@ -19,13 +19,13 @@ import MixedWidget2 from '@/components/widgets/mixed/Widget2.vue';
 import { setCurrentPageTitle } from '@/core/helpers/breadcrumb';
 
 export default defineComponent( {
-                                  name:       'page_1',
+                                  name:       'folder_list',
                                   components: {
                                     MixedWidget2,
                                   },
                                   setup() {
                                     onMounted( () => {
-                                      setCurrentPageTitle( 'Page 1' );
+                                      setCurrentPageTitle( 'Mes dossiers' );
                                     } );
                                   },
                                 } );

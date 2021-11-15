@@ -8,14 +8,14 @@ const DocMenuConfig: object = [
         fontIcon: 'bi-app-indicator',
       },
       {
-        heading:  'Page 1',
-        route:    '/page_1',
+        heading:  'Mes dossiers',
+        route:    '/folder_list',
         svgIcon:  'media/icons/duotone/Design/PenAndRuller.svg',
         fontIcon: 'bi-app-indicator',
       },
       {
-        heading:  'Page 2',
-        route:    '/page_2',
+        heading:  'Parametres',
+        route:    '/parameters',
         svgIcon:  'media/icons/duotone/Design/PenAndRuller.svg',
         fontIcon: 'bi-app-indicator',
       },
