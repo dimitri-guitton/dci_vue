@@ -6,6 +6,7 @@ module.exports = {
   pluginOptions: {
     electronBuilder: {
       outputDir: 'releases',
+      nodeIntegration: true,
     },
   },
 };
