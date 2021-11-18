@@ -4,6 +4,7 @@ import { app, BrowserWindow, protocol } from 'electron';
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const Store = require( 'electron-store' );
 
 
@@ -42,9 +43,9 @@ async function createWindow() {
                                        webPreferences: {
                                            // Use pluginOptions.nodeIntegration, leave this alone
                                            // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-                                           nodeIntegration:  ( process.env
-                                               .ELECTRON_NODE_INTEGRATION as unknown ) as boolean,
-                                           contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
+                                           nodeIntegration:    ( process.env.ELECTRON_NODE_INTEGRATION as unknown ) as boolean,
+                                           contextIsolation:   !process.env.ELECTRON_NODE_INTEGRATION,
+                                           enableRemoteModule: true,
                                        },
                                    } );
 

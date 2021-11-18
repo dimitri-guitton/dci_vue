@@ -25,6 +25,8 @@
                  class="form-control" />
           <ErrorMessage name="apiKey" class="text-danger" />
         </div>
+      </div>
+      <div class="row">
         <div class="mb-10 col-6">
           <label for="dropboxPath" class="required form-label">Chemin Dropbox</label>
           <Field v-model="dropboxPath"
@@ -32,11 +34,19 @@
                  name="dropboxPath"
                  type="text"
                  placeholder="mon/chemin/vers/dropbox"
-                 class="form-control" />
+                 class="form-control"
+                 disabled
+          />
           <ErrorMessage name="dropboxPath" class="text-danger" />
         </div>
+        <div class="mb-10 col-2 align-self-end">
+          <button type="button"
+                  @click="openFileExplorer"
+                  class="btn btn-outline btn-outline-info btn-active-light-info">Parcourir
+          </button>
+        </div>
       </div>
-      <div class="float-end">
+      <div class="float-start">
         <button type="submit" class="btn btn-success"><i class="far fa-check-circle fs-4 me-2"></i>Valider</button>
       </div>
     </Form>
@@ -51,6 +61,9 @@ import { defineComponent, ref } from 'vue';
 import { ErrorMessage, Field, Form } from 'vee-validate';
 
 import Store from 'electron-store';
+import { OpenDialogReturnValue } from 'electron';
+
+const { dialog } = require( 'electron' ).remote;
 
 const schema = {
   apiKey:      {
@@ -77,8 +90,9 @@ export default defineComponent( {
 
                                     // Recup les données du users
                                     const apiKey      = store.get( 'apiKey' );
-                                    const dropboxPath = store.get( 'dropboxPath' );
+                                    const dropboxPath = ref( store.get( 'dropboxPath' ) );
                                     const flashActive = ref( false );
+                                    const f           = ref();
 
                                     // Set up les schémas pour le formulaire
                                     const simpleSchema = {
@@ -96,8 +110,22 @@ export default defineComponent( {
                                       },
                                     };
 
+                                    /**
+                                     * Ouvre l'explorateur de fichier pour sélectionner le pat de DropBox
+                                     */
+                                    const openFileExplorer = () => {
+                                      dialog.showOpenDialog( { properties: [ 'openDirectory' ] } )
+                                            .then( ( value: OpenDialogReturnValue ) => {
+                                              dropboxPath.value = value.filePaths[ 0 ];
+                                            } );
+                                    };
+
                                     return {
-                                      simpleSchema, apiKey, dropboxPath, flashActive,
+                                      simpleSchema,
+                                      apiKey,
+                                      dropboxPath,
+                                      flashActive,
+                                      openFileExplorer,
                                     };
                                   },
                                   methods: {
