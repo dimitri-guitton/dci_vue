@@ -90,7 +90,6 @@ export default defineComponent( {
                                     const apiKey      = store.get( 'apiKey' );
                                     const dropboxPath = ref( store.get( 'dropboxPath' ) );
                                     const flashActive = ref( false );
-                                    const f           = ref();
 
                                     // Set up les schémas pour le formulaire
                                     const simpleSchema = {

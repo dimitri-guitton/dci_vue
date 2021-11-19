@@ -47,12 +47,12 @@
                       v-model="newFolderData.type"
                   >
                     <option value="">Sélectionner un chantier...</option>
-                    <option value="comble">Comble</option>
+                    <option value="co">Comble</option>
                     <option value="sol">Sol</option>
-                    <option value="c_rr">Chauffage RR</option>
-                    <option value="c_ro">Chauffage RO</option>
+                    <option value="pac_ro">Chauffage RR</option>
+                    <option value="pac_ro">Chauffage RO</option>
                     <option value="ce">Chauffe eau</option>
-                    <option value="poele">poele</option>
+                    <option value="po_b">Poele à granulés</option>
                   </Field>
                   <div class="fv-plugins-message-container">
                     <div class="fv-help-block">
@@ -175,6 +175,8 @@
 import { defineComponent, ref } from 'vue';
 import { ErrorMessage, Field, Form } from 'vee-validate';
 import * as Yup from 'yup';
+import Store from 'electron-store';
+import fs from 'fs';
 import router from '@/router';
 
 interface NewFolderData {
@@ -185,6 +187,20 @@ interface NewFolderData {
   enabledHousingAction: boolean;
   disabledMaPrimeRenovBonus: boolean;
 }
+
+const schema = {
+  apiKey:      {
+    type:    'string',
+    default: '',
+  },
+  dropboxPath: {
+    type:    'string',
+    default: '',
+  },
+} as const;
+
+// Store pour stoker les users Data
+const store = new Store( { schema } );
 
 export default defineComponent( {
                                   name:       'new-folder-modal',
@@ -222,8 +238,22 @@ export default defineComponent( {
                                       //Disable button
                                       submitButtonRef.value.disabled = true;
                                       console.log( newFolderData.value );
+                                      console.log( store.get( 'dropboxPath' ) );
+                                      const dropboxPath = store.get( 'dropboxPath' );
+                                      const today       = new Date();
+                                      // TODO ADD un zero devant les heures et les minutes inférieur à 10
+                                      const folderSlug  = 'ID_COM-' + today.getFullYear() + ( today.getMonth() + 1 ) + today.getDate() + today.getHours() + today.getMinutes() + `-${ newFolderData.value.type.toUpperCase() } (${ newFolderData.value.customer.toUpperCase() })`;
+                                      console.log( folderSlug );
 
-                                      router.push( { name: 'folder_show', query: { slug: '79878797798789' } } );
+                                      if ( !fs.existsSync( dropboxPath + '/DCI' ) ) {
+                                        fs.mkdirSync( dropboxPath + '/DCI' );
+                                      }
+
+                                      if ( !fs.existsSync( dropboxPath + '/DCI/' + folderSlug ) ) {
+                                        fs.mkdirSync( dropboxPath + '/DCI/' + folderSlug );
+                                      }
+
+                                      router.push( { name: 'folder_show', query: { slug: folderSlug } } );
                                     };
 
                                     return {
