@@ -176,8 +176,8 @@ import { defineComponent, ref } from 'vue';
 import { ErrorMessage, Field, Form } from 'vee-validate';
 import * as Yup from 'yup';
 import Store from 'electron-store';
-import fs from 'fs';
 import router from '@/router';
+import * as folderService from '../../../services/folderService';
 
 interface NewFolderData {
   type: string;
@@ -237,21 +237,9 @@ export default defineComponent( {
 
                                       //Disable button
                                       submitButtonRef.value.disabled = true;
-                                      console.log( newFolderData.value );
-                                      console.log( store.get( 'dropboxPath' ) );
-                                      const dropboxPath = store.get( 'dropboxPath' );
-                                      const today       = new Date();
-                                      // TODO ADD un zero devant les heures et les minutes inférieur à 10
-                                      const folderSlug  = 'ID_COM-' + today.getFullYear() + ( today.getMonth() + 1 ) + today.getDate() + today.getHours() + today.getMinutes() + `-${ newFolderData.value.type.toUpperCase() } (${ newFolderData.value.customer.toUpperCase() })`;
-                                      console.log( folderSlug );
 
-                                      if ( !fs.existsSync( dropboxPath + '/DCI' ) ) {
-                                        fs.mkdirSync( dropboxPath + '/DCI' );
-                                      }
-
-                                      if ( !fs.existsSync( dropboxPath + '/DCI/' + folderSlug ) ) {
-                                        fs.mkdirSync( dropboxPath + '/DCI/' + folderSlug );
-                                      }
+                                      const folderSlug = folderService.createAFolder( newFolderData.value.type,
+                                                                                      newFolderData.value.customer );
 
                                       router.push( { name: 'folder_show', query: { slug: folderSlug } } );
                                     };

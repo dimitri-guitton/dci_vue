@@ -41,15 +41,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NewFolderModal from '@/components/DCI/modals/NewFolderModal.vue';
+import * as folderService from '../services/folderService';
 
 
 export default defineComponent( {
-                                  name: 'folder_list',
+                                  name:       'folder_list',
                                   components: {
                                     NewFolderModal,
                                   },
                                   setup() {
-                                    console.log( 'OK' );
+                                    folderService.createDciFolderIfNotExist();
                                   },
                                 } );
 </script>
