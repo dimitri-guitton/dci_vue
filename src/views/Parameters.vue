@@ -1,5 +1,4 @@
 <template>
-  <!--begin::Dashboard-->
   <div class="row gy-5">
     <div v-if="flashActive">
       <div class="alert alert-success d-flex align-items-center p-5 mb-10">
@@ -51,7 +50,6 @@
       </div>
     </Form>
   </div>
-  <!--end::Dashboard-->
 </template>
 
 <script lang="ts">

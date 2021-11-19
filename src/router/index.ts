@@ -23,6 +23,11 @@ const routes: Array<RouteRecordRaw> = [
                 name:      'parameters',
                 component: () => import('@/views/Parameters.vue'),
             },
+            {
+                path:      '/folder/{slug}',
+                name:      'folder_show',
+                component: () => import('@/views/FolderShow.vue'),
+            },
         ],
     },
     {

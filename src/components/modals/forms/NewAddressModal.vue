@@ -622,10 +622,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { ErrorMessage, Field, Form } from "vee-validate";
-import Swal from "sweetalert2/dist/sweetalert2.js";
-import * as Yup from "yup";
+import { defineComponent, ref } from 'vue';
+import { ErrorMessage, Field, Form } from 'vee-validate';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import * as Yup from 'yup';
 
 interface NewAddressData {
   firstName: string;
@@ -720,10 +720,10 @@ export default defineComponent({
     };
 
     return {
-      newAddressData,
+      newAddressData: newFolderData,
       validationSchema,
       submit,
-      submitButtonRef
+      submitButtonRef,
     };
   }
 });

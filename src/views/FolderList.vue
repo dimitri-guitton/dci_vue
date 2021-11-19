@@ -1,32 +1,55 @@
 <template>
-  <!--begin::Dashboard-->
-  <div class="row gy-5 g-xl-8">
-    <div class="col-xxl-4">
-      <MixedWidget2
-          widget-classes="card-xl-stretch mb-xl-8"
-          widget-color="danger"
-          chart-height="200"
-          stroke-color="#cb1e46"
-      ></MixedWidget2>
+  <div class="row gy-5">
+    <div class="row">
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_folder">Nouveau Dossier
+      </button>
+      <NewFolderModal></NewFolderModal>
     </div>
+    <table class="table table-row-dashed table-row-gray-300 gy-7">
+      <thead>
+      <tr class="fw-bolder fs-5 text-gray-800">
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Age</th>
+        <th>Start date</th>
+        <th>Salary</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Tiger Nixon</td>
+        <td>System Architect</td>
+        <td>Edinburgh</td>
+        <td>61</td>
+        <td>2011/04/25</td>
+        <td>$320,800</td>
+      </tr>
+      <tr>
+        <td>Garrett Winters</td>
+        <td>Accountant</td>
+        <td>Tokyo</td>
+        <td>63</td>
+        <td>2011/07/25</td>
+        <td>$170,750</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
-  <!--end::Dashboard-->
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
-import MixedWidget2 from '@/components/widgets/mixed/Widget2.vue';
-import { setCurrentPageTitle } from '@/core/helpers/breadcrumb';
+import { defineComponent } from 'vue';
+import NewFolderModal from '@/components/DCI/modals/NewFolderModal.vue';
+
 
 export default defineComponent( {
-                                  name:       'folder_list',
+                                  name: 'folder_list',
                                   components: {
-                                    MixedWidget2,
+                                    NewFolderModal,
                                   },
                                   setup() {
-                                    onMounted( () => {
-                                      setCurrentPageTitle( 'Mes dossiers' );
-                                    } );
+                                    console.log( 'OK' );
                                   },
                                 } );
 </script>
