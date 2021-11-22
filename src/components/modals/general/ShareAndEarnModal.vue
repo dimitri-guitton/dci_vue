@@ -18,7 +18,7 @@
             data-bs-dismiss="modal"
           >
             <span class="svg-icon svg-icon-1">
-              <inline-svg src="media/icons/duotone/Navigation/Close.svg" />
+              <inline-svg src="media/icons/duotune/arrows/arr061.svg" />
             </span>
           </div>
           <!--end::Close-->
@@ -123,7 +123,9 @@
 
               <!--begin::Switch-->
               <label
-                class="form-check form-switch form-check-custom form-check-solid"
+                class="
+                  form-check form-switch form-check-custom form-check-solid
+                "
               >
                 <input
                   class="form-check-input"
@@ -131,9 +133,7 @@
                   value="1"
                   checked="checked"
                 />
-                <span class="form-check-label">
-                  Allowed
-                </span>
+                <span class="form-check-label"> Allowed </span>
               </label>
               <!--end::Switch-->
             </div>
@@ -151,8 +151,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
-import ClipboardJS from "clipboard";
+import { defineComponent, onMounted, ref } from 'vue';
+import ClipboardJS from 'clipboard';
 
 export default defineComponent({
   name: "share-and-earn-modal",
@@ -164,7 +164,7 @@ export default defineComponent({
     onMounted(() => {
       const clipboard = new ClipboardJS(copyButtonRef.value as Element);
 
-      clipboard.on("success", function(e) {
+      clipboard.on("success", function (e) {
         const buttonCaption = copyButtonRef.value?.innerHTML;
         //Add bgcolor
         inputRef.value?.classList.add("bg-success");
@@ -174,7 +174,7 @@ export default defineComponent({
           copyButtonRef.value.innerHTML = "Copied!";
         }
 
-        setTimeout(function() {
+        setTimeout(function () {
           if (copyButtonRef.value && buttonCaption) {
             copyButtonRef.value.innerHTML = buttonCaption;
           }
@@ -190,8 +190,8 @@ export default defineComponent({
 
     return {
       copyButtonRef,
-      inputRef
+      inputRef,
     };
-  }
+  },
 });
 </script>

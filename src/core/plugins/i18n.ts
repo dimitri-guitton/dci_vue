@@ -1,4 +1,4 @@
-import { createI18n } from "vue-i18n";
+import { createI18n } from 'vue-i18n';
 
 const messages = {
   en: {
@@ -55,7 +55,20 @@ const messages = {
     twoFactorAuth: "Two Factor Auth",
     createApp: "Create App",
     createAccount: "Create Account",
-    activity: "Activity"
+    documentation: "Documentation",
+    components: "Components",
+    resources: "Resources",
+    activity: "Activity",
+    customers: "Customers",
+    gettingStarted: "Getting Started",
+    customersListing: "Customers Listing",
+    customerDetails: "Customers Details",
+    calendarApp: "Calendar",
+    subscriptions: "Subscriptions",
+    getStarted: "Getting Started",
+    subscriptionList: "Subscription List",
+    addSubscription: "Add Subscription",
+    viewSubscription: "View Subscription",
   },
   es: {
     dashboard: "Tablero",
@@ -111,7 +124,20 @@ const messages = {
     twoFactorAuth: "Dos Factores",
     createApp: "Crear Aplicacion",
     createAccount: "Crear Una Cuenta",
-    activity: "Actividad"
+    activity: "Actividad",
+    documentation: "Documentación",
+    components: "Componentes",
+    resources: "Recursos",
+    customers: "Clientes",
+    gettingStarted: "Empezando",
+    customersListing: "Listado De Clientes",
+    customerDetails: "Detalles De Los Clientes",
+    calendarApp: "Calendario",
+    subscriptions: "Suscripciones",
+    getStarted: "Empezando",
+    subscriptionList: "Lista De Suscripción",
+    addSubscription: "Añadir Suscripción",
+    viewSubscription: "Suscripción",
   },
   de: {
     dashboard: "Instrumententafel",
@@ -167,7 +193,20 @@ const messages = {
     twoFactorAuth: "Zwei Faktor Auth.",
     createApp: "App Erstellen",
     createAccount: "Benutzerkonto Erstellen",
-    activity: "Aktivität"
+    activity: "Aktivität",
+    documentation: "Dokumentation",
+    components: "Bauteile",
+    resources: "Ressourcen",
+    customers: "Kunden",
+    gettingStarted: "Einstieg",
+    customersListing: "Kundenauflistung",
+    customerDetails: "Kundenangaben",
+    calendarApp: "Kalender",
+    subscriptions: "Abonnements",
+    getStarted: "Einstieg",
+    subscriptionList: "Abonnementliste",
+    addSubscription: "Subskription Hinzufügen.",
+    viewSubscription: "Abonnement Anzeigen.",
   },
   ja: {
     dashboard: "ダッシュボード",
@@ -223,7 +262,20 @@ const messages = {
     twoFactorAuth: "2つの要因Auth",
     createApp: "アプリを作成します",
     createAccount: "アカウントを作成する",
-    activity: "アクティビティ"
+    activity: "アクティビティ",
+    documentation: "ドキュメンテーション",
+    components: "コンポーネント",
+    resources: "資力",
+    customers: "お客様のお客様",
+    gettingStarted: "入門",
+    customersListing: "顧客のリスト",
+    customerDetails: "お客様の詳細",
+    calendarApp: "カレンダー",
+    subscriptions: "購読",
+    getStarted: "入門",
+    subscriptionList: "サブスクリプションリスト",
+    addSubscription: "サブスクリプションを追加します",
+    viewSubscription: "購読を見る",
   },
   fr: {
     dashboard: "Générateur de mise",
@@ -279,15 +331,28 @@ const messages = {
     twoFactorAuth: "Deux Facteurs D'Authentification",
     createApp: "Créer Une Application",
     createAccount: "Créer Un Compte",
-    activity: "Activité"
-  }
+    activity: "Activité",
+    documentation: "Documentation",
+    components: "Composants",
+    resources: "Ressources",
+    customers: "Les Clients",
+    gettingStarted: "Commencer",
+    customersListing: "Liste Des Clients",
+    customerDetails: "Détails Des Clients",
+    calendarApp: "Calendrier",
+    subscriptions: "Abonnements",
+    getStarted: "Commencer",
+    subscriptionList: "Liste D'Abonnement",
+    addSubscription: "Ajouter Un Abonnement",
+    viewSubscription: "Voir L'Abonnement",
+  },
 };
 
 const i18n = createI18n({
   legacy: false,
   locale: "en",
   globalInjection: true,
-  messages
+  messages,
 });
 
 export default i18n;

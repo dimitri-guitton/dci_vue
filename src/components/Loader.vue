@@ -27,13 +27,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import { useStore } from "vuex";
+import { computed, defineComponent } from 'vue';
+import { useStore } from 'vuex';
 
 export default defineComponent({
   name: "Loader",
   props: {
-    logo: String
+    logo: String,
   },
   setup() {
     const store = useStore();
@@ -43,8 +43,8 @@ export default defineComponent({
     });
 
     return {
-      loaderType
+      loaderType,
     };
-  }
+  },
 });
 </script>

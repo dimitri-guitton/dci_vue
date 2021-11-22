@@ -4,7 +4,7 @@
     :class="widgetClasses"
     :style="`background-image: url('media/svg/shapes/${background}')`"
     class="card bgi-no-repeat"
-    style="background-position: right top; background-size: 30% auto;"
+    style="background-position: right top; background-size: 30% auto"
   >
     <!--begin::Body-->
     <div class="card-body">
@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "kt-widget-1",
@@ -35,8 +35,8 @@ export default defineComponent({
     background: String,
     title: String,
     time: String,
-    description: String
+    description: String,
   },
-  components: {}
+  components: {},
 });
 </script>

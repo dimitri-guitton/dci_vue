@@ -2,8 +2,19 @@
   <!--begin::Exolore drawer toggle-->
   <button
     id="kt_explore_toggle"
-    class="btn btn-sm btn-white btn-active-primary shadow-sm position-fixed px-5 fw-bolder zindex-2 top-50 mt-10 end-0 transform-90 fs-6"
-    :title="`Explore ${themeName}`"
+    class="
+      btn btn-sm btn-white btn-active-primary
+      shadow-sm
+      position-fixed
+      px-5
+      fw-bolder
+      zindex-2
+      top-50
+      mt-10
+      end-0
+      transform-90
+      fs-6
+    "
     data-bs-toggle="tooltip"
     data-bs-placement="right"
     data-bs-trigger="hover"
@@ -15,12 +26,12 @@
   <!--begin::Exolore drawer-->
   <div
     id="kt_explore"
-    class="bg-white"
+    class="bg-body"
     data-kt-drawer="true"
     data-kt-drawer-name="explore"
     data-kt-drawer-activate="true"
     data-kt-drawer-overlay="true"
-    data-kt-drawer-width="{default:'300px', 'lg': '375px'}"
+    data-kt-drawer-width="{default:'350px', 'lg': '475px'}"
     data-kt-drawer-direction="end"
     data-kt-drawer-toggle="#kt_explore_toggle"
     data-kt-drawer-close="#kt_explore_close"
@@ -29,7 +40,9 @@
     <div class="card shadow-none w-100">
       <!--begin::Header-->
       <div class="card-header" id="kt_explore_header">
-        <h3 class="card-title fw-bolder text-gray-700">Explore Metronic</h3>
+        <h3 class="card-title fw-bolder text-gray-700">
+          Explore {{ themeName }}
+        </h3>
 
         <div class="card-toolbar">
           <button
@@ -38,7 +51,7 @@
             id="kt_explore_close"
           >
             <span class="svg-icon svg-icon-2">
-              <inline-svg src="media/icons/duotone/Navigation/Close.svg" />
+              <inline-svg src="media/icons/duotune/arrows/arr061.svg" />
             </span>
           </button>
         </div>
@@ -54,352 +67,212 @@
           data-kt-scroll="true"
           data-kt-scroll-height="auto"
           data-kt-scroll-wrappers="#kt_explore_body"
-          data-kt-scroll-dependencies="#kt_explore_header, #kt_explore_footer"
+          data-kt-scroll-dependencies="#kt_explore_header"
           data-kt-scroll-offset="5px"
         >
-          <!--begin::Demos-->
+          <!--begin::Wrapper-->
           <div class="mb-0">
+            <!--begin::Header-->
             <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo1</h3>
-              <div
-                class="overlay overflow-hidden border border-4 border-primary p-2 rounded"
-              >
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo1.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
-                </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo1"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
+              <div class="d-flex flex-stack">
+                <h3 class="mb-0">Metronic Licenses</h3>
 
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo2</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo2.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
-                </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo2"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
-                </div>
+                <a
+                  href="https://themeforest.net/licenses/standard"
+                  class="fw-bold"
+                  target="_blank"
+                >
+                  License FAQs
+                </a>
               </div>
             </div>
-          </div>
+            <!--end::Header-->
 
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo3</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo3.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
-                </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo3"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
+            <!--begin::License-->
+            <div
+              class="
+                rounded
+                border border-dashed border-gray-300
+                py-4
+                px-6
+                mb-5
+              "
+            >
+              <div class="d-flex flex-stack">
+                <div class="d-flex flex-column">
+                  <div class="d-flex align-items-center mb-1">
+                    <div class="fs-6 fw-bold text-gray-800 fw-bold mb-0 me-1">
+                      Regular License
+                    </div>
 
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo4</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo4.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
+                    <i
+                      class="text-gray-400 fas fa-exclamation-circle ms-1 fs-7"
+                      data-bs-toggle="popover"
+                      data-bs-custom-class="popover-dark"
+                      data-bs-trigger="hover"
+                      data-bs-placement="top"
+                      data-bs-content="Use, by you or one client in a single end product which end users are not charged for."
+                    >
+                    </i>
+                  </div>
+                  <div class="fs-7 text-muted">
+                    For single end product used by you or one client
+                  </div>
                 </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo4"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo5</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo5.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
-                </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo5"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
+                <div class="text-nowrap">
+                  <span class="text-muted fs-7 fw-bold">$</span>
+                  <span class="text-dark fs-1 fw-bolder">39</span>
                 </div>
               </div>
             </div>
-          </div>
+            <!--end::License-->
 
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo6</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo6.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
-                </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo6"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
+            <!--begin::License-->
+            <div
+              class="
+                rounded
+                border border-dashed border-gray-300
+                py-4
+                px-6
+                mb-5
+              "
+            >
+              <div class="d-flex flex-stack">
+                <div class="d-flex flex-column">
+                  <div class="d-flex align-items-center mb-1">
+                    <div class="fs-6 fw-bold text-gray-800 fw-bold mb-0 me-1">
+                      Extended License
+                    </div>
 
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo7</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo7.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
+                    <i
+                      class="text-gray-400 fas fa-exclamation-circle ms-1 fs-7"
+                      data-bs-toggle="popover"
+                      data-bs-custom-class="popover-dark"
+                      data-bs-trigger="hover"
+                      data-bs-placement="top"
+                      data-bs-content="Use, by you or one client, in a single end product which end users can be charged for."
+                    >
+                    </i>
+                  </div>
+                  <div class="fs-7 text-muted">
+                    For single end product with paying users.
+                  </div>
                 </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo7"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo8</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo8.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
-                </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo8"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
+                <div class="text-nowrap">
+                  <span class="text-muted fs-7 fw-bold">$</span>
+                  <span class="text-dark fs-1 fw-bolder">939</span>
                 </div>
               </div>
             </div>
-          </div>
+            <!--end::License-->
 
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo9</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo9.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
+            <!--begin::License-->
+            <div
+              class="
+                rounded
+                border border-dashed border-gray-300
+                py-4
+                px-6
+                mb-5
+              "
+            >
+              <div class="d-flex flex-stack">
+                <div class="d-flex flex-column">
+                  <div class="d-flex align-items-center mb-1">
+                    <div class="fs-6 fw-bold text-gray-800 fw-bold mb-0 me-1">
+                      Custom License
+                    </div>
+                  </div>
+                  <div class="fs-7 text-muted">
+                    Reach us for custom license offers.
+                  </div>
                 </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo9"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo10</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo10.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
-                </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
+                <div class="text-nowrap">
                   <a
-                    href="https://preview.keenthemes.com/metronic8/demo10"
-                    class="btn btn-primary shadow"
-                    >Preview</a
+                    href="https://keenthemes.com/contact/"
+                    class="btn btn-sm btn-success"
+                    target="_blank"
+                    >Contact Us</a
                   >
                 </div>
               </div>
             </div>
-          </div>
+            <!--end::License-->
 
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo11</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo11.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
-                </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo11"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
+            <!--begin::Purchase-->
+            <a
+              href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469"
+              class="btn btn-primary mb-15 w-100"
+            >
+              Buy Now
+            </a>
+            <!--end::Purchase-->
 
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo12</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo12.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
-                </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo12"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
+            <!--begin::Demos-->
+            <div class="mb-0">
+              <h3 class="fw-bolder text-center mb-6">{{ themeName }} Demos</h3>
 
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo13</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo13.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
-                </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo13"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
+              <!--begin::Row-->
+              <div class="row g-5">
+                <template v-for="(item, i) in demos" :key="i">
+                  <div class="col-6">
+                    <!--begin::Demo-->
+                    <div
+                      :class="`overlay overflow-hidden position-relative ${
+                        demo === item.name
+                          ? 'border border-4 border-success'
+                          : 'border border-4 border-gray-200'
+                      } rounded`"
+                    >
+                      <div class="overlay-wrapper">
+                        <img
+                          :src="`media/demos/${item.name}.png`"
+                          alt="demo"
+                          :class="`w-100 ${!item.available && 'opacity-75'}`"
+                        />
+                      </div>
 
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo14</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo14.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
-                </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo14"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
-                </div>
+                      <div class="overlay-layer bg-dark bg-opacity-10">
+                        <a
+                          v-if="item.available"
+                          :href="`https://preview.keenthemes.com/metronic8/vue/${item.name}`"
+                          class="btn btn-sm btn-success shadow"
+                          >{{
+                            item.name.charAt(0).toUpperCase() +
+                            item.name.slice(1)
+                          }}</a
+                        >
+                        <div
+                          v-else
+                          class="
+                            badge badge-white
+                            px-6
+                            py-4
+                            fw-bold
+                            fs-base
+                            shadow
+                          "
+                        >
+                          Coming soon
+                        </div>
+                      </div>
+                    </div>
+                    <!--end::Demo-->
+                  </div>
+                </template>
               </div>
+              <!--end::Row-->
             </div>
+            <!--end::Demos-->
           </div>
-
-          <div class="mb-0">
-            <div class="mb-7">
-              <h3 class="fw-bold text-center mb-3">Demo15</h3>
-              <div class="overlay overflow-hidden border border-4 p-2 rounded">
-                <div class="overlay-wrapper rounded">
-                  <img
-                    src="media/demos/demo15.png"
-                    alt="demo"
-                    class="w-100 rounded"
-                  />
-                </div>
-                <div class="overlay-layer bg-dark bg-opacity-10">
-                  <a
-                    href="https://preview.keenthemes.com/metronic8/demo15"
-                    class="btn btn-primary shadow"
-                    >Preview</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--end::Demos-->
+          <!--end::Wrapper-->
         </div>
         <!--end::Content-->
       </div>
       <!--end::Body-->
-
-      <!--begin::Footer-->
-      <div class="card-footer py-5 text-center" id="kt_explore_footer">
-        <a href="" class="btn btn-primary"> Purchase {{ themeName }} </a>
-      </div>
-      <!--end::Footer-->
     </div>
     <!--end::Card-->
   </div>
@@ -407,15 +280,62 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { themeName } from "@/core/helpers/documentation";
+import { defineComponent } from 'vue';
+import { demo, themeName } from '@/core/helpers/documentation';
 
 export default defineComponent({
   name: "kt-explore",
   setup() {
+    const demos = [
+      {
+        name: "demo1",
+        available: true,
+      },
+      {
+        name: "demo2",
+        available: true,
+      },
+      {
+        name: "demo3",
+      },
+      {
+        name: "demo4",
+      },
+      {
+        name: "demo5",
+      },
+      {
+        name: "demo6",
+      },
+      {
+        name: "demo7",
+        available: true,
+      },
+      {
+        name: "demo8",
+      },
+      {
+        name: "demo9",
+      },
+      {
+        name: "demo10",
+      },
+      {
+        name: "demo11",
+      },
+      {
+        name: "demo12",
+      },
+      {
+        name: "demo13",
+      },
+    ];
+
     return {
-      themeName
+      themeName,
+      demos,
+      demo,
     };
-  }
+  },
 });
 </script>

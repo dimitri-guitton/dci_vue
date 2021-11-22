@@ -1,18 +1,19 @@
-import objectPath from "object-path";
-import merge from "deepmerge";
-import layoutConfig from "@/core/config/DefaultLayoutConfig";
-import { Mutations } from "@/store/enums/StoreEnums";
-import { Mutation, Module, VuexModule } from "vuex-module-decorators";
+import objectPath from 'object-path';
+import merge from 'deepmerge';
+import layoutConfig from '@/core/config/DefaultLayoutConfig';
+import { Mutations } from '@/store/enums/StoreEnums';
+import { Module, Mutation, VuexModule } from 'vuex-module-decorators';
+import LayoutConfigTypes from '@/core/config/LayoutConfigTypes';
 
 interface StoreInfo {
-  config: object;
-  initial: object;
+  config: LayoutConfigTypes;
+  initial: LayoutConfigTypes;
 }
 
 @Module
 export default class ConfigModule extends VuexModule implements StoreInfo {
-  config: object = layoutConfig;
-  initial: object = layoutConfig;
+  config = layoutConfig;
+  initial = layoutConfig;
 
   /**
    * Get config from layout config
@@ -25,7 +26,7 @@ export default class ConfigModule extends VuexModule implements StoreInfo {
   }
 
   @Mutation
-  [Mutations.SET_LAYOUT_CONFIG](payload: object): void {
+  [Mutations.SET_LAYOUT_CONFIG](payload): void {
     this.config = payload;
   }
 
@@ -44,7 +45,7 @@ export default class ConfigModule extends VuexModule implements StoreInfo {
   }
 
   @Mutation
-  [Mutations.OVERRIDE_PAGE_LAYOUT_CONFIG](payload: object): void {
+  [Mutations.OVERRIDE_PAGE_LAYOUT_CONFIG](payload): void {
     this.config = merge(this.config, payload);
   }
 }

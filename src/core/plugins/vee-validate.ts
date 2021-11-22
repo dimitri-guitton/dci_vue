@@ -1,4 +1,4 @@
-import { configure } from "vee-validate";
+import { configure } from 'vee-validate';
 
 export function initVeeValidate() {
   // Updating default vee-validate configuration
@@ -6,6 +6,6 @@ export function initVeeValidate() {
     validateOnBlur: true,
     validateOnChange: true,
     validateOnInput: true,
-    validateOnModelUpdate: true
+    validateOnModelUpdate: true,
   });
 }

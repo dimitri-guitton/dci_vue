@@ -10,7 +10,19 @@
           <img :src="avatar" alt="image" />
           <div
             v-if="online"
-            class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-white h-15px w-15px ms-n3 mt-n3"
+            class="
+              bg-success
+              position-absolute
+              rounded-circle
+              translate-middle
+              start-100
+              top-100
+              border border-4 border-white
+              h-15px
+              w-15px
+              ms-n3
+              mt-n3
+            "
           ></div>
         </div>
         <div v-else class="symbol symbol-65px symbol-circle mb-5">
@@ -21,7 +33,19 @@
           >
           <div
             v-if="online"
-            class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-white h-15px w-15px ms-n3 mt-n3"
+            class="
+              bg-success
+              position-absolute
+              rounded-circle
+              translate-middle
+              start-100
+              top-100
+              border border-4 border-white
+              h-15px
+              w-15px
+              ms-n3
+              mt-n3
+            "
           ></div>
         </div>
         <!--end::Avatar-->
@@ -63,13 +87,13 @@
         <!--begin::Follow-->
         <a v-if="connected" href="#" class="btn btn-sm btn-light-primary">
           <span class="svg-icon svg-icon-3">
-            <inline-svg src="media/icons/duotone/Navigation/Double-check.svg" />
+            <inline-svg src="media/icons/duotune/arrows/arr012.svg" />
           </span>
           Connected
         </a>
         <a v-else href="#" class="btn btn-sm btn-light">
           <span class="svg-icon svg-icon-3">
-            <inline-svg src="media/icons/duotone/Communication/Add-user.svg" />
+            <inline-svg src="media/icons/duotune/arrows/arr075.svg" />
           </span>
           Connect
         </a>
@@ -83,7 +107,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "card-3",
@@ -107,7 +131,7 @@ export default defineComponent({
 
     totalSales: String,
 
-    connected: Boolean
-  }
+    connected: Boolean,
+  },
 });
 </script>

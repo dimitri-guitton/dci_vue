@@ -24,7 +24,7 @@
             id="kt_activities_close"
           >
             <span class="svg-icon svg-icon-1">
-              <inline-svg src="media/icons/duotone/Navigation/Close.svg" />
+              <inline-svg src="media/icons/duotune/arrows/arr061.svg" />
             </span>
           </button>
         </div>
@@ -64,7 +64,7 @@
       <div class="card-footer py-5 text-center" id="kt_activities_footer">
         <a href="#" class="btn btn-bg-white text-primary">
           View All Activities<span class="svg-icon svg-icon-3 svg-icon-primary">
-            <inline-svg src="media/icons/duotone/Navigation/Right-2.svg" />
+            <inline-svg src="media/icons/duotune/arrows/arr064.svg" />
           </span>
         </a>
       </div>
@@ -75,16 +75,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
-import { DrawerComponent } from "@/assets/ts/components/_DrawerComponent";
-import Item1 from "@/layout/header/partials/activity-timeline/Item1.vue";
-import Item2 from "@/layout/header/partials/activity-timeline/Item2.vue";
-import Item3 from "@/layout/header/partials/activity-timeline/Item3.vue";
-import Item4 from "@/layout/header/partials/activity-timeline/Item4.vue";
-import Item5 from "@/layout/header/partials/activity-timeline/Item5.vue";
-import Item6 from "@/layout/header/partials/activity-timeline/Item6.vue";
-import Item7 from "@/layout/header/partials/activity-timeline/Item7.vue";
-import Item8 from "@/layout/header/partials/activity-timeline/Item8.vue";
+import { defineComponent } from 'vue';
+import Item1 from '@/layout/header/partials/activity-timeline/Item1.vue';
+import Item2 from '@/layout/header/partials/activity-timeline/Item2.vue';
+import Item3 from '@/layout/header/partials/activity-timeline/Item3.vue';
+import Item4 from '@/layout/header/partials/activity-timeline/Item4.vue';
+import Item5 from '@/layout/header/partials/activity-timeline/Item5.vue';
+import Item6 from '@/layout/header/partials/activity-timeline/Item6.vue';
+import Item7 from '@/layout/header/partials/activity-timeline/Item7.vue';
+import Item8 from '@/layout/header/partials/activity-timeline/Item8.vue';
 
 export default defineComponent({
   name: "kt-activity-drawer",
@@ -96,12 +95,7 @@ export default defineComponent({
     Item5,
     Item6,
     Item7,
-    Item8
+    Item8,
   },
-  setup() {
-    onMounted(() => {
-      DrawerComponent.reinitialization();
-    });
-  }
 });
 </script>

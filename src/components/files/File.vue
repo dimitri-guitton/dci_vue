@@ -1,10 +1,17 @@
 <template>
   <div class="col-12 col-sm-12 col-xl">
     <!--begin::Card-->
-    <div class="card h-100 ">
+    <div class="card h-100">
       <!--begin::Card body-->
       <div
-        class="card-body d-flex justify-content-center text-center flex-column p-8"
+        class="
+          card-body
+          d-flex
+          justify-content-center
+          text-center
+          flex-column
+          p-8
+        "
       >
         <!--begin::Name-->
         <a href="#" class="text-gray-800 text-hover-primary d-flex flex-column">
@@ -35,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "file",
@@ -44,8 +51,8 @@ export default defineComponent({
 
     createdAt: String,
 
-    fileType: String
+    fileType: String,
   },
-  components: {}
+  components: {},
 });
 </script>

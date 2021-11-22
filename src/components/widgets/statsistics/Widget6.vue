@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "kt-widget-6",
@@ -44,8 +44,8 @@ export default defineComponent({
     color: String,
     description: String,
     progress: String,
-    title: String
+    title: String,
   },
-  components: {}
+  components: {},
 });
 </script>

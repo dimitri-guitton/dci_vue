@@ -71,7 +71,7 @@ $aside-config: (
 	minimized-hover-box-shadow: if(isDarkMode(), none, 5px 0px 10px rgba(70, 78, 95, 0.075)) // Monimized hover box shadow
 ) !default;
 
-// Aside
+// Footer
 $footer-config: (	
 	bg-color: if(isDarkMode(), #1B1B28, $white),
 ) !default;

@@ -7,15 +7,15 @@
     data-kt-scrolltop="true"
   >
     <span class="svg-icon">
-      <inline-svg src="media/icons/duotone/Navigation/Up-2.svg" />
+      <inline-svg src="media/icons/duotune/arrows/arr066.svg" />
     </span>
   </div>
   <!-- end::Scrolltop -->
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
-import { ScrollTopComponent } from "@/assets/ts/components/_ScrollTopComponent";
+import { defineComponent, onMounted } from 'vue';
+import { ScrollTopComponent } from '@/assets/ts/components/_ScrollTopComponent';
 
 export default defineComponent({
   name: "KTScrollTop",
@@ -24,6 +24,6 @@ export default defineComponent({
     onMounted(() => {
       ScrollTopComponent.reinitialization();
     });
-  }
+  },
 });
 </script>

@@ -22,15 +22,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, onMounted } from "vue";
-import { useCopyClipboard } from "@/core/helpers/documentation";
-import Prism from "prismjs";
+import { computed, defineComponent, onMounted, ref } from 'vue';
+import { useCopyClipboard } from '@/core/helpers/documentation';
+import Prism from 'prismjs';
 
 export default defineComponent({
   name: "CodeHighlighter",
   props: {
     lang: String,
-    fieldHeight: Number
+    fieldHeight: Number,
   },
   setup(props) {
     const height = ref(props.fieldHeight);
@@ -47,9 +47,9 @@ export default defineComponent({
     });
 
     return {
-      getHeightInPixesls
+      getHeightInPixesls,
     };
   },
-  components: {}
+  components: {},
 });
 </script>

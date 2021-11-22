@@ -15,7 +15,7 @@
         </div>
         <!--end::Details-->
 
-        <div class="symbol  symbol-35px symbol-circle ">
+        <div class="symbol symbol-35px symbol-circle">
           <img alt="Pic" :src="image" />
         </div>
       </div>
@@ -23,7 +23,15 @@
 
       <!--begin::Text-->
       <div
-        class="p-5 rounded bg-light-primary text-dark fw-bold mw-lg-400px text-end"
+        class="
+          p-5
+          rounded
+          bg-light-primary
+          text-dark
+          fw-bold
+          mw-lg-400px
+          text-end
+        "
         data-kt-element="message-text"
       >
         {{ text }}
@@ -35,14 +43,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "message-out",
   props: {
     image: String,
     time: String,
-    text: String
-  }
+    text: String,
+  },
 });
 </script>

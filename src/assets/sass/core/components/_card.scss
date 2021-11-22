@@ -3,9 +3,14 @@
 //
 
 // Base
-.card {
-    box-shadow: $card-box-shadow;
-    border: 0;
+.card {    
+    @if ($card-border-enabled)  {
+        border: 1px solid $border-color;
+    } @else {
+        border: 0;
+    }  
+    
+    box-shadow: $card-box-shadow;  
 
     // Header
     .card-header {
@@ -107,6 +112,23 @@
         .card-footer {
             padding-left: 0;
             padding-right: 0;
+        }
+    }
+
+    &.card-py-0 {
+        .card-header,
+        .card-body,
+        .card-footer {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+
+    &.card-p-0 {
+        .card-header,
+        .card-body,
+        .card-footer {
+            padding: 0;
         }
     }
 

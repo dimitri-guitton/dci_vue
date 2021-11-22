@@ -3,6 +3,7 @@
   <div
     class="modal fade"
     id="kt_modal_create_api_key"
+    ref="createAPIKeyModalRef"
     tabindex="-1"
     aria-hidden="true"
   >
@@ -22,7 +23,7 @@
             data-bs-dismiss="modal"
           >
             <span class="svg-icon svg-icon-1">
-              <inline-svg src="media/icons/duotone/Navigation/Close.svg" />
+              <inline-svg src="media/icons/duotune/arrows/arr061.svg" />
             </span>
           </div>
           <!--end::Close-->
@@ -50,12 +51,18 @@
               data-kt-scroll-offset="300px"
             >
               <div
-                class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-10 p-6"
+                class="
+                  notice
+                  d-flex
+                  bg-light-warning
+                  rounded
+                  border-warning border border-dashed
+                  mb-10
+                  p-6
+                "
               >
                 <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                  <inline-svg
-                    src="media/icons/duotone/Code/Warning-1-circle.svg"
-                  />
+                  <inline-svg src="media/icons/duotune/general/gen044.svg" />
                 </span>
                 <!--begin::Wrapper-->
                 <div class="d-flex flex-stack flex-grow-1">
@@ -228,9 +235,7 @@
               id="kt_modal_create_api_key_submit"
               class="btn btn-primary"
             >
-              <span class="indicator-label">
-                Submit
-              </span>
+              <span class="indicator-label"> Submit </span>
               <span class="indicator-progress">
                 Please wait...
                 <span
@@ -252,10 +257,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { ErrorMessage, Field, Form } from "vee-validate";
-import * as Yup from "yup";
-import Swal from "sweetalert2/dist/sweetalert2.js";
+import { defineComponent, ref } from 'vue';
+import { hideModal } from '@/core/helpers/dom';
+import { ErrorMessage, Field, Form } from 'vee-validate';
+import * as Yup from 'yup';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 interface APIData {
   apiName: string;
@@ -269,40 +275,31 @@ export default defineComponent({
   components: {
     ErrorMessage,
     Field,
-    Form
+    Form,
   },
   setup() {
     const submitButtonRef = ref<null | HTMLButtonElement>(null);
     const modalRef = ref<null | HTMLElement>(null);
+    const createAPIKeyModalRef = ref<null | HTMLElement>(null);
 
     const apiData = ref<APIData>({
       apiName: "",
       shortDescription: "",
       category: "",
-      apiMethod: ""
+      apiMethod: "",
     });
 
     const validationSchema = Yup.object().shape({
-      apiName: Yup.string()
-        .required()
-        .label("API name"),
-      shortDescription: Yup.string()
-        .required()
-        .label("Description"),
-      category: Yup.string()
-        .required()
-        .label("Category"),
-      apiMethod: Yup.string()
-        .required()
-        .label("API method")
+      apiName: Yup.string().required().label("API name"),
+      shortDescription: Yup.string().required().label("Description"),
+      category: Yup.string().required().label("Category"),
+      apiMethod: Yup.string().required().label("API method"),
     });
 
     const submit = () => {
       if (!submitButtonRef.value) {
         return;
       }
-
-      console.log(apiData.value);
 
       //Disable button
       submitButtonRef.value.disabled = true;
@@ -322,10 +319,10 @@ export default defineComponent({
           buttonsStyling: false,
           confirmButtonText: "Ok, got it!",
           customClass: {
-            confirmButton: "btn btn-primary"
-          }
+            confirmButton: "btn btn-primary",
+          },
         }).then(() => {
-          window.location.reload();
+          hideModal(createAPIKeyModalRef.value);
         });
       }, 2000);
     };
@@ -335,8 +332,9 @@ export default defineComponent({
       validationSchema,
       submit,
       submitButtonRef,
-      modalRef
+      modalRef,
+      createAPIKeyModalRef,
     };
-  }
+  },
 });
 </script>

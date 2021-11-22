@@ -9,7 +9,7 @@
     <div class="timeline-icon symbol symbol-circle symbol-40px">
       <div class="symbol-label bg-light">
         <span class="svg-icon svg-icon-2 svg-icon-gray-500">
-          <inline-svg src="media/icons/duotone/Communication/Write.svg" />
+          <inline-svg src="media/icons/duotune/art/art005.svg" />
         </span>
       </div>
     </div>
@@ -48,11 +48,20 @@
       <!--begin::Timeline details-->
       <div class="overflow-auto pb-5">
         <div
-          class="notice d-flex bg-light-primary rounded border-primary border border-dashed min-w-lg-600px flex-shrink-0 p-6"
+          class="
+            notice
+            d-flex
+            bg-light-primary
+            rounded
+            border-primary border border-dashed
+            min-w-lg-600px
+            flex-shrink-0
+            p-6
+          "
         >
           <!--begin::Icon-->
           <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
-            <inline-svg src="media/icons/duotone/Code/Git4.svg" />
+            <inline-svg src="media/icons/duotune/coding/cod004.svg" />
           </span>
           <!--end::Icon-->
 
@@ -91,10 +100,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "",
-  components: {}
+  components: {},
 });
 </script>

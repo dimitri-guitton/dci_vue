@@ -19,9 +19,7 @@
           data-kt-menu-flip="top-end"
         >
           <span class="svg-icon svg-icon-2">
-            <inline-svg
-              src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-            />
+            <inline-svg src="media/icons/duotune/general/gen024.svg" />
           </span>
         </button>
         <Dropdown3></Dropdown3>
@@ -49,7 +47,14 @@
 
           <!--begin::Content-->
           <div
-            class="d-flex flex-row-fluid align-items-center flex-wrap my-lg-0 me-2"
+            class="
+              d-flex
+              flex-row-fluid
+              align-items-center
+              flex-wrap
+              my-lg-0
+              me-2
+            "
           >
             <!--begin::Title-->
             <div class="flex-grow-1 my-lg-0 my-2 me-2">
@@ -75,9 +80,7 @@
 
               <a href="#" class="btn btn-icon btn-light btn-sm border-0">
                 <span class="svg-icon-2 svg-icon-primary">
-                  <inline-svg
-                    src="media/icons/duotone/Navigation/Arrow-right.svg"
-                  />
+                  <inline-svg src="media/icons/duotune/arrows/arr064.svg" />
                 </span>
               </a>
             </div>
@@ -94,16 +97,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import Dropdown3 from "@/components/dropdown/Dropdown3.vue";
+import { defineComponent, ref } from 'vue';
+import Dropdown3 from '@/components/dropdown/Dropdown3.vue';
 
 export default defineComponent({
   name: "kt-widget-6",
   components: {
-    Dropdown3
+    Dropdown3,
   },
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   setup() {
     const list = ref([
@@ -111,31 +114,31 @@ export default defineComponent({
         image: "media/stock/600x400/img-17.jpg",
         title: "Cup & Green",
         desc: "Visually stunning",
-        rate: "4.2"
+        rate: "4.2",
       },
       {
         image: "media/stock/600x400/img-17.jpg",
         title: "Pink Patterns",
         desc: "Feminine all around",
-        rate: "5.0"
+        rate: "5.0",
       },
       {
         image: "media/stock/600x400/img-1.jpg",
         title: "Abstract Art",
         desc: "The will to capture readers",
-        rate: " 5.7"
+        rate: " 5.7",
       },
       {
         image: "media/stock/600x400/img-9.jpg",
         title: "Desserts platter",
         desc: "Food trends & inspirations",
-        rate: "3.7"
-      }
+        rate: "3.7",
+      },
     ]);
 
     return {
-      list
+      list,
     };
-  }
+  },
 });
 </script>

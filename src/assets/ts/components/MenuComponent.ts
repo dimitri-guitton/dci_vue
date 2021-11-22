@@ -1,19 +1,19 @@
-import {createPopper, VirtualElement} from '@popperjs/core'
+import { createPopper, VirtualElement } from '@popperjs/core';
 import {
-  getElementChild,
-  getElementParents,
-  getAttributeValueByBreakpoint,
-  getUniqueIdWithPrefix,
-  DataUtil,
-  ElementStyleUtil,
-  EventHandlerUtil,
-  insertAfterElement,
-  slideUp,
-  slideDown,
-  DOMEventHandlerUtil,
-  throttle,
-  getHighestZindex,
-} from '../_utils/index'
+    DataUtil,
+    DOMEventHandlerUtil,
+    ElementStyleUtil,
+    EventHandlerUtil,
+    getAttributeValueByBreakpoint,
+    getElementChild,
+    getElementParents,
+    getHighestZindex,
+    getUniqueIdWithPrefix,
+    insertAfterElement,
+    slideDown,
+    slideUp,
+    throttle,
+} from '../_utils/index';
 
 export interface MenuOptions {
   dropdown: {
@@ -208,8 +208,8 @@ class MenuComponent {
     }
 
     // Flip
-    const flipValue = this._getItemOption(item, 'flip')
-    const flip = flipValue ? flipValue.toString().split(',') : []
+    // const flipValue = this._getItemOption(item, 'flip')
+    // const flip = flipValue ? flipValue.toString().split(',') : []
 
     // Offset
     const offsetValue = this._getItemOption(item, 'offset')
@@ -230,18 +230,14 @@ class MenuComponent {
           },
         },
         {
-          name: 'preventOverflow',
-          options: {
-            //altBoundary: true,
-            //altAxis: true,
-            rootBoundary: 'clippingParents',
-          },
+          name: 'preventOverflow'
         },
         {
           name: 'flip',
           options: {
-            altBoundary: true,
-            fallbackPlacements: flip,
+            // altBoundary: true,
+            // fallbackPlacements: flip,
+            flipVariations: false
           },
         },
       ],

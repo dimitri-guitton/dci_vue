@@ -18,7 +18,7 @@
             data-bs-dismiss="modal"
           >
             <span class="svg-icon svg-icon-1">
-              <inline-svg src="media/icons/duotone/Navigation/Close.svg" />
+              <inline-svg src="media/icons/duotune/arrows/arr061.svg" />
             </span>
           </div>
           <!--end::Close-->
@@ -49,7 +49,12 @@
               <template v-for="(user, index) in users" :key="index">
                 <!--begin::User-->
                 <div
-                  class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed"
+                  class="
+                    d-flex
+                    flex-stack
+                    py-5
+                    border-bottom border-gray-300 border-bottom-dashed
+                  "
                 >
                   <!--begin::Details-->
                   <div class="d-flex align-items-center">
@@ -71,7 +76,13 @@
                       <!--begin::Name-->
                       <a
                         href="#"
-                        class="d-flex align-items-center fs-5 fw-bolder text-dark text-hover-primary"
+                        class="
+                          d-flex
+                          align-items-center
+                          fs-5
+                          fw-bolder
+                          text-dark text-hover-primary
+                        "
                       >
                         {{ user.name }}
 
@@ -151,7 +162,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "view-users-modal",
@@ -163,97 +174,97 @@ export default defineComponent({
         name: "Emma Smith",
         email: "e.smith@kpmg.com.au",
         position: "Art Director",
-        sales: "23,000"
+        sales: "23,000",
       },
       {
         state: "danger",
         name: "Melody Macy",
         email: "melody@altbox.com",
         position: "Marketing Analytic",
-        sales: "50,500"
+        sales: "50,500",
       },
       {
         avatar: "media/avatars/150-2.jpg",
         name: "Max Smith",
         email: "max@kt.com",
         position: "Software Enginer",
-        sales: "75,900"
+        sales: "75,900",
       },
       {
         avatar: "media/avatars/150-2.jpg",
         name: "Sean Bean",
         email: "sean@dellito.com",
         position: "Web Developer",
-        sales: "10,500"
+        sales: "10,500",
       },
       {
         avatar: "media/avatars/150-15.jpg",
         name: "Brian Cox",
         email: "brian@exchange.com",
         position: "UI/UX Designer",
-        sales: "20,000"
+        sales: "20,000",
       },
       {
         state: "warning",
         name: "Mikaela Collins",
         email: "mikaela@pexcom.com",
         position: "Head Of Marketing",
-        sales: "9,300"
+        sales: "9,300",
       },
       {
         avatar: "media/avatars/150-8.jpg",
         name: "Francis Mitcham",
         email: "f.mitcham@kpmg.com.au",
         position: "Software Arcitect",
-        sales: "15,000"
+        sales: "15,000",
       },
       {
         state: "danger",
         name: "Olivia Wild",
         email: "olivia@corpmail.com",
         position: "System Admin",
-        sales: "23,000"
+        sales: "23,000",
       },
       {
         state: "info",
         name: "Neil Owen",
         email: "owen.neil@gmail.com",
         position: "Account Manager",
-        sales: "45,000"
+        sales: "45,000",
       },
       {
         avatar: "media/avatars/150-6.jpg",
         name: "Dan Wilson",
         email: "dam@consilting.com",
         position: "Web Desinger",
-        sales: "90,500"
+        sales: "90,500",
       },
       {
         state: "danger",
         name: "Emma Bold",
         email: "emma@intenso.com",
         position: "Corporate Finance",
-        sales: "5,000"
+        sales: "5,000",
       },
       {
         avatar: "media/avatars/150-7.jpg",
         name: "Ana Crown",
         email: "ana.cf@limtel.com",
         position: "Customer Relationship",
-        sales: "70,000"
+        sales: "70,000",
       },
       {
         state: "primary",
         name: "Robert Doe",
         email: "robert@benko.com",
         position: "Marketing Executive",
-        sales: "45,500"
-      }
+        sales: "45,500",
+      },
     ];
 
     return {
-      users
+      users,
     };
-  }
+  },
 });
 </script>

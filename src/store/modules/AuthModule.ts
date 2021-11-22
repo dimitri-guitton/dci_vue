@@ -1,25 +1,26 @@
-import ApiService from "@/core/services/ApiService";
-import JwtService from "@/core/services/JwtService";
-import { Actions, Mutations } from "@/store/enums/StoreEnums";
-import { Module, Action, Mutation, VuexModule } from "vuex-module-decorators";
+import ApiService from '@/core/services/ApiService';
+import JwtService from '@/core/services/JwtService';
+import { Actions, Mutations } from '@/store/enums/StoreEnums';
+import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators';
+import { AxiosRequestConfig } from 'axios';
 
 export interface User {
   name: string;
   surname: string;
   email: string;
   password: string;
-  token: string;
+  api_token: string;
 }
 
 export interface UserAuthInfo {
-  errors: Array<string>;
+  errors: unknown;
   user: User;
   isAuthenticated: boolean;
 }
 
 @Module
 export default class AuthModule extends VuexModule implements UserAuthInfo {
-  errors = [];
+  errors = {};
   user = {} as User;
   isAuthenticated = !!JwtService.getToken();
 
@@ -43,7 +44,7 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
    * Get authentification errors
    * @returns array
    */
-  get getErrors(): Array<string> {
+  get getErrors() {
     return this.errors;
   }
 
@@ -57,7 +58,7 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
     this.isAuthenticated = true;
     this.user = user;
     this.errors = [];
-    JwtService.saveToken(this.user.token);
+    JwtService.saveToken(this.user.api_token);
   }
 
   @Mutation
@@ -80,8 +81,13 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
 
   @Action
   [Actions.LOGIN](credentials) {
+    const params = {
+      params: {
+        ...credentials,
+      },
+    };
     return new Promise<void>((resolve, reject) => {
-      ApiService.post("login", credentials)
+      ApiService.query("login", params)
         .then(({ data }) => {
           this.context.commit(Mutations.SET_AUTH, data);
           resolve();
@@ -101,7 +107,7 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
   @Action
   [Actions.REGISTER](credentials) {
     return new Promise<void>((resolve, reject) => {
-      ApiService.post("registration", credentials)
+      ApiService.post("register", credentials)
         .then(({ data }) => {
           this.context.commit(Mutations.SET_AUTH, data);
           resolve();
@@ -115,14 +121,18 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
 
   @Action
   [Actions.FORGOT_PASSWORD](payload) {
+    const params = {
+      params: {
+        ...payload,
+      },
+    };
     return new Promise<void>((resolve, reject) => {
-      ApiService.post("forgot_password", payload)
+      ApiService.query("forgot_password", params)
         .then(({ data }) => {
           this.context.commit(Mutations.SET_AUTH, data);
           resolve();
         })
         .catch(({ response }) => {
-          console.log(response.data.errors);
           this.context.commit(Mutations.SET_ERROR, response.data.errors);
           reject();
         });
@@ -133,31 +143,37 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
   [Actions.VERIFY_AUTH]() {
     if (JwtService.getToken()) {
       ApiService.setHeader();
-      ApiService.get("verify")
+      const params = {
+        params: {
+          token: JwtService.getToken(),
+        },
+      };
+      ApiService.query("verify_token", params as AxiosRequestConfig)
         .then(({ data }) => {
           this.context.commit(Mutations.SET_AUTH, data);
         })
         .catch(({ response }) => {
           this.context.commit(Mutations.SET_ERROR, response.data.errors);
+          this.context.commit(Mutations.PURGE_AUTH);
         });
     } else {
       this.context.commit(Mutations.PURGE_AUTH);
     }
   }
 
-  @Action
-  [Actions.UPDATE_USER](payload) {
-    ApiService.setHeader();
-    return new Promise<void>((resolve, reject) => {
-      ApiService.post("update_user", payload)
-        .then(({ data }) => {
-          this.context.commit(Mutations.SET_USER, data);
-          resolve();
-        })
-        .catch(({ response }) => {
-          this.context.commit(Mutations.SET_ERROR, response.data.errors);
-          reject();
-        });
-    });
-  }
+  // @Action
+  // [Actions.UPDATE_USER](payload) {
+  //   ApiService.setHeader();
+  //   return new Promise<void>((resolve, reject) => {
+  //     ApiService.post("update_user", payload)
+  //       .then(({ data }) => {
+  //         this.context.commit(Mutations.SET_USER, data);
+  //         resolve();
+  //       })
+  //       .catch(({ response }) => {
+  //         this.context.commit(Mutations.SET_ERROR, response.data.errors);
+  //         reject();
+  //       });
+  //   });
+  // }
 }

@@ -15,9 +15,7 @@
           data-kt-menu-flip="top-end"
         >
           <span class="svg-icon svg-icon-2">
-            <inline-svg
-              src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-            />
+            <inline-svg src="media/icons/duotune/general/gen024.svg" />
           </span>
         </button>
         <Dropdown2></Dropdown2>
@@ -61,49 +59,49 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import Dropdown2 from "@/components/dropdown/Dropdown2.vue";
+import { defineComponent, ref } from 'vue';
+import Dropdown2 from '@/components/dropdown/Dropdown2.vue';
 
 export default defineComponent({
   name: "kt-widget-2",
   components: {
-    Dropdown2
+    Dropdown2,
   },
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   setup() {
     const list = ref([
       {
         avatar: "media/avatars/150-1.jpg",
         name: "Emma Smith",
-        description: "Project Manager"
+        description: "Project Manager",
       },
       {
         avatar: "media/avatars/150-4.jpg",
         name: "Sean Bean",
-        description: "PHP, SQLite, Artisan CLI"
+        description: "PHP, SQLite, Artisan CLI",
       },
       {
         avatar: "media/avatars/150-12.jpg",
         name: "Brian Cox",
-        description: "PHP, SQLite, Artisan CLI"
+        description: "PHP, SQLite, Artisan CLI",
       },
       {
         avatar: "media/avatars/150-8.jpg",
         name: "Francis Mitcham",
-        description: "PHP, SQLite, Artisan CLI"
+        description: "PHP, SQLite, Artisan CLI",
       },
       {
         avatar: "media/avatars/150-6.jpg",
         name: "Dan Wilson",
-        description: "PHP, SQLite, Artisan CLI"
-      }
+        description: "PHP, SQLite, Artisan CLI",
+      },
     ]);
 
     return {
-      list
+      list,
     };
-  }
+  },
 });
 </script>

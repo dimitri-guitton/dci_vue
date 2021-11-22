@@ -4,7 +4,7 @@
     <div class="d-flex flex-column align-items-start">
       <!--begin::User-->
       <div class="d-flex align-items-center mb-2">
-        <div class="symbol  symbol-35px symbol-circle ">
+        <div class="symbol symbol-35px symbol-circle">
           <img alt="Pic" :src="image" />
         </div>
 
@@ -23,7 +23,15 @@
 
       <!--begin::Text-->
       <div
-        class="p-5 rounded bg-light-info text-dark fw-bold mw-lg-400px text-start"
+        class="
+          p-5
+          rounded
+          bg-light-info
+          text-dark
+          fw-bold
+          mw-lg-400px
+          text-start
+        "
         data-kt-element="message-text"
       >
         {{ text }}
@@ -35,7 +43,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "message-out",
@@ -43,7 +51,7 @@ export default defineComponent({
     name: String,
     image: String,
     time: String,
-    text: String
-  }
+    text: String,
+  },
 });
 </script>

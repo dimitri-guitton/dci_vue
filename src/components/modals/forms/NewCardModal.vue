@@ -2,6 +2,7 @@
   <!--begin::Modal - New Card-->
   <div
     class="modal fade"
+    ref="newCardModalRef"
     id="kt_modal_new_card"
     tabindex="-1"
     aria-hidden="true"
@@ -22,7 +23,7 @@
             data-bs-dismiss="modal"
           >
             <span class="svg-icon svg-icon-1">
-              <inline-svg src="media/icons/duotone/Navigation/Close.svg" />
+              <inline-svg src="media/icons/duotune/arrows/arr061.svg" />
             </span>
           </div>
           <!--end::Close-->
@@ -168,9 +169,9 @@
                     >
                       <option></option>
                       <template v-for="i in 10" :key="i">
-                        <option :value="new Date().getFullYear() + i">{{
-                          new Date().getFullYear() + i
-                        }}</option>
+                        <option :value="new Date().getFullYear() + i">
+                          {{ new Date().getFullYear() + i }}
+                        </option>
                       </template>
                     </Field>
                     <div class="fv-plugins-message-container">
@@ -216,11 +217,17 @@
 
                   <!--begin::CVV icon-->
                   <div
-                    class="position-absolute translate-middle-y top-50 end-0 me-3"
+                    class="
+                      position-absolute
+                      translate-middle-y
+                      top-50
+                      end-0
+                      me-3
+                    "
                   >
                     <span class="svg-icon svg-icon-2hx">
                       <inline-svg
-                        src="media/icons/duotone/Shopping/Credit-card.svg"
+                        src="media/icons/duotune/finance/fin002.svg"
                       />
                     </span>
                   </div>
@@ -252,7 +259,9 @@
 
               <!--begin::Switch-->
               <label
-                class="form-check form-switch form-check-custom form-check-solid"
+                class="
+                  form-check form-switch form-check-custom form-check-solid
+                "
               >
                 <input
                   class="form-check-input"
@@ -284,9 +293,7 @@
                 id="kt_modal_new_card_submit"
                 class="btn btn-primary"
               >
-                <span class="indicator-label">
-                  Submit
-                </span>
+                <span class="indicator-label"> Submit </span>
                 <span class="indicator-progress">
                   Please wait...
                   <span
@@ -309,10 +316,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { ErrorMessage, Field, Form } from "vee-validate";
-import Swal from "sweetalert2/dist/sweetalert2.js";
-import * as Yup from "yup";
+import { defineComponent, ref } from 'vue';
+import { ErrorMessage, Field, Form } from 'vee-validate';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { hideModal } from '@/core/helpers/dom';
+import * as Yup from 'yup';
 
 interface CardData {
   nameOnCard: string;
@@ -327,35 +335,26 @@ export default defineComponent({
   components: {
     ErrorMessage,
     Field,
-    Form
+    Form,
   },
   setup() {
     const submitButtonRef = ref<null | HTMLButtonElement>(null);
+    const newCardModalRef = ref<null | HTMLElement>(null);
 
     const cardData = ref<CardData>({
       nameOnCard: "Max Doe",
       cardNumber: "4111 1111 1111 1111",
       expirationMonth: "",
       expirationYear: "",
-      cvv: ""
+      cvv: "",
     });
 
     const validationSchema = Yup.object().shape({
-      nameOnCard: Yup.string()
-        .required()
-        .label("Name"),
-      cardNumber: Yup.string()
-        .required()
-        .label("Card number"),
-      expirationMonth: Yup.string()
-        .required()
-        .label("Month"),
-      expirationYear: Yup.string()
-        .required()
-        .label("Year"),
-      cvv: Yup.string()
-        .required()
-        .label("CVV")
+      nameOnCard: Yup.string().required().label("Name"),
+      cardNumber: Yup.string().required().label("Card number"),
+      expirationMonth: Yup.string().required().label("Month"),
+      expirationYear: Yup.string().required().label("Year"),
+      cvv: Yup.string().required().label("CVV"),
     });
 
     const submit = () => {
@@ -381,10 +380,10 @@ export default defineComponent({
           buttonsStyling: false,
           confirmButtonText: "Ok, got it!",
           customClass: {
-            confirmButton: "btn btn-primary"
-          }
+            confirmButton: "btn btn-primary",
+          },
         }).then(() => {
-          window.location.reload();
+          hideModal(newCardModalRef.value);
         });
       }, 2000);
     };
@@ -393,8 +392,9 @@ export default defineComponent({
       cardData,
       validationSchema,
       submit,
-      submitButtonRef
+      submitButtonRef,
+      newCardModalRef,
     };
-  }
+  },
 });
 </script>

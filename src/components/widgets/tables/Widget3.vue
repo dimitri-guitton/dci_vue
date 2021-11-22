@@ -18,9 +18,7 @@
           data-kt-menu-flip="top-end"
         >
           <span class="svg-icon svg-icon-2">
-            <inline-svg
-              src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-            />
+            <inline-svg src="media/icons/duotune/general/gen024.svg" />
           </span>
         </button>
         <Dropdown3></Dropdown3>
@@ -98,69 +96,69 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Dropdown3 from "@/components/dropdown/Dropdown3.vue";
+import { defineComponent } from 'vue';
+import Dropdown3 from '@/components/dropdown/Dropdown3.vue';
 
 export default defineComponent({
   name: "kt-widget-3",
   components: {
-    Dropdown3
+    Dropdown3,
   },
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   setup() {
     const items = [
       {
-        icon: "media/icons/duotone/Shopping/Cart3.svg",
+        icon: "media/icons/duotune/ecommerce/ecm002.svg",
         color: "success",
         title: "Top Authors",
         description: "Best Customers",
         technologies: "ReactJs, HTML",
         users: "4600 Users",
-        size: "5.4MB"
+        size: "5.4MB",
       },
       {
-        icon: "media/icons/duotone/Layout/Layout-4-blocks-2.svg",
+        icon: "media/icons/duotune/general/gen024.svg",
         color: "danger",
         title: "Popular Authors",
         description: "Best Customers",
         technologies: "Python, MySQL",
         users: "7200 Users",
-        size: "2.8MB"
+        size: "2.8MB",
       },
       {
-        icon: "media/icons/duotone/Communication/Group.svg",
+        icon: "media/icons/duotune/finance/fin006.svg",
         color: "info",
         title: "New Users",
         description: "Communication/Group.svg",
         technologies: "Laravel, Metronic",
         users: "890 Users",
-        size: "1.5MB"
+        size: "1.5MB",
       },
       {
-        icon: "media/icons/duotone/Home/Library.svg",
+        icon: "media/icons/duotune/abstract/abs027.svg",
         color: "warning",
         title: "Active Customers",
         description: "Best Customers",
         technologies: "AngularJS, C#",
         users: "4600 Users",
-        size: "5.4MB"
+        size: "5.4MB",
       },
       {
-        icon: "media/icons/duotone/Shopping/Box2.svg",
+        icon: "media/icons/duotune/abstract/abs042.svg",
         color: "primary",
         title: "Active Customers",
         description: "Best Customers",
         technologies: "ReactJS, Ruby",
         users: "354 Users",
-        size: "500KB"
-      }
+        size: "500KB",
+      },
     ];
 
     return {
-      items
+      items,
     };
-  }
+  },
 });
 </script>

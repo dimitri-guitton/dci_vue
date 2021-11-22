@@ -18,9 +18,7 @@
           data-kt-menu-flip="top-end"
         >
           <span class="svg-icon svg-icon-2">
-            <inline-svg
-              src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-            />
+            <inline-svg src="media/icons/duotune/general/gen024.svg" />
           </span>
         </button>
         <Dropdown2></Dropdown2>
@@ -35,14 +33,21 @@
       <div class="table-responsive">
         <!--begin::Table-->
         <table
-          class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+          class="
+            table table-row-bordered table-row-gray-100
+            align-middle
+            gs-0
+            gy-3
+          "
         >
           <!--begin::Table head-->
           <thead>
             <tr class="fw-bolder text-muted">
               <th class="w-25px">
                 <div
-                  class="form-check form-check-sm form-check-custom form-check-solid"
+                  class="
+                    form-check form-check-sm form-check-custom form-check-solid
+                  "
                 >
                   <input
                     class="form-check-input"
@@ -70,7 +75,12 @@
               <tr>
                 <td>
                   <div
-                    class="form-check form-check-sm form-check-custom form-check-solid"
+                    class="
+                      form-check
+                      form-check-sm
+                      form-check-custom
+                      form-check-solid
+                    "
                   >
                     <input
                       class="form-check-input widget-13-check"
@@ -91,7 +101,14 @@
                 <td>
                   <a
                     href="#"
-                    class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    class="
+                      text-dark
+                      fw-bolder
+                      text-hover-primary
+                      d-block
+                      mb-1
+                      fs-6
+                    "
                     >{{ item.company.name }}</a
                   >
                   <span class="text-muted fw-bold text-muted d-block fs-7"
@@ -102,7 +119,14 @@
                 <td>
                   <a
                     href="#"
-                    class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    class="
+                      text-dark
+                      fw-bolder
+                      text-hover-primary
+                      d-block
+                      mb-1
+                      fs-6
+                    "
                     >{{ item.date.value }}</a
                   >
                   <span class="text-muted fw-bold text-muted d-block fs-7"
@@ -113,7 +137,14 @@
                 <td>
                   <a
                     href="#"
-                    class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    class="
+                      text-dark
+                      fw-bolder
+                      text-hover-primary
+                      d-block
+                      mb-1
+                      fs-6
+                    "
                     >{{ item.company.name }}</a
                   >
                   <span class="text-muted fw-bold text-muted d-block fs-7">{{
@@ -136,32 +167,40 @@
                 <td class="text-end">
                   <a
                     href="#"
-                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                    class="
+                      btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+                      me-1
+                    "
                   >
                     <span class="svg-icon svg-icon-3">
                       <inline-svg
-                        src="media/icons/duotone/General/Settings-1.svg"
+                        src="media/icons/duotune/general/gen019.svg"
                       />
                     </span>
                   </a>
 
                   <a
                     href="#"
-                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                    class="
+                      btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+                      me-1
+                    "
                   >
                     <span class="svg-icon svg-icon-3">
-                      <inline-svg
-                        src="media/icons/duotone/Communication/Write.svg"
-                      />
+                      <inline-svg src="media/icons/duotune/art/art005.svg" />
                     </span>
                   </a>
 
                   <a
                     href="#"
-                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                    class="
+                      btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+                    "
                   >
                     <span class="svg-icon svg-icon-3">
-                      <inline-svg src="media/icons/duotone/General/Trash.svg" />
+                      <inline-svg
+                        src="media/icons/duotune/general/gen027.svg"
+                      />
                     </span>
                   </a>
                 </td>
@@ -180,16 +219,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Dropdown2 from "@/components/dropdown/Dropdown2.vue";
+import { defineComponent } from 'vue';
+import Dropdown2 from '@/components/dropdown/Dropdown2.vue';
 
 export default defineComponent({
   name: "kt-widget-12",
   components: {
-    Dropdown2
+    Dropdown2,
   },
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   setup() {
     const list = [
@@ -197,127 +236,127 @@ export default defineComponent({
         orderid: "56037-XDER",
         country: {
           name: "Brasil",
-          code: "PH"
+          code: "PH",
         },
         date: {
           value: "05/28/2020",
-          remarks: "Paid"
+          remarks: "Paid",
         },
         progress: {
           value: "50",
-          color: "primary"
+          color: "primary",
         },
         company: {
           name: "Intertico",
-          fields: "Web, UI/UX Design"
+          fields: "Web, UI/UX Design",
         },
         status: {
           label: "Approved",
-          color: "success"
+          color: "success",
         },
-        total: "$3560"
+        total: "$3560",
       },
       {
         orderid: "05822-FXSP",
         country: {
           name: "Belarus",
-          code: "BY"
+          code: "BY",
         },
         date: {
           value: "04/18/2021",
-          remarks: "Paid"
+          remarks: "Paid",
         },
         progress: {
           value: "50",
-          color: "primary"
+          color: "primary",
         },
         company: {
           name: "Agoda",
-          fields: "Houses & Hotels"
+          fields: "Houses & Hotels",
         },
         status: {
           label: "In Progress",
-          color: "warning"
+          color: "warning",
         },
-        total: "$4850"
+        total: "$4850",
       },
       {
         orderid: "4472-QREX",
         country: {
           name: "Phillipines",
-          code: "BH"
+          code: "BH",
         },
         date: {
           value: "07/23/2019",
-          remarks: "Paid"
+          remarks: "Paid",
         },
         progress: {
           value: "50",
-          color: "primary"
+          color: "primary",
         },
         company: {
           name: "RoadGee",
-          fields: "Transportation"
+          fields: "Transportation",
         },
         status: {
           label: "Success",
-          color: "danger"
+          color: "danger",
         },
-        total: "$8376"
+        total: "$8376",
       },
       {
         orderid: "00347-BCLQ",
         country: {
           name: "Argentina",
-          code: "BR"
+          code: "BR",
         },
         date: {
           value: "12/21/2021",
-          remarks: "Paid"
+          remarks: "Paid",
         },
         progress: {
           value: "50",
-          color: "primary"
+          color: "primary",
         },
         company: {
           name: "The Hill",
-          fields: "Insurance"
+          fields: "Insurance",
         },
         status: {
           label: "Rejected",
-          color: "info"
+          color: "info",
         },
-        total: "$9486"
+        total: "$9486",
       },
       {
         orderid: "59486-XDER",
         country: {
           name: "Agoda",
-          code: "BT"
+          code: "BT",
         },
         date: {
           value: "05/28/2020",
-          remarks: "Paid"
+          remarks: "Paid",
         },
         progress: {
           value: "50",
-          color: "primary"
+          color: "primary",
         },
         company: {
           name: "Phillipines",
-          fields: "Transportation"
+          fields: "Transportation",
         },
         status: {
           label: "Approved",
-          color: "primary"
+          color: "primary",
         },
-        total: "$8476"
-      }
+        total: "$8476",
+      },
     ];
 
     return {
-      list
+      list,
     };
-  }
+  },
 });
 </script>

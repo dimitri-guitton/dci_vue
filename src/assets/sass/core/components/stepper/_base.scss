@@ -72,7 +72,11 @@
 		}
 
 		[data-kt-stepper-action="submit"] {
-			display: inline-block;
+			display: none;
+		}
+
+		[data-kt-stepper-action="submit"].btn-flex {
+			display: flex;
 		}
 	}
 }

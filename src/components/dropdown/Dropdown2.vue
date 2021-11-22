@@ -1,7 +1,17 @@
 <template>
   <!--begin::Menu 2-->
   <div
-    class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-200px"
+    class="
+      menu
+      menu-sub
+      menu-sub-dropdown
+      menu-column
+      menu-rounded
+      menu-gray-600
+      menu-state-bg-light-primary
+      fw-bold
+      w-200px
+    "
     data-kt-menu="true"
   >
     <!--begin::Menu item-->
@@ -18,17 +28,13 @@
 
     <!--begin::Menu item-->
     <div class="menu-item px-3">
-      <a href="#" class="menu-link px-3">
-        New Ticket
-      </a>
+      <a href="#" class="menu-link px-3"> New Ticket </a>
     </div>
     <!--end::Menu item-->
 
     <!--begin::Menu item-->
     <div class="menu-item px-3">
-      <a href="#" class="menu-link px-3">
-        New Customer
-      </a>
+      <a href="#" class="menu-link px-3"> New Customer </a>
     </div>
     <!--end::Menu item-->
 
@@ -50,25 +56,19 @@
       <div class="menu-sub menu-sub-dropdown w-175px py-4">
         <!--begin::Menu item-->
         <div class="menu-item px-3">
-          <a href="#" class="menu-link px-3">
-            Admin Group
-          </a>
+          <a href="#" class="menu-link px-3"> Admin Group </a>
         </div>
         <!--end::Menu item-->
 
         <!--begin::Menu item-->
         <div class="menu-item px-3">
-          <a href="#" class="menu-link px-3">
-            Staff Group
-          </a>
+          <a href="#" class="menu-link px-3"> Staff Group </a>
         </div>
         <!--end::Menu item-->
 
         <!--begin::Menu item-->
         <div class="menu-item px-3">
-          <a href="#" class="menu-link px-3">
-            Member Group
-          </a>
+          <a href="#" class="menu-link px-3"> Member Group </a>
         </div>
         <!--end::Menu item-->
       </div>
@@ -78,9 +78,7 @@
 
     <!--begin::Menu item-->
     <div class="menu-item px-3">
-      <a href="#" class="menu-link px-3">
-        New Contact
-      </a>
+      <a href="#" class="menu-link px-3"> New Contact </a>
     </div>
     <!--end::Menu item-->
 
@@ -91,9 +89,7 @@
     <!--begin::Menu item-->
     <div class="menu-item px-3">
       <div class="menu-content px-3 py-3">
-        <a class="btn btn-primary  btn-sm px-4" href="#">
-          Generate Reports
-        </a>
+        <a class="btn btn-primary btn-sm px-4" href="#"> Generate Reports </a>
       </div>
     </div>
     <!--end::Menu item-->
@@ -102,10 +98,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "dropdown-2",
-  components: {}
+  components: {},
 });
 </script>

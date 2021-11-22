@@ -3,6 +3,7 @@
   <div
     class="modal fade"
     id="kt_modal_create_account"
+    ref="createAccountModalRef"
     tabindex="-1"
     aria-hidden="true"
   >
@@ -22,7 +23,7 @@
             data-bs-dismiss="modal"
           >
             <span class="svg-icon svg-icon-1">
-              <inline-svg src="media/icons/duotone/Navigation/Close.svg" />
+              <inline-svg src="media/icons/duotune/arrows/arr061.svg" />
             </span>
           </div>
           <!--end::Close-->
@@ -41,41 +42,31 @@
             <div class="stepper-nav py-5">
               <!--begin::Step 1-->
               <div class="stepper-item current" data-kt-stepper-element="nav">
-                <h3 class="stepper-title">
-                  Account Type
-                </h3>
+                <h3 class="stepper-title">Account Type</h3>
               </div>
               <!--end::Step 1-->
 
               <!--begin::Step 2-->
               <div class="stepper-item" data-kt-stepper-element="nav">
-                <h3 class="stepper-title">
-                  Account Info
-                </h3>
+                <h3 class="stepper-title">Account Info</h3>
               </div>
               <!--end::Step 2-->
 
               <!--begin::Step 3-->
               <div class="stepper-item" data-kt-stepper-element="nav">
-                <h3 class="stepper-title">
-                  Business Details
-                </h3>
+                <h3 class="stepper-title">Business Details</h3>
               </div>
               <!--end::Step 3-->
 
               <!--begin::Step 4-->
               <div class="stepper-item" data-kt-stepper-element="nav">
-                <h3 class="stepper-title">
-                  Billing Details
-                </h3>
+                <h3 class="stepper-title">Billing Details</h3>
               </div>
               <!--end::Step 4-->
 
               <!--begin::Step 5-->
               <div class="stepper-item" data-kt-stepper-element="nav">
-                <h3 class="stepper-title">
-                  Completed
-                </h3>
+                <h3 class="stepper-title">Completed</h3>
               </div>
               <!--end::Step 5-->
             </div>
@@ -131,12 +122,21 @@
                           v-model="formData.accountType"
                         />
                         <label
-                          class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center mb-10"
+                          class="
+                            btn
+                            btn-outline
+                            btn-outline-dashed
+                            btn-outline-default
+                            p-7
+                            d-flex
+                            align-items-center
+                            mb-10
+                          "
                           for="kt_create_account_form_account_type_personal"
                         >
                           <span class="svg-icon svg-icon-3x me-5">
                             <inline-svg
-                              src="media/icons/duotone/Interface/User.svg"
+                              src="media/icons/duotune/communication/com005.svg"
                             />
                           </span>
 
@@ -167,12 +167,20 @@
                           v-model="formData.accountType"
                         />
                         <label
-                          class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center"
+                          class="
+                            btn
+                            btn-outline
+                            btn-outline-dashed
+                            btn-outline-default
+                            p-7
+                            d-flex
+                            align-items-center
+                          "
                           for="kt_create_account_form_account_type_corporate"
                         >
                           <span class="svg-icon svg-icon-3x me-5">
                             <inline-svg
-                              src="media/icons/duotone/Interface/Briefcase.svg"
+                              src="media/icons/duotune/finance/fin006.svg"
                             />
                           </span>
 
@@ -246,7 +254,14 @@
                           v-model="formData.teamSize"
                         />
                         <label
-                          class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4"
+                          class="
+                            btn
+                            btn-outline
+                            btn-outline-dashed
+                            btn-outline-default
+                            w-100
+                            p-4
+                          "
                           for="kt_one_one_select"
                         >
                           <span class="fw-bolder fs-3">1-1</span>
@@ -267,7 +282,14 @@
                           v-model="formData.teamSize"
                         />
                         <label
-                          class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4"
+                          class="
+                            btn
+                            btn-outline
+                            btn-outline-dashed
+                            btn-outline-default
+                            w-100
+                            p-4
+                          "
                           for="kt_two_ten_select"
                         >
                           <span class="fw-bolder fs-3">2-10</span>
@@ -288,7 +310,14 @@
                           v-model="formData.teamSize"
                         />
                         <label
-                          class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4"
+                          class="
+                            btn
+                            btn-outline
+                            btn-outline-dashed
+                            btn-outline-default
+                            w-100
+                            p-4
+                          "
                           for="kt_ten_fifty_select"
                         >
                           <span class="fw-bolder fs-3">10-50</span>
@@ -309,7 +338,14 @@
                           v-model="formData.teamSize"
                         />
                         <label
-                          class="btn btn-outline btn-outline-dashed btn-outline-default w-100 p-4"
+                          class="
+                            btn
+                            btn-outline
+                            btn-outline-dashed
+                            btn-outline-default
+                            w-100
+                            p-4
+                          "
                           for="kt_fifty_select"
                         >
                           <span class="fw-bolder fs-3">50+</span>
@@ -377,7 +413,7 @@
                                 class="svg-icon svg-icon-1 svg-icon-gray-600"
                               >
                                 <inline-svg
-                                  src="media/icons/duotone/Interface/Bank.svg"
+                                  src="media/icons/duotune/finance/fin001.svg"
                                 />
                               </span>
                             </span>
@@ -387,7 +423,11 @@
                           <!--begin::Description-->
                           <span class="d-flex flex-column">
                             <span
-                              class="fw-bolder text-gray-800 text-hover-primary fs-5"
+                              class="
+                                fw-bolder
+                                text-gray-800 text-hover-primary
+                                fs-5
+                              "
                               >Company Account</span
                             >
                             <span class="fs-6 fw-bold text-gray-400"
@@ -425,7 +465,7 @@
                                 class="svg-icon svg-icon-1 svg-icon-gray-600"
                               >
                                 <inline-svg
-                                  src="media/icons/duotone/Interface/Doughnut.svg"
+                                  src="media/icons/duotune/graphs/gra006.svg"
                                 />
                               </span>
                             </span>
@@ -435,7 +475,11 @@
                           <!--begin::Description-->
                           <span class="d-flex flex-column">
                             <span
-                              class="fw-bolder text-gray-800 text-hover-primary fs-5"
+                              class="
+                                fw-bolder
+                                text-gray-800 text-hover-primary
+                                fs-5
+                              "
                               >Developer Account</span
                             >
                             <span class="fs-6 fw-bold text-gray-400"
@@ -474,7 +518,7 @@
                                 class="svg-icon svg-icon-1 svg-icon-gray-600"
                               >
                                 <inline-svg
-                                  src="media/icons/duotone/Interface/Line-03-Down.svg"
+                                  src="media/icons/duotune/graphs/gra008.svg"
                                 />
                               </span>
                             </span>
@@ -484,7 +528,11 @@
                           <!--begin::Description-->
                           <span class="d-flex flex-column">
                             <span
-                              class="fw-bolder text-gray-800 text-hover-primary fs-5"
+                              class="
+                                fw-bolder
+                                text-gray-800 text-hover-primary
+                                fs-5
+                              "
                               >Testing Account</span
                             >
                             <span class="fs-6 fw-bold text-gray-400"
@@ -640,16 +688,16 @@
                     >
                       <option></option>
                       <option label="Corporation" value="1">Corporation</option>
-                      <option label="Sole Proprietorship" value="2"
-                        >Sole Proprietorship</option
-                      >
+                      <option label="Sole Proprietorship" value="2">
+                        Sole Proprietorship
+                      </option>
                       <option label="Non-profit" value="3">Non-profit</option>
-                      <option label="Limited Liability" value="4"
-                        >Limited Liability</option
-                      >
-                      <option label="General Partnership" value="5"
-                        >General Partnership</option
-                      >
+                      <option label="Limited Liability" value="4">
+                        Limited Liability
+                      </option>
+                      <option label="General Partnership" value="5">
+                        General Partnership
+                      </option>
                     </Field>
                     <ErrorMessage
                       class="fv-plugins-message-container invalid-feedback"
@@ -729,7 +777,14 @@
                   <div class="d-flex flex-column mb-7 fv-row">
                     <!--begin::Label-->
                     <label
-                      class="d-flex align-items-center fs-6 fw-bold form-label mb-2"
+                      class="
+                        d-flex
+                        align-items-center
+                        fs-6
+                        fw-bold
+                        form-label
+                        mb-2
+                      "
                     >
                       <span class="required">Name On Card</span>
                       <i
@@ -780,7 +835,13 @@
 
                       <!--begin::Card logos-->
                       <div
-                        class="position-absolute translate-middle-y top-50 end-0 me-5"
+                        class="
+                          position-absolute
+                          translate-middle-y
+                          top-50
+                          end-0
+                          me-5
+                        "
                       >
                         <img
                           src="media/svg/card-logos/visa.svg"
@@ -854,8 +915,9 @@
                               <option
                                 :label="new Date().getFullYear() + i"
                                 :value="new Date().getFullYear() + i"
-                                >{{ new Date().getFullYear() + i }}</option
                               >
+                                {{ new Date().getFullYear() + i }}
+                              </option>
                             </template>
                           </Field>
                           <div class="fv-plugins-message-container">
@@ -874,7 +936,14 @@
                     <div class="col-md-4 fv-row">
                       <!--begin::Label-->
                       <label
-                        class="d-flex align-items-center fs-6 fw-bold form-label mb-2"
+                        class="
+                          d-flex
+                          align-items-center
+                          fs-6
+                          fw-bold
+                          form-label
+                          mb-2
+                        "
                       >
                         <span class="required">CVV</span>
                         <i
@@ -900,11 +969,17 @@
 
                         <!--begin::CVV icon-->
                         <div
-                          class="position-absolute translate-middle-y top-50 end-0 me-3"
+                          class="
+                            position-absolute
+                            translate-middle-y
+                            top-50
+                            end-0
+                            me-3
+                          "
                         >
                           <span class="svg-icon svg-icon-2hx">
                             <inline-svg
-                              src="media/icons/duotone/Shopping/Credit-card.svg"
+                              src="media/icons/duotune/finance/fin002.svg"
                             />
                           </span>
                         </div>
@@ -936,7 +1011,12 @@
 
                     <!--begin::Switch-->
                     <label
-                      class="form-check form-switch form-check-custom form-check-solid"
+                      class="
+                        form-check
+                        form-switch
+                        form-check-custom
+                        form-check-solid
+                      "
                     >
                       <input
                         class="form-check-input"
@@ -990,12 +1070,19 @@
 
                     <!--begin::Alert-->
                     <div
-                      class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-6"
+                      class="
+                        notice
+                        d-flex
+                        bg-light-warning
+                        rounded
+                        border-warning border border-dashed
+                        p-6
+                      "
                     >
                       <!--begin::Icon-->
                       <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
                         <inline-svg
-                          src="media/icons/duotone/Code/Warning-1-circle.svg"
+                          src="media/icons/duotune/general/gen044.svg"
                         />
                       </span>
                       <!--end::Icon-->
@@ -1036,9 +1123,7 @@
                     @click="previousStep()"
                   >
                     <span class="svg-icon svg-icon-3 me-1">
-                      <inline-svg
-                        src="media/icons/duotone/Navigation/Left-2.svg"
-                      />
+                      <inline-svg src="media/icons/duotune/arrows/arr063.svg" />
                     </span>
                     Back
                   </button>
@@ -1056,15 +1141,17 @@
                     <span class="indicator-label">
                       Submit
                       <span class="svg-icon svg-icon-3 ms-2 me-0">
-                        <inline-svg
-                          src="icons/duotone/Navigation/Right-2.svg"
-                        />
+                        <inline-svg src="icons/duotune/arrows/arr064.svg" />
                       </span>
                     </span>
                     <span class="indicator-progress">
                       Please wait...
                       <span
-                        class="spinner-border spinner-border-sm align-middle ms-2"
+                        class="
+                          spinner-border spinner-border-sm
+                          align-middle
+                          ms-2
+                        "
                       ></span>
                     </span>
                   </button>
@@ -1072,9 +1159,7 @@
                   <button type="submit" class="btn btn-lg btn-primary" v-else>
                     Continue
                     <span class="svg-icon svg-icon-3 ms-1 me-0">
-                      <inline-svg
-                        src="media/icons/duotone/Navigation/Right-2.svg"
-                      />
+                      <inline-svg src="media/icons/duotune/arrows/arr064.svg" />
                     </span>
                   </button>
                 </div>
@@ -1096,12 +1181,12 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from "vue";
-import { StepperComponent } from "@/assets/ts/components/_StepperComponent";
-import Swal from "sweetalert2/dist/sweetalert2.min.js";
-import { useForm } from "vee-validate";
-import { Field, ErrorMessage } from "vee-validate";
-import * as Yup from "yup";
+import { computed, defineComponent, onMounted, ref } from 'vue';
+import { hideModal } from '@/core/helpers/dom';
+import { StepperComponent } from '@/assets/ts/components/_StepperComponent';
+import Swal from 'sweetalert2/dist/sweetalert2.min.js';
+import { ErrorMessage, Field, useForm } from 'vee-validate';
+import * as Yup from 'yup';
 
 interface Step1 {
   accountType: string;
@@ -1135,11 +1220,12 @@ export default defineComponent({
   name: "create-account-modal",
   components: {
     Field,
-    ErrorMessage
+    ErrorMessage,
   },
   setup() {
     const _stepperObj = ref<StepperComponent | null>(null);
     const createAccountRef = ref<HTMLElement | null>(null);
+    const createAccountModalRef = ref<HTMLElement | null>(null);
     const currentStepIndex = ref(0);
 
     const formData = ref<KTCreateApp>({
@@ -1156,7 +1242,7 @@ export default defineComponent({
       cardNumber: "4111 1111 1111 1111",
       expirationMonth: "1",
       expirationYear: "2022",
-      cvv: "123"
+      cvv: "123",
     });
 
     onMounted(() => {
@@ -1168,44 +1254,26 @@ export default defineComponent({
     const createAppSchema = [
       Yup.object({}),
       Yup.object({
-        teamAccountName: Yup.string()
-          .required()
-          .label("Team account name")
+        teamAccountName: Yup.string().required().label("Team account name"),
       }),
       Yup.object({
-        businessName: Yup.string()
-          .required()
-          .label("Business name"),
+        businessName: Yup.string().required().label("Business name"),
         shortenedDescriptor: Yup.string()
           .required()
           .label("Shortened descriptor"),
-        corporationType: Yup.string()
-          .required()
-          .label("Corporation type"),
+        corporationType: Yup.string().required().label("Corporation type"),
         businessDescription: Yup.string()
           .required()
           .label("Business description"),
-        contactEmail: Yup.string()
-          .required()
-          .label("Contact email")
+        contactEmail: Yup.string().required().label("Contact email"),
       }),
       Yup.object({
-        nameOnCard: Yup.string()
-          .required()
-          .label("Name"),
-        cardNumber: Yup.string()
-          .required()
-          .label("Card number"),
-        expirationMonth: Yup.string()
-          .required()
-          .label("Month"),
-        expirationYear: Yup.string()
-          .required()
-          .label("Year"),
-        cvv: Yup.string()
-          .required()
-          .label("CVV")
-      })
+        nameOnCard: Yup.string().required().label("Name"),
+        cardNumber: Yup.string().required().label("Card number"),
+        expirationMonth: Yup.string().required().label("Month"),
+        expirationYear: Yup.string().required().label("Year"),
+        cvv: Yup.string().required().label("CVV"),
+      }),
     ];
 
     // extracts the individual step schema
@@ -1222,7 +1290,7 @@ export default defineComponent({
     });
 
     const { resetForm, handleSubmit } = useForm<Step1 | Step2 | Step3 | Step4>({
-      validationSchema: currentSchema
+      validationSchema: currentSchema,
     });
 
     const previousStep = () => {
@@ -1235,7 +1303,7 @@ export default defineComponent({
       _stepperObj.value.goPrev();
     };
 
-    const handleStep = handleSubmit(values => {
+    const handleStep = handleSubmit((values) => {
       for (const item in values) {
         // eslint-disable-next-line no-prototype-builtins
         if (values.hasOwnProperty(item)) {
@@ -1255,25 +1323,23 @@ export default defineComponent({
     });
 
     const formSubmit = () => {
-      console.log(formData.value);
-
       Swal.fire({
         text: "All is cool! Now you submit this form",
         icon: "success",
         buttonsStyling: false,
         confirmButtonText: "Ok, got it!",
         customClass: {
-          confirmButton: "btn fw-bold btn-light-primary"
-        }
+          confirmButton: "btn fw-bold btn-light-primary",
+        },
       }).then(() => {
-        window.location.reload();
+        hideModal(createAccountModalRef.value);
       });
     };
 
     resetForm({
       values: {
-        ...formData.value
-      }
+        ...formData.value,
+      },
     });
 
     return {
@@ -1283,8 +1349,9 @@ export default defineComponent({
       handleStep,
       formSubmit,
       currentStepIndex,
-      formData
+      formData,
+      createAccountModalRef,
     };
-  }
+  },
 });
 </script>

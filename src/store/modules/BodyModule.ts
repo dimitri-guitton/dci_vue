@@ -1,9 +1,23 @@
-export type State = { classes: object };
-import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators";
-import { Actions, Mutations } from "@/store/enums/StoreEnums";
+import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators';
+import { Actions, Mutations } from '@/store/enums/StoreEnums';
 
 export interface StoreInfo {
-  classes: object;
+  classes: {
+    header?: Array<string>;
+    headerContainer?: Array<string>;
+    headerMobile?: Array<string>;
+    headerMenu?: Array<string>;
+    aside?: Array<string>;
+    asideMenu?: Array<string>;
+    asideToggle?: Array<string>;
+    toolbar?: Array<string>;
+    toolbarContainer?: Array<string>;
+    content?: Array<string>;
+    contentContainer?: Array<string>;
+    footerContainer?: Array<string>;
+    sidebar?: Array<string>;
+    pageTitle?: Array<string>;
+  };
 }
 
 @Module
@@ -14,8 +28,8 @@ export default class BodyModule extends VuexModule implements StoreInfo {
    * Get current page title
    * @returns string
    */
-  get getClasses(): object {
-    return position => {
+  get getClasses() {
+    return (position) => {
       if (typeof position !== "undefined") {
         return this.classes[position];
       }

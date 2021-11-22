@@ -3,6 +3,7 @@
   <div
     class="modal fade"
     id="kt_modal_new_target"
+    ref="newTargetModalRef"
     tabindex="-1"
     aria-hidden="true"
   >
@@ -18,7 +19,7 @@
             data-bs-dismiss="modal"
           >
             <span class="svg-icon svg-icon-1">
-              <inline-svg src="media/icons/duotone/Navigation/Close.svg" />
+              <inline-svg src="media/icons/duotune/arrows/arr061.svg" />
             </span>
           </div>
           <!--end::Close-->
@@ -30,6 +31,7 @@
           <!--begin:Form-->
           <el-form
             id="kt_modal_new_target_form"
+            @submit.prevent="submit()"
             :model="targetData"
             :rules="rules"
             ref="formRef"
@@ -115,7 +117,7 @@
                     <span class="symbol-label bg-secondary">
                       <span class="svg-icon">
                         <inline-svg
-                          src="media/icons/duotone/Layout/Layout-grid.svg"
+                          src="media/icons/duotune/general/gen025.svg"
                         />
                       </span>
                     </span>
@@ -200,7 +202,9 @@
 
               <!--begin::Switch-->
               <label
-                class="form-check form-switch form-check-custom form-check-solid"
+                class="
+                  form-check form-switch form-check-custom form-check-solid
+                "
               >
                 <input
                   class="form-check-input"
@@ -244,9 +248,7 @@
                       checked="checked"
                     />
 
-                    <span class="form-check-label fw-bold">
-                      Email
-                    </span>
+                    <span class="form-check-label fw-bold"> Email </span>
                   </label>
                   <!--end::Checkbox-->
 
@@ -259,9 +261,7 @@
                       value="phone"
                     />
 
-                    <span class="form-check-label fw-bold">
-                      Phone
-                    </span>
+                    <span class="form-check-label fw-bold"> Phone </span>
                   </label>
                   <!--end::Checkbox-->
                 </div>
@@ -281,9 +281,26 @@
                 Cancel
               </button>
 
-              <el-button type="primary" @click="submit()" :loading="loading">
-                {{ loading ? "Please wait..." : "Submit" }}
-              </el-button>
+              <!--begin::Button-->
+              <button
+                :data-kt-indicator="loading ? 'on' : null"
+                class="btn btn-lg btn-primary"
+                type="submit"
+              >
+                <span v-if="!loading" class="indicator-label">
+                  Submit
+                  <span class="svg-icon svg-icon-3 ms-2 me-0">
+                    <inline-svg src="icons/duotune/arrows/arr064.svg" />
+                  </span>
+                </span>
+                <span v-if="loading" class="indicator-progress">
+                  Please wait...
+                  <span
+                    class="spinner-border spinner-border-sm align-middle ms-2"
+                  ></span>
+                </span>
+              </button>
+              <!--end::Button-->
             </div>
             <!--end::Actions-->
           </el-form>
@@ -310,8 +327,9 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import Swal from "sweetalert2/dist/sweetalert2.js";
+import { defineComponent, ref } from 'vue';
+import { hideModal } from '@/core/helpers/dom';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 interface NewAddressData {
   targetTitle: string;
@@ -326,6 +344,7 @@ export default defineComponent({
   components: {},
   setup() {
     const formRef = ref<null | HTMLFormElement>(null);
+    const newTargetModalRef = ref<null | HTMLElement>(null);
     const loading = ref<boolean>(false);
 
     const targetData = ref<NewAddressData>({
@@ -333,7 +352,7 @@ export default defineComponent({
       assign: "",
       dueDate: "",
       targetDetails: "",
-      tags: ["important", "urgent"]
+      tags: ["important", "urgent"],
     });
 
     const rules = ref({
@@ -341,30 +360,30 @@ export default defineComponent({
         {
           required: true,
           message: "Please input Activity name",
-          trigger: "blur"
-        }
+          trigger: "blur",
+        },
       ],
       assign: [
         {
           required: true,
           message: "Please select Activity zone",
-          trigger: "change"
-        }
+          trigger: "change",
+        },
       ],
       dueDate: [
         {
           required: true,
           message: "Please select Activity zone",
-          trigger: "change"
-        }
+          trigger: "change",
+        },
       ],
       tags: [
         {
           required: true,
           message: "Please select Activity zone",
-          trigger: "change"
-        }
-      ]
+          trigger: "change",
+        },
+      ],
     });
 
     const submit = () => {
@@ -372,7 +391,7 @@ export default defineComponent({
         return;
       }
 
-      formRef.value.validate(valid => {
+      formRef.value.validate((valid) => {
         if (valid) {
           loading.value = true;
 
@@ -385,22 +404,21 @@ export default defineComponent({
               buttonsStyling: false,
               confirmButtonText: "Ok, got it!",
               customClass: {
-                confirmButton: "btn btn-primary"
-              }
+                confirmButton: "btn btn-primary",
+              },
             }).then(() => {
-              window.location.reload();
+              hideModal(newTargetModalRef.value);
             });
           }, 2000);
         } else {
           Swal.fire({
-            text:
-              "Sorry, looks like there are some errors detected, please try again.",
+            text: "Sorry, looks like there are some errors detected, please try again.",
             icon: "error",
             buttonsStyling: false,
             confirmButtonText: "Ok, got it!",
             customClass: {
-              confirmButton: "btn btn-primary"
-            }
+              confirmButton: "btn btn-primary",
+            },
           });
           return false;
         }
@@ -412,8 +430,9 @@ export default defineComponent({
       submit,
       loading,
       formRef,
-      rules
+      rules,
+      newTargetModalRef,
     };
-  }
+  },
 });
 </script>

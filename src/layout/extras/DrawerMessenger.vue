@@ -22,7 +22,14 @@
           <div class="d-flex justify-content-center flex-column me-3">
             <a
               href="#"
-              class="fs-4 fw-bolder text-gray-900 text-hover-primary me-1 mb-2 lh-1"
+              class="
+                fs-4
+                fw-bolder
+                text-gray-900 text-hover-primary
+                me-1
+                mb-2
+                lh-1
+              "
               >Brian Cox</a
             >
 
@@ -61,9 +68,7 @@
             id="kt_drawer_chat_close"
           >
             <span class="svg-icon svg-icon-2x">
-              <inline-svg
-                src="media/icons/duotone/Interface/Close-Square.svg"
-              />
+              <inline-svg src="media/icons/duotune/arrows/arr061.svg" />
             </span>
           </div>
           <!--end::Close-->
@@ -164,11 +169,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
-import { ScrollComponent } from "@/assets/ts/components/_ScrollComponent";
-import MessageIn from "@/components/messenger-parts/MessageIn.vue";
-import MessageOut from "@/components/messenger-parts/MessageOut.vue";
-import Dropdown4 from "@/components/dropdown/Dropdown4.vue";
+import { defineComponent, onMounted, ref } from 'vue';
+import { ScrollComponent } from '@/assets/ts/components/_ScrollComponent';
+import MessageIn from '@/components/messenger-parts/MessageIn.vue';
+import MessageOut from '@/components/messenger-parts/MessageOut.vue';
+import Dropdown4 from '@/components/dropdown/Dropdown4.vue';
 
 interface KTMessage {
   type: string;
@@ -183,7 +188,7 @@ export default defineComponent({
   components: {
     MessageIn,
     MessageOut,
-    Dropdown4
+    Dropdown4,
   },
   setup() {
     const messagesRef = ref<null | HTMLElement>(null);
@@ -196,51 +201,47 @@ export default defineComponent({
         name: "Brian Cox",
         image: "media/avatars/150-15.jpg",
         time: "5 Hours",
-        text:
-          "How likely are you to recommend our company to your friends and family ?"
+        text: "How likely are you to recommend our company to your friends and family ?",
       },
       {
         type: "out",
         image: "media/avatars/150-2.jpg",
         time: "2 Hours",
-        text:
-          "Hey there, we’re just writing to let you know that you’ve been subscribed to a repository on GitHub."
+        text: "Hey there, we’re just writing to let you know that you’ve been subscribed to a repository on GitHub.",
       },
       {
         type: "in",
         name: "Brian Cox",
         image: "media/avatars/150-15.jpg",
         time: "2 Hour",
-        text: "Ok, Understood!"
+        text: "Ok, Understood!",
       },
       {
         type: "out",
         image: "media/avatars/150-2.jpg",
         time: "2 Hours",
-        text: "You’ll receive notifications for all issues, pull requests!"
+        text: "You’ll receive notifications for all issues, pull requests!",
       },
       {
         type: "in",
         name: "Brian Cox",
         image: "media/avatars/150-15.jpg",
         time: "1 Hour",
-        text:
-          "You can unwatch this repository immediately by clicking here: Keenthemes.com"
+        text: "You can unwatch this repository immediately by clicking here: Keenthemes.com",
       },
       {
         type: "out",
         image: "media/avatars/150-2.jpg",
         time: "4 mins",
-        text: "Most purchased Business courses during this sale!"
+        text: "Most purchased Business courses during this sale!",
       },
       {
         type: "in",
         name: "Brian Cox",
         image: "media/avatars/150-15.jpg",
         time: "2 mins",
-        text:
-          "Company BBQ to celebrate the last quater achievements and goals. Food and drinks provided"
-      }
+        text: "Company BBQ to celebrate the last quater achievements and goals. Food and drinks provided",
+      },
     ]);
 
     const newMessageText = ref("");
@@ -253,7 +254,7 @@ export default defineComponent({
         type: "out",
         image: "media/avatars/150-2.jpg",
         time: "Just now",
-        text: newMessageText.value
+        text: newMessageText.value,
       });
 
       setTimeout(() => {
@@ -269,7 +270,7 @@ export default defineComponent({
           name: "Ja Morant",
           image: "media/avatars/150-15.jpg",
           time: "Just now",
-          text: "Thank you for your awesome support!"
+          text: "Thank you for your awesome support!",
         });
 
         setTimeout(() => {
@@ -297,8 +298,8 @@ export default defineComponent({
       newMessageText,
       addNewMessage,
       messagesInRef,
-      messagesOutRef
+      messagesOutRef,
     };
-  }
+  },
 });
 </script>

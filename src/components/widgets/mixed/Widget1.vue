@@ -17,15 +17,17 @@
             <button
               type="button"
               :class="`btn-active-color-${widgetColor}`"
-              class="btn btn-sm btn-icon btn-color-white btn-active-white border-0 me-n3"
+              class="
+                btn btn-sm btn-icon btn-color-white btn-active-white
+                border-0
+                me-n3
+              "
               data-kt-menu-trigger="click"
               data-kt-menu-placement="bottom-end"
               data-kt-menu-flip="top-end"
             >
               <span class="svg-icon svg-icon-2">
-                <inline-svg
-                  src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-                />
+                <inline-svg src="media/icons/duotune/general/gen024.svg" />
               </span>
             </button>
             <Dropdown3></Dropdown3>
@@ -45,13 +47,23 @@
 
       <!--begin::Items-->
       <div
-        class="shadow-xs card-rounded mx-9 mb-9 px-6 py-9 position-relative z-index-1 bg-white"
+        class="
+          shadow-xs
+          card-rounded
+          mx-9
+          mb-9
+          px-6
+          py-9
+          position-relative
+          z-index-1
+          bg-white
+        "
         style="margin-top: -100px"
       >
         <template v-for="(item, index) in items" :key="index">
           <!--begin::Item-->
           <div
-            :class="[index !== item.length && 'mb-7']"
+            :class="[index !== items.length && 'mb-7']"
             class="d-flex align-items-center"
           >
             <!--begin::Symbol-->
@@ -89,17 +101,13 @@
                   v-if="item.arrow === 'up'"
                   class="svg-icon svg-icon-5 svg-icon-success ms-1"
                 >
-                  <inline-svg
-                    src="media/icons/duotone/Navigation/Arrow-up.svg"
-                  />
+                  <inline-svg src="media/icons/duotune/arrows/arr066.svg" />
                 </span>
                 <span
                   v-else-if="item.arrow === 'down'"
                   class="svg-icon svg-icon-5 svg-icon-danger ms-1"
                 >
-                  <inline-svg
-                    src="media/icons/duotone/Navigation/Arrow-down.svg"
-                  />
+                  <inline-svg src="media/icons/duotune/arrows/arr065.svg" />
                 </span>
               </div>
               <!--end::Label-->
@@ -117,54 +125,54 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Dropdown3 from "@/components/dropdown/Dropdown3.vue";
+import { defineComponent } from 'vue';
+import Dropdown3 from '@/components/dropdown/Dropdown3.vue';
 
 export default defineComponent({
   name: "widget-1",
   components: {
-    Dropdown3
+    Dropdown3,
   },
   props: {
     widgetClasses: String,
     widgetColor: String,
-    chartHeight: Number
+    chartHeight: Number,
   },
   setup() {
     const items = [
       {
-        icon: "media/icons/duotone/Home/Globe.svg",
+        icon: "media/icons/duotune/maps/map004.svg",
         title: "Sales",
         description: "100 Regions",
         stats: "$2,5b",
-        arrow: "up"
+        arrow: "up",
       },
       {
-        icon: "media/icons/duotone/Layout/Layout-4-blocks-2.svg",
+        icon: "media/icons/duotune/general/gen024.svg",
         title: "Revenue",
         description: "Quarter 2/3",
         stats: "$1,7b",
-        arrow: "down"
+        arrow: "down",
       },
       {
-        icon: "media/icons/duotone/Devices/Watch2.svg",
+        icon: "media/icons/duotune/electronics/elc005.svg",
         title: "Growth",
         description: "80% Rate",
         stats: "$8,8m",
-        arrow: "up"
+        arrow: "up",
       },
       {
-        icon: "media/icons/duotone/General/Clipboard.svg",
+        icon: "media/icons/duotune/general/gen005.svg",
         title: "Dispute",
         description: "3090 Refunds",
         stats: "$270m",
-        arrow: "down"
-      }
+        arrow: "down",
+      },
     ];
 
     return {
-      items
+      items,
     };
-  }
+  },
 });
 </script>

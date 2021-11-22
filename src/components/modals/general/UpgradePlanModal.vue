@@ -18,7 +18,7 @@
             data-bs-dismiss="modal"
           >
             <span class="svg-icon svg-icon-1">
-              <inline-svg src="media/icons/duotone/Navigation/Close.svg" />
+              <inline-svg src="media/icons/duotune/arrows/arr061.svg" />
             </span>
           </div>
           <!--end::Close-->
@@ -48,14 +48,23 @@
               <button
                 @click="current = 'month'"
                 :class="[current === 'month' && 'active']"
-                class="btn btn-color-gray-400 btn-active btn-active-secondary px-6 py-3 me-2"
+                class="
+                  btn btn-color-gray-400 btn-active btn-active-secondary
+                  px-6
+                  py-3
+                  me-2
+                "
               >
                 Monthly
               </button>
               <button
                 @click="current = 'annual'"
                 :class="[current === 'annual' && 'active']"
-                class="btn btn-color-gray-400 btn-active btn-active-secondary px-6 py-3"
+                class="
+                  btn btn-color-gray-400 btn-active btn-active-secondary
+                  px-6
+                  py-3
+                "
               >
                 Annual
               </button>
@@ -72,11 +81,18 @@
                     <!--begin::Tab link-->
                     <div
                       @click="selected = plan.title"
-                      class="nav-link btn btn-outline btn-outline-dashed btn-color-dark d-flex flex-stack text-start p-6"
+                      class="
+                        nav-link
+                        btn btn-outline btn-outline-dashed btn-color-dark
+                        d-flex
+                        flex-stack
+                        text-start
+                        p-6
+                      "
                       :class="[
                         index !== plans.length - 1 && 'mb-6',
                         plan.default && 'active',
-                        !plan.custom && 'btn-active btn-active-primary'
+                        !plan.custom && 'btn-active btn-active-primary',
                       ]"
                       data-bs-toggle="tab"
                       :data-bs-target="`#kt_upgrade_plan_${index}`"
@@ -85,7 +101,13 @@
                       <div class="d-flex align-items-center me-2">
                         <!--begin::Radio-->
                         <div
-                          class="form-check form-check-custom form-check-solid form-check-success me-6"
+                          class="
+                            form-check
+                            form-check-custom
+                            form-check-solid
+                            form-check-success
+                            me-6
+                          "
                         >
                           <input
                             class="form-check-input"
@@ -100,7 +122,13 @@
                         <!--begin::Info-->
                         <div class="flex-grow-1">
                           <h2
-                            class="d-flex align-items-center fs-2 fw-bolder flex-wrap"
+                            class="
+                              d-flex
+                              align-items-center
+                              fs-2
+                              fw-bolder
+                              flex-wrap
+                            "
                           >
                             {{ plan.title }}
 
@@ -198,7 +226,7 @@
                                 class="svg-icon svg-icon-1 svg-icon-success"
                               >
                                 <inline-svg
-                                  src="media/icons/duotone/Code/Done-circle.svg"
+                                  src="media/icons/duotune/general/gen043.svg"
                                 />
                               </span>
                             </template>
@@ -210,7 +238,7 @@
                               </span>
                               <span class="svg-icon svg-icon-1">
                                 <inline-svg
-                                  src="media/icons/duotone/Code/Error-circle.svg"
+                                  src="media/icons/duotune/general/gen040.svg"
                                 />
                               </span>
                             </template>
@@ -241,9 +269,7 @@
               Cancel
             </button>
 
-            <button type="submit" class="btn btn-primary">
-              Upgrade Plan
-            </button>
+            <button type="submit" class="btn btn-primary">Upgrade Plan</button>
           </div>
           <!--end::Actions-->
         </div>
@@ -257,7 +283,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: "upgrade-plan-modal",
@@ -279,33 +305,33 @@ export default defineComponent({
         features: [
           {
             title: "Up to 10 Active Users",
-            supported: true
+            supported: true,
           },
           {
             title: "Up to 30 Project Integrations",
-            supported: true
+            supported: true,
           },
           {
             title: "Analytics Module",
-            supported: true
+            supported: true,
           },
           {
             title: "Finance Module",
-            supported: false
+            supported: false,
           },
           {
             title: "Accounting Module",
-            supported: false
+            supported: false,
           },
           {
             title: "Network Platform",
-            supported: false
+            supported: false,
           },
           {
             title: "Unlimited Cloud Space",
-            supported: false
-          }
-        ]
+            supported: false,
+          },
+        ],
       },
 
       {
@@ -319,33 +345,33 @@ export default defineComponent({
         features: [
           {
             title: "Up to 10 Active Users",
-            supported: true
+            supported: true,
           },
           {
             title: "Up to 30 Project Integrations",
-            supported: true
+            supported: true,
           },
           {
             title: "Analytics Module",
-            supported: true
+            supported: true,
           },
           {
             title: "Finance Module",
-            supported: true
+            supported: true,
           },
           {
             title: "Accounting Module",
-            supported: true
+            supported: true,
           },
           {
             title: "Network Platform",
-            supported: false
+            supported: false,
           },
           {
             title: "Unlimited Cloud Space",
-            supported: false
-          }
-        ]
+            supported: false,
+          },
+        ],
       },
 
       {
@@ -360,48 +386,48 @@ export default defineComponent({
         features: [
           {
             title: "Up to 10 Active Users",
-            supported: true
+            supported: true,
           },
           {
             title: "Up to 30 Project Integrations",
-            supported: true
+            supported: true,
           },
           {
             title: "Analytics Module",
-            supported: true
+            supported: true,
           },
           {
             title: "Finance Module",
-            supported: true
+            supported: true,
           },
           {
             title: "Accounting Module",
-            supported: true
+            supported: true,
           },
           {
             title: "Network Platform",
-            supported: true
+            supported: true,
           },
           {
             title: "Unlimited Cloud Space",
-            supported: true
-          }
-        ]
+            supported: true,
+          },
+        ],
       },
 
       {
         title: "Custom",
         subTitle: "Requet a custom license",
         default: false,
-        custom: true
-      }
+        custom: true,
+      },
     ];
 
     return {
       plans,
       current,
-      selected
+      selected,
     };
-  }
+  },
 });
 </script>

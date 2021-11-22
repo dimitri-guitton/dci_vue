@@ -1,5 +1,5 @@
-import { App } from "vue";
-import MockAdapter from "axios-mock-adapter";
+import { App } from 'vue';
+import MockAdapter from 'axios-mock-adapter';
 
 type User = {
   name: string;
@@ -16,15 +16,15 @@ const users: Array<User> = [
     surname: "Surname",
     email: "admin@demo.com",
     password: "demo",
-    token: "mgfi5juf74j"
+    token: "mgfi5juf74j",
   },
   {
     name: "Name",
     surname: "Surname",
     email: "admin2@demo.com",
     password: "demo",
-    token: "fgj8fjdfk43"
-  }
+    token: "fgj8fjdfk43",
+  },
 ];
 
 class MockService {
@@ -33,9 +33,9 @@ class MockService {
     const mock = new MockAdapter(app.axios);
 
     // mock login request
-    mock.onPost("/login").reply(data => {
+    mock.onPost("/login").reply((data) => {
       const credential = JSON.parse(data.data);
-      const found = users.find(user => {
+      const found = users.find((user) => {
         return (
           credential.email === user.email &&
           credential.password === user.password
@@ -48,7 +48,7 @@ class MockService {
     });
 
     // mock registration request
-    mock.onPost("/registration").reply(data => {
+    mock.onPost("/registration").reply((data) => {
       const newUser = JSON.parse(data.data);
       if (
         newUser.name &&
@@ -56,13 +56,11 @@ class MockService {
         newUser.email &&
         newUser.password
       ) {
-        const found = users.find(user => {
+        const found = users.find((user) => {
           return newUser.email === user.email;
         });
         if (!found) {
-          newUser.token = Math.random()
-            .toString(36)
-            .substr(2, 9);
+          newUser.token = Math.random().toString(36).substr(2, 9);
           users.push(newUser);
           return [200, newUser];
         }
@@ -72,12 +70,12 @@ class MockService {
     });
 
     // mock forgot password request
-    mock.onPost("/forgot_password").reply(data => {
+    mock.onPost("/forgot_password").reply((data) => {
       const { email } = JSON.parse(data.data);
 
       if (email) {
         const user = users.find(
-          x => x.email.toLowerCase() === email.toLowerCase()
+          (x) => x.email.toLowerCase() === email.toLowerCase()
         );
         if (user) {
           return [200, user];
@@ -88,10 +86,10 @@ class MockService {
     });
 
     // mock to verify authentication
-    mock.onGet(/\/verify\/?/).reply(data => {
+    mock.onGet(/\/verify\/?/).reply((data) => {
       const token = data.headers.Authorization.replace("Token ", "");
       if (token !== "undefined") {
-        const found = users.find(user => {
+        const found = users.find((user) => {
           return token === user.token;
         });
         return [200, found];

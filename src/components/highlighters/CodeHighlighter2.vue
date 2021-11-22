@@ -55,14 +55,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, onMounted } from "vue";
-import Prism from "prismjs";
-import { useCopyClipboard } from "@/core/helpers/documentation";
+import { computed, defineComponent, onMounted, ref } from 'vue';
+import Prism from 'prismjs';
+import { useCopyClipboard } from '@/core/helpers/documentation';
 
 export default defineComponent({
   name: "CodeHighlighter",
   props: {
-    fieldHeight: Number
+    fieldHeight: Number,
   },
   components: {},
   setup(props) {
@@ -80,9 +80,7 @@ export default defineComponent({
     });
 
     const id = () => {
-      return Math.random()
-        .toString(36)
-        .substr(2, 9);
+      return Math.random().toString(36).substr(2, 9);
     };
 
     const htmlId = id();
@@ -91,8 +89,8 @@ export default defineComponent({
     return {
       getHeightInPixesls,
       htmlId,
-      jsId
+      jsId,
     };
-  }
+  },
 });
 </script>

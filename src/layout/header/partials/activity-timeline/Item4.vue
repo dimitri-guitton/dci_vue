@@ -9,7 +9,7 @@
     <div class="timeline-icon symbol symbol-circle symbol-40px">
       <div class="symbol-label bg-light">
         <span class="svg-icon svg-icon-2 svg-icon-gray-500">
-          <inline-svg src="media/icons/duotone/Home/Library.svg" />
+          <inline-svg src="media/icons/duotune/abstract/abs027.svg" />
         </span>
       </div>
     </div>
@@ -55,10 +55,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "",
-  components: {}
+  components: {},
 });
 </script>

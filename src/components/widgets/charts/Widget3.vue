@@ -12,13 +12,22 @@
       <!--begin::Toolbar-->
       <div class="card-toolbar" data-kt-buttons="true">
         <a
-          class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1"
+          class="
+            btn btn-sm btn-color-muted btn-active btn-active-primary
+            active
+            px-4
+            me-1
+          "
           id="kt_charts_widget_3_year_btn"
           >Year</a
         >
 
         <a
-          class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1"
+          class="
+            btn btn-sm btn-color-muted btn-active btn-active-primary
+            px-4
+            me-1
+          "
           id="kt_charts_widget_3_month_btn"
           >Month</a
         >
@@ -45,13 +54,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { getCSSVariableValue } from "@/assets/ts/_utils";
+import { defineComponent } from 'vue';
+import { getCSSVariableValue } from '@/assets/ts/_utils';
 
 export default defineComponent({
   name: "widget-1",
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   components: {},
   setup() {
@@ -66,90 +75,90 @@ export default defineComponent({
         type: "area",
         height: 350,
         toolbar: {
-          show: false
-        }
+          show: false,
+        },
       },
       plotOptions: {},
       legend: {
-        show: false
+        show: false,
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       fill: {
         type: "solid",
-        opacity: 1
+        opacity: 1,
       },
       stroke: {
         curve: "smooth",
         show: true,
         width: 3,
-        colors: [baseColor]
+        colors: [baseColor],
       },
       xaxis: {
         categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
         axisBorder: {
-          show: false
+          show: false,
         },
         axisTicks: {
-          show: false
+          show: false,
         },
         labels: {
           style: {
             colors: labelColor,
-            fontSize: "12px"
-          }
+            fontSize: "12px",
+          },
         },
         crosshairs: {
           position: "front",
           stroke: {
             color: baseColor,
             width: 1,
-            dashArray: 3
-          }
+            dashArray: 3,
+          },
         },
         tooltip: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       yaxis: {
         labels: {
           style: {
             colors: labelColor,
-            fontSize: "12px"
-          }
-        }
+            fontSize: "12px",
+          },
+        },
       },
       states: {
         normal: {
           filter: {
             type: "none",
-            value: 0
-          }
+            value: 0,
+          },
         },
         hover: {
           filter: {
             type: "none",
-            value: 0
-          }
+            value: 0,
+          },
         },
         active: {
           allowMultipleDataPointsSelection: false,
           filter: {
             type: "none",
-            value: 0
-          }
-        }
+            value: 0,
+          },
+        },
       },
       tooltip: {
         style: {
-          fontSize: "12px"
+          fontSize: "12px",
         },
         y: {
-          formatter: function(val) {
+          formatter: function (val) {
             return "$" + val + " thousands";
-          }
-        }
+          },
+        },
       },
       colors: [lightColor],
       grid: {
@@ -157,27 +166,27 @@ export default defineComponent({
         strokeDashArray: 4,
         yaxis: {
           lines: {
-            show: true
-          }
-        }
+            show: true,
+          },
+        },
       },
       markers: {
         strokeColor: baseColor,
-        strokeWidth: 3
-      }
+        strokeWidth: 3,
+      },
     };
 
     const series = [
       {
         name: "Net Profit",
-        data: [30, 40, 40, 90, 90, 70, 70]
-      }
+        data: [30, 40, 40, 90, 90, 70, 70],
+      },
     ];
 
     return {
       options,
-      series
+      series,
     };
-  }
+  },
 });
 </script>

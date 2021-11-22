@@ -11,7 +11,7 @@ enum Actions {
   REGISTER = "register",
   UPDATE_USER = "updateUser",
   FORGOT_PASSWORD = "forgotPassword",
-  SET_BREADCRUMB_ACTION = "setBreadcrumbAction"
+  SET_BREADCRUMB_ACTION = "setBreadcrumbAction",
 }
 
 enum Mutations {
@@ -26,7 +26,7 @@ enum Mutations {
   SET_LAYOUT_CONFIG = "setLayoutConfig",
   RESET_LAYOUT_CONFIG = "resetLayoutConfig",
   OVERRIDE_LAYOUT_CONFIG = "overrideLayoutConfig",
-  OVERRIDE_PAGE_LAYOUT_CONFIG = "overridePageLayoutConfig"
+  OVERRIDE_PAGE_LAYOUT_CONFIG = "overridePageLayoutConfig",
 }
 
 export { Actions, Mutations };

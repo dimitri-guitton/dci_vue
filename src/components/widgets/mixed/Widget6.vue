@@ -19,9 +19,7 @@
           data-kt-menu-flip="top-end"
         >
           <span class="svg-icon svg-icon-2">
-            <inline-svg
-              src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-            />
+            <inline-svg src="media/icons/duotune/general/gen024.svg" />
           </span>
         </button>
         <Dropdown1></Dropdown1>
@@ -43,9 +41,7 @@
               <div class="symbol symbol-50px me-3">
                 <div class="symbol-label bg-light-info">
                   <span class="svg-icon svg-icon-1 svg-icon-info">
-                    <inline-svg
-                      src="media/icons/duotone/Design/Color-profile.svg"
-                    />
+                    <inline-svg src="media/icons/duotune/art/art007.svg" />
                   </span>
                 </div>
               </div>
@@ -68,7 +64,7 @@
               <div class="symbol symbol-50px me-3">
                 <div class="symbol-label bg-light-danger">
                   <span class="svg-icon svg-icon-1 svg-icon-danger">
-                    <inline-svg src="media/icons/duotone/Home/Library.svg" />
+                    <inline-svg src="media/icons/duotune/abstract/abs027.svg" />
                   </span>
                 </div>
               </div>
@@ -95,7 +91,9 @@
               <div class="symbol symbol-50px me-3">
                 <div class="symbol-label bg-light-success">
                   <span class="svg-icon svg-icon-1 svg-icon-success">
-                    <inline-svg src="media/icons/duotone/Shopping/Cart3.svg" />
+                    <inline-svg
+                      src="media/icons/duotune/ecommerce/ecm002.svg"
+                    />
                   </span>
                 </div>
               </div>
@@ -119,7 +117,7 @@
                 <div class="symbol-label bg-light-primary">
                   <span class="svg-icon svg-icon-1 svg-icon-primary">
                     <inline-svg
-                      src="media/icons/duotone/Shopping/Barcode-read.svg"
+                      src="media/icons/duotune/ecommerce/ecm010.svg"
                     />
                   </span>
                 </div>
@@ -156,19 +154,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import Dropdown1 from "@/components/dropdown/Dropdown1.vue";
-import { getCSSVariableValue } from "@/assets/ts/_utils";
+import { defineComponent, ref } from 'vue';
+import Dropdown1 from '@/components/dropdown/Dropdown1.vue';
+import { getCSSVariableValue } from '@/assets/ts/_utils';
 
 export default defineComponent({
   name: "widget-1",
   components: {
-    Dropdown1
+    Dropdown1,
   },
   props: {
     widgetClasses: String,
     chartColor: String,
-    chartHeight: String
+    chartHeight: String,
   },
   setup(props) {
     const color = ref(props.chartColor);
@@ -184,46 +182,46 @@ export default defineComponent({
         type: "area",
         height: props.chartHeight,
         toolbar: {
-          show: false
+          show: false,
         },
         zoom: {
-          enabled: false
+          enabled: false,
         },
         sparkline: {
-          enabled: true
-        }
+          enabled: true,
+        },
       },
       plotOptions: {},
       legend: {
-        show: false
+        show: false,
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       fill: {
         type: "solid",
-        opacity: 1
+        opacity: 1,
       },
       stroke: {
         curve: "smooth",
         show: true,
         width: 3,
-        colors: [baseColor]
+        colors: [baseColor],
       },
       xaxis: {
         categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul"],
         axisBorder: {
-          show: false
+          show: false,
         },
         axisTicks: {
-          show: false
+          show: false,
         },
         labels: {
           show: false,
           style: {
             colors: labelColor,
-            fontSize: "12px"
-          }
+            fontSize: "12px",
+          },
         },
         crosshairs: {
           show: false,
@@ -231,12 +229,12 @@ export default defineComponent({
           stroke: {
             color: strokeColor,
             width: 1,
-            dashArray: 3
-          }
+            dashArray: 3,
+          },
         },
         tooltip: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       yaxis: {
         min: 0,
@@ -245,60 +243,60 @@ export default defineComponent({
           show: false,
           style: {
             colors: labelColor,
-            fontSize: "12px"
-          }
-        }
+            fontSize: "12px",
+          },
+        },
       },
       states: {
         normal: {
           filter: {
             type: "none",
-            value: 0
-          }
+            value: 0,
+          },
         },
         hover: {
           filter: {
             type: "none",
-            value: 0
-          }
+            value: 0,
+          },
         },
         active: {
           allowMultipleDataPointsSelection: false,
           filter: {
             type: "none",
-            value: 0
-          }
-        }
+            value: 0,
+          },
+        },
       },
       tooltip: {
         style: {
-          fontSize: "12px"
+          fontSize: "12px",
         },
         y: {
-          formatter: function(val) {
+          formatter: function (val) {
             return "$" + val + " thousands";
-          }
-        }
+          },
+        },
       },
       colors: [lightColor],
       markers: {
         colors: [lightColor],
         strokeColor: [baseColor],
-        strokeWidth: 3
-      }
+        strokeWidth: 3,
+      },
     };
 
     const series = [
       {
         name: "Net Profit",
-        data: [30, 25, 45, 30, 55, 55]
-      }
+        data: [30, 25, 45, 30, 55, 55],
+      },
     ];
 
     return {
       series,
-      chartOptions
+      chartOptions,
     };
-  }
+  },
 });
 </script>

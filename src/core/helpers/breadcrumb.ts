@@ -1,5 +1,5 @@
-import store from "@/store";
-import { Actions } from "@/store/enums/StoreEnums";
+import store from '@/store';
+import { Actions } from '@/store/enums/StoreEnums';
 
 /**
  * Sets current page breadcrumbs
@@ -12,7 +12,7 @@ export const setCurrentPageBreadcrumbs = (
 ): void => {
   store.dispatch(Actions.SET_BREADCRUMB_ACTION, {
     title: pageTitle,
-    pageBreadcrumbPath: breadcrumbs
+    pageBreadcrumbPath: breadcrumbs,
   });
 };
 
@@ -22,6 +22,6 @@ export const setCurrentPageBreadcrumbs = (
  */
 export const setCurrentPageTitle = (title: string): void => {
   store.dispatch(Actions.SET_BREADCRUMB_ACTION, {
-    title: title
+    title: title,
   });
 };

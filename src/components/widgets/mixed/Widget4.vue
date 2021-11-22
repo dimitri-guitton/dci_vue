@@ -18,9 +18,7 @@
           data-kt-menu-flip="top-end"
         >
           <span class="svg-icon svg-icon-2">
-            <inline-svg
-              src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-            />
+            <inline-svg src="media/icons/duotune/general/gen024.svg" />
           </span>
         </button>
         <Dropdown1></Dropdown1>
@@ -44,7 +42,7 @@
       </div>
 
       <div class="pt-5">
-        <p class="text-center fs-6 pb-5 ">
+        <p class="text-center fs-6 pb-5">
           <span class="badge badge-light-danger fs-8">Notes:</span>&nbsp;
           Current sprint requires stakeholders<br />
           to approve newly amended policies
@@ -61,20 +59,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import Dropdown1 from "@/components/dropdown/Dropdown1.vue";
-import { getCSSVariableValue } from "@/assets/ts/_utils";
+import { defineComponent, ref } from 'vue';
+import Dropdown1 from '@/components/dropdown/Dropdown1.vue';
+import { getCSSVariableValue } from '@/assets/ts/_utils';
 
 export default defineComponent({
   name: "widget-1",
   components: {
-    Dropdown1
+    Dropdown1,
   },
   props: {
     widgetClasses: String,
     chartColor: String,
     chartHeight: String,
-    btnColor: String
+    btnColor: String,
   },
   setup(props) {
     const color = ref(props.chartColor);
@@ -87,19 +85,19 @@ export default defineComponent({
       chart: {
         fontFamily: "inherit",
         height: props.chartHeight,
-        type: "radialBar"
+        type: "radialBar",
       },
       plotOptions: {
         radialBar: {
           hollow: {
             margin: 0,
-            size: "65%"
+            size: "65%",
           },
           dataLabels: {
             showOn: "always",
             name: {
               show: false,
-              fontWeight: "700"
+              fontWeight: "700",
             },
             value: {
               color: labelColor,
@@ -107,30 +105,30 @@ export default defineComponent({
               fontWeight: "700",
               offsetY: 12,
               show: true,
-              formatter: function(val) {
+              formatter: function (val) {
                 return val + "%";
-              }
-            }
+              },
+            },
           },
           track: {
             background: lightColor,
-            strokeWidth: "100%"
-          }
-        }
+            strokeWidth: "100%",
+          },
+        },
       },
       colors: [baseColor],
       stroke: {
-        lineCap: "round"
+        lineCap: "round",
       },
-      labels: ["Progress"]
+      labels: ["Progress"],
     };
 
     const series = [74];
 
     return {
       series,
-      chartOptions
+      chartOptions,
     };
-  }
+  },
 });
 </script>

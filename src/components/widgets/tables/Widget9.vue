@@ -23,7 +23,7 @@
           data-bs-target="#kt_modal_invite_friends"
         >
           <span class="svg-icon svg-icon-3">
-            <inline-svg src="media/icons/duotone/Communication/Add-user.svg" />
+            <inline-svg src="media/icons/duotune/arrows/arr075.svg" />
           </span>
           New Member
         </a>
@@ -37,14 +37,21 @@
       <div class="table-responsive">
         <!--begin::Table-->
         <table
-          class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4"
+          class="
+            table table-row-dashed table-row-gray-300
+            align-middle
+            gs-0
+            gy-4
+          "
         >
           <!--begin::Table head-->
           <thead>
             <tr class="fw-bolder text-muted">
               <th class="w-25px">
                 <div
-                  class="form-check form-check-sm form-check-custom form-check-solid"
+                  class="
+                    form-check form-check-sm form-check-custom form-check-solid
+                  "
                 >
                   <input class="form-check-input" type="checkbox" value="1" />
                 </div>
@@ -63,7 +70,12 @@
               <tr>
                 <td>
                   <div
-                    class="form-check form-check-sm form-check-custom form-check-solid"
+                    class="
+                      form-check
+                      form-check-sm
+                      form-check-custom
+                      form-check-solid
+                    "
                   >
                     <input
                       class="form-check-input widget-9-check"
@@ -129,32 +141,40 @@
                 <td class="text-end">
                   <a
                     href="#"
-                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                    class="
+                      btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+                      me-1
+                    "
                   >
                     <span class="svg-icon svg-icon-3">
                       <inline-svg
-                        src="media/icons/duotone/General/Settings-1.svg"
+                        src="media/icons/duotune/general/gen019.svg"
                       />
                     </span>
                   </a>
 
                   <a
                     href="#"
-                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                    class="
+                      btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+                      me-1
+                    "
                   >
                     <span class="svg-icon svg-icon-3">
-                      <inline-svg
-                        src="media/icons/duotone/Communication/Write.svg"
-                      />
+                      <inline-svg src="media/icons/duotune/art/art005.svg" />
                     </span>
                   </a>
 
                   <a
                     href="#"
-                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                    class="
+                      btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+                    "
                   >
                     <span class="svg-icon svg-icon-3">
-                      <inline-svg src="media/icons/duotone/General/Trash.svg" />
+                      <inline-svg
+                        src="media/icons/duotune/general/gen027.svg"
+                      />
                     </span>
                   </a>
                 </td>
@@ -173,13 +193,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: "kt-widget-9",
   components: {},
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   setup() {
     const checked = ref(false);
@@ -192,7 +212,7 @@ export default defineComponent({
         companyName: "Intertico",
         companySkills: "Web, UI/UX Design",
         value: "50",
-        color: "primary"
+        color: "primary",
       },
       {
         image: "media/avatars/150-3.jpg",
@@ -201,7 +221,7 @@ export default defineComponent({
         companyName: "Agoda",
         companySkills: "Houses & Hotels",
         value: "70",
-        color: "danger"
+        color: "danger",
       },
       {
         image: "media/avatars/150-4.jpg",
@@ -210,7 +230,7 @@ export default defineComponent({
         companyName: "RoadGee",
         companySkills: "Transportation",
         value: "60",
-        color: "success"
+        color: "success",
       },
       {
         image: "media/avatars/150-5.jpg",
@@ -219,7 +239,7 @@ export default defineComponent({
         companyName: "The Hill",
         companySkills: "Insurance",
         value: "50",
-        color: "warning"
+        color: "warning",
       },
       {
         image: "media/avatars/150-6.jpg",
@@ -228,14 +248,14 @@ export default defineComponent({
         companyName: "RoadGee",
         companySkills: "Art Director",
         value: "90",
-        color: "info"
-      }
+        color: "info",
+      },
     ];
 
     return {
       list,
-      checked
+      checked,
     };
-  }
+  },
 });
 </script>

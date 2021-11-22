@@ -33,15 +33,15 @@
         <div class="ms-1">
           <button
             type="button"
-            class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+            class="
+              btn btn-sm btn-icon btn-color-primary btn-active-light-primary
+            "
             data-kt-menu-trigger="click"
             data-kt-menu-placement="bottom-end"
             data-kt-menu-flip="top-end"
           >
             <span class="svg-icon svg-icon-2">
-              <inline-svg
-                src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-              />
+              <inline-svg src="media/icons/duotune/general/gen024.svg" />
             </span>
           </button>
           <Dropdown2></Dropdown2>
@@ -52,9 +52,7 @@
 
       <!--begin:Stats-->
       <div class="d-flex flex-column w-100 mt-12">
-        <span class="text-dark me-2 fw-bolder pb-3">
-          Progress
-        </span>
+        <span class="text-dark me-2 fw-bolder pb-3"> Progress </span>
 
         <div class="progress h-5px w-100">
           <div
@@ -72,9 +70,7 @@
 
       <!--begin:Team-->
       <div class="d-flex flex-column mt-10">
-        <div class="text-dark me-2 fw-bolder pb-4">
-          Team
-        </div>
+        <div class="text-dark me-2 fw-bolder pb-4">Team</div>
 
         <div class="d-flex">
           <a
@@ -122,13 +118,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Dropdown2 from "@/components/dropdown/Dropdown2.vue";
+import { defineComponent } from 'vue';
+import Dropdown2 from '@/components/dropdown/Dropdown2.vue';
 
 export default defineComponent({
   name: "widget-1",
   components: {
-    Dropdown2
+    Dropdown2,
   },
   props: {
     widgetClasses: String,
@@ -136,7 +132,7 @@ export default defineComponent({
     image: String,
     title: String,
     date: String,
-    progress: String
-  }
+    progress: String,
+  },
 });
 </script>

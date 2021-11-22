@@ -7,7 +7,7 @@
     <!--begin::Heading-->
     <div
       class="d-flex flex-column bgi-no-repeat rounded-top"
-      style="background-image:url('media/misc/pattern-1.jpg')"
+      style="background-image: url('media/misc/pattern-1.jpg')"
     >
       <!--begin::Title-->
       <h3 class="text-white fw-bold px-9 mt-10 mb-6">
@@ -63,10 +63,11 @@
                 <div class="symbol symbol-35px me-4">
                   <span :class="`bg-light-${item.state}`" class="symbol-label">
                     <span
-                      class="svg-icon svg-icon-2"
                       :class="`svg-icon-${item.state}`"
-                    ></span>
-                    <inline-svg :src="item.icon" />
+                      class="svg-icon svg-icon-2"
+                    >
+                      <inline-svg :src="item.icon" />
+                    </span>
                   </span>
                 </div>
                 <!--end::Symbol-->
@@ -100,7 +101,7 @@
           <a href="#" class="btn btn-color-gray-600 btn-active-color-primary">
             View All
             <span class="svg-icon svg-icon-5">
-              <inline-svg src="media/icons/duotone/Navigation/Right-2.svg" />
+              <inline-svg src="media/icons/duotune/arrows/arr064.svg" />
             </span>
           </a>
         </div>
@@ -119,9 +120,7 @@
           <!--begin::Section-->
           <div class="pt-10 pb-0">
             <!--begin::Title-->
-            <h3 class="text-dark text-center fw-bolder">
-              Get Pro Access
-            </h3>
+            <h3 class="text-dark text-center fw-bolder">Get Pro Access</h3>
             <!--end::Title-->
 
             <!--begin::Text-->
@@ -147,9 +146,9 @@
 
           <!--begin::Illustration-->
           <img
-            class="mh-200px"
+            class="mw-100 mh-200px"
             alt="metronic"
-            src="media/illustrations/work.png"
+            src="media/illustrations/sketchy-1/1.png"
           />
           <!--end::Illustration-->
         </div>
@@ -196,7 +195,7 @@
           <a href="#" class="btn btn-color-gray-600 btn-active-color-primary">
             View All
             <span class="svg-icon-svg-icon-5">
-              <inline-svg src="media/icons/duotone/Navigation/Right-2.svg" />
+              <inline-svg src="media/icons/duotune/arrows/arr064.svg" />
             </span>
           </a>
         </div>
@@ -210,7 +209,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "notifications-menu",
@@ -221,51 +220,51 @@ export default defineComponent({
         title: "Project Alice",
         description: "Phase 1 development",
         time: "1 hr",
-        icon: "media/icons/duotone/Clothes/Crown.svg",
-        state: "primary"
+        icon: "media/icons/duotune/technology/teh008.svg",
+        state: "primary",
       },
       {
         title: "HR Confidential",
         description: "Confidential staff documents",
         time: "2 hrs",
-        icon: "media/icons/duotone/Code/Warning-2.svg",
-        state: "danger"
+        icon: "media/icons/duotune/general/gen044.svg",
+        state: "danger",
       },
       {
         title: "Company HR",
         description: "Corporeate staff profiles",
         time: "5 hrs",
-        icon: "media/icons/duotone/Communication/Group.svg",
-        state: "warning"
+        icon: "media/icons/duotune/finance/fin006.svg",
+        state: "warning",
       },
       {
         title: "Project Redux",
         description: "New frontend admin theme",
         time: "2 days",
-        icon: "media/icons/duotone/General/Thunder.svg",
-        state: "success"
+        icon: "media/icons/duotune/files/fil023.svg",
+        state: "success",
       },
       {
         title: "Project Breafing",
         description: "Product launch status update",
         time: "21 Jan",
-        icon: "media/icons/duotone/Communication/Flag.svg",
-        state: "primary"
+        icon: "media/icons/duotune/maps/map001.svg",
+        state: "primary",
       },
       {
         title: "Banner Assets",
         description: "Collection of banner images",
         time: "21 Jan",
-        icon: "media/icons/duotone/Design/Image.svg",
-        state: "info"
+        icon: "media/icons/duotune/general/gen006.svg",
+        state: "info",
       },
       {
         title: "Icon Assets",
         description: "Collection of SVG icons",
         time: "20 March",
-        icon: "media/icons/duotone/Design/Component.svg",
-        state: "warning"
-      }
+        icon: "media/icons/duotune/art/art002.svg",
+        state: "warning",
+      },
     ];
 
     const data2 = [
@@ -273,80 +272,80 @@ export default defineComponent({
         code: "200 OK",
         state: "success",
         message: "New order",
-        time: "Just now"
+        time: "Just now",
       },
       {
         code: "500 ERR",
         state: "danger",
         message: "New customer",
-        time: "2 hrs"
+        time: "2 hrs",
       },
       {
         code: "200 OK",
         state: "success",
         message: "Payment process",
-        time: "5 hrs"
+        time: "5 hrs",
       },
       {
         code: "300 WRN",
         state: "warning",
         message: "Search query",
-        time: "2 days"
+        time: "2 days",
       },
       {
         code: "200 OK",
         state: "success",
         message: "API connection",
-        time: "1 week"
+        time: "1 week",
       },
       {
         code: "200 OK",
         state: "success",
         message: "Database restore",
-        time: "Mar 5"
+        time: "Mar 5",
       },
       {
         code: "300 WRN",
         state: "warning",
         message: "System update",
-        time: "May 15"
+        time: "May 15",
       },
       {
         code: "300 WRN",
         state: "warning",
         message: "Server OS update",
-        time: "Apr 3"
+        time: "Apr 3",
       },
       {
         code: "300 WRN",
         state: "warning",
         message: "API rollback",
-        time: "Jun 30"
+        time: "Jun 30",
       },
       {
         code: "500 ERR",
         state: "danger",
         message: "Refund process",
-        time: "Jul 10"
+        time: "Jul 10",
       },
       {
         code: "500 ERR",
         state: "danger",
         message: "Withdrawal process",
-        time: "Sep 10"
+        time: "Sep 10",
       },
       {
         code: "500 ERR",
         state: "danger",
         message: "Mail tasks",
-        time: "Dec 10"
-      }
+        time: "Dec 10",
+      },
     ];
 
     return {
       data1,
-      data2
+      data2,
     };
-  }
+  },
 });
 </script>

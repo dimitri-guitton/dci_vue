@@ -1,6 +1,6 @@
-import { computed } from "vue";
-import store from "@/store/index";
-import ClipboardJS from "clipboard";
+import { computed } from 'vue';
+import store from '@/store/index';
+import ClipboardJS from 'clipboard';
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 
 /**
@@ -19,9 +19,17 @@ export const version = computed(() => {
   return store.getters.layoutConfig("themeVersion");
 });
 
+/**
+ * Return demo name
+ * @returns {string}
+ */
+export const demo = computed(() => {
+  return store.getters.layoutConfig("demo");
+});
+
 //code copy button initialization
 export const useCopyClipboard = () => {
-  const _init = element => {
+  const _init = (element) => {
     let elements = element;
 
     if (typeof elements === "undefined") {
@@ -39,9 +47,8 @@ export const useCopyClipboard = () => {
               const highlight = trigger.closest(".highlight");
 
               if (highlight) {
-                let el: Element | null = highlight.querySelector(
-                  ".tab-pane.active"
-                );
+                let el: Element | null =
+                  highlight.querySelector(".tab-pane.active");
 
                 if (el == null) {
                   el = highlight.querySelector(".highlight-code");
@@ -51,16 +58,16 @@ export const useCopyClipboard = () => {
               }
 
               return highlight;
-            }
+            },
           });
 
-          clipboard.on("success", e => {
+          clipboard.on("success", (e) => {
             const caption = e.trigger.innerHTML;
 
             e.trigger.innerHTML = "copied";
             e.clearSelection();
 
-            setTimeout(function() {
+            setTimeout(function () {
               e.trigger.innerHTML = caption;
             }, 2000);
           });
@@ -72,6 +79,6 @@ export const useCopyClipboard = () => {
   return {
     init: (element?) => {
       _init(element);
-    }
+    },
   };
 };

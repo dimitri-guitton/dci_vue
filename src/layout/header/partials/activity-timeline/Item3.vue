@@ -9,7 +9,7 @@
     <div class="timeline-icon symbol symbol-circle symbol-40px">
       <div class="symbol-label bg-light">
         <span class="svg-icon svg-icon-2 svg-icon-gray-500">
-          <inline-svg src="media/icons/duotone/General/Attachment2.svg" />
+          <inline-svg src="media/icons/duotune/coding/cod008.svg" />
         </span>
       </div>
     </div>
@@ -50,7 +50,14 @@
       <!--begin::Timeline details-->
       <div class="overflow-auto pb-5">
         <div
-          class="d-flex align-items-center border border-dashed border-gray-300 rounded min-w-700px p-5"
+          class="
+            d-flex
+            align-items-center
+            border border-dashed border-gray-300
+            rounded
+            min-w-700px
+            p-5
+          "
         >
           <!--begin::Item-->
           <div class="d-flex flex-aligns-center pe-10 pe-lg-20">
@@ -127,10 +134,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "",
-  components: {}
+  components: {},
 });
 </script>

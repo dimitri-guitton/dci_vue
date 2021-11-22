@@ -21,9 +21,7 @@
           data-kt-menu-flip="top-end"
         >
           <span class="svg-icon svg-icon-2">
-            <inline-svg
-              src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-            />
+            <inline-svg src="media/icons/duotune/general/gen024.svg" />
           </span>
         </button>
         <Dropdown1></Dropdown1>
@@ -80,16 +78,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import Dropdown1 from "@/components/dropdown/Dropdown1.vue";
+import { defineComponent, ref } from 'vue';
+import Dropdown1 from '@/components/dropdown/Dropdown1.vue';
 
 export default defineComponent({
   name: "kt-widget-6",
   components: {
-    Dropdown1
+    Dropdown1,
   },
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   setup() {
     const list = ref([
@@ -98,34 +96,34 @@ export default defineComponent({
         title: "Cup & Green",
         size: "87KB",
         color: "success",
-        status: "Approved"
+        status: "Approved",
       },
       {
         image: "media/stock/600x400/img-19.jpg",
         title: "Yellow Background",
         size: "1.2MB",
         color: "warning",
-        status: "In Progress"
+        status: "In Progress",
       },
       {
         image: "media/stock/600x400/img-25.jpg",
         title: "Nike & Blue",
         size: "87KB",
         color: "success",
-        status: "Success"
+        status: "Success",
       },
       {
         image: "media/stock/600x400/img-24.jpg",
         title: "Red Boots",
         size: "345KB",
         color: "danger",
-        status: "Rejected"
-      }
+        status: "Rejected",
+      },
     ]);
 
     return {
-      list
+      list,
     };
-  }
+  },
 });
 </script>

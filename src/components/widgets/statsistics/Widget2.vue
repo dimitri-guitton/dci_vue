@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "kt-widget-2",
@@ -27,8 +27,8 @@ export default defineComponent({
     widgetClasses: String,
     title: String,
     description: String,
-    avatar: String
+    avatar: String,
   },
-  components: {}
+  components: {},
 });
 </script>

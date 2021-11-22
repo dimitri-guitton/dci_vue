@@ -1,15 +1,49 @@
 import {
-  DataUtil,
-  EventHandlerUtil,
-  getUniqueIdWithPrefix,
-  getObjectPropertyValueByKey,
-  stringSnakeToCamel,
-  getAttributeValueByBreakpoint,
-  throttle,
-  getCSS,
-  DOMEventHandlerUtil,
-  ElementStyleUtil,
-} from '../_utils/index'
+    DOMEventHandlerUtil,
+    ElementStyleUtil,
+    EventHandlerUtil,
+    getAttributeValueByBreakpoint,
+    getCSS,
+    getObjectPropertyValueByKey,
+    getUniqueIdWithPrefix,
+    stringSnakeToCamel,
+    throttle,
+} from '../_utils/index';
+
+export class DrawerStore {
+  static store: Map<string, DrawerComponent> = new Map()
+
+  public static set(instanceId: string, drawerComponentObj: DrawerComponent): void {
+    if (DrawerStore.has(instanceId)) {
+      return
+    }
+
+    DrawerStore.store.set(instanceId, drawerComponentObj);
+  }
+
+  public static get(instanceId: string): DrawerComponent | undefined {
+    if (!DrawerStore.has(instanceId)) {
+      return
+    }
+    return DrawerStore.store.get(instanceId);
+  }
+
+  public static remove(instanceId: string): void {
+    if (!DrawerStore.has(instanceId)) {
+      return
+    }
+
+    DrawerStore.store.delete(instanceId)
+  }
+
+  public static has(instanceId: string): boolean {
+    return DrawerStore.store.has(instanceId);
+  }
+
+  public static getAllInstances() {
+    return DrawerStore.store;
+  }
+}
 
 export interface DrawerOptions {
   overlay: boolean
@@ -49,7 +83,7 @@ class DrawerComponent {
     // Update Instance
     this._update()
     // Bind Instance
-    DataUtil.set(this.element, 'drawer', this)
+    DrawerStore.set(this.element.id, this)
   }
 
   private _handlers = () => {
@@ -259,23 +293,23 @@ class DrawerComponent {
   }
 
   // Static methods
-  public static hasInstace = (element: HTMLElement): boolean => {
-    return DataUtil.has(element, 'drawer')
+  public static hasInstace = (elementId: string): boolean => {
+    return DrawerStore.has(elementId)
   }
 
-  public static getInstance = (element: HTMLElement) => {
-    return DataUtil.get(element, 'drawer')
+  public static getInstance = (elementId: string) => {
+    return DrawerStore.get(elementId)
   }
 
   public static hideAll = () => {
-    const oldInstances = DataUtil.getAllInstancesByKey('drawer')
+    const oldInstances = DrawerStore.getAllInstances()
     oldInstances.forEach((dr) => {
       dr.hide()
     })
   }
 
   public static updateAll = () => {
-    const oldInstances = DataUtil.getAllInstancesByKey('drawer')
+    const oldInstances = DrawerStore.getAllInstances()
     oldInstances.forEach((dr) => {
       dr.update()
     })
@@ -286,10 +320,11 @@ class DrawerComponent {
     const elements = document.body.querySelectorAll(selector)
     elements.forEach((element) => {
       const item = element as HTMLElement
-      let drawer = DrawerComponent.getInstance(item)
+      let drawer = DrawerComponent.getInstance(item.id)
       if (!drawer) {
         drawer = new DrawerComponent(item, defaultDrawerOptions)
       }
+      drawer.element = item;
       drawer.hide()
     })
   }
@@ -321,8 +356,9 @@ class DrawerComponent {
           const elements = document.body.querySelectorAll('[data-kt-drawer="true"]')
           elements.forEach((el) => {
             const item = el as HTMLElement
-            const instance = DrawerComponent.getInstance(item)
+            const instance = DrawerComponent.getInstance(item.id)
             if (instance) {
+              instance.element = item;
               instance.update()
             }
           })

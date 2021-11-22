@@ -18,9 +18,7 @@
           data-kt-menu-flip="top-end"
         >
           <span class="svg-icon svg-icon-2">
-            <inline-svg
-              src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-            />
+            <inline-svg src="media/icons/duotune/general/gen024.svg" />
           </span>
         </button>
         <Dropdown1></Dropdown1>
@@ -202,22 +200,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
-import Dropdown1 from "@/components/dropdown/Dropdown1.vue";
-import { MenuComponent } from "@/assets/ts/components/MenuComponent";
+import { defineComponent, onMounted } from 'vue';
+import Dropdown1 from '@/components/dropdown/Dropdown1.vue';
+import { MenuComponent } from '@/assets/ts/components/MenuComponent';
 
 export default defineComponent({
   name: "kt-widget-5",
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   components: {
-    Dropdown1
+    Dropdown1,
   },
   setup() {
     onMounted(() => {
       MenuComponent.reinitialization();
     });
-  }
+  },
 });
 </script>

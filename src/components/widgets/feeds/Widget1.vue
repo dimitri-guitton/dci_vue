@@ -29,15 +29,15 @@
         <div class="my-0">
           <button
             type="button"
-            class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+            class="
+              btn btn-sm btn-icon btn-color-primary btn-active-light-primary
+            "
             data-kt-menu-trigger="click"
             data-kt-menu-placement="bottom-end"
             data-kt-menu-flip="top-end"
           >
             <span class="svg-icon svg-icon-2">
-              <inline-svg
-                src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-              />
+              <inline-svg src="media/icons/duotune/general/gen024.svg" />
             </span>
           </button>
           <Dropdown2></Dropdown2>
@@ -95,35 +95,35 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
-import Quill from "quill/dist/quill.js";
-import Dropdown2 from "@/components/dropdown/Dropdown2.vue";
+import { defineComponent, onMounted } from 'vue';
+import Quill from 'quill/dist/quill.js';
+import Dropdown2 from '@/components/dropdown/Dropdown2.vue';
 
 export default defineComponent({
   name: "widget-1",
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   components: {
-    Dropdown2
+    Dropdown2,
   },
   setup() {
     onMounted(() => {
       const editorId = "kt_forms_widget_1_editor";
 
       // init editor
-      const options: object = {
+      const options = {
         modules: {
           toolbar: {
-            container: "#kt_forms_widget_1_editor_toolbar"
-          }
+            container: "#kt_forms_widget_1_editor_toolbar",
+          },
         },
-        theme: "snow"
+        theme: "snow",
       };
 
       // Init editor
       new Quill("#" + editorId, options);
     });
-  }
+  },
 });
 </script>

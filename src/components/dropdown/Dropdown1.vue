@@ -49,12 +49,13 @@
         <div class="d-flex">
           <!--begin::Options-->
           <label
-            class="form-check form-check-sm form-check-custom form-check-solid me-5"
+            class="
+              form-check form-check-sm form-check-custom form-check-solid
+              me-5
+            "
           >
             <el-checkbox type="checkbox" value="1" v-model="data.author" />
-            <span class="form-check-label">
-              Author
-            </span>
+            <span class="form-check-label"> Author </span>
           </label>
           <!--end::Options-->
 
@@ -63,9 +64,7 @@
             class="form-check form-check-sm form-check-custom form-check-solid"
           >
             <el-checkbox type="checkbox" value="2" v-model="data.customer" />
-            <span class="form-check-label">
-              Customer
-            </span>
+            <span class="form-check-label"> Customer </span>
           </label>
           <!--end::Options-->
         </div>
@@ -81,7 +80,13 @@
 
         <!--begin::Switch-->
         <div
-          class="form-check form-switch form-switch-sm form-check-custom form-check-solid"
+          class="
+            form-check
+            form-switch
+            form-switch-sm
+            form-check-custom
+            form-check-solid
+          "
         >
           <input
             class="form-check-input"
@@ -89,9 +94,7 @@
             name="notifications"
             v-model="data.notifications"
           />
-          <label class="form-check-label">
-            Enabled
-          </label>
+          <label class="form-check-label"> Enabled </label>
         </div>
         <!--end::Switch-->
       </div>
@@ -123,7 +126,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref } from 'vue';
 
 interface Filter {
   status: string;
@@ -140,12 +143,12 @@ export default defineComponent({
       status: "1",
       author: true,
       customer: true,
-      notifications: true
+      notifications: true,
     });
 
     return {
-      data
+      data,
     };
-  }
+  },
 });
 </script>

@@ -17,16 +17,9 @@ body {
 @include media-breakpoint-up(lg) {
 	// Containers
 	.container,
+	.container-xxl,
 	.container-fluid {
 		padding: 0 get($content-spacing, desktop);
-	}
-
-	.container .page-title[data-kt-swapper='true'] {
-		display: none !important;
-	}
-
-	.container-fluid .page-title[data-kt-swapper='true'] {
-		display: none !important;
 	}
 
 	// Wrapper
@@ -61,17 +54,10 @@ body {
 @include media-breakpoint-down(lg) {
 	// Containers
 	.container,
+	.container-xxl,
 	.container-fluid {
 		max-width: none;
 		padding: 0 get($content-spacing, tablet-and-mobile);
-	}
-
-	.container .page-title[data-kt-swapper='true'] {
-		display: flex !important;
-	}
-
-	.container-fluid .page-title[data-kt-swapper='true'] {
-		display: flex !important;
 	}
 
 	// Wrapper

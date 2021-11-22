@@ -1,7 +1,7 @@
-import objectPath from "object-path";
-import { Actions } from "@/store/enums/StoreEnums";
-import store from "@/store/";
-import { config } from "@/core/helpers/config";
+import objectPath from 'object-path';
+import { Actions } from '@/store/enums/StoreEnums';
+import store from '@/store/';
+import { config } from '@/core/helpers/config';
 
 class LayoutService {
   /**
@@ -21,7 +21,7 @@ class LayoutService {
   public static initLayout(): void {
     store.dispatch(Actions.ADD_BODY_ATTRIBUTE, {
       qulifiedName: "id",
-      value: "kt_body"
+      value: "kt_body",
     });
 
     if (objectPath.get(config.value, "loader.display")) {
@@ -84,7 +84,7 @@ class LayoutService {
     ) {
       store.dispatch(Actions.ADD_BODY_ATTRIBUTE, {
         qulifiedName: "data-kt-aside-minimize",
-        value: "on"
+        value: "on",
       });
     }
 
@@ -97,7 +97,7 @@ class LayoutService {
     if (objectPath.get(config.value, "aside.minimized")) {
       store.dispatch(Actions.ADD_BODY_ATTRIBUTE, {
         qulifiedName: "data-kt-aside-minimize",
-        value: "on"
+        value: "on",
       });
     }
   }

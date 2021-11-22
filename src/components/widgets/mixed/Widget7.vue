@@ -39,15 +39,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { getCSSVariableValue } from "@/assets/ts/_utils";
+import { defineComponent, ref } from 'vue';
+import { getCSSVariableValue } from '@/assets/ts/_utils';
 
 export default defineComponent({
   name: "widget-7",
   props: {
     widgetClasses: String,
     chartColor: String,
-    chartHeight: String
+    chartHeight: String,
   },
   setup(props) {
     const color = ref(props.chartColor);
@@ -61,54 +61,54 @@ export default defineComponent({
       series: [
         {
           name: "Net Profit",
-          data: [15, 25, 15, 40, 20, 50]
-        }
+          data: [15, 25, 15, 40, 20, 50],
+        },
       ],
       chart: {
         fontFamily: "inherit",
         type: "area",
         height: props.chartHeight,
         toolbar: {
-          show: false
+          show: false,
         },
         zoom: {
-          enabled: false
+          enabled: false,
         },
         sparkline: {
-          enabled: true
-        }
+          enabled: true,
+        },
       },
       plotOptions: {},
       legend: {
-        show: false
+        show: false,
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       fill: {
         type: "solid",
-        opacity: 1
+        opacity: 1,
       },
       stroke: {
         curve: "smooth",
         show: true,
         width: 3,
-        colors: [baseColor]
+        colors: [baseColor],
       },
       xaxis: {
         categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul"],
         axisBorder: {
-          show: false
+          show: false,
         },
         axisTicks: {
-          show: false
+          show: false,
         },
         labels: {
           show: false,
           style: {
             colors: labelColor,
-            fontSize: "12px"
-          }
+            fontSize: "12px",
+          },
         },
         crosshairs: {
           show: false,
@@ -116,12 +116,12 @@ export default defineComponent({
           stroke: {
             color: strokeColor,
             width: 1,
-            dashArray: 3
-          }
+            dashArray: 3,
+          },
         },
         tooltip: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       yaxis: {
         min: 0,
@@ -130,60 +130,60 @@ export default defineComponent({
           show: false,
           style: {
             colors: labelColor,
-            fontSize: "12px"
-          }
-        }
+            fontSize: "12px",
+          },
+        },
       },
       states: {
         normal: {
           filter: {
             type: "none",
-            value: 0
-          }
+            value: 0,
+          },
         },
         hover: {
           filter: {
             type: "none",
-            value: 0
-          }
+            value: 0,
+          },
         },
         active: {
           allowMultipleDataPointsSelection: false,
           filter: {
             type: "none",
-            value: 0
-          }
-        }
+            value: 0,
+          },
+        },
       },
       tooltip: {
         style: {
-          fontSize: "12px"
+          fontSize: "12px",
         },
         y: {
-          formatter: function(val) {
+          formatter: function (val) {
             return "$" + val + " thousands";
-          }
-        }
+          },
+        },
       },
       colors: [lightColor],
       markers: {
         colors: [lightColor],
         strokeColor: [baseColor],
-        strokeWidth: 3
-      }
+        strokeWidth: 3,
+      },
     };
 
     const series = [
       {
         name: "Net Profit",
-        data: [15, 25, 15, 40, 20, 50]
-      }
+        data: [15, 25, 15, 40, 20, 50],
+      },
     ];
 
     return {
       chartOptions,
-      series
+      series,
     };
-  }
+  },
 });
 </script>

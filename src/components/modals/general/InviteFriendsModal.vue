@@ -18,7 +18,7 @@
             data-bs-dismiss="modal"
           >
             <span class="svg-icon svg-icon-1">
-              <inline-svg src="media/icons/duotone/Navigation/Close.svg" />
+              <inline-svg src="media/icons/duotune/arrows/arr061.svg" />
             </span>
           </div>
           <!--end::Close-->
@@ -82,7 +82,12 @@
               <template v-for="(user, index) in users" :key="index">
                 <!--begin::User-->
                 <div
-                  class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed"
+                  class="
+                    d-flex
+                    flex-stack
+                    py-4
+                    border-bottom border-gray-300 border-bottom-dashed
+                  "
                 >
                   <!--begin::Details-->
                   <div class="d-flex align-items-center">
@@ -103,7 +108,12 @@
                     <div class="ms-5">
                       <a
                         href="#"
-                        class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2"
+                        class="
+                          fs-5
+                          fw-bolder
+                          text-gray-900 text-hover-primary
+                          mb-2
+                        "
                         >{{ user.name }}</a
                       >
 
@@ -175,7 +185,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "invite-friends-modal",
@@ -186,109 +196,109 @@ export default defineComponent({
         avatar: "media/avatars/150-1.jpg",
         name: "Emma Smith",
         email: "e.smith@kpmg.com.au",
-        access: "1"
+        access: "1",
       },
       {
         state: "danger",
         name: "Melody Macy",
         email: "melody@altbox.com",
-        access: "1"
+        access: "1",
       },
       {
         avatar: "media/avatars/150-2.jpg",
         name: "Max Smith",
         email: "max@kt.com",
-        access: "3"
+        access: "3",
       },
       {
         avatar: "media/avatars/150-2.jpg",
         name: "Sean Bean",
         email: "sean@dellito.com",
-        access: "2"
+        access: "2",
       },
       {
         avatar: "media/avatars/150-15.jpg",
         name: "Brian Cox",
         email: "brian@exchange.com",
-        access: "3"
+        access: "3",
       },
       {
         state: "warning",
         name: "Mikaela Collins",
         email: "mikaela@pexcom.com",
-        access: "2"
+        access: "2",
       },
       {
         avatar: "media/avatars/150-8.jpg",
         name: "Francis Mitcham",
         email: "f.mitcham@kpmg.com.au",
-        access: "3"
+        access: "3",
       },
       {
         state: "danger",
         name: "Olivia Wild",
         email: "olivia@corpmail.com",
-        access: "2"
+        access: "2",
       },
       {
         state: "info",
         name: "Neil Owen",
         email: "owen.neil@gmail.com",
-        access: "1"
+        access: "1",
       },
       {
         avatar: "media/avatars/150-6.jpg",
         name: "Dan Wilson",
         email: "dam@consilting.com",
-        access: "3"
+        access: "3",
       },
       {
         state: "danger",
         name: "Emma Bold",
         email: "emma@intenso.com",
-        access: "2"
+        access: "2",
       },
       {
         avatar: "media/avatars/150-7.jpg",
         name: "Ana Crown",
         email: "ana.cf@limtel.com",
-        access: "1"
+        access: "1",
       },
       {
         state: "primary",
         name: "Robert Doe",
         email: "robert@benko.com",
-        access: "3"
+        access: "3",
       },
       {
         avatar: "media/avatars/150-17.jpg",
         name: "John Miller",
         email: "miller@mapple.com",
-        access: "3"
+        access: "3",
       },
       {
         state: "success",
         name: "Lucy Kunic",
         email: "lucy.m@fentech.com",
-        access: "2"
+        access: "2",
       },
       {
         state: "media/avatars/150-10.jpg",
         name: "Ethan Wilder",
         email: "ethan@loop.com.au",
-        access: "1"
+        access: "1",
       },
       {
         state: "media/avatars/150-7.jpg",
         name: "Ana Crown",
         email: "ana.cf@limtel.com",
-        access: "3"
-      }
+        access: "3",
+      },
     ];
 
     return {
-      users
+      users,
     };
-  }
+  },
 });
 </script>

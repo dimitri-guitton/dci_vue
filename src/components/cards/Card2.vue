@@ -24,15 +24,21 @@
         <!--begin::Menu-->
         <button
           type="button"
-          class="btn btn-clean btn-sm btn-icon btn-icon-primary btn-active-light-primary me-n3"
+          class="
+            btn
+            btn-clean
+            btn-sm
+            btn-icon
+            btn-icon-primary
+            btn-active-light-primary
+            me-n3
+          "
           data-kt-menu-trigger="click"
           data-kt-menu-placement="bottom-end"
           data-kt-menu-flip="top-end"
         >
           <span class="svg-icon svg-icon-3 svg-icon-primary">
-            <inline-svg
-              src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-            />
+            <inline-svg src="media/icons/duotune/general/gen024.svg" />
           </span>
         </button>
 
@@ -54,7 +60,7 @@
       <!--begin::Stats-->
       <div class="d-flex align-items-center flex-wrap mb-5 mt-auto fs-6">
         <span :class="`svg-icon-${color}`" class="svg-icon svg-icon-3 me-1">
-          <inline-svg :src="`media/icons/duotone/Navigation/${arrow}.svg`" />
+          <inline-svg :src="`media/icons/duotune/Navigation/${arrow}.svg`" />
         </span>
 
         <!--begin::Number-->
@@ -87,13 +93,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Dropdown3 from "@/components/dropdown/Dropdown3.vue";
+import { defineComponent } from 'vue';
+import Dropdown3 from '@/components/dropdown/Dropdown3.vue';
 
 export default defineComponent({
   name: "card-2",
   components: {
-    Dropdown3
+    Dropdown3,
   },
   props: {
     cardClasses: String,
@@ -114,7 +120,7 @@ export default defineComponent({
 
     indicatorValue: String,
 
-    indicatorLabel: String
-  }
+    indicatorLabel: String,
+  },
 });
 </script>

@@ -6,7 +6,7 @@
 	$angle: ($edges-number - 2) * 180deg/$edges-number;
 	$max-var-angle: 2 * (90deg - $angle/2);
 	$precision: 6;
-	$unit-var-angle: $max-var-angle/$precision;
+	$unit-var-angle: $max-var-angle / $precision;
 	$r-diff: $main-radius + $rounding-radius;
 
 	$points: ();

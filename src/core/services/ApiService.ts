@@ -1,8 +1,7 @@
-import { App } from "vue";
-import axios from "axios";
-import VueAxios from "vue-axios";
-import JwtService from "@/core/services/JwtService";
-import { AxiosResponse, AxiosRequestConfig } from "axios";
+import { App } from 'vue';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import VueAxios from 'vue-axios';
+import JwtService from '@/core/services/JwtService';
 
 /**
  * @description service to call HTTP request via Axios
@@ -19,7 +18,7 @@ class ApiService {
   public static init(app: App<Element>) {
     ApiService.vueInstance = app;
     ApiService.vueInstance.use(VueAxios, axios);
-    ApiService.vueInstance.axios.defaults.baseURL = "http://localhost";
+    ApiService.vueInstance.axios.defaults.baseURL = process.env.VUE_APP_API_URL;
   }
 
   /**
@@ -29,6 +28,8 @@ class ApiService {
     ApiService.vueInstance.axios.defaults.headers.common[
       "Authorization"
     ] = `Token ${JwtService.getToken()}`;
+    ApiService.vueInstance.axios.defaults.headers.common["Accept"] =
+      "application/json";
   }
 
   /**
@@ -41,9 +42,7 @@ class ApiService {
     resource: string,
     params: AxiosRequestConfig
   ): Promise<AxiosResponse> {
-    return ApiService.vueInstance.axios.get(resource, params).catch(error => {
-      throw new Error(`[KT] ApiService ${error}`);
-    });
+    return ApiService.vueInstance.axios.get(resource, params);
   }
 
   /**
@@ -58,7 +57,7 @@ class ApiService {
   ): Promise<AxiosResponse> {
     return ApiService.vueInstance.axios
       .get(`${resource}/${slug}`)
-      .catch(error => {
+      .catch((error) => {
         throw new Error(`[KT] ApiService ${error}`);
       });
   }
@@ -110,7 +109,7 @@ class ApiService {
    * @returns Promise<AxiosResponse>
    */
   public static delete(resource: string): Promise<AxiosResponse> {
-    return ApiService.vueInstance.axios.delete(resource).catch(error => {
+    return ApiService.vueInstance.axios.delete(resource).catch((error) => {
       throw new Error(`[RWV] ApiService ${error}`);
     });
   }

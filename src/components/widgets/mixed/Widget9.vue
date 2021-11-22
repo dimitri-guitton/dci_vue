@@ -68,7 +68,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "widget-1",
@@ -78,7 +78,7 @@ export default defineComponent({
     time: String,
     image: String,
     title: String,
-    description: String
-  }
+    description: String,
+  },
 });
 </script>

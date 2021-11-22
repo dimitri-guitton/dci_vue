@@ -3,6 +3,7 @@
   <div
     class="modal fade"
     id="kt_modal_create_app"
+    ref="createAppModalRef"
     tabindex="-1"
     aria-hidden="true"
   >
@@ -22,7 +23,7 @@
             data-bs-dismiss="modal"
           >
             <span class="svg-icon svg-icon-1">
-              <inline-svg src="media/icons/duotone/Navigation/Close.svg" />
+              <inline-svg src="media/icons/duotune/arrows/arr061.svg" />
             </span>
           </div>
           <!--end::Close-->
@@ -33,13 +34,22 @@
         <div class="modal-body py-lg-10 px-lg-10">
           <!--begin::Stepper-->
           <div
-            class="stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid"
+            class="
+              stepper stepper-pills stepper-column
+              d-flex
+              flex-column flex-xl-row flex-row-fluid
+            "
             id="kt_modal_create_app_stepper"
             ref="createAppRef"
           >
             <!--begin::Aside-->
             <div
-              class="d-flex justify-content-center justify-content-xl-start flex-row-auto w-100 w-xl-300px"
+              class="
+                d-flex
+                justify-content-center justify-content-xl-start
+                flex-row-auto
+                w-100 w-xl-300px
+              "
             >
               <!--begin::Nav-->
               <div class="stepper-nav ps-lg-10">
@@ -58,13 +68,9 @@
 
                   <!--begin::Label-->
                   <div class="stepper-label">
-                    <h3 class="stepper-title">
-                      Details
-                    </h3>
+                    <h3 class="stepper-title">Details</h3>
 
-                    <div class="stepper-desc">
-                      Name your App
-                    </div>
+                    <div class="stepper-desc">Name your App</div>
                   </div>
                   <!--end::Label-->
                 </div>
@@ -85,13 +91,9 @@
 
                   <!--begin::Label-->
                   <div class="stepper-label">
-                    <h3 class="stepper-title">
-                      Frameworks
-                    </h3>
+                    <h3 class="stepper-title">Frameworks</h3>
 
-                    <div class="stepper-desc">
-                      Define your app framework
-                    </div>
+                    <div class="stepper-desc">Define your app framework</div>
                   </div>
                   <!--begin::Label-->
                 </div>
@@ -112,13 +114,9 @@
 
                   <!--begin::Label-->
                   <div class="stepper-label">
-                    <h3 class="stepper-title">
-                      Database
-                    </h3>
+                    <h3 class="stepper-title">Database</h3>
 
-                    <div class="stepper-desc">
-                      Select the app database type
-                    </div>
+                    <div class="stepper-desc">Select the app database type</div>
                   </div>
                   <!--end::Label-->
                 </div>
@@ -139,13 +137,9 @@
 
                   <!--begin::Label-->
                   <div class="stepper-label">
-                    <h3 class="stepper-title">
-                      Billing
-                    </h3>
+                    <h3 class="stepper-title">Billing</h3>
 
-                    <div class="stepper-desc">
-                      Provide payment details
-                    </div>
+                    <div class="stepper-desc">Provide payment details</div>
                   </div>
                   <!--end::Label-->
                 </div>
@@ -166,13 +160,9 @@
 
                   <!--begin::Label-->
                   <div class="stepper-label">
-                    <h3 class="stepper-title">
-                      Release
-                    </h3>
+                    <h3 class="stepper-title">Release</h3>
 
-                    <div class="stepper-desc">
-                      Review and Submit
-                    </div>
+                    <div class="stepper-desc">Review and Submit</div>
                   </div>
                   <!--end::Label-->
                 </div>
@@ -253,7 +243,7 @@
                                   class="svg-icon svg-icon-1 svg-icon-primary"
                                 >
                                   <inline-svg
-                                    src="media/icons/duotone/Home/Globe.svg"
+                                    src="media/icons/duotune/maps/map004.svg"
                                   />
                                 </span>
                               </span>
@@ -277,7 +267,9 @@
 
                           <!--begin:Input-->
                           <span
-                            class="form-check form-check-custom form-check-solid"
+                            class="
+                              form-check form-check-custom form-check-solid
+                            "
                           >
                             <Field
                               class="form-check-input"
@@ -296,12 +288,12 @@
                           <span class="d-flex align-items-center me-2">
                             <!--begin:Icon-->
                             <span class="symbol symbol-50px me-6">
-                              <span class="symbol-label bg-light-danger ">
+                              <span class="symbol-label bg-light-danger">
                                 <span
                                   class="svg-icon svg-icon-1 svg-icon-danger"
                                 >
                                   <inline-svg
-                                    src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
+                                    src="media/icons/duotune/general/gen024.svg"
                                   />
                                 </span>
                               </span>
@@ -325,7 +317,9 @@
 
                           <!--begin:Input-->
                           <span
-                            class="form-check form-check-custom form-check-solid"
+                            class="
+                              form-check form-check-custom form-check-solid
+                            "
                           >
                             <Field
                               class="form-check-input"
@@ -349,7 +343,7 @@
                                   class="svg-icon svg-icon-1 svg-icon-success"
                                 >
                                   <inline-svg
-                                    src="media/icons/duotone/Devices/Watch1.svg"
+                                    src="media/icons/duotune/general/gen013.svg"
                                   />
                                 </span>
                               </span>
@@ -373,7 +367,9 @@
 
                           <!--begin:Input-->
                           <span
-                            class="form-check form-check-custom form-check-solid"
+                            class="
+                              form-check form-check-custom form-check-solid
+                            "
                           >
                             <Field
                               class="form-check-input"
@@ -753,7 +749,14 @@
                     <div class="d-flex flex-column mb-7 fv-row">
                       <!--begin::Label-->
                       <label
-                        class="d-flex align-items-center fs-6 fw-bold form-label mb-2"
+                        class="
+                          d-flex
+                          align-items-center
+                          fs-6
+                          fw-bold
+                          form-label
+                          mb-2
+                        "
                       >
                         <span class="required">Name On Card</span>
                         <i
@@ -802,7 +805,13 @@
 
                         <!--begin::Card logos-->
                         <div
-                          class="position-absolute translate-middle-y top-50 end-0 me-5"
+                          class="
+                            position-absolute
+                            translate-middle-y
+                            top-50
+                            end-0
+                            me-5
+                          "
                         >
                           <img
                             src="media/svg/card-logos/visa.svg"
@@ -842,7 +851,10 @@
                           <div class="col-6">
                             <Field
                               name="cardExpiryMonth"
-                              class="form-select form-select-solid select2-hidden-accessible"
+                              class="
+                                form-select form-select-solid
+                                select2-hidden-accessible
+                              "
                               placeholder="Month"
                               as="select"
                             >
@@ -851,11 +863,13 @@
                                 :key="i"
                                 :label="i"
                                 :value="i"
-                              >
-                              </option>
+                              ></option>
                             </Field>
                             <ErrorMessage
-                              class="fv-plugins-message-container invalid-feedback"
+                              class="
+                                fv-plugins-message-container
+                                invalid-feedback
+                              "
                               name="cardExpiryMonth"
                             />
                           </div>
@@ -865,7 +879,10 @@
                           <div class="col-6">
                             <Field
                               name="cardExpiryYear"
-                              class="form-select form-select-solid select2-hidden-accessible"
+                              class="
+                                form-select form-select-solid
+                                select2-hidden-accessible
+                              "
                               placeholder="Year"
                               as="select"
                             >
@@ -877,7 +894,10 @@
                               ></option>
                             </Field>
                             <ErrorMessage
-                              class="fv-plugins-message-container invalid-feedback"
+                              class="
+                                fv-plugins-message-container
+                                invalid-feedback
+                              "
                               name="cardExpiryYear"
                             />
                           </div>
@@ -891,7 +911,14 @@
                       <div class="col-md-4 fv-row">
                         <!--begin::Label-->
                         <label
-                          class="d-flex align-items-center fs-6 fw-bold form-label mb-2"
+                          class="
+                            d-flex
+                            align-items-center
+                            fs-6
+                            fw-bold
+                            form-label
+                            mb-2
+                          "
                         >
                           <span class="required">CVV</span>
                           <i
@@ -914,18 +941,27 @@
                             name="cardCvv"
                           />
                           <ErrorMessage
-                            class="fv-plugins-message-container invalid-feedback"
+                            class="
+                              fv-plugins-message-container
+                              invalid-feedback
+                            "
                             name="cardCvv"
                           />
                           <!--end::Input-->
 
                           <!--begin::CVV icon-->
                           <div
-                            class="position-absolute translate-middle-y top-50 end-0 me-3"
+                            class="
+                              position-absolute
+                              translate-middle-y
+                              top-50
+                              end-0
+                              me-3
+                            "
                           >
                             <span class="svg-icon svg-icon-2hx">
                               <inline-svg
-                                src="media/icons/duotone/Shopping/Credit-card.svg"
+                                src="media/icons/duotune/finance/fin002.svg"
                               />
                             </span>
                           </div>
@@ -952,7 +988,12 @@
 
                       <!--begin::Switch-->
                       <label
-                        class="form-check form-switch form-check-custom form-check-solid"
+                        class="
+                          form-check
+                          form-switch
+                          form-check-custom
+                          form-check-solid
+                        "
                       >
                         <Field
                           type="checkbox"
@@ -987,9 +1028,9 @@
                     <!--begin::Illustration-->
                     <div class="text-center px-4 py-15">
                       <img
-                        src="media/illustrations/todo.png"
+                        src="media/illustrations/sketchy-1/9.png"
                         alt=""
-                        class="mw-100 mh-150px"
+                        class="w-100 mh-300px"
                       />
                     </div>
                     <!--end::Illustration-->
@@ -1009,7 +1050,7 @@
                     >
                       <span class="svg-icon svg-icon-3 me-1">
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Left-2.svg"
+                          src="media/icons/duotune/arrows/arr063.svg"
                         />
                       </span>
                       Back
@@ -1029,14 +1070,18 @@
                         Submit
                         <span class="svg-icon svg-icon-3 ms-2 me-0">
                           <inline-svg
-                            src="icons/duotone/Navigation/Right-2.svg"
+                            src="media/icons/duotune/arrows/arr064.svg"
                           />
                         </span>
                       </span>
                       <span class="indicator-progress">
                         Please wait...
                         <span
-                          class="spinner-border spinner-border-sm align-middle ms-2"
+                          class="
+                            spinner-border spinner-border-sm
+                            align-middle
+                            ms-2
+                          "
                         ></span>
                       </span>
                     </button>
@@ -1045,7 +1090,7 @@
                       Continue
                       <span class="svg-icon svg-icon-3 ms-1 me-0">
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Right-2.svg"
+                          src="media/icons/duotune/arrows/arr064.svg"
                         />
                       </span>
                     </button>
@@ -1080,12 +1125,12 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, computed } from "vue";
-import { StepperComponent } from "@/assets/ts/components/_StepperComponent";
-import Swal from "sweetalert2/dist/sweetalert2.min.js";
-import { useForm } from "vee-validate";
-import { Field, ErrorMessage } from "vee-validate";
-import * as Yup from "yup";
+import { computed, defineComponent, onMounted, ref } from 'vue';
+import { StepperComponent } from '@/assets/ts/components/_StepperComponent';
+import Swal from 'sweetalert2/dist/sweetalert2.min.js';
+import { ErrorMessage, Field, useForm } from 'vee-validate';
+import * as Yup from 'yup';
+import { hideModal } from '@/core/helpers/dom';
 
 interface Step1 {
   appName: string;
@@ -1116,11 +1161,12 @@ export default defineComponent({
   name: "create-app-modal",
   components: {
     Field,
-    ErrorMessage
+    ErrorMessage,
   },
   setup() {
     const _stepperObj = ref<StepperComponent | null>(null);
     const createAppRef = ref<HTMLElement | null>(null);
+    const createAppModalRef = ref<HTMLElement | null>(null);
     const currentStepIndex = ref(0);
 
     const formData = ref<KTCreateApp>({
@@ -1134,7 +1180,7 @@ export default defineComponent({
       cardExpiryMonth: "1",
       cardExpiryYear: "2",
       cardCvv: "123",
-      saveCard: "1"
+      saveCard: "1",
     });
 
     onMounted(() => {
@@ -1145,43 +1191,23 @@ export default defineComponent({
 
     const createAppSchema = [
       Yup.object({
-        appName: Yup.string()
-          .required()
-          .label("App name"),
-        category: Yup.string()
-          .required()
-          .label("Category")
+        appName: Yup.string().required().label("App name"),
+        category: Yup.string().required().label("Category"),
       }),
       Yup.object({
-        framework: Yup.string()
-          .required()
-          .label("Framework")
+        framework: Yup.string().required().label("Framework"),
       }),
       Yup.object({
-        dbName: Yup.string()
-          .required()
-          .label("Database name"),
-        dbType: Yup.string()
-          .required()
-          .label("Database engine")
+        dbName: Yup.string().required().label("Database name"),
+        dbType: Yup.string().required().label("Database engine"),
       }),
       Yup.object({
-        nameOnCard: Yup.string()
-          .required()
-          .label("Name"),
-        cardNumber: Yup.string()
-          .required()
-          .label("Card Number"),
-        cardExpiryMonth: Yup.string()
-          .required()
-          .label("Expiration Month"),
-        cardExpiryYear: Yup.string()
-          .required()
-          .label("Expiration Year"),
-        cardCvv: Yup.string()
-          .required()
-          .label("CVV")
-      })
+        nameOnCard: Yup.string().required().label("Name"),
+        cardNumber: Yup.string().required().label("Card Number"),
+        cardExpiryMonth: Yup.string().required().label("Expiration Month"),
+        cardExpiryYear: Yup.string().required().label("Expiration Year"),
+        cardCvv: Yup.string().required().label("CVV"),
+      }),
     ];
 
     // extracts the individual step schema
@@ -1198,7 +1224,7 @@ export default defineComponent({
     });
 
     const { resetForm, handleSubmit } = useForm<Step1 | Step2 | Step3 | Step4>({
-      validationSchema: currentSchema
+      validationSchema: currentSchema,
     });
 
     const previousStep = () => {
@@ -1211,10 +1237,10 @@ export default defineComponent({
       _stepperObj.value.goPrev();
     };
 
-    const handleStep = handleSubmit(values => {
+    const handleStep = handleSubmit((values) => {
       formData.value = {
         ...formData.value,
-        ...values
+        ...values,
       };
 
       currentStepIndex.value++;
@@ -1233,17 +1259,17 @@ export default defineComponent({
         buttonsStyling: false,
         confirmButtonText: "Ok, got it!",
         customClass: {
-          confirmButton: "btn fw-bold btn-light-primary"
-        }
+          confirmButton: "btn fw-bold btn-light-primary",
+        },
       }).then(() => {
-        window.location.reload();
+        hideModal(createAppModalRef.value);
       });
     };
 
     resetForm({
       values: {
-        ...formData.value
-      }
+        ...formData.value,
+      },
     });
 
     return {
@@ -1252,8 +1278,9 @@ export default defineComponent({
       previousStep,
       createAppRef,
       currentStepIndex,
-      totalSteps
+      totalSteps,
+      createAppModalRef,
     };
-  }
+  },
 });
 </script>

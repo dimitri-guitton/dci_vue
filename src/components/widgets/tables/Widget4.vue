@@ -14,7 +14,14 @@
         <ul class="nav">
           <li class="nav-item">
             <a
-              class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary active fw-bolder px-4 me-1"
+              class="
+                nav-link
+                btn btn-sm btn-color-muted btn-active btn-active-light-primary
+                active
+                fw-bolder
+                px-4
+                me-1
+              "
               data-bs-toggle="tab"
               href="#kt_table_widget_4_tab_1"
               >Month</a
@@ -23,7 +30,13 @@
 
           <li class="nav-item">
             <a
-              class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4 me-1"
+              class="
+                nav-link
+                btn btn-sm btn-color-muted btn-active btn-active-light-primary
+                fw-bolder
+                px-4
+                me-1
+              "
               data-bs-toggle="tab"
               href="#kt_table_widget_4_tab_2"
               >Week</a
@@ -32,7 +45,12 @@
 
           <li class="nav-item">
             <a
-              class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4"
+              class="
+                nav-link
+                btn btn-sm btn-color-muted btn-active btn-active-light-primary
+                fw-bolder
+                px-4
+              "
               data-bs-toggle="tab"
               href="#kt_table_widget_4_tab_3"
               >Day</a
@@ -80,7 +98,13 @@
                       <td>
                         <a
                           href="#"
-                          class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
+                          class="
+                            text-dark
+                            fw-bolder
+                            text-hover-primary
+                            mb-1
+                            fs-6
+                          "
                           >{{ item1.user.name }}</a
                         >
                         <span class="text-muted fw-bold d-block fs-7">{{
@@ -135,13 +159,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "kt-widget-4",
   components: {},
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   setup() {
     const items = [
@@ -150,42 +174,42 @@ export default defineComponent({
           image: "media/avatars/150-11.jpg",
           user: {
             name: "Brad Simmons",
-            position: "Movie Creator"
+            position: "Movie Creator",
           },
-          rating: 5
+          rating: 5,
         },
         {
           image: "media/avatars/150-4.jpg",
           user: {
             name: "Jessie Clarcson",
-            position: "HTML, CSS Coding"
+            position: "HTML, CSS Coding",
           },
-          rating: 5
+          rating: 5,
         },
         {
           image: "media/avatars/150-5.jpg",
           user: {
             name: "Lebron Wayde",
-            position: "ReactJS Developer"
+            position: "ReactJS Developer",
           },
-          rating: 4
+          rating: 4,
         },
         {
           image: "media/avatars/150-6.jpg",
           user: {
             name: "Natali Trump",
-            position: "UI/UX Designer"
+            position: "UI/UX Designer",
           },
-          rating: 5
+          rating: 5,
         },
         {
           image: "media/avatars/150-9.jpg",
           user: {
             name: "Kevin Leonard",
-            position: "Art Director"
+            position: "Art Director",
           },
-          rating: 3
-        }
+          rating: 3,
+        },
       ],
 
       [
@@ -193,34 +217,34 @@ export default defineComponent({
           image: "media/svg/avatars/043-boy-18.svg",
           user: {
             name: "Kevin Leonard",
-            position: "Art Director"
+            position: "Art Director",
           },
-          rating: 3
+          rating: 3,
         },
         {
           image: "media/svg/avatars/014-girl-7.svg",
           user: {
             name: "Natali Trump",
-            position: "UI/UX Designer"
+            position: "UI/UX Designer",
           },
-          rating: 5
+          rating: 5,
         },
         {
           image: "media/svg/avatars/018-girl-9.svg",
           user: {
             name: "Jessie Clarcson",
-            position: "HTML, CSS Coding"
+            position: "HTML, CSS Coding",
           },
-          rating: 5
+          rating: 5,
         },
         {
           image: "media/svg/avatars/001-boy.svg",
           user: {
             name: "Brad Simmons",
-            position: "Movie Creator"
+            position: "Movie Creator",
           },
-          rating: 5
-        }
+          rating: 5,
+        },
       ],
 
       [
@@ -228,32 +252,32 @@ export default defineComponent({
           image: "media/svg/avatars/018-girl-9.svg",
           user: {
             name: "Jessie Clarcson",
-            position: "HTML, CSS Coding"
+            position: "HTML, CSS Coding",
           },
-          rating: 5
+          rating: 5,
         },
         {
           image: "media/svg/avatars/047-girl-25.svg",
           user: {
             name: "Lebron Wayde",
-            position: "ReactJS Developer"
+            position: "ReactJS Developer",
           },
-          rating: 4
+          rating: 4,
         },
         {
           image: "media/svg/avatars/014-girl-7.svg",
           user: {
             name: "Natali Trump",
-            position: "UI/UX Designer"
+            position: "UI/UX Designer",
           },
-          rating: 5
-        }
-      ]
+          rating: 5,
+        },
+      ],
     ];
 
     return {
-      items
+      items,
     };
-  }
+  },
 });
 </script>

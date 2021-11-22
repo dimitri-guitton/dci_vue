@@ -18,9 +18,7 @@
           data-kt-menu-flip="top-end"
         >
           <span class="svg-icon svg-icon-2">
-            <inline-svg
-              src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-            />
+            <inline-svg src="media/icons/duotune/general/gen024.svg" />
           </span>
         </button>
         <Dropdown2></Dropdown2>
@@ -81,7 +79,14 @@
                 <td>
                   <a
                     href="#"
-                    class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    class="
+                      text-dark
+                      fw-bolder
+                      text-hover-primary
+                      d-block
+                      mb-1
+                      fs-6
+                    "
                     >{{ item.earnings.value }}</a
                   >
                   <span class="text-muted fw-bold text-muted d-block fs-7"
@@ -92,7 +97,14 @@
                 <td>
                   <a
                     href="#"
-                    class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    class="
+                      text-dark
+                      fw-bolder
+                      text-hover-primary
+                      d-block
+                      mb-1
+                      fs-6
+                    "
                     >{{ item.comission.value }}</a
                   >
                   <span class="text-muted fw-bold text-muted d-block fs-7">{{
@@ -103,7 +115,14 @@
                 <td>
                   <a
                     href="#"
-                    class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    class="
+                      text-dark
+                      fw-bolder
+                      text-hover-primary
+                      d-block
+                      mb-1
+                      fs-6
+                    "
                     >{{ item.company.name }}</a
                   >
                   <span class="text-muted fw-bold text-muted d-block fs-7">{{
@@ -132,14 +151,29 @@
                 <td class="text-end">
                   <a
                     href="#"
-                    class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2"
+                    class="
+                      btn
+                      btn-bg-light
+                      btn-color-muted
+                      btn-active-color-primary
+                      btn-sm
+                      px-4
+                      me-2
+                    "
                   >
                     View
                   </a>
 
                   <a
                     href="#"
-                    class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4"
+                    class="
+                      btn
+                      btn-bg-light
+                      btn-color-muted
+                      btn-active-color-primary
+                      btn-sm
+                      px-4
+                    "
                   >
                     Edit
                   </a>
@@ -159,16 +193,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Dropdown2 from "@/components/dropdown/Dropdown2.vue";
+import { defineComponent } from 'vue';
+import Dropdown2 from '@/components/dropdown/Dropdown2.vue';
 
 export default defineComponent({
   name: "kt-widget-12",
   components: {
-    Dropdown2
+    Dropdown2,
   },
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   setup() {
     const list = [
@@ -176,122 +210,122 @@ export default defineComponent({
         agent: {
           image: "media/svg/avatars/001-boy.svg",
           name: "Brad Simmons",
-          skills: "HTML, JS, ReactJS"
+          skills: "HTML, JS, ReactJS",
         },
         earnings: {
           value: "$8,000,000",
-          remarks: "Pending"
+          remarks: "Pending",
         },
         comission: {
           value: "$5,400",
-          remarks: "Paid"
+          remarks: "Paid",
         },
         company: {
           name: "Intertico",
-          fields: "Web, UI/UX Design"
+          fields: "Web, UI/UX Design",
         },
         rating: {
           value: 5,
-          remarks: "Best Rated"
-        }
+          remarks: "Best Rated",
+        },
       },
       {
         agent: {
           image: "media/svg/avatars/047-girl-25.svg",
           name: "Lebron Wayde",
-          skills: "PHP, Laravel, VueJS"
+          skills: "PHP, Laravel, VueJS",
         },
         earnings: {
           value: "$8,750,000",
-          remarks: "Paid"
+          remarks: "Paid",
         },
         comission: {
           value: "$7,400",
-          remarks: "Paid"
+          remarks: "Paid",
         },
         company: {
           name: "Agoda",
-          fields: "Houses & Hotels"
+          fields: "Houses & Hotels",
         },
         rating: {
           value: 4,
-          remarks: "Above Avarage"
-        }
+          remarks: "Above Avarage",
+        },
       },
       {
         agent: {
           image: "media/svg/avatars/006-girl-3.svg",
           name: "Brad Simmons",
-          skills: "HTML, JS, ReactJS"
+          skills: "HTML, JS, ReactJS",
         },
         earnings: {
           value: "$8,000,000",
-          remarks: "In Proccess"
+          remarks: "In Proccess",
         },
         comission: {
           value: "$2,500",
-          remarks: "Rejected"
+          remarks: "Rejected",
         },
         company: {
           name: "RoadGee",
-          fields: "Paid"
+          fields: "Paid",
         },
         rating: {
           value: 5,
-          remarks: "Best Rated"
-        }
+          remarks: "Best Rated",
+        },
       },
       {
         agent: {
           image: "media/svg/avatars/014-girl-7.svg",
           name: "Natali Trump",
-          skills: "HTML, JS, ReactJS"
+          skills: "HTML, JS, ReactJS",
         },
         earnings: {
           value: "$700,000",
-          remarks: "Pending"
+          remarks: "Pending",
         },
         comission: {
           value: "$7,760",
-          remarks: "Paid"
+          remarks: "Paid",
         },
         company: {
           name: "The Hill",
-          fields: "Insurance"
+          fields: "Insurance",
         },
         rating: {
           value: 3,
-          remarks: "Avarage"
-        }
+          remarks: "Avarage",
+        },
       },
       {
         agent: {
           image: "media/svg/avatars/020-girl-11.svg",
           name: "	Jessie Clarcson",
-          skills: "HTML, JS, ReactJS"
+          skills: "HTML, JS, ReactJS",
         },
         earnings: {
           value: "$1,320,000",
-          remarks: "Pending"
+          remarks: "Pending",
         },
         comission: {
           value: "$6,250",
-          remarks: "Paid"
+          remarks: "Paid",
         },
         company: {
           name: "Intertico",
-          fields: "Web, UI/UX Design"
+          fields: "Web, UI/UX Design",
         },
         rating: {
           value: 5,
-          remarks: "Best Rated"
-        }
-      }
+          remarks: "Best Rated",
+        },
+      },
     ];
 
     return {
-      list
+      list,
     };
-  }
+  },
 });
 </script>

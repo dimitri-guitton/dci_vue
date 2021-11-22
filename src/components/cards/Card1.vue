@@ -43,7 +43,15 @@
       <div class="d-flex flex-wrap mb-5">
         <!--begin::Due-->
         <div
-          class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3"
+          class="
+            border border-gray-300 border-dashed
+            rounded
+            min-w-125px
+            py-3
+            px-4
+            me-7
+            mb-3
+          "
         >
           <div class="fs-6 text-gray-800 fw-bolder">{{ getDate }}</div>
           <div class="fw-bold text-gray-400">Due Date</div>
@@ -52,7 +60,14 @@
 
         <!--begin::Budget-->
         <div
-          class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3"
+          class="
+            border border-gray-300 border-dashed
+            rounded
+            min-w-125px
+            py-3
+            px-4
+            mb-3
+          "
         >
           <div class="fs-6 text-gray-800 fw-bolder">{{ getBudget }}</div>
           <div class="fw-bold text-gray-400">Budget</div>
@@ -109,7 +124,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   name: "card-1",
@@ -133,7 +148,7 @@ export default defineComponent({
 
     budget: String,
 
-    users: Array
+    users: Array,
   },
   setup(props) {
     const getDescription = computed(() => {
@@ -170,8 +185,8 @@ export default defineComponent({
       getBudget,
       getStatus,
       getStatusDataBadgeColor,
-      getStatusDataColor
+      getStatusDataColor,
     };
-  }
+  },
 });
 </script>

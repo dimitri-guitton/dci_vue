@@ -12,7 +12,14 @@
         <ul class="nav">
           <li class="nav-item">
             <a
-              class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4 me-1 active"
+              class="
+                nav-link
+                btn btn-sm btn-color-muted btn-active btn-active-light-primary
+                fw-bolder
+                px-4
+                me-1
+                active
+              "
               data-bs-toggle="tab"
               href="#kt_table_widget_5_tab_1"
               >Month</a
@@ -20,7 +27,13 @@
           </li>
           <li class="nav-item">
             <a
-              class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4 me-1"
+              class="
+                nav-link
+                btn btn-sm btn-color-muted btn-active btn-active-light-primary
+                fw-bolder
+                px-4
+                me-1
+              "
               data-bs-toggle="tab"
               href="#kt_table_widget_5_tab_2"
               >Week</a
@@ -28,7 +41,12 @@
           </li>
           <li class="nav-item">
             <a
-              class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4"
+              class="
+                nav-link
+                btn btn-sm btn-color-muted btn-active btn-active-light-primary
+                fw-bolder
+                px-4
+              "
               data-bs-toggle="tab"
               href="#kt_table_widget_5_tab_3"
               >Day</a
@@ -47,7 +65,12 @@
           <div class="table-responsive">
             <!--begin::Table-->
             <table
-              class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4"
+              class="
+                table table-row-dashed table-row-gray-200
+                align-middle
+                gs-0
+                gy-4
+              "
             >
               <!--begin::Table head-->
               <thead>
@@ -91,12 +114,18 @@
                   <td class="text-end">
                     <a
                       href="#"
-                      class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                      class="
+                        btn
+                        btn-sm
+                        btn-icon
+                        btn-bg-light
+                        btn-active-color-primary
+                      "
                     >
                       <!--begin::Svg Icon | path: -->
                       <span class="svg-icon svg-icon-2">
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Arrow-right.svg"
+                          src="media/icons/duotune/arrows/arr064.svg"
                         />
                       </span>
                       <!--end::Svg Icon-->
@@ -132,12 +161,18 @@
                   <td class="text-end">
                     <a
                       href="#"
-                      class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                      class="
+                        btn
+                        btn-sm
+                        btn-icon
+                        btn-bg-light
+                        btn-active-color-primary
+                      "
                     >
                       <!--begin::Svg Icon | path: -->
                       <span class="svg-icon svg-icon-2">
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Arrow-right.svg"
+                          src="media/icons/duotune/arrows/arr064.svg"
                         />
                       </span>
                       <!--end::Svg Icon-->
@@ -173,12 +208,18 @@
                   <td class="text-end">
                     <a
                       href="#"
-                      class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                      class="
+                        btn
+                        btn-sm
+                        btn-icon
+                        btn-bg-light
+                        btn-active-color-primary
+                      "
                     >
-                      <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
+                      <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                       <span class="svg-icon svg-icon-2">
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Arrow-right.svg"
+                          src="media/icons/duotune/arrows/arr064.svg"
                         />
                       </span>
                       <!--end::Svg Icon-->
@@ -214,12 +255,18 @@
                   <td class="text-end">
                     <a
                       href="#"
-                      class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                      class="
+                        btn
+                        btn-sm
+                        btn-icon
+                        btn-bg-light
+                        btn-active-color-primary
+                      "
                     >
-                      <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
+                      <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                       <span class="svg-icon svg-icon-2">
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Arrow-right.svg"
+                          src="media/icons/duotune/arrows/arr064.svg"
                         />
                       </span>
                       <!--end::Svg Icon-->
@@ -255,12 +302,18 @@
                   <td class="text-end">
                     <a
                       href="#"
-                      class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                      class="
+                        btn
+                        btn-sm
+                        btn-icon
+                        btn-bg-light
+                        btn-active-color-primary
+                      "
                     >
                       <span class="svg-icon svg-icon-2">
-                        <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Arrow-right.svg"
+                          src="media/icons/duotune/arrows/arr064.svg"
                         />
                         <!--end::Svg Icon-->
                       </span>
@@ -280,7 +333,12 @@
           <div class="table-responsive">
             <!--begin::Table-->
             <table
-              class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4"
+              class="
+                table table-row-dashed table-row-gray-200
+                align-middle
+                gs-0
+                gy-4
+              "
             >
               <!--begin::Table head-->
               <thead>
@@ -324,12 +382,18 @@
                   <td class="text-end">
                     <a
                       href="#"
-                      class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                      class="
+                        btn
+                        btn-sm
+                        btn-icon
+                        btn-bg-light
+                        btn-active-color-primary
+                      "
                     >
                       <span class="svg-icon svg-icon-2">
-                        <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Arrow-right.svg"
+                          src="media/icons/duotune/arrows/arr064.svg"
                         />
                         <!--end::Svg Icon-->
                       </span>
@@ -365,12 +429,18 @@
                   <td class="text-end">
                     <a
                       href="#"
-                      class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                      class="
+                        btn
+                        btn-sm
+                        btn-icon
+                        btn-bg-light
+                        btn-active-color-primary
+                      "
                     >
-                      <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
+                      <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                       <span class="svg-icon svg-icon-2">
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Arrow-right.svg"
+                          src="media/icons/duotune/arrows/arr064.svg"
                         />
                       </span>
                       <!--end::Svg Icon-->
@@ -406,12 +476,18 @@
                   <td class="text-end">
                     <a
                       href="#"
-                      class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                      class="
+                        btn
+                        btn-sm
+                        btn-icon
+                        btn-bg-light
+                        btn-active-color-primary
+                      "
                     >
                       <span class="svg-icon svg-icon-2">
-                        <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Arrow-right.svg"
+                          src="media/icons/duotune/arrows/arr064.svg"
                         />
                         <!--end::Svg Icon-->
                       </span>
@@ -431,7 +507,12 @@
           <div class="table-responsive">
             <!--begin::Table-->
             <table
-              class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4"
+              class="
+                table table-row-dashed table-row-gray-200
+                align-middle
+                gs-0
+                gy-4
+              "
             >
               <!--begin::Table head-->
               <thead>
@@ -475,12 +556,18 @@
                   <td class="text-end">
                     <a
                       href="#"
-                      class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                      class="
+                        btn
+                        btn-sm
+                        btn-icon
+                        btn-bg-light
+                        btn-active-color-primary
+                      "
                     >
-                      <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
+                      <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                       <span class="svg-icon svg-icon-2">
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Arrow-right.svg"
+                          src="media/icons/duotune/arrows/arr064.svg"
                         />
                       </span>
                       <!--end::Svg Icon-->
@@ -516,12 +603,18 @@
                   <td class="text-end">
                     <a
                       href="#"
-                      class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                      class="
+                        btn
+                        btn-sm
+                        btn-icon
+                        btn-bg-light
+                        btn-active-color-primary
+                      "
                     >
-                      <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
+                      <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                       <span class="svg-icon svg-icon-2">
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Arrow-right.svg"
+                          src="media/icons/duotune/arrows/arr064.svg"
                         />
                       </span>
                       <!--end::Svg Icon-->
@@ -557,12 +650,18 @@
                   <td class="text-end">
                     <a
                       href="#"
-                      class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                      class="
+                        btn
+                        btn-sm
+                        btn-icon
+                        btn-bg-light
+                        btn-active-color-primary
+                      "
                     >
-                      <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
+                      <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                       <span class="svg-icon svg-icon-2">
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Arrow-right.svg"
+                          src="media/icons/duotune/arrows/arr064.svg"
                         />
                       </span>
                       <!--end::Svg Icon-->
@@ -598,12 +697,18 @@
                   <td class="text-end">
                     <a
                       href="#"
-                      class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                      class="
+                        btn
+                        btn-sm
+                        btn-icon
+                        btn-bg-light
+                        btn-active-color-primary
+                      "
                     >
-                      <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
+                      <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                       <span class="svg-icon svg-icon-2">
                         <inline-svg
-                          src="media/icons/duotone/Navigation/Arrow-right.svg"
+                          src="media/icons/duotune/arrows/arr064.svg"
                         />
                       </span>
                       <!--end::Svg Icon-->
@@ -624,13 +729,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "kt-widget-5",
   components: {},
   props: {
-    widgetClasses: String
-  }
+    widgetClasses: String,
+  },
 });
 </script>

@@ -13,7 +13,14 @@
         <ul class="nav">
           <li class="nav-item">
             <a
-              class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary active fw-bolder px-4 me-1"
+              class="
+                nav-link
+                btn btn-sm btn-color-muted btn-active btn-active-light-primary
+                active
+                fw-bolder
+                px-4
+                me-1
+              "
               data-bs-toggle="tab"
               href="#kt_table_widget_8_tab_1"
               >Month</a
@@ -22,7 +29,13 @@
 
           <li class="nav-item">
             <a
-              class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4 me-1"
+              class="
+                nav-link
+                btn btn-sm btn-color-muted btn-active btn-active-light-primary
+                fw-bolder
+                px-4
+                me-1
+              "
               data-bs-toggle="tab"
               href="#kt_table_widget_8_tab_2"
               >Week</a
@@ -31,7 +44,12 @@
 
           <li class="nav-item">
             <a
-              class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4"
+              class="
+                nav-link
+                btn btn-sm btn-color-muted btn-active btn-active-light-primary
+                fw-bolder
+                px-4
+              "
               data-bs-toggle="tab"
               href="#kt_table_widget_8_tab_3"
               >Day</a
@@ -88,7 +106,13 @@
                       <td>
                         <a
                           href="#"
-                          class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
+                          class="
+                            text-dark
+                            fw-bolder
+                            text-hover-primary
+                            mb-1
+                            fs-6
+                          "
                           >{{ item1.info.event }}</a
                         >
                         <span class="text-muted fw-bold d-block fs-7">{{
@@ -107,7 +131,13 @@
                       <td class="text-end">
                         <a
                           href="#"
-                          class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                          class="
+                            btn
+                            btn-sm
+                            btn-icon
+                            btn-bg-light
+                            btn-active-color-primary
+                          "
                         >
                           <i class="bi bi-three-dots fs-5"></i>
                         </a>
@@ -130,161 +160,161 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "kt-widget-8",
   components: {},
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   setup() {
     const items = [
       [
         {
           icon: {
-            file: "media/icons/duotone/Media/Playlist1.svg",
-            color: "danger"
+            file: "media/icons/duotune/coding/cod002.svg",
+            color: "danger",
           },
           info: {
             event: "School Music Festival",
-            user: "by Rose Liam"
+            user: "by Rose Liam",
           },
-          date: "4:20PM, 03 Sep"
+          date: "4:20PM, 03 Sep",
         },
         {
           icon: {
-            file: "media/icons/duotone/Layout/Layout-4-blocks-2.svg",
-            color: "warning"
+            file: "media/icons/duotune/general/gen024.svg",
+            color: "warning",
           },
           info: {
             event: "Maths Championship",
-            user: "By Tom Gere"
+            user: "By Tom Gere",
           },
-          date: "10:05PM, 25 Oct"
+          date: "10:05PM, 25 Oct",
         },
         {
           icon: {
-            file: "media/icons/duotone/Home/Globe.svg",
-            color: "info"
+            file: "media/icons/duotune/maps/map004.svg",
+            color: "info",
           },
           info: {
             event: "Who Knows Geography",
-            user: "By Zoey Dylan"
+            user: "By Zoey Dylan",
           },
-          date: "3:22PM, 07 Sep"
+          date: "3:22PM, 07 Sep",
         },
         {
           icon: {
-            file: "media/icons/duotone/Home/Library.svg",
-            color: "primary"
+            file: "media/icons/duotune/abstract/abs027.svg",
+            color: "primary",
           },
           info: {
             event: "Napoleon Days",
-            user: "By Luke Owen"
+            user: "By Luke Owen",
           },
-          date: "1:20PM, 02 Dec"
+          date: "1:20PM, 02 Dec",
         },
         {
           icon: {
-            file: "media/icons/duotone/Design/Color-profile.svg",
-            color: "success"
+            file: "media/icons/duotune/art/art007.svg",
+            color: "success",
           },
           info: {
             event: "The School Art Leads",
-            user: "By Ellie Cole"
+            user: "By Ellie Cole",
           },
-          date: "6:20PM, 07 Sep"
-        }
+          date: "6:20PM, 07 Sep",
+        },
       ],
 
       [
         {
           icon: {
-            file: "media/icons/duotone/Home/Globe.svg",
-            color: "info"
+            file: "media/icons/duotune/maps/map004.svg",
+            color: "info",
           },
           info: {
             event: "Who Knows Geography",
-            user: "By Zoey Dylan"
+            user: "By Zoey Dylan",
           },
-          date: "3:22PM, 07 Sep"
+          date: "3:22PM, 07 Sep",
         },
         {
           icon: {
-            file: "media/icons/duotone/Layout/Layout-4-blocks-2.svg",
-            color: "warning"
+            file: "media/icons/duotune/general/gen024.svg",
+            color: "warning",
           },
           info: {
             event: "Maths Championship",
-            user: "By Tom Gere"
+            user: "By Tom Gere",
           },
-          date: "10:05PM, 25 Oct"
+          date: "10:05PM, 25 Oct",
         },
         {
           icon: {
-            file: "media/icons/duotone/Media/Playlist1.svg",
-            color: "danger"
+            file: "media/icons/duotune/coding/cod002.svg",
+            color: "danger",
           },
           info: {
             event: "School Music Festival",
-            user: "by Rose Liam"
+            user: "by Rose Liam",
           },
-          date: "4:20PM, 03 Sep"
-        }
+          date: "4:20PM, 03 Sep",
+        },
       ],
 
       [
         {
           icon: {
-            file: "media/icons/duotone/Layout/Layout-4-blocks-2.svg",
-            color: "warning"
+            file: "media/icons/duotune/general/gen024.svg",
+            color: "warning",
           },
           info: {
             event: "Maths Championship",
-            user: "By Tom Gere"
+            user: "By Tom Gere",
           },
-          date: "10:05PM, 25 Oct"
+          date: "10:05PM, 25 Oct",
         },
         {
           icon: {
-            file: "media/icons/duotone/Home/Globe.svg",
-            color: "info"
+            file: "media/icons/duotune/maps/map004.svg",
+            color: "info",
           },
           info: {
             event: "Who Knows Geography",
-            user: "By Zoey Dylan"
+            user: "By Zoey Dylan",
           },
-          date: "3:22PM, 07 Sep"
+          date: "3:22PM, 07 Sep",
         },
         {
           icon: {
-            file: "media/icons/duotone/Home/Library.svg",
-            color: "primary"
+            file: "media/icons/duotune/abstract/abs027.svg",
+            color: "primary",
           },
           info: {
             event: "Napoleon Days",
-            user: "By Luke Owen"
+            user: "By Luke Owen",
           },
-          date: "1:20PM, 02 Dec"
+          date: "1:20PM, 02 Dec",
         },
         {
           icon: {
-            file: "media/icons/duotone/Media/Playlist1.svg",
-            color: "danger"
+            file: "media/icons/duotune/coding/cod002.svg",
+            color: "danger",
           },
           info: {
             event: "School Music Festival",
-            user: "by Rose Liam"
+            user: "by Rose Liam",
           },
-          date: "4:20PM, 03 Sep"
-        }
-      ]
+          date: "4:20PM, 03 Sep",
+        },
+      ],
     ];
 
     return {
-      items
+      items,
     };
-  }
+  },
 });
 </script>

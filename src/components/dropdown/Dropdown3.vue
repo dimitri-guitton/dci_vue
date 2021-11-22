@@ -1,29 +1,39 @@
 <template>
-  <!--begin::Menu 3-->
+  <!--begin::Menu-->
   <div
-    class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3"
+    class="
+      menu
+      menu-sub
+      menu-sub-dropdown
+      menu-column
+      menu-rounded
+      menu-gray-800
+      menu-state-bg-light-primary
+      fw-bold
+      py-4
+      w-250px
+      fs-6
+    "
     data-kt-menu="true"
   >
-    <!--begin::Heading-->
-    <div class="menu-item px-3">
-      <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">
+    <!--begin::Menu item-->
+    <div class="menu-item px-5">
+      <div class="menu-content text-muted pb-2 px-5 fs-7 text-uppercase">
         Payments
       </div>
-    </div>
-    <!--end::Heading-->
-
-    <!--begin::Menu item-->
-    <div class="menu-item px-3">
-      <a href="#" class="menu-link px-3">
-        Create Invoice
-      </a>
     </div>
     <!--end::Menu item-->
 
     <!--begin::Menu item-->
-    <div class="menu-item px-3">
-      <a href="#" class="menu-link flex-stack px-3">
-        Create Payment
+    <div class="menu-item px-5">
+      <a href="#" class="menu-link px-5"> Create invoice </a>
+    </div>
+    <!--end::Menu item-->
+
+    <!--begin::Menu item-->
+    <div class="menu-item px-5">
+      <a href="#" class="menu-link flex-stack px-5">
+        Create payments
 
         <i
           class="fas fa-exclamation-circle ms-2 fs-7"
@@ -35,21 +45,12 @@
     <!--end::Menu item-->
 
     <!--begin::Menu item-->
-    <div class="menu-item px-3">
-      <a href="#" class="menu-link px-3">
-        Generate Bill
-      </a>
-    </div>
-    <!--end::Menu item-->
-
-    <!--begin::Menu item-->
     <div
-      class="menu-item px-3"
+      class="menu-item px-5"
       data-kt-menu-trigger="hover"
       data-kt-menu-placement="left-start"
-      data-kt-menu-flip="center, top"
     >
-      <a href="#" class="menu-link px-3">
+      <a href="#" class="menu-link px-5">
         <span class="menu-title">Subscription</span>
         <span class="menu-arrow"></span>
       </a>
@@ -58,25 +59,19 @@
       <div class="menu-sub menu-sub-dropdown w-175px py-4">
         <!--begin::Menu item-->
         <div class="menu-item px-3">
-          <a href="#" class="menu-link px-3">
-            Plans
-          </a>
+          <a href="#" class="menu-link px-5"> Apps </a>
         </div>
         <!--end::Menu item-->
 
         <!--begin::Menu item-->
         <div class="menu-item px-3">
-          <a href="#" class="menu-link px-3">
-            Billing
-          </a>
+          <a href="#" class="menu-link px-5"> Billing </a>
         </div>
         <!--end::Menu item-->
 
         <!--begin::Menu item-->
         <div class="menu-item px-3">
-          <a href="#" class="menu-link px-3">
-            Statements
-          </a>
+          <a href="#" class="menu-link px-5"> Statements </a>
         </div>
         <!--end::Menu item-->
 
@@ -87,27 +82,24 @@
         <!--begin::Menu item-->
         <div class="menu-item px-3">
           <div class="menu-content px-3">
-            <!--begin::Switch-->
             <label
               class="form-check form-switch form-check-custom form-check-solid"
             >
-              <!--begin::Input-->
               <input
                 class="form-check-input w-30px h-20px"
                 type="checkbox"
-                value="1"
-                checked="checked"
+                value=""
                 name="notifications"
+                checked
+                id="kt_user_menu_notifications"
               />
-              <!--end::Input-->
-
-              <!--end::Label-->
-              <span class="form-check-label text-muted fs-6">
-                Recuring
+              <span
+                class="form-check-label text-muted fs-6"
+                for="kt_user_menu_notifications"
+              >
+                Notifications
               </span>
-              <!--end::Label-->
             </label>
-            <!--end::Switch-->
           </div>
         </div>
         <!--end::Menu item-->
@@ -116,22 +108,44 @@
     </div>
     <!--end::Menu item-->
 
+    <!--begin::Menu separator-->
+    <div class="separator my-3"></div>
+    <!--end::Menu separator-->
+
     <!--begin::Menu item-->
-    <div class="menu-item px-3 my-1">
-      <a href="#" class="menu-link px-3">
-        Settings
-      </a>
+    <div class="menu-item px-5">
+      <div class="menu-content text-muted pb-2 px-5 fs-7 text-uppercase">
+        Account
+      </div>
+    </div>
+    <!--end::Menu item-->
+
+    <!--begin::Menu item-->
+    <div class="menu-item px-5">
+      <a href="#" class="menu-link px-5"> Reports </a>
+    </div>
+    <!--end::Menu item-->
+
+    <!--begin::Menu item-->
+    <div class="menu-item px-5 my-1">
+      <a href="#" class="menu-link px-5"> Account Settings </a>
+    </div>
+    <!--end::Menu item-->
+
+    <!--begin::Menu item-->
+    <div class="menu-item px-5">
+      <a href="#" class="menu-link text-danger px-5"> Delete customer </a>
     </div>
     <!--end::Menu item-->
   </div>
-  <!--end::Menu 3-->
+  <!--end::Menu-->
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "dropdown-3",
-  components: {}
+  components: {},
 });
 </script>

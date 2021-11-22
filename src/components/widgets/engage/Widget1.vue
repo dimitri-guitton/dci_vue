@@ -37,8 +37,16 @@
 
         <!--begin::Image-->
         <div
-          class="flex-grow-1 bgi-no-repeat bgi-size-contain bgi-position-x-center bgi-position-y-bottom card-rounded-bottom h-200px"
-          style="background-image:url('media/illustrations/work.png')"
+          class="
+            flex-grow-1
+            bgi-no-repeat
+            bgi-size-contain
+            bgi-position-x-center
+            bgi-position-y-bottom
+            card-rounded-bottom
+            h-200px
+          "
+          style="background-image: url('media/illustrations/sketchy-1/8.png')"
         ></div>
         <!--end::Image-->
       </div>
@@ -50,12 +58,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "widget-1",
   props: {
-    widgetClasses: String
-  }
+    widgetClasses: String,
+  },
 });
 </script>

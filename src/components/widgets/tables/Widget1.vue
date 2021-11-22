@@ -18,9 +18,7 @@
           data-kt-menu-flip="top-end"
         >
           <span class="svg-icon svg-icon-2">
-            <inline-svg
-              src="media/icons/duotone/Layout/Layout-4-blocks-2.svg"
-            />
+            <inline-svg src="media/icons/duotune/general/gen024.svg" />
           </span>
         </button>
         <Dropdown1></Dropdown1>
@@ -83,7 +81,10 @@
 
                     <div class="progress h-6px w-100">
                       <div
-                        class="progress-bar bg-<?php echo $row['progress']['color']?>"
+                        :class="`
+                          progress-bar
+                          bg-${item.progress.color}
+                        `"
                         role="progressbar"
                         :style="`width: ${item.progress.value}%`"
                         :aria-valuenow="item.progress.value"
@@ -97,12 +98,12 @@
                 <td class="text-end">
                   <a
                     href="#"
-                    class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
+                    class="
+                      btn btn-sm btn-icon btn-bg-light btn-active-color-primary
+                    "
                   >
                     <span class="svg-icon svg-icon-2">
-                      <inline-svg
-                        src="media/icons/duotone/Navigation/Arrow-right.svg"
-                      />
+                      <inline-svg src="media/icons/duotune/arrows/arr064.svg" />
                     </span>
                   </a>
                 </td>
@@ -120,16 +121,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Dropdown1 from "@/components/dropdown/Dropdown1.vue";
+import { defineComponent } from 'vue';
+import Dropdown1 from '@/components/dropdown/Dropdown1.vue';
 
 export default defineComponent({
   name: "kt-widget-1",
   components: {
-    Dropdown1
+    Dropdown1,
   },
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   setup() {
     const items = [
@@ -137,66 +138,66 @@ export default defineComponent({
         image: "media/svg/brand-logos/plurk.svg",
         info: {
           title: "Top Authors",
-          description: "Successful Fellas"
+          description: "Successful Fellas",
         },
         progress: {
           value: "70",
-          color: "primary"
-        }
+          color: "primary",
+        },
       },
 
       {
         image: "media/svg/brand-logos/telegram.svg",
         info: {
           title: "Popular Authors",
-          description: "Most Successful"
+          description: "Most Successful",
         },
         progress: {
           value: "50",
-          color: "primary"
-        }
+          color: "primary",
+        },
       },
 
       {
         image: "media/svg/brand-logos/vimeo.svg",
         info: {
           title: "New Users",
-          description: "Awesome Users"
+          description: "Awesome Users",
         },
         progress: {
           value: "80",
-          color: "primary"
-        }
+          color: "primary",
+        },
       },
 
       {
         image: "media/svg/brand-logos/bebo.svg",
         info: {
           title: "Active Customers",
-          description: "Best Customers"
+          description: "Best Customers",
         },
         progress: {
           value: "90",
-          color: "primary"
-        }
+          color: "primary",
+        },
       },
 
       {
         image: "media/svg/brand-logos/kickstarter.svg",
         info: {
           title: "Bestseller Theme",
-          description: "Amazing Templates"
+          description: "Amazing Templates",
         },
         progress: {
           value: "70",
-          color: "primary"
-        }
-      }
+          color: "primary",
+        },
+      },
     ];
 
     return {
-      items
+      items,
     };
-  }
+  },
 });
 </script>

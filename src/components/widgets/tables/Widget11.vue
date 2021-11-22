@@ -11,7 +11,7 @@
       <div class="card-toolbar">
         <a href="#" class="btn btn-sm btn-light-primary">
           <span class="svg-icon svg-icon-2">
-            <inline-svg src="media/icons/duotone/Communication/Add-user.svg" />
+            <inline-svg src="media/icons/duotune/arrows/arr075.svg" />
           </span>
           New Member
         </a>
@@ -65,7 +65,14 @@
                 <td>
                   <a
                     href="#"
-                    class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    class="
+                      text-dark
+                      fw-bolder
+                      text-hover-primary
+                      d-block
+                      mb-1
+                      fs-6
+                    "
                     >{{ item.price }}</a
                   >
                   <span class="text-muted fw-bold text-muted d-block fs-7"
@@ -76,7 +83,14 @@
                 <td>
                   <a
                     href="#"
-                    class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    class="
+                      text-dark
+                      fw-bolder
+                      text-hover-primary
+                      d-block
+                      mb-1
+                      fs-6
+                    "
                     >{{ item.deposit }}</a
                   >
                   <span class="text-muted fw-bold text-muted d-block fs-7"
@@ -87,7 +101,14 @@
                 <td>
                   <a
                     href="#"
-                    class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+                    class="
+                      text-dark
+                      fw-bolder
+                      text-hover-primary
+                      d-block
+                      mb-1
+                      fs-6
+                    "
                     >{{ item.agent.name }}</a
                   >
                   <span class="text-muted fw-bold text-muted d-block fs-7">{{
@@ -97,7 +118,11 @@
 
                 <td>
                   <span
-                    class="badge badge-light-<?php echo $row['status']['color']?> fs-7 fw-bold"
+                    :class="`
+                      badge badge-light-${item.status.color}
+                      fs-7
+                      fw-bold
+                    `"
                     >{{ item.status.label }}</span
                   >
                 </td>
@@ -105,32 +130,40 @@
                 <td class="text-end">
                   <a
                     href="#"
-                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                    class="
+                      btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+                      me-1
+                    "
                   >
                     <span class="svg-icon svg-icon-3">
                       <inline-svg
-                        src="media/icons/duotone/General/Settings-1.svg"
+                        src="media/icons/duotune/general/gen019.svg"
                       />
                     </span>
                   </a>
 
                   <a
                     href="#"
-                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                    class="
+                      btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+                      me-1
+                    "
                   >
                     <span class="svg-icon svg-icon-3">
-                      <inline-svg
-                        src="media/icons/duotone/Communication/Write.svg"
-                      />
+                      <inline-svg src="media/icons/duotune/art/art005.svg" />
                     </span>
                   </a>
 
                   <a
                     href="#"
-                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                    class="
+                      btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+                    "
                   >
                     <span class="svg-icon svg-icon-3">
-                      <inline-svg src="media/icons/duotone/General/Trash.svg" />
+                      <inline-svg
+                        src="media/icons/duotune/general/gen027.svg"
+                      />
                     </span>
                   </a>
                 </td>
@@ -149,13 +182,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "kt-widget-11",
   components: {},
   props: {
-    widgetClasses: String
+    widgetClasses: String,
   },
   setup() {
     const list = [
@@ -163,92 +196,92 @@ export default defineComponent({
         product: {
           image: "media/stock/600x400/img-26.jpg",
           name: "Sant Extreanet Solution",
-          specs: "HTML, JS, ReactJS"
+          specs: "HTML, JS, ReactJS",
         },
         price: "$2,790",
         deposit: "$520",
         agent: {
           name: "Bradly Beal",
-          position: "Insurance"
+          position: "Insurance",
         },
         status: {
           label: "Approved",
-          color: "primary"
-        }
+          color: "primary",
+        },
       },
       {
         product: {
           image: "media/stock/600x400/img-3.jpg",
           name: "Telegram Development",
-          specs: "C#, ASP.NET, MS SQL"
+          specs: "C#, ASP.NET, MS SQL",
         },
         price: "$4,790",
         deposit: "$240",
         agent: {
           name: "Chris Thompson",
-          position: "NBA Player"
+          position: "NBA Player",
         },
         status: {
           label: "In Progress",
-          color: "danger"
-        }
+          color: "danger",
+        },
       },
       {
         product: {
           image: "media/stock/600x400/img-9.jpg",
           name: "Payroll Application",
-          specs: "PHP, Laravel, VueJS"
+          specs: "PHP, Laravel, VueJS",
         },
         price: "$4,390",
         deposit: "$593",
         agent: {
           name: "Zoey McGee",
-          position: "Ruby Developer"
+          position: "Ruby Developer",
         },
         status: {
           label: "Success",
-          color: "success"
-        }
+          color: "success",
+        },
       },
       {
         product: {
           image: "media/stock/600x400/img-18.jpg",
           name: "HR Management System",
-          specs: "Python, PostgreSQL, ReactJS"
+          specs: "Python, PostgreSQL, ReactJS",
         },
         price: "$7,990",
         deposit: "$980",
         agent: {
           name: "Brandon Ingram",
-          position: "Insurance"
+          position: "Insurance",
         },
         status: {
           label: "Rejected",
-          color: "info"
-        }
+          color: "info",
+        },
       },
       {
         product: {
           image: "media/stock/600x400/img-8.jpg",
           name: "Telegram Mobile",
-          specs: "HTML, JS, ReactJS"
+          specs: "HTML, JS, ReactJS",
         },
         price: "$5,790",
         deposit: "$750",
         agent: {
           name: "Natali Trump",
-          position: "Insurance"
+          position: "Insurance",
         },
         status: {
           label: "Approved",
-          color: "warning"
-        }
-      }
+          color: "warning",
+        },
+      },
     ];
 
     return {
-      list
+      list,
     };
-  }
+  },
 });
 </script>

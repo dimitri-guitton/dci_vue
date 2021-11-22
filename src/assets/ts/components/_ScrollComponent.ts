@@ -1,15 +1,15 @@
 import {
-  DataUtil,
-  getObjectPropertyValueByKey,
-  stringSnakeToCamel,
-  getAttributeValueByBreakpoint,
-  getViewPort,
-  isVisibleElement,
-  throttle,
-  getCSS,
-  ElementStyleUtil,
-} from '../_utils/index'
-import {CookieComponent} from './_CookieComponent'
+    DataUtil,
+    ElementStyleUtil,
+    getAttributeValueByBreakpoint,
+    getCSS,
+    getObjectPropertyValueByKey,
+    getViewPort,
+    isVisibleElement,
+    stringSnakeToCamel,
+    throttle,
+} from '../_utils/index';
+import { CookieComponent } from './_CookieComponent';
 
 export interface ScrollOptions {
   saveState?: boolean
@@ -280,6 +280,16 @@ class ScrollComponent {
     ScrollComponent.createInstances(attr)
   }
 
+  public static updateAll(){
+    const elements = document.body.querySelectorAll('[data-kt-scroll="true"]')
+    elements.forEach((element: Element) => {
+      const instance = ScrollComponent.getInstance(element as HTMLElement)
+      if (instance) {
+        instance.update()
+      }
+    })
+  }
+
   public static resize() {
     // Window Resize Handling
     window.addEventListener('resize', function () {
@@ -288,13 +298,7 @@ class ScrollComponent {
         timer,
         () => {
           // Locate and update Drawer instances on window resize
-          const elements = document.body.querySelectorAll('[data-kt-scroll="true"]')
-          elements.forEach((element: Element) => {
-            const instance = ScrollComponent.getInstance(element as HTMLElement)
-            if (instance) {
-              instance.update()
-            }
-          })
+          ScrollComponent.updateAll();
         },
         200
       )

@@ -2,6 +2,7 @@
   <!--begin::Modal - New Address-->
   <div
     class="modal fade"
+    ref="newAddressModalRef"
     id="kt_modal_new_address"
     tabindex="-1"
     aria-hidden="true"
@@ -29,7 +30,7 @@
               data-bs-dismiss="modal"
             >
               <span class="svg-icon svg-icon-1">
-                <inline-svg src="media/icons/duotone/Navigation/Close.svg" />
+                <inline-svg src="media/icons/duotune/arrows/arr061.svg" />
               </span>
             </div>
             <!--end::Close-->
@@ -51,12 +52,18 @@
             >
               <!--begin::Notice-->
               <div
-                class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-9 p-6"
+                class="
+                  notice
+                  d-flex
+                  bg-light-warning
+                  rounded
+                  border-warning border border-dashed
+                  mb-9
+                  p-6
+                "
               >
                 <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                  <inline-svg
-                    src="media/icons/duotone/Code/Warning-1-circle.svg"
-                  />
+                  <inline-svg src="media/icons/duotune/general/gen044.svg" />
                 </span>
                 <!--begin::Wrapper-->
                 <div class="d-flex flex-stack flex-grow-1">
@@ -196,9 +203,9 @@
                   <option value="CO">Colombia</option>
                   <option value="KM">Comoros</option>
                   <option value="CG">Congo</option>
-                  <option value="CD"
-                    >Congo, the Democratic Republic of the</option
-                  >
+                  <option value="CD">
+                    Congo, the Democratic Republic of the
+                  </option>
                   <option value="CK">Cook Islands</option>
                   <option value="CR">Costa Rica</option>
                   <option value="CI">Côte d'Ivoire</option>
@@ -264,9 +271,9 @@
                   <option value="KZ">Kazakhstan</option>
                   <option value="KE">Kenya</option>
                   <option ue="KI">Kiribati</option>
-                  <option value="KP"
-                    >Korea, Democratic People's Republic of</option
-                  >
+                  <option value="KP">
+                    Korea, Democratic People's Republic of
+                  </option>
                   <option value="KW">Kuwait</option>
                   <option value="KG">Kyrgyzstan</option>
                   <option value="LA">Lao People's Democratic Republic</option>
@@ -279,9 +286,9 @@
                   <option value="LT">Lithuania</option>
                   <option value="LU">Luxembourg</option>
                   <option value="MO">Macao</option>
-                  <option value="MK"
-                    >Macedonia, the former Yugoslav Republic of</option
-                  >
+                  <option value="MK">
+                    Macedonia, the former Yugoslav Republic of
+                  </option>
                   <option value="MG">Madagascar</option>
                   <option value="MW">Malawi</option>
                   <option value="MY">Malaysia</option>
@@ -335,9 +342,9 @@
                   <option value="RU">Russian Federation</option>
                   <option value="RW">Rwanda</option>
                   <option value="BL">Saint Barthélemy</option>
-                  <option value="SH"
-                    >Saint Helena, Ascension and Tristan da Cunha</option
-                  >
+                  <option value="SH">
+                    Saint Helena, Ascension and Tristan da Cunha
+                  </option>
                   <option value="KN">Saint Kitts and Nevis</option>
                   <option value="LC">Saint Lucia</option>
                   <option value="MF">Saint Martin (French part)</option>
@@ -358,9 +365,9 @@
                   <option value="SB">Solomon Islands</option>
                   <option value="SO">Somalia</option>
                   <option value="ZA">South Africa</option>
-                  <option value="GS"
-                    >South Georgia and the South Sandwich Islands</option
-                  >
+                  <option value="GS">
+                    South Georgia and the South Sandwich Islands
+                  </option>
                   <option value="KR">South Korea</option>
                   <option value="SS">South Sudan</option>
                   <option value="ES">Spain</option>
@@ -548,7 +555,9 @@
 
                   <!--begin::Switch-->
                   <label
-                    class="form-check form-switch form-check-custom form-check-solid"
+                    class="
+                      form-check form-switch form-check-custom form-check-solid
+                    "
                   >
                     <!--begin::Input-->
                     <Field
@@ -600,9 +609,7 @@
               id="kt_modal_new_address_submit"
               class="btn btn-primary"
             >
-              <span class="indicator-label">
-                Submit
-              </span>
+              <span class="indicator-label"> Submit </span>
               <span class="indicator-progress">
                 Please wait...
                 <span
@@ -624,6 +631,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { ErrorMessage, Field, Form } from 'vee-validate';
+import { hideModal } from '@/core/helpers/dom';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import * as Yup from 'yup';
 
@@ -643,10 +651,11 @@ export default defineComponent({
   components: {
     ErrorMessage,
     Field,
-    Form
+    Form,
   },
   setup() {
     const submitButtonRef = ref<null | HTMLButtonElement>(null);
+    const newAddressModalRef = ref<null | HTMLElement>(null);
 
     const newAddressData = ref<NewAddressData>({
       firstName: "",
@@ -656,34 +665,18 @@ export default defineComponent({
       address2: "",
       town: "",
       state: "",
-      postCode: ""
+      postCode: "",
     });
 
     const validationSchema = Yup.object().shape({
-      firstName: Yup.string()
-        .required()
-        .label("First name"),
-      lastName: Yup.string()
-        .required()
-        .label("Last name"),
-      country: Yup.string()
-        .required()
-        .label("Country"),
-      address1: Yup.string()
-        .required()
-        .label("Address Line 1"),
-      address2: Yup.string()
-        .required()
-        .label("Address Line 2"),
-      town: Yup.string()
-        .required()
-        .label("Town"),
-      state: Yup.string()
-        .required()
-        .label("State/Province"),
-      postCode: Yup.string()
-        .required()
-        .label("Post code")
+      firstName: Yup.string().required().label("First name"),
+      lastName: Yup.string().required().label("Last name"),
+      country: Yup.string().required().label("Country"),
+      address1: Yup.string().required().label("Address Line 1"),
+      address2: Yup.string().required().label("Address Line 2"),
+      town: Yup.string().required().label("Town"),
+      state: Yup.string().required().label("State/Province"),
+      postCode: Yup.string().required().label("Post code"),
     });
 
     const submit = () => {
@@ -695,8 +688,6 @@ export default defineComponent({
       submitButtonRef.value.disabled = true;
       // Activate indicator
       submitButtonRef.value.setAttribute("data-kt-indicator", "on");
-
-      console.log(newAddressData.value);
 
       setTimeout(() => {
         if (submitButtonRef.value) {
@@ -711,20 +702,21 @@ export default defineComponent({
           buttonsStyling: false,
           confirmButtonText: "Ok, got it!",
           customClass: {
-            confirmButton: "btn btn-primary"
-          }
+            confirmButton: "btn btn-primary",
+          },
         }).then(() => {
-          window.location.reload();
+          hideModal(newAddressModalRef.value);
         });
       }, 2000);
     };
 
     return {
-      newAddressData: newFolderData,
+      newAddressData,
       validationSchema,
       submit,
       submitButtonRef,
+      newAddressModalRef,
     };
-  }
+  },
 });
 </script>
