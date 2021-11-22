@@ -5,52 +5,282 @@
       </button>
       <NewFolderModal></NewFolderModal>
     </div>
-    <table class="table table-row-dashed table-row-gray-300 gy-7">
-      <thead>
-      <tr class="fw-bolder fs-5 text-gray-800">
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>Tiger Nixon</td>
-        <td>System Architect</td>
-        <td>Edinburgh</td>
-        <td>61</td>
-        <td>2011/04/25</td>
-        <td>$320,800</td>
-      </tr>
-      <tr>
-        <td>Garrett Winters</td>
-        <td>Accountant</td>
-        <td>Tokyo</td>
-        <td>63</td>
-        <td>2011/07/25</td>
-        <td>$170,750</td>
-      </tr>
-      </tbody>
-    </table>
+    <Datatable
+        :table-header="tableHeader1"
+        :table-data="tableData2"
+    >
+      <template v-slot:cell-order="{ row: invoice }">
+        {{ invoice.order }}
+      </template>
+      <template v-slot:cell-amount="{ row: invoice }">
+    <span :class="`text-${invoice.color}`">
+      {{ invoice.amount }}
+    </span>
+      </template>
+      <template v-slot:cell-status="{ row: invoice }">
+        <span :class="`badge badge-light-${invoice.status.state}`">{{ invoice.status.label }}</span>
+      </template>
+      <template v-slot:cell-date="{ row: invoice }">
+        {{ invoice.date }}
+      </template>
+      <template v-slot:cell-invoice>
+        <button class="btn btn-sm btn-light btn-active-light-primary">
+          Download
+        </button>
+      </template>
+    </Datatable>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import NewFolderModal from '@/components/DCI/modals/NewFolderModal.vue';
 import * as folderService from '../services/folderService';
+import KTDatatable from '@/components/kt-datatable/KTDatatable.vue';
 
 
 export default defineComponent( {
                                   name:       'folder_list',
                                   components: {
                                     NewFolderModal,
+                                    Datatable: KTDatatable,
                                   },
                                   setup() {
                                     folderService.createDciFolderIfNotExist();
+
+                                    const tableHeader1 = ref( [
+                                                                {
+                                                                  name:     'Order id',
+                                                                  key:      'order',
+                                                                  sortable: true,
+                                                                },
+                                                                {
+                                                                  name:     'Amount',
+                                                                  key:      'amount',
+                                                                  sortable: true,
+                                                                },
+                                                                {
+                                                                  name:         'Status',
+                                                                  key:          'status',
+                                                                  sortingField: 'status.label',
+                                                                  sortable:     true,
+                                                                },
+                                                                {
+                                                                  name:     'Date',
+                                                                  key:      'date',
+                                                                  sortable: true,
+                                                                },
+                                                                {
+                                                                  name:     'Invoice',
+                                                                  key:      'invoice',
+                                                                  sortable: false,
+                                                                },
+                                                              ] );
+                                    const tableData2   = ref( [
+                                                                {
+                                                                  date:    'Nov 01, 2020',
+                                                                  order:   '102445788',
+                                                                  details: 'Darknight transparency  36 Icons Pack',
+                                                                  color:   'success',
+                                                                  amount:  '$38.00',
+                                                                  status:  {
+                                                                    label: 'Pending',
+                                                                    state: 'warning',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Oct 24, 2020',
+                                                                  order:   '423445721',
+                                                                  details: 'Seller Fee',
+                                                                  color:   'danger',
+                                                                  amount:  '$-2.60',
+                                                                  status:  {
+                                                                    label: 'Failed',
+                                                                    state: 'danger',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Nov 01, 2020',
+                                                                  order:   '102445788',
+                                                                  details: 'Darknight transparency  36 Icons Pack',
+                                                                  color:   'success',
+                                                                  amount:  '$38.00',
+                                                                  status:  {
+                                                                    label: 'Pending',
+                                                                    state: 'warning',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Oct 24, 2020',
+                                                                  order:   '423445721',
+                                                                  details: 'Seller Fee',
+                                                                  color:   'danger',
+                                                                  amount:  '$-2.60',
+                                                                  status:  {
+                                                                    label: 'Failed',
+                                                                    state: 'danger',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Nov 01, 2020',
+                                                                  order:   '102445788',
+                                                                  details: 'Darknight transparency  36 Icons Pack',
+                                                                  color:   'success',
+                                                                  amount:  '$38.00',
+                                                                  status:  {
+                                                                    label: 'Pending',
+                                                                    state: 'warning',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Oct 24, 2020',
+                                                                  order:   '423445721',
+                                                                  details: 'Seller Fee',
+                                                                  color:   'danger',
+                                                                  amount:  '$-2.60',
+                                                                  status:  {
+                                                                    label: 'Failed',
+                                                                    state: 'danger',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Nov 01, 2020',
+                                                                  order:   '102445788',
+                                                                  details: 'Darknight transparency  36 Icons Pack',
+                                                                  color:   'success',
+                                                                  amount:  '$38.00',
+                                                                  status:  {
+                                                                    label: 'Pending',
+                                                                    state: 'warning',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Oct 24, 2020',
+                                                                  order:   '423445721',
+                                                                  details: 'Seller Fee',
+                                                                  color:   'danger',
+                                                                  amount:  '$-2.60',
+                                                                  status:  {
+                                                                    label: 'Failed',
+                                                                    state: 'danger',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Nov 01, 2020',
+                                                                  order:   '102445788',
+                                                                  details: 'Darknight transparency  36 Icons Pack',
+                                                                  color:   'success',
+                                                                  amount:  '$38.00',
+                                                                  status:  {
+                                                                    label: 'Pending',
+                                                                    state: 'warning',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Oct 24, 2020',
+                                                                  order:   '423445721',
+                                                                  details: 'Seller Fee',
+                                                                  color:   'danger',
+                                                                  amount:  '$-2.60',
+                                                                  status:  {
+                                                                    label: 'Failed',
+                                                                    state: 'danger',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Nov 01, 2020',
+                                                                  order:   '102445788',
+                                                                  details: 'Darknight transparency  36 Icons Pack',
+                                                                  color:   'success',
+                                                                  amount:  '$38.00',
+                                                                  status:  {
+                                                                    label: 'Pending',
+                                                                    state: 'warning',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Oct 24, 2020',
+                                                                  order:   '423445721',
+                                                                  details: 'Seller Fee',
+                                                                  color:   'danger',
+                                                                  amount:  '$-2.60',
+                                                                  status:  {
+                                                                    label: 'Failed',
+                                                                    state: 'danger',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Nov 01, 2020',
+                                                                  order:   '102445788',
+                                                                  details: 'Darknight transparency  36 Icons Pack',
+                                                                  color:   'success',
+                                                                  amount:  '$38.00',
+                                                                  status:  {
+                                                                    label: 'Pending',
+                                                                    state: 'warning',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Oct 24, 2020',
+                                                                  order:   '423445721',
+                                                                  details: 'Seller Fee',
+                                                                  color:   'danger',
+                                                                  amount:  '$-2.60',
+                                                                  status:  {
+                                                                    label: 'Failed',
+                                                                    state: 'danger',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Nov 01, 2020',
+                                                                  order:   '102445788',
+                                                                  details: 'Darknight transparency  36 Icons Pack',
+                                                                  color:   'success',
+                                                                  amount:  '$38.00',
+                                                                  status:  {
+                                                                    label: 'Pending',
+                                                                    state: 'warning',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Oct 24, 2020',
+                                                                  order:   '423445721',
+                                                                  details: 'Seller Fee',
+                                                                  color:   'danger',
+                                                                  amount:  '$-2.60',
+                                                                  status:  {
+                                                                    label: 'Failed',
+                                                                    state: 'danger',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Nov 01, 2020',
+                                                                  order:   '102445788',
+                                                                  details: 'Darknight transparency  36 Icons Pack',
+                                                                  color:   'success',
+                                                                  amount:  '$38.00',
+                                                                  status:  {
+                                                                    label: 'Pending',
+                                                                    state: 'warning',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  date:    'Oct 24, 2020',
+                                                                  order:   '423445721',
+                                                                  details: 'Seller Fee',
+                                                                  color:   'danger',
+                                                                  amount:  '$-2.60',
+                                                                  status:  {
+                                                                    label: 'Failed',
+                                                                    state: 'danger',
+                                                                  },
+                                                                },
+                                                              ] );
+
+                                    return {
+                                      tableHeader1,
+                                      tableData2,
+                                    };
                                   },
                                 } );
 </script>

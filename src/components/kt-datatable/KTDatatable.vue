@@ -142,14 +142,17 @@
 
 <script lang="ts">
 import { computed, defineComponent, getCurrentInstance, onMounted, ref, watch } from 'vue';
+// import arraySort from 'array-sort';
 import arraySort from 'array-sort';
 
+// eslint-disable-next-line @typescript-eslint/interface-name-prefix
 interface IPagination {
   page: number;
   total: number;
   rowsPerPage: number;
 }
 
+// eslint-disable-next-line @typescript-eslint/interface-name-prefix
 interface IHeaderConfiguration {
   name?: string;
   key: string;

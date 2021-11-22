@@ -24,11 +24,6 @@
               container: !contentWidthFluid
             }"
           >
-            <KTMobilePageTitle
-              v-if="subheaderDisplay"
-              :breadcrumbs="breadcrumbs"
-              :title="pageTitle"
-            />
             <router-view />
           </div>
         </div>
@@ -51,7 +46,6 @@ import { useRoute, useRouter } from 'vue-router';
 import KTAside from '@/layout/aside/Aside.vue';
 import KTHeader from '@/layout/header/Header.vue';
 import HtmlClass from '@/core/services/LayoutService';
-import KTMobilePageTitle from '@/layout/toolbar/MobilePageTitle.vue';
 import KTScrollTop from '@/layout/extras/ScrollTop.vue';
 import KTUserMenu from '@/layout/header/partials/ActivityDrawer.vue';
 import KTLoader from '@/components/Loader.vue';
@@ -81,7 +75,6 @@ export default defineComponent({
     KTUserMenu,
     KTDrawerMessenger,
     KTLoader,
-    KTMobilePageTitle
   },
   setup() {
     const store = useStore();
