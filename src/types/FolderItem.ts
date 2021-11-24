@@ -1,4 +1,5 @@
 import FolderItemStatus from '@/types/FolderItemStatus';
+import FolderItemType from '@/types/FolderItemType';
 
 interface FolderItem {
     ref: string;
@@ -8,6 +9,7 @@ interface FolderItem {
     createdAt: string;
     status: FolderItemStatus;
     deliveredAt?: string;
+    type: FolderItemType;
 }
 
 export default FolderItem;

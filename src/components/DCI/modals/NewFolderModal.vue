@@ -19,9 +19,7 @@
                 class="btn btn-sm btn-icon btn-active-color-primary"
                 data-bs-dismiss="modal"
             >
-              <span class="svg-icon svg-icon-1">
-                <inline-svg src="media/icons/duotone/Navigation/Close.svg" />
-              </span>
+              <i class="fas fa-times me-2"></i>
             </div>
           </div>
 
@@ -47,12 +45,10 @@
                       v-model="newFolderData.type"
                   >
                     <option value="">Sélectionner un chantier...</option>
-                    <option value="co">Comble</option>
-                    <option value="sol">Sol</option>
-                    <option value="pac_ro">Chauffage RR</option>
-                    <option value="pac_ro">Chauffage RO</option>
-                    <option value="ce">Chauffe eau</option>
-                    <option value="po_b">Poele à granulés</option>
+                    <option v-for="type in listFolderType" v-bind:key="type.slug" :value="type.slug">{{
+                        type.name
+                                                                                                     }}
+                    </option>
                   </Field>
                   <div class="fv-plugins-message-container">
                     <div class="fv-help-block">
@@ -147,18 +143,13 @@
           </div>
 
           <div class="modal-footer flex-center">
-            <button
-                type="reset"
-                id="kt_modal_new_folder_cancel"
-                class="btn btn-white me-3"
-            >
+            <button type="button" class="btn btn-white me-3" data-bs-dismiss="modal">
               Annuler
             </button>
 
             <button
                 ref="submitButtonRef"
                 type="submit"
-                id="kt_modal_new_folder_submit"
                 class="btn btn-primary">
               <span class="indicator-label">
                 Valider
@@ -178,6 +169,7 @@ import * as Yup from 'yup';
 import Store from 'electron-store';
 import router from '@/router';
 import * as folderService from '../../../services/folderService';
+import { LIST_FOLDER_TYPE } from '@/services/constantService';
 
 interface NewFolderData {
   type: string;
@@ -211,6 +203,7 @@ export default defineComponent( {
                                   },
                                   setup() {
                                     const submitButtonRef = ref<null | HTMLButtonElement>( null );
+                                    const listFolderType  = LIST_FOLDER_TYPE;
 
                                     const newFolderData = ref<NewFolderData>( {
                                                                                 type:                      '',
@@ -249,6 +242,7 @@ export default defineComponent( {
                                       validationSchema,
                                       submit,
                                       submitButtonRef,
+                                      listFolderType,
                                     };
                                   },
                                 } );
