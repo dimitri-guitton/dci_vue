@@ -5,8 +5,38 @@
       </button>
       <NewFolderModal></NewFolderModal>
     </div>
-    <Datatable :table-header="tableHeader1" :table-data="tableData2"
-    >
+    <div class="row">
+      <div class="col-3">
+        <input type="text" class="form-control" placeholder="name@example.com" />
+      </div>
+      <div class="col-3">
+        <select class="form-select">
+          <option value="">Sélectionner un chantier...</option>
+          <option value="co">Comble</option>
+          <option value="sol">Sol</option>
+          <option value="pac_ro">Chauffage RR</option>
+          <option value="pac_ro">Chauffage RO</option>
+          <option value="ce">Chauffe eau</option>
+          <option value="po_b">Poele à granulés</option>
+        </select>
+      </div>
+      <div class="col-3">
+        <select class="form-select">
+          <option>Sélectionner un statut...</option>
+          <option value="1">Complet</option>
+          <option value="2">Incomplet</option>
+          <option value="3">A corriger</option>
+          <option value="3">Clos</option>
+        </select>
+      </div>
+      <div class="col-3">
+        <label class="form-check form-switch form-check-custom">
+          <span class="form-check-label me-2">Filtrer les prospects</span>
+          <input class="form-check-input" type="checkbox" value="">
+        </label>
+      </div>
+    </div>
+    <Datatable :table-header="tableHeader1" :table-data="tableData2">
       <template v-slot:cell-ref="{ row: data }">
         {{ data.ref }}
       </template>
