@@ -50,7 +50,7 @@
         {{ data.total }}€
       </template>
       <template v-slot:cell-status="{ row: data }">
-        <span :class="`badge badge-light-warning`">{{ data.status }}</span>
+        <span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span>
       </template>
       <template v-slot:cell-createdAt="{ row: data }">
         {{ data.createdAt }}
@@ -59,8 +59,27 @@
         {{ data.deliveredAt }}
       </template>
       <template v-slot:cell-action>
-        <a href="#" class="btn btn-icon btn-light-dark me-2"><i class="fas fa-ellipsis-v"></i></a>
-        <a href="#" class="btn btn-icon btn-light-info"><i class="fas fa-pen"></i></a>
+        <div class="btn-group">
+          <button type="button"
+                  class="btn btn-icon btn-light-dark me-2"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+          >
+            <i class="fas fa-ellipsis-v"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li><span class="dropdown-item" v-on:click="checkElements"><i class="fas fa-clipboard-check me-2"></i>Vérifier les éléments</span>
+            </li>
+            <li><span class="dropdown-item" v-on:click="openFolder"><i class="fas fa-folder-open me-2"></i>Ouvrir le répertoire</span>
+            </li>
+            <li><span class="dropdown-item" v-on:click="removeFolder"><i class="fas fa-trash me-2"></i>Supprimer</span>
+            </li>
+            <li><span class="dropdown-item disabled" v-on:click="send"><i class="fas fa-arrow-circle-up me-2"></i>Transmettre</span>
+            </li>
+          </ul>
+        </div>
+        <router-link :to="{ name: 'folder_show', query: { slug: 'fake_slug' } }" class="btn btn-icon btn-light-info"><i
+            class="fas fa-pen"></i></router-link>
       </template>
     </Datatable>
   </div>
@@ -132,38 +151,79 @@ export default defineComponent( {
                                                                               prospect:  false,
                                                                               name:      'Jean Paul',
                                                                               total:     2500,
-                                                                              createdAt: '2021/11/04',
-                                                                              status:    'incomplet',
+                                                                              createdAt: '04/11/2021',
+                                                                              status:    {
+                                                                                state: 'complete',
+                                                                                name:  'Complet',
+                                                                                class: 'success',
+                                                                              },
                                                                             },
                                                                             {
                                                                               ref:       'FP2-20211103-PA_RO',
                                                                               prospect:  false,
                                                                               name:      'Pierre Dupond',
                                                                               total:     10000,
-                                                                              createdAt: '2021/11/03',
-                                                                              status:    'incomplet',
+                                                                              createdAt: '03/11/2021',
+                                                                              status:    {
+                                                                                state: 'incomplete',
+                                                                                name:  'Incomplet',
+                                                                                class: 'warning',
+                                                                              },
                                                                             },
                                                                             {
                                                                               ref:       'FP3-20211102-PA_RO',
                                                                               prospect:  true,
                                                                               name:      'Jean Dupont',
                                                                               total:     3000,
-                                                                              createdAt: '2021/11/02',
-                                                                              status:    'incomplet',
+                                                                              createdAt: '02/11/2021',
+                                                                              status:    {
+                                                                                state: 'to_correct',
+                                                                                name:  'À corriger',
+                                                                                class: 'danger',
+                                                                              },
                                                                             },
                                                                             {
                                                                               ref:       'FP3-20211101-PA_RO',
                                                                               prospect:  false,
                                                                               name:      'Henry Dupond',
                                                                               total:     5000,
-                                                                              createdAt: '2021/11/01',
-                                                                              status:    'incomplet',
+                                                                              createdAt: '01/11/2021',
+                                                                              status:    {
+                                                                                state: 'close',
+                                                                                name:  'Clos',
+                                                                                class: 'dark',
+                                                                              },
                                                                             },
                                                                           ] );
+
+                                    const checkElements = () => {
+                                      alert( 'TODO : Check elements' );
+                                    };
+
+                                    const openFolder = () => {
+                                      alert( 'TODO : Open du folder' );
+                                    };
+
+                                    const removeFolder = () => {
+                                      alert( 'TODO : Remove du folder' );
+                                    };
+
+                                    const send = () => {
+                                      alert( 'TODO : Send' );
+                                    };
+
+                                    const edit = () => {
+                                      alert( 'TODO : Edit' );
+                                    };
 
                                     return {
                                       tableHeader1,
                                       tableData2,
+                                      checkElements,
+                                      openFolder,
+                                      removeFolder,
+                                      send,
+                                      edit,
                                     };
                                   },
                                 } );
