@@ -1,0 +1,921 @@
+{
+    "disablePrime":             false,
+    "devis":                    {
+        "noPrimeUseCode":  "CL",
+        "pose":            2.5,
+        "overridePose":    2.5,
+        "tva":             5.5,
+        "origine":         "NOUVELLE REPUBLIQUE",
+        "dateVisiteTech":  "2021-09-28",
+        "delaisExecution": "2021-12-28",
+        "calcul0PU":       0,
+        "options":         [
+            {
+                "id":    1,
+                "label": "Enlèvement de la laine existante en rouleau",
+                "unit":  "m2",
+                "value": 0,
+                "pu":    {
+                    "default": 8,
+                    "value":   8
+                }
+            },
+            {
+                "id":    2,
+                "label": "Remise en place de la laine existante ou lardage du pare vapeur",
+                "unit":  "m2",
+                "value": 0,
+                "pu":    {
+                    "default": 4,
+                    "value":   4
+                }
+            },
+            {
+                "id":    3,
+                "label": "Création d'un trou d'homme",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "default": 50,
+                    "value":   50
+                }
+            },
+            {
+                "id":    10,
+                "label": "Nbre de coffrage volets roulant < 1.5m",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "default": 15,
+                    "value":   15
+                }
+            },
+            {
+                "id":    11,
+                "label": "Nbre de coffrage volets roulant > 1.5m",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "default": 15,
+                    "value":   15
+                }
+            },
+            {
+                "id":    12,
+                "label": "Coffrage bloc moteur VMC ou Moteur Cheminée",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "default": 10,
+                    "value":   10
+                }
+            },
+            {
+                "id":    4,
+                "label": "Coffrage de la trappe",
+                "unit":  "u",
+                "value": "1",
+                "pu":    {
+                    "default": 10,
+                    "value":   10
+                }
+            },
+            {
+                "id":    5,
+                "label": "Isolation de la trappe",
+                "unit":  "u",
+                "value": "1",
+                "pu":    {
+                    "default": 10,
+                    "value":   10
+                }
+            },
+            {
+                "id":    6,
+                "label": "Entourage de la cheminée",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "default": 20,
+                    "value":   20
+                }
+            },
+            {
+                "id":    7,
+                "label": "Protection des spots électriques",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "default": 10,
+                    "value":   10
+                }
+            },
+            {
+                "id":    8,
+                "label": "Pose de la signalétique des boîtiers électriques",
+                "unit":  "u",
+                "value": 1,
+                "pu":    {
+                    "default": 0,
+                    "value":   0
+                }
+            },
+            {
+                "id":    9,
+                "label": "Pose des piges de graduation de coefficient",
+                "unit":  "u",
+                "value": 1,
+                "pu":    {
+                    "default": 0,
+                    "value":   0
+                }
+            },
+            {
+                "id":    13,
+                "label": "Arrêtoires en Polypro",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "default": 15,
+                    "value":   15
+                }
+            }
+        ],
+        "isolants":        {
+            "selectedId": 1,
+            "products":   [
+                {
+                    "id":        1,
+                    "label":     "Isolation par soufflage d'un matelas de laine minérale de marque KNAUF INSULATION – SUPAFIL LOFT 045",
+                    "ref":       "Laine minérale de Verre SUPAFIL Thermo Loft. R = 7m².K/W, ép.320mm",
+                    "pu":        12.2,
+                    "plusValue": 0,
+                    "defaultPU": 12.2,
+                    "descr":     "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 7 m².k/w   Épaisseur mini (mm) : 320 mm\r\n- Pouvoir couvrant (kg/m²) : 3,8 - Classement au feu : A1 (incombustible)",
+                    "calcul0":   false
+                },
+                {
+                    "id":        4,
+                    "label":     "Isolation en R8 par soufflage d'un matelas de laine minérale de marque KNAUF INSULATION – SUPAFIL LOFT 045",
+                    "ref":       "Laine minérale de Verre SUPAFIL Thermo Loft. R = 8m².K/W, ép.365mm",
+                    "pu":        13.7,
+                    "plusValue": 1.5,
+                    "defaultPU": 13.7,
+                    "descr":     "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 8 m².k/w   Épaisseur mini (mm) : 365 mm\r\n- Pouvoir couvrant (kg/m²) : 4.4 - Classement au feu : A1 (incombustible)",
+                    "calcul0":   false
+                },
+                {
+                    "id":        5,
+                    "label":     "Isolation en R9 par soufflage d'un matelas de laine minérale de marque KNAUF INSULATION – SUPAFIL LOFT 045",
+                    "ref":       "Laine minérale de Verre SUPAFIL Thermo Loft. R = 9m².K/W, ép.410mm",
+                    "pu":        15.2,
+                    "plusValue": 3,
+                    "defaultPU": 15.2,
+                    "descr":     "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 9 m².k/w    Épaisseur mini (mm) : 410 mm\r\n- Pouvoir couvrant (kg/m²) : 4.9 - Classement au feu : A1 (incombustible)",
+                    "calcul0":   false
+                }
+            ]
+        },
+        "blankOptions":    [
+            {
+                "id":    "sup1",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            },
+            {
+                "id":    "sup2",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            }
+        ],
+        "commentaires":    "",
+        "partner":         "VTE",
+        "texte1":          {
+            "title": null,
+            "text":  "La TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans. Réalisation du chantier : France Menuisiers 43346499700157 RGE qualibat N°E-E93378"
+        },
+        "texte2":          {
+            "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
+            "text":  "Les travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique."
+        },
+        "texte3":          {
+            "title": "AIDE A LA RENOVATION ÉNERGÉTIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
+            "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
+        },
+        "totalHT":         681.5,
+        "totalTVA":        37.4825
+    },
+    "settings":                 {
+        "ceeCoef": "6.6"
+    },
+    "type":                     "comble",
+    "version":                  "5",
+    "devisTemplate":            "devisTpl-v5-vte.html",
+    "ficheTemplate":            "ficheCombleTpl-v5.html",
+    "ficheGenerator":           "combleV1.xlsx",
+    "disablePrimeCEE":          false,
+    "disablePrimeMaprimerenov": false,
+    "enabledActionLogement":    false,
+    "avis":                     [
+        {
+            "uid":            "WRlP3t_ls",
+            "refAvis":        "",
+            "numFiscal":      "",
+            "isbeneficiaire": true,
+            "datagouv":       {
+                "loaded":    false,
+                "refAvis":   "",
+                "numFiscal": "",
+                "nom":       "",
+                "prenom":    "",
+                "adresse":   "",
+                "ville":     "",
+                "revenu":    "",
+                "error":     false
+            },
+            "civilite":       "M",
+            "nom":            "BARS",
+            "prenom":         "DAVID",
+            "adresse":        "14 RUE DU VAL DE l'INDRE APPARTEMENT 15",
+            "codepostal":     "36250",
+            "ville":          "SAINT MAUR",
+            "revenu":         "500000"
+        }
+    ],
+    "beneficiaire":             {
+        "civilite":   "M",
+        "nom":        "BARS",
+        "prenom":     "DAVID",
+        "adresse":    "14 RUE DU VAL DE l'INDRE APPARTEMENT 15",
+        "codepostal": "36250",
+        "ville":      "SAINT MAUR"
+    },
+    "email":                    "d_bars@orange.fr",
+    "telfixe":                  "",
+    "telportable":              "06 62 70 36 18",
+    "codePrime":                "CL",
+    "zoneEnergetique":          "H2",
+    "tauxPrime":                9.24,
+    "logement":                 {
+        "occupants":      1,
+        "batimentType":   "residentiel",
+        "chauffageType":  "electrique",
+        "batimentNature": "",
+        "typeChaudiere":  "aucun",
+        "isAdresseBenef": true,
+        "adresse":        "3 r du val de l'indre",
+        "codepostal":     "36250",
+        "ville":          "Saint-Maur",
+        "parcelle":       "000 / AW / 0122",
+        "superficie":     "45",
+        "dataGeoportail": {
+            "zoom":       20,
+            "center":     [
+                1.6624853731555946,
+                46.81175379237931
+            ],
+            "position":   [
+                1.6624210774898531,
+                46.81178439857038
+            ],
+            "codepostal": "36250",
+            "ville":      "Saint-Maur",
+            "adresse":    "3 r du val de l'indre",
+            "parcelle":   "000 / AW / 0122"
+        },
+        "location":       "",
+        "moinsDe2Ans":    false
+    },
+    "fiche":                    {
+        "visiteComble":              true,
+        "chantierHabite":            true,
+        "chantierType":              "reno",
+        "niveauHabitation":          "rdc",
+        "gdEchelle":                 false,
+        "partieAisoler":             "hab_ss_gge",
+        "puissanceCompteur":         "6",
+        "accesPl":                   false,
+        "periodePose":               "",
+        "rueEtroite":                false,
+        "accesComble":               "trappe",
+        "couvertureType":            "meca",
+        "charpenteType":             "trad",
+        "etatToiture":               "propre",
+        "volige":                    false,
+        "nbreAccesComble":           "1",
+        "nbreCompartiments":         "1",
+        "isolationExistante":        true,
+        "isolationExistanteType":    "rouleau",
+        "isolationExistanteCouches": 0,
+        "lardagePareVapeur":         false,
+        "rehausseTrappeType":        "polypro",
+        "desencombrement":           false,
+        "infosSup":                  "ENTRER DANS LA COURS DU GRAND BATIMENT AU FOND A GAUCHE MAISON SEUL"
+    },
+    "baremes":                  [
+        {
+            "code":         "CL",
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  19074
+                },
+                {
+                    "nbre": 2,
+                    "min":  27896
+                },
+                {
+                    "nbre": 3,
+                    "min":  33547
+                },
+                {
+                    "nbre": 4,
+                    "min":  39192
+                },
+                {
+                    "nbre": 5,
+                    "min":  44860
+                },
+                {
+                    "nbre": 6,
+                    "min":  50511
+                },
+                {
+                    "nbre": 7,
+                    "min":  56162
+                },
+                {
+                    "nbre": 8,
+                    "min":  61813
+                },
+                {
+                    "nbre": 9,
+                    "min":  67464
+                },
+                {
+                    "nbre": 10,
+                    "min":  73115
+                }
+            ],
+            "primeCEE":     {
+                "H1": 11.22,
+                "H2": 9.24,
+                "H3": 9.24
+            }
+        },
+        {
+            "code":         "GP",
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  19074
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  27896
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  33547
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  39192
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  44860
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  50511
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  56162
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  61813
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  67464
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  73115
+                }
+            ],
+            "primeCEE":     {
+                "H1": 11.22,
+                "H2": 9.24,
+                "H3": 9.24
+            }
+        },
+        {
+            "code":         "PACCL",
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  29148
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  42848
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  51592
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  60336
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  69081
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  77825
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  86569
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  95313
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  104057
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  112801
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  121545
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  130289
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  139033
+                }
+            ],
+            "primeCEE":     {
+                "H1": 11.22,
+                "H2": 9.24,
+                "H3": 9.24
+            }
+        },
+        {
+            "code":         "PACGP",
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  14879
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  21760
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  26170
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  30572
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  34993
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  39405
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  43817
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  48229
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  52641
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  57053
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  61465
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  65877
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  70289
+                }
+            ],
+            "primeCEE":     {
+                "H1": 11.22,
+                "H2": 9.24,
+                "H3": 9.24
+            }
+        },
+        {
+            "code":         "PACIT",
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  29148
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  42848
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  51592
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  60336
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  69081
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  77825
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  86569
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  95313
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  104057
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  112801
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  121545
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  130289
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  139033
+                }
+            ],
+            "primeCEE":     {
+                "H1": 11.22,
+                "H2": 9.24,
+                "H3": 9.24
+            }
+        },
+        {
+            "code":         "PACP",
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  19074
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  27896
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  33547
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  39192
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  44860
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  50511
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  56162
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  61813
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  67464
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  73115
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  78766
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  84417
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  90068
+                }
+            ],
+            "primeCEE":     {
+                "H1": 11.22,
+                "H2": 9.24,
+                "H3": 9.24
+            }
+        }
+    ],
+    "lists":                    {
+        "batimentType":           [
+            {
+                "residentiel": "Résidentiel"
+            },
+            {
+                "tertiaire": "Tertiaire"
+            },
+            {
+                "santé": "Santé"
+            }
+        ],
+        "chauffageType":          [
+            {
+                "electrique": "Electrique"
+            },
+            {
+                "combustible": "Combustible"
+            }
+        ],
+        "batimentNature":         [
+            {
+                "": "-"
+            },
+            {
+                "nouvelle_residence": "Nouvelle résidence principale"
+            },
+            {
+                "location": "Location"
+            },
+            {
+                "residence_secondaire": "Résidence secondaire"
+            }
+        ],
+        "chantierType":           [
+            {
+                "reno": "RENO"
+            },
+            {
+                "neuf": "NEUF"
+            }
+        ],
+        "niveauHabitation":       [
+            {
+                "rdc": "RDC"
+            },
+            {
+                "r1": "R+1"
+            },
+            {
+                "r2": "R+2"
+            },
+            {
+                "r3": "R+3"
+            },
+            {
+                "r4": "R+4"
+            },
+            {
+                "autre": "AUTRE"
+            }
+        ],
+        "partieAisoler":          [
+            {
+                "hab_av_gge": "HABITATION (av garage)"
+            },
+            {
+                "hab_ss_gge": "HABITATION (ss garage)"
+            },
+            {
+                "autre": "AUTRE"
+            }
+        ],
+        "puissanceCompteur":      [
+            3,
+            6,
+            9,
+            12,
+            18
+        ],
+        "accesComble":            [
+            {
+                "trappe": "TRAPPE"
+            },
+            {
+                "toit": "TOITURE"
+            },
+            {
+                "trappe_et_toit": "TRAPPE et TOITURE"
+            }
+        ],
+        "couvertureType":         [
+            {
+                "meca": "Mecanique"
+            },
+            {
+                "tige_bottes": "Tiges de bottes"
+            },
+            {
+                "ardoise": "Ardoise"
+            },
+            {
+                "tuiles_plates": "Tuiles plates"
+            },
+            {
+                "tuiles_courbes": "Tuiles courbes"
+            }
+        ],
+        "charpenteType":          [
+            {
+                "trad": "Traditionnelle"
+            },
+            {
+                "ferm": "Fermettes"
+            },
+            {
+                "metal": "Metallique"
+            },
+            {
+                "autre": "Autre"
+            }
+        ],
+        "etatToiture":            [
+            {
+                "propre": "Propre"
+            },
+            {
+                "mousse_faible": "Mousse en petite quantité"
+            },
+            {
+                "mousse_important": "Mousse importante"
+            }
+        ],
+        "isolationExistanteType": [
+            {
+                "rouleau": "ROULEAU"
+            },
+            {
+                "vrac": "VRAC"
+            },
+            {
+                "vrac_rouleau": "Vrac et rouleau"
+            },
+            {
+                "": "pas d’isolant"
+            }
+        ],
+        "rehausseTrappeType":     [
+            {
+                "polypro": "POLYPRO"
+            },
+            {
+                "bois": "BOIS"
+            }
+        ],
+        "nbreAccesComble":        [
+            0,
+            1,
+            2,
+            3,
+            4
+        ],
+        "nbreCompartiments":      [
+            0,
+            1,
+            2,
+            3,
+            4
+        ]
+    },
+    "zoneMontant":              {
+        "H1": 11.22,
+        "H2": 9.24,
+        "H3": 9.24
+    },
+    "ref":                      "JT11-20210928T1514-CO",
+    "folderName":               "JT11-20210928T1514-CO (BARS DAVID)",
+    "createdAt":                "2021-09-28T15:14:31.621",
+    "statutInDCI":              2,
+    "statutInDCIErrors":        [
+        2,
+        6
+    ],
+    "technicien":               {
+        "nom":    "Jeremy",
+        "prenom": "Thomas",
+        "id":     11,
+        "tel":    "0645118070"
+    },
+    "updatedAt":                "2021-09-28T15:21:48.420"
+}

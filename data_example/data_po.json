@@ -1,0 +1,1583 @@
+{
+    "disablePrime":             false,
+    "devis":                    {
+        "noPrimeUseCode":  "CL",
+        "pose":            5.5,
+        "overridePose":    5.5,
+        "tva":             5.5,
+        "origine":         "PERSO",
+        "dateVisiteTech":  "2021-10-06",
+        "delaisExecution": "2022-01-06",
+        "calcul0PU":       0,
+        "options":         [
+            {
+                "id":    1,
+                "label": "Forfait pose (livraison,pose et mise en service de l’appareil)",
+                "unit":  "u",
+                "value": 1,
+                "pu":    {
+                    "default": 700,
+                    "value":   700
+                }
+            }
+        ],
+        "blankOptions":    [
+            {
+                "id":    "sup1",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            },
+            {
+                "id":    "sup2",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            }
+        ],
+        "commentaires":    "",
+        "partner":         "VTE",
+        "texte1":          {
+            "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
+            "text":  "Les travaux relatifs à ce document sont éligibles au dispositif des certificats d’économies d’énergie. Dans ce cadre, l’obligé « Vos Travaux Eco », grâce à son partenaire Eco Atlantique, me fait bénéficier d’une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique.\r\nLa TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans. Réalisation du chantier par Allaire du temps and co Siren 852284983 Qualibois Module Air QB/58881"
+        },
+        "texte2":          {
+            "title": "MaPrimeRénov'",
+            "text":  "«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif.L’aide MaPrimeRénov’ est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire. En cas de fausse déclaration, de manœuvre frauduleuse ou de changement du projet de travaux subventionnés, le bénéficiaire s’expose au retrait et reversement de tout ou partie de l’aide. Les services de l’Anah pourront faire procéder à tout contrôle des engagements et sanctionner le bénéficiaire et son mandataire éventuel des manquements constatés »."
+        },
+        "texte3":          {
+            "title": "AIDE A LA RENOVATION ÉNERGÉTIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
+            "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
+        },
+        "poeles":          {
+            "selectedId": "2",
+            "products":   [
+                {
+                    "id":             1,
+                    "label":          "RED DALIA AIR 6KW S1 ARGENT",
+                    "ref":            "6918001",
+                    "pu":             1990,
+                    "defaultPU":      1990,
+                    "descr":          "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 24 litres\n- Autonomie min : 11h\n- Autonomie max : 26h\n- Volume à chauffer : 155/35m3\n- Poids : 90 kg\n- Dimensions en cm : P= 48,8  L = 46,3  H = 90",
+                    "type":           "red",
+                    "puissance":      6,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             2,
+                    "label":          "RED DALIA AIR 6KW S1 BORDEAUX",
+                    "ref":            "6918002",
+                    "pu":             1990,
+                    "defaultPU":      1990,
+                    "descr":          "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 24 litres\n- Autonomie min : 11h\n- Autonomie max : 26h\n- Volume à chauffer : 155/35m3\n- Poids : 90 kg\n- Dimensions en cm : P= 48,8  L = 46,3  H = 90",
+                    "type":           "red",
+                    "puissance":      6,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             3,
+                    "label":          "RED DALIA AIR 6KW S1 NOIR",
+                    "ref":            "6918003",
+                    "pu":             1990,
+                    "defaultPU":      1990,
+                    "descr":          "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 24 litres\n- Autonomie min : 11h\n- Autonomie max : 26h\n- Volume à chauffer : 155/35m3\n- Poids : 90 kg\n- Dimensions en cm : P= 48,8  L = 46,3  H = 90",
+                    "type":           "red",
+                    "puissance":      6,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             4,
+                    "label":          "RED DALIA AIR 6KW S1 BLANC",
+                    "ref":            "6918004",
+                    "pu":             1990,
+                    "defaultPU":      1990,
+                    "descr":          "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 24 litres\n- Autonomie min : 11h\n- Autonomie max : 26h\n- Volume à chauffer : 155/35m3\n- Poids : 90 kg\n- Dimensions en cm : P= 48,8  L = 46,3  H = 90",
+                    "type":           "red",
+                    "puissance":      6,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             5,
+                    "label":          "RED FLORA AIR 6KW ARGENT",
+                    "ref":            "7116011",
+                    "pu":             2390,
+                    "defaultPU":      2390,
+                    "descr":          "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Système Easy connect (commande à distance depuis un smartphone)\r\n- structure acier et panneau frontal en acier (couleur au choix).\r\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\r\n- Brasier en fonte.\r\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\r\n- Ventilation désactivable\r\n- Capacité du réservoir : 24 litres\r\n- Autonomie min : 26h\r\n- Autonomie max : 11h\r\n- Volume à chauffer : 155/35m3\r\n- Poids : 90 kg\r\n- Dimensions en cm : P= 48  L = 50  H = 90",
+                    "type":           "red",
+                    "puissance":      6,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             6,
+                    "label":          "RED FLORA AIR 6KW NOIR",
+                    "ref":            "7116010",
+                    "pu":             2390,
+                    "defaultPU":      2390,
+                    "descr":          "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Système Easy connect (commande à distance depuis un smartphone)\r\n- structure acier et panneau frontal en acier (couleur au choix).\r\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\r\n- Brasier en fonte.\r\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\r\n- Ventilation désactivable\r\n- Capacité du réservoir : 24 litres\r\n- Autonomie min : 26h\r\n- Autonomie max : 11h\r\n- Volume à chauffer : 155/35m3\r\n- Poids : 90 kg\r\n- Dimensions en cm : P= 48  L = 50  H = 90",
+                    "type":           "red",
+                    "puissance":      6,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             7,
+                    "label":          "RED FLORA AIR 6KW BORDEAUX",
+                    "ref":            "7116012",
+                    "pu":             2390,
+                    "defaultPU":      2390,
+                    "descr":          "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Système Easy connect (commande à distance depuis un smartphone)\r\n- structure acier et panneau frontal en acier (couleur au choix).\r\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\r\n- Brasier en fonte.\r\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\r\n- Ventilation désactivable\r\n- Capacité du réservoir : 24 litres\r\n- Autonomie min : 26h\r\n- Autonomie max : 11h\r\n- Volume à chauffer : 155/35m3\r\n- Poids : 90 kg\r\n- Dimensions en cm : P= 48  L = 50  H = 90",
+                    "type":           "red",
+                    "puissance":      6,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             8,
+                    "label":          "RED CAMELIA AIR 8KW ARGENT",
+                    "ref":            "6916038",
+                    "pu":             2280,
+                    "defaultPU":      2280,
+                    "descr":          "Puissance nominale 8 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,003 %, émission de particules 16mg/nm3, émission d’oxyde d’azote : 137mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 26 litres\n- Autonomie min : 28h\n- Autonomie max : 9h\n- Volume à chauffer : 197 m3\n- Poids : 130 kg\n- Dimensions en cm : P= 48 L = 50,4  H = 98,5",
+                    "type":           "red",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             9,
+                    "label":          "RED CAMELIA AIR 8KW BLANC",
+                    "ref":            "6916037",
+                    "pu":             2280,
+                    "defaultPU":      2280,
+                    "descr":          "Puissance nominale 8 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,003 %, émission de particules 16mg/nm3, émission d’oxyde d’azote : 137mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 26 litres\n- Autonomie min : 28h\n- Autonomie max : 9h\n- Volume à chauffer : 197 m3\n- Poids : 130 kg\n- Dimensions en cm : P= 48 L = 50,4  H = 98,5",
+                    "type":           "red",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             10,
+                    "label":          "RED CAMELIA AIR 8KW NOIR",
+                    "ref":            "6916036",
+                    "pu":             2280,
+                    "defaultPU":      2280,
+                    "descr":          "Puissance nominale 8 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,003 %, émission de particules 16mg/nm3, émission d’oxyde d’azote : 137mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 26 litres\n- Autonomie min : 28h\n- Autonomie max : 9h\n- Volume à chauffer : 197 m3\n- Poids : 130 kg\n- Dimensions en cm : P= 48 L = 50,4  H = 98,5",
+                    "type":           "red",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             11,
+                    "label":          "RED CAMELIA AIR 8KW BORDEAUX",
+                    "ref":            "6916035",
+                    "pu":             2280,
+                    "defaultPU":      2280,
+                    "descr":          "Puissance nominale 8 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,003 %, émission de particules 16mg/nm3, émission d’oxyde d’azote : 137mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 26 litres\n- Autonomie min : 28h\n- Autonomie max : 9h\n- Volume à chauffer : 197 m3\n- Poids : 130 kg\n- Dimensions en cm : P= 48 L = 50,4  H = 98,5",
+                    "type":           "red",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             12,
+                    "label":          "RED ALTHEA MULTIAIR 9 UP S1 ARGENT",
+                    "ref":            "7119040",
+                    "pu":             3615,
+                    "defaultPU":      3615,
+                    "descr":          "Puissance nominale 8,8 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,057 soit 0,006 %, émission de particules 20mg/nm3, émission d’oxyde d’azote : 117mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 28 litres\n- Autonomie min : 30h\n- Autonomie max : 10h\n- Volume à chauffer : 216 m3\n- Poids : 139 kg\n- Dimensions en cm : P= 29,1 L = 89,5  H = 115,5",
+                    "type":           "red",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             13,
+                    "label":          "RED ALTHEA MULTIAIR 9 UP S1 NOIR",
+                    "ref":            "7119041",
+                    "pu":             3615,
+                    "defaultPU":      3615,
+                    "descr":          "Puissance nominale 8,8 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,057 soit 0,006 %, émission de particules 20mg/nm3, émission d’oxyde d’azote : 117mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 28 litres\n- Autonomie min : 30h\n- Autonomie max : 10h\n- Volume à chauffer : 216 m3\n- Poids : 139 kg\n- Dimensions en cm : P= 29,1 L = 89,5  H = 115,5",
+                    "type":           "red",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             14,
+                    "label":          "JOLLY MEC GLOBO 6KW BLANC CREME",
+                    "ref":            "GLOBO/1/6KW/C/1",
+                    "pu":             3750,
+                    "defaultPU":      3750,
+                    "descr":          "Puissance nominale 6,3 kW , Rendement nominal 93,55 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 80,61 mg/m3 soit 0,006 %, émission de particules 17,22 mg/nm3, émission d’oxyde d’azote : 146,1mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 12h\n- Autonomie max : 29h\n- Volume à chauffer : 130m3 à 172m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      6,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             15,
+                    "label":          "JOLLY MEC GLOBO 6KW NOIR",
+                    "ref":            "GLOBO/1/6KW/C/2",
+                    "pu":             3750,
+                    "defaultPU":      3750,
+                    "descr":          "Puissance nominale 6,3 kW , Rendement nominal 93,55 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 80,61 mg/m3 soit 0,006 %, émission de particules 17,22 mg/nm3, émission d’oxyde d’azote : 146,1mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 12h\n- Autonomie max : 29h\n- Volume à chauffer : 130m3 à 172m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      6,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             16,
+                    "label":          "JOLLY MEC GLOBO 6KW BORDEAUX",
+                    "ref":            "GLOBO/1/6KW/C/3",
+                    "pu":             3750,
+                    "defaultPU":      3750,
+                    "descr":          "Puissance nominale 6,3 kW , Rendement nominal 93,55 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 80,61 mg/m3 soit 0,006 %, émission de particules 17,22 mg/nm3, émission d’oxyde d’azote : 146,1mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 12h\n- Autonomie max : 29h\n- Volume à chauffer : 130m3 à 172m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      6,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             17,
+                    "label":          "JOLLY MEC GLOBO 6KW PIERRE OLLAIRE",
+                    "ref":            "GLOBO/1/6KW/C/4",
+                    "pu":             3950,
+                    "defaultPU":      3950,
+                    "descr":          "Puissance nominale 6,3 kW , Rendement nominal 93,55 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 80,61 mg/m3 soit 0,006 %, émission de particules 17,22 mg/nm3, émission d’oxyde d’azote : 146,1mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 12h\n- Autonomie max : 29h\n- Volume à chauffer : 130m3 à 172m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      6,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             18,
+                    "label":          "JOLLY MEC GLOBO 8KW BLANC CREME",
+                    "ref":            "GLOBO/1/8KW/C/1",
+                    "pu":             3850,
+                    "defaultPU":      3850,
+                    "descr":          "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             19,
+                    "label":          "JOLLY MEC GLOBO 8KW NOIR",
+                    "ref":            "GLOBO/1/8KW/C/2",
+                    "pu":             3850,
+                    "defaultPU":      3850,
+                    "descr":          "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             20,
+                    "label":          "JOLLY MEC GLOBO 8KW BORDEAUX",
+                    "ref":            "GLOBO/1/8KW/C/3",
+                    "pu":             3850,
+                    "defaultPU":      3850,
+                    "descr":          "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             21,
+                    "label":          "JOLLY MEC GLOBO 8KW PIERRE OLLAIRE",
+                    "ref":            "GLOBO/1/8KW/C/4",
+                    "pu":             4050,
+                    "defaultPU":      4050,
+                    "descr":          "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             22,
+                    "label":          "JOLLY MEC GLOBO 10KW BLANC CREME",
+                    "ref":            "GLOBO/1/10KW/C/1",
+                    "pu":             3950,
+                    "defaultPU":      3950,
+                    "descr":          "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      10,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             23,
+                    "label":          "JOLLY MEC GLOBO 10KW NOIR",
+                    "ref":            "GLOBO/1/10KW/C/2",
+                    "pu":             3950,
+                    "defaultPU":      3950,
+                    "descr":          "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      10,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             24,
+                    "label":          "JOLLY MEC GLOBO 10KW BORDEAUX",
+                    "ref":            "GLOBO/1/10KW/C/3",
+                    "pu":             3950,
+                    "defaultPU":      3950,
+                    "descr":          "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      10,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             25,
+                    "label":          "JOLLY MEC GLOBO 10KW PIERRE OLLAIRE",
+                    "ref":            "GLOBO/1/10KW/C/4",
+                    "pu":             4150,
+                    "defaultPU":      4150,
+                    "descr":          "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      10,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             26,
+                    "label":          "JOLLY MEC BRIDGE 8KW BLANC CREME",
+                    "ref":            "BRIDGE/1/8KW/C/1",
+                    "pu":             3410,
+                    "defaultPU":      3410,
+                    "descr":          "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 116 kg\n- Dimensions en cm : P= 53,5  L = 52,6  H = 1162",
+                    "type":           "jm",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             27,
+                    "label":          "JOLLY MEC BRIDGE 8KW NOIR",
+                    "ref":            "BRIDGE/1/8KW/C/2",
+                    "pu":             3410,
+                    "defaultPU":      3410,
+                    "descr":          "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 116 kg\n- Dimensions en cm : P= 53,5  L = 52,6  H = 1162",
+                    "type":           "jm",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             28,
+                    "label":          "JOLLY MEC BRIDGE 8KW BORDEAUX",
+                    "ref":            "BRIDGE/1/8KW/C/3",
+                    "pu":             3410,
+                    "defaultPU":      3410,
+                    "descr":          "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 116 kg\n- Dimensions en cm : P= 53,5  L = 52,6  H = 1162",
+                    "type":           "jm",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             29,
+                    "label":          "JOLLY MEC BRIDGE 8KW PIERRE OLLAIRE",
+                    "ref":            "BRIDGE/1/8KW/C/4",
+                    "pu":             3620,
+                    "defaultPU":      3620,
+                    "descr":          "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 116 kg\n- Dimensions en cm : P= 53,5  L = 52,6  H = 1162",
+                    "type":           "jm",
+                    "puissance":      8,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             30,
+                    "label":          "JOLLY MEC BRIDGE 10KW BLANC CREME",
+                    "ref":            "BRIDGE/1/10KW/C/1",
+                    "pu":             3500,
+                    "defaultPU":      3500,
+                    "descr":          "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      10,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             31,
+                    "label":          "JOLLY MEC BRIDGE 10KW NOIR",
+                    "ref":            "BRIDGE/1/10KW/C/2",
+                    "pu":             3500,
+                    "defaultPU":      3500,
+                    "descr":          "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      10,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             32,
+                    "label":          "JOLLY MEC BRIDGE 10KW BORDEAUX",
+                    "ref":            "BRIDGE/1/10KW/C/3",
+                    "pu":             3500,
+                    "defaultPU":      3500,
+                    "descr":          "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      10,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             33,
+                    "label":          "JOLLY MEC BRIDGE 10KW PIERRE OLLAIRE",
+                    "ref":            "BRIDGE/1/10KW/C/4",
+                    "pu":             3720,
+                    "defaultPU":      3720,
+                    "descr":          "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
+                    "type":           "jm",
+                    "puissance":      10,
+                    "couleurProfile": null
+                },
+                {
+                    "id":             34,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL BLANC FACADE GRES IVOIRE",
+                    "ref":            "DORYF/1/9KW/C/B1",
+                    "pu":             4220,
+                    "defaultPU":      4220,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "blanc_creme"
+                },
+                {
+                    "id":             35,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL BLANC FACADE  GRES ROUILLE",
+                    "ref":            "DORYF/1/9KW/C/B2",
+                    "pu":             4220,
+                    "defaultPU":      4220,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "blanc_creme"
+                },
+                {
+                    "id":             36,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL BLANC FACADE VERRE NOIR STRILLE",
+                    "ref":            "DORYF/1/9KW/C/B3",
+                    "pu":             4220,
+                    "defaultPU":      4220,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "blanc_creme"
+                },
+                {
+                    "id":             37,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL BLANC FACADE ACIER NOIR",
+                    "ref":            "DORYF/1/9KW/C/B4",
+                    "pu":             4220,
+                    "defaultPU":      4220,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "blanc_creme"
+                },
+                {
+                    "id":             38,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL NOIR FACADE GRES IVOIRE",
+                    "ref":            "DORYF/1/9KW/C/N1",
+                    "pu":             4220,
+                    "defaultPU":      4220,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "noir"
+                },
+                {
+                    "id":             39,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL NOIR FACADE  GRES ROUILLE",
+                    "ref":            "DORYF/1/9KW/C/N2",
+                    "pu":             4220,
+                    "defaultPU":      4220,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "noir"
+                },
+                {
+                    "id":             40,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL NOIR FACADE VERRE NOIR STRILLE",
+                    "ref":            "DORYF/1/9KW/C/N3",
+                    "pu":             4220,
+                    "defaultPU":      4220,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "noir"
+                },
+                {
+                    "id":             41,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL NOIR FACADE ACIER NOIR",
+                    "ref":            "DORYF/1/9KW/C/N4",
+                    "pu":             4020,
+                    "defaultPU":      4020,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "noir"
+                },
+                {
+                    "id":             42,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL NOIR FACADE PIERRE OLLAIRE",
+                    "ref":            "DORYF/1/9KW/C/N9",
+                    "pu":             4220,
+                    "defaultPU":      4220,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "noir"
+                },
+                {
+                    "id":             43,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL TOURTERELLE FACADE GRES IVOIRE",
+                    "ref":            "DORYF/1/9KW/C/T1",
+                    "pu":             4220,
+                    "defaultPU":      4220,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "tourterelle"
+                },
+                {
+                    "id":             44,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL TOURTERELLE FACADE  GRES ROUILLE",
+                    "ref":            "DORYF/1/9KW/C/T2",
+                    "pu":             4220,
+                    "defaultPU":      4220,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "tourterelle"
+                },
+                {
+                    "id":             45,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL TOURTERELLE FACADE VERRE NOIR STRILLE",
+                    "ref":            "DORYF/1/9KW/C/T3",
+                    "pu":             4220,
+                    "defaultPU":      4220,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "tourterelle"
+                },
+                {
+                    "id":             46,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL TOURTERELLE FACADE ACIER NOIR",
+                    "ref":            "DORYF/1/9KW/C/T4",
+                    "pu":             4020,
+                    "defaultPU":      4020,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "tourterelle"
+                },
+                {
+                    "id":             47,
+                    "label":          "JOLLY MEC DORY FRONTALEPROFIL TOURTERELLE FACADE TOUTERELLE",
+                    "ref":            "DORYF/1/9KW/C/T5",
+                    "pu":             4020,
+                    "defaultPU":      4020,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "tourterelle"
+                },
+                {
+                    "id":             48,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL BLANC FACADE GRES IVOIRE",
+                    "ref":            "DORYA/1/9KW/C/B1",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "blanc_creme"
+                },
+                {
+                    "id":             49,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL BLANC FACADE GRES ROUILLE",
+                    "ref":            "DORYA/1/9KW/C/B2",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "blanc_creme"
+                },
+                {
+                    "id":             50,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL BLANC FACADE VERRE NOIR STRILLE",
+                    "ref":            "DORYA/1/9KW/C/B3",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "blanc_creme"
+                },
+                {
+                    "id":             51,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL BLANC FACADE ACIER NOIR",
+                    "ref":            "DORYA/1/9KW/C/B4",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "blanc_creme"
+                },
+                {
+                    "id":             52,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL NOIR FACADE GRES IVOIRE",
+                    "ref":            "DORYA/1/9KW/C/N1",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "noir"
+                },
+                {
+                    "id":             53,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL NOIR FACADE GRES ROUILLE",
+                    "ref":            "DORYA/1/9KW/C/N2",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "noir"
+                },
+                {
+                    "id":             54,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL NOIR FACADE VERRE NOIR STRILLE",
+                    "ref":            "DORYA/1/9KW/C/N3",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "noir"
+                },
+                {
+                    "id":             55,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL NOIR FACADE ACIER NOIR",
+                    "ref":            "DORYA/1/9KW/C/N4",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "noir"
+                },
+                {
+                    "id":             56,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL NOIR FACADE PIERRE OLLAIRE",
+                    "ref":            "DORYA/1/9KW/C/N9",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "noir"
+                },
+                {
+                    "id":             57,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL TOUTERELLE FACADE GRES IVOIRE",
+                    "ref":            "DORYA/1/9KW/C/T1",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "tourterelle"
+                },
+                {
+                    "id":             58,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL TOUTERELLE FACADE GRES ROUILLE",
+                    "ref":            "DORYA/1/9KW/C/T2",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "tourterelle"
+                },
+                {
+                    "id":             59,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL TOUTERELLE FACADE VERRE NOIR STRILLE",
+                    "ref":            "DORYA/1/9KW/C/T3",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "tourterelle"
+                },
+                {
+                    "id":             60,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL TOUTERELLE FACADE ACIER NOIR",
+                    "ref":            "DORYA/1/9KW/C/T4",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "tourterelle"
+                },
+                {
+                    "id":             61,
+                    "label":          "JOLLY MEC DORY ANGOLOPROFIL TOUTERELLE FACADE TOUTERELLE",
+                    "ref":            "DORYA/1/9KW/C/T5",
+                    "pu":             4780,
+                    "defaultPU":      4780,
+                    "descr":          "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
+                    "type":           "jm",
+                    "puissance":      9,
+                    "couleurProfile": "tourterelle"
+                }
+            ]
+        },
+        "fumisteries":     {
+            "selectedId": "1",
+            "products":   [
+                {
+                    "id":        1,
+                    "label":     "Fumisterie et accessoires de pose pour maison plein pied et plafond plat",
+                    "ref":       "RED/PLAFONDPLAT",
+                    "pu":        1790,
+                    "defaultPU": 1790,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125, Té 90° concentrique élément droit prise d’air, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
+                    "type":      "red"
+                },
+                {
+                    "id":        2,
+                    "label":     "Fumisterie et accessoires de pose pour maison plein pied et plafond rampant",
+                    "ref":       "RED/RAMPAN/80-5M",
+                    "pu":        1790,
+                    "defaultPU": 1790,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125,Té 90° concentrique élément droit prise d’air, élément droit prise d’air, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
+                    "type":      "red"
+                },
+                {
+                    "id":        3,
+                    "label":     "Fumisterie et accessoires de pose pour maison plein pied et plafond rampant",
+                    "ref":       "RED/RAMPAN/100+5M",
+                    "pu":        1990,
+                    "defaultPU": 1990,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 100/150, élément droit prise d’air, Té 90° concentrique élément droit prise d’air, plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
+                    "type":      "red"
+                },
+                {
+                    "id":        4,
+                    "label":     "Fumisterie et accessoires ventouse horizontale",
+                    "ref":       "RED/VENTOUZMURAL",
+                    "pu":        990,
+                    "defaultPU": 990,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125, Té 90° concentrique élément droit prise d’air, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal horizontal concentrique noir mat et rosace.",
+                    "type":      "red"
+                },
+                {
+                    "id":        5,
+                    "label":     "Fumisterie et accessoires de pose pour maison R+1 et plafond plat",
+                    "ref":       "RED/R+1/DIAMETR100",
+                    "pu":        2290,
+                    "defaultPU": 2290,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 100/150, Té 90° concentrique élément droit prise d’air, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
+                    "type":      "red"
+                },
+                {
+                    "id":        6,
+                    "label":     "Fumisterie et accessoires de pose pour maison reprise sur conduit existant.",
+                    "ref":       "RED/COND-EXIST-5M",
+                    "pu":        1100,
+                    "defaultPU": 1100,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125, Té 90° concentrique élément droit prise d’air, flexible pour conduit existant, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
+                    "type":      "red"
+                },
+                {
+                    "id":        7,
+                    "label":     "Fumisterie et accessoires de pose pour maison reprise sur conduit existant.",
+                    "ref":       "RED/COND-EXIST+5M",
+                    "pu":        1300,
+                    "defaultPU": 1300,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 100/150,Té 90° concentrique élément droit prise d’air, flexible pour conduis existant, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
+                    "type":      "red"
+                },
+                {
+                    "id":        8,
+                    "label":     "Fumisterie et accessoires de pose pour maison plein pied et plafond plat",
+                    "ref":       "JM/PLAFONDPLAT-5M",
+                    "pu":        1790,
+                    "defaultPU": 1790,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125, raccord concentrique, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
+                    "type":      "jm"
+                },
+                {
+                    "id":        9,
+                    "label":     "Fumisterie et accessoires de pose pour maison plein pied et plafond rampant",
+                    "ref":       "JM/RAMPANT/80-5M",
+                    "pu":        1790,
+                    "defaultPU": 1790,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125, élément droit prise d’air, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
+                    "type":      "jm"
+                },
+                {
+                    "id":        10,
+                    "label":     "Fumisterie et accessoires de pose pour maison plein pied et plafond rampant",
+                    "ref":       "JM/RAMPANT/100+5M",
+                    "pu":        1990,
+                    "defaultPU": 1990,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 100/150, élément droit prise d’air, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
+                    "type":      "jm"
+                },
+                {
+                    "id":        11,
+                    "label":     "Fumisterie et accessoires ventouse horizontale",
+                    "ref":       "JM/VENTOUZMURAL",
+                    "pu":        900,
+                    "defaultPU": 900,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125, élément droit prise d’air, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal horizontal concentrique noir mat et rosace.",
+                    "type":      "jm"
+                },
+                {
+                    "id":        12,
+                    "label":     "Fumisterie et accessoires de pose pour maison R+1 et plafond plat",
+                    "ref":       "JM/R+1/DIAMETRE100",
+                    "pu":        2290,
+                    "defaultPU": 2290,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 100/150, raccord concentrique, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
+                    "type":      "jm"
+                },
+                {
+                    "id":        13,
+                    "label":     "Fumisterie et accessoires de pose pour maison reprise sur conduit existant.",
+                    "ref":       "JM/COND-EXIST-5M",
+                    "pu":        1100,
+                    "defaultPU": 1100,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125,flexible pour conduis existant, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
+                    "type":      "jm"
+                },
+                {
+                    "id":        14,
+                    "label":     "Fumisterie et accessoires de pose pour maison reprise sur conduit existant.",
+                    "ref":       "JM/COND-EXIST+5M",
+                    "pu":        1300,
+                    "defaultPU": 1300,
+                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 100/150,flexible pour conduis existant, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
+                    "type":      "jm"
+                }
+            ]
+        },
+        "couleurProfile":  "blanc_creme",
+        "couleurFacade":   "gres_ivoire",
+        "marque":          "red",
+        "puissancePoele":  6,
+        "totalHT":         4480,
+        "totalTVA":        246.4,
+        "primeCEE":        "413.00",
+        "primeAnah":       "3000.00"
+    },
+    "settings":                 {
+        "ceeCoef": "6.6"
+    },
+    "type":                     "poele",
+    "version":                  "5",
+    "devisTemplate":            "devisPoele-v5.html",
+    "ficheTemplate":            "fichePoele-v5.html",
+    "ficheGenerator":           "poeleV3.xlsx",
+    "disablePrimeCEE":          false,
+    "disablePrimeMaprimerenov": false,
+    "enabledActionLogement":    false,
+    "avis":                     [
+        {
+            "uid":            "uXIpQbdZb",
+            "refAvis":        "2036A02699916",
+            "numFiscal":      "1562873023474",
+            "isbeneficiaire": true,
+            "datagouv":       {
+                "refAvis":   "2036A02699916",
+                "numFiscal": "1562873023474",
+                "loaded":    true,
+                "nom":       "JAILLET",
+                "prenom":    "THIERRY",
+                "adresse":   "31 RUE DE PIED FAVE",
+                "ville":     "36120 MARON",
+                "revenu":    27246,
+                "error":     false
+            },
+            "nom":            "JAILLET",
+            "prenom":         "THIERRY",
+            "adresse":        "31 RUE DE PIED FAVE",
+            "codepostal":     "36120",
+            "ville":          "MARON",
+            "revenu":         27246,
+            "civilite":       "M"
+        }
+    ],
+    "beneficiaire":             {
+        "civilite":   "M",
+        "nom":        "JAILLET",
+        "prenom":     "THIERRY",
+        "adresse":    "31 RUE DE PIED FAVE",
+        "codepostal": "36120",
+        "ville":      "MARON"
+    },
+    "email":                    "laouaria.asstito@wanadoo.fr",
+    "telfixe":                  "",
+    "telportable":              "06 07 01 52 29",
+    "codePrime":                "GP",
+    "zoneEnergetique":          "H2",
+    "tauxPrime":                31.3,
+    "logement":                 {
+        "occupants":         "4",
+        "chauffageType":     "electrique",
+        "batimentNature":    "",
+        "typeChaudiere":     "aucun",
+        "isAdresseBenef":    true,
+        "adresse":           "",
+        "codepostal":        "",
+        "ville":             "",
+        "parcelle":          "",
+        "superficie":        "36",
+        "dataGeoportail":    {},
+        "location":          "",
+        "moinsDe2Ans":       false,
+        "anneeConstruction": "1976",
+        "localType":         "maison_individuelle"
+    },
+    "fiche":                    {
+        "periodePose":                 "",
+        "generateur":                  "electrique",
+        "marque":                      "",
+        "modele":                      "",
+        "puissance":                   "",
+        "conduiteMateriau":            "",
+        "conduiteDiametre":            "",
+        "longueurTotal":               "",
+        "longeurProjection":           "",
+        "nbCoude90":                   "",
+        "nbCoude45":                   "",
+        "reductionSection":            false,
+        "etat":                        false,
+        "demontable":                  false,
+        "distanceSecurite":            "",
+        "conduitType":                 "maconne",
+        "conduitMateriauConstitutif":  "",
+        "plaqueSignaletique":          false,
+        "classeTemperature":           "",
+        "classePression":              "",
+        "resistanceCondansat":         "dry",
+        "resistanceCorrosion":         "no",
+        "resistanceFeu":               "",
+        "distanceSecuriteCombustible": "",
+        "presenceTrappe":              "no",
+        "hauteurTotal":                "",
+        "hauteurLocauxChauffe":        "",
+        "hauteurLocauxNonChauffe":     "",
+        "hauteurExterieur":            "",
+        "devoiement":                  false,
+        "distanceDevoiement":          "",
+        "conduitIsole":                false,
+        "sectionConduitLargeur":       "",
+        "sectionConduitLongeur":       "",
+        "sectionConduitDiametre":      "",
+        "deboucheSup40":               "no",
+        "obstacleInf8":                false,
+        "deboucheAccessible":          false,
+        "typeDebouche":                "nu",
+        "toiture":                     "pente_sup_15",
+        "pieceLogement":               "",
+        "pieceLongueur":               "",
+        "pieceLargeur":                "",
+        "pieceHauteur":                "",
+        "pieceSurface":                "",
+        "accesPorteLargeur":           "",
+        "accesPorteHauteur":           "",
+        "natureMur":                   "",
+        "natureSol":                   "",
+        "naturePlafond":               "",
+        "ameneeAir":                   false,
+        "priseElec":                   "",
+        "niveauHabitation":            "pp",
+        "typeChantier":                "neuf",
+        "infosSup":                    "RAS",
+        "escalier":                    false,
+        "escalierLargeur":             "",
+        "zoneInstallation":            "z1",
+        "creation":                    true
+    },
+    "baremes":                  [
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  14879
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  21760
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  26170
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  30572
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  34993
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  39405
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  43817
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  48229
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  52641
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  57053
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  61465
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  65877
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  70289
+                }
+            ],
+            "code":         "GP",
+            "primeCEE":     {
+                "H1": 38.2,
+                "H2": 31.3,
+                "H3": 20.9
+            }
+        },
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  19074
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  27896
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  33547
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  39192
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  44860
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  50511
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  56162
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  61813
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  67464
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  73115
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  78766
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  84417
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  90068
+                }
+            ],
+            "code":         "P",
+            "primeCEE":     {
+                "H1": 38.2,
+                "H2": 31.3,
+                "H3": 20.9
+            }
+        },
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  29148
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  42848
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  51592
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  60336
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  69081
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  77825
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  86569
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  95313
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  104057
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  112801
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  121545
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  130289
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  139033
+                }
+            ],
+            "code":         "IT",
+            "primeCEE":     {
+                "H1": 38.2,
+                "H2": 31.3,
+                "H3": 20.9
+            }
+        },
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  29148
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  42848
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  51592
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  60336
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  69081
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  77825
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  86569
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  95313
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  104057
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  112801
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  121545
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  130289
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  139033
+                }
+            ],
+            "code":         "CL",
+            "primeCEE":     {
+                "H1": 38.2,
+                "H2": 31.3,
+                "H3": 20.9
+            }
+        }
+    ],
+    "lists":                    {
+        "localType":         [
+            {
+                "maison_individuelle": "Maison individuelle"
+            },
+            {
+                "appartement": "Appartement"
+            }
+        ],
+        "qualiteIsolation":  [
+            {
+                "0.6": "0.6"
+            },
+            {
+                "0.65": "0.65"
+            },
+            {
+                "0.8": "0.8"
+            },
+            {
+                "0.9": "0.9"
+            },
+            {
+                "1": "1"
+            },
+            {
+                "1.1": "1.1"
+            },
+            {
+                "1.3": "1.3"
+            },
+            {
+                "1.5": "1.5"
+            }
+        ],
+        "statutMenageType":  [
+            {
+                "tres_bonifie": "Très bonfié"
+            },
+            {
+                "bonifie": "Bonfié"
+            },
+            {
+                "classique": "Classique"
+            },
+            {
+                "intermediaire": "Intermédiaire"
+            }
+        ],
+        "batimentNature":    [
+            {
+                "": "-"
+            },
+            {
+                "nouvelle_residence": "Nouvelle résidence principale"
+            },
+            {
+                "location": "Location"
+            },
+            {
+                "residence_secondaire": "Résidence secondaire"
+            }
+        ],
+        "niveauHabitation":  [
+            {
+                "pp": "Plein Pied"
+            },
+            {
+                "r1": "R+1"
+            },
+            {
+                "r2": "R+2"
+            },
+            {
+                "r3": "R+3"
+            },
+            {
+                "r4": "R+4"
+            },
+            {
+                "autre": "AUTRE"
+            }
+        ],
+        "typeChantier":      [
+            {
+                "neuf": "Neuf"
+            },
+            {
+                "reno": "Reno"
+            }
+        ],
+        "puissanceCompteur": [
+            3,
+            6,
+            9,
+            12,
+            18
+        ],
+        "generateur":        [
+            {
+                "electrique": "Electrique"
+            },
+            {
+                "fioul": "Fioul"
+            },
+            {
+                "gaz_naturel": "Gaz naturel"
+            },
+            {
+                "bois": "Bois"
+            },
+            {
+                "propane": "Propane"
+            }
+        ],
+        "conduitType":       [
+            {
+                "maconne": "Maconné"
+            },
+            {
+                "metallique": "Métallique"
+            },
+            {
+                "tube": "Tubé"
+            },
+            {
+                "chemise": "Chemisé"
+            }
+        ],
+        "resistance":        [
+            {
+                "dry": "D (dry)"
+            },
+            {
+                "wet": "W (wet)"
+            },
+            {
+                "dont_know": "Ne sais pas"
+            }
+        ],
+        "typeDebouche":      [
+            {
+                "nu": "Nu"
+            },
+            {
+                "mm": "Mitre-Mitron"
+            },
+            {
+                "ec": "Extracteur statique"
+            },
+            {
+                "ecm": "Extracteur stato-mécanique"
+            }
+        ],
+        "toiture":           [
+            {
+                "pente_sup_15": "Pente > 15°"
+            },
+            {
+                "pente_inf_15": "Pente < 15°"
+            },
+            {
+                "terrasse": "Toiture terrasse"
+            }
+        ],
+        "yON":               [
+            {
+                "yes": "Oui"
+            },
+            {
+                "no": "Non"
+            },
+            {
+                "dontKnow": "Ne sais pas"
+            }
+        ],
+        "couleurProfile":    [
+            {
+                "blanc_creme": "Blanc crème"
+            },
+            {
+                "noir": "Noir"
+            },
+            {
+                "tourterelle": "Tourterelle"
+            }
+        ],
+        "couleurFacade":     [
+            {
+                "gres_ivoire": "Gres ivoire"
+            },
+            {
+                "gres_rouille": "Gres rouille"
+            },
+            {
+                "verre_noir_strille": "Verre noir strille"
+            },
+            {
+                "acier_noir": "Acier Noir"
+            },
+            {
+                "pierre_ollaire": "Pierre ollaire"
+            },
+            {
+                "tourterelle": "Tourterelle"
+            }
+        ],
+        "puissancePoele":    [
+            {
+                "6": 6
+            },
+            {
+                "8": 8
+            },
+            {
+                "9": 9
+            },
+            {
+                "10": 10
+            }
+        ],
+        "zoneInstallation":  [
+            {
+                "z1": "Zone 1"
+            },
+            {
+                "z2": "Zone 2"
+            },
+            {
+                "z3": "Zone 3"
+            }
+        ],
+        "typeOrigine":       [
+            {
+                "telephone": "Téléphone"
+            },
+            {
+                "internet": "Internet"
+            },
+            {
+                "presse": "Presse"
+            },
+            {
+                "campagne-google": "Campagne Google"
+            },
+            {
+                "autre": "Autre"
+            },
+            {
+                "hello-watt": "hello watt"
+            },
+            {
+                "angelique": "Angélique"
+            }
+        ]
+    },
+    "attestationTvaSimplifiee": "attestationTvaSimplifiee.html",
+    "cerfaMandat":              "cerfa-mandat.html",
+    "cadreContribution":        "CC_BAR.html",
+    "zoneMontant":              {
+        "H1": 38.2,
+        "H2": 31.3,
+        "H3": 20.9
+    },
+    "ref":                      "JT11-20211006T1139-PO",
+    "folderName":               "JT11-20211006T1139-PO (JAILLET THIERRY)",
+    "createdAt":                "2021-10-06T11:39:29.697",
+    "statutInDCI":              2,
+    "statutInDCIErrors":        [
+        1,
+        2,
+        7,
+        4,
+        6
+    ],
+    "technicien":               {
+        "nom":    "Jeremy",
+        "prenom": "Thomas",
+        "id":     11,
+        "tel":    "0645118070"
+    },
+    "updatedAt":                "2021-10-06T11:49:47.650"
+}

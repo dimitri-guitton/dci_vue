@@ -1,0 +1,837 @@
+{
+    "disablePrime":             false,
+    "devis":                    {
+        "noPrimeUseCode":  "CL",
+        "pose":            2.5,
+        "overridePose":    2.5,
+        "tva":             5.5,
+        "origine":         "ANGEL",
+        "dateVisiteTech":  "2021-10-01",
+        "delaisExecution": "2022-01-01",
+        "calcul0PU":       0,
+        "options":         [
+            {
+                "id":    1,
+                "label": "Forfait accessoire nécessaire à la pose, au raccordement de l’installation",
+                "unit":  "u",
+                "value": 1,
+                "pu":    {
+                    "default": 100,
+                    "value":   100
+                }
+            },
+            {
+                "id":    2,
+                "label": "Forfait pose ( Pose nouvel appareil, mise en service)",
+                "unit":  "u",
+                "value": 1,
+                "pu":    {
+                    "default": 350,
+                    "value":   350
+                }
+            },
+            {
+                "id":    3,
+                "label": "Raccordement extérieur par chapeau de toiture",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "default": 100,
+                    "value":   100
+                }
+            },
+            {
+                "id":    4,
+                "label": "Raccordement extérieur mural",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "default": 100,
+                    "value":   100
+                }
+            }
+        ],
+        "blankOptions":    [
+            {
+                "id":    "sup1",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            },
+            {
+                "id":    "sup2",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            }
+        ],
+        "commentaires":    "",
+        "partner":         "VTE",
+        "texte1":          {
+            "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
+            "text":  "Les travaux prévus dans ce devis peuvent être conditionnels à un dépôt de déclaration préalable de travaux. Il revient au maître d'ouvrage (le client) d'en faire lui-même la demande.\r\nLa TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.\r\n\r\nLes travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique.\r\n\r\n* « Dans le cas où l'aide notifiée au client est inférieure au montant de l'aide prévisionnelle, l'usager n'est pas lié par le devis et l'entreprise s'engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d'une durée de quatorze jours à partir de la date de présentation du devis rectificatif.L'aide MaPrimeRénov' est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire. En cas de fausse déclaration, de manœuvre frauduleuse ou de changement du projet de travaux subventionnés, le bénéficiaire s'expose au retrait et reversement de tout ou partie de l'aide. Les services de l'Anah pourront faire procéder à tout contrôle des engagements et sanctionner le bénéficiaire et son mandataire éventuel des manquements constatés »."
+        },
+        "texte2":          {
+            "title": null,
+            "text":  null
+        },
+        "texte3":          {
+            "title": "AIDE A LA RENOVATION ÉNERGÉTIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
+            "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
+        },
+        "chauffeEau":      {
+            "selectedId": "3",
+            "products":   [
+                {
+                    "id":        1,
+                    "label":     "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
+                    "ref":       "CETACMO200",
+                    "pu":        2578,
+                    "defaultPU": 2578,
+                    "descr":     "Capacité: 200L MONOBLOC\r\nDimensions HxLxP: 1689*602*691\r\nPuissance acoustique: 50 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c\r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\n\r\nFonctionne sur air ambiant si volume de la pièce> 20M3",
+                    "size":      "HxLxP: 1689*602*691",
+                    "type":      "mono"
+                },
+                {
+                    "id":        2,
+                    "label":     "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 250L",
+                    "ref":       "CETACMO250",
+                    "pu":        2675,
+                    "defaultPU": 2675,
+                    "descr":     "Capacité: 250L MONOBLOC\r\nDimensions HxLxP: 1929*602*691\r\nPuissance acoustique: 50 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c \r\nAppoint électrique: 1800W\r\nCOP: 3,12 – Profil de soutirage : L\r\nClasse energetique: A+\r\n\r\nFonctionne sur air ambiant si volume de la pièce> 20M3",
+                    "size":      "HxLxP: 1929*602*691",
+                    "type":      "mono"
+                },
+                {
+                    "id":        3,
+                    "label":     "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
+                    "ref":       "CETACSP200",
+                    "pu":        2456,
+                    "defaultPU": 2456,
+                    "descr":     "Capacité: 200L SPLIT\r\nDimensions HxLxP: 1267*588*603mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
+                    "size":      "HxLxP: 1267*588*60",
+                    "type":      "split"
+                },
+                {
+                    "id":        4,
+                    "label":     "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 270L",
+                    "ref":       "CETACSP270",
+                    "pu":        2666,
+                    "defaultPU": 2666,
+                    "descr":     "Capacité: 270L SPLIT\r\nDimensions HxLxP: 1600*588*652mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c  \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L pour une efficacité énergétique de 124%\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
+                    "size":      "HxLxP: 1600*588*652",
+                    "type":      "split"
+                }
+            ]
+        },
+        "totalHT":         2906,
+        "totalTVA":        159.83,
+        "primeAnah":       1200
+    },
+    "settings":                 {
+        "ceeCoef": "6.6"
+    },
+    "type":                     "cet",
+    "version":                  "5",
+    "devisTemplate":            "devisCet-v5.html",
+    "ficheTemplate":            "ficheCet-v5.html",
+    "ficheGenerator":           "cetV3.xlsx",
+    "disablePrimeCEE":          false,
+    "disablePrimeMaprimerenov": false,
+    "enabledActionLogement":    false,
+    "avis":                     [
+        {
+            "uid":            "CypsAx8ze",
+            "refAvis":        "2039A11448488",
+            "numFiscal":      "1585668444185",
+            "isbeneficiaire": true,
+            "datagouv":       {
+                "refAvis":   "2039A11448488",
+                "numFiscal": "1585668444185",
+                "loaded":    true,
+                "nom":       "RAYMOND",
+                "prenom":    "JEAN JACQUES",
+                "adresse":   "19 AV HENRI GRENAT",
+                "ville":     "39000 LONS LE SAUNIER",
+                "revenu":    19858,
+                "error":     false
+            },
+            "civilite":       "M",
+            "nom":            "RAYMOND",
+            "prenom":         "JEAN JACQUES",
+            "adresse":        "12 ROUTE DE LA CHATRE LIEU DIT CHASSIGNIERES",
+            "codepostal":     "36230",
+            "ville":          "MONTIPOURET",
+            "revenu":         "19858"
+        }
+    ],
+    "beneficiaire":             {
+        "civilite":   "M",
+        "nom":        "RAYMOND",
+        "prenom":     "JEAN JACQUES",
+        "adresse":    "12 ROUTE DE LA CHATRE LIEU DIT CHASSIGNIERES",
+        "codepostal": "36230",
+        "ville":      "MONTIPOURET"
+    },
+    "email":                    "",
+    "telfixe":                  "",
+    "telportable":              "06 28 32 83 69",
+    "codePrime":                "GP",
+    "zoneEnergetique":          "H2",
+    "tauxPrime":                "206.00",
+    "logement":                 {
+        "occupants":         "2",
+        "chauffageType":     "combustible",
+        "batimentNature":    "",
+        "typeChaudiere":     "aucun",
+        "isAdresseBenef":    true,
+        "adresse":           "328 chassignieres",
+        "codepostal":        "36230",
+        "ville":             "Montipouret",
+        "parcelle":          "000 / 0C / 1092",
+        "superficie":        "",
+        "dataGeoportail":    {
+            "zoom":       19,
+            "center":     [
+                1.9025220744459985,
+                46.636811250885785
+            ],
+            "position":   [
+                1.9021166861057277,
+                46.636677695942126
+            ],
+            "codepostal": "36230",
+            "ville":      "Montipouret",
+            "adresse":    "328 chassignieres",
+            "parcelle":   "000 / 0C / 1092"
+        },
+        "location":          "",
+        "moinsDe2Ans":       false,
+        "anneeConstruction": "1980",
+        "localType":         "maison_individuelle"
+    },
+    "fiche":                    {
+        "periodePose":             "",
+        "niveauHabitation":        "pp",
+        "typeChantier":            "reno",
+        "disjoncteur":             false,
+        "tensionDisponible":       "triphase",
+        "distanceCompteurCet":     "10",
+        "natureMurExt":            "beton",
+        "naturePlafond":           "placo",
+        "visiteComble":            false,
+        "chantierHabite":          false,
+        "grandeEchelle":           false,
+        "demandeVoirie":           false,
+        "puissanceCompteur":       6,
+        "accesComble":             "trappe",
+        "rueEtroite":              false,
+        "typeCouverture":          "mecanique",
+        "etatToiture":             "propre",
+        "typeCharpente":           "metal",
+        "nbrCompartementComble":   1,
+        "presenceVolige":          false,
+        "nbrAccesComble":          1,
+        "typeRadiateur":           "alu",
+        "emplacementCetExistante": "PLACARD COULOIR",
+        "emplacementCetNew":       "PLACARD COULOIR",
+        "aspirationType":          "none",
+        "ballonFixeMur":           false,
+        "uniteExtFixeMur":         false,
+        "distanceBallonUnitExt":   "10",
+        "infosSup":                "ATTENTION PLAFOND FISSURER\nCLIENT DOIT PASSER EN MONOPHASE ET 60A EN DIFFRENTIEL\nMAISON PHOENIX"
+    },
+    "baremes":                  [
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  14879
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  21760
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  26170
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  30572
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  34993
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  39405
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  43817
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  48229
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  52641
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  57053
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  61465
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  65877
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  70289
+                }
+            ],
+            "code":         "GP",
+            "primeCEE":     {
+                "H1": {
+                    "appartement":         157.08,
+                    "maison_individuelle": 205.92
+                },
+                "H2": {
+                    "appartement":         157.08,
+                    "maison_individuelle": 205.92
+                },
+                "H3": {
+                    "appartement":         157.08,
+                    "maison_individuelle": 205.92
+                }
+            }
+        },
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  19074
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  27896
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  33547
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  39192
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  44860
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  50511
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  56162
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  61813
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  67464
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  73115
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  78766
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  84417
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  90068
+                }
+            ],
+            "code":         "P",
+            "primeCEE":     {
+                "H1": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                },
+                "H2": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                },
+                "H3": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                }
+            }
+        },
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  29148
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  42848
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  51592
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  60336
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  69081
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  77825
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  86569
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  95313
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  104057
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  112801
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  121545
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  130289
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  139033
+                }
+            ],
+            "code":         "IT",
+            "primeCEE":     {
+                "H1": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                },
+                "H2": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                },
+                "H3": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                }
+            }
+        },
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  29148
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  42848
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  51592
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  60336
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  69081
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  77825
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  86569
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  95313
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  104057
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  112801
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  121545
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  130289
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  139033
+                }
+            ],
+            "code":         "CL",
+            "primeCEE":     {
+                "H1": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                },
+                "H2": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                },
+                "H3": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                }
+            }
+        }
+    ],
+    "lists":                    {
+        "localType":         [
+            {
+                "maison_individuelle": "Maison individuelle"
+            },
+            {
+                "appartement": "Appartement"
+            }
+        ],
+        "qualiteIsolation":  [
+            {
+                "0.6": "0.6"
+            },
+            {
+                "0.65": "0.65"
+            },
+            {
+                "0.8": "0.8"
+            },
+            {
+                "0.9": "0.9"
+            },
+            {
+                "1": "1"
+            },
+            {
+                "1.1": "1.1"
+            },
+            {
+                "1.3": "1.3"
+            },
+            {
+                "1.5": "1.5"
+            }
+        ],
+        "statutMenageType":  [
+            {
+                "tres_bonifie": "Très bonfié"
+            },
+            {
+                "bonifie": "Bonfié"
+            },
+            {
+                "classique": "Classique"
+            },
+            {
+                "intermediaire": "Intermédiaire"
+            }
+        ],
+        "batimentNature":    [
+            {
+                "": "-"
+            },
+            {
+                "nouvelle_residence": "Nouvelle résidence principale"
+            },
+            {
+                "location": "Location"
+            },
+            {
+                "residence_secondaire": "Résidence secondaire"
+            }
+        ],
+        "naturePlafond":     [
+            {
+                "brique": "Brique"
+            },
+            {
+                "placo": "Placo"
+            },
+            {
+                "bois": "Bois"
+            },
+            {
+                "beton": "Béton"
+            }
+        ],
+        "niveauHabitation":  [
+            {
+                "pp": "Plein Pied"
+            },
+            {
+                "r1": "R+1"
+            },
+            {
+                "r2": "R+2"
+            },
+            {
+                "r3": "R+3"
+            },
+            {
+                "r4": "R+4"
+            },
+            {
+                "autre": "AUTRE"
+            }
+        ],
+        "typeChantier":      [
+            {
+                "neuf": "Neuf"
+            },
+            {
+                "reno": "Reno"
+            }
+        ],
+        "accesComble":       [
+            {
+                "trappe": "TRAPPE"
+            },
+            {
+                "toit": "TOITURE"
+            },
+            {
+                "trappe_et_toit": "TRAPPE et TOITURE"
+            }
+        ],
+        "typeCouverture":    [
+            {
+                "meca": "Mecanique"
+            },
+            {
+                "tige_bottes": "Tiges de bottes"
+            },
+            {
+                "ardoise": "Ardoise"
+            },
+            {
+                "tuiles_plates": "Tuiles plates"
+            },
+            {
+                "tuiles_courbes": "Tuiles courbes"
+            }
+        ],
+        "typeCharpente":     [
+            {
+                "trad": "Traditionnelle"
+            },
+            {
+                "ferm": "Fermettes"
+            },
+            {
+                "metal": "Metallique"
+            },
+            {
+                "autre": "Autre"
+            }
+        ],
+        "etatToiture":       [
+            {
+                "propre": "Propre"
+            },
+            {
+                "mousse_faible": "Mousse en petite quantité"
+            },
+            {
+                "mousse_important": "Mousse importante"
+            }
+        ],
+        "puissanceCompteur": [
+            3,
+            6,
+            9,
+            12,
+            18
+        ],
+        "natureMurExt":      [
+            {
+                "parpaing": "Parpaing"
+            },
+            {
+                "brique": "Brique"
+            },
+            {
+                "beton": "Béton"
+            },
+            {
+                "pierre": "Pierre"
+            },
+            {
+                "bois": "Bois"
+            }
+        ],
+        "chauffageType":     [
+            {
+                "electrique": "Electrique"
+            },
+            {
+                "combustible": "Combustible"
+            }
+        ],
+        "tensionDisponible": [
+            {
+                "monophase": "Monophasé"
+            },
+            {
+                "triphase": "Triphasé"
+            }
+        ],
+        "aspirationType":    [
+            {
+                "none": "Sélectionnez un type d'installation"
+            },
+            {
+                "aspiration_extraction_gainee": "Aspiration et extraction gainées jusqu'au toit (tuiles à douilles)"
+            },
+            {
+                "aspiration_piece": "Aspiration dans la pièce (au moins 20m3) et extraction par le toit (tuile à douille)"
+            },
+            {
+                "aspiration_extraction_piece": "Aspiration et extraction dans la pièce (au moins 20m3)"
+            }
+        ],
+        "typeOrigine":       [
+            {
+                "telephone": "Téléphone"
+            },
+            {
+                "internet": "Internet"
+            },
+            {
+                "presse": "Presse"
+            },
+            {
+                "campagne-google": "Campagne Google"
+            },
+            {
+                "autre": "Autre"
+            },
+            {
+                "hello-watt": "hello watt"
+            },
+            {
+                "angelique": "Angélique"
+            }
+        ]
+    },
+    "attestationTvaSimplifiee": "attestationTvaSimplifiee.html",
+    "cerfaMandat":              "cerfa-mandat.html",
+    "ref":                      "JT11-20211001T0957-CE",
+    "folderName":               "JT11-20211001T0957-CE (RAYMOND JEAN)",
+    "createdAt":                "2021-10-01T09:57:32.594",
+    "statutInDCI":              2,
+    "statutInDCIErrors":        [
+        1,
+        2
+    ],
+    "technicien":               {
+        "nom":    "Jeremy",
+        "prenom": "Thomas",
+        "id":     11,
+        "tel":    "0645118070"
+    },
+    "updatedAt":                "2021-10-07T11:45:54.626"
+}

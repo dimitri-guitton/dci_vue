@@ -1,0 +1,722 @@
+{
+    "disablePrime":             false,
+    "devis":                    {
+        "noPrimeUseCode":  "CL",
+        "pose":            2.5,
+        "tva":             5.5,
+        "origine":         "ANGEL",
+        "dateVisiteTech":  "2021-02-17",
+        "delaisExecution": "2021-05-17",
+        "calcul0PU":       0,
+        "options":         [
+            {
+                "id":    51,
+                "label": "Préparation chantier (protection si nécessaire)",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "default": 0,
+                    "value":   0
+                }
+            },
+            {
+                "id":    52,
+                "label": "Si Jetspray : Mise en place d'un nergalto (uniquement si support bois)",
+                "unit":  "u",
+                "value": "34",
+                "pu":    {
+                    "default": 15,
+                    "value":   15
+                }
+            },
+            {
+                "id":    53,
+                "label": "Si Jetspray : Passage du primaire d'accroche Jetspray primer",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "default": 0,
+                    "value":   0
+                }
+            }
+        ],
+        "isolants":        {
+            "selectedId": 2,
+            "products":   [
+                {
+                    "id":        2,
+                    "label":     "Isolation par projection pneumatique de laine minérale de marque KNAUF INSULATION – JETSPRAY THERMAL",
+                    "ref":       "Laine minérale de verre Jet Spray R = 3m².K/W",
+                    "pu":        32.5,
+                    "plusValue": 0,
+                    "defaultPU": 32.5,
+                    "descr":     "- Certification ACERMI : 15/016/1050/1\r\n\r\n            - Résistance thermique : 3,05 m².k/w\r\n\r\n            - Épaisseur mini (mm) : 110\r\n\r\n            - Masse volumique : 52 kg / m3\r\n\r\n            - Classement au feu : A1 Euroclasse\r\n\r\n            - Qualité de l'air intérieur : A+ Médaille d'or eurofins\r\n\r\n\r\n            - Nivellement de la surface",
+                    "calcul0":   false
+                },
+                {
+                    "id":        6,
+                    "label":     "Isolation thermique du plancher bas par Panneaux isolants de marque ST GOBAIN PLACO Terradall Portée",
+                    "ref":       "Panneau polystyrène TERRADALL PORTE IGNI R=3m².K/W",
+                    "pu":        32.5,
+                    "plusValue": 0,
+                    "defaultPU": 32.5,
+                    "descr":     "- Panneaux polystyrène expansé 1\r\n            - conductivité thermique 0,038 mW/m.k\r\n            - Certifié ACERMI 10/081/617\r\n            - Produit 100% Recyclable\r\n            - Resistance thermique :3 m².k/w\r\n            - Epaisseur mini 'mm) : 115\r\n            Pose collée ou chevillée",
+                    "calcul0":   false
+                }
+            ]
+        },
+        "blankOptions":    [
+            {
+                "id":    "sup1",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            },
+            {
+                "id":    "sup2",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            }
+        ],
+        "commentaires":    "",
+        "texte1":          {
+            "title": "Les travaux prévus dans ce devis concernent l'isolation d'un plancher bas",
+            "text":  "Nous vous informons qu’en exécution du mandat signé en date du 01/11/2018 avec Total Marketing France, agissant en sa qualité d’obligé au sens de la réglementation sur les certificats d’économies d’énergie, nous nous sommes engagés à vous reverser un soutien (subvention) d’un montant de {{prime}} €\r\nCe soutien pourra, selon la modalité de paiement que vous préférerez en cochant l’une des options suivantes* : \r\n◻ Vous être versé directement ; \r\n⊠ Vous être déduit du montant dont vous nous êtes redevable au titre des travaux réalisés en application du présent devis. ...\r\nLa TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans. Réalisation du chantier : France Menuisiers 43346499700157 RGE qualibat N°E-E93378"
+        },
+        "texte2":          {
+            "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Total",
+            "text":  "Les travaux ou prestations objet du présent document donneront lieu à une contribution financière de Total Marketing France (TMF), versée par TMF dans le cadre de son rôle incitatif sous forme de prime, directement ou via son (ses) mandataire(s), sous réserve de l’engagement de fournir exclusivement à TMF les documents nécessaires à la valorisation des opérations au titre du dispositif des Certificats d’Économies d’Énergie et sous réserve de la validation de l’éligibilité du dossier par TMF puis par l’autorité administrative compétente. Le montant de cette contribution financière, hors champ d’application de la TVA,  est susceptible de varier en fonction des travaux effectivement réalisés et de la valorisation des CEE concernés au moment de l’établissement de la facture et est estimé à :  {{prime}} €"
+        },
+        "texte3":          {
+            "title": "AIDE A LA RENOVATION ENERGETIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
+            "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
+        },
+        "totalHT":         1805,
+        "totalTVA":        99.275
+    },
+    "settings":                 {
+        "roCeeCoef": "7.3"
+    },
+    "type":                     "sol",
+    "version":                  "3",
+    "devisTemplate":            "devisTpl-v3.html",
+    "ficheTemplate":            "ficheSolTpl-v3.html",
+    "ficheGenerator":           "solV3.xlsx",
+    "disablePrimeCEE":          false,
+    "disablePrimeMaprimerenov": false,
+    "enabledActionLogement":    false,
+    "avis":                     [
+        {
+            "uid":            "aZ-FL7PBc",
+            "refAvis":        "2087A13656564",
+            "numFiscal":      "1189014087380",
+            "isbeneficiaire": true,
+            "datagouv":       {
+                "refAvis":   "2087A13656564",
+                "numFiscal": "1189014087380",
+                "loaded":    true,
+                "nom":       "BOIJOUX",
+                "prenom":    "SOLANGE",
+                "adresse":   "7 RUE PIERRE DE COUBERTIN",
+                "ville":     "87420 ST VICTURNIEN",
+                "revenu":    6749,
+                "error":     false
+            },
+            "nom":            "BOIJOUX",
+            "prenom":         "SOLANGE",
+            "adresse":        "7 RUE PIERRE DE COUBERTIN",
+            "codepostal":     "87420",
+            "ville":          "ST VICTURNIEN",
+            "revenu":         6749,
+            "civilite":       "Mme"
+        }
+    ],
+    "beneficiaire":             {
+        "civilite":   "Mme",
+        "nom":        "BOIJOUX",
+        "prenom":     "SOLANGE",
+        "adresse":    "7 RUE PIERRE DE COUBERTIN",
+        "codepostal": "87420",
+        "ville":      "ST VICTURNIEN"
+    },
+    "email":                    "",
+    "telfixe":                  "",
+    "telportable":              "06.28.29.96.18",
+    "codePrime":                "GP",
+    "zoneEnergetique":          "H1",
+    "tauxPrime":                26.28,
+    "logement":                 {
+        "occupants":      1,
+        "batimentType":   "residentiel",
+        "chauffageType":  "combustible",
+        "batimentNature": "",
+        "typeChaudiere":  "aucun",
+        "isAdresseBenef": true,
+        "adresse":        "7 r pierre de coubertin",
+        "codepostal":     "87420",
+        "ville":          "Saint-Victurnien",
+        "parcelle":       "000 / AD / 0023",
+        "superficie":     "37",
+        "dataGeoportail": {
+            "zoom":       19,
+            "center":     [
+                1.005923,
+                45.87810400000001
+            ],
+            "position":   [
+                1.0057809055833786,
+                45.87803039242806
+            ],
+            "codepostal": "87420",
+            "ville":      "Saint-Victurnien",
+            "adresse":    "7 r pierre de coubertin",
+            "parcelle":   "000 / AD / 0023"
+        },
+        "location":       "",
+        "moinsDe2Ans":    false
+    },
+    "fiche":                    {
+        "epaisseurProduit":        "115 mm",
+        "accesCamion":             "facile",
+        "distCamion":              0,
+        "hautPlafond":             "1.6",
+        "support":                 "bois",
+        "distPointEau":            "",
+        "resistTherm":             "3",
+        "dimensionsPieces":        [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "isolationExistante":      false,
+        "niveauHabitation":        "r1",
+        "habitationSurLocalFroid": true,
+        "videSanitaire":           false,
+        "terrePlein":              true,
+        "reseauPlafond":           false,
+        "luminairesPlafond":       false,
+        "distancePortesPalfond":   [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "porteGarage":             "",
+        "nbrPorteGarage":          "",
+        "infosSup":                "RAS",
+        "periodePose":             ""
+    },
+    "baremes":                  [
+        {
+            "code":         "CL",
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  19074
+                },
+                {
+                    "nbre": 2,
+                    "min":  27896
+                },
+                {
+                    "nbre": 3,
+                    "min":  33547
+                },
+                {
+                    "nbre": 4,
+                    "min":  39192
+                },
+                {
+                    "nbre": 5,
+                    "min":  44860
+                },
+                {
+                    "nbre": 6,
+                    "min":  50511
+                },
+                {
+                    "nbre": 7,
+                    "min":  56162
+                },
+                {
+                    "nbre": 8,
+                    "min":  61813
+                },
+                {
+                    "nbre": 9,
+                    "min":  67464
+                },
+                {
+                    "nbre": 10,
+                    "min":  73115
+                }
+            ],
+            "primeCEE":     {
+                "H1": {
+                    "electrique":  13.14,
+                    "combustible": 13.14
+                },
+                "H2": {
+                    "electrique":  13.14,
+                    "combustible": 13.14
+                },
+                "H3": {
+                    "electrique":  13.14,
+                    "combustible": 13.14
+                }
+            }
+        },
+        {
+            "code":         "GP",
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  19074
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  27896
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  33547
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  39192
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  44860
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  50511
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  56162
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  61813
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  67464
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  73115
+                }
+            ],
+            "primeCEE":     {
+                "H1": {
+                    "electrique":  26.28,
+                    "combustible": 26.28
+                },
+                "H2": {
+                    "electrique":  26.28,
+                    "combustible": 26.28
+                },
+                "H3": {
+                    "electrique":  26.28,
+                    "combustible": 26.28
+                }
+            }
+        },
+        {
+            "code":         "PACCL",
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  29148
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  42848
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  51592
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  60336
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  69081
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  77825
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  86569
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  95313
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  104057
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  112801
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  121545
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  130289
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  139033
+                }
+            ],
+            "primeCEE":     []
+        },
+        {
+            "code":         "PACGP",
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  14879
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  21760
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  26170
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  30572
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  34993
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  39405
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  43817
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  48229
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  52641
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  57053
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  61465
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  65877
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  70289
+                }
+            ],
+            "primeCEE":     []
+        },
+        {
+            "code":         "PACIT",
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  29148
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  42848
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  51592
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  60336
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  69081
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  77825
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  86569
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  95313
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  104057
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  112801
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  121545
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  130289
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  139033
+                }
+            ],
+            "primeCEE":     []
+        },
+        {
+            "code":         "PACP",
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  19074
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  27896
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  33547
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  39192
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  44860
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  50511
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  56162
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  61813
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  67464
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  73115
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  78766
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  84417
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  90068
+                }
+            ],
+            "primeCEE":     []
+        }
+    ],
+    "lists":                    {
+        "batimentType":     [
+            {
+                "residentiel": "Résidentiel"
+            },
+            {
+                "tertiaire": "Tertiaire"
+            },
+            {
+                "santé": "Santé"
+            }
+        ],
+        "chauffageType":    [
+            {
+                "electrique": "Electrique"
+            },
+            {
+                "combustible": "Combustible"
+            }
+        ],
+        "batimentNature":   [
+            {
+                "": "-"
+            },
+            {
+                "nouvelle_residence": "Nouvelle résidence principale"
+            },
+            {
+                "location": "Location"
+            },
+            {
+                "residence_secondaire": "Résidence secondaire"
+            }
+        ],
+        "niveauHabitation": [
+            {
+                "pp": "Plein pied"
+            },
+            {
+                "r1": "R+1"
+            },
+            {
+                "r2": "R+2"
+            }
+        ],
+        "porteGarage":      [
+            {
+                "": "non"
+            },
+            {
+                "sectionnelle": "sectionnelle"
+            },
+            {
+                "coulissante": "coulissante"
+            }
+        ],
+        "accesCamion":      [
+            {
+                "facile": "Facile"
+            },
+            {
+                "difficile": "Difficile"
+            }
+        ],
+        "support":          [
+            {
+                "bois": "Bois"
+            },
+            {
+                "brique": "Brique"
+            },
+            {
+                "beton": "Béton"
+            },
+            {
+                "hourdis": "Hourdis"
+            }
+        ]
+    },
+    "ref":                      "LP8-20210217T1405-SO",
+    "folderName":               "LP8-20210217T1405-SO (BOIJOUX SOLANGE)",
+    "createdAt":                "2021-02-17T14:05:13.215",
+    "statutInDCI":              1,
+    "statutInDCIErrors":        [],
+    "technicien":               {
+        "nom":    "Ludovic",
+        "prenom": "Poupard",
+        "id":     8,
+        "tel":    "0685051968"
+    },
+    "updatedAt":                "2021-02-17T15:50:45.506"
+}
