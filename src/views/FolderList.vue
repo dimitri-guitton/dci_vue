@@ -96,7 +96,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 import NewFolderModal from '@/components/DCI/modals/NewFolderModal.vue';
-import * as folderService from '../services/folderService';
+import * as folderService from '../services/folder/folderService';
 // import KTDatatable from '@/components/kt-datatable/KTDatatable.vue';
 import FolderItem from '@/types/FolderItem';
 import {

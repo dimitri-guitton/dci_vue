@@ -1,0 +1,1621 @@
+{
+    "version":                   "5",
+    "type":                      "pac",
+    "ref":                       "JT11-20211006T1109-PA_RR",
+    "folderName":                "JT11-20211006T1109-PA_RR (JAILLET THIERRY)",
+    "createdAt":                 "2021-10-06T11:09:50.885",
+    "updatedAt":                 "2021-10-06T11:19:27.515",
+    "settings":                  {
+        "ceeCoef": "6.6"
+    },
+    "devisTemplate":             "devisRoTpl-v5.html",
+    "workSheetTemplate":         "ficheRoTpl-v5.html",
+    "disabledBonus":             false,
+    "disabledCeeBonus":          false,
+    "enabledHousingAction":      false,
+    "disabledMaPrimeRenovBonus": false,
+    "assent":                    [
+        {
+            "uid":            "gL7GbaAmp",
+            "refAvis":        "2036A02699916",
+            "numFiscal":      "1562873023474",
+            "isbeneficiaire": true,
+            "datagouv":       {
+                "refAvis":   "2036A02699916",
+                "numFiscal": "1562873023474",
+                "loaded":    true,
+                "nom":       "JAILLET",
+                "prenom":    "THIERRY",
+                "adresse":   "31 RUE DE PIED FAVE",
+                "ville":     "36120 MARON",
+                "revenu":    27246,
+                "error":     false
+            },
+            "nom":            "JAILLET",
+            "prenom":         "THIERRY",
+            "adresse":        "31 RUE DE PIED FAVE",
+            "codepostal":     "36120",
+            "ville":          "MARON",
+            "revenu":         27246,
+            "civilite":       "M"
+        }
+    ],
+    "beneficiary":               {
+        "civility":  "M",
+        "lastName":  "JAILLET",
+        "firstName": "THIERRY",
+        "address":   "31 RUE DE PIED FAVE",
+        "zipCode":   "36120",
+        "city":      "MARON",
+        "email":     "laouaria.asstito@wanadoo.fr",
+        "phone":     "",
+        "mobile":    "06 07 01 52 29"
+    },
+    "codeBonus":                 "GP",
+    "energyZone":                "H2",
+    "bonusRate":                 20,
+    "housing":                   {
+        "nbOccupant":        "4",
+        "type":              "maison_individuelle",
+        "isAddressBenef":    true,
+        "addresse":          "",
+        "zipCode":           "",
+        "city":              "",
+        "plot":              "",
+        "area":              "25",
+        "dataGeoportail":    {},
+        "location":          "",
+        "insulationQuality": "0.9",
+        "constructionYear":  "",
+        "lessThan2Years":    false,
+        "availableVoltage":  "monophase"
+    },
+    "workSheet":                 {
+        "period":                    "",
+        "niveauHabitation":          "pp",
+        "typeChantier":              "neuf",
+        "disjoncteur":               false,
+        "distanceCompteurPac":       0,
+        "natureMurExt":              "parpaing",
+        "naturePlafond":             "brique",
+        "visiteComble":              false,
+        "chantierHabite":            false,
+        "grandeEchelle":             false,
+        "demandeVoirie":             false,
+        "puissanceCompteur":         6,
+        "accesComble":               "trappe",
+        "rueEtroite":                false,
+        "typeCouverture":            "mecanique",
+        "etatToiture":               "propre",
+        "typeCharpente":             "traditionnelle",
+        "nbCompartimentComble":      1,
+        "presenceVolige":            false,
+        "nbAccesComble":             1,
+        "distanceGpExtUnitInt":      0,
+        "nbTotalRadiateur":          1,
+        "nbRadiateurThermostatique": 1,
+        "typeRadiateur":             "alu",
+        "positionEauChaude":         "sol",
+        "hauteurDuSol":              1,
+        "espaceSolRequisUnitInt":    false,
+        "hauteurRequiseUnitInt":     false,
+        "emplacementSplit1":         "",
+        "emplacementSplit2":         "",
+        "emplacementSplit3":         "",
+        "emplacementSplit4":         "",
+        "emplacementSplit5":         "",
+        "emplacementGrpExt":         "",
+        "emplacementSplitMono":      "",
+        "distanceGpExtSplit1":       0,
+        "distanceGpExtSplit2":       0,
+        "distanceGpExtSplit3":       0,
+        "distanceGpExtSplit4":       0,
+        "distanceGpExtSplit5":       0,
+        "nbPompeRelevage":           1,
+        "infosSup":                  "RAS"
+    },
+    "quotation":                 {
+        "origin":             "PERSO",
+        "dateTechnicalVisit": "2021-10-06",
+        "executionDelay":     "2022-01-06",
+        "options":            [
+            {
+                "id":        1,
+                "label":     "Forfait pompe de relevage des condensats interieurs",
+                "unit":      "u",
+                "value":     "0",
+                "pu":        {
+                    "value": "0"
+                },
+                "calcTva10": false
+            },
+            {
+                "id":        2,
+                "label":     "Forfait pose ( Pose nouvel appareil, mise en service)",
+                "unit":      "u",
+                "value":     1,
+                "pu":        {
+                    "value": 1
+                },
+                "calcTva10": true
+            },
+            {
+                "id":        3,
+                "label":     "Télécommande programmable, accessoires d’installation et explications.",
+                "unit":      "u",
+                "value":     1,
+                "pu":        {
+                    "value": 1
+                },
+                "calcTva10": false
+            },
+            {
+                "id":        4,
+                "label":     "Nettoyage et désembouage (si nécessaire) du circuit de chauffage.",
+                "unit":      "u",
+                "value":     1,
+                "pu":        {
+                    "value": 1
+                },
+                "calcTva10": false
+            },
+            {
+                "id":        5,
+                "label":     "Forfait accessoires nécessaires à la pose, au raccordement et au bon fonctionnement de l’installation.",
+                "unit":      "u",
+                "value":     1,
+                "pu":        {
+                    "value": 1
+                },
+                "calcTva10": false
+            },
+            {
+                "id":        6,
+                "label":     "Forfait pose (dépose ancien appareil, pose nouvel appareil et mise en service).",
+                "unit":      "u",
+                "value":     1,
+                "pu":        {
+                    "value": 1
+                },
+                "calcTva10": false
+            },
+            {
+                "id":        7,
+                "label":     "Wifi",
+                "unit":      "u",
+                "value":     1,
+                "pu":        {
+                    "value": 1
+                },
+                "calcTva10": false
+            }
+        ],
+        "blankOptions":       [
+            {
+                "id":    "sup1",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            },
+            {
+                "id":    "sup2",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            }
+        ],
+        "commentary":         "",
+        "partner":            "VTE",
+        "texts":              [
+            {
+                "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
+                "text":  "Les travaux prévus dans ce devis peuvent être conditionnels à un dépôt de déclaration préalable de travaux. Il revient au maître d'ouvrage (le client) d'en faire lui-même la demande.\r\nLa TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.\r\nLes travaux relatifs à ce devis sont susceptibles d'être réalisés par l'entreprise Allaire du temps rcs La Rochelle 852 284 983 QUALIPAC 58881\r\n\r\nLes travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique.\r\n\r\n* « Dans le cas où l'aide notifiée au client est inférieure au montant de l'aide prévisionnelle, l'usager n'est pas lié par le devis et l'entreprise s'engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d'une durée de quatorze jours à partir de la date de présentation du devis rectificatif.L'aide MaPrimeRénov' est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire. En cas de fausse déclaration, de manœuvre frauduleuse ou de changement du projet de travaux subventionnés, le bénéficiaire s'expose au retrait et reversement de tout ou partie de l'aide. Les services de l'Anah pourront faire procéder à tout contrôle des engagements et sanctionner le bénéficiaire et son mandataire éventuel des manquements constatés »."
+            },
+            {
+                "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
+                "text":  "La TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.\r\n\r\nLes travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique."
+            },
+            {
+                "title": "AIDE A LA RENOVATION ÉNERGÉTIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
+                "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
+            }
+        ],
+        "tva10":              45,
+        "tva20":              379.75,
+        "ceeBonus":           "260.00",
+        "maPrimeRenovBonus":  0,
+        "selectedProducts":   [
+            {
+                "id":          50,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN STYLISH",
+                "ref":         "DAIRXA20A",
+                "pu":          1228.67,
+                "defaultPu":   1228.67,
+                "description": "Puissance absorbée froid/chaud = 0,44kw/ 0,5kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        5.15
+            },
+            {
+                "id":          37,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH ARGENT",
+                "ref":         "DAIFTXA20BS",
+                "pu":          670.08,
+                "defaultPu":   670.08,
+                "description": "Puissance restituée froid/chaud +7°c = 2kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            }
+        ],
+        "rrType":             "rr_mono",
+        "rrMulti":            {
+            "roomNumber": 2,
+            "areaP1":     0,
+            "areaP2":     0,
+            "areaP3":     0,
+            "areaP4":     0,
+            "areaP5":     0
+        },
+        "assortment":         "stylish_argent",
+        "products":           [
+            {
+                "id":          1,
+                "label":       "UNITE EXTERIEURE MULTISPLIT DAIKIN",
+                "ref":         "DAI2MXM40N",
+                "pu":          1999.67,
+                "defaultPu":   1999.67,
+                "description": "Puissance restituée froid /chaud+7°c = 4kw/4,2kw\r\nPuissance absorbée froid/chaud = 0,97kw/ 0,98kw\r\nPuissance sonore 50dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 36 kg\r\nFluide = R32\r\nSCOP = 4,64\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.64
+            },
+            {
+                "id":          2,
+                "label":       "UNITE EXTERIEURE MULTISPLIT DAIKIN",
+                "ref":         "DAI2MXM50N",
+                "pu":          2319.67,
+                "defaultPu":   2319.67,
+                "description": "Puissance restituée froid/chaud +7°c = 5kw/5,60kw\r\nPuissance absorbée froid/chaud = 1,25kw/ 1,37kw\r\nPuissance sonore 48dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 41 kg\r\nFluide = R32\r\nSCOP = 4,61\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.61
+            },
+            {
+                "id":          3,
+                "label":       "UNITE EXTERIEURE MULTISPLIT DAIKIN",
+                "ref":         "DAI3MXM40N8",
+                "pu":          2401.67,
+                "defaultPu":   2401.67,
+                "description": "Puissance restituée froid/chaud +7°c = 4kw/4,6kw\r\nPuissance absorbée froid/chaud = 0,79kw/ 0,89kw\r\nPuissance sonore 47dBa\r\nDimension HxLxP = 734*868*328 mm - Poids = 57 kg\r\nFluide = R32\r\nSCOP = 4,65\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.65
+            },
+            {
+                "id":          4,
+                "label":       "UNITE EXTERIEURE MULTISPLIT DAIKIN",
+                "ref":         "DAI3MXM52N8",
+                "pu":          2818.67,
+                "defaultPu":   2818.67,
+                "description": "Puissance restituée froid/chaud +7°c = 5,2kw/6,8kw\r\nPuissance absorbée froid/chaud = 1,07kw/ 01,39kw\r\nPuissance sonore 47dBa\r\nDimension HxLxP = 734*868*328 mm - Poids = 57 kg\r\nFluide = R32\r\nSCOP = 4,61\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.61
+            },
+            {
+                "id":          5,
+                "label":       "UNITE EXTERIEURE MULTISPLIT DAIKIN",
+                "ref":         "DAI3MXM68N",
+                "pu":          3391.67,
+                "defaultPu":   3391.67,
+                "description": "Puissance restituée froid/chaud +7°c = 6kw/7,8kw\r\nPuissance absorbée froid/chaud = 1,34kw/1,72kw\r\nPuissance sonore 48dBa\r\nDimension HxLxP = 734*868*328 mm - Poids = 62 kg\r\nFluide = R32\r\nSCOP = 4,07\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.07
+            },
+            {
+                "id":          6,
+                "label":       "UNITE EXTERIEURE MULTISPLIT DAIKIN",
+                "ref":         "DAI4MXM68N9",
+                "pu":          3884.67,
+                "defaultPu":   3884.67,
+                "description": "Puissance restituée froid/chaud +7°c = 6,8kw/8,6kw\r\nPuissance absorbée froid/chaud = 1,58kw/ 1,86kw\r\nPuissance sonore 47dBa\r\nDimension HxLxP = 734*868*328 mm - Poids = 62 kg\r\nFluide = R32\r\nSCOP = 4,24\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.24
+            },
+            {
+                "id":          7,
+                "label":       "UNITE EXTERIEURE MULTISPLIT DAIKIN",
+                "ref":         "DAI4MXM80N9",
+                "pu":          4288.67,
+                "defaultPu":   4288.67,
+                "description": "Puissance restituée froid/chaud +7°c = 7,4kw/9,6kw\r\nPuissance absorbée froid/chaud = 1,62kw/ 1,94kw\r\nPuissance sonore 49dBa\r\nDimension HxLxP = 734*868*328 mm - Poids = 67 kg\r\nFluide = R32\r\nSCOP = 4,55\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.55
+            },
+            {
+                "id":          8,
+                "label":       "UNITE EXTERIEURE MULTISPLIT DAIKIN",
+                "ref":         "DAI5MXM90N9",
+                "pu":          4689.67,
+                "defaultPu":   4689.67,
+                "description": "Puissance restituée froid/chaud +7°c = 8,5kw/10kw\r\nPuissance absorbée froid/chaud = 1,83kw/ 2,05kw\r\nPuissance sonore 52dBa\r\nDimension HxLxP = 734*868*328 mm - Poids = 68 kg\r\nFluide = R32\r\nSCOP = 4,47\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.47
+            },
+            {
+                "id":          9,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT PERFERA",
+                "ref":         "DAICTXM15R",
+                "pu":          496.08,
+                "defaultPu":   496.08,
+                "description": "Puissance restituée froid/chaud +7°c = 1,5kw/1,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 294*811*272 mm - Poids = 10 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          10,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT PERFERA",
+                "ref":         "DAIFTXM20R",
+                "pu":          511.08,
+                "defaultPu":   511.08,
+                "description": "Puissance restituée froid/chaud +7°c = 2kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 294*811*272 mm - Poids = 10 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          11,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT PERFERA",
+                "ref":         "DAIFTXM25R",
+                "pu":          529.08,
+                "defaultPu":   529.08,
+                "description": "Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 294*811*272 mm - Poids = 10 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          12,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT PERFERA",
+                "ref":         "DAIFTXM35R",
+                "pu":          695.08,
+                "defaultPu":   695.08,
+                "description": "Puissance restituée froid/chaud +7°c = 3,5kw/ 3,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 294*811*272 mm - Poids = 10 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          13,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT PERFERA",
+                "ref":         "DAIFTXM42R",
+                "pu":          897.08,
+                "defaultPu":   897.08,
+                "description": "Puissance restituée froid/chaud +7°c = 4,2kw/ 5,4kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 294*811*272 mm - Poids = 10 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          14,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT PERFERA",
+                "ref":         "DAIFTXM50R",
+                "pu":          941.08,
+                "defaultPu":   941.08,
+                "description": "Puissance restituée froid/chaud +7°c = 5kw/ 5,8kw\r\nPuissance sonore 27 dBa\r\nDimension HxLxP= 300*1040*295mm - Poids=14,5 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          15,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT PERFERA",
+                "ref":         "DAIFTXM60R",
+                "pu":          1073.08,
+                "defaultPu":   1073.08,
+                "description": "Puissance restituée froid/chaud +7°c = 6kw/ 7kw\r\nPuissance sonore 30 dBa\r\nDimension HxLxP= 300*1040*295mm - Poids=14,5 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          16,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT PERFERA",
+                "ref":         "DAIFTXM71R",
+                "pu":          1208.08,
+                "defaultPu":   1208.08,
+                "description": "Puissance restituée froid/chaud +7°c = 7,1kw/ 8,2kw\r\nPuissance sonore 32 dBa\r\nDimension HxLxP= 300*1040*295mm - Poids=14,5 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          17,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN PERFERA",
+                "ref":         "DAIRXM20R",
+                "pu":          994.67,
+                "defaultPu":   994.67,
+                "description": "Puissance absorbée froid/chaud = 0,44kw/ 0,5kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,1\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        5.1
+            },
+            {
+                "id":          18,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN PERFERA",
+                "ref":         "DAIRXM25R",
+                "pu":          1108.67,
+                "defaultPu":   1108.67,
+                "description": "Puissance absorbée froid/chaud = 0,56kw/ 0,56kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,1\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        5.1
+            },
+            {
+                "id":          19,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN PERFERA",
+                "ref":         "DAIRXM35R",
+                "pu":          1283.67,
+                "defaultPu":   1283.67,
+                "description": "Puissance absorbée froid/chaud = 0,8kw/ 0,99kw\r\nPuissance sonore 61dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,1\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        5.1
+            },
+            {
+                "id":          20,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN PERFERA",
+                "ref":         "DAIRXM42R",
+                "pu":          1608.67,
+                "defaultPu":   1608.67,
+                "description": "Puissance absorbée froid/chaud = 0,97kw/ 1,31kw\r\nPuissance sonore 62dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,71\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.71
+            },
+            {
+                "id":          21,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN PERFERA",
+                "ref":         "DAIRXM50R",
+                "pu":          1979.67,
+                "defaultPu":   1979.67,
+                "description": "Puissance absorbée froid/chaud = 1,36kw/ 1,45kw\r\nPuissance sonore 62dBa\r\nDimension HxLxP = 734*870*320 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,71\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.71
+            },
+            {
+                "id":          22,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN PERFERA",
+                "ref":         "DAIRXM60R",
+                "pu":          2536.67,
+                "defaultPu":   2536.67,
+                "description": "Puissance absorbée froid/chaud = 1,77kw/ 1,94kw\r\nPuissance sonore 63dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,3\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.3
+            },
+            {
+                "id":          23,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN PERFERA",
+                "ref":         "DAIRXM71R",
+                "pu":          3415.67,
+                "defaultPu":   3415.67,
+                "description": "Puissance absorbée froid/chaud = 2,12kw/ 2,25kw\r\nPuissance sonore 64dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 56 kg\r\nFluide = R32\r\nSCOP = 3,81\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        3.81
+            },
+            {
+                "id":          24,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH BOIS",
+                "ref":         "DAIFTXA15BT",
+                "pu":          679.08,
+                "defaultPu":   679.08,
+                "description": "Puissance restituée froid/chaud +7°c = 1,5kw/1,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          25,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH BOIS",
+                "ref":         "DAIFTXA20BT",
+                "pu":          700.08,
+                "defaultPu":   700.08,
+                "description": "Puissance restituée froid/chaud +7°c = 2kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          26,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH BOIS",
+                "ref":         "DAIFTXA25BT",
+                "pu":          724.08,
+                "defaultPu":   724.08,
+                "description": "Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          27,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH BOIS",
+                "ref":         "DAIFTXA35BT",
+                "pu":          952.08,
+                "defaultPu":   952.08,
+                "description": "Puissance restituée froid/chaud +7°c = 3,5kw/ 3,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          28,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH BOIS",
+                "ref":         "DAIFTXA42BT",
+                "pu":          1230.08,
+                "defaultPu":   1230.08,
+                "description": "Puissance restituée froid/chaud +7°c = 4,2kw/ 5,4kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          29,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH BOIS",
+                "ref":         "DAIFTXA50BT",
+                "pu":          1290.08,
+                "defaultPu":   1290.08,
+                "description": "Puissance restituée froid/chaud +7°c = 5kw/ 5,8kw\r\nPuissance sonore 27 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          30,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH BLANC",
+                "ref":         "DAIFTXA15AW",
+                "pu":          614.08,
+                "defaultPu":   614.08,
+                "description": "Puissance restituée froid/chaud +7°c = 1,5kw/1,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          31,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH BLANC",
+                "ref":         "DAIFTXA20AW",
+                "pu":          632.08,
+                "defaultPu":   632.08,
+                "description": "Puissance restituée froid/chaud +7°c = 2kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          32,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH BLANC",
+                "ref":         "DAIFTXA25AW",
+                "pu":          653.08,
+                "defaultPu":   653.08,
+                "description": "Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          33,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH BLANC",
+                "ref":         "DAIFTXA35AW",
+                "pu":          859.08,
+                "defaultPu":   859.08,
+                "description": "Puissance restituée froid/chaud +7°c = 3,5kw/ 3,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          34,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH BLANC",
+                "ref":         "DAIFTXA42AW",
+                "pu":          1112.08,
+                "defaultPu":   1112.08,
+                "description": "Puissance restituée froid/chaud +7°c = 4,2kw/ 5,4kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          35,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH BLANC",
+                "ref":         "DAIFTXA50AW",
+                "pu":          1164.08,
+                "defaultPu":   1164.08,
+                "description": "Puissance restituée froid/chaud +7°c = 5kw/ 5,8kw\r\nPuissance sonore 27 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          36,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH ARGENT",
+                "ref":         "DAIFTXA15BS",
+                "pu":          649.08,
+                "defaultPu":   649.08,
+                "description": "Puissance restituée froid/chaud +7°c = 1,5kw/1,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          37,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH ARGENT",
+                "ref":         "DAIFTXA20BS",
+                "pu":          670.08,
+                "defaultPu":   670.08,
+                "description": "Puissance restituée froid/chaud +7°c = 2kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          38,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH ARGENT",
+                "ref":         "DAIFTXA25BS",
+                "pu":          692.08,
+                "defaultPu":   692.08,
+                "description": "Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          39,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH ARGENT",
+                "ref":         "DAIFTXA35BS",
+                "pu":          909.08,
+                "defaultPu":   909.08,
+                "description": "Puissance restituée froid/chaud +7°c = 3,5kw/ 3,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          40,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH ARGENT",
+                "ref":         "DAIFTXA42BS",
+                "pu":          1176.08,
+                "defaultPu":   1176.08,
+                "description": "Puissance restituée froid/chaud +7°c = 4,2kw/ 5,4kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          41,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH ARGENT",
+                "ref":         "DAIFTXA50BS",
+                "pu":          1232.08,
+                "defaultPu":   1232.08,
+                "description": "Puissance restituée froid/chaud +7°c = 5kw/ 5,8kw\r\nPuissance sonore 27 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          42,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT EMURA BLANC",
+                "ref":         "DAIFTXJ20MW",
+                "pu":          1099.08,
+                "defaultPu":   1099.08,
+                "description": "Puissance restituée froid/chaud +7°c = 2,3kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 303*998*212 mm - Poids = 12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          43,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT EMURA BLANC",
+                "ref":         "DAIFTXJ25MW",
+                "pu":          1158.08,
+                "defaultPu":   1158.08,
+                "description": "Puissance restituée froid/chaud +7°c = 2,5kw/3,4kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 303*998*212 mm - Poids = 12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          44,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT EMURA BLANC",
+                "ref":         "DAIFTXJ35MW",
+                "pu":          1477.08,
+                "defaultPu":   1477.08,
+                "description": "Puissance restituée froid/chaud +7°c = 3,5kw/ 4kw\r\nPuissance sonore 20 dBa\r\nDimension HxLxP = 303*998*212 - Poids = 12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          45,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT EMURA BLANC",
+                "ref":         "FTXJ50MW",
+                "pu":          1574.08,
+                "defaultPu":   1574.08,
+                "description": "Puissance restituée froid/chaud +7°c = 4,8kw/ 5,8kw\r\nPuissance sonore 32 dBa\r\nDimension HxLxP= 303*998*212mm - Poids=12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          46,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT EMURA ARGENT",
+                "ref":         "DAIFTXJ20MS",
+                "pu":          1162.08,
+                "defaultPu":   1162.08,
+                "description": "Puissance restituée froid/chaud +7°c = 2,3kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 303*998*212 mm - Poids = 12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          47,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT EMURA ARGENT",
+                "ref":         "DAIFTXJ25MS",
+                "pu":          1224.08,
+                "defaultPu":   1224.08,
+                "description": "Puissance restituée froid/chaud +7°c = 2,5kw/3,4kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 303*998*212 mm - Poids = 12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          48,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT EMURA ARGENT",
+                "ref":         "DAIFTXJ35MS",
+                "pu":          1559.08,
+                "defaultPu":   1559.08,
+                "description": "Puissance restituée froid/chaud +7°c = 3,5kw/ 4kw\r\nPuissance sonore 20 dBa\r\nDimension HxLxP = 303*998*212 - Poids = 12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          49,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT EMURA ARGENT",
+                "ref":         "DAIFTXJ50MS",
+                "pu":          1663.08,
+                "defaultPu":   1663.08,
+                "description": "Puissance restituée froid/chaud +7°c = 4,8kw/ 5,8kw\r\nPuissance sonore 32 dBa\r\nDimension HxLxP= 303*998*212mm - Poids=12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          50,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN STYLISH",
+                "ref":         "DAIRXA20A",
+                "pu":          1228.67,
+                "defaultPu":   1228.67,
+                "description": "Puissance absorbée froid/chaud = 0,44kw/ 0,5kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        5.15
+            },
+            {
+                "id":          51,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN STYLISH",
+                "ref":         "DAIRXA25A",
+                "pu":          1370.67,
+                "defaultPu":   1370.67,
+                "description": "Puissance absorbée froid/chaud = 0,56kw/ 0,56kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        5.15
+            },
+            {
+                "id":          52,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN STYLISH",
+                "ref":         "DAIRXA35A",
+                "pu":          1587.67,
+                "defaultPu":   1587.67,
+                "description": "Puissance absorbée froid/chaud = 0,91kw/ 0,99kw\r\nPuissance sonore 61dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        5.15
+            },
+            {
+                "id":          53,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN STYLISH",
+                "ref":         "DAIRXA42B",
+                "pu":          1988.67,
+                "defaultPu":   1988.67,
+                "description": "Puissance absorbée froid/chaud = 1,12kw/ 1,31kw\r\nPuissance sonore 62dBa\r\nDimension HxLxP = 734*870*320mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,6\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.6
+            },
+            {
+                "id":          54,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN STYLISH",
+                "ref":         "DAIRXA50B",
+                "pu":          2449.67,
+                "defaultPu":   2449.67,
+                "description": "Puissance absorbée froid/chaud = 1,36kw/ 1,45kw\r\nPuissance sonore 62dBa\r\nDimension HxLxP = 734*870*320 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,6\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.6
+            },
+            {
+                "id":          55,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN EMURA",
+                "ref":         "DAIRXJ20M",
+                "pu":          1377.67,
+                "defaultPu":   1377.67,
+                "description": "Puissance absorbée froid/chaud = 0,44kw/ 0,5kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        5.15
+            },
+            {
+                "id":          56,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN EMURA",
+                "ref":         "DAIRXJ25M",
+                "pu":          1450.67,
+                "defaultPu":   1450.67,
+                "description": "Puissance absorbée froid/chaud = 0,56kw/ 0,56kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        5.15
+            },
+            {
+                "id":          57,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN EMURA",
+                "ref":         "DAIRXJ35M",
+                "pu":          1595.67,
+                "defaultPu":   1595.67,
+                "description": "Puissance absorbée froid/chaud = 0,91kw/ 0,99kw\r\nPuissance sonore 61dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        5.15
+            },
+            {
+                "id":          58,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN EMURA",
+                "ref":         "DAIRXJ50M",
+                "pu":          2552.67,
+                "defaultPu":   2552.67,
+                "description": "Puissance absorbée froid/chaud = 1,36kw/ 1,45kw\r\nPuissance sonore 62dBa\r\nDimension HxLxP = 734*870*320 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,6\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.6
+            },
+            {
+                "id":          59,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT SENSIRA",
+                "ref":         "DAIFTXF20C",
+                "pu":          422.04,
+                "defaultPu":   422.04,
+                "description": "Puissance restituée froid/chaud +7°c = 2kw/2,5kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 286*770*225 mm - Poids = 9 kg\r\nFluide = R32\r\nDont éco-participation 1,04 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          60,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT SENSIRA",
+                "ref":         "DAIFTXF25C",
+                "pu":          442.04,
+                "defaultPu":   442.04,
+                "description": "Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 286*770*225 mm - Poids = 9 kg\r\nFluide = R32\r\nDont éco-participation 1,04 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          61,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT SENSIRA",
+                "ref":         "DAIFTXF35C",
+                "pu":          558.04,
+                "defaultPu":   558.04,
+                "description": "Puissance restituée froid/chaud +7°c = 3,3kw/ 3,5kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 286*770*225 mm - Poids = 9 kg\r\nFluide = R32\r\nDont éco-participation 1,04 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          62,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT SENSIRA",
+                "ref":         "DAIFTXF50A",
+                "pu":          679.08,
+                "defaultPu":   679.08,
+                "description": "Puissance restituée froid/chaud +7°c = 5kw/ 6kw\r\nPuissance sonore 30 dBa\r\nDimension HxLxP= 295*990*263mm - Poids=13,5 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          63,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT SENSIRA",
+                "ref":         "DAIFTXF60A",
+                "pu":          739.08,
+                "defaultPu":   739.08,
+                "description": "Puissance restituée froid/chaud +7°c = 6kw/ 6,4kw\r\nPuissance sonore 32 dBa\r\nDimension HxLxP= 295*990*263mm - Poids=13,5 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          64,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT SENSIRA",
+                "ref":         "DAIFTXF71A",
+                "pu":          886.08,
+                "defaultPu":   886.08,
+                "description": "Puissance restituée froid/chaud +7°c = 7,1kw/ 8,2kw\r\nPuissance sonore 33 dBa\r\nDimension HxLxP= 295*990*263mm - Poids=13,5 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          65,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN SENSIRA",
+                "ref":         "DAIRXF20A",
+                "pu":          708.67,
+                "defaultPu":   708.67,
+                "description": "Puissance absorbée froid/chaud = 0,51kw/ 0,6kw\r\nPuissance sonore 60dBa\r\nDimension HxLxP = 550*658*275 mm - Poids = 26 kg\r\nFluide = R32\r\nSCOP = 4,1\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.1
+            },
+            {
+                "id":          66,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN SENSIRA",
+                "ref":         "DAIRXF25A",
+                "pu":          745.67,
+                "defaultPu":   745.67,
+                "description": "Puissance absorbée froid/chaud = 0,76kw/ 0,70kw\r\nPuissance sonore 60dBa\r\nDimension HxLxP = 550*658*275 mm - Poids = 26 kg\r\nFluide = R32\r\nSCOP = 4,06\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.06
+            },
+            {
+                "id":          67,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN SENSIRA",
+                "ref":         "DAIRXF35A",
+                "pu":          819.67,
+                "defaultPu":   819.67,
+                "description": "Puissance absorbée froid/chaud = 1kw/ 0,94kw\r\nPuissance sonore 62dBa\r\nDimension HxLxP = 550*658*275 mm - Poids = 28 kg\r\nFluide = R32\r\nSCOP = 4,06\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.06
+            },
+            {
+                "id":          68,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN SENSIRA",
+                "ref":         "DAIRXF50A",
+                "pu":          1461.67,
+                "defaultPu":   1461.67,
+                "description": "Puissance absorbée froid/chaud = 1,5kw/ 1,62kw\r\nPuissance sonore 61dBa\r\nDimension HxLxP = 734*870*373 mm - Poids = 46 kg\r\nFluide = R32\r\nSCOP = 4,06\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.06
+            },
+            {
+                "id":          69,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN SENSIRA",
+                "ref":         "DAIRXF60A",
+                "pu":          1725.67,
+                "defaultPu":   1725.67,
+                "description": "Puissance absorbée froid/chaud = 1,85kw/ 1,63kw\r\nPuissance sonore 63dBa\r\nDimension HxLxP = 734*870*373 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,06\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        4.06
+            },
+            {
+                "id":          70,
+                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN SENSIRA",
+                "ref":         "DAIRXF71A",
+                "pu":          2264.67,
+                "defaultPu":   2264.67,
+                "description": "Puissance absorbée froid/chaud = 2,77kw/ 2,60kw\r\nPuissance sonore 66dBa\r\nDimension HxLxP = 734*870*373 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 3,9\r\nDont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        3.9
+            },
+            {
+                "id":          71,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE ERGA04DV",
+                "ref":         "DAIERGA04EV",
+                "pu":          2216.67,
+                "defaultPu":   2216.67,
+                "description": "- Puissance calorifique +7°c/-7°c : 4,90/4,37 kW\r\n- COP +7°c/-7°c : 2,65/1,6\r\n- ETAs : 127 %\r\n- Classe énergétique : A++\r\n- Dimension : 740*884*388 mm Poids : 58,5kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 36 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          72,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE ERGA06EV",
+                "ref":         "DAIERGA06EV",
+                "pu":          2345.67,
+                "defaultPu":   2345.67,
+                "description": "- Puissance calorifique +7°c/-7°c : 5,81/5,72 kW\r\n- COP +7°c/-7°c : 2,7/1,74\r\n- ETAs : 127 %\r\n- Classe énergétique : A++\r\n- Dimension : 740*884*388 mm Poids : 58,5kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 38 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          73,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE ERGA08EV",
+                "ref":         "DAIERGA08EV",
+                "pu":          3681.67,
+                "defaultPu":   3681.67,
+                "description": "- Puissance calorifique +7°c/-7°c : 7,51/7,43 kW\r\n- COP +7°c/-7°c : 2,70/1,83\r\n- ETAs : 130 %\r\n- Classe énergétique : A++\r\n- Dimension : 740*884*388 mm Poids : 58,5kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 40 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 6,67 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          74,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EBH04E6V",
+                "ref":         "DAIEBH04E6V",
+                "pu":          3697.33,
+                "defaultPu":   3697.33,
+                "description": "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 42kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          75,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVH04S18E6V",
+                "ref":         "DAIEHVH04S18E6V",
+                "pu":          5015.33,
+                "defaultPu":   5015.33,
+                "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 131kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          76,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVH04S23E6V",
+                "ref":         "DAIEHVH04S23E6V",
+                "pu":          5254.33,
+                "defaultPu":   5254.33,
+                "description": "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 139kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          77,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EBH08D6V",
+                "ref":         "DAIEHBH08E6V",
+                "pu":          3618.33,
+                "defaultPu":   3618.33,
+                "description": "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 42kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          78,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S18D6V",
+                "ref":         "DAIEHVH08S18E6V",
+                "pu":          5233.33,
+                "defaultPu":   5233.33,
+                "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 131kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          79,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S23E6V",
+                "ref":         "DAIEHVH08S23E6V",
+                "pu":          5482.33,
+                "defaultPu":   5482.33,
+                "description": "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 139kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          80,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE  EPGA11DV",
+                "ref":         "DAIEPGA11DV",
+                "pu":          5150.17,
+                "defaultPu":   5150.17,
+                "description": "- Puissance calorifique +7°c/-7°c : 15,19/10,12 kW\r\n- COP +7°c/-7°c : 2,89/2,28\r\n- ETAs : 129 %\r\n- Classe énergétique : A++\r\n- Dimension : 1440*1160*380 mm Poids : 143kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 42 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 19,17 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          81,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE  EPGA14DV",
+                "ref":         "DAIEPGA14DV",
+                "pu":          5665.17,
+                "defaultPu":   5665.17,
+                "description": "- Puissance calorifique +7°c/-7°c : 17,09/12,38 kW\r\n- COP +7°c/-7°c : 3/2,31\r\n- ETAs : 130 %\r\n- Classe énergétique : A++\r\n- Dimension : 1440*1160*380 mm Poids : 143kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 42 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 19,17 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          82,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE  EPGA16DV",
+                "ref":         "DAIEPGA16DV",
+                "pu":          6270.17,
+                "defaultPu":   6270.17,
+                "description": "- Puissance calorifique +7°c/-7°c : 18,99/12,65 kW\r\n- COP +7°c/-7°c : 2,99/2,09\r\n- ETAs : 133 %\r\n- Classe énergétique : A++\r\n- Dimension : 1440*1160*380 mm Poids : 143kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 44 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 19,17 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          83,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EABH16D6V",
+                "ref":         "DAIEABH16D6V",
+                "pu":          4711.33,
+                "defaultPu":   4711.33,
+                "description": "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 38kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 36 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          84,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EAVH16S18D6V",
+                "ref":         "DAIEAVH16S18D6V",
+                "pu":          6670.33,
+                "defaultPu":   6670.33,
+                "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 109kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 36 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          85,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EAVH16S23D6V",
+                "ref":         "DAIEAVH16S23D6V",
+                "pu":          6902.33,
+                "defaultPu":   6902.33,
+                "description": "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 118kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 36 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          86,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA14DV3",
+                "ref":         "DAIEPRA14DV3",
+                "pu":          6830.17,
+                "defaultPu":   6830.17,
+                "description": "- Puissance calorifique à 60°C +7°c/-7°c : 10,16/10,06 kW\r\n- COP +7°c/-7°c : 2,61/2,01\r\n- ETAs : 140 %\r\n- Classe énergétique : A++\r\n- Dimension : 1003*1270*533 mm Poids : 146kg\r\n- Plage de fonctionnement : -28°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 32 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 19,17 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          87,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA16DV3",
+                "ref":         "DAIEPRA16DV3",
+                "pu":          7434.17,
+                "defaultPu":   7434.17,
+                "description": "- Puissance calorifique à 60°C +7°c/-7°c : 11,13/11,44 kW\r\n- COP +7°c/-7°c : 2,61/2,01\r\n- ETAs : 140 %\r\n- Classe énergétique : A++\r\n- Dimension : 1003*1270*533 mm Poids : 146kg\r\n- Plage de fonctionnement : -28°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 32 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 19,17 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          88,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA18DV3",
+                "ref":         "DAIEPRA18DV3",
+                "pu":          8597.17,
+                "defaultPu":   8597.17,
+                "description": "- Puissance calorifique à 60°C +7°c/-7°c : 12,10/11,97 kW\r\n- COP +7°c/-7°c : 2,61/2,01\r\n- ETAs : 140 %\r\n- Classe énergétique : A++\r\n- Dimension : 1003*1270*533 mm Poids : 146kg\r\n- Plage de fonctionnement : -28°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 32 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 19,17 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          89,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA14DW1",
+                "ref":         "DAIEPRA14DW1",
+                "pu":          6830.17,
+                "defaultPu":   6830.17,
+                "description": "- Puissance calorifique à 60°C +7°c/-7°c : 10,18/10,47 kW\r\n- COP +7°c/-7°c : 2,62/2,05\r\n- ETAs : 140 %\r\n- Classe énergétique : A++\r\n- Dimension : 1003*1270*533 mm Poids : 151kg\r\n- Plage de fonctionnement : -28°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 32 dB(a)\r\n- Alimentation électrique : TRIPHASÉE\r\n- Dont éco-participation 19,17 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          90,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA16DW1",
+                "ref":         "DAIEPRA16DW1",
+                "pu":          7434.17,
+                "defaultPu":   7434.17,
+                "description": "- Puissance calorifique à 60°C +7°c/-7°c : 11,15/11,91 kW\r\n- COP +7°c/-7°c : 2,61/2,03\r\n- ETAs : 140 %\r\n- Classe énergétique : A++\r\n- Dimension : 1003*1270*533 mm Poids : 151kg\r\n- Plage de fonctionnement : -28°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 32 dB(a)\r\n- Alimentation électrique : TRIPHASÉE\r\n- Dont éco-participation 19,17 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          91,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA18DW1",
+                "ref":         "DAIEPRA18DW1",
+                "pu":          8597.17,
+                "defaultPu":   8597.17,
+                "description": "- Puissance calorifique à 60°C +7°c/-7°c : 12,11/12,47 kW\r\n- COP +7°c/-7°c : 2,62/2,03\r\n- ETAs : 140 %\r\n- Classe énergétique : A++\r\n- Dimension : 1003*1270*533 mm Poids : 146kg\r\n- Plage de fonctionnement : -28°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 32 dB(a)\r\n- Alimentation électrique : triphasée\r\n- Dont éco-participation 19,17 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          92,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETB16D6V",
+                "ref":         "DAIETBH16D6V",
+                "pu":          4902.33,
+                "defaultPu":   4902.33,
+                "description": "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 38kg\r\n- Pression sonore (à 1m) : 30 dB(a)\r\n- Appoint électrique : 6 Kw\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          93,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETB16D6V",
+                "ref":         "DAIETBH16D9W",
+                "pu":          4902.33,
+                "defaultPu":   4902.33,
+                "description": "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 38kg\r\n- Pression sonore (à 1m) : 30 dB(a)\r\n- Appoint électrique : 9 Kw\r\n- Alimentation électrique : TRIPHASEE\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          94,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S18D6V",
+                "ref":         "DAIETVH16S18D6V",
+                "pu":          7145.33,
+                "defaultPu":   7145.33,
+                "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 109kg\r\n- Pression sonore (à 1m) : 30 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          95,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S18D9W",
+                "ref":         "DAIETVH16S18D9W",
+                "pu":          7145.33,
+                "defaultPu":   7145.33,
+                "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 109kg\r\n- Pression sonore (à 1m) : 30 dB(a)\r\n- Appoint électrique : 9 kW\r\n- Alimentation électrique : TRIPHASÉE\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          96,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S18D6V",
+                "ref":         "DAIETVH16S23D6V",
+                "pu":          7411.33,
+                "defaultPu":   7411.33,
+                "description": "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 118kg\r\n- Pression sonore (à 1m) : 30 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          97,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S23D9W",
+                "ref":         "DAIETVH16S23D9W",
+                "pu":          7411.33,
+                "defaultPu":   7411.33,
+                "description": "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 118kg\r\n- Pression sonore (à 1m) : 30 dB(a)\r\n- Appoint électrique : 9 kW\r\n- Alimentation électrique : TRIPHASÉE\r\n- Dont éco-participation 8,33 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          98,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH NOIR",
+                "ref":         "DAIFTXA15BB",
+                "pu":          649.08,
+                "defaultPu":   649.08,
+                "description": "- Puissance restituée froid/chaud +7°c = 1,5kw/1,8kw\r\n- Puissance sonore 21 dBa\r\n- Dimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\n- Fluide = R32\r\n- Dont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          99,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH NOIR",
+                "ref":         "DAIFTXA20BB",
+                "pu":          670.08,
+                "defaultPu":   670.08,
+                "description": "- Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\n- Puissance sonore 19 dBa\r\n- Dimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\n- Fluide = R32\r\n- Dont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          100,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH NOIR",
+                "ref":         "DAIFTXA25BB",
+                "pu":          692.08,
+                "defaultPu":   692.08,
+                "description": "- Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\n- Puissance sonore 19 dBa\r\n- Dimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\n- Fluide = R32\r\n- Dont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          101,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH NOIR",
+                "ref":         "DAIFTXA35BB",
+                "pu":          909.08,
+                "defaultPu":   909.08,
+                "description": "- Puissance restituée froid/chaud +7°c = 3,5kw/ 3,8kw\r\n- Puissance sonore 19 dBa\r\n- Dimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\n- Fluide = R32\r\n- Dont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          102,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH NOIR",
+                "ref":         "DAIFTXA42BB",
+                "pu":          1176.08,
+                "defaultPu":   1176.08,
+                "description": "- Puissance restituée froid/chaud +7°c = 4,2kw/ 5,4kw\r\n- Puissance sonore 21 dBa\r\n- Dimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\n- Fluide = R32\r\n- Dont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            },
+            {
+                "id":          103,
+                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH NOIR",
+                "ref":         "DAIFTXA50BB",
+                "pu":          1232.08,
+                "defaultPu":   1232.08,
+                "description": "- Puissance restituée froid/chaud +7°c = 5kw/ 5,8kw\r\n- Puissance sonore 24 dBa\r\n- Dimension HxLxP= 295*798*189 mm - Poids=13 kg \r\n- Fluide = R32\r\n- Dont éco-participation 2,08 € HT",
+                "calcul0":     true,
+                "scop":        null
+            }
+        ],
+        "discount":           0,
+        "totalHt":            2348.75,
+        "totalTva":           424.75
+    },
+    "scales":                    [
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 14879
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 21760
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 26170
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 30572
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 34993
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 39405
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 43817
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 48229
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 52641
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 57053
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 61465
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 65877
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 70289
+                }
+            ],
+            "code":     "GP",
+            "ceeBonus": {
+                "h1": 20,
+                "h2": 20,
+                "h3": 20
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 19074
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 27896
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 33547
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 39192
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 44860
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 50511
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 56162
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 61813
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 67464
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 73115
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 78766
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 84417
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 90068
+                }
+            ],
+            "code":     "P",
+            "ceeBonus": {
+                "h1": 20,
+                "h2": 20,
+                "h3": 20
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 29148
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 42848
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 51592
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 60336
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 69081
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 77825
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 86569
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 95313
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 104057
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 112801
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 121545
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 130289
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 139033
+                }
+            ],
+            "code":     "IT",
+            "ceeBonus": {
+                "h1": 13,
+                "h2": 13,
+                "h3": 13
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 29148
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 42848
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 51592
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 60336
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 69081
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 77825
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 86569
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 95313
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 104057
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 112801
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 121545
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 130289
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 139033
+                }
+            ],
+            "code":     "CL",
+            "ceeBonus": {
+                "h1": 13,
+                "h2": 13,
+                "h3": 13
+            }
+        }
+    ],
+    "bonusWithoutCdp":           {
+        "amount": {
+            "h1": 79.9,
+            "h2": 65.4,
+            "h3": 43.6
+        }
+    },
+    "statusInDci":               2,
+    "errorsStatusInDci":         [
+        1,
+        2,
+        7,
+        4,
+        6
+    ],
+    "technician":                {
+        "id":        "Jeremy",
+        "lastName":  "Thomas",
+        "firstName": 11,
+        "phone":     "0645118070"
+    },
+    "lists":                     []
+}

@@ -168,7 +168,7 @@ import { ErrorMessage, Field, Form } from 'vee-validate';
 import * as Yup from 'yup';
 import Store from 'electron-store';
 import router from '@/router';
-import * as folderService from '../../../services/folderService';
+import * as folderService from '../../../services/folder/folderService';
 import { LIST_FOLDER_TYPE } from '@/services/constantService';
 
 interface NewFolderData {

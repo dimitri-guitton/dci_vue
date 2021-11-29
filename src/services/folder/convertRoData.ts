@@ -1,240 +1,25 @@
-import fs from 'fs';
-import Store from 'electron-store';
-import * as commonService from './commonService';
-import RoFolder from '@/types/Ro/RoFolder';
-import RoOption from '@/types/Ro/RoOption';
-import BlankOption from '@/types/BlankOption';
-import Text from '@/types/Text';
 import RoProduct from '@/types/Ro/RoProduct';
-import EcsDeporte from '@/types/Ro/EcsDeporte';
+import RoOption from '@/types/Ro/RoOption';
 import KitBiZone from '@/types/Ro/KitBiZone';
-import Assent from '@/types/Assent';
-import Scale from '@/types/Scale';
-import DataGeoportail from '@/types/DataGeoportail';
-
-const schema = {
-    dropboxPath: {
-        type:    'string',
-        default: '',
-    },
-} as const;
-
-// Store pour stoker les users Data
-const store = new Store( { schema } );
-
-/**
- * Créé le dossier DCI si il n'exsite pas
- */
-export const createDciFolderIfNotExist = () => {
-    const dropboxPath = store.get( 'dropboxPath' );
-    if ( dropboxPath !== '' && !fs.existsSync( dropboxPath + '/DCI' ) ) {
-        fs.mkdirSync( dropboxPath + '/DCI' );
-    }
-};
-
-/**
- * Créer un dossier de devis avec le type et le nom du client
- * @param type
- * @param customer
- */
-export const createAFolder = ( type: string, customer: string ) => {
-    const dropboxPath = store.get( 'dropboxPath' );
-
-    const today      = new Date();
-    const stringDate = `${ today.getFullYear() }${ commonService.minTwoDigits( today.getMonth() + 1 ) }${ commonService.minTwoDigits(
-        today.getDate() ) }${ commonService.minTwoDigits( today.getHours() ) }${ commonService.minTwoDigits( today.getMinutes() ) }`;
-    const folderSlug = `ID_COM-${ stringDate }-${ type.toUpperCase() } (${ customer.toUpperCase() })`;
-
-    if ( !fs.existsSync( dropboxPath + '/DCI/' + folderSlug ) ) {
-        fs.mkdirSync( dropboxPath + '/DCI/' + folderSlug );
-    }
-
-    return folderSlug;
-};
-
-
-const getObjectData = ( data: any, keys: any[] ): any => {
-    // Si l'élément n'existe pas on retourne un objet vide ou un string
-    if ( keys.length > 1 && data[ keys[ 0 ] ] === undefined ) {
-        return {};
-    } else if ( keys.length > 0 && data[ keys[ 0 ] ] === undefined ) {
-        return '';
-    }
-
-    // Retourne la data quand l'array keys est vide
-    if ( keys.length === 0 ) {
-        return data;
-    } else {
-        const elem = keys.shift();
-        return getObjectData( data[ elem ], keys );
-    }
-};
-
-const getStringData = ( data: any ): string => {
-    return data === undefined ? '' : data;
-};
-
-const getNumberData = ( data: any ): number => {
-    return data === undefined ? 0 : data;
-};
-
-const getBoolData = ( data: any ): boolean => {
-    return data === undefined ? false : data;
-};
-
-const getArrayData = ( data: any ): [] => {
-    return data === undefined ? [] : data;
-};
-
-const convertOldText = ( oldData ): Text[] => {
-    const texts: Text[] = [];
-    if ( getObjectData( oldData, [ 'devis', 'texte1' ] ) !== '' ) {
-        texts.push( {
-                        title: getObjectData( oldData, [ 'devis', 'texte1', 'title' ] ),
-                        text:  getObjectData( oldData, [ 'devis', 'texte1', 'text' ] ),
-                    } );
-    }
-    if ( getObjectData( oldData, [ 'devis', 'texte2' ] ) !== '' ) {
-        texts.push( {
-                        title: getObjectData( oldData, [ 'devis', 'texte2', 'title' ] ),
-                        text:  getObjectData( oldData, [ 'devis', 'texte2', 'text' ] ),
-                    } );
-    }
-    if ( getObjectData( oldData, [ 'devis', 'texte3' ] ) !== '' ) {
-        texts.push( {
-                        title: getObjectData( oldData, [ 'devis', 'texte3', 'title' ] ),
-                        text:  getObjectData( oldData, [ 'devis', 'texte3', 'text' ] ),
-                    } );
-    }
-
-    if ( getObjectData( oldData, [ 'devis', 'texte4' ] ) !== '' ) {
-        texts.push( {
-                        title: getObjectData( oldData, [ 'devis', 'texte4', 'title' ] ),
-                        text:  getObjectData( oldData, [ 'devis', 'texte4', 'text' ] ),
-                    } );
-    }
-
-    return texts;
-};
-
-const convertOldBeneficiary = ( oldData ): Beneficiary => {
-    return {
-        civility:  getObjectData( oldData, [ 'beneficiaire', 'civilite' ] ),
-        lastName:  getObjectData( oldData, [ 'beneficiaire', 'nom' ] ),
-        firstName: getObjectData( oldData, [ 'beneficiaire', 'prenom' ] ),
-        address:   getObjectData( oldData, [ 'beneficiaire', 'adresse' ] ),
-        zipCode:   getObjectData( oldData, [ 'beneficiaire', 'codepostal' ] ),
-        city:      getObjectData( oldData, [ 'beneficiaire', 'ville' ] ),
-        email:     getStringData( oldData[ 'email' ] ),
-        phone:     getStringData( oldData[ 'telfixe' ] ),
-        mobile:    getStringData( oldData[ 'telportable' ] ),
-    };
-};
-
-const convertOldAssent = ( oldData ): Assent[] => {
-    const assents: Assent[] = [];
-    const oldAssents: []    = getArrayData( oldData[ 'avis' ] );
-    oldAssents.forEach( assent => {
-        assents.push( {
-                          uid:            assent[ 'uid' ],
-                          refAvis:        assent[ 'refAvis' ],
-                          numFiscal:      assent[ 'numFiscal' ],
-                          isbeneficiaire: assent[ 'isbeneficiaire' ],
-                          datagouv:       {
-                              refAvis:   assent[ 'datagouv' ][ 'refAvis' ],
-                              numFiscal: assent[ 'datagouv' ][ 'numFiscal' ],
-                              loaded:    assent[ 'datagouv' ][ 'loaded' ],
-                              nom:       assent[ 'datagouv' ][ 'nom' ],
-                              prenom:    assent[ 'datagouv' ][ 'prenom' ],
-                              adresse:   assent[ 'datagouv' ][ 'adresse' ],
-                              ville:     assent[ 'datagouv' ][ 'ville' ],
-                              revenu:    assent[ 'datagouv' ][ 'revenu' ],
-                              error:     assent[ 'datagouv' ][ 'error' ],
-                          },
-                          nom:            assent[ 'nom' ],
-                          prenom:         assent[ 'prenom' ],
-                          adresse:        assent[ 'adresse' ],
-                          codepostal:     assent[ 'codepostal' ],
-                          ville:          assent[ 'ville' ],
-                          revenu:         assent[ 'revenu' ],
-                          civilite:       assent[ 'civilite' ],
-                      } );
-    } );
-
-    return assents;
-};
-
-const convertOldDataGeoportail = ( oldData ): DataGeoportail | undefined => {
-    let dataGeoportail: DataGeoportail | undefined;
-
-    if ( getObjectData( oldData, [ 'logement', 'dataGeoportail' ] ) !== '' ) {
-        dataGeoportail = {
-            zoom:     oldData[ 'logement' ][ 'dataGeoportail' ][ 'zoom' ],
-            center:   oldData[ 'logement' ][ 'dataGeoportail' ][ 'center' ],
-            position: oldData[ 'logement' ][ 'dataGeoportail' ][ 'position' ],
-            zipCode:  oldData[ 'logement' ][ 'dataGeoportail' ][ 'codepostal' ],
-            city:     oldData[ 'logement' ][ 'dataGeoportail' ][ 'ville' ],
-            address:  oldData[ 'logement' ][ 'dataGeoportail' ][ 'adresse' ],
-            plot:     oldData[ 'logement' ][ 'dataGeoportail' ][ 'parcelle' ],
-        };
-    }
-
-    return dataGeoportail;
-};
-
-const convertOldScales = ( oldData ): Scale[] => {
-    const scales: Scale[] = [];
-    const oldScales: []   = getArrayData( oldData[ 'baremes' ] );
-    oldScales.forEach( scale => {
-        const stages: {
-            nbr: number;
-            min: number;
-            max: number;
-        }[] = [];
-
-        const oldStages: [] = getArrayData( scale[ 'palierRevenu' ] );
-
-        oldStages.forEach( stage => {
-            {
-                stages.push( {
-                                 nbr: stage[ 'nbre' ],
-                                 min: stage[ 'min' ],
-                                 max: stage[ 'max' ],
-                             } );
-            }
-        } );
-
-        scales.push( {
-                         stages:   stages,
-                         code:     scale[ 'code' ],
-                         ceeBonus: {
-                             h1: scale[ 'primeCEE' ][ 'H1' ],
-                             h2: scale[ 'primeCEE' ][ 'H3' ],
-                             h3: scale[ 'primeCEE' ][ 'H1' ],
-                         },
-                     } )
-        ;
-    } );
-
-    return scales;
-};
-
-const convertOldBlankOptions = ( oldData ): BlankOption[] => {
-    const blankOptions: BlankOption[] = [];
-    const oldBlankOptions: []         = getArrayData( oldData[ 'devis' ][ 'blankOptions' ] );
-
-    oldBlankOptions.forEach( option => {
-        blankOptions.push( {
-                               id:    option[ 'id' ],
-                               label: option[ 'label' ],
-                               unit:  option[ 'unit' ],
-                               pu:    option[ 'pu' ],
-                               value: option[ 'value' ],
-                           } );
-    } );
-
-    return blankOptions;
-};
+import EcsDeporte from '@/types/Ro/EcsDeporte';
+import {
+    convertOldAssent,
+    convertOldBeneficiary,
+    convertOldBlankOptions,
+    convertOldDataGeoportail,
+    convertOldErrorStatusDci,
+    convertOldScales,
+    convertOldStatusDci,
+    convertOldText,
+    convertOldTotalHt,
+    convertOldTotalTva,
+    getArrayData,
+    getBoolData,
+    getNumberData,
+    getObjectData,
+    getStringData,
+} from '@/services/folder/convertData';
+import RoFolder from '@/types/Ro/RoFolder';
 
 const convertOldRoProduct = ( oldData ): RoProduct[] => {
     const roProducts: RoProduct[] = [];
@@ -334,31 +119,8 @@ const convertOldSelectedEscDeporte = ( oldData ): EcsDeporte | undefined => {
     return selectedEcsDeporte;
 };
 
-
-/**
- * Convertie l'ancien système de données avec le nouveau
- */
-export const convertOldJsonToNewJson = () => {
-    const dropboxPath = store.get( 'dropboxPath' );
-    let oldData       = null;
-
-    if ( fs.existsSync( dropboxPath + '/DCI/data.json' ) ) {
-        oldData = JSON.parse( fs.readFileSync( dropboxPath + '/DCI/data.json', 'utf8' ) );
-        console.log( oldData );
-    }
-
-    if ( oldData === null || oldData === undefined ) {
-        return false;
-    }
-
-    const totalHt           = oldData[ 'devis' ][ 'totalHT' ] !== undefined ? oldData[ 'devis' ][ 'totalHT' ] : 0;
-    const totalTva          = oldData[ 'devis' ][ 'totalTVA' ] !== undefined ? oldData[ 'devis' ][ 'totalTVA' ] : 0;
-    const statusInDci       = oldData[ 'statutInDCI' ] !== undefined ? oldData[ 'statutInDCI' ] : 1;
-    const errorsStatusInDci = oldData[ 'statutInDCIErrors' ] !== undefined ? oldData[ 'statutInDCIErrors' ] : [];
-
-    console.log( '%c DATA', 'background: #ffd800; color: #000000' );
-    console.log( getObjectData( oldData, [ 'devisTemplate', 'rr' ] ) );
-    const roFolder: RoFolder = {
+export const convertOldRoFolder = ( oldData ): RoFolder => {
+    return {
         version:                   getStringData( oldData[ 'version' ] ),
         type:                      getStringData( oldData[ 'type' ] ),
         ref:                       getStringData( oldData[ 'ref' ] ),
@@ -467,8 +229,8 @@ export const convertOldJsonToNewJson = () => {
             },
             products:           convertOldRoProduct( oldData ),
             discount:           getObjectData( oldData, [ 'devis', 'remise' ] ),
-            totalHt:            totalHt,
-            totalTva:           totalTva,
+            totalHt:            convertOldTotalHt( oldData ),
+            totalTva:           convertOldTotalTva( oldData ),
         },
         scales:                    convertOldScales( oldData ),
         bonusWithoutCdp:           {
@@ -478,8 +240,8 @@ export const convertOldJsonToNewJson = () => {
                 h3: getObjectData( oldData, [ 'horsCdp', 'montantUnitaire', 'H3' ] ),
             },
         },
-        statusInDci:               statusInDci,
-        errorsStatusInDci:         errorsStatusInDci,
+        statusInDci:               convertOldStatusDci( oldData ),
+        errorsStatusInDci:         convertOldErrorStatusDci( oldData ),
         technician:                {
             id:        getObjectData( oldData, [ 'technicien', 'nom' ] ),
             lastName:  getObjectData( oldData, [ 'technicien', 'prenom' ] ),
@@ -488,21 +250,4 @@ export const convertOldJsonToNewJson = () => {
         },
         lists:                     [],
     };
-
-
-    // const student = {
-    //     name:       'Mike',
-    //     age:        23,
-    //     gender:     'Male',
-    //     department: 'English',
-    //     car:        'Honda',
-    // };
-    //
-    const data = JSON.stringify( roFolder );
-
-    if ( dropboxPath !== '' && !fs.existsSync( dropboxPath + '/DCI/newData.json' ) ) {
-        fs.writeFileSync( dropboxPath + '/DCI/newData.json', data );
-    }
-    console.log( '%c IN CONVERT OLD TO NEW', 'background: #fdd835; color: #000000' );
-    return true;
 };
