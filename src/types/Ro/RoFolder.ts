@@ -1,11 +1,11 @@
 import Housing from '@/types/Housing';
 import Technician from '@/types/Technician';
-import WorkSheet from '@/types/Ro/WorkSheet';
-import Quotation from '@/types/Ro/Quotation';
+import RoWorkSheet from '@/types/Ro/RoWorkSheet';
+import RoQuotation from '@/types/Ro/RoQuotation';
 import Scale from '@/types/Scale';
 import Assent from '@/types/Assent';
 
-interface FolderRo {
+interface RoFolder {
     version: string;
     type: string;
     ref: string;
@@ -27,8 +27,8 @@ interface FolderRo {
     energyZone?: string;
     bonusRate?: number;
     housing: Housing;
-    workSheet: WorkSheet;
-    quotation: Quotation;
+    workSheet: RoWorkSheet;
+    quotation: RoQuotation;
     scales: Scale[];    // Anciennement "baremes"
     bonusWithoutCdp: {  // Prime hors coup de pouce
         amount: {
@@ -44,4 +44,4 @@ interface FolderRo {
 
 }
 
-export default FolderRo;
+export default RoFolder;

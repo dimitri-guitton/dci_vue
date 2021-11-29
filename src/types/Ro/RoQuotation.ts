@@ -5,7 +5,7 @@ import EcsDeporte from '@/types/Ro/EcsDeporte';
 import KitBiZone from '@/types/Ro/KitBiZone';
 import Text from '@/types/Text';
 
-interface Quotation {
+interface RoQuotation {
     origin: string;
     dateTechnicalVisit: string;
     executionDelay: string;
@@ -39,4 +39,4 @@ interface Quotation {
     totalTva: number;
 }
 
-export default Quotation;
+export default RoQuotation;

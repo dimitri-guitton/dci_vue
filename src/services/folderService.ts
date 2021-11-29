@@ -1,7 +1,7 @@
 import fs from 'fs';
 import Store from 'electron-store';
 import * as commonService from './commonService';
-import FolderRo from '@/types/Ro/FolderRo';
+import RoFolder from '@/types/Ro/RoFolder';
 import RoOption from '@/types/Ro/RoOption';
 import BlankOption from '@/types/BlankOption';
 import Text from '@/types/Text';
@@ -52,122 +52,88 @@ export const createAFolder = ( type: string, customer: string ) => {
     return folderSlug;
 };
 
-/**
- * Convertie l'ancien système de données avec le nouveau
- */
-export const convertOldJsonToNewJson = () => {
-    const dropboxPath = store.get( 'dropboxPath' );
-    let oldData       = null;
 
-    if ( fs.existsSync( dropboxPath + '/DCI/data.json' ) ) {
-        oldData = JSON.parse( fs.readFileSync( dropboxPath + '/DCI/data.json', 'utf8' ) );
-        console.log( oldData );
+const getObjectData = ( data: any, keys: any[] ): any => {
+    // Si l'élément n'existe pas on retourne un objet vide ou un string
+    if ( keys.length > 1 && data[ keys[ 0 ] ] === undefined ) {
+        return {};
+    } else if ( keys.length > 0 && data[ keys[ 0 ] ] === undefined ) {
+        return '';
     }
 
-    if ( oldData === null ) {
-        return false;
+    // Retourne la data quand l'array keys est vide
+    if ( keys.length === 0 ) {
+        return data;
+    } else {
+        const elem = keys.shift();
+        return getObjectData( data[ elem ], keys );
     }
+};
 
-    let selectedEcsDeporte: EcsDeporte | undefined;
-    if ( oldData[ 'devis' ][ 'ro' ][ 'isEcsDeporte' ] ) {
-        selectedEcsDeporte = {
-            volume:      oldData[ 'devis' ][ 'ro' ][ 'selectedEcsDeporte' ][ 'volume' ],
-            label:       oldData[ 'devis' ][ 'ro' ][ 'selectedEcsDeporte' ][ 'label' ],
-            ref:         oldData[ 'devis' ][ 'ro' ][ 'selectedEcsDeporte' ][ 'ref' ],
-            pu:          oldData[ 'devis' ][ 'ro' ][ 'selectedEcsDeporte' ][ 'pu' ],
-            description: oldData[ 'devis' ][ 'ro' ][ 'selectedEcsDeporte' ][ 'descr' ],
-        };
-    }
-    let selectedKitBiZone: KitBiZone | undefined;
-    if ( oldData[ 'devis' ][ 'ro' ][ 'isKitBiZone' ] ) {
-        selectedKitBiZone = {
-            label: oldData[ 'devis' ][ 'ro' ][ 'selectedKitBiZone' ][ 'label' ],
-            ref:   oldData[ 'devis' ][ 'ro' ][ 'selectedKitBiZone' ][ 'ref' ],
-            pu:    oldData[ 'devis' ][ 'ro' ][ 'selectedKitBiZone' ][ 'volume' ],
-        };
-    }
+const getStringData = ( data: any ): string => {
+    return data === undefined ? '' : data;
+};
 
+const getNumberData = ( data: any ): number => {
+    return data === undefined ? 0 : data;
+};
+
+const getBoolData = ( data: any ): boolean => {
+    return data === undefined ? false : data;
+};
+
+const getArrayData = ( data: any ): [] => {
+    return data === undefined ? [] : data;
+};
+
+const convertOldText = ( oldData ): Text[] => {
     const texts: Text[] = [];
-    if ( oldData[ 'devis' ][ 'texte1' ] !== undefined ) {
+    if ( getObjectData( oldData, [ 'devis', 'texte1' ] ) !== '' ) {
         texts.push( {
-                        title: oldData[ 'devis' ][ 'texte1' ][ 'title' ],
-                        text:  oldData[ 'devis' ][ 'texte1' ][ 'text' ],
+                        title: getObjectData( oldData, [ 'devis', 'texte1', 'title' ] ),
+                        text:  getObjectData( oldData, [ 'devis', 'texte1', 'text' ] ),
                     } );
     }
-    if ( oldData[ 'devis' ][ 'texte2' ] !== undefined ) {
+    if ( getObjectData( oldData, [ 'devis', 'texte2' ] ) !== '' ) {
         texts.push( {
-                        title: oldData[ 'devis' ][ 'texte2' ][ 'title' ],
-                        text:  oldData[ 'devis' ][ 'texte2' ][ 'text' ],
+                        title: getObjectData( oldData, [ 'devis', 'texte2', 'title' ] ),
+                        text:  getObjectData( oldData, [ 'devis', 'texte2', 'text' ] ),
                     } );
     }
-    if ( oldData[ 'devis' ][ 'texte3' ] !== undefined ) {
+    if ( getObjectData( oldData, [ 'devis', 'texte3' ] ) !== '' ) {
         texts.push( {
-                        title: oldData[ 'devis' ][ 'texte3' ][ 'title' ],
-                        text:  oldData[ 'devis' ][ 'texte3' ][ 'text' ],
+                        title: getObjectData( oldData, [ 'devis', 'texte3', 'title' ] ),
+                        text:  getObjectData( oldData, [ 'devis', 'texte3', 'text' ] ),
                     } );
     }
 
-    const roOptions: RoOption[] = [];
-    const oldOption: []         = oldData[ 'devis' ][ 'options' ];
+    if ( getObjectData( oldData, [ 'devis', 'texte4' ] ) !== '' ) {
+        texts.push( {
+                        title: getObjectData( oldData, [ 'devis', 'texte4', 'title' ] ),
+                        text:  getObjectData( oldData, [ 'devis', 'texte4', 'text' ] ),
+                    } );
+    }
 
-    oldOption.forEach( option => {
-        roOptions.push( {
-                            id:        option[ 'id' ],
-                            label:     option[ 'label' ],
-                            unit:      option[ 'unit' ],
-                            value:     option[ 'value' ],
-                            pu:        {
-                                default: option[ 'default' ],
-                                value:   option[ 'value' ],
-                            },
-                            calcTva10: option[ 'calcTva10' ],
-                        } );
-    } );
+    return texts;
+};
 
-    const blankOptions: BlankOption[] = [];
-    const oldBlankOptions: []         = oldData[ 'devis' ][ 'blankOptions' ];
-    oldBlankOptions.forEach( option => {
-        blankOptions.push( {
-                               id:    option[ 'id' ],
-                               label: option[ 'label' ],
-                               unit:  option[ 'unit' ],
-                               pu:    option[ 'pu' ],
-                               value: option[ 'value' ],
-                           } );
-    } );
+const convertOldBeneficiary = ( oldData ): Beneficiary => {
+    return {
+        civility:  getObjectData( oldData, [ 'beneficiaire', 'civilite' ] ),
+        lastName:  getObjectData( oldData, [ 'beneficiaire', 'nom' ] ),
+        firstName: getObjectData( oldData, [ 'beneficiaire', 'prenom' ] ),
+        address:   getObjectData( oldData, [ 'beneficiaire', 'adresse' ] ),
+        zipCode:   getObjectData( oldData, [ 'beneficiaire', 'codepostal' ] ),
+        city:      getObjectData( oldData, [ 'beneficiaire', 'ville' ] ),
+        email:     getStringData( oldData[ 'email' ] ),
+        phone:     getStringData( oldData[ 'telfixe' ] ),
+        mobile:    getStringData( oldData[ 'telportable' ] ),
+    };
+};
 
-    const roProducts: RoProduct[] = [];
-    const oldProducts: []         = oldData[ 'devis' ][ 'pompeAChaleur' ][ 'products' ];
-    oldProducts.forEach( product => {
-        roProducts.push( {
-                             id:          product[ 'id' ],
-                             label:       product[ 'label' ],
-                             ref:         product[ 'ref' ],
-                             pu:          product[ 'pu' ],
-                             defaultPu:   product[ 'defaultPU' ],
-                             description: product[ 'descr' ],
-                             calcul0:     product[ 'calcul0' ],
-                             scop:        product[ 'scop' ],
-                         } );
-    } );
-
-    const selectedRoProducts: RoProduct[] = [];
-    const oldSelectedProducts: []         = oldData[ 'devis' ][ 'selectedProducts' ];
-    oldSelectedProducts.forEach( product => {
-        selectedRoProducts.push( {
-                                     id:          product[ 'id' ],
-                                     label:       product[ 'label' ],
-                                     ref:         product[ 'ref' ],
-                                     pu:          product[ 'pu' ],
-                                     defaultPu:   product[ 'defaultPU' ],
-                                     description: product[ 'descr' ],
-                                     calcul0:     product[ 'calcul0' ],
-                                     scop:        product[ 'scop' ],
-                                 } );
-    } );
-
+const convertOldAssent = ( oldData ): Assent[] => {
     const assents: Assent[] = [];
-    const oldAssents: []    = oldData[ 'avis' ];
+    const oldAssents: []    = getArrayData( oldData[ 'avis' ] );
     oldAssents.forEach( assent => {
         assents.push( {
                           uid:            assent[ 'uid' ],
@@ -195,15 +161,39 @@ export const convertOldJsonToNewJson = () => {
                       } );
     } );
 
+    return assents;
+};
+
+const convertOldDataGeoportail = ( oldData ): DataGeoportail | undefined => {
+    let dataGeoportail: DataGeoportail | undefined;
+
+    if ( getObjectData( oldData, [ 'logement', 'dataGeoportail' ] ) !== '' ) {
+        dataGeoportail = {
+            zoom:     oldData[ 'logement' ][ 'dataGeoportail' ][ 'zoom' ],
+            center:   oldData[ 'logement' ][ 'dataGeoportail' ][ 'center' ],
+            position: oldData[ 'logement' ][ 'dataGeoportail' ][ 'position' ],
+            zipCode:  oldData[ 'logement' ][ 'dataGeoportail' ][ 'codepostal' ],
+            city:     oldData[ 'logement' ][ 'dataGeoportail' ][ 'ville' ],
+            address:  oldData[ 'logement' ][ 'dataGeoportail' ][ 'adresse' ],
+            plot:     oldData[ 'logement' ][ 'dataGeoportail' ][ 'parcelle' ],
+        };
+    }
+
+    return dataGeoportail;
+};
+
+const convertOldScales = ( oldData ): Scale[] => {
     const scales: Scale[] = [];
-    const oldScales: []   = oldData[ 'baremes' ];
+    const oldScales: []   = getArrayData( oldData[ 'baremes' ] );
     oldScales.forEach( scale => {
         const stages: {
             nbr: number;
             min: number;
             max: number;
-        }[]                 = [];
-        const oldStages: [] = scale[ 'palierRevenu' ];
+        }[] = [];
+
+        const oldStages: [] = getArrayData( scale[ 'palierRevenu' ] );
+
         oldStages.forEach( stage => {
             {
                 stages.push( {
@@ -226,161 +216,275 @@ export const convertOldJsonToNewJson = () => {
         ;
     } );
 
-    let dataGeoportail: DataGeoportail | undefined;
+    return scales;
+};
 
-    if ( oldData[ 'logement' ][ 'dataGeoportail' ] !== undefined && oldData[ 'logement' ][ 'dataGeoportail' ][ 'zoom' ] !== undefined ) {
-        dataGeoportail = {
-            zoom:     oldData[ 'logement' ][ 'dataGeoportail' ][ 'zoom' ],
-            center:   oldData[ 'logement' ][ 'dataGeoportail' ][ 'center' ],
-            position: oldData[ 'logement' ][ 'dataGeoportail' ][ 'position' ],
-            zipCode:  oldData[ 'logement' ][ 'dataGeoportail' ][ 'codepostal' ],
-            city:     oldData[ 'logement' ][ 'dataGeoportail' ][ 'ville' ],
-            address:  oldData[ 'logement' ][ 'dataGeoportail' ][ 'adresse' ],
-            plot:     oldData[ 'logement' ][ 'dataGeoportail' ][ 'parcelle' ],
+const convertOldBlankOptions = ( oldData ): BlankOption[] => {
+    const blankOptions: BlankOption[] = [];
+    const oldBlankOptions: []         = getArrayData( oldData[ 'devis' ][ 'blankOptions' ] );
+
+    oldBlankOptions.forEach( option => {
+        blankOptions.push( {
+                               id:    option[ 'id' ],
+                               label: option[ 'label' ],
+                               unit:  option[ 'unit' ],
+                               pu:    option[ 'pu' ],
+                               value: option[ 'value' ],
+                           } );
+    } );
+
+    return blankOptions;
+};
+
+const convertOldRoProduct = ( oldData ): RoProduct[] => {
+    const roProducts: RoProduct[] = [];
+    const oldProducts: []         = getObjectData( oldData,
+                                                   [ 'devis',
+                                                     'pompeAChaleur',
+                                                     'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                                           [ 'devis',
+                                                                                                             'pompeAChaleur',
+                                                                                                             'products' ] );
+
+    oldProducts.forEach( product => {
+        roProducts.push( {
+                             id:          product[ 'id' ],
+                             label:       product[ 'label' ],
+                             ref:         product[ 'ref' ],
+                             pu:          product[ 'pu' ],
+                             defaultPu:   product[ 'defaultPU' ],
+                             description: product[ 'descr' ],
+                             calcul0:     product[ 'calcul0' ],
+                             scop:        product[ 'scop' ],
+                         } );
+    } );
+
+    return roProducts;
+};
+
+const convertSelectedRoProduct = ( oldData ): RoProduct[] => {
+    const selectedRoProducts: RoProduct[] = [];
+    const oldSelectedProducts: []         = getArrayData( oldData[ 'devis' ][ 'selectedProducts' ] );
+
+    oldSelectedProducts.forEach( product => {
+        selectedRoProducts.push( {
+                                     id:          product[ 'id' ],
+                                     label:       product[ 'label' ],
+                                     ref:         product[ 'ref' ],
+                                     pu:          product[ 'pu' ],
+                                     defaultPu:   product[ 'defaultPU' ],
+                                     description: product[ 'descr' ],
+                                     calcul0:     product[ 'calcul0' ],
+                                     scop:        product[ 'scop' ],
+                                 } );
+    } );
+
+    return selectedRoProducts;
+};
+
+const convertOldRoOptions = ( oldData ): RoOption[] => {
+    const roOptions: RoOption[] = [];
+    const oldOption: []         = getArrayData( oldData[ 'devis' ][ 'options' ] );
+
+    oldOption.forEach( option => {
+        roOptions.push( {
+                            id:        option[ 'id' ],
+                            label:     option[ 'label' ],
+                            unit:      option[ 'unit' ],
+                            value:     option[ 'value' ],
+                            pu:        {
+                                default: option[ 'default' ],
+                                value:   option[ 'value' ],
+                            },
+                            calcTva10: option[ 'calcTva10' ],
+                        } );
+    } );
+
+    return roOptions;
+};
+
+const convertOldSelectedKitBiZone = ( oldData ): KitBiZone | undefined => {
+    let selectedKitBiZone: KitBiZone | undefined;
+    if ( getObjectData( oldData, [ 'devis', 'ro', 'isKitBiZone' ] ) === true ) {
+        selectedKitBiZone = {
+            label: getObjectData( oldData, [ 'devis', 'ro', 'selectedKitBiZone', 'label' ] ),
+            ref:   getObjectData( oldData, [ 'devis', 'ro', 'selectedKitBiZone', 'ref' ] ),
+            pu:    getObjectData( oldData, [ 'devis', 'ro', 'selectedKitBiZone', 'volume' ] ),
         };
     }
+
+    return selectedKitBiZone;
+};
+
+const convertOldSelectedEscDeporte = ( oldData ): EcsDeporte | undefined => {
+    let selectedEcsDeporte: EcsDeporte | undefined;
+
+    console.log( 'VOLUME', getObjectData( oldData, [ 'devis', 'ro', 'isEcsDeporte' ] ) );
+    if ( getObjectData( oldData, [ 'devis', 'ro', 'isEcsDeporte' ] ) === true ) {
+        console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
+        selectedEcsDeporte = {
+            volume:      getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'volume' ] ),
+            label:       getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'label' ] ),
+            ref:         getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'ref' ] ),
+            pu:          getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'pu' ] ),
+            description: getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'descr' ] ),
+        };
+    }
+
+    return selectedEcsDeporte;
+};
+
+
+/**
+ * Convertie l'ancien système de données avec le nouveau
+ */
+export const convertOldJsonToNewJson = () => {
+    const dropboxPath = store.get( 'dropboxPath' );
+    let oldData       = null;
+
+    if ( fs.existsSync( dropboxPath + '/DCI/data.json' ) ) {
+        oldData = JSON.parse( fs.readFileSync( dropboxPath + '/DCI/data.json', 'utf8' ) );
+        console.log( oldData );
+    }
+
+    if ( oldData === null || oldData === undefined ) {
+        return false;
+    }
+
     const totalHt           = oldData[ 'devis' ][ 'totalHT' ] !== undefined ? oldData[ 'devis' ][ 'totalHT' ] : 0;
     const totalTva          = oldData[ 'devis' ][ 'totalTVA' ] !== undefined ? oldData[ 'devis' ][ 'totalTVA' ] : 0;
     const statusInDci       = oldData[ 'statutInDCI' ] !== undefined ? oldData[ 'statutInDCI' ] : 1;
     const errorsStatusInDci = oldData[ 'statutInDCIErrors' ] !== undefined ? oldData[ 'statutInDCIErrors' ] : [];
 
-    const roFolder: FolderRo = {
-        version:                   oldData[ 'version' ],
-        type:                      oldData[ 'type' ],
-        ref:                       oldData[ 'ref' ],
-        folderName:                oldData[ 'folderName' ],
-        createdAt:                 oldData[ 'createdAt' ],
-        updatedAt:                 oldData[ 'updatedAt' ],
+    console.log( '%c DATA', 'background: #ffd800; color: #000000' );
+    console.log( getObjectData( oldData, [ 'devisTemplate', 'rr' ] ) );
+    const roFolder: RoFolder = {
+        version:                   getStringData( oldData[ 'version' ] ),
+        type:                      getStringData( oldData[ 'type' ] ),
+        ref:                       getStringData( oldData[ 'ref' ] ),
+        folderName:                getStringData( oldData[ 'folderName' ] ),
+        createdAt:                 getStringData( oldData[ 'createdAt' ] ),
+        updatedAt:                 getStringData( oldData[ 'updatedAt' ] ),
         settings:                  oldData[ 'settings' ],
-        devisTemplate:             oldData[ 'devisTemplate' ][ 'ro' ],
-        workSheetTemplate:         oldData[ 'ficheTemplate' ][ 'ro' ],
-        disabledBonus:             oldData[ 'disablePrime' ],
-        disabledCeeBonus:          oldData[ 'disablePrimeCEE' ],
-        enabledHousingAction:      oldData[ 'enabledActionLogement' ],
-        disabledMaPrimeRenovBonus: oldData[ 'disablePrimeMaprimerenov' ],
-        assent:                    assents,
-        beneficiary:               {
-            civility:  oldData[ 'beneficiaire' ][ 'civilite' ],
-            lastName:  oldData[ 'beneficiaire' ][ 'nom' ],
-            firstName: oldData[ 'beneficiaire' ][ 'prenom' ],
-            address:   oldData[ 'beneficiaire' ][ 'adresse' ],
-            zipCode:   oldData[ 'beneficiaire' ][ 'codepostal' ],
-            city:      oldData[ 'beneficiaire' ][ 'ville' ],
-            email:     oldData[ 'email' ],
-            phone:     oldData[ 'telfixe' ],
-            mobile:    oldData[ 'telportable' ],
-        },
-        codeBonus:                 oldData[ 'codePrime' ],
-        energyZone:                oldData[ 'zoneEnergetique' ],
-        bonusRate:                 oldData[ 'tauxPrime' ],
+        devisTemplate:             getObjectData( oldData, [ 'devisTemplate', 'ro' ] ),
+        workSheetTemplate:         getObjectData( oldData, [ 'ficheTemplate', 'ro' ] ),
+        disabledBonus:             getBoolData( oldData[ 'disablePrime' ] ),
+        disabledCeeBonus:          getBoolData( oldData[ 'disablePrimeCEE' ] ),
+        enabledHousingAction:      getBoolData( oldData[ 'enabledActionLogement' ] ),
+        disabledMaPrimeRenovBonus: getBoolData( oldData[ 'disablePrimeMaprimerenov' ] ),
+        assent:                    convertOldAssent( oldData ),
+        beneficiary:               convertOldBeneficiary( oldData ),
+        codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
+        energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
+        bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
         housing:                   {
-            nbOccupant:        oldData[ 'logement' ][ 'occupants' ],
-            type:              oldData[ 'logement' ][ 'localType' ],
-            isAddressBenef:    oldData[ 'logement' ][ 'isAdresseBenef' ],
-            addresse:          oldData[ 'logement' ][ 'adresse' ],
-            zipCode:           oldData[ 'logement' ][ 'codepostal' ],
-            city:              oldData[ 'logement' ][ 'ville' ],
-            plot:              oldData[ 'logement' ][ 'parcelle' ],
-            area:              oldData[ 'logement' ][ 'superficie' ],
-            dataGeoportail:    dataGeoportail,
-            location:          oldData[ 'logement' ][ 'location' ],
-            insulationQuality: oldData[ 'logement' ][ 'qualiteIsolation' ],
-            constructionYear:  oldData[ 'logement' ][ 'anneeConstruction' ],
-            lessThan2Years:    oldData[ 'logement' ][ 'moinsDe2Ans' ],
-            availableVoltage:  oldData[ 'logement' ][ 'tensionDisponible' ],
+            nbOccupant:        getObjectData( oldData, [ 'logement', 'occupants' ] ),
+            type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
+            isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
+            addresse:          getObjectData( oldData, [ 'logement', 'adresse' ] ),
+            zipCode:           getObjectData( oldData, [ 'logement', 'codepostal' ] ),
+            city:              getObjectData( oldData, [ 'logement', 'ville' ] ),
+            plot:              getObjectData( oldData, [ 'logement', 'parcelle' ] ),
+            area:              getObjectData( oldData, [ 'logement', 'superficie' ] ),
+            dataGeoportail:    convertOldDataGeoportail( oldData ),
+            location:          getObjectData( oldData, [ 'logement', 'location' ] ),
+            insulationQuality: getObjectData( oldData, [ 'logement', 'qualiteIsolation' ] ),
+            constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
+            lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
+            availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },
         workSheet:                 {
-            period:                    oldData[ 'fiche' ][ 'periodePose' ],
-            niveauHabitation:          oldData[ 'fiche' ][ 'niveauHabitation' ],
-            typeChantier:              oldData[ 'fiche' ][ 'typeChantier' ],
-            disjoncteur:               oldData[ 'fiche' ][ 'disjoncteur' ],
-            distanceCompteurPac:       oldData[ 'fiche' ][ 'distanceCompteurPac' ],
-            natureMurExt:              oldData[ 'fiche' ][ 'natureMurExt' ],
-            naturePlafond:             oldData[ 'fiche' ][ 'naturePlafond' ],
-            visiteComble:              oldData[ 'fiche' ][ 'visiteComble' ],
-            chantierHabite:            oldData[ 'fiche' ][ 'chantierHabite' ],
-            grandeEchelle:             oldData[ 'fiche' ][ 'grandeEchelle' ],
-            demandeVoirie:             oldData[ 'fiche' ][ 'demandeVoirie' ],
-            puissanceCompteur:         oldData[ 'fiche' ][ 'puissanceCompteur' ],
-            accesComble:               oldData[ 'fiche' ][ 'accesComble' ],
-            rueEtroite:                oldData[ 'fiche' ][ 'rueEtroite' ],
-            typeCouverture:            oldData[ 'fiche' ][ 'typeCouverture' ],
-            etatToiture:               oldData[ 'fiche' ][ 'etatToiture' ],
-            typeCharpente:             oldData[ 'fiche' ][ 'typeCharpente' ],
-            nbCompartimentComble:      oldData[ 'fiche' ][ 'nbrCompartementComble' ],
-            presenceVolige:            oldData[ 'fiche' ][ 'presenceVolige' ],
-            nbAccesComble:             oldData[ 'fiche' ][ 'nbrAccesComble' ],
-            distanceGpExtUnitInt:      oldData[ 'fiche' ][ 'distanceGpExtUnitInt' ],
-            nbTotalRadiateur:          oldData[ 'fiche' ][ 'nbrTotalRadiateur' ],
-            nbRadiateurThermostatique: oldData[ 'fiche' ][ 'nbrRadiateurThermostatique' ],
-            typeRadiateur:             oldData[ 'fiche' ][ 'typeRadiateur' ],
-            positionEauChaude:         oldData[ 'fiche' ][ 'positionEauChaude' ],
-            hauteurDuSol:              oldData[ 'fiche' ][ 'hauteurDuSol' ],
-            espaceSolRequisUnitInt:    oldData[ 'fiche' ][ 'espaceSolRequisUnitInt' ],
-            hauteurRequiseUnitInt:     oldData[ 'fiche' ][ 'hauteurRequiseUnitInt' ],
-            emplacementSplit1:         oldData[ 'fiche' ][ 'emplacementSplit1' ],
-            emplacementSplit2:         oldData[ 'fiche' ][ 'emplacementSplit2' ],
-            emplacementSplit3:         oldData[ 'fiche' ][ 'emplacementSplit3' ],
-            emplacementSplit4:         oldData[ 'fiche' ][ 'emplacementSplit4' ],
-            emplacementSplit5:         oldData[ 'fiche' ][ 'emplacementSplit5' ],
-            emplacementGrpExt:         oldData[ 'fiche' ][ 'emplacementGrpExt' ],
-            emplacementSplitMono:      oldData[ 'fiche' ][ 'emplacementSplitMono' ],
-            distanceGpExtSplit1:       oldData[ 'fiche' ][ 'distanceGpExtSplit1' ],
-            distanceGpExtSplit2:       oldData[ 'fiche' ][ 'distanceGpExtSplit2' ],
-            distanceGpExtSplit3:       oldData[ 'fiche' ][ 'distanceGpExtSplit3' ],
-            distanceGpExtSplit4:       oldData[ 'fiche' ][ 'distanceGpExtSplit4' ],
-            distanceGpExtSplit5:       oldData[ 'fiche' ][ 'distanceGpExtSplit5' ],
-            nbPompeRelevage:           oldData[ 'fiche' ][ 'nbrPompeRelevage' ],
-            infosSup:                  oldData[ 'fiche' ][ 'infosSup' ],
+            period:                    getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
+            niveauHabitation:          getObjectData( oldData, [ 'fiche', 'niveauHabitation' ] ),
+            typeChantier:              getObjectData( oldData, [ 'fiche', 'typeChantier' ] ),
+            disjoncteur:               getObjectData( oldData, [ 'fiche', 'disjoncteur' ] ),
+            distanceCompteurPac:       getObjectData( oldData, [ 'fiche', 'distanceCompteurPac' ] ),
+            natureMurExt:              getObjectData( oldData, [ 'fiche', 'natureMurExt' ] ),
+            naturePlafond:             getObjectData( oldData, [ 'fiche', 'naturePlafond' ] ),
+            visiteComble:              getObjectData( oldData, [ 'fiche', 'visiteComble' ] ),
+            chantierHabite:            getObjectData( oldData, [ 'fiche', 'chantierHabite' ] ),
+            grandeEchelle:             getObjectData( oldData, [ 'fiche', 'grandeEchelle' ] ),
+            demandeVoirie:             getObjectData( oldData, [ 'fiche', 'demandeVoirie' ] ),
+            puissanceCompteur:         getObjectData( oldData, [ 'fiche', 'puissanceCompteur' ] ),
+            accesComble:               getObjectData( oldData, [ 'fiche', 'accesComble' ] ),
+            rueEtroite:                getObjectData( oldData, [ 'fiche', 'rueEtroite' ] ),
+            typeCouverture:            getObjectData( oldData, [ 'fiche', 'typeCouverture' ] ),
+            etatToiture:               getObjectData( oldData, [ 'fiche', 'etatToiture' ] ),
+            typeCharpente:             getObjectData( oldData, [ 'fiche', 'typeCharpente' ] ),
+            nbCompartimentComble:      getObjectData( oldData, [ 'fiche', 'nbrCompartementComble' ] ),
+            presenceVolige:            getObjectData( oldData, [ 'fiche', 'presenceVolige' ] ),
+            nbAccesComble:             getObjectData( oldData, [ 'fiche', 'nbrAccesComble' ] ),
+            distanceGpExtUnitInt:      getObjectData( oldData, [ 'fiche', 'distanceGpExtUnitInt' ] ),
+            nbTotalRadiateur:          getObjectData( oldData, [ 'fiche', 'nbrTotalRadiateur' ] ),
+            nbRadiateurThermostatique: getObjectData( oldData, [ 'fiche', 'nbrRadiateurThermostatique' ] ),
+            typeRadiateur:             getObjectData( oldData, [ 'fiche', 'typeRadiateur' ] ),
+            positionEauChaude:         getObjectData( oldData, [ 'fiche', 'positionEauChaude' ] ),
+            hauteurDuSol:              getObjectData( oldData, [ 'fiche', 'hauteurDuSol' ] ),
+            espaceSolRequisUnitInt:    getObjectData( oldData, [ 'fiche', 'espaceSolRequisUnitInt' ] ),
+            hauteurRequiseUnitInt:     getObjectData( oldData, [ 'fiche', 'hauteurRequiseUnitInt' ] ),
+            emplacementSplit1:         getObjectData( oldData, [ 'fiche', 'emplacementSplit1' ] ),
+            emplacementSplit2:         getObjectData( oldData, [ 'fiche', 'emplacementSplit2' ] ),
+            emplacementSplit3:         getObjectData( oldData, [ 'fiche', 'emplacementSplit3' ] ),
+            emplacementSplit4:         getObjectData( oldData, [ 'fiche', 'emplacementSplit4' ] ),
+            emplacementSplit5:         getObjectData( oldData, [ 'fiche', 'emplacementSplit5' ] ),
+            emplacementGrpExt:         getObjectData( oldData, [ 'fiche', 'emplacementGrpExt' ] ),
+            emplacementSplitMono:      getObjectData( oldData, [ 'fiche', 'emplacementSplitMono' ] ),
+            distanceGpExtSplit1:       getObjectData( oldData, [ 'fiche', 'distanceGpExtSplit1' ] ),
+            distanceGpExtSplit2:       getObjectData( oldData, [ 'fiche', 'distanceGpExtSplit2' ] ),
+            distanceGpExtSplit3:       getObjectData( oldData, [ 'fiche', 'distanceGpExtSplit3' ] ),
+            distanceGpExtSplit4:       getObjectData( oldData, [ 'fiche', 'distanceGpExtSplit4' ] ),
+            distanceGpExtSplit5:       getObjectData( oldData, [ 'fiche', 'distanceGpExtSplit5' ] ),
+            nbPompeRelevage:           getObjectData( oldData, [ 'fiche', 'nbrPompeRelevage' ] ),
+            infosSup:                  getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
         quotation:                 {
-            origin:             oldData[ 'devis' ][ 'origine' ],
-            dateTechnicalVisit: oldData[ 'devis' ][ 'dateVisiteTech' ],
-            executionDelay:     oldData[ 'devis' ][ 'delaisExecution' ],
-            options:            roOptions,
-            blankOptions:       blankOptions,
-            commentary:         oldData[ 'devis' ][ 'commentaires' ],
-            partner:            oldData[ 'devis' ][ 'partner' ],
-            texts:              texts,
-            tva10:              oldData[ 'devis' ][ 'tva10' ],
-            tva20:              oldData[ 'devis' ][ 'tva20' ],
-            ceeBonus:           oldData[ 'devis' ][ 'primeCEE' ],
-            maPrimeRenovBonus:  oldData[ 'devis' ][ 'primeAnah' ],
-            selectedProducts:   selectedRoProducts,
-            assortment:         oldData[ 'devis' ][ 'gamme' ],
-            volumeECS:          oldData[ 'devis' ][ 'ro' ][ 'volumeECS' ],
-            volumeECSDeporte:   oldData[ 'devis' ][ 'ro' ][ 'volumeECSDeporte' ],
-            isEcsDeporte:       oldData[ 'devis' ][ 'ro' ][ 'isEcsDeporte' ],
-            selectedEcsDeporte: selectedEcsDeporte,
-            isKitBiZone:        oldData[ 'devis' ][ 'ro' ][ 'isKitBiZone' ],
-            selectedKitBiZone:  selectedKitBiZone,
-            ceilingHeight:      oldData[ 'devis' ][ 'ro' ][ 'hauteurSousPlafond' ],
-            quantity:           oldData[ 'devis' ][ 'ro' ][ 'quantity' ],
+            origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
+            dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
+            executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
+            options:            convertOldRoOptions( oldData ),
+            blankOptions:       convertOldBlankOptions( oldData ),
+            commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
+            partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),
+            texts:              convertOldText( oldData ),
+            tva10:              getObjectData( oldData, [ 'devis', 'tva10' ] ),
+            tva20:              getObjectData( oldData, [ 'devis', 'tva20' ] ),
+            ceeBonus:           getObjectData( oldData, [ 'devis', 'primeCEE' ] ),
+            maPrimeRenovBonus:  getObjectData( oldData, [ 'devis', 'primeAnah' ] ),
+            selectedProducts:   convertSelectedRoProduct( oldData ),
+            assortment:         getObjectData( oldData, [ 'devis', 'gamme' ] ),
+            volumeECS:          getObjectData( oldData, [ 'devis', 'ro', 'volumeECS' ] ),
+            volumeECSDeporte:   getObjectData( oldData, [ 'devis', 'ro', 'volumeECSDeporte' ] ),
+            isEcsDeporte:       getObjectData( oldData, [ 'devis', 'ro', 'isEcsDeporte' ] ),
+            selectedEcsDeporte: convertOldSelectedEscDeporte( oldData ),
+            isKitBiZone:        getObjectData( oldData, [ 'devis', 'ro', 'isKitBiZone' ] ),
+            selectedKitBiZone:  convertOldSelectedKitBiZone( oldData ),
+            ceilingHeight:      getObjectData( oldData, [ 'devis', 'ro', 'hauteurSousPlafond' ] ),
+            quantity:           getObjectData( oldData, [ 'devis', 'ro', 'quantity' ] ),
             deviceToReplace:    {
-                type:  oldData[ 'devis' ][ 'ro' ][ 'appareilRemplacer' ][ 'type' ],
-                brand: oldData[ 'devis' ][ 'ro' ][ 'appareilRemplacer' ][ 'marque' ],
-                model: oldData[ 'devis' ][ 'ro' ][ 'appareilRemplacer' ][ 'modele' ],
+                type:  getObjectData( oldData, [ 'devis', 'ro', 'appareilRemplacer', 'type' ] ),
+                brand: getObjectData( oldData, [ 'devis', 'ro', 'appareilRemplacer', 'marque' ] ),
+                model: getObjectData( oldData, [ 'devis', 'ro', 'appareilRemplacer', 'modele' ] ),
             },
-            products:           roProducts,
-            discount:           oldData[ 'devis' ][ 'remise' ],
+            products:           convertOldRoProduct( oldData ),
+            discount:           getObjectData( oldData, [ 'devis', 'remise' ] ),
             totalHt:            totalHt,
             totalTva:           totalTva,
         },
-        scales:                    scales,
+        scales:                    convertOldScales( oldData ),
         bonusWithoutCdp:           {
             amount: {
-                h1: oldData[ 'horsCdp' ][ 'montantUnitaire' ][ 'H1' ],
-                h2: oldData[ 'horsCdp' ][ 'montantUnitaire' ][ 'H2' ],
-                h3: oldData[ 'horsCdp' ][ 'montantUnitaire' ][ 'H3' ],
+                h1: getObjectData( oldData, [ 'horsCdp', 'montantUnitaire', 'H1' ] ),
+                h2: getObjectData( oldData, [ 'horsCdp', 'montantUnitaire', 'H2' ] ),
+                h3: getObjectData( oldData, [ 'horsCdp', 'montantUnitaire', 'H3' ] ),
             },
         },
         statusInDci:               statusInDci,
         errorsStatusInDci:         errorsStatusInDci,
         technician:                {
-            id:        oldData[ 'technicien' ][ 'nom' ],
-            lastName:  oldData[ 'technicien' ][ 'prenom' ],
-            firstName: oldData[ 'technicien' ][ 'id' ],
-            phone:     oldData[ 'technicien' ][ 'tel' ],
+            id:        getObjectData( oldData, [ 'technicien', 'nom' ] ),
+            lastName:  getObjectData( oldData, [ 'technicien', 'prenom' ] ),
+            firstName: getObjectData( oldData, [ 'technicien', 'id' ] ),
+            phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
         },
         lists:                     [],
     };

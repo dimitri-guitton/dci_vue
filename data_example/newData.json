@@ -39,7 +39,8 @@
             "revenu":         "12426"
         }
     ],
-    "beneficiary":               {
+    "beneficiary": {
+        "civility":  "",
         "lastName":  "GALLAIS",
         "firstName": "ALAIN",
         "address":   "21  RUE  ARISTIDE  BRIAND",

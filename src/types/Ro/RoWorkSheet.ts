@@ -1,4 +1,4 @@
-interface WorkSheet {
+interface RoWorkSheet {
     period: string;
     niveauHabitation: string;
     typeChantier: string;
@@ -43,4 +43,4 @@ interface WorkSheet {
     infosSup: string;
 }
 
-export default WorkSheet;
+export default RoWorkSheet;
