@@ -1,9 +1,9 @@
 import Housing from '@/types/Housing';
 import Technician from '@/types/Technician';
-import RoWorkSheet from '@/types/Ro/RoWorkSheet';
 import Scale from '@/types/Scale';
 import Assent from '@/types/Assent';
 import RrQuotation from '@/types/Rr/RrQuotation';
+import RrWorkSheet from '@/types/Rr/RrWorkSheet';
 
 interface RrFolder {
     version: string;
@@ -27,7 +27,7 @@ interface RrFolder {
     energyZone?: string;
     bonusRate?: number;
     housing: Housing;
-    workSheet: RoWorkSheet;
+    workSheet: RrWorkSheet;
     quotation: RrQuotation;
     scales: Scale[];    // Anciennement "baremes"
     bonusWithoutCdp: {  // Prime hors coup de pouce

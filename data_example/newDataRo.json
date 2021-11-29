@@ -1,12 +1,12 @@
 {
     "version":                   "5",
     "type":                      "pac",
-    "ref":                       "JT11-20211006T1109-PA_RR",
-    "folderName":                "JT11-20211006T1109-PA_RR (JAILLET THIERRY)",
-    "createdAt":                 "2021-10-06T11:09:50.885",
-    "updatedAt":                 "2021-10-06T11:19:27.515",
+    "ref":                       "DB15-20211124T1600-PA_RO",
+    "folderName":                "DB15-20211124T1600-PA_RO (GALLAISALAIN)",
+    "createdAt":                 "2021-11-24T16:00:44.630",
+    "updatedAt":                 "2021-11-24T16:28:41.637",
     "settings":                  {
-        "ceeCoef": "6.6"
+        "ceeCoef": "6.1"
     },
     "devisTemplate":             "devisRoTpl-v5.html",
     "workSheetTemplate":         "ficheRoTpl-v5.html",
@@ -16,111 +16,116 @@
     "disabledMaPrimeRenovBonus": false,
     "assent":                    [
         {
-            "uid":            "gL7GbaAmp",
-            "refAvis":        "2036A02699916",
-            "numFiscal":      "1562873023474",
+            "uid":            "Q_QeYNpzJ",
+            "refAvis":        "",
+            "numFiscal":      "",
             "isbeneficiaire": true,
             "datagouv":       {
-                "refAvis":   "2036A02699916",
-                "numFiscal": "1562873023474",
-                "loaded":    true,
-                "nom":       "JAILLET",
-                "prenom":    "THIERRY",
-                "adresse":   "31 RUE DE PIED FAVE",
-                "ville":     "36120 MARON",
-                "revenu":    27246,
+                "refAvis":   "",
+                "numFiscal": "",
+                "loaded":    false,
+                "nom":       "",
+                "prenom":    "",
+                "adresse":   "",
+                "ville":     "",
+                "revenu":    "",
                 "error":     false
             },
-            "nom":            "JAILLET",
-            "prenom":         "THIERRY",
-            "adresse":        "31 RUE DE PIED FAVE",
-            "codepostal":     "36120",
-            "ville":          "MARON",
-            "revenu":         27246,
-            "civilite":       "M"
+            "nom":            "GALLAIS",
+            "prenom":         "ALAIN",
+            "adresse":        "21  RUE  ARISTIDE  BRIAND",
+            "codepostal":     "16120",
+            "ville":          "CHATEAUNEUF  SUR  CHARENTE",
+            "revenu":         "12426"
         }
     ],
     "beneficiary":               {
-        "civility":  "M",
-        "lastName":  "JAILLET",
-        "firstName": "THIERRY",
-        "address":   "31 RUE DE PIED FAVE",
-        "zipCode":   "36120",
-        "city":      "MARON",
-        "email":     "laouaria.asstito@wanadoo.fr",
+        "civility":  "",
+        "lastName":  "GALLAIS",
+        "firstName": "ALAIN",
+        "address":   "21  RUE  ARISTIDE  BRIAND",
+        "zipCode":   "16120",
+        "city":      "CHATEAUNEUF  SUR  CHARENTE",
+        "email":     "ga16@free.fr",
         "phone":     "",
-        "mobile":    "06 07 01 52 29"
+        "mobile":    "06 19 08 39 94"
     },
     "codeBonus":                 "GP",
     "energyZone":                "H2",
     "bonusRate":                 20,
     "housing":                   {
-        "nbOccupant":        "4",
+        "nbOccupant":        1,
         "type":              "maison_individuelle",
-        "isAddressBenef":    true,
-        "addresse":          "",
-        "zipCode":           "",
-        "city":              "",
-        "plot":              "",
-        "area":              "25",
-        "dataGeoportail":    {},
+        "isAddressBenef":    false,
+        "addresse":          "1 r pierre marcel betoulle",
+        "zipCode":           "16190",
+        "city":              "Montmoreau",
+        "plot":              "000 / 0B / 0846",
+        "area":              "144",
+        "dataGeoportail":    {
+            "zoom":     19,
+            "center":   [
+                0.14110353760221095,
+                45.42120933242626
+            ],
+            "position": [
+                0.1409919261932373,
+                45.42144862233354
+            ],
+            "zipCode":  "16190",
+            "city":     "Montmoreau",
+            "address":  "1 r pierre marcel betoulle",
+            "plot":     "000 / 0B / 0846"
+        },
         "location":          "",
-        "insulationQuality": "0.9",
-        "constructionYear":  "",
+        "insulationQuality": "1.3",
+        "constructionYear":  "1978",
         "lessThan2Years":    false,
         "availableVoltage":  "monophase"
     },
-    "workSheet": {
-        "period":               "",
-        "niveauHabitation":     "pp",
-        "typeChantier":         "neuf",
-        "disjoncteur":          false,
-        "natureMurExt":         "parpaing",
-        "naturePlafond":        "brique",
-        "visiteComble":         false,
-        "chantierHabite":       false,
-        "grandeEchelle":        false,
-        "demandeVoirie":        false,
-        "puissanceCompteur":    6,
-        "distanceCompteurPac":  0,
-        "accesComble":          "trappe",
-        "rueEtroite":           false,
-        "typeCouverture":       "mecanique",
-        "etatToiture":          "propre",
-        "typeCharpente":        "traditionnelle",
-        "nbCompartimentComble": 1,
-        "presenceVolige":       false,
-        "nbAccesComble":        1,
-        "distanceGpExtUnitInt": 0,
-        "emplacementSplit1":    "",
-        "emplacementSplit2":    "",
-        "emplacementSplit3":    "",
-        "emplacementSplit4":    "",
-        "emplacementSplit5":    "",
-        "emplacementGrpExt":    "",
-        "emplacementSplitMono": "",
-        "distanceGpExtSplit1":  0,
-        "distanceGpExtSplit2":  0,
-        "distanceGpExtSplit3":  0,
-        "distanceGpExtSplit4":  0,
-        "distanceGpExtSplit5":  0,
-        "nbPompeRelevage":      1,
-        "positionEauChaude":    "sol",
-        "hauteurDuSol":         1,
-        "infosSup":             "RAS"
+    "workSheet":                 {
+        "period":                    "",
+        "niveauHabitation":          "pp",
+        "typeChantier":              "neuf",
+        "disjoncteur":               false,
+        "natureMurExt":              "parpaing",
+        "naturePlafond":             "brique",
+        "visiteComble":              false,
+        "chantierHabite":            false,
+        "grandeEchelle":             false,
+        "demandeVoirie":             false,
+        "puissanceCompteur":         6,
+        "distanceCompteurPac":       "10 M",
+        "accesComble":               "trappe",
+        "rueEtroite":                false,
+        "typeCouverture":            "mecanique",
+        "etatToiture":               "propre",
+        "typeCharpente":             "traditionnelle",
+        "nbCompartimentComble":      1,
+        "presenceVolige":            true,
+        "nbAccesComble":             1,
+        "distanceGpExtUnitInt":      0,
+        "nbTotalRadiateur":          1,
+        "nbRadiateurThermostatique": 1,
+        "typeRadiateur":             "alu",
+        "espaceSolRequisUnitInt":    true,
+        "hauteurRequiseUnitInt":     true,
+        "positionEauChaude":         "sol",
+        "hauteurDuSol":              1,
+        "infosSup":                  "RAS"
     },
     "quotation":                 {
-        "origin":             "PERSO",
-        "dateTechnicalVisit": "2021-10-06",
-        "executionDelay":     "2022-01-06",
+        "origin":             "JULIANE",
+        "dateTechnicalVisit": "2021-11-24",
+        "executionDelay":     "2022-02-24",
         "options":            [
             {
                 "id":        1,
                 "label":     "Forfait pompe de relevage des condensats interieurs",
                 "unit":      "u",
-                "value":     "0",
+                "value":     1,
                 "pu":        {
-                    "value": "0"
+                    "value": 1
                 },
                 "calcTva10": false
             },
@@ -217,42 +222,44 @@
                 "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
             }
         ],
-        "tva10":              45,
-        "tva20":              379.75,
-        "ceeBonus":           "260.00",
-        "maPrimeRenovBonus":  0,
+        "tva10":              0,
+        "tva20":              0,
+        "ceeBonus":           "4500.00",
+        "maPrimeRenovBonus":  "4000.00",
         "selectedProducts":   [
             {
-                "id":          50,
-                "label":       "UNITE EXTERIEURE MONOSPLIT DAIKIN STYLISH",
-                "ref":         "DAIRXA20A",
-                "pu":          1228.67,
-                "defaultPu":   1228.67,
-                "description": "Puissance absorbée froid/chaud = 0,44kw/ 0,5kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
+                "id":          82,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE  EPGA16DV",
+                "ref":         "DAIEPGA16DV",
+                "pu":          6270.17,
+                "defaultPu":   6270.17,
+                "description": "- Puissance calorifique +7°c/-7°c : 18,99/12,65 kW\r\n- COP +7°c/-7°c : 2,99/2,09\r\n- ETAs : 133 %\r\n- Classe énergétique : A++\r\n- Dimension : 1440*1160*380 mm Poids : 143kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 44 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 19,17 € HT",
                 "calcul0":     true,
-                "scop":        5.15
+                "scop":        null
             },
             {
-                "id":          37,
-                "label":       "UNITE INTERIEURE DAIKIN SPLIT STYLISH ARGENT",
-                "ref":         "DAIFTXA20BS",
-                "pu":          670.08,
-                "defaultPu":   670.08,
-                "description": "Puissance restituée froid/chaud +7°c = 2kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
+                "id":          83,
+                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EABH16D6V",
+                "ref":         "DAIEABH16D6V",
+                "pu":          4711.33,
+                "defaultPu":   4711.33,
+                "description": "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 38kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 36 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                 "calcul0":     true,
                 "scop":        null
             }
         ],
-        "rrType":             "rr_mono",
-        "rrMulti":            {
-            "roomNumber": 2,
-            "areaP1":     0,
-            "areaP2":     0,
-            "areaP3":     0,
-            "areaP4":     0,
-            "areaP5":     0
+        "assortment":         "sensira",
+        "volumeECS":          0,
+        "volumeECSDeporte":   0,
+        "isEcsDeporte":       false,
+        "isKitBiZone":        false,
+        "ceilingHeight":      2.5,
+        "quantity":           1,
+        "deviceToReplace":    {
+            "type":  "CFHC",
+            "brand": "CALORTEC",
+            "model": ""
         },
-        "assortment":         "stylish_argent",
         "products":           [
             {
                 "id":          1,
@@ -1286,8 +1293,8 @@
             }
         ],
         "discount":           0,
-        "totalHt":            2348.75,
-        "totalTva":           424.75
+        "totalHt":            13481.5,
+        "totalTva":           741.4825
     },
     "scales":                    [
         {
@@ -1607,10 +1614,10 @@
         6
     ],
     "technician":                {
-        "id":        "Jeremy",
-        "lastName":  "Thomas",
-        "firstName": 11,
-        "phone":     "0645118070"
+        "id":        "Dominique",
+        "lastName":  "Bouron",
+        "firstName": 15,
+        "phone":     "0630235887"
     },
     "lists":                     []
 }

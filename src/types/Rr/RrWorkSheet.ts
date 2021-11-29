@@ -1,4 +1,4 @@
-interface RoWorkSheet {
+interface RrWorkSheet {
     period: string;
     niveauHabitation: string;
     typeChantier: string;
@@ -20,14 +20,22 @@ interface RoWorkSheet {
     presenceVolige: boolean;
     nbAccesComble: number;
     distanceGpExtUnitInt: number;
-    nbTotalRadiateur: number;
-    nbRadiateurThermostatique: number;
-    typeRadiateur: string;
-    espaceSolRequisUnitInt: boolean;
-    hauteurRequiseUnitInt: boolean;
+    emplacementSplit1: string;
+    emplacementSplit2: string;
+    emplacementSplit3: string;
+    emplacementSplit4: string;
+    emplacementSplit5: string;
+    emplacementGrpExt: string;
+    emplacementSplitMono: string;
+    distanceGpExtSplit1: number;
+    distanceGpExtSplit2: number;
+    distanceGpExtSplit3: number;
+    distanceGpExtSplit4: number;
+    distanceGpExtSplit5: number;
+    nbPompeRelevage: number;
     positionEauChaude: string;
     hauteurDuSol: number;
     infosSup: string;
 }
 
-export default RoWorkSheet;
+export default RrWorkSheet;
