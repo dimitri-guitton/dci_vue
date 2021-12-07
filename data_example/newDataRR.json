@@ -70,7 +70,7 @@
         "lessThan2Years":    false,
         "availableVoltage":  "monophase"
     },
-    "workSheet": {
+    "workSheet":         {
         "period":               "",
         "niveauHabitation":     "pp",
         "typeChantier":         "neuf",
@@ -1591,26 +1591,368 @@
             }
         }
     ],
-    "bonusWithoutCdp":           {
+    "bonusWithoutCdp":   {
         "amount": {
             "h1": 79.9,
             "h2": 65.4,
             "h3": 43.6
         }
     },
-    "statusInDci":               2,
-    "errorsStatusInDci":         [
+    "statusInDci":       2,
+    "errorsStatusInDci": [
         1,
         2,
         7,
         4,
         6
     ],
-    "technician":                {
+    "technician":        {
         "id":        "Jeremy",
         "lastName":  "Thomas",
         "firstName": 11,
         "phone":     "0645118070"
     },
-    "lists":                     []
+    "lists":             {
+        "localTypeList":         {
+            "slug":  "localTypeList",
+            "items": [
+                {
+                    "value": "Maison individuelle"
+                },
+                {
+                    "value": "Appartement"
+                }
+            ]
+        },
+        "rrTypeList":            {
+            "slug":  "rrTypeList",
+            "items": [
+                {
+                    "value": "RR Mono"
+                },
+                {
+                    "value": "RR Multi"
+                }
+            ]
+        },
+        "assortmentList":        [],
+        "ecsDeporteList":        [],
+        "accesCombleList":       {
+            "slug":  "accesCombleList",
+            "items": [
+                {
+                    "value": "TRAPPE"
+                },
+                {
+                    "value": "TOITURE"
+                },
+                {
+                    "value": "TRAPPE et TOITURE"
+                }
+            ]
+        },
+        "typeCouvertureList":    {
+            "slug":  "typeCouvertureList",
+            "items": [
+                {
+                    "value": "Mecanique"
+                },
+                {
+                    "value": "Tiges de bottes"
+                },
+                {
+                    "value": "Ardoise"
+                },
+                {
+                    "value": "Tuiles plates"
+                },
+                {
+                    "value": "Tuiles courbes"
+                }
+            ]
+        },
+        "typeCharpenteList":     {
+            "slug":  "typeCharpenteList",
+            "items": [
+                {
+                    "value": "Traditionnelle"
+                },
+                {
+                    "value": "Fermettes"
+                },
+                {
+                    "value": "Metallique"
+                },
+                {
+                    "value": "Autre"
+                }
+            ]
+        },
+        "etatToitureList":       {
+            "slug":  "etatToitureList",
+            "items": [
+                {
+                    "value": "Propre"
+                },
+                {
+                    "value": "Mousse en petite quantité"
+                },
+                {
+                    "value": "Mousse importante"
+                }
+            ]
+        },
+        "puissanceCompteurList": {
+            "slug":  "puissanceCompteurList",
+            "items": [
+                {},
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        "natureMurExtList":      {
+            "slug":  "natureMurExtList",
+            "items": [
+                {
+                    "value": "Parpaing"
+                },
+                {
+                    "value": "Brique"
+                },
+                {
+                    "value": "Béton"
+                },
+                {
+                    "value": "Pierre"
+                },
+                {
+                    "value": "Bois"
+                }
+            ]
+        },
+        "typeRadiateurList":     {
+            "slug":  "typeRadiateurList",
+            "items": [
+                {
+                    "value": "Alu"
+                },
+                {
+                    "value": "Fonte"
+                },
+                {
+                    "value": "Acier"
+                }
+            ]
+        },
+        "tensionDisponibleList": {
+            "slug":  "tensionDisponibleList",
+            "items": [
+                {
+                    "value": "Monophasé"
+                },
+                {
+                    "value": "Triphasé"
+                }
+            ]
+        },
+        "positionEauChaudeList": {
+            "slug":  "positionEauChaudeList",
+            "items": [
+                {
+                    "value": "Au sol"
+                },
+                {
+                    "value": "Au mur"
+                }
+            ]
+        },
+        "typeChaudiereList":     {
+            "slug":  "typeChaudiereList",
+            "items": [
+                {
+                    "value": "Aucun"
+                },
+                {
+                    "value": "Chaudière charbon hors condensation"
+                },
+                {
+                    "value": "Chaudière fioul hors condensation"
+                },
+                {
+                    "value": "Chaudière gaz hors condensation"
+                },
+                {
+                    "value": "Autre"
+                }
+            ]
+        },
+        "gammeTypeList":         {
+            "slug":  "gammeTypeList",
+            "items": [
+                {
+                    "value": "Sensira"
+                },
+                {
+                    "value": "Perfera"
+                },
+                {
+                    "value": "Stylish Blanc"
+                },
+                {
+                    "value": "Stylish Noir"
+                },
+                {
+                    "value": "Stylish Argent"
+                },
+                {
+                    "value": "Stylish Bois"
+                },
+                {
+                    "value": "Emura Blanc"
+                },
+                {
+                    "value": "Emura Argent"
+                }
+            ]
+        },
+        "qualiteIsolationList":  {
+            "slug":  "qualiteIsolationList",
+            "items": [
+                {
+                    "value": "0.6"
+                },
+                {
+                    "value": "0.65"
+                },
+                {
+                    "value": "0.8"
+                },
+                {
+                    "value": "0.9"
+                },
+                {
+                    "value": "1"
+                },
+                {
+                    "value": "1.1"
+                },
+                {
+                    "value": "1.3"
+                },
+                {
+                    "value": "1.5"
+                }
+            ]
+        },
+        "batimentNatureList":    {
+            "slug":  "batimentNatureList",
+            "items": [
+                {
+                    "value": "-"
+                },
+                {
+                    "value": "Nouvelle résidence principale"
+                },
+                {
+                    "value": "Location"
+                },
+                {
+                    "value": "Résidence secondaire"
+                }
+            ]
+        },
+        "naturePlafondList":     {
+            "slug":  "naturePlafondList",
+            "items": [
+                {
+                    "value": "Brique"
+                },
+                {
+                    "value": "Placo"
+                },
+                {
+                    "value": "Bois"
+                },
+                {
+                    "value": "Béton"
+                }
+            ]
+        },
+        "EcsDeporteList":        {
+            "slug":  "EcsDeporteList",
+            "items": [
+                {
+                    "value": 150
+                },
+                {
+                    "value": 200
+                },
+                {
+                    "value": 300
+                }
+            ]
+        },
+        "niveauHabitationList":  {
+            "slug":  "niveauHabitationList",
+            "items": [
+                {
+                    "value": "Plein Pied"
+                },
+                {
+                    "value": "R+1"
+                },
+                {
+                    "value": "R+2"
+                },
+                {
+                    "value": "R+3"
+                },
+                {
+                    "value": "R+4"
+                },
+                {
+                    "value": "AUTRE"
+                }
+            ]
+        },
+        "typeChantierList":      {
+            "slug":  "typeChantierList",
+            "items": [
+                {
+                    "value": "Neuf"
+                },
+                {
+                    "value": "Reno"
+                }
+            ]
+        },
+        "typeOrigineList":       {
+            "slug":  "typeOrigineList",
+            "items": [
+                {
+                    "value": "Téléphone"
+                },
+                {
+                    "value": "Internet"
+                },
+                {
+                    "value": "Presse"
+                },
+                {
+                    "value": "Campagne Google"
+                },
+                {
+                    "value": "Autre"
+                },
+                {
+                    "value": "hello watt"
+                },
+                {
+                    "value": "Angélique"
+                }
+            ]
+        }
+    }
 }

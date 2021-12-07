@@ -1,8 +1,9 @@
 import fs from 'fs';
 import Store from 'electron-store';
 import * as commonService from '../commonService';
-import { convertOldRoFolder } from '@/services/file/convertRoData';
-import { convertOldRRFolder } from '@/services/file/convertRRData';
+import { convertOldRoFile } from '@/services/file/convertRoData';
+import { convertOldRrFile } from '@/services/file/convertRRData';
+import { convertOldCeFile } from '@/services/file/convertCeData';
 
 const schema = {
     dropboxPath: {
@@ -63,10 +64,14 @@ export const convertOldJsonToNewJson = () => {
 
     let data = '';
 
-    if ( oldData[ 'type' ].toLowerCase() === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'ro' ) {
-        data = JSON.stringify( convertOldRoFolder( oldData ) );
-    } else if ( oldData[ 'type' ].toLowerCase() === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'rr' ) {
-        data = JSON.stringify( convertOldRRFolder( oldData ) );
+    const type = oldData[ 'type' ].toLowerCase();
+    console.log( 'TYPE -->', type );
+    if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'ro' ) {
+        data = JSON.stringify( convertOldRoFile( oldData ) );
+    } else if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'rr' ) {
+        data = JSON.stringify( convertOldRrFile( oldData ) );
+    } else if ( type === 'cet' ) {
+        data = JSON.stringify( convertOldCeFile( oldData ) );
     } else {
         console.log( '%c RETURN FALSE', 'background: #fdd835; color: #000000' );
         return false;
@@ -77,8 +82,8 @@ export const convertOldJsonToNewJson = () => {
 
     const id = new Date().valueOf();
     console.log( 'ID -->', id );
-    if ( dropboxPath !== '' && !fs.existsSync( dropboxPath + '/DCI/newData' + id + '.json' ) ) {
-        fs.writeFileSync( dropboxPath + '/DCI/newData' + id + '.json', data );
+    if ( dropboxPath !== '' && !fs.existsSync( dropboxPath + '/DCI/newData_' + type + '_' + id + '.json' ) ) {
+        fs.writeFileSync( dropboxPath + '/DCI/newData_' + type + '_' + id + '.json', data );
     }
     return true;
 };

@@ -4,7 +4,7 @@ import Scale from '@/types/File/Scale';
 import Assent from '@/types/File/Assent';
 import RrQuotation from '@/types/File/Rr/RrQuotation';
 import RrWorkSheet from '@/types/File/Rr/RrWorkSheet';
-import ItemList from '@/types/File/ItemList';
+import RrList from '@/types/File/Rr/RrList';
 
 interface RrFile {
     version: string;
@@ -41,7 +41,7 @@ interface RrFile {
     statusInDci: number;
     errorsStatusInDci: number[];
     technician: Technician;
-    lists: ItemList[];
+    lists: RrList;
 
 }
 

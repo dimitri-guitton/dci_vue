@@ -1,8 +1,10 @@
-interface RoWorkSheet {
+interface CeWorkSheet {
     period: string;
     niveauHabitation: string;
     typeChantier: string;
     disjoncteur: boolean;
+    tensionDisponible: string;  // NEW
+    distanceCompteurCet: string;    // NEW
     natureMurExt: string;
     naturePlafond: string;
     visiteComble: boolean;
@@ -10,7 +12,6 @@ interface RoWorkSheet {
     grandeEchelle: boolean;
     demandeVoirie: boolean;
     puissanceCompteur: number;
-    distanceCompteurPac: number;
     accesComble: string;
     rueEtroite: boolean;
     typeCouverture: string;
@@ -19,16 +20,16 @@ interface RoWorkSheet {
     nbCompartimentComble: number;
     presenceVolige: boolean;
     nbAccesComble: number;
-    distanceGpExtUnitInt: number;
-    nbTotalRadiateur: number;
-    nbRadiateurThermostatique: number;
+    nbrCompartementComble: number;
+    nbrAccesComble: number;
     typeRadiateur: string;
-    espaceSolRequisUnitInt: boolean;
-    hauteurRequiseUnitInt: boolean;
-    positionEauChaude: string;
-    hauteurDuSol: number;
+    emplacementCetExistante: string;
+    emplacementCetNew: string;
+    aspirationType: string;
+    ballonFixeMur: boolean;
+    uniteExtFixeMur: boolean;
+    distanceBallonUnitExt: number;
     infosSup: string;
-    tensionDisponible: string;  // NEW
 }
 
-export default RoWorkSheet;
+export default CeWorkSheet;

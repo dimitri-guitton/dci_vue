@@ -1,12 +1,12 @@
 import Housing from '@/types/File/Housing';
 import Technician from '@/types/File/Technician';
-import RoWorkSheet from '@/types/File/Ro/RoWorkSheet';
-import RoQuotation from '@/types/File/Ro/RoQuotation';
 import Scale from '@/types/File/Scale';
 import Assent from '@/types/File/Assent';
-import RoList from '@/types/File/Ro/RoList';
+import CeWorkSheet from '@/types/File/Ce/CeWorkSheet';
+import CeQuotation from '@/types/File/Ce/CeQuotation';
+import CeList from '@/types/File/Ce/CeList';
 
-interface RoFile {
+interface CeFile {
     version: string;
     type: string;
     ref: string;
@@ -24,25 +24,18 @@ interface RoFile {
     disabledMaPrimeRenovBonus: boolean;
     assent: Assent[]; // anciennement "avis"
     beneficiary: Beneficiary;
-    codeBonus?: string;
+    codeBonus?: string; // Anciennement codePrime
     energyZone?: string;
-    bonusRate?: number;
+    bonusRate?: number; // Anciennement tauxPrime
     housing: Housing;
-    workSheet: RoWorkSheet;
-    quotation: RoQuotation;
+    workSheet: CeWorkSheet;
+    quotation: CeQuotation;
     scales: Scale[];    // Anciennement "baremes"
-    bonusWithoutCdp: {  // Prime hors coup de pouce
-        amount: {
-            h1: number;
-            h2: number;
-            h3: number;
-        };
-    };
     statusInDci: number;
     errorsStatusInDci: number[];
     technician: Technician;
-    lists: RoList;
+    lists: CeList;
 
 }
 
-export default RoFile;
+export default CeFile;

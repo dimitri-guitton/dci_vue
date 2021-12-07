@@ -1,6 +1,8 @@
 import ItemList from '@/types/File/ItemList';
 
-interface RoList {
+interface RrList {
+    localTypeList: ItemList[];
+    rrTypeList: ItemList[];
     assortmentList: ItemList[];
     ecsDeporteList: ItemList[];
     accesCombleList: ItemList[];
@@ -13,6 +15,14 @@ interface RoList {
     tensionDisponibleList: ItemList[];
     positionEauChaudeList: ItemList[];
     typeChaudiereList: ItemList[];
+    gammeTypeList: ItemList[];
+    qualiteIsolationList: ItemList[];
+    batimentNatureList: ItemList[];
+    naturePlafondList: ItemList[];
+    EcsDeporteList: ItemList[];
+    niveauHabitationList: ItemList[];
+    typeChantierList: ItemList[];
+    typeOrigineList: ItemList[];
 }
 
-export default RoList;
+export default RrList;

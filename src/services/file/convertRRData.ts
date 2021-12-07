@@ -19,6 +19,8 @@ import {
 } from '@/services/file/convertData';
 import RrFile from '@/types/File/Rr/RrFile';
 import RrMulti from '@/types/File/Rr/RrMulti';
+import ItemList from '@/types/File/ItemList';
+import RrList from '@/types/File/Rr/RrList';
 
 const convertOldRrProduct = ( oldData ): RoProduct[] => {
     const roProducts: RoProduct[] = [];
@@ -113,7 +115,107 @@ const convertOldRrMulti = ( oldData ): RrMulti => {
     return dataRrMulti;
 };
 
-export const convertOldRRFolder = ( oldData ): RrFile => {
+const convertOldRrItemList = ( oldData ): RrList => {
+    const lists: RrList = {
+        localTypeList:         [],
+        rrTypeList:            [],
+        assortmentList:        [],
+        ecsDeporteList:        [],
+        accesCombleList:       [],
+        typeCouvertureList:    [],
+        typeCharpenteList:     [],
+        etatToitureList:       [],
+        puissanceCompteurList: [],
+        natureMurExtList:      [],
+        typeRadiateurList:     [],
+        tensionDisponibleList: [],
+        positionEauChaudeList: [],
+        typeChaudiereList:     [],
+        gammeTypeList:         [],
+        qualiteIsolationList:  [],
+        batimentNatureList:    [],
+        naturePlafondList:     [],
+        EcsDeporteList:        [],
+        niveauHabitationList:  [],
+        typeChantierList:      [],
+        typeOrigineList:       [],
+    };
+
+    const rrItems = [
+        'localType',
+        'rrType',
+        'assortment',
+        'ecsDeporte',
+        'accesComble',
+        'typeCouverture',
+        'typeCharpente',
+        'etatToiture',
+        'puissanceCompteur',
+        'natureMurExt',
+        'typeRadiateur',
+        'tensionDisponible',
+        'positionEauChaude',
+        'typeChaudiere',
+        'gammeType',
+        'qualiteIsolation',
+        'batimentNature',
+        'naturePlafond',
+        'EcsDeporte',
+        'niveauHabitation',
+        'typeChantier',
+        'typeOrigine',
+    ];
+
+    const newName: { [ key: string ]: string } = {
+        'localType':         'localTypeList',
+        'rrType':            'rrTypeList',
+        'assortment':        'assortmentList',
+        'ecsDeporte':        'ecsDeporteList',
+        'accesComble':       'accesCombleList',
+        'typeCouverture':    'typeCouvertureList',
+        'typeCharpente':     'typeCharpenteList',
+        'etatToiture':       'etatToitureList',
+        'puissanceCompteur': 'puissanceCompteurList',
+        'natureMurExt':      'natureMurExtList',
+        'typeRadiateur':     'typeRadiateurList',
+        'tensionDisponible': 'tensionDisponibleList',
+        'positionEauChaude': 'positionEauChaudeList',
+        'typeChaudiere':     'typeChaudiereList',
+        'gammeType':         'gammeTypeList',
+        'qualiteIsolation':  'qualiteIsolationList',
+        'batimentNature':    'batimentNatureList',
+        'naturePlafond':     'naturePlafondList',
+        'EcsDeporte':        'EcsDeporteList',
+        'niveauHabitation':  'niveauHabitationList',
+        'typeChantier':      'typeChantierList',
+        'typeOrigine':       'typeOrigineList',
+    };
+
+    // @TODO si l'ancien JSON n'a pas la liste la créer avec les nouvelle valeur par défaut
+    rrItems.forEach( item => {
+
+        const oldList              = getObjectData( oldData[ 'lists' ], [ item ] );
+        const newItems: ItemList[] = [];
+
+        if ( oldList !== {} && oldList !== '' ) {
+            oldList.forEach( ( data ) => {
+                newItems.push( {
+                                   value: data[ Object.keys( data )[ 0 ] ],
+                               } );
+            } );
+
+            lists[ newName[ item ] ] = {
+                slug:  newName[ item ],
+                items: newItems,
+            };
+        }
+    } );
+
+    return lists;
+};
+
+
+export const convertOldRrFile = ( oldData ): RrFile => {
     return {
         version:                   getStringData( oldData[ 'version' ] ),
         type:                      getStringData( oldData[ 'type' ] ),
@@ -226,6 +328,6 @@ export const convertOldRRFolder = ( oldData ): RrFile => {
             firstName: getObjectData( oldData, [ 'technicien', 'id' ] ),
             phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
         },
-        lists:                     [],
+        lists:                     convertOldRrItemList( oldData ),
     };
 };

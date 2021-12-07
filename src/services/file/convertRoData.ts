@@ -21,7 +21,7 @@ import {
 } from '@/services/file/convertData';
 import RoFile from '@/types/File/Ro/RoFile';
 import ItemList from '@/types/File/ItemList';
-import RoList from '@/types/File/RoList';
+import RoList from '@/types/File/Ro/RoList';
 
 const convertOldRoProduct = ( oldData ): RoProduct[] => {
     const roProducts: RoProduct[] = [];
@@ -122,6 +122,8 @@ const convertOldSelectedEscDeporte = ( oldData ): RoEcsDeporte | undefined => {
 
 const convertOldRoItemList = ( oldData ): RoList => {
     const lists: RoList = {
+        localTypeList:         [],
+        rrTypeList:            [],
         assortmentList:        [],
         ecsDeporteList:        [],
         accesCombleList:       [],
@@ -137,6 +139,8 @@ const convertOldRoItemList = ( oldData ): RoList => {
     };
 
     const roItems = [
+        'localType',
+        'rrType',
         'gammeType',
         'EcsDeporte',
         'accesComble',
@@ -152,6 +156,8 @@ const convertOldRoItemList = ( oldData ): RoList => {
     ];
 
     const newName: { [ key: string ]: string } = {
+        'localType':         'localTypeList',
+        'rrType':            'rrTypeList',
         'gammeType':         'assortmentList',
         'EcsDeporte':        'ecsDeporteList',
         'accesComble':       'accesCombleList',
@@ -188,7 +194,7 @@ const convertOldRoItemList = ( oldData ): RoList => {
     return lists;
 };
 
-export const convertOldRoFolder = ( oldData ): RoFile => {
+export const convertOldRoFile = ( oldData ): RoFile => {
     return {
         version:                   getStringData( oldData[ 'version' ] ),
         type:                      getStringData( oldData[ 'type' ] ),
@@ -253,6 +259,7 @@ export const convertOldRoFolder = ( oldData ): RoFile => {
             hauteurRequiseUnitInt:     getObjectData( oldData, [ 'fiche', 'hauteurRequiseUnitInt' ] ),
             positionEauChaude:         getObjectData( oldData, [ 'fiche', 'positionEauChaude' ] ),
             hauteurDuSol:              getObjectData( oldData, [ 'fiche', 'hauteurDuSol' ] ),
+            tensionDisponible:         getObjectData( oldData, [ 'fiche', 'tensionDisponible' ] ),
             infosSup:                  getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
         quotation:                 {
