@@ -1,4 +1,4 @@
-interface EcsDeporte {
+interface RoEcsDeporte {
     volume: number;
     label: string;
     ref: number;
@@ -6,4 +6,4 @@ interface EcsDeporte {
     description: string;
 }
 
-export default EcsDeporte;
+export default RoEcsDeporte;

@@ -1,8 +1,8 @@
-import Text from '@/types/Text';
-import Assent from '@/types/Assent';
-import DataGeoportail from '@/types/DataGeoportail';
-import Scale from '@/types/Scale';
-import BlankOption from '@/types/BlankOption';
+import Text from '@/types/File/Text';
+import Assent from '@/types/File/Assent';
+import DataGeoportail from '@/types/File/DataGeoportail';
+import Scale from '@/types/File/Scale';
+import BlankOption from '@/types/File/BlankOption';
 
 export const getObjectData = ( data: any, keys: any[] ): any => {
     // Si l'élément n'existe pas on retourne un objet vide ou un string

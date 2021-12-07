@@ -1,4 +1,4 @@
-import DataGeoportail from '@/types/DataGeoportail';
+import DataGeoportail from '@/types/File/DataGeoportail';
 
 interface Housing {
     nbOccupant: number;

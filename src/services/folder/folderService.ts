@@ -1,8 +1,8 @@
 import fs from 'fs';
 import Store from 'electron-store';
 import * as commonService from '../commonService';
-import { convertOldRoFolder } from '@/services/folder/convertRoData';
-import { convertOldRRFolder } from '@/services/folder/convertRRData';
+import { convertOldRoFolder } from '@/services/file/convertRoData';
+import { convertOldRRFolder } from '@/services/file/convertRRData';
 
 const schema = {
     dropboxPath: {
@@ -75,8 +75,10 @@ export const convertOldJsonToNewJson = () => {
     console.log( '%c NEW DATA', 'background: #fdd835; color: #000000' );
     console.log( data );
 
-    if ( dropboxPath !== '' && !fs.existsSync( dropboxPath + '/DCI/newData.json' ) ) {
-        fs.writeFileSync( dropboxPath + '/DCI/newData.json', data );
+    const id = new Date().valueOf();
+    console.log( 'ID -->', id );
+    if ( dropboxPath !== '' && !fs.existsSync( dropboxPath + '/DCI/newData' + id + '.json' ) ) {
+        fs.writeFileSync( dropboxPath + '/DCI/newData' + id + '.json', data );
     }
     return true;
 };

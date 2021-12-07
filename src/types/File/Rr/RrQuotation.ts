@@ -1,8 +1,8 @@
-import BlankOption from '@/types/BlankOption';
-import RoOption from '@/types/Ro/RoOption';
-import Text from '@/types/Text';
-import RrProduct from '@/types/Rr/RrProduct';
-import RrMulti from '@/types/Rr/RrMulti';
+import BlankOption from '@/types/File/BlankOption';
+import RoOption from '@/types/File/Ro/RoOption';
+import Text from '@/types/File/Text';
+import RrProduct from '@/types/File/Rr/RrProduct';
+import RrMulti from '@/types/File/Rr/RrMulti';
 
 interface RrQuotation {
     origin: string;

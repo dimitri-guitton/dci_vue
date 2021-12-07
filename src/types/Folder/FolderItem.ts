@@ -1,5 +1,5 @@
-import FolderItemStatus from '@/types/FolderItemStatus';
-import FolderItemType from '@/types/FolderItemType';
+import FolderItemStatus from '@/types/Folder/FolderItemStatus';
+import FolderItemType from '@/types/Folder/FolderItemType';
 
 interface FolderItem {
     ref: string;

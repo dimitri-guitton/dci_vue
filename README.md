@@ -16,9 +16,15 @@ yarn build
 ```
 
 ### Lints and fixes files
+
 ```
 yarn lint
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+Dossier (informatique (répertoire de stockage)) -> Folder
+
+Dossier d'un client -> File

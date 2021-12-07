@@ -1,7 +1,7 @@
-import RoProduct from '@/types/Ro/RoProduct';
-import RoOption from '@/types/Ro/RoOption';
-import KitBiZone from '@/types/Ro/KitBiZone';
-import EcsDeporte from '@/types/Ro/EcsDeporte';
+import RoProduct from '@/types/File/Ro/RoProduct';
+import RoOption from '@/types/File/Ro/RoOption';
+import RoKitBiZone from '@/types/File/Ro/RoKitBiZone';
+import RoEcsDeporte from '@/types/File/Ro/RoEcsDeporte';
 import {
     convertOldAssent,
     convertOldBeneficiary,
@@ -18,8 +18,10 @@ import {
     getNumberData,
     getObjectData,
     getStringData,
-} from '@/services/folder/convertData';
-import RoFolder from '@/types/Ro/RoFolder';
+} from '@/services/file/convertData';
+import RoFile from '@/types/File/Ro/RoFile';
+import ItemList from '@/types/File/ItemList';
+import RoList from '@/types/File/RoList';
 
 const convertOldRoProduct = ( oldData ): RoProduct[] => {
     const roProducts: RoProduct[] = [];
@@ -88,8 +90,8 @@ const convertOldRoOptions = ( oldData ): RoOption[] => {
     return roOptions;
 };
 
-const convertOldSelectedKitBiZone = ( oldData ): KitBiZone | undefined => {
-    let selectedKitBiZone: KitBiZone | undefined;
+const convertOldSelectedKitBiZone = ( oldData ): RoKitBiZone | undefined => {
+    let selectedKitBiZone: RoKitBiZone | undefined;
     if ( getObjectData( oldData, [ 'devis', 'ro', 'isKitBiZone' ] ) === true ) {
         selectedKitBiZone = {
             label: getObjectData( oldData, [ 'devis', 'ro', 'selectedKitBiZone', 'label' ] ),
@@ -101,12 +103,10 @@ const convertOldSelectedKitBiZone = ( oldData ): KitBiZone | undefined => {
     return selectedKitBiZone;
 };
 
-const convertOldSelectedEscDeporte = ( oldData ): EcsDeporte | undefined => {
-    let selectedEcsDeporte: EcsDeporte | undefined;
+const convertOldSelectedEscDeporte = ( oldData ): RoEcsDeporte | undefined => {
+    let selectedEcsDeporte: RoEcsDeporte | undefined;
 
-    console.log( 'VOLUME', getObjectData( oldData, [ 'devis', 'ro', 'isEcsDeporte' ] ) );
     if ( getObjectData( oldData, [ 'devis', 'ro', 'isEcsDeporte' ] ) === true ) {
-        console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
         selectedEcsDeporte = {
             volume:      getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'volume' ] ),
             label:       getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'label' ] ),
@@ -119,7 +119,76 @@ const convertOldSelectedEscDeporte = ( oldData ): EcsDeporte | undefined => {
     return selectedEcsDeporte;
 };
 
-export const convertOldRoFolder = ( oldData ): RoFolder => {
+
+const convertOldRoItemList = ( oldData ): RoList => {
+    const lists: RoList = {
+        assortmentList:        [],
+        ecsDeporteList:        [],
+        accesCombleList:       [],
+        typeCouvertureList:    [],
+        typeCharpenteList:     [],
+        etatToitureList:       [],
+        puissanceCompteurList: [],
+        natureMurExtList:      [],
+        typeRadiateurList:     [],
+        tensionDisponibleList: [],
+        positionEauChaudeList: [],
+        typeChaudiereList:     [],
+    };
+
+    const roItems = [
+        'gammeType',
+        'EcsDeporte',
+        'accesComble',
+        'typeCouverture',
+        'typeCharpente',
+        'etatToiture',
+        'puissanceCompteur',
+        'natureMurExt',
+        'typeRadiateur',
+        'tensionDisponible',
+        'positionEauChaude',
+        'typeChaudiere',
+    ];
+
+    const newName: { [ key: string ]: string } = {
+        'gammeType':         'assortmentList',
+        'EcsDeporte':        'ecsDeporteList',
+        'accesComble':       'accesCombleList',
+        'typeCouverture':    'typeCouvertureList',
+        'typeCharpente':     'typeCharpenteList',
+        'etatToiture':       'etatToitureList',
+        'puissanceCompteur': 'puissanceCompteurList',
+        'natureMurExt':      'natureMurExtList',
+        'typeRadiateur':     'typeRadiateurList',
+        'tensionDisponible': 'tensionDisponibleList',
+        'positionEauChaude': 'positionEauChaudeList',
+        'typeChaudiere':     'typeChaudiereList',
+    };
+
+
+    // @TODO si l'ancien JSON n'a pas la liste la créer avec les nouvelle valeur par défaut
+    roItems.forEach( item => {
+
+        const oldList              = getObjectData( oldData[ 'lists' ], [ item ] );
+        const newItems: ItemList[] = [];
+
+        oldList.forEach( ( data ) => {
+            newItems.push( {
+                               value: data[ Object.keys( data )[ 0 ] ],
+                           } );
+        } );
+
+        lists[ newName[ item ] ] = {
+            slug:  newName[ item ],
+            items: newItems,
+        };
+    } );
+
+    return lists;
+};
+
+export const convertOldRoFolder = ( oldData ): RoFile => {
     return {
         version:                   getStringData( oldData[ 'version' ] ),
         type:                      getStringData( oldData[ 'type' ] ),
@@ -235,6 +304,6 @@ export const convertOldRoFolder = ( oldData ): RoFolder => {
             firstName: getObjectData( oldData, [ 'technicien', 'id' ] ),
             phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
         },
-        lists:                     [],
+        lists:                     convertOldRoItemList( oldData ),
     };
 };

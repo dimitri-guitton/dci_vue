@@ -1619,5 +1619,243 @@
         "firstName": 15,
         "phone":     "0630235887"
     },
-    "lists":                     []
+    "lists":                     {
+        "assortmentList":        {
+            "slug":  "assortmentList",
+            "items": [
+                {
+                    "slug":  "sensira",
+                    "value": "Sensira"
+                },
+                {
+                    "slug":  "perfera",
+                    "value": "Perfera"
+                },
+                {
+                    "slug":  "stylish_blanc",
+                    "value": "Stylish Blanc"
+                },
+                {
+                    "slug":  "stylish_noir",
+                    "value": "Stylish Noir"
+                },
+                {
+                    "slug":  "stylish_argent",
+                    "value": "Stylish Argent"
+                },
+                {
+                    "slug":  "stylish_bois",
+                    "value": "Stylish Bois"
+                },
+                {
+                    "slug":  "emura_blanc",
+                    "value": "Emura Blanc"
+                },
+                {
+                    "slug":  "emura_argent",
+                    "value": "Emura Argent"
+                }
+            ]
+        },
+        "ecsDeporteList":        {
+            "slug":  "ecsDeporteList",
+            "items": [
+                {
+                    "slug":  "volume",
+                    "value": 150
+                },
+                {
+                    "slug":  "volume",
+                    "value": 200
+                },
+                {
+                    "slug":  "volume",
+                    "value": 300
+                }
+            ]
+        },
+        "accesCombleList":       {
+            "slug":  "accesCombleList",
+            "items": [
+                {
+                    "slug":  "trappe",
+                    "value": "TRAPPE"
+                },
+                {
+                    "slug":  "toit",
+                    "value": "TOITURE"
+                },
+                {
+                    "slug":  "trappe_et_toit",
+                    "value": "TRAPPE et TOITURE"
+                }
+            ]
+        },
+        "typeCouvertureList":    {
+            "slug":  "typeCouvertureList",
+            "items": [
+                {
+                    "slug":  "meca",
+                    "value": "Mecanique"
+                },
+                {
+                    "slug":  "tige_bottes",
+                    "value": "Tiges de bottes"
+                },
+                {
+                    "slug":  "ardoise",
+                    "value": "Ardoise"
+                },
+                {
+                    "slug":  "tuiles_plates",
+                    "value": "Tuiles plates"
+                },
+                {
+                    "slug":  "tuiles_courbes",
+                    "value": "Tuiles courbes"
+                }
+            ]
+        },
+        "typeCharpenteList":     {
+            "slug":  "typeCharpenteList",
+            "items": [
+                {
+                    "slug":  "trad",
+                    "value": "Traditionnelle"
+                },
+                {
+                    "slug":  "ferm",
+                    "value": "Fermettes"
+                },
+                {
+                    "slug":  "metal",
+                    "value": "Metallique"
+                },
+                {
+                    "slug":  "autre",
+                    "value": "Autre"
+                }
+            ]
+        },
+        "etatToitureList":       {
+            "slug":  "etatToitureList",
+            "items": [
+                {
+                    "slug":  "propre",
+                    "value": "Propre"
+                },
+                {
+                    "slug":  "mousse_faible",
+                    "value": "Mousse en petite quantité"
+                },
+                {
+                    "slug":  "mousse_important",
+                    "value": "Mousse importante"
+                }
+            ]
+        },
+        "puissanceCompteurList": {
+            "slug":  "puissanceCompteurList",
+            "items": [
+                {},
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        "natureMurExtList":      {
+            "slug":  "natureMurExtList",
+            "items": [
+                {
+                    "slug":  "parpaing",
+                    "value": "Parpaing"
+                },
+                {
+                    "slug":  "brique",
+                    "value": "Brique"
+                },
+                {
+                    "slug":  "beton",
+                    "value": "Béton"
+                },
+                {
+                    "slug":  "pierre",
+                    "value": "Pierre"
+                },
+                {
+                    "slug":  "bois",
+                    "value": "Bois"
+                }
+            ]
+        },
+        "typeRadiateurList":     {
+            "slug":  "typeRadiateurList",
+            "items": [
+                {
+                    "slug":  "alu",
+                    "value": "Alu"
+                },
+                {
+                    "slug":  "fonte",
+                    "value": "Fonte"
+                },
+                {
+                    "slug":  "acier",
+                    "value": "Acier"
+                }
+            ]
+        },
+        "tensionDisponibleList": {
+            "slug":  "tensionDisponibleList",
+            "items": [
+                {
+                    "slug":  "monophase",
+                    "value": "Monophasé"
+                },
+                {
+                    "slug":  "triphase",
+                    "value": "Triphasé"
+                }
+            ]
+        },
+        "positionEauChaudeList": {
+            "slug":  "positionEauChaudeList",
+            "items": [
+                {
+                    "slug":  "sol",
+                    "value": "Au sol"
+                },
+                {
+                    "slug":  "mur",
+                    "value": "Au mur"
+                }
+            ]
+        },
+        "typeChaudiereList":     {
+            "slug":  "typeChaudiereList",
+            "items": [
+                {
+                    "slug":  "aucun",
+                    "value": "Aucun"
+                },
+                {
+                    "slug":  "CCHC",
+                    "value": "Chaudière charbon hors condensation"
+                },
+                {
+                    "slug":  "CFHC",
+                    "value": "Chaudière fioul hors condensation"
+                },
+                {
+                    "slug":  "CGHC",
+                    "value": "Chaudière gaz hors condensation"
+                },
+                {
+                    "slug":  "autre",
+                    "value": "Autre"
+                }
+            ]
+        }
+    }
 }

@@ -1,5 +1,5 @@
-import RoProduct from '@/types/Ro/RoProduct';
-import RoOption from '@/types/Ro/RoOption';
+import RoProduct from '@/types/File/Ro/RoProduct';
+import RoOption from '@/types/File/Ro/RoOption';
 import {
     convertOldAssent,
     convertOldBeneficiary,
@@ -16,9 +16,9 @@ import {
     getNumberData,
     getObjectData,
     getStringData,
-} from '@/services/folder/convertData';
-import RrFolder from '@/types/Rr/RrFolder';
-import RrMulti from '@/types/Rr/RrMulti';
+} from '@/services/file/convertData';
+import RrFile from '@/types/File/Rr/RrFile';
+import RrMulti from '@/types/File/Rr/RrMulti';
 
 const convertOldRrProduct = ( oldData ): RoProduct[] => {
     const roProducts: RoProduct[] = [];
@@ -113,7 +113,7 @@ const convertOldRrMulti = ( oldData ): RrMulti => {
     return dataRrMulti;
 };
 
-export const convertOldRRFolder = ( oldData ): RrFolder => {
+export const convertOldRRFolder = ( oldData ): RrFile => {
     return {
         version:                   getStringData( oldData[ 'version' ] ),
         type:                      getStringData( oldData[ 'type' ] ),
@@ -149,7 +149,7 @@ export const convertOldRRFolder = ( oldData ): RrFolder => {
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },
-        workSheet: {
+        workSheet:                 {
             period:               getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
             niveauHabitation:     getObjectData( oldData, [ 'fiche', 'niveauHabitation' ] ),
             typeChantier:         getObjectData( oldData, [ 'fiche', 'typeChantier' ] ),

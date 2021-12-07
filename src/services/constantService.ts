@@ -1,5 +1,5 @@
-import FolderItemType from '@/types/FolderItemType';
-import FolderItemStatus from '@/types/FolderItemStatus';
+import FolderItemType from '@/types/Folder/FolderItemType';
+import FolderItemStatus from '@/types/Folder/FolderItemStatus';
 
 export const FOLDER_COMBLE_TYPE: FolderItemType = {
     slug: 'co',

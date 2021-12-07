@@ -1,11 +1,12 @@
-import Housing from '@/types/Housing';
-import Technician from '@/types/Technician';
-import RoWorkSheet from '@/types/Ro/RoWorkSheet';
-import RoQuotation from '@/types/Ro/RoQuotation';
-import Scale from '@/types/Scale';
-import Assent from '@/types/Assent';
+import Housing from '@/types/File/Housing';
+import Technician from '@/types/File/Technician';
+import RoWorkSheet from '@/types/File/Ro/RoWorkSheet';
+import RoQuotation from '@/types/File/Ro/RoQuotation';
+import Scale from '@/types/File/Scale';
+import Assent from '@/types/File/Assent';
+import RoList from '@/types/File/RoList';
 
-interface RoFolder {
+interface RoFile {
     version: string;
     type: string;
     ref: string;
@@ -40,8 +41,8 @@ interface RoFolder {
     statusInDci: number;
     errorsStatusInDci: number[];
     technician: Technician;
-    lists: [];
+    lists: RoList;
 
 }
 
-export default RoFolder;
+export default RoFile;

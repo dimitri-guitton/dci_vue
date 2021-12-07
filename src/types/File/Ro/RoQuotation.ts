@@ -1,9 +1,9 @@
-import BlankOption from '@/types/BlankOption';
-import RoOption from '@/types/Ro/RoOption';
-import RoProduct from '@/types/Ro/RoProduct';
-import EcsDeporte from '@/types/Ro/EcsDeporte';
-import KitBiZone from '@/types/Ro/KitBiZone';
-import Text from '@/types/Text';
+import BlankOption from '@/types/File/BlankOption';
+import RoOption from '@/types/File/Ro/RoOption';
+import RoProduct from '@/types/File/Ro/RoProduct';
+import RoEcsDeporte from '@/types/File/Ro/RoEcsDeporte';
+import RoKitBiZone from '@/types/File/Ro/RoKitBiZone';
+import Text from '@/types/File/Text';
 
 interface RoQuotation {
     origin: string;
@@ -23,9 +23,9 @@ interface RoQuotation {
     volumeECS: number;
     volumeECSDeporte: number;
     isEcsDeporte: boolean;
-    selectedEcsDeporte?: EcsDeporte;
+    selectedEcsDeporte?: RoEcsDeporte;
     isKitBiZone: boolean;
-    selectedKitBiZone?: KitBiZone;
+    selectedKitBiZone?: RoKitBiZone;
     ceilingHeight: number;  // Hauteur sous plafond
     quantity: number;
     deviceToReplace: {

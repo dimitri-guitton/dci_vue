@@ -1,11 +1,12 @@
-import Housing from '@/types/Housing';
-import Technician from '@/types/Technician';
-import Scale from '@/types/Scale';
-import Assent from '@/types/Assent';
-import RrQuotation from '@/types/Rr/RrQuotation';
-import RrWorkSheet from '@/types/Rr/RrWorkSheet';
+import Housing from '@/types/File/Housing';
+import Technician from '@/types/File/Technician';
+import Scale from '@/types/File/Scale';
+import Assent from '@/types/File/Assent';
+import RrQuotation from '@/types/File/Rr/RrQuotation';
+import RrWorkSheet from '@/types/File/Rr/RrWorkSheet';
+import ItemList from '@/types/File/ItemList';
 
-interface RrFolder {
+interface RrFile {
     version: string;
     type: string;
     ref: string;
@@ -40,8 +41,8 @@ interface RrFolder {
     statusInDci: number;
     errorsStatusInDci: number[];
     technician: Technician;
-    lists: [];
+    lists: ItemList[];
 
 }
 
-export default RrFolder;
+export default RrFile;
