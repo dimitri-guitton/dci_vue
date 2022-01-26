@@ -33,84 +33,10 @@ const store = new Store( { schema } );
 let db: Database;
 
 /**
- * Ouvre la DB
+ * Convertie les données de la DB en objets FolderItem
+ * @param items
  */
-export async function openDb() {
-    const dropboxPath = store.get( 'dropboxPath' );
-
-    console.log( '%c BEFORE OPEN BDD', 'background: #fdd835; color: #000000' );
-    console.log( db );
-    db = await open( {
-                         filename: `${ dropboxPath }/DCI/database.db`,
-                         driver:   sqlite3.cached.Database,
-                     } );
-
-    console.log( '%c AFTER OPEN BDD', 'background: #fdd835; color: #000000' );
-    console.log( db );
-
-}
-
-/**
- * Création des tables pour la DB
- */
-export async function initDb() {
-    console.log( '%c INIT DB', 'background: #fdd835; color: #000000' );
-    const fileTable     = 'CREATE TABLE IF NOT EXISTS file ( id INTEGER PRIMARY KEY AUTOINCREMENT, reference VARCHAR(255) NOT NULL, folderName VARCHAR(255) NOT NULL,fileTypes VARCHAR(255) NOT NULL, customer VARCHAR(255) NOT NULL, totalTTC FLOAT, isProspect SMALLINT NOT NULL, isClosed SMALLINT NOT NULL, statusInDCI INTEGER NOT NULL,todos VARCHAR(255), createdAt DATETIME NOT NULL, updatedAt DATETIME NOT NULL, sendAt DATETIME )';
-    const fileTodoTable = 'CREATE TABLE IF NOT EXISTS fileTodo ( serverId INTEGER PRIMARY KEY, label VARCHAR(255) NOT NULL, isDone BOOLEAN NOT NULL, receivedAt DATETIME NOT NULL, donedAt DATETIME )';
-
-    await db.exec( fileTable );
-    await db.exec( fileTodoTable );
-}
-
-/**
- * Ajout d'un dossiers dans la DB
- * @param reference
- * @param folderName
- * @param fileTypes
- * @param customer
- * @param totalTTC
- * @param isProspect
- * @param isClosed
- * @param statusInDCI
- * @param todos
- * @param createdAt
- * @param updatedAt
- * @param sendAt
- */
-export async function addFile( reference: string,
-                               folderName: string,
-                               fileTypes: string,
-                               customer: string,
-                               totalTTC: number,
-                               isProspect: boolean,
-                               isClosed: boolean,
-                               statusInDCI: string,
-                               todos: string,
-                               createdAt: string,
-                               updatedAt: string,
-                               sendAt: string ) {
-    console.log( '%c IN ADD', 'background: #00d835; color: #000000' );
-    const query = `INSERT INTO file (reference, folderName, fileTypes, customer, totalTTC, isProspect, isClosed,
-                                     statusInDCI, todos, createdAt, updatedAt, sendAt)
-                   VALUES ('${ reference }',
-                           '${ folderName }',
-                           '${ fileTypes }',
-                           '${ customer }',
-                           ${ totalTTC },
-                           ${ isProspect },
-                           ${ isClosed },
-                           '${ statusInDCI }',
-                           '${ todos }',
-                           '${ createdAt }',
-                           '${ updatedAt }',
-                           '${ sendAt }')`;
-
-    console.log( query );
-    await db.exec( query );
-}
-
 function convertDbFileToFolderItem( items: DbFile[] ) {
-    console.log( 'before', items );
     const data: FolderItem[] = [];
 
     items.forEach( ( item: DbFile ) => {
@@ -177,9 +103,78 @@ function convertDbFileToFolderItem( items: DbFile[] ) {
         ;
     } );
 
-    console.log( 'After', data );
     return data;
 }
+
+/**
+ * Ouvre la DB
+ */
+export async function openDb() {
+    const dropboxPath = store.get( 'dropboxPath' );
+
+    db = await open( {
+                         filename: `${ dropboxPath }/DCI/database.db`,
+                         driver:   sqlite3.cached.Database,
+                     } );
+}
+
+/**
+ * Création des tables pour la DB
+ */
+export async function initDb() {
+    const fileTable     = 'CREATE TABLE IF NOT EXISTS file ( id INTEGER PRIMARY KEY AUTOINCREMENT, reference VARCHAR(255) NOT NULL, folderName VARCHAR(255) NOT NULL,fileTypes VARCHAR(255) NOT NULL, customer VARCHAR(255) NOT NULL, totalTTC FLOAT, isProspect SMALLINT NOT NULL, isClosed SMALLINT NOT NULL, statusInDCI INTEGER NOT NULL,todos VARCHAR(255), createdAt DATETIME NOT NULL, updatedAt DATETIME NOT NULL, sendAt DATETIME )';
+    const fileTodoTable = 'CREATE TABLE IF NOT EXISTS fileTodo ( serverId INTEGER PRIMARY KEY, label VARCHAR(255) NOT NULL, isDone BOOLEAN NOT NULL, receivedAt DATETIME NOT NULL, donedAt DATETIME )';
+
+    await db.exec( fileTable );
+    await db.exec( fileTodoTable );
+}
+
+/**
+ * Ajout d'un dossiers dans la DB
+ * @param reference
+ * @param folderName
+ * @param fileTypes
+ * @param customer
+ * @param totalTTC
+ * @param isProspect
+ * @param isClosed
+ * @param statusInDCI
+ * @param todos
+ * @param createdAt
+ * @param updatedAt
+ * @param sendAt
+ */
+export async function addFile( reference: string,
+                               folderName: string,
+                               fileTypes: string,
+                               customer: string,
+                               totalTTC: number,
+                               isProspect: boolean,
+                               isClosed: boolean,
+                               statusInDCI: string,
+                               todos: string | null,
+                               createdAt: string,
+                               updatedAt: string,
+                               sendAt: string | null ) {
+    const query = `INSERT INTO file (reference, folderName, fileTypes, customer, totalTTC, isProspect, isClosed,
+                                     statusInDCI, todos, createdAt, updatedAt, sendAt)
+                   VALUES ('${ reference }',
+                           '${ folderName }',
+                           '${ fileTypes }',
+                           '${ customer }',
+                           ${ totalTTC },
+                           ${ isProspect },
+                           ${ isClosed },
+                           '${ statusInDCI }',
+                           '${ todos }',
+                           '${ createdAt }',
+                           '${ updatedAt }',
+                           '${ sendAt }')`;
+
+    await db.exec( query );
+}
+
+
 
 export async function getAllFiles(): Promise<FolderItem[]> {
     const query = `SELECT *

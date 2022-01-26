@@ -85,6 +85,29 @@
         </tr>
         </tbody>
       </table>
+      <ul class="pagination">
+        <li @click="changePage(currentPage - 1)"
+            class="page-item previous"
+            v-bind:class="{disabled:currentPage === 1 }">
+          <span class="page-link"><i class="previous"></i></span></li>
+        <!-- TODO Revoir la pagination-->
+        <template v-for="index in numberOfPages" :key="'page_'+index">
+          <li @click="changePage(index)"
+              v-if="index === 1 || index === 2 || index === currentPage + 1 || index === numberOfPages - 1 || index === numberOfPages"
+              class="page-item"
+              v-bind:class="{active:currentPage === index }">
+            <span class="page-link">{{ index }}</span>
+          </li>
+          <li v-if="numberOfPages > 6 && index === 4"
+              class="page-item">
+            <span class="page-link">...</span>
+          </li>
+        </template>
+        <li @click="changePage(currentPage + 1)"
+            class="page-item next"
+            v-bind:class="{disabled:currentPage === numberOfPages }"><span
+            class="page-link"><i class="next"></i></span></li>
+      </ul>
     </div>
   </div>
 </template>
@@ -108,10 +131,24 @@ export default defineComponent( {
                                     const filterProspect = ref( false );
 
                                     const tableData = ref();
-                                    tableData.value = await sqliteService.getAllFiles();
+                                    // tableData.value = ( await sqliteService.getAllFiles() ).slice( 0, 50 );
+                                    tableData.value = ( await sqliteService.getAllFiles() );
                                     console.log( 'Table data', tableData );
 
+
+                                    const numberOfItems = ref( tableData.value.length );
+                                    const numberPerPage = 10;
+                                    const currentPage   = ref( 1 );
+                                    const numberOfPages = ref( Math.ceil( numberOfItems.value / numberPerPage ) );
+
+                                    const buildPagination = ( nbItems: number ) => {
+                                      numberOfItems.value = nbItems;
+                                      numberOfPages.value = Math.ceil( numberOfItems.value / numberPerPage );
+                                    };
+
+
                                     const filterData = computed<FolderItem[]>( () => {
+                                      console.log( '%c COMPUTED', 'background: #fdd835; color: #000000' );
                                       let tempData: FolderItem[] = tableData.value;
 
                                       if ( filterSearch.value !== '' ) {
@@ -149,8 +186,22 @@ export default defineComponent( {
                                           return data.isProspect;
                                         } );
                                       }
+
+                                      buildPagination( tempData.length );
+
+                                      const trimStart = ( currentPage.value - 1 ) * numberPerPage;
+                                      const trimEnd   = trimStart + numberPerPage;
+                                      tempData        = tempData.slice( trimStart, trimEnd );
+
                                       return tempData;
                                     } );
+
+                                    const changePage = ( page: number ) => {
+                                      if ( page < 1 || page > numberOfPages.value ) {
+                                        return;
+                                      }
+                                      currentPage.value = page;
+                                    };
 
                                     const checkElements = () => {
                                       alert( 'TODO : Check elements' );
@@ -173,6 +224,8 @@ export default defineComponent( {
                                     };
 
                                     return {
+                                      currentPage,
+                                      numberOfPages,
                                       tableData,
                                       filterStatus,
                                       filterData,
@@ -184,8 +237,15 @@ export default defineComponent( {
                                       removeFolder,
                                       send,
                                       edit,
+                                      changePage,
                                       folderTypesToString,
                                     };
                                   },
                                 } );
 </script>
+
+<style>
+.page-item {
+  cursor : pointer;
+}
+</style>
