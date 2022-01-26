@@ -96,7 +96,6 @@
       </div>
     </template>
     <template #fallback>
-      <h1>JE SUIS EN CHARGEMENT</h1>
       <span>Loading...</span>
     </template>
   </Suspense>

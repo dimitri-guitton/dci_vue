@@ -175,10 +175,20 @@ export async function addFile( reference: string,
 }
 
 
-
+/**
+ * Récupère tous les dossiers de la DB
+ */
 export async function getAllFiles(): Promise<FolderItem[]> {
     const query = `SELECT *
                    from file;`;
 
     return convertDbFileToFolderItem( await db.all( query ) );
+}
+
+export async function setFileProspect( fileId: number, value: boolean ) {
+    const query = `UPDATE file
+                   SET isProspect = ${ value }
+                   WHERE id = ${ fileId }`;
+
+    await db.exec( query );
 }

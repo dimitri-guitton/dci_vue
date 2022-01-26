@@ -1,5 +1,5 @@
 <template>
-  <!--  FILTRE-->
+  <!-- FILTRE-->
   <div class="row mt-2">
     <div class="col-3">
       <input type="text" class="form-control" placeholder="Référence, Nom..." v-model="filterSearch" />
@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  <!--  TABLE-->
+  <!-- TABLE-->
   <div class="row">
     <div class="col-12">
       <table class="table table-striped gy-7 gs-7">
@@ -52,7 +52,12 @@
         <tbody>
         <tr v-for="data in filterData" v-bind:key="data.reference">
           <td>{{ data.reference }}</td>
-          <td><input class="form-check-input" type="checkbox" value="" id="isProspect" :checked="data.isProspect"></td>
+          <td><input class="form-check-input"
+                     type="checkbox"
+                     value=""
+                     id="isProspect"
+                     :checked="data.isProspect"
+                     @change="updateProspect(data.id, $event)"></td>
           <td>{{ folderTypesToString( data.types ) }}</td>
           <td>{{ data.folderName }}</td>
           <td>{{ data.totalTTC }}</td>
@@ -85,12 +90,16 @@
         </tr>
         </tbody>
       </table>
+
+      <!-- Pagination-->
       <ul class="pagination">
         <li @click="changePage(currentPage - 1)"
             class="page-item previous"
             v-bind:class="{disabled:currentPage === 1 }">
-          <span class="page-link"><i class="previous"></i></span></li>
-        <!-- TODO Revoir la pagination-->
+          <span class="page-link"><i class="previous"></i></span>
+        </li>
+
+        <!-- TODO Revoir la pagination (algo pour savoir quelle pagination est affichée)-->
         <template v-for="index in numberOfPages" :key="'page_'+index">
           <li @click="changePage(index)"
               v-if="index === 1 || index === 2 || index === currentPage + 1 || index === numberOfPages - 1 || index === numberOfPages"
@@ -98,15 +107,19 @@
               v-bind:class="{active:currentPage === index }">
             <span class="page-link">{{ index }}</span>
           </li>
+
           <li v-if="numberOfPages > 6 && index === 4"
               class="page-item">
             <span class="page-link">...</span>
           </li>
+
         </template>
+
         <li @click="changePage(currentPage + 1)"
             class="page-item next"
-            v-bind:class="{disabled:currentPage === numberOfPages }"><span
-            class="page-link"><i class="next"></i></span></li>
+            v-bind:class="{disabled:currentPage === numberOfPages }">
+          <span class="page-link"><i class="next"></i></span>
+        </li>
       </ul>
     </div>
   </div>
@@ -136,14 +149,18 @@ export default defineComponent( {
                                     console.log( 'Table data', tableData );
 
 
-                                    const numberOfItems = ref( tableData.value.length );
+                                    // Init les datas de la pagination
+                                    const numberOfItems = tableData.value.length;
                                     const numberPerPage = 10;
                                     const currentPage   = ref( 1 );
-                                    const numberOfPages = ref( Math.ceil( numberOfItems.value / numberPerPage ) );
+                                    const numberOfPages = ref( Math.ceil( numberOfItems / numberPerPage ) );
 
+                                    /**
+                                     * Set up le nombre de pages de la pagination
+                                     * @param nbItems
+                                     */
                                     const buildPagination = ( nbItems: number ) => {
-                                      numberOfItems.value = nbItems;
-                                      numberOfPages.value = Math.ceil( numberOfItems.value / numberPerPage );
+                                      numberOfPages.value = Math.ceil( nbItems / numberPerPage );
                                     };
 
 
@@ -151,6 +168,7 @@ export default defineComponent( {
                                       console.log( '%c COMPUTED', 'background: #fdd835; color: #000000' );
                                       let tempData: FolderItem[] = tableData.value;
 
+                                      // Filtre sur la barre de recherche
                                       if ( filterSearch.value !== '' ) {
                                         tempData = tempData.filter( ( data: FolderItem ) => {
                                           const name  = data.folderName.toLowerCase();
@@ -160,7 +178,7 @@ export default defineComponent( {
                                         } );
                                       }
 
-
+                                      // Filtre les types
                                       if ( filterType.value !== '-1' ) {
                                         tempData = tempData.filter( ( data: FolderItem ) => {
                                           if ( filterType.value === '-1' ) {
@@ -171,7 +189,7 @@ export default defineComponent( {
                                         } );
                                       }
 
-
+                                      // Filtre sur les statuts
                                       if ( filterStatus.value !== '-1' ) {
                                         tempData = tempData.filter( ( data: FolderItem ) => {
                                           if ( filterStatus.value === '-1' ) {
@@ -181,14 +199,15 @@ export default defineComponent( {
                                         } );
                                       }
 
+                                      // Filtre sur "Prospect"
                                       if ( filterProspect.value !== false ) {
                                         tempData = tempData.filter( ( data: FolderItem ) => {
                                           return data.isProspect;
                                         } );
                                       }
 
+                                      // Pagination
                                       buildPagination( tempData.length );
-
                                       const trimStart = ( currentPage.value - 1 ) * numberPerPage;
                                       const trimEnd   = trimStart + numberPerPage;
                                       tempData        = tempData.slice( trimStart, trimEnd );
@@ -196,11 +215,19 @@ export default defineComponent( {
                                       return tempData;
                                     } );
 
+                                    /**
+                                     * Changement de page
+                                     * @param page
+                                     */
                                     const changePage = ( page: number ) => {
                                       if ( page < 1 || page > numberOfPages.value ) {
                                         return;
                                       }
                                       currentPage.value = page;
+                                    };
+
+                                    const updateProspect = ( fileId: number, event ) => {
+                                      sqliteService.setFileProspect( fileId, event.target.checked );
                                     };
 
                                     const checkElements = () => {
@@ -225,6 +252,7 @@ export default defineComponent( {
 
                                     return {
                                       currentPage,
+                                      updateProspect,
                                       numberOfPages,
                                       tableData,
                                       filterStatus,
