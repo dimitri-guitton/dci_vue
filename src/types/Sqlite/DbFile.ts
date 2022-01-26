@@ -1,20 +1,17 @@
-import FolderItemStatus from '@/types/Folder/FolderItemStatus';
-import FolderItemType from '@/types/Folder/FolderItemType';
-
-interface FolderItem {
+interface DbFile {
     id: number;
     reference: string;
     folderName: string;
-    types: FolderItemType[];
+    fileTypes: string;
     customer: string;
     totalTTC: number;
     isProspect: boolean;
     isClosed: boolean;
-    status: FolderItemStatus;
+    statusInDCI: string;
     todos: string;
     createdAt: string;
     updatedAt: string;
     sendAt: string;
 }
 
-export default FolderItem;
+export default DbFile;

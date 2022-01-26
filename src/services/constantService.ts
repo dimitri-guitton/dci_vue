@@ -2,7 +2,7 @@ import FolderItemType from '@/types/Folder/FolderItemType';
 import FolderItemStatus from '@/types/Folder/FolderItemStatus';
 
 export const FOLDER_COMBLE_TYPE: FolderItemType = {
-    slug: 'co',
+    slug: 'comble',
     name: 'Comble',
 };
 
@@ -22,12 +22,12 @@ export const FOLDER_PAC_RO_TYPE: FolderItemType = {
 };
 
 export const FOLDER_CE_TYPE: FolderItemType = {
-    slug: 'ce',
+    slug: 'cet',
     name: 'Chauffe eau',
 };
 
 export const FOLDER_PO_G_TYPE: FolderItemType = {
-    slug: 'po_g',
+    slug: 'pg',
     name: 'Poele à granulés',
 };
 
@@ -41,24 +41,28 @@ export const LIST_FOLDER_TYPE: FolderItemType[] = [
 ];
 
 export const FOLDER_COMPLETE_STATUS: FolderItemStatus = {
+    code:  1,
     state: 'complete',
     name:  'Complet',
     class: 'success',
 };
 
 export const FOLDER_INCOMPLETE_STATUS: FolderItemStatus = {
+    code:  2,
     state: 'incomplete',
     name:  'Incomplet',
     class: 'warning',
 };
 
 export const FOLDER_TO_CORRECT_STATUS: FolderItemStatus = {
+    code:  3,
     state: 'to_correct',
     name:  'À corriger',
     class: 'danger',
 };
 
 export const FOLDER_CLOSE_STATUS: FolderItemStatus = {
+    code:  4,
     state: 'close',
     name:  'Clos',
     class: 'dark',

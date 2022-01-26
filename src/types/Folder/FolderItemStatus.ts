@@ -1,4 +1,5 @@
 interface FolderItemStatus {
+    code: number;
     state: string;
     name: string;
     class: string;
