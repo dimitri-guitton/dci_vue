@@ -1,5 +1,5 @@
 import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
+import { ISqlite, open } from 'sqlite';
 import Store from 'electron-store';
 import { Database } from 'sqlite/build/Database';
 import FolderItem from '@/types/Folder/FolderItem';
@@ -19,6 +19,7 @@ import {
     FOLDER_TO_CORRECT_STATUS,
 } from '@/services/constantService';
 import { toFrenchDate } from '@/services/commonService';
+import RunResult = ISqlite.RunResult;
 
 const schema = {
     dropboxPath: {
@@ -190,5 +191,14 @@ export async function setFileProspect( fileId: number, value: boolean ) {
                    SET isProspect = ${ value }
                    WHERE id = ${ fileId }`;
 
-    await db.exec( query );
+    await db.run( query );
+}
+
+export async function deleteFileProspect( fileId: number ): Promise<RunResult> {
+    console.log( '%c ON DELETE', 'background: #fdd835; color: #000000' );
+    const query = `DELETE
+                   FROM file
+                   WHERE id = ${ fileId }`;
+
+    return await db.run( query );
 }

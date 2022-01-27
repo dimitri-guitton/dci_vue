@@ -4,9 +4,11 @@
       <div class="row gy-5">
         <NewFolderModal></NewFolderModal>
         <FolderDatatable></FolderDatatable>
-        <button class="btn btn-primary action-button" data-bs-toggle="modal" data-bs-target="#kt_modal_new_folder">
-          Nouveau Dossier
-        </button>
+        <el-affix position="bottom" :offset="25">
+          <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#kt_modal_new_folder">
+            Nouveau Dossier
+          </button>
+        </el-affix>
       </div>
     </template>
     <template #fallback>
@@ -36,12 +38,3 @@ export default defineComponent( {
                                   },
                                 } );
 </script>
-
-<style>
-.action-button {
-  width    : 200px;
-  position : fixed;
-  right    : 30px;
-  bottom   : 40px;
-}
-</style>

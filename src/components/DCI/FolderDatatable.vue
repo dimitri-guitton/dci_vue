@@ -65,50 +65,37 @@
           <td>{{ data.createdAt }}</td>
           <td><span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span></td>
           <td>{{ data.sendAt }}</td>
+
+          <router-link :to="{ name: 'folder_show', query: { slug: 'fake_slug' } }"
+                       class="btn btn-icon btn-primary btn-sm"><i class="fas fa-pen"></i></router-link>
+
           <el-dropdown trigger="click" size="large" @command="handleAction">
-            <button type="button" class="btn btn-icon btn-light-dark me-2">
+            <button type="button" class="btn btn-icon btn-dark btn-sm">
               <i class="fas fa-ellipsis-v"></i>
             </button>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item :command="{type:'check_element', file: data}">
+                <el-dropdown-item :command="{type:'check_element', folder: data}">
                   <i class="fas fa-clipboard-check me-2"></i>Vérifier les
                                                              éléments
                 </el-dropdown-item>
-                <el-dropdown-item :command="{type:'open', file: data}"><i class="fas fa-folder-open me-2"></i>Ouvrir le
-                                                                                                              répertoire
+                <el-dropdown-item :command="{type:'open', folder: data}"><i class="fas fa-folder-open me-2"></i>Ouvrir
+                                                                                                                le
+                                                                                                                répertoire
                 </el-dropdown-item>
-                <el-dropdown-item :command="{type:'delete', file: data}"><i class="fas fa-trash me-2"></i>Supprimer
+                <el-dropdown-item :command="{type:'remove_dci', folder: data}"><i class="fas fa-trash me-2"></i>Suppression
+                                                                                                                DCI
                 </el-dropdown-item>
-                <el-dropdown-item :command="{type:'send', file: data}" :disabled="true">
+                <el-dropdown-item :command="{type:'remove_all', folder: data}"><i class="fas fa-trash me-2"></i>Suppression
+                                                                                                                Dropbox
+                                                                                                                + DCI
+                </el-dropdown-item>
+                <el-dropdown-item :command="{type:'send', folder: data}" :disabled="true">
                   <i class="fas fa-arrow-circle-up me-2"></i>Transmettre
                 </el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
-          <!--          <div class="btn-group">-->
-          <!--            <button type="button"-->
-          <!--                    class="btn btn-icon btn-light-dark me-2"-->
-          <!--                    data-bs-toggle="dropdown"-->
-          <!--                    aria-expanded="false"-->
-          <!--            >-->
-          <!--              <i class="fas fa-ellipsis-v"></i>-->
-          <!--            </button>-->
-          <!--            <ul class="dropdown-menu">-->
-          <!--              <li><span class="dropdown-item" @click="checkElements"><i class="fas fa-clipboard-check me-2"></i>Vérifier les éléments</span>-->
-          <!--              </li>-->
-          <!--              <li><span class="dropdown-item" @click="openFolder"><i class="fas fa-folder-open me-2"></i>Ouvrir le répertoire</span>-->
-          <!--              </li>-->
-          <!--              <li><span class="dropdown-item" @click="removeFolder"><i class="fas fa-trash me-2"></i>Supprimer</span>-->
-          <!--              </li>-->
-          <!--              <li><span class="dropdown-item disabled" @click="send"><i class="fas fa-arrow-circle-up me-2"></i>Transmettre</span>-->
-          <!--              </li>-->
-          <!--            </ul>-->
-          <!--          </div>-->
-          <router-link :to="{ name: 'folder_show', query: { slug: 'fake_slug' } }"
-                       class="btn btn-icon btn-light-info">
-            <i class="fas fa-pen"></i>
-          </router-link>
         </tr>
         </tbody>
       </table>
@@ -133,11 +120,14 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 import * as sqliteService from '../../services/sqliteService';
+import { deleteFileProspect } from '@/services/sqliteService';
 import FolderItem from '@/types/Folder/FolderItem';
 import { folderItemHasType, folderTypesToString } from '@/services/folder/FolderItemService';
 import { ElMessage } from 'element-plus';
 import { shell } from 'electron';
 import { getFolderPath } from '@/services/folder/folderService';
+import { ISqlite } from 'sqlite';
+import RunResult = ISqlite.RunResult;
 
 
 export default defineComponent( {
@@ -156,7 +146,7 @@ export default defineComponent( {
 
 
                                     // Init les datas de la pagination
-                                    const numberPerPage = 15;
+                                    const numberPerPage = 20;
                                     const numberOfItems = ref( tableData.value.length );
                                     const currentPage   = ref( 1 );
 
@@ -224,15 +214,16 @@ export default defineComponent( {
                                       sqliteService.setFileProspect( fileId, event.target.checked );
                                     };
 
-                                    const handleAction = ( command: string | number | object ) => {
+                                    const handleAction = async ( command: { type: string; folder: FolderItem } ) => {
                                       console.log( command );
-                                      let path = null;
+                                      let path: string | null = null;
+                                      let response: RunResult;
                                       switch ( command.type ) {
                                         case 'check_element':
                                           console.log( '%c ON CHECK ELEM', 'background: #fdd835; color: #000000' );
                                           break;
                                         case 'open':
-                                          path = getFolderPath( command.file );
+                                          path = getFolderPath( command.folder );
                                           if ( path === null ) {
                                             ElMessage( {
                                                          showClose: true,
@@ -240,11 +231,28 @@ export default defineComponent( {
                                                          type:      'error',
                                                        } );
                                           } else {
-                                            shell.openPath( path );
+                                            await shell.openPath( path );
                                           }
                                           break;
-                                        case 'delete':
-                                          console.log( '%c ON DELETE', 'background: #fdd835; color: #000000' );
+                                        case 'remove_dci':
+                                          response = await deleteFileProspect( command.folder.id );
+                                          if ( response.changes !== undefined && response.changes > 0 ) {
+                                            ElMessage( {
+                                                         message: 'Dossier supprimé avec succès',
+                                                         type:    'success',
+                                                       } );
+
+                                            tableData.value = ( await sqliteService.getAllFiles() );
+                                          } else {
+                                            ElMessage( {
+                                                         message: 'Aucune modification à été effectuée',
+                                                         type:    'warning',
+                                                       } );
+                                          }
+                                          console.log( '%c AFTER', 'background: #fdd835; color: #000000' );
+                                          break;
+                                        case 'remove_all':
+                                          console.log( '%c ON delete_ALL', 'background: #fdd835; color: #000000' );
                                           break;
                                         case 'send':
                                           console.log( '%c ON SEND', 'background: #fdd835; color: #000000' );
@@ -292,11 +300,13 @@ export default defineComponent( {
                                       folderTypesToString,
                                     };
                                   },
+                                  methods: {
+                                    forceUpdate() {
+                                      this.$forceUpdate();
+                                    },
+                                  },
                                 } );
 </script>
 
 <style>
-.page-item {
-  cursor : pointer;
-}
 </style>
