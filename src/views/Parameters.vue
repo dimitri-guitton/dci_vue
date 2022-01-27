@@ -108,7 +108,7 @@ export default defineComponent( {
                                     };
 
                                     /**
-                                     * Ouvre l'explorateur de fichier pour sélectionner le pat de DropBox
+                                     * Ouvre l'explorateur de fichier pour sélectionner le path de DropBox
                                      */
                                     const openFileExplorer = () => {
                                       dialog.showOpenDialog( { properties: [ 'openDirectory' ] } )

@@ -4,6 +4,7 @@ import * as commonService from '../commonService';
 import { convertOldRoFile } from '@/services/file/convertRoData';
 import { convertOldRrFile } from '@/services/file/convertRRData';
 import { convertOldCeFile } from '@/services/file/convertCeData';
+import FolderItem from '@/types/Folder/FolderItem';
 
 const schema = {
     dropboxPath: {
@@ -45,7 +46,6 @@ export const createAFolder = ( type: string, customer: string ) => {
     return folderSlug;
 };
 
-
 /**
  * Convertie l'ancien système de données avec le nouveau
  */
@@ -86,4 +86,15 @@ export const convertOldJsonToNewJson = () => {
         fs.writeFileSync( dropboxPath + '/DCI/newData_' + type + '_' + id + '.json', data );
     }
     return true;
+};
+
+export const getFolderPath = ( folder: FolderItem ): string | null => {
+    const dropboxPath = store.get( 'dropboxPath' );
+    const path        = `${ dropboxPath }/DCI/${ folder.folderName }`;
+
+    if ( fs.existsSync( path ) ) {
+        return path;
+    }
+
+    return null;
 };

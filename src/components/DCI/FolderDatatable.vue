@@ -52,37 +52,59 @@
         <tbody>
         <tr v-for="data in filterData" v-bind:key="data.reference">
           <td>{{ data.reference }}</td>
-          <td><input class="form-check-input"
-                     type="checkbox"
-                     value=""
-                     id="isProspect"
-                     :checked="data.isProspect"
-                     @change="updateProspect(data.id, $event)"></td>
+          <td class="form-check form-check-custom form-check-solid form-check-sm"><input class="form-check-input"
+                                                                                         type="checkbox"
+                                                                                         value=""
+                                                                                         id="isProspect"
+                                                                                         :checked="data.isProspect"
+                                                                                         @change="updateProspect(data.id, $event)">
+          </td>
           <td>{{ folderTypesToString( data.types ) }}</td>
           <td>{{ data.folderName }}</td>
           <td>{{ data.totalTTC }}</td>
           <td>{{ data.createdAt }}</td>
           <td><span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span></td>
           <td>{{ data.sendAt }}</td>
-          <div class="btn-group">
-            <button type="button"
-                    class="btn btn-icon btn-light-dark me-2"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-            >
+          <el-dropdown trigger="click" size="large" @command="handleAction">
+            <button type="button" class="btn btn-icon btn-light-dark me-2">
               <i class="fas fa-ellipsis-v"></i>
             </button>
-            <ul class="dropdown-menu">
-              <li><span class="dropdown-item" @click="checkElements"><i class="fas fa-clipboard-check me-2"></i>Vérifier les éléments</span>
-              </li>
-              <li><span class="dropdown-item" @click="openFolder"><i class="fas fa-folder-open me-2"></i>Ouvrir le répertoire</span>
-              </li>
-              <li><span class="dropdown-item" @click="removeFolder"><i class="fas fa-trash me-2"></i>Supprimer</span>
-              </li>
-              <li><span class="dropdown-item disabled" @click="send"><i class="fas fa-arrow-circle-up me-2"></i>Transmettre</span>
-              </li>
-            </ul>
-          </div>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item :command="{type:'check_element', file: data}">
+                  <i class="fas fa-clipboard-check me-2"></i>Vérifier les
+                                                             éléments
+                </el-dropdown-item>
+                <el-dropdown-item :command="{type:'open', file: data}"><i class="fas fa-folder-open me-2"></i>Ouvrir le
+                                                                                                              répertoire
+                </el-dropdown-item>
+                <el-dropdown-item :command="{type:'delete', file: data}"><i class="fas fa-trash me-2"></i>Supprimer
+                </el-dropdown-item>
+                <el-dropdown-item :command="{type:'send', file: data}" :disabled="true">
+                  <i class="fas fa-arrow-circle-up me-2"></i>Transmettre
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+          <!--          <div class="btn-group">-->
+          <!--            <button type="button"-->
+          <!--                    class="btn btn-icon btn-light-dark me-2"-->
+          <!--                    data-bs-toggle="dropdown"-->
+          <!--                    aria-expanded="false"-->
+          <!--            >-->
+          <!--              <i class="fas fa-ellipsis-v"></i>-->
+          <!--            </button>-->
+          <!--            <ul class="dropdown-menu">-->
+          <!--              <li><span class="dropdown-item" @click="checkElements"><i class="fas fa-clipboard-check me-2"></i>Vérifier les éléments</span>-->
+          <!--              </li>-->
+          <!--              <li><span class="dropdown-item" @click="openFolder"><i class="fas fa-folder-open me-2"></i>Ouvrir le répertoire</span>-->
+          <!--              </li>-->
+          <!--              <li><span class="dropdown-item" @click="removeFolder"><i class="fas fa-trash me-2"></i>Supprimer</span>-->
+          <!--              </li>-->
+          <!--              <li><span class="dropdown-item disabled" @click="send"><i class="fas fa-arrow-circle-up me-2"></i>Transmettre</span>-->
+          <!--              </li>-->
+          <!--            </ul>-->
+          <!--          </div>-->
           <router-link :to="{ name: 'folder_show', query: { slug: 'fake_slug' } }"
                        class="btn btn-icon btn-light-info">
             <i class="fas fa-pen"></i>
@@ -113,14 +135,13 @@ import { computed, defineComponent, ref } from 'vue';
 import * as sqliteService from '../../services/sqliteService';
 import FolderItem from '@/types/Folder/FolderItem';
 import { folderItemHasType, folderTypesToString } from '@/services/folder/FolderItemService';
-import { ElPagination } from 'element-plus';
+import { ElMessage } from 'element-plus';
+import { shell } from 'electron';
+import { getFolderPath } from '@/services/folder/folderService';
 
 
 export default defineComponent( {
-                                  name:       'folder-datatable',
-                                  components: {
-                                    ElPagination,
-                                  },
+                                  name: 'folder-datatable',
                                   async setup() {
                                     await sqliteService.openDb();
                                     await sqliteService.initDb();
@@ -203,6 +224,34 @@ export default defineComponent( {
                                       sqliteService.setFileProspect( fileId, event.target.checked );
                                     };
 
+                                    const handleAction = ( command: string | number | object ) => {
+                                      console.log( command );
+                                      let path = null;
+                                      switch ( command.type ) {
+                                        case 'check_element':
+                                          console.log( '%c ON CHECK ELEM', 'background: #fdd835; color: #000000' );
+                                          break;
+                                        case 'open':
+                                          path = getFolderPath( command.file );
+                                          if ( path === null ) {
+                                            ElMessage( {
+                                                         showClose: true,
+                                                         message:   'Impossible d\'ouvrir le dossier, il n\'a pas été trouvé !',
+                                                         type:      'error',
+                                                       } );
+                                          } else {
+                                            shell.openPath( path );
+                                          }
+                                          break;
+                                        case 'delete':
+                                          console.log( '%c ON DELETE', 'background: #fdd835; color: #000000' );
+                                          break;
+                                        case 'send':
+                                          console.log( '%c ON SEND', 'background: #fdd835; color: #000000' );
+                                          break;
+                                      }
+                                    };
+
                                     const checkElements = () => {
                                       alert( 'TODO : Check elements' );
                                     };
@@ -224,6 +273,7 @@ export default defineComponent( {
                                     };
 
                                     return {
+                                      handleAction,
                                       numberOfItems,
                                       numberPerPage,
                                       currentPage,
