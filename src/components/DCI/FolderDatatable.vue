@@ -90,37 +90,20 @@
         </tr>
         </tbody>
       </table>
+    </div>
+  </div>
 
-      <!-- Pagination-->
-      <ul class="pagination">
-        <li @click="changePage(currentPage - 1)"
-            class="page-item previous"
-            v-bind:class="{disabled:currentPage === 1 }">
-          <span class="page-link"><i class="previous"></i></span>
-        </li>
-
-        <!-- TODO Revoir la pagination (algo pour savoir quelle pagination est affichée)-->
-        <template v-for="index in numberOfPages" :key="'page_'+index">
-          <li @click="changePage(index)"
-              v-if="index === 1 || index === 2 || index === currentPage + 1 || index === numberOfPages - 1 || index === numberOfPages"
-              class="page-item"
-              v-bind:class="{active:currentPage === index }">
-            <span class="page-link">{{ index }}</span>
-          </li>
-
-          <li v-if="numberOfPages > 6 && index === 4"
-              class="page-item">
-            <span class="page-link">...</span>
-          </li>
-
-        </template>
-
-        <li @click="changePage(currentPage + 1)"
-            class="page-item next"
-            v-bind:class="{disabled:currentPage === numberOfPages }">
-          <span class="page-link"><i class="next"></i></span>
-        </li>
-      </ul>
+  <!-- Pagination-->
+  <div class="row">
+    <div class="col-lg-12">
+      <el-pagination class="d-flex flex-row justify-content-center align-content-center"
+                     :hide-on-single-page="true"
+                     v-model:currentPage="currentPage"
+                     :page-size="numberPerPage"
+                     :total="numberOfItems"
+                     layout="prev, pager, next"
+      >
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -130,10 +113,14 @@ import { computed, defineComponent, ref } from 'vue';
 import * as sqliteService from '../../services/sqliteService';
 import FolderItem from '@/types/Folder/FolderItem';
 import { folderItemHasType, folderTypesToString } from '@/services/folder/FolderItemService';
+import { ElPagination } from 'element-plus';
 
 
 export default defineComponent( {
-                                  name: 'folder-datatable',
+                                  name:       'folder-datatable',
+                                  components: {
+                                    ElPagination,
+                                  },
                                   async setup() {
                                     await sqliteService.openDb();
                                     await sqliteService.initDb();
@@ -144,26 +131,23 @@ export default defineComponent( {
                                     const filterProspect = ref( false );
 
                                     const tableData = ref();
-                                    // tableData.value = ( await sqliteService.getAllFiles() ).slice( 0, 50 );
                                     tableData.value = ( await sqliteService.getAllFiles() );
-                                    console.log( 'Table data', tableData );
 
 
                                     // Init les datas de la pagination
-                                    const numberOfItems = tableData.value.length;
-                                    const numberPerPage = 10;
+                                    const numberPerPage = 15;
+                                    const numberOfItems = ref( tableData.value.length );
                                     const currentPage   = ref( 1 );
-                                    const numberOfPages = ref( Math.ceil( numberOfItems / numberPerPage ) );
 
                                     /**
                                      * Set up le nombre de pages de la pagination
                                      * @param nbItems
                                      */
-                                    const buildPagination = ( nbItems: number ) => {
-                                      numberOfPages.value = Math.ceil( nbItems / numberPerPage );
+                                    const updatePagination = ( nbItems: number ) => {
+                                      numberOfItems.value = nbItems;
                                     };
 
-
+                                    // Fonction appelé quand un filtre est modifié ou la pagination
                                     const filterData = computed<FolderItem[]>( () => {
                                       console.log( '%c COMPUTED', 'background: #fdd835; color: #000000' );
                                       let tempData: FolderItem[] = tableData.value;
@@ -207,24 +191,13 @@ export default defineComponent( {
                                       }
 
                                       // Pagination
-                                      buildPagination( tempData.length );
+                                      updatePagination( tempData.length );
                                       const trimStart = ( currentPage.value - 1 ) * numberPerPage;
                                       const trimEnd   = trimStart + numberPerPage;
                                       tempData        = tempData.slice( trimStart, trimEnd );
 
                                       return tempData;
                                     } );
-
-                                    /**
-                                     * Changement de page
-                                     * @param page
-                                     */
-                                    const changePage = ( page: number ) => {
-                                      if ( page < 1 || page > numberOfPages.value ) {
-                                        return;
-                                      }
-                                      currentPage.value = page;
-                                    };
 
                                     const updateProspect = ( fileId: number, event ) => {
                                       sqliteService.setFileProspect( fileId, event.target.checked );
@@ -251,9 +224,10 @@ export default defineComponent( {
                                     };
 
                                     return {
+                                      numberOfItems,
+                                      numberPerPage,
                                       currentPage,
                                       updateProspect,
-                                      numberOfPages,
                                       tableData,
                                       filterStatus,
                                       filterData,
@@ -265,7 +239,6 @@ export default defineComponent( {
                                       removeFolder,
                                       send,
                                       edit,
-                                      changePage,
                                       folderTypesToString,
                                     };
                                   },
