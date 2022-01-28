@@ -164,7 +164,6 @@
 import { defineComponent, ref } from 'vue';
 import { ErrorMessage, Field, Form } from 'vee-validate';
 import * as Yup from 'yup';
-import Store from 'electron-store';
 import router from '@/router';
 import * as folderService from '../../../services/folder/folderService';
 import { LIST_FOLDER_TYPE } from '@/services/constantService';
@@ -178,19 +177,6 @@ interface NewFolderData {
   disabledMaPrimeRenovBonus: boolean;
 }
 
-const schema = {
-  apiKey:      {
-    type:    'string',
-    default: '',
-  },
-  dropboxPath: {
-    type:    'string',
-    default: '',
-  },
-} as const;
-
-// Store pour stoker les users Data
-const store = new Store( { schema } );
 
 export default defineComponent( {
                                   name:       'new-folder-modal',
@@ -229,10 +215,10 @@ export default defineComponent( {
                                       //Disable button
                                       submitButtonRef.value.disabled = true;
 
-                                      const folderSlug = await folderService.createAFolder( newFolderData.value.type,
-                                                                                            newFolderData.value.customer );
+                                      const folderReference = await folderService.createAFolder( newFolderData.value.type,
+                                                                                                 newFolderData.value.customer );
 
-                                      await router.push( { name: 'folder_show', query: { slug: folderSlug } } );
+                                      await router.push( { name: 'folder_show', query: { slug: folderReference } } );
                                     };
 
                                     return {

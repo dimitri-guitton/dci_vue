@@ -226,7 +226,7 @@ export async function setFileProspect( fileId: number, value: boolean ) {
     await db.run( query );
 }
 
-export async function deleteFileProspect( fileId: number ): Promise<RunResult> {
+export async function deleteFile( fileId: number ): Promise<RunResult> {
     console.log( '%c ON DELETE', 'background: #fdd835; color: #000000' );
     const query = `DELETE
                    FROM file

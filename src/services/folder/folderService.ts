@@ -6,7 +6,7 @@ import { convertOldRrFile } from '@/services/file/convertRRData';
 import { convertOldCeFile } from '@/services/file/convertCeData';
 import FolderItem from '@/types/Folder/FolderItem';
 import path from 'path';
-import { addFile } from '@/services/sqliteService';
+import { addFile, deleteFile } from '@/services/sqliteService';
 
 const schema = {
     dropboxPath: {
@@ -101,6 +101,14 @@ const createSubFolders = ( type: string, parent: string ) => {
     } );
 };
 
+export const createFolderRef = ( type: string ): string => {
+    const today      = new Date();
+    const stringDate = `${ today.getFullYear() }${ commonService.minTwoDigits( today.getMonth() + 1 ) }${ commonService.minTwoDigits(
+        today.getDate() ) }${ commonService.minTwoDigits( today.getHours() ) }${ commonService.minTwoDigits( today.getMinutes() ) }${ commonService.minTwoDigits(
+        today.getMilliseconds() ) }${ ( Math.random() ).toString().slice( -8 ) }`;
+    return `ID_COM-${ stringDate }-${ type.toUpperCase() }`;
+};
+
 /**
  * Créer un dossier de devis avec le type et le nom du client
  * @param type
@@ -108,11 +116,10 @@ const createSubFolders = ( type: string, parent: string ) => {
  */
 export const createAFolder = async ( type: string, customer: string ) => {
     const dropboxPath = store.get( 'dropboxPath' );
+    const today       = new Date();
 
-    const today      = new Date();
-    const stringDate = `${ today.getFullYear() }${ commonService.minTwoDigits( today.getMonth() + 1 ) }${ commonService.minTwoDigits(
-        today.getDate() ) }${ commonService.minTwoDigits( today.getHours() ) }${ commonService.minTwoDigits( today.getMinutes() ) }`;
-    const reference  = `ID_COM-${ stringDate }-${ type.toUpperCase() }`;
+
+    const reference  = createFolderRef( type );
     const folderSlug = `${ reference } (${ customer.toUpperCase() })`;
 
     const path = `${ dropboxPath }/DCI/${ folderSlug }`;
@@ -120,10 +127,10 @@ export const createAFolder = async ( type: string, customer: string ) => {
         fs.mkdirSync( path );
 
         createSubFolders( type, path );
-        await addFile( reference, folderSlug, type, customer, 0, false, false, '1', null, today, today, null );
+        await addFile( reference, folderSlug, type, customer, 0, false, false, '2', null, today, today, null );
     }
 
-    return folderSlug;
+    return reference;
 };
 
 
@@ -169,13 +176,43 @@ export const convertOldJsonToNewJson = () => {
     return true;
 };
 
-export const getFolderPath = ( folder: FolderItem ): string | null => {
+export const getFolderPath = ( folder: FolderItem ): string => {
     const dropboxPath = store.get( 'dropboxPath' );
-    const path        = `${ dropboxPath }/DCI/${ folder.folderName }`;
+
+    const path = `${ dropboxPath }/DCI/${ folder.folderName }`;
 
     if ( fs.existsSync( path ) ) {
         return path;
     }
 
-    return null;
+    return '';
+};
+
+/**
+ * Supprime un dossiser dans Drpbox et dans la DB
+ * @param folder
+ */
+export const removeFolder = async ( folder: FolderItem ): Promise<boolean> => {
+    const folderPath = getFolderPath( folder );
+
+    if ( fs.existsSync( folderPath ) ) {
+        try {
+            fs.rmSync( folderPath, { recursive: true, force: true } );
+            await deleteFile( folder.id );
+            return true;
+        } catch ( e ) {
+            return false;
+        }
+    }
+
+    return false;
+
+};
+
+/**
+ * TODO A FAIRE
+ * @param folder
+ */
+export const checkFolder = ( folder: FolderItem ) => {
+    return true;
 };

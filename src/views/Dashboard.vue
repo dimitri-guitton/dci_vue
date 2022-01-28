@@ -57,6 +57,13 @@ export default defineComponent( {
                                       console.log( 'Version de l\'app : ', process.env.VUE_APP_VERSION );
                                       console.log( 'Environnement : ', process.env.NODE_ENV );
                                       console.log( 'URL API : ', process.env.VUE_APP_API_URL );
+
+                                      // openDb();
+                                      // for ( let i = 0; i < 10; i++ ) {
+                                      //   const type     = 'sol';
+                                      //   const customer = 'Jean Pierre';
+                                      //   createAFolder( type, customer );
+                                      // }
                                     } );
                                   },
                                 } );

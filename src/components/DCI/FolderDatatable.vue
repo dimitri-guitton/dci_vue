@@ -62,7 +62,7 @@
           <td><span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span></td>
           <td>{{ data.sendAt }}</td>
           <td>
-            <router-link :to="{ name: 'folder_show', query: { slug: 'fake_slug' } }"
+            <router-link :to="{ name: 'folder_show', query: { slug: data.reference } }"
                          class="btn btn-icon btn-primary btn-sm me-2"><i class="fas fa-pen"></i></router-link>
 
             <el-dropdown trigger="click" size="large" @command="handleAction">
@@ -86,7 +86,7 @@
                                                                                                                   Dropbox
                                                                                                                   + DCI
                   </el-dropdown-item>
-                  <el-dropdown-item :command="{type:'send', folder: data}" :disabled="true">
+                  <el-dropdown-item :command="{type:'send', folder: data}" :disabled="data.status.code === 2">
                     <i class="fas fa-arrow-circle-up me-2"></i>Transmettre
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -117,15 +117,13 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 import * as sqliteService from '../../services/sqliteService';
-import { deleteFileProspect } from '@/services/sqliteService';
+import { deleteFile } from '@/services/sqliteService';
 import FolderItem from '@/types/Folder/FolderItem';
 import { folderItemHasType, folderTypesToString } from '@/services/folder/FolderItemService';
 import { ElMessage } from 'element-plus';
 import { shell } from 'electron';
-import { getFolderPath } from '@/services/folder/folderService';
-import { ISqlite } from 'sqlite';
+import { checkFolder, getFolderPath, removeFolder } from '@/services/folder/folderService';
 import { LIST_FOLDER_TYPE } from '@/services/constantService';
-import RunResult = ISqlite.RunResult;
 
 
 export default defineComponent( {
@@ -215,15 +213,14 @@ export default defineComponent( {
 
                                     const handleAction = async ( command: { type: string; folder: FolderItem } ) => {
                                       console.log( command );
-                                      let path: string | null = null;
-                                      let response: RunResult;
                                       switch ( command.type ) {
                                         case 'check_element':
                                           console.log( '%c ON CHECK ELEM', 'background: #fdd835; color: #000000' );
+                                          checkFolder( command.folder );
                                           break;
                                         case 'open':
-                                          path = getFolderPath( command.folder );
-                                          if ( path === null ) {
+                                          const path = getFolderPath( command.folder );
+                                          if ( path === '' ) {
                                             ElMessage( {
                                                          showClose: true,
                                                          message:   'Impossible d\'ouvrir le dossier, il n\'a pas été trouvé !',
@@ -234,7 +231,9 @@ export default defineComponent( {
                                           }
                                           break;
                                         case 'remove_dci':
-                                          response = await deleteFileProspect( command.folder.id );
+                                          console.log( command.folder );
+                                          console.log( command.folder.id );
+                                          const response = await deleteFile( command.folder.id );
                                           if ( response.changes !== undefined && response.changes > 0 ) {
                                             ElMessage( {
                                                          message: 'Dossier supprimé avec succès',
@@ -251,28 +250,25 @@ export default defineComponent( {
                                           console.log( '%c AFTER', 'background: #fdd835; color: #000000' );
                                           break;
                                         case 'remove_all':
-                                          console.log( '%c ON delete_ALL', 'background: #fdd835; color: #000000' );
+                                          const res = await removeFolder( command.folder );
+                                          if ( res ) {
+                                            ElMessage( {
+                                                         message: 'Dossier supprimé avec succès',
+                                                         type:    'success',
+                                                       } );
+
+                                            tableData.value = ( await sqliteService.getAllFiles() );
+                                          } else {
+                                            ElMessage( {
+                                                         message: 'Aucune modification à été effectuée',
+                                                         type:    'warning',
+                                                       } );
+                                          }
                                           break;
                                         case 'send':
                                           console.log( '%c ON SEND', 'background: #fdd835; color: #000000' );
                                           break;
                                       }
-                                    };
-
-                                    const checkElements = () => {
-                                      alert( 'TODO : Check elements' );
-                                    };
-
-                                    const openFolder = () => {
-                                      alert( 'TODO : Open du folder' );
-                                    };
-
-                                    const removeFolder = () => {
-                                      alert( 'TODO : Remove du folder' );
-                                    };
-
-                                    const send = () => {
-                                      alert( 'TODO : Send' );
                                     };
 
                                     const edit = () => {
@@ -291,10 +287,6 @@ export default defineComponent( {
                                       filterType,
                                       filterProspect,
                                       filterSearch,
-                                      checkElements,
-                                      openFolder,
-                                      removeFolder,
-                                      send,
                                       edit,
                                       folderTypesToString,
                                       listFolderType,
