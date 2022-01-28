@@ -5,6 +5,8 @@ import { convertOldRoFile } from '@/services/file/convertRoData';
 import { convertOldRrFile } from '@/services/file/convertRRData';
 import { convertOldCeFile } from '@/services/file/convertCeData';
 import FolderItem from '@/types/Folder/FolderItem';
+import path from 'path';
+import { addFile } from '@/services/sqliteService';
 
 const schema = {
     dropboxPath: {
@@ -26,25 +28,104 @@ export const createDciFolderIfNotExist = () => {
     }
 };
 
+const FoldersNames = {
+    AVIS_FOLDER:                        'avis',
+    MAP_FOLDER:                         'carte',
+    DEVIS_FOLDER:                       'devis',
+    DEVIS_SIGNE_FOLDER:                 'devis_signe',
+    FICHE_FOLDER:                       'fiche',
+    FICHE_SIGNE_FOLDER:                 'fiche_signe',
+    ATTEST_ADRESSE_SIGNE_FOLDER:        'attest_adresse_signe',
+    PHOTOS_FACADE_FOLDER:               'photos_facade',
+    PHOTOS_MAISON_FOLDER:               'photos_maison',
+    PHOTOS_CHANTIER_FOLDER:             'photos_chantier',
+    ATTESTATION_HONNEUR_FOLDER:         'attestation_sur_honneur',
+    MANDAT_MA_PRIME_RENOV:              'mandat_maprimerenov',
+    PHOTOS_TABLEAU_ELECTRIQUE:          'photos_tableau_electrique',
+    PHOTOS_ANCIENNE_CHAUDIERE:          'photos_ancienne_chaudiere',
+    PHOTOS_RADIATEUR:                   'photos_radiateur',
+    PHOTOS_EMPLACEMENT_UNITE_EXT:       'photos_emplacement_unite_ext',
+    PHOTOS_EMPLACEMENT_SPLITS:          'photos_emplacement_splits',
+    ATTEST_TVA_SIMPLIFIEE_FOLDER:       'attest_tva_simp',
+    ATTEST_TVA_SIMPLIFIEE_SIGNE_FOLDER: 'attest_tva_simp_signe',
+    CADRE_CONTRIBUTION_CEE:             'cadre_contribution_cee',
+    PHOTO_EMPLACEMENT_POELE:            'photo_emplacement_poele',
+    PHOTO_COMBLE_EMPLACEMENT_TUYAUX:    'photo_comble_emplacement_tuyaux',
+    PHOTO_TOITURE:                      'photo_toiture_et_tuile',
+};
+
+const Folders = [
+    { name: FoldersNames.AVIS_FOLDER, dossierType: [ 'all' ] },
+    { name: FoldersNames.MAP_FOLDER, dossierType: [ 'all' ] },
+    { name: FoldersNames.DEVIS_FOLDER, dossierType: [ 'all' ] },
+    { name: FoldersNames.DEVIS_SIGNE_FOLDER, dossierType: [ 'all' ] },
+    { name: FoldersNames.FICHE_FOLDER, dossierType: [ 'all' ] },
+    { name: FoldersNames.FICHE_SIGNE_FOLDER, dossierType: [ 'all' ] },
+    { name: FoldersNames.ATTEST_ADRESSE_SIGNE_FOLDER, dossierType: [ 'all' ] },
+    { name: FoldersNames.PHOTOS_FACADE_FOLDER, dossierType: [ 'sol', 'comble', 'poele' ] },
+    { name: FoldersNames.PHOTOS_MAISON_FOLDER, dossierType: [ 'sol', 'comble' ] },
+    { name: FoldersNames.PHOTOS_CHANTIER_FOLDER, dossierType: [ 'sol' ] },
+    { name: FoldersNames.ATTESTATION_HONNEUR_FOLDER, dossierType: [ 'all' ] },
+    { name: FoldersNames.PHOTOS_TABLEAU_ELECTRIQUE, dossierType: [ 'pac_rr', 'pac_ro', 'poele' ] },
+    { name: FoldersNames.MANDAT_MA_PRIME_RENOV, dossierType: [ 'pac_ro', 'cet', 'poele' ] },
+    { name: FoldersNames.PHOTOS_ANCIENNE_CHAUDIERE, dossierType: [ 'pac_ro' ] },
+    { name: FoldersNames.PHOTOS_RADIATEUR, dossierType: [ 'pac_ro' ] },
+    { name: FoldersNames.PHOTOS_EMPLACEMENT_UNITE_EXT, dossierType: [ 'pac_rr', 'pac_ro' ] },
+    { name: FoldersNames.PHOTOS_EMPLACEMENT_SPLITS, dossierType: [ 'pac_rr' ] },
+    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_FOLDER, dossierType: [ 'pac_rr', 'pac_ro', 'cet', 'poele' ] },
+    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_SIGNE_FOLDER, dossierType: [ 'pac_rr', 'pac_ro', 'cet', 'poele' ] },
+    { name: FoldersNames.CADRE_CONTRIBUTION_CEE, dossierType: [ 'pac_rr', 'pac_ro' ] },
+    { name: FoldersNames.PHOTO_EMPLACEMENT_POELE, dossierType: [ 'poele' ] },
+    { name: FoldersNames.PHOTO_COMBLE_EMPLACEMENT_TUYAUX, dossierType: [ 'poele' ] },
+    { name: FoldersNames.PHOTO_TOITURE, dossierType: [ 'poele' ] },
+];
+
+/**
+ * Créer les sous dossier dans un dossier principale
+ * @param type
+ * @param parent
+ */
+const createSubFolders = ( type: string, parent: string ) => {
+    const subFolders = Folders.filter( folder => {
+        if ( folder.dossierType !== undefined ) {
+            return folder.dossierType.filter( t => t === 'all' || t === type ).length > 0;
+        }
+        return false;
+    } );
+
+    subFolders.forEach( subFolder => {
+        const newFolder = path.resolve( parent, subFolder.name );
+        if ( !fs.existsSync( newFolder ) ) {
+            fs.mkdirSync( newFolder );
+        }
+    } );
+};
+
 /**
  * Créer un dossier de devis avec le type et le nom du client
  * @param type
  * @param customer
  */
-export const createAFolder = ( type: string, customer: string ) => {
+export const createAFolder = async ( type: string, customer: string ) => {
     const dropboxPath = store.get( 'dropboxPath' );
 
     const today      = new Date();
     const stringDate = `${ today.getFullYear() }${ commonService.minTwoDigits( today.getMonth() + 1 ) }${ commonService.minTwoDigits(
         today.getDate() ) }${ commonService.minTwoDigits( today.getHours() ) }${ commonService.minTwoDigits( today.getMinutes() ) }`;
-    const folderSlug = `ID_COM-${ stringDate }-${ type.toUpperCase() } (${ customer.toUpperCase() })`;
+    const reference  = `ID_COM-${ stringDate }-${ type.toUpperCase() }`;
+    const folderSlug = `${ reference } (${ customer.toUpperCase() })`;
 
-    if ( !fs.existsSync( dropboxPath + '/DCI/' + folderSlug ) ) {
-        fs.mkdirSync( dropboxPath + '/DCI/' + folderSlug );
+    const path = `${ dropboxPath }/DCI/${ folderSlug }`;
+    if ( !fs.existsSync( path ) ) {
+        fs.mkdirSync( path );
+
+        createSubFolders( type, path );
+        await addFile( reference, folderSlug, type, customer, 0, false, false, '1', null, today, today, null );
     }
 
     return folderSlug;
 };
+
 
 /**
  * Convertie l'ancien système de données avec le nouveau

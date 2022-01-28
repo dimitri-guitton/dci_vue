@@ -108,6 +108,30 @@ function convertDbFileToFolderItem( items: DbFile[] ) {
 }
 
 /**
+ * Convertie une date en string avec des quotes
+ * @param value
+ */
+const dateToString = ( value: Date | null ) => {
+    if ( value === null ) {
+        return null;
+    }
+
+    return `'${ value.getTime() }'`;
+};
+
+/**
+ * Retourne null si null sinon retourne un string avec des quotes
+ * @param value
+ */
+const convertToStringIfNotNull = ( value: string | null ): string | null => {
+    if ( value === null ) {
+        return null;
+    }
+
+    return `'${ value }'`;
+};
+
+/**
  * Ouvre la DB
  */
 export async function openDb() {
@@ -154,9 +178,15 @@ export async function addFile( reference: string,
                                isClosed: boolean,
                                statusInDCI: string,
                                todos: string | null,
-                               createdAt: string,
-                               updatedAt: string,
-                               sendAt: string | null ) {
+                               createdAt: Date,
+                               updatedAt: Date,
+                               sendAt: Date | null ) {
+
+    const strTodos     = convertToStringIfNotNull( todos );
+    const strCreatedAt = dateToString( createdAt );
+    const strUpdatedAt = dateToString( updatedAt );
+    const strSendAt    = dateToString( sendAt );
+
     const query = `INSERT INTO file (reference, folderName, fileTypes, customer, totalTTC, isProspect, isClosed,
                                      statusInDCI, todos, createdAt, updatedAt, sendAt)
                    VALUES ('${ reference }',
@@ -167,10 +197,11 @@ export async function addFile( reference: string,
                            ${ isProspect },
                            ${ isClosed },
                            '${ statusInDCI }',
-                           '${ todos }',
-                           '${ createdAt }',
-                           '${ updatedAt }',
-                           '${ sendAt }')`;
+                           ${ strTodos },
+                           ${ strCreatedAt },
+                           ${ strUpdatedAt },
+                           ${ strSendAt })
+    `;
 
     await db.exec( query );
 }
@@ -181,7 +212,8 @@ export async function addFile( reference: string,
  */
 export async function getAllFiles(): Promise<FolderItem[]> {
     const query = `SELECT *
-                   from file;`;
+                   from file
+                   ORDER BY createdAt DESC;`;
 
     return convertDbFileToFolderItem( await db.all( query ) );
 }

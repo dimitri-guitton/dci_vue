@@ -45,9 +45,7 @@
                       v-model="newFolderData.type"
                   >
                     <option value="">Sélectionner un chantier...</option>
-                    <option v-for="type in listFolderType" v-bind:key="type.slug" :value="type.slug">{{
-                        type.name
-                                                                                                     }}
+                    <option v-for="type in listFolderType" v-bind:key="type.slug" :value="type.slug">{{ type.name }}
                     </option>
                   </Field>
                   <div class="fv-plugins-message-container">
@@ -223,7 +221,7 @@ export default defineComponent( {
                                                                                                 .label( 'Client' ),
                                                                                  } );
 
-                                    const submit = () => {
+                                    const submit = async () => {
                                       if ( !submitButtonRef.value ) {
                                         return;
                                       }
@@ -231,10 +229,10 @@ export default defineComponent( {
                                       //Disable button
                                       submitButtonRef.value.disabled = true;
 
-                                      const folderSlug = folderService.createAFolder( newFolderData.value.type,
-                                                                                      newFolderData.value.customer );
+                                      const folderSlug = await folderService.createAFolder( newFolderData.value.type,
+                                                                                            newFolderData.value.customer );
 
-                                      router.push( { name: 'folder_show', query: { slug: folderSlug } } );
+                                      await router.push( { name: 'folder_show', query: { slug: folderSlug } } );
                                     };
 
                                     return {

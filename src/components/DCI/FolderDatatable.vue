@@ -7,12 +7,7 @@
     <div class="col-3">
       <select class="form-select" v-model="filterType">
         <option value="-1">Sélectionner un chantier...</option>
-        <option value="comble">Comble</option>
-        <option value="sol">Sol</option>
-        <option value="pac_rr">Chauffage RR</option>
-        <option value="pac_ro">Chauffage RO</option>
-        <option value="cet">Chauffe eau</option>
-        <option value="pg">Poele à granulés</option>
+        <option v-for="type in listFolderType" v-bind:key="type.slug" :value="type.slug">{{ type.name }}</option>
       </select>
     </div>
     <div class="col-3">
@@ -39,7 +34,7 @@
         <thead>
         <tr class="fw-bold fs-5">
           <th>Référence</th>
-          <th>Prospect</th>
+          <th class="text-center">Prospect</th>
           <th>Type</th>
           <th>Nom</th>
           <th>Total</th>
@@ -52,50 +47,52 @@
         <tbody>
         <tr v-for="data in filterData" v-bind:key="data.reference">
           <td>{{ data.reference }}</td>
-          <td class="form-check form-check-custom form-check-solid form-check-sm"><input class="form-check-input"
-                                                                                         type="checkbox"
-                                                                                         value=""
-                                                                                         id="isProspect"
-                                                                                         :checked="data.isProspect"
-                                                                                         @change="updateProspect(data.id, $event)">
+          <td class="form-check form-check-custom form-check-solid form-check-sm justify-content-center">
+            <input class="form-check-input"
+                   type="checkbox"
+                   value=""
+                   id="isProspect"
+                   :checked="data.isProspect"
+                   @change="updateProspect(data.id, $event)">
           </td>
           <td>{{ folderTypesToString( data.types ) }}</td>
-          <td>{{ data.folderName }}</td>
+          <td>{{ data.customer }}</td>
           <td>{{ data.totalTTC }}</td>
           <td>{{ data.createdAt }}</td>
           <td><span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span></td>
           <td>{{ data.sendAt }}</td>
+          <td>
+            <router-link :to="{ name: 'folder_show', query: { slug: 'fake_slug' } }"
+                         class="btn btn-icon btn-primary btn-sm me-2"><i class="fas fa-pen"></i></router-link>
 
-          <router-link :to="{ name: 'folder_show', query: { slug: 'fake_slug' } }"
-                       class="btn btn-icon btn-primary btn-sm"><i class="fas fa-pen"></i></router-link>
-
-          <el-dropdown trigger="click" size="large" @command="handleAction">
-            <button type="button" class="btn btn-icon btn-dark btn-sm">
-              <i class="fas fa-ellipsis-v"></i>
-            </button>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item :command="{type:'check_element', folder: data}">
-                  <i class="fas fa-clipboard-check me-2"></i>Vérifier les
-                                                             éléments
-                </el-dropdown-item>
-                <el-dropdown-item :command="{type:'open', folder: data}"><i class="fas fa-folder-open me-2"></i>Ouvrir
-                                                                                                                le
-                                                                                                                répertoire
-                </el-dropdown-item>
-                <el-dropdown-item :command="{type:'remove_dci', folder: data}"><i class="fas fa-trash me-2"></i>Suppression
-                                                                                                                DCI
-                </el-dropdown-item>
-                <el-dropdown-item :command="{type:'remove_all', folder: data}"><i class="fas fa-trash me-2"></i>Suppression
-                                                                                                                Dropbox
-                                                                                                                + DCI
-                </el-dropdown-item>
-                <el-dropdown-item :command="{type:'send', folder: data}" :disabled="true">
-                  <i class="fas fa-arrow-circle-up me-2"></i>Transmettre
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
+            <el-dropdown trigger="click" size="large" @command="handleAction">
+              <button type="button" class="btn btn-icon btn-dark btn-sm">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item :command="{type:'check_element', folder: data}">
+                    <i class="fas fa-clipboard-check me-2"></i>Vérifier les
+                                                               éléments
+                  </el-dropdown-item>
+                  <el-dropdown-item :command="{type:'open', folder: data}"><i class="fas fa-folder-open me-2"></i>Ouvrir
+                                                                                                                  le
+                                                                                                                  répertoire
+                  </el-dropdown-item>
+                  <el-dropdown-item :command="{type:'remove_dci', folder: data}"><i class="fas fa-trash me-2"></i>Suppression
+                                                                                                                  DCI
+                  </el-dropdown-item>
+                  <el-dropdown-item :command="{type:'remove_all', folder: data}"><i class="fas fa-trash me-2"></i>Suppression
+                                                                                                                  Dropbox
+                                                                                                                  + DCI
+                  </el-dropdown-item>
+                  <el-dropdown-item :command="{type:'send', folder: data}" :disabled="true">
+                    <i class="fas fa-arrow-circle-up me-2"></i>Transmettre
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -127,6 +124,7 @@ import { ElMessage } from 'element-plus';
 import { shell } from 'electron';
 import { getFolderPath } from '@/services/folder/folderService';
 import { ISqlite } from 'sqlite';
+import { LIST_FOLDER_TYPE } from '@/services/constantService';
 import RunResult = ISqlite.RunResult;
 
 
@@ -136,6 +134,7 @@ export default defineComponent( {
                                     await sqliteService.openDb();
                                     await sqliteService.initDb();
 
+                                    const listFolderType = LIST_FOLDER_TYPE;
                                     const filterSearch   = ref( '' );
                                     const filterStatus   = ref( '-1' );
                                     const filterType     = ref( '-1' );
@@ -298,6 +297,7 @@ export default defineComponent( {
                                       send,
                                       edit,
                                       folderTypesToString,
+                                      listFolderType,
                                     };
                                   },
                                   methods: {
