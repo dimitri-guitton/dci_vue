@@ -29,7 +29,7 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/views/FolderShow.vue'),
             },
             {
-                path:      '/file/cet/{reference}',
+                path:      '/file/cet',
                 name:      'cet_show',
                 component: () => import('@/views/file/cet/CetShow.vue'),
             },

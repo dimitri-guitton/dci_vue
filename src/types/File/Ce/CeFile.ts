@@ -22,7 +22,7 @@ interface CeFile {
     disabledCeeBonus: boolean;
     enabledHousingAction: boolean;
     disabledMaPrimeRenovBonus: boolean;
-    assent: Assent[]; // anciennement "avis"
+    assents: Assent[]; // anciennement "avis"
     beneficiary: Beneficiary;
     codeBonus?: string; // Anciennement codePrime
     energyZone?: string;

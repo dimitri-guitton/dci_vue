@@ -58,7 +58,7 @@
               type="text"
               class="form-control form-control-solid"
               minlength="13"
-              maxlength="14"
+              maxlength="13"
               placeholder="0001123456789"
               :name="`assents[${counter}].refAvis`"
           />

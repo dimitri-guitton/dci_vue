@@ -87,7 +87,7 @@ export const convertOldAssent = ( oldData ): Assent[] => {
     const oldAssents: []    = getArrayData( oldData[ 'avis' ] );
     oldAssents.forEach( assent => {
         assents.push( {
-                          uid:            assent[ 'uid' ],
+                          // uid:            assent[ 'uid' ],
                           refAvis:        assent[ 'refAvis' ],
                           numFiscal:      assent[ 'numFiscal' ],
                           isbeneficiaire: assent[ 'isbeneficiaire' ],
@@ -108,7 +108,7 @@ export const convertOldAssent = ( oldData ): Assent[] => {
                           codepostal:     assent[ 'codepostal' ],
                           ville:          assent[ 'ville' ],
                           revenu:         assent[ 'revenu' ],
-                          civilite:       assent[ 'civilite' ],
+                          // civilite:       assent[ 'civilite' ],
                       } );
     } );
 

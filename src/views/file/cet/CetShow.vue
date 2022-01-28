@@ -163,13 +163,24 @@ import { StepperComponent } from '@/assets/ts/components';
 import { setCurrentPageBreadcrumbs } from '@/core/helpers/breadcrumb';
 import * as Yup from 'yup';
 import { useForm } from 'vee-validate';
+import Svair from 'svair-api/index.js';
+import { DataGouv } from '@/types/File/DataGouv';
+import {
+  addAssent,
+  getCurrentFileData,
+  getCurrentFileReference,
+  getcurrentFolderName,
+} from '@/services/data/dataService';
+import SvairAvisImpot from '@/types/SvairAvisImpot';
 
+
+interface AssentForm {
+  numFiscal: string;
+  refAvis: string;
+}
 
 interface Step1 {
-  assents: [ {
-    numFiscal: string;
-    refAvis: string;
-  } ];
+  assents: AssentForm[];
 }
 
 interface Step2 {
@@ -209,6 +220,9 @@ export default defineComponent( {
                                   //   };
                                   // },
                                   setup() {
+                                    console.log( getcurrentFolderName() );
+                                    console.log( getCurrentFileReference() );
+                                    console.log( getCurrentFileData() );
                                     const _stepperObj         = ref<StepperComponent | null>( null );
                                     const horizontalWizardRef = ref<HTMLElement | null>( null );
                                     const currentStepIndex    = ref( 0 );
@@ -315,14 +329,98 @@ export default defineComponent( {
                                                  },
                                                } );
 
+
+                                    const promiseEvery = ( promise ) => {
+                                      return promise.then(
+                                          ( v ) => ( { result: v, status: 'resolved' } ),
+                                          ( e ) => ( { result: e, status: 'rejected' } ),
+                                      );
+                                    };
+
+                                    const checkAssentOnSvair = async ( assents: AssentForm[] ) => {
+                                      const svair                         = new Svair( 'https://cfsmsp.impots.gouv.fr' );
+                                      const svairCall: Promise<unknown>[] = [];
+
+                                      assents.forEach( ( assent ) => {
+                                        const { numFiscal, refAvis } = assent;
+
+                                        const p = new Promise( ( resolve, reject ) => {
+                                          svair( numFiscal, refAvis, ( err, resp ) => {
+                                            if ( err ) {
+                                              console.log( 'ERROR', assent );
+                                              reject( new Error( err ) );
+                                            } else {
+                                              resolve( { resp, item: assent } );
+                                            }
+                                          } );
+                                        } );
+                                        svairCall.push( p );
+                                      } );
+
+                                      return await Promise.all( svairCall.map( promiseEvery ) );
+
+                                    };
+
+                                    const validateStepOne = async ( data: CreateAccount ) => {
+                                      // Avis à vérifier pas l'api Svair
+                                      const assentsToSvair: AssentForm[] = [];
+
+                                      // TODO faire la verif avec les data déja présente dans le json
+                                      data.assents.forEach( assent => {
+                                        if ( assent.numFiscal !== '' && assent.refAvis !== '' ) {
+                                          assentsToSvair.push( assent );
+                                        }
+                                      } );
+
+                                      if ( assentsToSvair.length === 0 ) {
+                                        return;
+                                      }
+
+                                      const svairData = await checkAssentOnSvair( assentsToSvair );
+                                      console.log( svairData );
+
+                                      svairData.forEach( ( response: { result: { item: AssentForm; resp: SvairAvisImpot }; status: string } ) => {
+                                        const isResolved = response.status === 'resolved';
+                                        if ( isResolved ) {
+                                          const datagouv: DataGouv = {
+                                            refAvis:   response.result.item.refAvis,
+                                            numFiscal: response.result.item.numFiscal,
+                                            loaded:    isResolved,
+                                            nom:       response.result.resp.declarant1.nom,
+                                            prenom:    response.result.resp.declarant1.prenoms,
+                                            adresse:   response.result.resp.foyerFiscal.adresse,
+                                            ville:     response.result.resp.foyerFiscal.ville,
+                                            revenu:    response.result.resp.revenuFiscalReference,
+                                            error:     !isResolved,
+                                          };
+
+                                          console.log( '%c BEFORE ADD ASSENT ON JSON',
+                                                       'background: #fdd835; color: #000000' );
+                                          addAssent( response.result.resp, datagouv );
+                                        } else {
+                                          console.log( '%c PB LORS DE LA RECUP DE l\'avid D\'IMPOT',
+                                                       'background: #fdd835; color: #000000' );
+                                        }
+
+                                      } );
+                                    };
+
                                     const handleStep = handleSubmit( values => {
                                       console.log( values );
-                                      console.log( 'Ancien step -->', currentStepIndex.value );
+
 
                                       formData.value = {
                                         ...formData.value,
                                         ...values,
                                       };
+
+                                      console.log( 'Ancien step -->', currentStepIndex.value );
+
+                                      console.log( formData.value );
+                                      if ( currentStepIndex.value === 0 ) {
+                                        console.log( '%c Validation de step 1', 'background: #fdd835; color: #000000' );
+                                        validateStepOne( formData.value );
+                                      }
 
                                       currentStepIndex.value++;
 

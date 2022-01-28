@@ -14,7 +14,7 @@
     "disabledCeeBonus":          false,
     "enabledHousingAction":      false,
     "disabledMaPrimeRenovBonus": false,
-    "assent":                    [
+    "assents": [
         {
             "uid":            "gL7GbaAmp",
             "refAvis":        "2036A02699916",

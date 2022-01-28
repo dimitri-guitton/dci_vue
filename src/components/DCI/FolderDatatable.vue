@@ -64,8 +64,11 @@
           <td>
             <!--            <router-link :to="{ name: 'folder_show', query: { slug: data.reference } }"-->
             <!--                         class="btn btn-icon btn-primary btn-sm me-2"><i class="fas fa-pen"></i></router-link>-->
-            <router-link :to="{ name: 'cet_show', query: { reference: data.reference } }"
-                         class="btn btn-icon btn-primary btn-sm me-2"><i class="fas fa-pen"></i></router-link>
+            <!--            <router-link :to="{ name: 'cet_show', query: { reference: data.reference } }"-->
+            <!--                         class="btn btn-icon btn-primary btn-sm me-2"><i class="fas fa-pen"></i></router-link>-->
+            <button @click="edit(data.reference, data.folderName)" class="btn btn-icon btn-primary btn-sm me-2">
+              <i class="fas fa-pen"></i>
+            </button>
 
             <el-dropdown trigger="click" size="large" @command="handleAction">
               <button type="button" class="btn btn-icon btn-dark btn-sm">
@@ -126,6 +129,8 @@ import { ElMessage } from 'element-plus';
 import { shell } from 'electron';
 import { checkFolder, getFolderPath, removeFolder } from '@/services/folder/folderService';
 import { LIST_FOLDER_TYPE } from '@/services/constantService';
+import router from '@/router';
+import { setCurrentFileReference, setcurrentFolderName } from '@/services/data/dataService';
 
 
 export default defineComponent( {
@@ -221,7 +226,7 @@ export default defineComponent( {
                                           checkFolder();
                                           break;
                                         case 'open':
-                                          const path = getFolderPath( command.folder );
+                                          const path = getFolderPath( command.folder.folderName );
                                           if ( path === '' ) {
                                             ElMessage( {
                                                          showClose: true,
@@ -273,8 +278,10 @@ export default defineComponent( {
                                       }
                                     };
 
-                                    const edit = () => {
-                                      alert( 'TODO : Edit' );
+                                    const edit = ( reference: string, folderName: string ) => {
+                                      setCurrentFileReference( reference );
+                                      setcurrentFolderName( folderName );
+                                      router.push( { name: 'cet_show' } );
                                     };
 
                                     return {

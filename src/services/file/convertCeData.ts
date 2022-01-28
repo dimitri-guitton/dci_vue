@@ -186,7 +186,7 @@ export const convertOldCeFile = ( oldData ): CeFile => {
         disabledCeeBonus:          getBoolData( oldData[ 'disablePrimeCEE' ] ),
         enabledHousingAction:      getBoolData( oldData[ 'enabledActionLogement' ] ),
         disabledMaPrimeRenovBonus: getBoolData( oldData[ 'disablePrimeMaprimerenov' ] ),
-        assent:                    convertOldAssent( oldData ),
+        assents:                   convertOldAssent( oldData ),
         beneficiary:               convertOldBeneficiary( oldData ),
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),

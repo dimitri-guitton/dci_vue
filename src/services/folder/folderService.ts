@@ -10,6 +10,7 @@ import path from 'path';
 import { addFile, deleteFile } from '@/services/sqliteService';
 import { FOLDER_CET_TYPE } from '@/services/constantService';
 import CeFile from '@/types/File/Ce/CeFile';
+import { getcurrentFolderName, setCurrentFileData } from '@/services/data/dataService';
 
 const schema = {
     dropboxPath: {
@@ -18,7 +19,6 @@ const schema = {
     },
 } as const;
 
-// Store pour stoker les users Data
 const store = new Store( { schema } );
 
 /**
@@ -128,6 +128,7 @@ const addJsonData = ( type: string, parent: string, reference: string, folderNam
         console.log( `${ parent }/data.json` );
         console.log( fileData );
         fs.writeFileSync( `${ parent }/data.json`, JSON.stringify( fileData ) );
+        setCurrentFileData( JSON.stringify( fileData ) );
     }
 };
 
@@ -207,10 +208,10 @@ export const convertOldJsonToNewJson = () => {
     return true;
 };
 
-export const getFolderPath = ( folder: FolderItem ): string => {
+export const getFolderPath = ( folderName: string ): string => {
     const dropboxPath = store.get( 'dropboxPath' );
 
-    const path = `${ dropboxPath }/DCI/${ folder.folderName }`;
+    const path = `${ dropboxPath }/DCI/${ folderName }`;
 
     if ( fs.existsSync( path ) ) {
         return path;
@@ -224,7 +225,7 @@ export const getFolderPath = ( folder: FolderItem ): string => {
  * @param folder
  */
 export const removeFolder = async ( folder: FolderItem ): Promise<boolean> => {
-    const folderPath = getFolderPath( folder );
+    const folderPath = getFolderPath( folder.folderName );
 
     if ( fs.existsSync( folderPath ) ) {
         try {
@@ -238,6 +239,17 @@ export const removeFolder = async ( folder: FolderItem ): Promise<boolean> => {
 
     return false;
 
+};
+
+export const updateJsonData = ( fileData ) => {
+    const name = getcurrentFolderName() as string;
+    const path = `${ getFolderPath( name ) }/data.json`;
+    console.log( 'JSON PATH -->', path );
+    if ( fs.existsSync( path ) ) {
+        console.log( 'FILE EXISTS' );
+        fs.writeFileSync( path, JSON.stringify( fileData, null, 2 ) );
+        setCurrentFileData( JSON.stringify( fileData ) );
+    }
 };
 
 /**
