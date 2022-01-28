@@ -7,14 +7,14 @@ import DbFile from '@/types/Sqlite/DbFile';
 import FolderItemType from '@/types/Folder/FolderItemType';
 import FolderItemStatus from '@/types/Folder/FolderItemStatus';
 import {
-    FOLDER_CE_TYPE,
+    FOLDER_CET_TYPE,
     FOLDER_CLOSE_STATUS,
     FOLDER_COMBLE_TYPE,
     FOLDER_COMPLETE_STATUS,
     FOLDER_INCOMPLETE_STATUS,
     FOLDER_PAC_RO_TYPE,
     FOLDER_PAC_RR_TYPE,
-    FOLDER_PO_G_TYPE,
+    FOLDER_PG_TYPE,
     FOLDER_SOL_TYPE,
     FOLDER_TO_CORRECT_STATUS,
 } from '@/services/constantService';
@@ -76,11 +76,11 @@ function convertDbFileToFolderItem( items: DbFile[] ) {
                 case FOLDER_PAC_RO_TYPE.slug:
                     types.push( FOLDER_PAC_RO_TYPE );
                     break;
-                case FOLDER_CE_TYPE.slug:
-                    types.push( FOLDER_CE_TYPE );
+                case FOLDER_CET_TYPE.slug:
+                    types.push( FOLDER_CET_TYPE );
                     break;
-                case FOLDER_PO_G_TYPE.slug:
-                    types.push( FOLDER_PO_G_TYPE );
+                case FOLDER_PG_TYPE.slug:
+                    types.push( FOLDER_PG_TYPE );
                     break;
             }
         } );

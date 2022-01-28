@@ -1,0 +1,846 @@
+{
+    "version":                   "6",
+    "type":                      "cet",
+    "ref":                       "",
+    "folderName":                "",
+    "createdAt":                 "",
+    "updatedAt":                 "",
+    "settings":                  {
+        "ceeCoef": "6.6"
+    },
+    "devisTemplate":             "TODO",
+    "workSheetTemplate":         "TODO",
+    "disabledBonus":             false,
+    "disabledCeeBonus":          false,
+    "enabledHousingAction":      false,
+    "disabledMaPrimeRenovBonus": false,
+    "assent":                    [],
+    "beneficiary":               {
+        "civility":  "",
+        "lastName":  "",
+        "firstName": "",
+        "address":   "",
+        "zipCode":   "",
+        "city":      "",
+        "email":     "",
+        "phone":     "",
+        "mobile":    ""
+    },
+    "codeBonus":                 "",
+    "energyZone":                "",
+    "bonusRate":                 "",
+    "housing":                   {
+        "nbOccupant":        "",
+        "type":              "maison_individuelle",
+        "isAddressBenef":    true,
+        "addresse":          "",
+        "zipCode":           "",
+        "city":              "",
+        "plot":              "",
+        "area":              "",
+        "dataGeoportail":    {
+            "zoom":     19,
+            "center":   [],
+            "position": [],
+            "zipCode":  "",
+            "city":     "",
+            "address":  "",
+            "plot":     ""
+        },
+        "location":          "",
+        "insulationQuality": "",
+        "constructionYear":  "",
+        "lessThan2Years":    false,
+        "availableVoltage":  ""
+    },
+    "workSheet":                 {
+        "period":                  "",
+        "niveauHabitation":        "pp",
+        "typeChantier":            "reno",
+        "disjoncteur":             false,
+        "tensionDisponible":       "triphase",
+        "distanceCompteurCet":     "",
+        "natureMurExt":            "beton",
+        "naturePlafond":           "placo",
+        "visiteComble":            false,
+        "chantierHabite":          false,
+        "grandeEchelle":           false,
+        "demandeVoirie":           false,
+        "puissanceCompteur":       6,
+        "accesComble":             "trappe",
+        "rueEtroite":              false,
+        "typeCouverture":          "mecanique",
+        "etatToiture":             "propre",
+        "typeCharpente":           "metal",
+        "nbCompartimentComble":    1,
+        "presenceVolige":          false,
+        "nbAccesComble":           1,
+        "typeRadiateur":           "alu",
+        "nbrCompartementComble":   1,
+        "nbrAccesComble":          1,
+        "emplacementCetExistante": "",
+        "emplacementCetNew":       "",
+        "aspirationType":          "none",
+        "ballonFixeMur":           false,
+        "uniteExtFixeMur":         false,
+        "distanceBallonUnitExt":   "1",
+        "infosSup":                ""
+    },
+    "quotation":                 {
+        "origin":             "",
+        "dateTechnicalVisit": "",
+        "executionDelay":     "",
+        "options":            [
+            {
+                "id":    1,
+                "label": "Forfait accessoire nécessaire à la pose, au raccordement de l’installation",
+                "unit":  "u",
+                "value": 1,
+                "pu":    {
+                    "value": 1
+                }
+            },
+            {
+                "id":    2,
+                "label": "Forfait pose ( Pose nouvel appareil, mise en service)",
+                "unit":  "u",
+                "value": 1,
+                "pu":    {
+                    "value": 1
+                }
+            },
+            {
+                "id":    3,
+                "label": "Raccordement extérieur par chapeau de toiture",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "value": 0
+                }
+            },
+            {
+                "id":    4,
+                "label": "Raccordement extérieur mural",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "value": 0
+                }
+            }
+        ],
+        "blankOptions":       [
+            {
+                "id":    "sup1",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            },
+            {
+                "id":    "sup2",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            }
+        ],
+        "commentary":         "",
+        "partner":            "VTE",
+        "texts":              [
+            {
+                "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
+                "text":  "Les travaux prévus dans ce devis peuvent être conditionnels à un dépôt de déclaration préalable de travaux. Il revient au maître d'ouvrage (le client) d'en faire lui-même la demande.\r\nLa TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.\r\n\r\nLes travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique.\r\n\r\n* « Dans le cas où l'aide notifiée au client est inférieure au montant de l'aide prévisionnelle, l'usager n'est pas lié par le devis et l'entreprise s'engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d'une durée de quatorze jours à partir de la date de présentation du devis rectificatif.L'aide MaPrimeRénov' est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire. En cas de fausse déclaration, de manœuvre frauduleuse ou de changement du projet de travaux subventionnés, le bénéficiaire s'expose au retrait et reversement de tout ou partie de l'aide. Les services de l'Anah pourront faire procéder à tout contrôle des engagements et sanctionner le bénéficiaire et son mandataire éventuel des manquements constatés »."
+            },
+            {
+                "title": null,
+                "text":  null
+            },
+            {
+                "title": "AIDE A LA RENOVATION ÉNERGÉTIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
+                "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
+            }
+        ],
+        "tva":                "",
+        "ceeBonus":           "",
+        "selectedProducts":   [],
+        "products":           [
+            {
+                "id":          1,
+                "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
+                "ref":         "CETACMO200",
+                "pu":          2578,
+                "defaultPu":   2578,
+                "description": "Capacité: 200L MONOBLOC\r\nDimensions HxLxP: 1689*602*691\r\nPuissance acoustique: 50 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c\r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\n\r\nFonctionne sur air ambiant si volume de la pièce> 20M3",
+                "size":        "HxLxP: 1689*602*691",
+                "type":        "mono"
+            },
+            {
+                "id":          2,
+                "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 250L",
+                "ref":         "CETACMO250",
+                "pu":          2675,
+                "defaultPu":   2675,
+                "description": "Capacité: 250L MONOBLOC\r\nDimensions HxLxP: 1929*602*691\r\nPuissance acoustique: 50 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c \r\nAppoint électrique: 1800W\r\nCOP: 3,12 – Profil de soutirage : L\r\nClasse energetique: A+\r\n\r\nFonctionne sur air ambiant si volume de la pièce> 20M3",
+                "size":        "HxLxP: 1929*602*691",
+                "type":        "mono"
+            },
+            {
+                "id":          3,
+                "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
+                "ref":         "CETACSP200",
+                "pu":          2456,
+                "defaultPu":   2456,
+                "description": "Capacité: 200L SPLIT\r\nDimensions HxLxP: 1267*588*603mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
+                "size":        "HxLxP: 1267*588*60",
+                "type":        "split"
+            },
+            {
+                "id":          4,
+                "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 270L",
+                "ref":         "CETACSP270",
+                "pu":          2666,
+                "defaultPu":   2666,
+                "description": "Capacité: 270L SPLIT\r\nDimensions HxLxP: 1600*588*652mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c  \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L pour une efficacité énergétique de 124%\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
+                "size":        "HxLxP: 1600*588*652",
+                "type":        "split"
+            }
+        ],
+        "maPrimeRenovBonus":  0,
+        "discount":           "",
+        "totalHt":            0,
+        "totalTva":           0
+    },
+    "scales":                    [
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 14879
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 21760
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 26170
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 30572
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 34993
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 39405
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 43817
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 48229
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 52641
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 57053
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 61465
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 65877
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 70289
+                }
+            ],
+            "code":     "GP",
+            "ceeBonus": {
+                "h1": {
+                    "appartement":         157.08,
+                    "maison_individuelle": 205.92
+                },
+                "h2": {
+                    "appartement":         157.08,
+                    "maison_individuelle": 205.92
+                },
+                "h3": {
+                    "appartement":         157.08,
+                    "maison_individuelle": 205.92
+                }
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 19074
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 27896
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 33547
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 39192
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 44860
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 50511
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 56162
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 61813
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 67464
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 73115
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 78766
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 84417
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 90068
+                }
+            ],
+            "code":     "P",
+            "ceeBonus": {
+                "h1": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                },
+                "h2": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                },
+                "h3": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                }
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 29148
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 42848
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 51592
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 60336
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 69081
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 77825
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 86569
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 95313
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 104057
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 112801
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 121545
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 130289
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 139033
+                }
+            ],
+            "code":     "IT",
+            "ceeBonus": {
+                "h1": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                },
+                "h2": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                },
+                "h3": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                }
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 29148
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 42848
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 51592
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 60336
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 69081
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 77825
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 86569
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 95313
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 104057
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 112801
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 121545
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 130289
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 139033
+                }
+            ],
+            "code":     "CL",
+            "ceeBonus": {
+                "h1": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                },
+                "h2": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                },
+                "h3": {
+                    "appartement":         78.54,
+                    "maison_individuelle": 102.96
+                }
+            }
+        }
+    ],
+    "statusInDci":               2,
+    "errorsStatusInDci":         [],
+    "technician":                {
+        "id":        "Jeremy",
+        "lastName":  "Thomas",
+        "firstName": 11,
+        "phone":     "0645118070"
+    },
+    "lists":                     {
+        "localTypeList":         {
+            "slug":  "localTypeList",
+            "items": [
+                {
+                    "value": "Maison individuelle"
+                },
+                {
+                    "value": "Appartement"
+                }
+            ]
+        },
+        "qualiteIsolationList":  {
+            "slug":  "qualiteIsolationList",
+            "items": [
+                {
+                    "value": "0.6"
+                },
+                {
+                    "value": "0.65"
+                },
+                {
+                    "value": "0.8"
+                },
+                {
+                    "value": "0.9"
+                },
+                {
+                    "value": "1"
+                },
+                {
+                    "value": "1.1"
+                },
+                {
+                    "value": "1.3"
+                },
+                {
+                    "value": "1.5"
+                }
+            ]
+        },
+        "statutMenageTypeList":  {
+            "slug":  "statutMenageTypeList",
+            "items": [
+                {
+                    "value": "Très bonfié"
+                },
+                {
+                    "value": "Bonfié"
+                },
+                {
+                    "value": "Classique"
+                },
+                {
+                    "value": "Intermédiaire"
+                }
+            ]
+        },
+        "batimentNatureList":    {
+            "slug":  "batimentNatureList",
+            "items": [
+                {
+                    "value": "-"
+                },
+                {
+                    "value": "Nouvelle résidence principale"
+                },
+                {
+                    "value": "Location"
+                },
+                {
+                    "value": "Résidence secondaire"
+                }
+            ]
+        },
+        "naturePlafondList":     {
+            "slug":  "naturePlafondList",
+            "items": [
+                {
+                    "value": "Brique"
+                },
+                {
+                    "value": "Placo"
+                },
+                {
+                    "value": "Bois"
+                },
+                {
+                    "value": "Béton"
+                }
+            ]
+        },
+        "niveauHabitationList":  {
+            "slug":  "niveauHabitationList",
+            "items": [
+                {
+                    "value": "Plein Pied"
+                },
+                {
+                    "value": "R+1"
+                },
+                {
+                    "value": "R+2"
+                },
+                {
+                    "value": "R+3"
+                },
+                {
+                    "value": "R+4"
+                },
+                {
+                    "value": "AUTRE"
+                }
+            ]
+        },
+        "typeChantierList":      {
+            "slug":  "typeChantierList",
+            "items": [
+                {
+                    "value": "Neuf"
+                },
+                {
+                    "value": "Reno"
+                }
+            ]
+        },
+        "accesCombleList":       {
+            "slug":  "accesCombleList",
+            "items": [
+                {
+                    "value": "TRAPPE"
+                },
+                {
+                    "value": "TOITURE"
+                },
+                {
+                    "value": "TRAPPE et TOITURE"
+                }
+            ]
+        },
+        "typeCouvertureList":    {
+            "slug":  "typeCouvertureList",
+            "items": [
+                {
+                    "value": "Mecanique"
+                },
+                {
+                    "value": "Tiges de bottes"
+                },
+                {
+                    "value": "Ardoise"
+                },
+                {
+                    "value": "Tuiles plates"
+                },
+                {
+                    "value": "Tuiles courbes"
+                }
+            ]
+        },
+        "typeCharpenteList":     {
+            "slug":  "typeCharpenteList",
+            "items": [
+                {
+                    "value": "Traditionnelle"
+                },
+                {
+                    "value": "Fermettes"
+                },
+                {
+                    "value": "Metallique"
+                },
+                {
+                    "value": "Autre"
+                }
+            ]
+        },
+        "etatToitureList":       {
+            "slug":  "etatToitureList",
+            "items": [
+                {
+                    "value": "Propre"
+                },
+                {
+                    "value": "Mousse en petite quantité"
+                },
+                {
+                    "value": "Mousse importante"
+                }
+            ]
+        },
+        "puissanceCompteurList": {
+            "slug":  "puissanceCompteurList",
+            "items": [
+                {},
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        "natureMurExtList":      {
+            "slug":  "natureMurExtList",
+            "items": [
+                {
+                    "value": "Parpaing"
+                },
+                {
+                    "value": "Brique"
+                },
+                {
+                    "value": "Béton"
+                },
+                {
+                    "value": "Pierre"
+                },
+                {
+                    "value": "Bois"
+                }
+            ]
+        },
+        "chauffageTypeList":     {
+            "slug":  "chauffageTypeList",
+            "items": [
+                {
+                    "value": "Electrique"
+                },
+                {
+                    "value": "Combustible"
+                }
+            ]
+        },
+        "tensionDisponibleList": {
+            "slug":  "tensionDisponibleList",
+            "items": [
+                {
+                    "value": "Monophasé"
+                },
+                {
+                    "value": "Triphasé"
+                }
+            ]
+        },
+        "aspirationTypeList":    {
+            "slug":  "aspirationTypeList",
+            "items": [
+                {
+                    "value": "Sélectionnez un type d'installation"
+                },
+                {
+                    "value": "Aspiration et extraction gainées jusqu'au toit (tuiles à douilles)"
+                },
+                {
+                    "value": "Aspiration dans la pièce (au moins 20m3) et extraction par le toit (tuile à douille)"
+                },
+                {
+                    "value": "Aspiration et extraction dans la pièce (au moins 20m3)"
+                }
+            ]
+        },
+        "typeOrigineList":       {
+            "slug":  "typeOrigineList",
+            "items": [
+                {
+                    "value": "Téléphone"
+                },
+                {
+                    "value": "Internet"
+                },
+                {
+                    "value": "Presse"
+                },
+                {
+                    "value": "Campagne Google"
+                },
+                {
+                    "value": "Autre"
+                },
+                {
+                    "value": "hello watt"
+                },
+                {
+                    "value": "Angélique"
+                }
+            ]
+        }
+    }
+}

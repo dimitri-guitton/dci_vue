@@ -1,12 +1,15 @@
 import fs from 'fs';
 import Store from 'electron-store';
 import * as commonService from '../commonService';
+import { toFrenchDate } from '../commonService';
 import { convertOldRoFile } from '@/services/file/convertRoData';
 import { convertOldRrFile } from '@/services/file/convertRRData';
 import { convertOldCeFile } from '@/services/file/convertCeData';
 import FolderItem from '@/types/Folder/FolderItem';
 import path from 'path';
 import { addFile, deleteFile } from '@/services/sqliteService';
+import { FOLDER_CET_TYPE } from '@/services/constantService';
+import CeFile from '@/types/File/Ce/CeFile';
 
 const schema = {
     dropboxPath: {
@@ -101,6 +104,33 @@ const createSubFolders = ( type: string, parent: string ) => {
     } );
 };
 
+const addJsonData = ( type: string, parent: string, reference: string, folderName: string ) => {
+    if ( type === FOLDER_CET_TYPE.slug ) {
+        const jsonPath = '/Users/dimitri/workspace/eco_atlantique/dci_vue/data_example/emptyNewDataCet.json';
+
+        const rawdata        = fs.readFileSync( jsonPath ).toString( 'utf8' );
+        let fileData: CeFile = JSON.parse( rawdata );
+        fileData             = {
+            ...fileData,
+            ref:               reference,
+            folderName:        folderName,
+            createdAt:         toFrenchDate( new Date().toString() ),
+            updatedAt:         toFrenchDate( new Date().toString() ),
+            statusInDci:       2,
+            errorsStatusInDci: [],
+            quotation:         {
+                ...fileData.quotation,
+                totalHt:  0,
+                totalTva: 0,
+            },
+        };
+
+        console.log( `${ parent }/data.json` );
+        console.log( fileData );
+        fs.writeFileSync( `${ parent }/data.json`, JSON.stringify( fileData ) );
+    }
+};
+
 export const createFolderRef = ( type: string ): string => {
     const today      = new Date();
     const stringDate = `${ today.getFullYear() }${ commonService.minTwoDigits( today.getMonth() + 1 ) }${ commonService.minTwoDigits(
@@ -120,14 +150,15 @@ export const createAFolder = async ( type: string, customer: string ) => {
 
 
     const reference  = createFolderRef( type );
-    const folderSlug = `${ reference } (${ customer.toUpperCase() })`;
+    const folderName = `${ reference } (${ customer.toUpperCase() })`;
 
-    const path = `${ dropboxPath }/DCI/${ folderSlug }`;
+    const path = `${ dropboxPath }/DCI/${ folderName }`;
     if ( !fs.existsSync( path ) ) {
         fs.mkdirSync( path );
 
         createSubFolders( type, path );
-        await addFile( reference, folderSlug, type, customer, 0, false, false, '2', null, today, today, null );
+        addJsonData( type, path, reference, folderName );
+        await addFile( reference, folderName, type, customer, 0, false, false, '2', null, today, today, null );
     }
 
     return reference;

@@ -21,12 +21,12 @@ export const FOLDER_PAC_RO_TYPE: FolderItemType = {
     name: 'Chauffage RO',
 };
 
-export const FOLDER_CE_TYPE: FolderItemType = {
+export const FOLDER_CET_TYPE: FolderItemType = {
     slug: 'cet',
     name: 'Chauffe eau',
 };
 
-export const FOLDER_PO_G_TYPE: FolderItemType = {
+export const FOLDER_PG_TYPE: FolderItemType = {
     slug: 'pg',
     name: 'Poele à granulés',
 };
@@ -36,8 +36,8 @@ export const LIST_FOLDER_TYPE: FolderItemType[] = [
     FOLDER_SOL_TYPE,
     FOLDER_PAC_RR_TYPE,
     FOLDER_PAC_RO_TYPE,
-    FOLDER_CE_TYPE,
-    FOLDER_PO_G_TYPE,
+    FOLDER_CET_TYPE,
+    FOLDER_PG_TYPE,
 ];
 
 export const FOLDER_COMPLETE_STATUS: FolderItemStatus = {
