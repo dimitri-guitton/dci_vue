@@ -62,7 +62,9 @@
           <td><span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span></td>
           <td>{{ data.sendAt }}</td>
           <td>
-            <router-link :to="{ name: 'folder_show', query: { slug: data.reference } }"
+            <!--            <router-link :to="{ name: 'folder_show', query: { slug: data.reference } }"-->
+            <!--                         class="btn btn-icon btn-primary btn-sm me-2"><i class="fas fa-pen"></i></router-link>-->
+            <router-link :to="{ name: 'cet_show', query: { reference: data.reference } }"
                          class="btn btn-icon btn-primary btn-sm me-2"><i class="fas fa-pen"></i></router-link>
 
             <el-dropdown trigger="click" size="large" @command="handleAction">
@@ -216,7 +218,7 @@ export default defineComponent( {
                                       switch ( command.type ) {
                                         case 'check_element':
                                           console.log( '%c ON CHECK ELEM', 'background: #fdd835; color: #000000' );
-                                          checkFolder( command.folder );
+                                          checkFolder();
                                           break;
                                         case 'open':
                                           const path = getFolderPath( command.folder );

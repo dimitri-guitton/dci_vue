@@ -242,8 +242,7 @@ export const removeFolder = async ( folder: FolderItem ): Promise<boolean> => {
 
 /**
  * TODO A FAIRE
- * @param folder
  */
-export const checkFolder = ( folder: FolderItem ) => {
+export const checkFolder = () => {
     return true;
 };
