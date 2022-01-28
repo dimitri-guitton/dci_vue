@@ -7,12 +7,12 @@
     <div class="col-3">
       <select class="form-select" v-model="filterType">
         <option value="-1">Sélectionner un chantier...</option>
-        <option value="co">Comble</option>
+        <option value="comble">Comble</option>
         <option value="sol">Sol</option>
         <option value="pac_rr">Chauffage RR</option>
         <option value="pac_ro">Chauffage RO</option>
-        <option value="ce">Chauffe eau</option>
-        <option value="po_b">Poele à granulés</option>
+        <option value="cet">Chauffe eau</option>
+        <option value="pg">Poele à granulés</option>
       </select>
     </div>
     <div class="col-3">
