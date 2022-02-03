@@ -2,11 +2,11 @@ import Housing from '@/types/File/Housing';
 import Technician from '@/types/File/Technician';
 import Scale from '@/types/File/Scale';
 import Assent from '@/types/File/Assent';
-import CeWorkSheet from '@/types/File/Ce/CeWorkSheet';
-import CeQuotation from '@/types/File/Ce/CeQuotation';
-import CeList from '@/types/File/Ce/CeList';
+import PgWorkSheet from '@/types/File/Pg/PgWorkSheet';
+import PgQuotation from '@/types/File/Pg/PgQuotation';
+import PgList from '@/types/File/Pg/PgList';
 
-interface CeFile {
+interface PgFile {
     version: string;
     type: string;
     ref: string;
@@ -28,14 +28,14 @@ interface CeFile {
     energyZone?: string;
     bonusRate?: number; // Anciennement tauxPrime
     housing: Housing;
-    workSheet: CeWorkSheet;
-    quotation: CeQuotation;
+    workSheet: PgWorkSheet;
+    quotation: PgQuotation;
     scales: Scale[];    // Anciennement "baremes"
     statusInDci: number;
     errorsStatusInDci: number[];
     technician: Technician;
-    lists: CeList;
+    lists: PgList;
 
 }
 
-export default CeFile;
+export default PgFile;

@@ -1,25 +1,25 @@
 import BlankOption from '@/types/File/BlankOption';
 import Text from '@/types/File/Text';
-import CeOption from '@/types/File/Ce/CeOption';
-import CeProduct from '@/types/File/Ce/CeProduct';
+import CetProduct from '@/types/File/Cet/CetProduct';
+import CetOption from '@/types/File/Cet/CetOption';
 
-interface CeQuotation {
+interface CetQuotation {
     origin: string;
     dateTechnicalVisit: string;
     executionDelay: string;
-    options: CeOption[];
+    options: CetOption[];
     blankOptions: BlankOption[];
     commentary: string;
     partner: string;
     texts: Text[];
     tva: number;
     ceeBonus: number;
-    selectedProducts: CeProduct[];
-    products: CeProduct[];
+    selectedProducts: CetProduct[];
+    products: CetProduct[];
     maPrimeRenovBonus: number;
     discount: number;
     totalHt: number;
     totalTva: number;
 }
 
-export default CeQuotation;
+export default CetQuotation;

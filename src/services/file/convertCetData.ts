@@ -16,20 +16,20 @@ import {
     getStringData,
 } from '@/services/file/convertData';
 import ItemList from '@/types/File/ItemList';
-import CeFile from '@/types/File/Ce/CeFile';
-import CeProduct from '@/types/File/Ce/CeProduct';
-import CeOption from '@/types/File/Ce/CeOption';
-import CeList from '@/types/File/Ce/CeList';
+import CetList from '@/types/File/Cet/CetList';
+import CetProduct from '@/types/File/Cet/CetProduct';
+import CetFile from '@/types/File/Cet/CetFile';
+import CetOption from '@/types/File/Cet/CetOption';
 
-const convertOldCeProduct = ( oldData ): CeProduct[] => {
-    const ceProducts: CeProduct[] = [];
-    const oldProducts: []         = getObjectData( oldData,
-                                                   [ 'devis',
-                                                     'chauffeEau',
-                                                     'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
-                                                                                                           [ 'devis',
-                                                                                                             'chauffeEau',
-                                                                                                             'products' ] );
+const convertOldCetProduct = ( oldData ): CetProduct[] => {
+    const ceProducts: CetProduct[] = [];
+    const oldProducts: []          = getObjectData( oldData,
+                                                    [ 'devis',
+                                                      'chauffeEau',
+                                                      'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                                            [ 'devis',
+                                                                                                              'chauffeEau',
+                                                                                                              'products' ] );
 
     oldProducts.forEach( product => {
         ceProducts.push( {
@@ -47,9 +47,9 @@ const convertOldCeProduct = ( oldData ): CeProduct[] => {
     return ceProducts;
 };
 
-const convertSelectedCeProduct = ( oldData ): CeProduct[] => {
-    const selectedCeProducts: CeProduct[] = [];
-    const oldSelectedProducts: []         = getArrayData( oldData[ 'devis' ][ 'selectedProducts' ] );
+const convertSelectedCetProduct = ( oldData ): CetProduct[] => {
+    const selectedCeProducts: CetProduct[] = [];
+    const oldSelectedProducts: []          = getArrayData( oldData[ 'devis' ][ 'selectedProducts' ] );
 
     oldSelectedProducts.forEach( product => {
         selectedCeProducts.push( {
@@ -67,9 +67,9 @@ const convertSelectedCeProduct = ( oldData ): CeProduct[] => {
     return selectedCeProducts;
 };
 
-const convertOldCeOptions = ( oldData ): CeOption[] => {
-    const ceOptions: CeOption[] = [];
-    const oldOption: []         = getArrayData( oldData[ 'devis' ][ 'options' ] );
+const convertOldCetOptions = ( oldData ): CetOption[] => {
+    const ceOptions: CetOption[] = [];
+    const oldOption: []          = getArrayData( oldData[ 'devis' ][ 'options' ] );
 
     oldOption.forEach( option => {
         ceOptions.push( {
@@ -87,9 +87,8 @@ const convertOldCeOptions = ( oldData ): CeOption[] => {
     return ceOptions;
 };
 
-
-const convertOldCeItemList = ( oldData ): CeList => {
-    const lists: CeList = {
+const convertOldCetItemList = ( oldData ): CetList => {
+    const lists: CetList = {
         localTypeList:         [],
         qualiteIsolationList:  [],
         statutMenageTypeList:  [],
@@ -171,10 +170,11 @@ const convertOldCeItemList = ( oldData ): CeList => {
     return lists;
 };
 
-export const convertOldCeFile = ( oldData ): CeFile => {
+export const convertOldCetFile = ( oldData ): CetFile => {
+    console.log( '%c IN CONVERT DATA FILE', 'background: #fdd835; color: #000000' );
     return {
         version:                   getStringData( oldData[ 'version' ] ),
-        type:                      getStringData( oldData[ 'type' ] ),
+        type:                      'cet',
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),
@@ -244,15 +244,15 @@ export const convertOldCeFile = ( oldData ): CeFile => {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
-            options:            convertOldCeOptions( oldData ),
+            options:            convertOldCetOptions( oldData ),
             blankOptions:       convertOldBlankOptions( oldData ),
             commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
             partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),
             texts:              convertOldText( oldData ),
             tva:                getObjectData( oldData, [ 'devis', 'tva20' ] ),
             ceeBonus:           getObjectData( oldData, [ 'devis', 'primeCEE' ] ),
-            selectedProducts:   convertSelectedCeProduct( oldData ),
-            products:           convertOldCeProduct( oldData ),
+            selectedProducts:   convertSelectedCetProduct( oldData ),
+            products:           convertOldCetProduct( oldData ),
             maPrimeRenovBonus:  getObjectData( oldData, [ 'devis', 'primeAnah' ] ),
             discount:           getObjectData( oldData, [ 'devis', 'remise' ] ),
             totalHt:            convertOldTotalHt( oldData ),
@@ -267,6 +267,6 @@ export const convertOldCeFile = ( oldData ): CeFile => {
             firstName: getObjectData( oldData, [ 'technicien', 'id' ] ),
             phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
         },
-        lists:                     convertOldCeItemList( oldData ),
+        lists:                     convertOldCetItemList( oldData ),
     };
 };

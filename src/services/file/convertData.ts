@@ -26,7 +26,7 @@ export const getStringData = ( data: any ): string => {
 };
 
 export const getNumberData = ( data: any ): number => {
-    return data === undefined ? 0 : data;
+    return data === undefined ? 0 : +data;
 };
 
 export const getBoolData = ( data: any ): boolean => {

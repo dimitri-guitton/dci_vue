@@ -197,7 +197,7 @@ const convertOldRoItemList = ( oldData ): RoList => {
 export const convertOldRoFile = ( oldData ): RoFile => {
     return {
         version:                   getStringData( oldData[ 'version' ] ),
-        type:                      getStringData( oldData[ 'type' ] ),
+        type:                      'pac_ro',
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),

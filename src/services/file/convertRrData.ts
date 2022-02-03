@@ -216,9 +216,10 @@ const convertOldRrItemList = ( oldData ): RrList => {
 
 
 export const convertOldRrFile = ( oldData ): RrFile => {
+    console.log( '%c IN CONVERT OLD RR FILE', 'background: #fdd835; color: #000000' );
     return {
         version:                   getStringData( oldData[ 'version' ] ),
-        type:                      getStringData( oldData[ 'type' ] ),
+        type:                      'pac_rr',
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),

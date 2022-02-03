@@ -1,6 +1,6 @@
 import ItemList from '@/types/File/ItemList';
 
-interface CeList {
+interface CetList {
     localTypeList: ItemList[];
     qualiteIsolationList: ItemList[];
     statutMenageTypeList: ItemList[];
@@ -20,4 +20,4 @@ interface CeList {
     typeOrigineList: ItemList[];
 }
 
-export default CeList;
+export default CetList;

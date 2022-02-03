@@ -1,4 +1,6 @@
 <template>
+
+  <button @click="convertOldJsonToNewJson" class="btn btn-info">UPDATE OLD JSON</button>
   <!--begin::Dashboard-->
   <div class="row gy-5 g-xl-8">
     <div class="col-xxl-4">
@@ -42,6 +44,7 @@ import MixedWidget5 from '@/components/widgets/mixed/Widget5.vue';
 import MixedWidget7 from '@/components/widgets/mixed/Widget7.vue';
 import MixedWidget10 from '@/components/widgets/mixed/Widget10.vue';
 import { setCurrentPageTitle } from '@/core/helpers/breadcrumb';
+import { convertOldJsonToNewJson } from '@/services/folder/folderService';
 
 export default defineComponent( {
                                   name:       'dashboard',
@@ -58,6 +61,8 @@ export default defineComponent( {
                                       console.log( 'Environnement : ', process.env.NODE_ENV );
                                       console.log( 'URL API : ', process.env.VUE_APP_API_URL );
 
+                                      console.log( '%c BEFORE', 'background: #fdd835; color: #000000' );
+
                                       // openDb();
                                       // for ( let i = 0; i < 10; i++ ) {
                                       //   const type     = 'sol';
@@ -65,6 +70,10 @@ export default defineComponent( {
                                       //   createAFolder( type, customer );
                                       // }
                                     } );
+
+                                    return {
+                                      convertOldJsonToNewJson,
+                                    };
                                   },
                                 } );
 </script>

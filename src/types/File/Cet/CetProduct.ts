@@ -1,4 +1,4 @@
-interface CeProduct {
+interface CetProduct {
     id: number;
     label: string;
     ref: string;
@@ -9,4 +9,4 @@ interface CeProduct {
     type: string;
 }
 
-export default CeProduct;
+export default CetProduct;

@@ -1,4 +1,4 @@
-interface CeOption {
+interface PgOption {
     id: number;
     label: string;
     unit: string;
@@ -9,4 +9,4 @@ interface CeOption {
     };
 }
 
-export default CeOption;
+export default PgOption;
