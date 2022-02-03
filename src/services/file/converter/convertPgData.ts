@@ -14,7 +14,7 @@ import {
     getNumberData,
     getObjectData,
     getStringData,
-} from '@/services/file/convertData';
+} from '@/services/file/converter/convertData';
 import ItemList from '@/types/File/ItemList';
 import PgList from '@/types/File/Pg/PgList';
 import PgFile from '@/types/File/Pg/PgFile';

@@ -1,7 +1,7 @@
-import FolderItemType from '@/types/Folder/FolderItemType';
-import FolderItem from '@/types/Folder/FolderItem';
+import FileItemType from '@/types/FileItem/FileItemType';
+import Filetem from '@/types/FileItem/Filetem';
 
-export const folderTypesToString = ( types: FolderItemType[] ): string => {
+export const fileItemTypesToString = ( types: FileItemType[] ): string => {
     let allType = '';
     types.forEach( ( type ) => {
         if ( allType === '' ) {
@@ -14,6 +14,6 @@ export const folderTypesToString = ( types: FolderItemType[] ): string => {
     return allType;
 };
 
-export const folderItemHasType = ( item: FolderItem, search: string ): boolean => {
+export const fileItemHasType = ( item: Filetem, search: string ): boolean => {
     return item.types.find( type => type.slug === search ) !== undefined;
 };

@@ -166,7 +166,7 @@ import { ErrorMessage, Field, Form } from 'vee-validate';
 import * as Yup from 'yup';
 import router from '@/router';
 import * as folderService from '../../../services/folder/folderService';
-import { LIST_FOLDER_TYPE } from '@/services/constantService';
+import { LIST_FILE_TYPE } from '@/services/constantService';
 
 interface NewFolderData {
   type: string;
@@ -179,7 +179,7 @@ interface NewFolderData {
 
 
 export default defineComponent( {
-                                  name:       'new-folder-modal',
+                                  name:       'new-file-modal',
                                   components: {
                                     ErrorMessage,
                                     Field,
@@ -187,7 +187,7 @@ export default defineComponent( {
                                   },
                                   setup() {
                                     const submitButtonRef = ref<null | HTMLButtonElement>( null );
-                                    const listFolderType  = LIST_FOLDER_TYPE;
+                                    const listFolderType  = LIST_FILE_TYPE;
 
                                     const newFolderData = ref<NewFolderData>( {
                                                                                 type:                      '',

@@ -19,9 +19,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import NewFolderModal from '@/components/DCI/modals/NewFolderModal.vue';
+import NewFolderModal from '@/components/DCI/modals/NewFileModal.vue';
 import * as folderService from '../../services/folder/folderService';
-import FolderDatatable from '@/components/DCI/FolderDatatable.vue';
+import FolderDatatable from '@/components/DCI/FileItemDatatable.vue';
 
 
 export default defineComponent( {

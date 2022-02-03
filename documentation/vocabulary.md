@@ -8,6 +8,8 @@
 
 **FILE** : Cela représente un dossier client
 
+**FILE_ITEM** : Cela représente un dossier client avec des infos restreintes (stockées dans la DB)
+
 **QUOTATION** : Devis d'un client
 
 **WORKSHEET** : Document d'informations complémentaires au devis

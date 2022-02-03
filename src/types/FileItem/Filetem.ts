@@ -1,20 +1,20 @@
-import FolderItemStatus from '@/types/Folder/FolderItemStatus';
-import FolderItemType from '@/types/Folder/FolderItemType';
+import FileItemStatus from '@/types/FileItem/FileItemStatus';
+import FileItemType from '@/types/FileItem/FileItemType';
 
-interface FolderItem {
+interface Filetem {
     id: number;
     reference: string;
     folderName: string;
-    types: FolderItemType[];
+    types: FileItemType[];
     customer: string;
     totalTTC: number;
     isProspect: boolean;
     isClosed: boolean;
-    status: FolderItemStatus;
+    status: FileItemStatus;
     todos: string;
     createdAt: string;
     updatedAt: string;
     sendAt: string;
 }
 
-export default FolderItem;
+export default Filetem;

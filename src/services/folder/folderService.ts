@@ -2,18 +2,18 @@ import fs from 'fs';
 import Store from 'electron-store';
 import * as commonService from '../commonService';
 import { toFrenchDate } from '../commonService';
-import { convertOldRoFile } from '@/services/file/convertRoData';
-import { convertOldRrFile } from '@/services/file/convertRrData';
-import { convertOldCetFile } from '@/services/file/convertCetData';
-import FolderItem from '@/types/Folder/FolderItem';
+import { convertOldRoFile } from '@/services/file/converter/convertRoData';
+import { convertOldRrFile } from '@/services/file/converter/convertRrData';
+import { convertOldCetFile } from '@/services/file/converter/convertCetData';
+import Filetem from '@/types/FileItem/Filetem';
 import path from 'path';
 import { addFile, deleteFile } from '@/services/sqliteService';
-import { FOLDER_CET_TYPE } from '@/services/constantService';
+import { FILE_CET_TYPE } from '@/services/constantService';
 import { getcurrentFolderName, setCurrentFileData } from '@/services/data/dataService';
 import CetFile from '@/types/File/Cet/CetFile';
-import { convertOldPgFile } from '@/services/file/convertPgData';
-import { convertOldCombleFile } from '@/services/file/convertCombleData';
-import { convertOldSolFile } from '@/services/file/convertSolData';
+import { convertOldPgFile } from '@/services/file/converter/convertPgData';
+import { convertOldCombleFile } from '@/services/file/converter/convertCombleData';
+import { convertOldSolFile } from '@/services/file/converter/convertSolData';
 
 const schema = {
     dropboxPath: {
@@ -108,7 +108,7 @@ const createSubFolders = ( type: string, parent: string ) => {
 };
 
 const addJsonData = ( type: string, parent: string, reference: string, folderName: string ) => {
-    if ( type === FOLDER_CET_TYPE.slug ) {
+    if ( type === FILE_CET_TYPE.slug ) {
         const jsonPath = '/Users/dimitri/workspace/eco_atlantique/dci_vue/data_example/emptyNewDataCet.json';
 
         const rawdata         = fs.readFileSync( jsonPath ).toString( 'utf8' );
@@ -237,7 +237,7 @@ export const getFolderPath = ( folderName: string ): string => {
  * Supprime un dossiser dans Drpbox et dans la DB
  * @param folder
  */
-export const removeFolder = async ( folder: FolderItem ): Promise<boolean> => {
+export const removeFolder = async ( folder: Filetem ): Promise<boolean> => {
     const folderPath = getFolderPath( folder.folderName );
 
     if ( fs.existsSync( folderPath ) ) {

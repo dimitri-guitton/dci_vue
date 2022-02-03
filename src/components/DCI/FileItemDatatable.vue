@@ -123,23 +123,23 @@
 import { computed, defineComponent, ref } from 'vue';
 import * as sqliteService from '../../services/sqliteService';
 import { deleteFile } from '@/services/sqliteService';
-import FolderItem from '@/types/Folder/FolderItem';
-import { folderItemHasType, folderTypesToString } from '@/services/folder/FolderItemService';
+import Filetem from '@/types/FileItem/Filetem';
+import { fileItemHasType, fileItemTypesToString } from '@/services/file/fileItemService';
 import { ElMessage } from 'element-plus';
 import { shell } from 'electron';
 import { checkFolder, getFolderPath, removeFolder } from '@/services/folder/folderService';
-import { LIST_FOLDER_TYPE } from '@/services/constantService';
+import { LIST_FILE_TYPE } from '@/services/constantService';
 import router from '@/router';
 import { setCurrentFileReference, setcurrentFolderName } from '@/services/data/dataService';
 
 
 export default defineComponent( {
-                                  name: 'folder-datatable',
+                                  name: 'file-item-datatable',
                                   async setup() {
                                     await sqliteService.openDb();
                                     await sqliteService.initDb();
 
-                                    const listFolderType = LIST_FOLDER_TYPE;
+                                    const listFolderType = LIST_FILE_TYPE;
                                     const filterSearch   = ref( '' );
                                     const filterStatus   = ref( '-1' );
                                     const filterType     = ref( '-1' );
@@ -163,13 +163,13 @@ export default defineComponent( {
                                     };
 
                                     // Fonction appelé quand un filtre est modifié ou la pagination
-                                    const filterData = computed<FolderItem[]>( () => {
+                                    const filterData = computed<Filetem[]>( () => {
                                       console.log( '%c COMPUTED', 'background: #fdd835; color: #000000' );
-                                      let tempData: FolderItem[] = tableData.value;
+                                      let tempData: Filetem[] = tableData.value;
 
                                       // Filtre sur la barre de recherche
                                       if ( filterSearch.value !== '' ) {
-                                        tempData = tempData.filter( ( data: FolderItem ) => {
+                                        tempData = tempData.filter( ( data: Filetem ) => {
                                           const name  = data.folderName.toLowerCase();
                                           const ref   = data.reference.toLowerCase();
                                           const value = filterSearch.value.toLowerCase();
@@ -179,18 +179,18 @@ export default defineComponent( {
 
                                       // Filtre les types
                                       if ( filterType.value !== '-1' ) {
-                                        tempData = tempData.filter( ( data: FolderItem ) => {
+                                        tempData = tempData.filter( ( data: Filetem ) => {
                                           if ( filterType.value === '-1' ) {
                                             return true;
                                           }
 
-                                          return folderItemHasType( data, filterType.value );
+                                          return fileItemHasType( data, filterType.value );
                                         } );
                                       }
 
                                       // Filtre sur les statuts
                                       if ( filterStatus.value !== '-1' ) {
-                                        tempData = tempData.filter( ( data: FolderItem ) => {
+                                        tempData = tempData.filter( ( data: Filetem ) => {
                                           if ( filterStatus.value === '-1' ) {
                                             return true;
                                           }
@@ -200,7 +200,7 @@ export default defineComponent( {
 
                                       // Filtre sur "Prospect"
                                       if ( filterProspect.value !== false ) {
-                                        tempData = tempData.filter( ( data: FolderItem ) => {
+                                        tempData = tempData.filter( ( data: Filetem ) => {
                                           return data.isProspect;
                                         } );
                                       }
@@ -218,7 +218,7 @@ export default defineComponent( {
                                       sqliteService.setFileProspect( fileId, event.target.checked );
                                     };
 
-                                    const handleAction = async ( command: { type: string; folder: FolderItem } ) => {
+                                    const handleAction = async ( command: { type: string; folder: Filetem } ) => {
                                       console.log( command );
                                       switch ( command.type ) {
                                         case 'check_element':
@@ -297,7 +297,7 @@ export default defineComponent( {
                                       filterProspect,
                                       filterSearch,
                                       edit,
-                                      folderTypesToString,
+                                      folderTypesToString: fileItemTypesToString,
                                       listFolderType,
                                     };
                                   },

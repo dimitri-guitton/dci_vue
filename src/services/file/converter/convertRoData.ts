@@ -1,3 +1,5 @@
+import RoKitBiZone from '@/types/File/Ro/RoKitBiZone';
+import RoEcsDeporte from '@/types/File/Ro/RoEcsDeporte';
 import {
     convertOldAssent,
     convertOldBeneficiary,
@@ -15,14 +17,13 @@ import {
     getNumberData,
     getObjectData,
     getStringData,
-} from '@/services/file/convertData';
-import RrFile from '@/types/File/Rr/RrFile';
-import RrMulti from '@/types/File/Rr/RrMulti';
+} from '@/services/file/converter/convertData';
+import RoFile from '@/types/File/Ro/RoFile';
 import ItemList from '@/types/File/ItemList';
-import RrList from '@/types/File/Rr/RrList';
+import RoList from '@/types/File/Ro/RoList';
 import Product from '@/types/File/Product';
 
-const convertOldRrProduct = ( oldData ): Product[] => {
+const convertOldRoProduct = ( oldData ): Product[] => {
     const roProducts: Product[] = [];
     const oldProducts: []       = getObjectData( oldData,
                                                  [ 'devis',
@@ -35,7 +36,7 @@ const convertOldRrProduct = ( oldData ): Product[] => {
     oldProducts.forEach( product => {
         roProducts.push( {
                              id:          product[ 'id' ],
-                             productType: 'pac_rr',
+                             productType: 'pac_ro',
                              label:       product[ 'label' ],
                              reference:   product[ 'ref' ],
                              pu:          product[ 'pu' ],
@@ -48,14 +49,14 @@ const convertOldRrProduct = ( oldData ): Product[] => {
     return roProducts;
 };
 
-const convertSelectedRProduct = ( oldData ): Product[] => {
+const convertSelectedRoProduct = ( oldData ): Product[] => {
     const selectedRoProducts: Product[] = [];
     const oldSelectedProducts: []       = getArrayData( oldData[ 'devis' ][ 'selectedProducts' ] );
 
     oldSelectedProducts.forEach( product => {
         selectedRoProducts.push( {
                                      id:          product[ 'id' ],
-                                     productType: 'pac_rr',
+                                     productType: 'pac_ro',
                                      label:       product[ 'label' ],
                                      reference:   product[ 'ref' ],
                                      pu:          product[ 'pu' ],
@@ -68,34 +69,38 @@ const convertSelectedRProduct = ( oldData ): Product[] => {
     return selectedRoProducts;
 };
 
-const convertOldRrMulti = ( oldData ): RrMulti => {
-    let dataRrMulti: RrMulti;
-
-    if ( getObjectData( oldData, [ 'devis', 'rrMulti' ] ) !== '' ) {
-        dataRrMulti = {
-            roomNumber: oldData[ 'devis' ][ 'rrMulti' ][ 'nombreDePiece' ],
-            areaP1:     oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP1' ],
-            areaP2:     oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP2' ],
-            areaP3:     oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP3' ],
-            areaP4:     oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP4' ],
-            areaP5:     oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP5' ],
-        };
-    } else {
-        dataRrMulti = {
-            roomNumber: 1,
-            areaP1:     0,
-            areaP2:     0,
-            areaP3:     0,
-            areaP4:     0,
-            areaP5:     0,
+const convertOldSelectedKitBiZone = ( oldData ): RoKitBiZone | undefined => {
+    let selectedKitBiZone: RoKitBiZone | undefined;
+    if ( getObjectData( oldData, [ 'devis', 'ro', 'isKitBiZone' ] ) === true ) {
+        selectedKitBiZone = {
+            label: getObjectData( oldData, [ 'devis', 'ro', 'selectedKitBiZone', 'label' ] ),
+            ref:   getObjectData( oldData, [ 'devis', 'ro', 'selectedKitBiZone', 'ref' ] ),
+            pu:    getObjectData( oldData, [ 'devis', 'ro', 'selectedKitBiZone', 'volume' ] ),
         };
     }
 
-    return dataRrMulti;
+    return selectedKitBiZone;
 };
 
-const convertOldRrItemList = ( oldData ): RrList => {
-    const lists: RrList = {
+const convertOldSelectedEscDeporte = ( oldData ): RoEcsDeporte | undefined => {
+    let selectedEcsDeporte: RoEcsDeporte | undefined;
+
+    if ( getObjectData( oldData, [ 'devis', 'ro', 'isEcsDeporte' ] ) === true ) {
+        selectedEcsDeporte = {
+            volume:      getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'volume' ] ),
+            label:       getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'label' ] ),
+            ref:         getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'ref' ] ),
+            pu:          getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'pu' ] ),
+            description: getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'descr' ] ),
+        };
+    }
+
+    return selectedEcsDeporte;
+};
+
+
+const convertOldRoItemList = ( oldData ): RoList => {
+    const lists: RoList = {
         localTypeList:         [],
         rrTypeList:            [],
         assortmentList:        [],
@@ -110,21 +115,13 @@ const convertOldRrItemList = ( oldData ): RrList => {
         tensionDisponibleList: [],
         positionEauChaudeList: [],
         typeChaudiereList:     [],
-        gammeTypeList:         [],
-        qualiteIsolationList:  [],
-        batimentNatureList:    [],
-        naturePlafondList:     [],
-        EcsDeporteList:        [],
-        niveauHabitationList:  [],
-        typeChantierList:      [],
-        typeOrigineList:       [],
     };
 
-    const rrItems = [
+    const roItems = [
         'localType',
         'rrType',
-        'assortment',
-        'ecsDeporte',
+        'gammeType',
+        'EcsDeporte',
         'accesComble',
         'typeCouverture',
         'typeCharpente',
@@ -135,21 +132,13 @@ const convertOldRrItemList = ( oldData ): RrList => {
         'tensionDisponible',
         'positionEauChaude',
         'typeChaudiere',
-        'gammeType',
-        'qualiteIsolation',
-        'batimentNature',
-        'naturePlafond',
-        'EcsDeporte',
-        'niveauHabitation',
-        'typeChantier',
-        'typeOrigine',
     ];
 
     const newName: { [ key: string ]: string } = {
         'localType':         'localTypeList',
         'rrType':            'rrTypeList',
-        'assortment':        'assortmentList',
-        'ecsDeporte':        'ecsDeporteList',
+        'gammeType':         'assortmentList',
+        'EcsDeporte':        'ecsDeporteList',
         'accesComble':       'accesCombleList',
         'typeCouverture':    'typeCouvertureList',
         'typeCharpente':     'typeCharpenteList',
@@ -160,50 +149,39 @@ const convertOldRrItemList = ( oldData ): RrList => {
         'tensionDisponible': 'tensionDisponibleList',
         'positionEauChaude': 'positionEauChaudeList',
         'typeChaudiere':     'typeChaudiereList',
-        'gammeType':         'gammeTypeList',
-        'qualiteIsolation':  'qualiteIsolationList',
-        'batimentNature':    'batimentNatureList',
-        'naturePlafond':     'naturePlafondList',
-        'EcsDeporte':        'EcsDeporteList',
-        'niveauHabitation':  'niveauHabitationList',
-        'typeChantier':      'typeChantierList',
-        'typeOrigine':       'typeOrigineList',
     };
 
+
     // @TODO si l'ancien JSON n'a pas la liste la créer avec les nouvelle valeur par défaut
-    rrItems.forEach( item => {
+    roItems.forEach( item => {
 
         const oldList              = getObjectData( oldData[ 'lists' ], [ item ] );
         const newItems: ItemList[] = [];
 
-        if ( oldList !== {} && oldList !== '' ) {
-            oldList.forEach( ( data ) => {
-                if ( typeof data === 'object' ) {
+        oldList.forEach( ( data ) => {
+            if ( typeof data === 'object' ) {
 
-                    newItems.push( {
-                                       value: data[ Object.keys( data )[ 0 ] ],
-                                   } );
-                } else {
-                    newItems.push( data );
-                }
-            } );
+                newItems.push( {
+                                   value: data[ Object.keys( data )[ 0 ] ],
+                               } );
+            } else {
+                newItems.push( data );
+            }
+        } );
 
-            lists[ newName[ item ] ] = {
-                slug:  newName[ item ],
-                items: newItems,
-            };
-        }
+        lists[ newName[ item ] ] = {
+            slug:  newName[ item ],
+            items: newItems,
+        };
     } );
 
     return lists;
 };
 
-
-export const convertOldRrFile = ( oldData ): RrFile => {
-    console.log( '%c IN CONVERT OLD RR FILE', 'background: #fdd835; color: #000000' );
+export const convertOldRoFile = ( oldData ): RoFile => {
     return {
         version:                   getStringData( oldData[ 'version' ] ),
-        type:                      'pac_rr',
+        type:                      'pac_ro',
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),
@@ -237,43 +215,36 @@ export const convertOldRrFile = ( oldData ): RrFile => {
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },
         workSheet:                 {
-            period:               getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
-            niveauHabitation:     getObjectData( oldData, [ 'fiche', 'niveauHabitation' ] ),
-            typeChantier:         getObjectData( oldData, [ 'fiche', 'typeChantier' ] ),
-            disjoncteur:          getObjectData( oldData, [ 'fiche', 'disjoncteur' ] ),
-            natureMurExt:         getObjectData( oldData, [ 'fiche', 'natureMurExt' ] ),
-            naturePlafond:        getObjectData( oldData, [ 'fiche', 'naturePlafond' ] ),
-            visiteComble:         getObjectData( oldData, [ 'fiche', 'visiteComble' ] ),
-            chantierHabite:       getObjectData( oldData, [ 'fiche', 'chantierHabite' ] ),
-            grandeEchelle:        getObjectData( oldData, [ 'fiche', 'grandeEchelle' ] ),
-            demandeVoirie:        getObjectData( oldData, [ 'fiche', 'demandeVoirie' ] ),
-            puissanceCompteur:    getObjectData( oldData, [ 'fiche', 'puissanceCompteur' ] ),
-            distanceCompteurPac:  getObjectData( oldData, [ 'fiche', 'distanceCompteurPac' ] ),
-            accesComble:          getObjectData( oldData, [ 'fiche', 'accesComble' ] ),
-            rueEtroite:           getObjectData( oldData, [ 'fiche', 'rueEtroite' ] ),
-            typeCouverture:       getObjectData( oldData, [ 'fiche', 'typeCouverture' ] ),
-            etatToiture:          getObjectData( oldData, [ 'fiche', 'etatToiture' ] ),
-            typeCharpente:        getObjectData( oldData, [ 'fiche', 'typeCharpente' ] ),
-            nbCompartimentComble: getObjectData( oldData, [ 'fiche', 'nbrCompartementComble' ] ),
-            presenceVolige:       getObjectData( oldData, [ 'fiche', 'presenceVolige' ] ),
-            nbAccesComble:        getObjectData( oldData, [ 'fiche', 'nbrAccesComble' ] ),
-            distanceGpExtUnitInt: getObjectData( oldData, [ 'fiche', 'distanceGpExtUnitInt' ] ),
-            emplacementSplit1:    getObjectData( oldData, [ 'fiche', 'emplacementSplit1' ] ),
-            emplacementSplit2:    getObjectData( oldData, [ 'fiche', 'emplacementSplit2' ] ),
-            emplacementSplit3:    getObjectData( oldData, [ 'fiche', 'emplacementSplit3' ] ),
-            emplacementSplit4:    getObjectData( oldData, [ 'fiche', 'emplacementSplit4' ] ),
-            emplacementSplit5:    getObjectData( oldData, [ 'fiche', 'emplacementSplit5' ] ),
-            emplacementGrpExt:    getObjectData( oldData, [ 'fiche', 'emplacementGrpExt' ] ),
-            emplacementSplitMono: getObjectData( oldData, [ 'fiche', 'emplacementSplitMono' ] ),
-            distanceGpExtSplit1:  getObjectData( oldData, [ 'fiche', 'distanceGpExtSplit1' ] ),
-            distanceGpExtSplit2:  getObjectData( oldData, [ 'fiche', 'distanceGpExtSplit2' ] ),
-            distanceGpExtSplit3:  getObjectData( oldData, [ 'fiche', 'distanceGpExtSplit3' ] ),
-            distanceGpExtSplit4:  getObjectData( oldData, [ 'fiche', 'distanceGpExtSplit4' ] ),
-            distanceGpExtSplit5:  getObjectData( oldData, [ 'fiche', 'distanceGpExtSplit5' ] ),
-            nbPompeRelevage:      getObjectData( oldData, [ 'fiche', 'nbrPompeRelevage' ] ),
-            positionEauChaude:    getObjectData( oldData, [ 'fiche', 'positionEauChaude' ] ),
-            hauteurDuSol:         getObjectData( oldData, [ 'fiche', 'hauteurDuSol' ] ),
-            infosSup:             getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
+            period:                    getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
+            niveauHabitation:          getObjectData( oldData, [ 'fiche', 'niveauHabitation' ] ),
+            typeChantier:              getObjectData( oldData, [ 'fiche', 'typeChantier' ] ),
+            disjoncteur:               getObjectData( oldData, [ 'fiche', 'disjoncteur' ] ),
+            natureMurExt:              getObjectData( oldData, [ 'fiche', 'natureMurExt' ] ),
+            naturePlafond:             getObjectData( oldData, [ 'fiche', 'naturePlafond' ] ),
+            visiteComble:              getObjectData( oldData, [ 'fiche', 'visiteComble' ] ),
+            chantierHabite:            getObjectData( oldData, [ 'fiche', 'chantierHabite' ] ),
+            grandeEchelle:             getObjectData( oldData, [ 'fiche', 'grandeEchelle' ] ),
+            demandeVoirie:             getObjectData( oldData, [ 'fiche', 'demandeVoirie' ] ),
+            puissanceCompteur:         getObjectData( oldData, [ 'fiche', 'puissanceCompteur' ] ),
+            distanceCompteurPac:       getObjectData( oldData, [ 'fiche', 'distanceCompteurPac' ] ),
+            accesComble:               getObjectData( oldData, [ 'fiche', 'accesComble' ] ),
+            rueEtroite:                getObjectData( oldData, [ 'fiche', 'rueEtroite' ] ),
+            typeCouverture:            getObjectData( oldData, [ 'fiche', 'typeCouverture' ] ),
+            etatToiture:               getObjectData( oldData, [ 'fiche', 'etatToiture' ] ),
+            typeCharpente:             getObjectData( oldData, [ 'fiche', 'typeCharpente' ] ),
+            nbCompartimentComble:      getObjectData( oldData, [ 'fiche', 'nbrCompartementComble' ] ),
+            presenceVolige:            getObjectData( oldData, [ 'fiche', 'presenceVolige' ] ),
+            nbAccesComble:             getObjectData( oldData, [ 'fiche', 'nbrAccesComble' ] ),
+            distanceGpExtUnitInt:      getObjectData( oldData, [ 'fiche', 'distanceGpExtUnitInt' ] ),
+            nbTotalRadiateur:          getObjectData( oldData, [ 'fiche', 'nbrTotalRadiateur' ] ),
+            nbRadiateurThermostatique: getObjectData( oldData, [ 'fiche', 'nbrRadiateurThermostatique' ] ),
+            typeRadiateur:             getObjectData( oldData, [ 'fiche', 'typeRadiateur' ] ),
+            espaceSolRequisUnitInt:    getObjectData( oldData, [ 'fiche', 'espaceSolRequisUnitInt' ] ),
+            hauteurRequiseUnitInt:     getObjectData( oldData, [ 'fiche', 'hauteurRequiseUnitInt' ] ),
+            positionEauChaude:         getObjectData( oldData, [ 'fiche', 'positionEauChaude' ] ),
+            hauteurDuSol:              getObjectData( oldData, [ 'fiche', 'hauteurDuSol' ] ),
+            tensionDisponible:         getObjectData( oldData, [ 'fiche', 'tensionDisponible' ] ),
+            infosSup:                  getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
         quotation:                 {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
@@ -289,11 +260,21 @@ export const convertOldRrFile = ( oldData ): RrFile => {
             ceeBonus:           getNumberData( oldData [ 'devis' ][ 'primeCEE' ] ),
             maPrimeRenovBonus:  getNumberData( oldData [ 'devis' ][ 'primeAnah' ] ),
             discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
-            selectedProducts:   convertSelectedRProduct( oldData ),
-            rrType:             getObjectData( oldData, [ 'devis', 'rrType' ] ),
-            rrMulti:            convertOldRrMulti( oldData ),
+            selectedProducts:   convertSelectedRoProduct( oldData ),
             assortment:         getObjectData( oldData, [ 'devis', 'gamme' ] ),
-            products:           convertOldRrProduct( oldData ),
+            volumeECS:          getNumberData( oldData [ 'devis' ][ 'ro' ][ 'volumeECS' ] ),
+            volumeECSDeporte:   getNumberData( oldData [ 'devis' ][ 'ro' ][ 'volumeECSDeporte' ] ),
+            isEcsDeporte:       getBoolData( oldData [ 'devis' ][ 'ro' ][ 'isEcsDeporte' ] ),
+            selectedEcsDeporte: convertOldSelectedEscDeporte( oldData ),
+            isKitBiZone:        getBoolData( oldData [ 'devis' ][ 'ro' ][ 'isKitBiZone' ] ),
+            selectedKitBiZone:  convertOldSelectedKitBiZone( oldData ),
+            ceilingHeight:      getNumberData( oldData [ 'devis' ][ 'ro' ][ 'hauteurSousPlafond' ] ),
+            deviceToReplace:    {
+                type:  getObjectData( oldData, [ 'devis', 'ro', 'appareilRemplacer', 'type' ] ),
+                brand: getObjectData( oldData, [ 'devis', 'ro', 'appareilRemplacer', 'marque' ] ),
+                model: getObjectData( oldData, [ 'devis', 'ro', 'appareilRemplacer', 'modele' ] ),
+            },
+            products:           convertOldRoProduct( oldData ),
             totalHt:            convertOldTotalHt( oldData ),
             totalTva:           convertOldTotalTva( oldData ),
         },
@@ -313,6 +294,6 @@ export const convertOldRrFile = ( oldData ): RrFile => {
             firstName: getObjectData( oldData, [ 'technicien', 'prenom' ] ),
             phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
         },
-        lists:                     convertOldRrItemList( oldData ),
+        lists:                     convertOldRoItemList( oldData ),
     };
 };

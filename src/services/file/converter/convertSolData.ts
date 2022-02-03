@@ -14,7 +14,7 @@ import {
     getNumberData,
     getObjectData,
     getStringData,
-} from '@/services/file/convertData';
+} from '@/services/file/converter/convertData';
 import ItemList from '@/types/File/ItemList';
 import Product from '@/types/File/Product';
 import SolList from '@/types/File/Sol/SolList';

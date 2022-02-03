@@ -1,67 +1,67 @@
-import FolderItemType from '@/types/Folder/FolderItemType';
-import FolderItemStatus from '@/types/Folder/FolderItemStatus';
+import FileItemType from '@/types/FileItem/FileItemType';
+import FileItemStatus from '@/types/FileItem/FileItemStatus';
 
-export const FOLDER_COMBLE_TYPE: FolderItemType = {
+export const FILE_COMBLE_TYPE: FileItemType = {
     slug: 'comble',
     name: 'Comble',
 };
 
-export const FOLDER_SOL_TYPE: FolderItemType = {
+export const FILE_SOL_TYPE: FileItemType = {
     slug: 'sol',
     name: 'Sol',
 };
 
-export const FOLDER_PAC_RR_TYPE: FolderItemType = {
+export const FILE_PAC_RR_TYPE: FileItemType = {
     slug: 'pac_rr',
     name: 'Chauffage RR',
 };
 
-export const FOLDER_PAC_RO_TYPE: FolderItemType = {
+export const FILE_PAC_RO_TYPE: FileItemType = {
     slug: 'pac_ro',
     name: 'Chauffage RO',
 };
 
-export const FOLDER_CET_TYPE: FolderItemType = {
+export const FILE_CET_TYPE: FileItemType = {
     slug: 'cet',
     name: 'Chauffe eau',
 };
 
-export const FOLDER_PG_TYPE: FolderItemType = {
+export const FILE_PG_TYPE: FileItemType = {
     slug: 'pg',
     name: 'Poele à granulés',
 };
 
-export const LIST_FOLDER_TYPE: FolderItemType[] = [
-    FOLDER_COMBLE_TYPE,
-    FOLDER_SOL_TYPE,
-    FOLDER_PAC_RR_TYPE,
-    FOLDER_PAC_RO_TYPE,
-    FOLDER_CET_TYPE,
-    FOLDER_PG_TYPE,
+export const LIST_FILE_TYPE: FileItemType[] = [
+    FILE_COMBLE_TYPE,
+    FILE_SOL_TYPE,
+    FILE_PAC_RR_TYPE,
+    FILE_PAC_RO_TYPE,
+    FILE_CET_TYPE,
+    FILE_PG_TYPE,
 ];
 
-export const FOLDER_COMPLETE_STATUS: FolderItemStatus = {
+export const FILE_COMPLETE_STATUS: FileItemStatus = {
     code:  1,
     state: 'complete',
     name:  'Complet',
     class: 'success',
 };
 
-export const FOLDER_INCOMPLETE_STATUS: FolderItemStatus = {
+export const FILE_INCOMPLETE_STATUS: FileItemStatus = {
     code:  2,
     state: 'incomplete',
     name:  'Incomplet',
     class: 'warning',
 };
 
-export const FOLDER_TO_CORRECT_STATUS: FolderItemStatus = {
+export const FILE_TO_CORRECT_STATUS: FileItemStatus = {
     code:  3,
     state: 'to_correct',
     name:  'À corriger',
     class: 'danger',
 };
 
-export const FOLDER_CLOSE_STATUS: FolderItemStatus = {
+export const FILE_CLOSE_STATUS: FileItemStatus = {
     code:  4,
     state: 'close',
     name:  'Clos',

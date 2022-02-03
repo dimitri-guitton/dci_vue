@@ -2,21 +2,21 @@ import sqlite3 from 'sqlite3';
 import { ISqlite, open } from 'sqlite';
 import Store from 'electron-store';
 import { Database } from 'sqlite/build/Database';
-import FolderItem from '@/types/Folder/FolderItem';
+import Filetem from '@/types/FileItem/Filetem';
 import DbFile from '@/types/Sqlite/DbFile';
-import FolderItemType from '@/types/Folder/FolderItemType';
-import FolderItemStatus from '@/types/Folder/FolderItemStatus';
+import FileItemType from '@/types/FileItem/FileItemType';
+import FileItemStatus from '@/types/FileItem/FileItemStatus';
 import {
-    FOLDER_CET_TYPE,
-    FOLDER_CLOSE_STATUS,
-    FOLDER_COMBLE_TYPE,
-    FOLDER_COMPLETE_STATUS,
-    FOLDER_INCOMPLETE_STATUS,
-    FOLDER_PAC_RO_TYPE,
-    FOLDER_PAC_RR_TYPE,
-    FOLDER_PG_TYPE,
-    FOLDER_SOL_TYPE,
-    FOLDER_TO_CORRECT_STATUS,
+    FILE_CET_TYPE,
+    FILE_CLOSE_STATUS,
+    FILE_COMBLE_TYPE,
+    FILE_COMPLETE_STATUS,
+    FILE_INCOMPLETE_STATUS,
+    FILE_PAC_RO_TYPE,
+    FILE_PAC_RR_TYPE,
+    FILE_PG_TYPE,
+    FILE_SOL_TYPE,
+    FILE_TO_CORRECT_STATUS,
 } from '@/services/constantService';
 import { toFrenchDate } from '@/services/commonService';
 import RunResult = ISqlite.RunResult;
@@ -34,53 +34,53 @@ const store = new Store( { schema } );
 let db: Database;
 
 /**
- * Convertie les données de la DB en objets FolderItem
+ * Convertie les données de la DB en objets FileItem
  * @param items
  */
-function convertDbFileToFolderItem( items: DbFile[] ) {
-    const data: FolderItem[] = [];
+function convertDbFileToFileItem( items: DbFile[] ) {
+    const data: Filetem[] = [];
 
     items.forEach( ( item: DbFile ) => {
-        const types: FolderItemType[] = [];
-        let status: FolderItemStatus;
+        const types: FileItemType[] = [];
+        let status: FileItemStatus;
 
         switch ( parseInt( item.statusInDCI ) ) {
-            case FOLDER_COMPLETE_STATUS.code:
-                status = FOLDER_COMPLETE_STATUS;
+            case FILE_COMPLETE_STATUS.code:
+                status = FILE_COMPLETE_STATUS;
                 break;
-            case FOLDER_INCOMPLETE_STATUS.code:
-                status = FOLDER_INCOMPLETE_STATUS;
+            case FILE_INCOMPLETE_STATUS.code:
+                status = FILE_INCOMPLETE_STATUS;
                 break;
-            case FOLDER_TO_CORRECT_STATUS.code:
-                status = FOLDER_TO_CORRECT_STATUS;
+            case FILE_TO_CORRECT_STATUS.code:
+                status = FILE_TO_CORRECT_STATUS;
                 break;
-            case FOLDER_CLOSE_STATUS.code:
-                status = FOLDER_CLOSE_STATUS;
+            case FILE_CLOSE_STATUS.code:
+                status = FILE_CLOSE_STATUS;
                 break;
             default:
-                status = FOLDER_INCOMPLETE_STATUS;
+                status = FILE_INCOMPLETE_STATUS;
         }
 
         const fileTypes = item.fileTypes.split( ',' );
         fileTypes.forEach( ( type: string ) => {
             switch ( type ) {
-                case FOLDER_COMBLE_TYPE.slug:
-                    types.push( FOLDER_COMBLE_TYPE );
+                case FILE_COMBLE_TYPE.slug:
+                    types.push( FILE_COMBLE_TYPE );
                     break;
-                case FOLDER_SOL_TYPE.slug:
-                    types.push( FOLDER_SOL_TYPE );
+                case FILE_SOL_TYPE.slug:
+                    types.push( FILE_SOL_TYPE );
                     break;
-                case FOLDER_PAC_RR_TYPE.slug:
-                    types.push( FOLDER_PAC_RR_TYPE );
+                case FILE_PAC_RR_TYPE.slug:
+                    types.push( FILE_PAC_RR_TYPE );
                     break;
-                case FOLDER_PAC_RO_TYPE.slug:
-                    types.push( FOLDER_PAC_RO_TYPE );
+                case FILE_PAC_RO_TYPE.slug:
+                    types.push( FILE_PAC_RO_TYPE );
                     break;
-                case FOLDER_CET_TYPE.slug:
-                    types.push( FOLDER_CET_TYPE );
+                case FILE_CET_TYPE.slug:
+                    types.push( FILE_CET_TYPE );
                     break;
-                case FOLDER_PG_TYPE.slug:
-                    types.push( FOLDER_PG_TYPE );
+                case FILE_PG_TYPE.slug:
+                    types.push( FILE_PG_TYPE );
                     break;
             }
         } );
@@ -210,12 +210,12 @@ export async function addFile( reference: string,
 /**
  * Récupère tous les dossiers de la DB
  */
-export async function getAllFiles(): Promise<FolderItem[]> {
+export async function getAllFiles(): Promise<Filetem[]> {
     const query = `SELECT *
                    from file
                    ORDER BY createdAt DESC;`;
 
-    return convertDbFileToFolderItem( await db.all( query ) );
+    return convertDbFileToFileItem( await db.all( query ) );
 }
 
 export async function setFileProspect( fileId: number, value: boolean ) {
