@@ -13,6 +13,7 @@ import { getcurrentFolderName, setCurrentFileData } from '@/services/data/dataSe
 import CetFile from '@/types/File/Cet/CetFile';
 import { convertOldPgFile } from '@/services/file/convertPgData';
 import { convertOldCombleFile } from '@/services/file/convertCombleData';
+import { convertOldSolFile } from '@/services/file/convertSolData';
 
 const schema = {
     dropboxPath: {
@@ -176,8 +177,8 @@ export const convertOldJsonToNewJson = () => {
     const dropboxPath          = store.get( 'dropboxPath' );
     let oldData: object | null = null;
 
-    if ( fs.existsSync( dropboxPath + '/DCI/old_data_comble.json' ) ) {
-        oldData = JSON.parse( fs.readFileSync( dropboxPath + '/DCI/old_data_comble.json', 'utf8' ) );
+    if ( fs.existsSync( dropboxPath + '/DCI/old_data_sol.json' ) ) {
+        oldData = JSON.parse( fs.readFileSync( dropboxPath + '/DCI/old_data_sol.json', 'utf8' ) );
         console.log( oldData );
     }
 
@@ -199,6 +200,8 @@ export const convertOldJsonToNewJson = () => {
         data = JSON.stringify( convertOldPgFile( oldData ), null, 2 );
     } else if ( type === 'comble' ) {
         data = JSON.stringify( convertOldCombleFile( oldData ), null, 2 );
+    } else if ( type === 'sol' ) {
+        data = JSON.stringify( convertOldSolFile( oldData ), null, 2 );
     } else {
         console.log( '%c RETURN FALSE', 'background: #fdd835; color: #000000' );
         return false;
