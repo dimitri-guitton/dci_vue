@@ -1,5 +1,3 @@
-import RoProduct from '@/types/File/Ro/RoProduct';
-import RoOption from '@/types/File/Ro/RoOption';
 import RoKitBiZone from '@/types/File/Ro/RoKitBiZone';
 import RoEcsDeporte from '@/types/File/Ro/RoEcsDeporte';
 import {
@@ -8,6 +6,7 @@ import {
     convertOldBlankOptions,
     convertOldDataGeoportail,
     convertOldErrorStatusDci,
+    convertOldOptions,
     convertOldScales,
     convertOldStatusDci,
     convertOldText,
@@ -22,26 +21,27 @@ import {
 import RoFile from '@/types/File/Ro/RoFile';
 import ItemList from '@/types/File/ItemList';
 import RoList from '@/types/File/Ro/RoList';
+import Product from '@/types/File/Product';
 
-const convertOldRoProduct = ( oldData ): RoProduct[] => {
-    const roProducts: RoProduct[] = [];
-    const oldProducts: []         = getObjectData( oldData,
-                                                   [ 'devis',
-                                                     'pompeAChaleur',
-                                                     'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
-                                                                                                           [ 'devis',
-                                                                                                             'pompeAChaleur',
-                                                                                                             'products' ] );
+const convertOldRoProduct = ( oldData ): Product[] => {
+    const roProducts: Product[] = [];
+    const oldProducts: []       = getObjectData( oldData,
+                                                 [ 'devis',
+                                                   'pompeAChaleur',
+                                                   'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                                         [ 'devis',
+                                                                                                           'pompeAChaleur',
+                                                                                                           'products' ] );
 
     oldProducts.forEach( product => {
         roProducts.push( {
                              id:          product[ 'id' ],
+                             productType: 'pac_ro',
                              label:       product[ 'label' ],
-                             ref:         product[ 'ref' ],
+                             reference:   product[ 'ref' ],
                              pu:          product[ 'pu' ],
                              defaultPu:   product[ 'defaultPU' ],
                              description: product[ 'descr' ],
-                             calcul0:     product[ 'calcul0' ],
                              scop:        product[ 'scop' ],
                          } );
     } );
@@ -49,45 +49,24 @@ const convertOldRoProduct = ( oldData ): RoProduct[] => {
     return roProducts;
 };
 
-const convertSelectedRoProduct = ( oldData ): RoProduct[] => {
-    const selectedRoProducts: RoProduct[] = [];
-    const oldSelectedProducts: []         = getArrayData( oldData[ 'devis' ][ 'selectedProducts' ] );
+const convertSelectedRoProduct = ( oldData ): Product[] => {
+    const selectedRoProducts: Product[] = [];
+    const oldSelectedProducts: []       = getArrayData( oldData[ 'devis' ][ 'selectedProducts' ] );
 
     oldSelectedProducts.forEach( product => {
         selectedRoProducts.push( {
                                      id:          product[ 'id' ],
+                                     productType: 'pac_ro',
                                      label:       product[ 'label' ],
-                                     ref:         product[ 'ref' ],
+                                     reference:   product[ 'ref' ],
                                      pu:          product[ 'pu' ],
                                      defaultPu:   product[ 'defaultPU' ],
                                      description: product[ 'descr' ],
-                                     calcul0:     product[ 'calcul0' ],
                                      scop:        product[ 'scop' ],
                                  } );
     } );
 
     return selectedRoProducts;
-};
-
-const convertOldRoOptions = ( oldData ): RoOption[] => {
-    const roOptions: RoOption[] = [];
-    const oldOption: []         = getArrayData( oldData[ 'devis' ][ 'options' ] );
-
-    oldOption.forEach( option => {
-        roOptions.push( {
-                            id:        option[ 'id' ],
-                            label:     option[ 'label' ],
-                            unit:      option[ 'unit' ],
-                            value:     option[ 'value' ],
-                            pu:        {
-                                default: option[ 'default' ],
-                                value:   option[ 'value' ],
-                            },
-                            calcTva10: option[ 'calcTva10' ],
-                        } );
-    } );
-
-    return roOptions;
 };
 
 const convertOldSelectedKitBiZone = ( oldData ): RoKitBiZone | undefined => {
@@ -262,11 +241,11 @@ export const convertOldRoFile = ( oldData ): RoFile => {
             tensionDisponible:         getObjectData( oldData, [ 'fiche', 'tensionDisponible' ] ),
             infosSup:                  getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
-        quotation:                 {
+        quotation: {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
-            options:            convertOldRoOptions( oldData ),
+            options:            convertOldOptions( oldData ),
             blankOptions:       convertOldBlankOptions( oldData ),
             commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
             partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),

@@ -1,21 +1,21 @@
 import BlankOption from '@/types/File/BlankOption';
 import Text from '@/types/File/Text';
-import PgOption from '@/types/File/Pg/PgOption';
-import PgProduct from '@/types/File/Pg/PgProduct';
+import Product from '@/types/File/Product';
+import Option from '@/types/File/Option';
 
 interface PgQuotation {
     origin: string;
     dateTechnicalVisit: string;
     executionDelay: string;
-    options: PgOption[];
+    options: Option[];
     blankOptions: BlankOption[];
     commentary: string;
     partner: string;
     texts: Text[];
     tva: number;
     ceeBonus: number;
-    selectedProducts: PgProduct[];
-    products: PgProduct[];
+    selectedProducts: Product[];
+    products: Product[];
     maPrimeRenovBonus: number;
     discount: number;
     totalHt: number;

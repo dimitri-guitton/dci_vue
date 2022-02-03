@@ -4,6 +4,7 @@ import {
     convertOldBlankOptions,
     convertOldDataGeoportail,
     convertOldErrorStatusDci,
+    convertOldOptions,
     convertOldScales,
     convertOldStatusDci,
     convertOldText,
@@ -17,25 +18,25 @@ import {
 } from '@/services/file/convertData';
 import ItemList from '@/types/File/ItemList';
 import CetList from '@/types/File/Cet/CetList';
-import CetProduct from '@/types/File/Cet/CetProduct';
 import CetFile from '@/types/File/Cet/CetFile';
-import CetOption from '@/types/File/Cet/CetOption';
+import Product from '@/types/File/Product';
 
-const convertOldCetProduct = ( oldData ): CetProduct[] => {
-    const ceProducts: CetProduct[] = [];
-    const oldProducts: []          = getObjectData( oldData,
-                                                    [ 'devis',
-                                                      'chauffeEau',
-                                                      'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
-                                                                                                            [ 'devis',
-                                                                                                              'chauffeEau',
-                                                                                                              'products' ] );
+const convertOldCetProduct = ( oldData ): Product[] => {
+    const ceProducts: Product[] = [];
+    const oldProducts: []       = getObjectData( oldData,
+                                                 [ 'devis',
+                                                   'chauffeEau',
+                                                   'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                                         [ 'devis',
+                                                                                                           'chauffeEau',
+                                                                                                           'products' ] );
 
     oldProducts.forEach( product => {
         ceProducts.push( {
                              id:          product[ 'id' ],
+                             productType: 'cet',
                              label:       product[ 'label' ],
-                             ref:         product[ 'ref' ],
+                             reference:   product[ 'ref' ],
                              pu:          product[ 'pu' ],
                              defaultPu:   product[ 'defaultPU' ],
                              description: product[ 'descr' ],
@@ -47,15 +48,16 @@ const convertOldCetProduct = ( oldData ): CetProduct[] => {
     return ceProducts;
 };
 
-const convertSelectedCetProduct = ( oldData ): CetProduct[] => {
-    const selectedCeProducts: CetProduct[] = [];
-    const oldSelectedProducts: []          = getArrayData( oldData[ 'devis' ][ 'selectedProducts' ] );
+const convertSelectedCetProduct = ( oldData ): Product[] => {
+    const selectedCeProducts: Product[] = [];
+    const oldSelectedProducts: []       = getArrayData( oldData[ 'devis' ][ 'selectedProducts' ] );
 
     oldSelectedProducts.forEach( product => {
         selectedCeProducts.push( {
                                      id:          product[ 'id' ],
+                                     productType: 'cet',
                                      label:       product[ 'label' ],
-                                     ref:         product[ 'ref' ],
+                                     reference:   product[ 'ref' ],
                                      pu:          product[ 'pu' ],
                                      defaultPu:   product[ 'defaultPU' ],
                                      description: product[ 'descr' ],
@@ -65,26 +67,6 @@ const convertSelectedCetProduct = ( oldData ): CetProduct[] => {
     } );
 
     return selectedCeProducts;
-};
-
-const convertOldCetOptions = ( oldData ): CetOption[] => {
-    const ceOptions: CetOption[] = [];
-    const oldOption: []          = getArrayData( oldData[ 'devis' ][ 'options' ] );
-
-    oldOption.forEach( option => {
-        ceOptions.push( {
-                            id:    option[ 'id' ],
-                            label: option[ 'label' ],
-                            unit:  option[ 'unit' ],
-                            value: option[ 'value' ],
-                            pu:    {
-                                default: option[ 'default' ],
-                                value:   option[ 'value' ],
-                            },
-                        } );
-    } );
-
-    return ceOptions;
 };
 
 const convertOldCetItemList = ( oldData ): CetList => {
@@ -240,11 +222,11 @@ export const convertOldCetFile = ( oldData ): CetFile => {
             distanceBallonUnitExt:   getObjectData( oldData, [ 'fiche', 'distanceBallonUnitExt' ] ),
             infosSup:                getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
-        quotation:                 {
+        quotation: {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
-            options:            convertOldCetOptions( oldData ),
+            options:            convertOldOptions( oldData ),
             blankOptions:       convertOldBlankOptions( oldData ),
             commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
             partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),

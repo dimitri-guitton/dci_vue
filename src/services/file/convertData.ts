@@ -3,6 +3,7 @@ import Assent from '@/types/File/Assent';
 import DataGeoportail from '@/types/File/DataGeoportail';
 import Scale from '@/types/File/Scale';
 import BlankOption from '@/types/File/BlankOption';
+import Option from '@/types/File/Option';
 
 export const getObjectData = ( data: any, keys: any[] ): any => {
     // Si l'élément n'existe pas on retourne un objet vide ou un string
@@ -186,6 +187,48 @@ export const convertOldBlankOptions = ( oldData ): BlankOption[] => {
 
     return blankOptions;
 };
+
+export const convertOldOptions = ( oldData ): Option[] => {
+    const newOptions: Option[] = [];
+    const oldOption: []        = getArrayData( oldData[ 'devis' ][ 'options' ] );
+
+    const type   = oldData[ 'type' ].toLowerCase();
+    let fileType = 'default';
+
+    if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'ro' ) {
+        fileType = 'pac_ro';
+    } else if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'rr' ) {
+        fileType = 'pac_rr';
+    } else if ( type === 'cet' ) {
+        fileType = 'cet';
+    } else if ( type === 'poele' ) {
+        fileType = 'pg';
+    } else if ( type === 'comble' ) {
+        fileType = 'comble';
+    } else if ( type === 'sol' ) {
+        fileType = 'sol';
+    }
+
+    let index = 1;
+    oldOption.forEach( option => {
+        newOptions.push( {
+                             id:            option[ 'id' ],
+                             fileType,
+                             label:         option[ 'label' ],
+                             unit:          option[ 'unit' ],
+                             defaultPu:     option[ 'default' ],
+                             pu:            option[ 'value' ],
+                             defaultNumber: option[ 'value' ],
+                             number:        option[ 'value' ],
+                             position:      index,
+                         } );
+
+        index++;
+    } );
+
+    return newOptions;
+};
+
 
 export const convertOldTotalHt = ( oldData ): number => {
     return oldData[ 'devis' ][ 'totalHT' ] !== undefined ? oldData[ 'devis' ][ 'totalHT' ] : 0;

@@ -4,38 +4,38 @@ import {
     convertOldBlankOptions,
     convertOldDataGeoportail,
     convertOldErrorStatusDci,
+    convertOldOptions,
     convertOldScales,
     convertOldStatusDci,
     convertOldText,
     convertOldTotalHt,
     convertOldTotalTva,
-    getArrayData,
     getBoolData,
     getNumberData,
     getObjectData,
     getStringData,
 } from '@/services/file/convertData';
 import ItemList from '@/types/File/ItemList';
-import PgProduct from '@/types/File/Pg/PgProduct';
-import PgOption from '@/types/File/Pg/PgOption';
 import PgList from '@/types/File/Pg/PgList';
 import PgFile from '@/types/File/Pg/PgFile';
+import Product from '@/types/File/Product';
 
-const convertOldPgProduct = ( oldData ): PgProduct[] => {
-    const pgProducts: PgProduct[] = [];
-    const oldProducts: []         = getObjectData( oldData,
-                                                   [ 'devis',
-                                                     'poeles',
-                                                     'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
-                                                                                                           [ 'devis',
-                                                                                                             'poeles',
-                                                                                                             'products' ] );
+const convertOldPgProduct = ( oldData ): Product[] => {
+    const pgProducts: Product[] = [];
+    const oldProducts: []       = getObjectData( oldData,
+                                                 [ 'devis',
+                                                   'poeles',
+                                                   'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                                         [ 'devis',
+                                                                                                           'poeles',
+                                                                                                           'products' ] );
 
     oldProducts.forEach( product => {
         pgProducts.push( {
                              id:          product[ 'id' ],
+                             productType: 'pg',
                              label:       product[ 'label' ],
-                             ref:         product[ 'ref' ],
+                             reference:   product[ 'ref' ],
                              pu:          product[ 'pu' ],
                              defaultPu:   product[ 'defaultPU' ],
                              description: product[ 'descr' ],
@@ -56,8 +56,9 @@ const convertOldPgProduct = ( oldData ): PgProduct[] => {
     oldFumisteries.forEach( product => {
         pgProducts.push( {
                              id:          product[ 'id' ],
+                             productType: 'fumisterie',
                              label:       product[ 'label' ],
-                             ref:         product[ 'ref' ],
+                             reference:   product[ 'ref' ],
                              pu:          product[ 'pu' ],
                              defaultPu:   product[ 'defaultPU' ],
                              description: product[ 'descr' ],
@@ -68,22 +69,22 @@ const convertOldPgProduct = ( oldData ): PgProduct[] => {
     return pgProducts;
 };
 
-const convertSelectedPgProduct = ( oldData ): PgProduct[] => {
-    const selectedPgProducts: PgProduct[] = [];
-    const idSelectedProduct               = getNumberData( oldData[ 'devis' ][ 'poeles' ][ 'selectedId' ] );
-    const idSelectedFumisterie            = getNumberData( oldData[ 'devis' ][ 'fumisteries' ][ 'selectedId' ] );
-    const oldProducts: []                 = getObjectData( oldData,
-                                                           [ 'devis',
-                                                             'poeles',
-                                                             'products' ] ) === ( {} || '' ) ? [] : getObjectData(
+const convertSelectedPgProduct = ( oldData ): Product[] => {
+    const selectedPgProducts: Product[] = [];
+    const idSelectedProduct             = getNumberData( oldData[ 'devis' ][ 'poeles' ][ 'selectedId' ] );
+    const idSelectedFumisterie          = getNumberData( oldData[ 'devis' ][ 'fumisteries' ][ 'selectedId' ] );
+    const oldProducts: []               = getObjectData( oldData,
+                                                         [ 'devis',
+                                                           'poeles',
+                                                           'products' ] ) === ( {} || '' ) ? [] : getObjectData(
         oldData,
         [ 'devis',
           'poeles',
           'products' ] );
-    const oldFumisteries: []              = getObjectData( oldData,
-                                                           [ 'devis',
-                                                             'fumisteries',
-                                                             'products' ] ) === ( {} || '' ) ? [] : getObjectData(
+    const oldFumisteries: []            = getObjectData( oldData,
+                                                         [ 'devis',
+                                                           'fumisteries',
+                                                           'products' ] ) === ( {} || '' ) ? [] : getObjectData(
         oldData,
         [ 'devis',
           'fumisteries',
@@ -93,8 +94,9 @@ const convertSelectedPgProduct = ( oldData ): PgProduct[] => {
         if ( product[ 'id' ] === idSelectedProduct ) {
             selectedPgProducts.push( {
                                          id:          product[ 'id' ],
+                                         productType: 'pg',
                                          label:       product[ 'label' ],
-                                         ref:         product[ 'ref' ],
+                                         reference:   product[ 'ref' ],
                                          pu:          product[ 'pu' ],
                                          defaultPu:   product[ 'defaultPU' ],
                                          description: product[ 'descr' ],
@@ -112,8 +114,9 @@ const convertSelectedPgProduct = ( oldData ): PgProduct[] => {
         if ( product[ 'id' ] === idSelectedFumisterie ) {
             selectedPgProducts.push( {
                                          id:          product[ 'id' ],
+                                         productType: 'fumisterie',
                                          label:       product[ 'label' ],
-                                         ref:         product[ 'ref' ],
+                                         reference:   product[ 'ref' ],
                                          pu:          product[ 'pu' ],
                                          defaultPu:   product[ 'defaultPU' ],
                                          description: product[ 'descr' ],
@@ -124,26 +127,6 @@ const convertSelectedPgProduct = ( oldData ): PgProduct[] => {
     } );
 
     return selectedPgProducts;
-};
-
-const convertOldPgOptions = ( oldData ): PgOption[] => {
-    const pgOptions: PgOption[] = [];
-    const oldOption: []         = getArrayData( oldData[ 'devis' ][ 'options' ] );
-
-    oldOption.forEach( option => {
-        pgOptions.push( {
-                            id:    option[ 'id' ],
-                            label: option[ 'label' ],
-                            unit:  option[ 'unit' ],
-                            value: option[ 'value' ],
-                            pu:    {
-                                default: option[ 'default' ],
-                                value:   option[ 'value' ],
-                            },
-                        } );
-    } );
-
-    return pgOptions;
 };
 
 const convertOldPgItemList = ( oldData ): PgList => {
@@ -327,11 +310,11 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             zoneInstallation:            getObjectData( oldData, [ 'fiche', 'zoneInstallation' ] ),
             creation:                    getObjectData( oldData, [ 'fiche', 'creation' ] ),
         },
-        quotation:                 {
+        quotation: {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
-            options:            convertOldPgOptions( oldData ),
+            options:            convertOldOptions( oldData ),
             blankOptions:       convertOldBlankOptions( oldData ),
             commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
             partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),

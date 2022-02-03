@@ -175,8 +175,8 @@ export const convertOldJsonToNewJson = () => {
     const dropboxPath          = store.get( 'dropboxPath' );
     let oldData: object | null = null;
 
-    if ( fs.existsSync( dropboxPath + '/DCI/old_data_pg.json' ) ) {
-        oldData = JSON.parse( fs.readFileSync( dropboxPath + '/DCI/old_data_pg.json', 'utf8' ) );
+    if ( fs.existsSync( dropboxPath + '/DCI/old_data_cet.json' ) ) {
+        oldData = JSON.parse( fs.readFileSync( dropboxPath + '/DCI/old_data_cet.json', 'utf8' ) );
         console.log( oldData );
     }
 

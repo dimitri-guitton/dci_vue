@@ -1,15 +1,15 @@
 import BlankOption from '@/types/File/BlankOption';
-import RoOption from '@/types/File/Ro/RoOption';
-import RoProduct from '@/types/File/Ro/RoProduct';
 import RoEcsDeporte from '@/types/File/Ro/RoEcsDeporte';
 import RoKitBiZone from '@/types/File/Ro/RoKitBiZone';
 import Text from '@/types/File/Text';
+import Product from '@/types/File/Product';
+import Option from '@/types/File/Option';
 
 interface RoQuotation {
     origin: string;
     dateTechnicalVisit: string;
     executionDelay: string;
-    options: RoOption[];
+    options: Option[];
     blankOptions: BlankOption[];
     commentary: string;
     partner: string;
@@ -18,7 +18,7 @@ interface RoQuotation {
     tva20: number;
     ceeBonus: number;
     maPrimeRenovBonus: number;
-    selectedProducts: RoProduct[];
+    selectedProducts: Product[];
     assortment: string; // Anciennement gamme
     volumeECS: number;
     volumeECSDeporte: number;
@@ -33,7 +33,7 @@ interface RoQuotation {
         brand?: string;
         model?: string;
     };
-    products: RoProduct[];
+    products: Product[];
     discount: number;
     totalHt: number;
     totalTva: number;
