@@ -11,7 +11,7 @@ import { defineComponent } from 'vue';
 import { useRoute } from 'vue-router';
 
 export default defineComponent( {
-                                  name: 'FolderShow',
+                                  name: 'file-edit',
                                   setup() {
                                     const route     = useRoute();
                                     const folderRef = route.query.slug;

@@ -14,19 +14,19 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/views/Dashboard.vue'),
             },
             {
-                path:      '/folder_list',
-                name:      'folder_list',
-                component: () => import('@/views/FolderList.vue'),
+                path:      '/file-list',
+                name:      'file-list',
+                component: () => import('@/views/file/FileList.vue'),
+            },
+            {
+                path:      '/file-edit/{slug}',
+                name:      'file-edit',
+                component: () => import('@/views/file/FileEdit.vue'),
             },
             {
                 path:      '/parameters',
                 name:      'parameters',
                 component: () => import('@/views/Parameters.vue'),
-            },
-            {
-                path:      '/folder/{slug}',
-                name:      'folder_show',
-                component: () => import('@/views/FolderShow.vue'),
             },
             {
                 path:      '/file/cet',

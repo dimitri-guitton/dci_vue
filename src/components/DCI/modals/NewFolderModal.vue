@@ -218,7 +218,7 @@ export default defineComponent( {
                                       const folderReference = await folderService.createAFolder( newFolderData.value.type,
                                                                                                  newFolderData.value.customer );
 
-                                      await router.push( { name: 'folder_show', query: { slug: folderReference } } );
+                                      await router.push( { name: 'file-edit', query: { slug: folderReference } } );
                                     };
 
                                     return {

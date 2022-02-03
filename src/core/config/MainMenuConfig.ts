@@ -9,7 +9,7 @@ const DocMenuConfig: object = [
             },
             {
                 heading:  'Mes dossiers',
-                route:    '/folder_list',
+                route:    '/file-list',
                 svgIcon:  'media/icons/duotone/Design/PenAndRuller.svg',
                 fontIcon: 'bi-app-indicator',
             },

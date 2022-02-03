@@ -20,20 +20,18 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NewFolderModal from '@/components/DCI/modals/NewFolderModal.vue';
-import * as folderService from '../services/folder/folderService';
+import * as folderService from '../../services/folder/folderService';
 import FolderDatatable from '@/components/DCI/FolderDatatable.vue';
 
 
 export default defineComponent( {
-                                  name:       'folder_list',
+                                  name:       'file-list',
                                   components: {
                                     FolderDatatable,
                                     NewFolderModal,
                                   },
                                   setup() {
                                     folderService.createDciFolderIfNotExist();
-                                    // folderService.convertOldJsonToNewJson();
-
                                     return {};
                                   },
                                 } );
