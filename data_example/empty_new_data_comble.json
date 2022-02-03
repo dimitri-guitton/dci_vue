@@ -1,0 +1,862 @@
+{
+    "version":                   "1",
+    "type":                      "comble",
+    "ref":                       "",
+    "folderName":                "",
+    "createdAt":                 "",
+    "updatedAt":                 "",
+    "settings":                  {
+        "ceeCoef": "6.6"
+    },
+    "quotationTemplate":         "quotation_comble_v1.html",
+    "workSheetTemplate":         "work_sheet_comble_v1.html",
+    "disabledBonus":             false,
+    "disabledCeeBonus":          false,
+    "enabledHousingAction":      false,
+    "disabledMaPrimeRenovBonus": false,
+    "assents":                   [],
+    "beneficiary":               {
+        "civility":  "",
+        "lastName":  "",
+        "firstName": "",
+        "address":   "",
+        "zipCode":   "",
+        "city":      "",
+        "email":     "",
+        "phone":     "",
+        "mobile":    ""
+    },
+    "codeBonus":                 null,
+    "energyZone":                null,
+    "bonusRate":                 null,
+    "housing":                   {
+        "nbOccupant":        1,
+        "type":              "residentiel",
+        "isAddressBenef":    true,
+        "addresse":          "",
+        "zipCode":           "",
+        "city":              "",
+        "plot":              "",
+        "area":              "",
+        "dataGeoportail":    {},
+        "location":          "",
+        "insulationQuality": "",
+        "constructionYear":  "",
+        "lessThan2Years":    false,
+        "availableVoltage":  ""
+    },
+    "workSheet":                 {
+        "visiteComble":              true,
+        "chantierHabite":            true,
+        "chantierType":              "reno",
+        "niveauHabitation":          "rdc",
+        "gdEchelle":                 false,
+        "partieAisoler":             "hab_ss_gge",
+        "puissanceCompteur":         0,
+        "accesPl":                   false,
+        "periodePose":               "",
+        "rueEtroite":                false,
+        "accesComble":               "trappe",
+        "couvertureType":            "meca",
+        "charpenteType":             "ferm",
+        "etatToiture":               "propre",
+        "volige":                    false,
+        "nbreAccesComble":           0,
+        "nbreCompartiments":         0,
+        "isolationExistante":        true,
+        "isolationExistanteType":    "vrac",
+        "isolationExistanteCouches": 0,
+        "lardagePareVapeur":         false,
+        "rehausseTrappeType":        "polypro",
+        "desencombrement":           false,
+        "infosSup":                  "RAS"
+    },
+    "quotation":                 {
+        "pose":               2.5,
+        "overridePose":       2.5,
+        "origin":             "",
+        "dateTechnicalVisit": "",
+        "executionDelay":     "",
+        "options":            [
+            {
+                "id":            1,
+                "fileType":      "comble",
+                "label":         "Enlèvement de la laine existante en rouleau",
+                "unit":          "m2",
+                "pu":            0,
+                "defaultNumber": 0,
+                "number":        0,
+                "position":      1
+            },
+            {
+                "id":            2,
+                "fileType":      "comble",
+                "label":         "Remise en place de la laine existante ou lardage du pare vapeur",
+                "unit":          "m2",
+                "pu":            0,
+                "defaultNumber": 0,
+                "number":        0,
+                "position":      2
+            },
+            {
+                "id":            3,
+                "fileType":      "comble",
+                "label":         "Création d'un trou d'homme",
+                "unit":          "u",
+                "pu":            0,
+                "defaultNumber": 0,
+                "number":        0,
+                "position":      3
+            },
+            {
+                "id":            10,
+                "fileType":      "comble",
+                "label":         "Nbre de coffrage volets roulant < 1.5m",
+                "unit":          "u",
+                "pu":            0,
+                "defaultNumber": 0,
+                "number":        0,
+                "position":      4
+            },
+            {
+                "id":            11,
+                "fileType":      "comble",
+                "label":         "Nbre de coffrage volets roulant > 1.5m",
+                "unit":          "u",
+                "pu":            0,
+                "defaultNumber": 0,
+                "number":        0,
+                "position":      5
+            },
+            {
+                "id":            12,
+                "fileType":      "comble",
+                "label":         "Coffrage bloc moteur VMC ou Moteur Cheminée",
+                "unit":          "u",
+                "pu":            0,
+                "defaultNumber": 0,
+                "number":        0,
+                "position":      6
+            },
+            {
+                "id":            4,
+                "fileType":      "comble",
+                "label":         "Coffrage de la trappe",
+                "unit":          "u",
+                "pu":            "1",
+                "defaultNumber": "1",
+                "number":        "1",
+                "position":      7
+            },
+            {
+                "id":            5,
+                "fileType":      "comble",
+                "label":         "Isolation de la trappe",
+                "unit":          "u",
+                "pu":            "1",
+                "defaultNumber": "1",
+                "number":        "1",
+                "position":      8
+            },
+            {
+                "id":            6,
+                "fileType":      "comble",
+                "label":         "Entourage de la cheminée",
+                "unit":          "u",
+                "pu":            0,
+                "defaultNumber": 0,
+                "number":        0,
+                "position":      9
+            },
+            {
+                "id":            7,
+                "fileType":      "comble",
+                "label":         "Protection des spots électriques",
+                "unit":          "u",
+                "pu":            0,
+                "defaultNumber": 0,
+                "number":        0,
+                "position":      10
+            },
+            {
+                "id":            8,
+                "fileType":      "comble",
+                "label":         "Pose de la signalétique des boîtiers électriques",
+                "unit":          "u",
+                "pu":            1,
+                "defaultNumber": 1,
+                "number":        1,
+                "position":      11
+            },
+            {
+                "id":            9,
+                "fileType":      "comble",
+                "label":         "Pose des piges de graduation de coefficient",
+                "unit":          "u",
+                "pu":            1,
+                "defaultNumber": 1,
+                "number":        1,
+                "position":      12
+            },
+            {
+                "id":            13,
+                "fileType":      "comble",
+                "label":         "Arrêtoires en Polypro",
+                "unit":          "u",
+                "pu":            0,
+                "defaultNumber": 0,
+                "number":        0,
+                "position":      13
+            }
+        ],
+        "blankOptions":       [
+            {
+                "id":    "sup1",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            },
+            {
+                "id":    "sup2",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            }
+        ],
+        "commentary":         "",
+        "partner":            "VTE",
+        "texts":              [
+            {
+                "title": null,
+                "text":  "La TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans. Réalisation du chantier : France Menuisiers 43346499700157 RGE qualibat N°E-E93378"
+            },
+            {
+                "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
+                "text":  "Les travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique."
+            },
+            {
+                "title": "AIDE A LA RENOVATION ÉNERGÉTIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
+                "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
+            }
+        ],
+        "tva":                5.5,
+        "selectedProducts":   [],
+        "products":           [
+            {
+                "id":          1,
+                "productType": "iso_comble",
+                "label":       "Isolation par soufflage d'un matelas de laine minérale de marque KNAUF INSULATION – SUPAFIL LOFT 045",
+                "reference":   "Laine minérale de Verre SUPAFIL Thermo Loft. R = 7m².K/W, ép.320mm",
+                "pu":          12.2,
+                "defaultPu":   12.2,
+                "description": "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 7 m².k/w   Épaisseur mini (mm) : 320 mm\r\n- Pouvoir couvrant (kg/m²) : 3,8 - Classement au feu : A1 (incombustible)"
+            },
+            {
+                "id":          4,
+                "productType": "iso_comble",
+                "label":       "Isolation en R8 par soufflage d'un matelas de laine minérale de marque KNAUF INSULATION – SUPAFIL LOFT 045",
+                "reference":   "Laine minérale de Verre SUPAFIL Thermo Loft. R = 8m².K/W, ép.365mm",
+                "pu":          13.7,
+                "defaultPu":   13.7,
+                "description": "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 8 m².k/w   Épaisseur mini (mm) : 365 mm\r\n- Pouvoir couvrant (kg/m²) : 4.4 - Classement au feu : A1 (incombustible)"
+            },
+            {
+                "id":          5,
+                "productType": "iso_comble",
+                "label":       "Isolation en R9 par soufflage d'un matelas de laine minérale de marque KNAUF INSULATION – SUPAFIL LOFT 045",
+                "reference":   "Laine minérale de Verre SUPAFIL Thermo Loft. R = 9m².K/W, ép.410mm",
+                "pu":          15.2,
+                "defaultPu":   15.2,
+                "description": "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 9 m².k/w    Épaisseur mini (mm) : 410 mm\r\n- Pouvoir couvrant (kg/m²) : 4.9 - Classement au feu : A1 (incombustible)"
+            }
+        ],
+        "discount":           0,
+        "totalHt":            0,
+        "totalTva":           0
+    },
+    "scales":                    [
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 19074
+                },
+                {
+                    "nbr": 2,
+                    "min": 27896
+                },
+                {
+                    "nbr": 3,
+                    "min": 33547
+                },
+                {
+                    "nbr": 4,
+                    "min": 39192
+                },
+                {
+                    "nbr": 5,
+                    "min": 44860
+                },
+                {
+                    "nbr": 6,
+                    "min": 50511
+                },
+                {
+                    "nbr": 7,
+                    "min": 56162
+                },
+                {
+                    "nbr": 8,
+                    "min": 61813
+                },
+                {
+                    "nbr": 9,
+                    "min": 67464
+                },
+                {
+                    "nbr": 10,
+                    "min": 73115
+                }
+            ],
+            "code":     "CL",
+            "ceeBonus": {
+                "h1": 11.22,
+                "h2": 9.24,
+                "h3": 11.22
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 19074
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 27896
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 33547
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 39192
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 44860
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 50511
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 56162
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 61813
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 67464
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 73115
+                }
+            ],
+            "code":     "GP",
+            "ceeBonus": {
+                "h1": 11.22,
+                "h2": 9.24,
+                "h3": 11.22
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 29148
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 42848
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 51592
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 60336
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 69081
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 77825
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 86569
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 95313
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 104057
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 112801
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 121545
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 130289
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 139033
+                }
+            ],
+            "code":     "PACCL",
+            "ceeBonus": {
+                "h1": 11.22,
+                "h2": 9.24,
+                "h3": 11.22
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 14879
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 21760
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 26170
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 30572
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 34993
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 39405
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 43817
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 48229
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 52641
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 57053
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 61465
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 65877
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 70289
+                }
+            ],
+            "code":     "PACGP",
+            "ceeBonus": {
+                "h1": 11.22,
+                "h2": 9.24,
+                "h3": 11.22
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 29148
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 42848
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 51592
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 60336
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 69081
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 77825
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 86569
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 95313
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 104057
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 112801
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 121545
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 130289
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 139033
+                }
+            ],
+            "code":     "PACIT",
+            "ceeBonus": {
+                "h1": 11.22,
+                "h2": 9.24,
+                "h3": 11.22
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 19074
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 27896
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 33547
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 39192
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 44860
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 50511
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 56162
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 61813
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 67464
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 73115
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 78766
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 84417
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 90068
+                }
+            ],
+            "code":     "PACP",
+            "ceeBonus": {
+                "h1": 11.22,
+                "h2": 9.24,
+                "h3": 11.22
+            }
+        }
+    ],
+    "lists":                     {
+        "localTypeList":              [],
+        "chauffageTypeList":          {
+            "slug":  "chauffageTypeList",
+            "items": [
+                {
+                    "value": "Electrique"
+                },
+                {
+                    "value": "Combustible"
+                }
+            ]
+        },
+        "batimentNatureList":         {
+            "slug":  "batimentNatureList",
+            "items": [
+                {
+                    "value": "-"
+                },
+                {
+                    "value": "Nouvelle résidence principale"
+                },
+                {
+                    "value": "Location"
+                },
+                {
+                    "value": "Résidence secondaire"
+                }
+            ]
+        },
+        "chantierTypeList":           {
+            "slug":  "chantierTypeList",
+            "items": [
+                {
+                    "value": "RENO"
+                },
+                {
+                    "value": "NEUF"
+                }
+            ]
+        },
+        "niveauHabitationList":       {
+            "slug":  "niveauHabitationList",
+            "items": [
+                {
+                    "value": "RDC"
+                },
+                {
+                    "value": "R+1"
+                },
+                {
+                    "value": "R+2"
+                },
+                {
+                    "value": "R+3"
+                },
+                {
+                    "value": "R+4"
+                },
+                {
+                    "value": "AUTRE"
+                }
+            ]
+        },
+        "partieAIsolerList":          [],
+        "puissanceCompteurList":      {
+            "slug":  "puissanceCompteurList",
+            "items": [
+                {},
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        "accesCombleList":            {
+            "slug":  "accesCombleList",
+            "items": [
+                {
+                    "value": "TRAPPE"
+                },
+                {
+                    "value": "TOITURE"
+                },
+                {
+                    "value": "TRAPPE et TOITURE"
+                }
+            ]
+        },
+        "couvertureTypeList":         {
+            "slug":  "couvertureTypeList",
+            "items": [
+                {
+                    "value": "Mecanique"
+                },
+                {
+                    "value": "Tiges de bottes"
+                },
+                {
+                    "value": "Ardoise"
+                },
+                {
+                    "value": "Tuiles plates"
+                },
+                {
+                    "value": "Tuiles courbes"
+                }
+            ]
+        },
+        "charpenteTypeList":          {
+            "slug":  "charpenteTypeList",
+            "items": [
+                {
+                    "value": "Traditionnelle"
+                },
+                {
+                    "value": "Fermettes"
+                },
+                {
+                    "value": "Metallique"
+                },
+                {
+                    "value": "Autre"
+                }
+            ]
+        },
+        "etatToitureList":            {
+            "slug":  "etatToitureList",
+            "items": [
+                {
+                    "value": "Propre"
+                },
+                {
+                    "value": "Mousse en petite quantité"
+                },
+                {
+                    "value": "Mousse importante"
+                }
+            ]
+        },
+        "isolationExistanteTypeList": {
+            "slug":  "isolationExistanteTypeList",
+            "items": [
+                {
+                    "value": "ROULEAU"
+                },
+                {
+                    "value": "VRAC"
+                },
+                {
+                    "value": "Vrac et rouleau"
+                },
+                {
+                    "value": "pas d’isolant"
+                }
+            ]
+        },
+        "rehausseTrappeTypeList":     {
+            "slug":  "rehausseTrappeTypeList",
+            "items": [
+                {
+                    "value": "POLYPRO"
+                },
+                {
+                    "value": "BOIS"
+                }
+            ]
+        },
+        "nbrAccesCombleList":         [],
+        "nbrCompartimentsList":       []
+    }
+}

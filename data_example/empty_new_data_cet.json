@@ -1,5 +1,5 @@
 {
-    "version":                   "6",
+    "version":                   "1",
     "type":                      "cet",
     "ref":                       "",
     "folderName":                "",
@@ -8,8 +8,8 @@
     "settings":                  {
         "ceeCoef": "6.6"
     },
-    "devisTemplate":             "TODO",
-    "workSheetTemplate":         "TODO",
+    "quotationTemplate":         "quotation_cet_v1.html",
+    "workSheetTemplate":         "work_sheet_cet_v1.html",
     "disabledBonus":             false,
     "disabledCeeBonus":          false,
     "enabledHousingAction":      false,
@@ -26,11 +26,11 @@
         "phone":     "",
         "mobile":    ""
     },
-    "codeBonus":                 "",
-    "energyZone":                "",
-    "bonusRate":                 "",
+    "codeBonus":                 null,
+    "energyZone":                null,
+    "bonusRate":                 0,
     "housing":                   {
-        "nbOccupant":        "",
+        "nbOccupant":        "1",
         "type":              "maison_individuelle",
         "isAddressBenef":    true,
         "addresse":          "",
@@ -38,15 +38,7 @@
         "city":              "",
         "plot":              "",
         "area":              "",
-        "dataGeoportail":    {
-            "zoom":     19,
-            "center":   [],
-            "position": [],
-            "zipCode":  "",
-            "city":     "",
-            "address":  "",
-            "plot":     ""
-        },
+        "dataGeoportail":    {},
         "location":          "",
         "insulationQuality": "",
         "constructionYear":  "",
@@ -56,12 +48,12 @@
     "workSheet":                 {
         "period":                  "",
         "niveauHabitation":        "pp",
-        "typeChantier":            "reno",
+        "typeChantier":            "neuf",
         "disjoncteur":             false,
-        "tensionDisponible":       "triphase",
-        "distanceCompteurCet":     "",
-        "natureMurExt":            "beton",
-        "naturePlafond":           "placo",
+        "tensionDisponible":       "monophase",
+        "distanceCompteurCet":     0,
+        "natureMurExt":            "parpaing",
+        "naturePlafond":           "brique",
         "visiteComble":            false,
         "chantierHabite":          false,
         "grandeEchelle":           false,
@@ -69,9 +61,9 @@
         "puissanceCompteur":       6,
         "accesComble":             "trappe",
         "rueEtroite":              false,
-        "typeCouverture":          "mecanique",
+        "typeCouverture":          "meca",
         "etatToiture":             "propre",
-        "typeCharpente":           "metal",
+        "typeCharpente":           "trad",
         "nbCompartimentComble":    1,
         "presenceVolige":          false,
         "nbAccesComble":           1,
@@ -83,8 +75,8 @@
         "aspirationType":          "none",
         "ballonFixeMur":           false,
         "uniteExtFixeMur":         false,
-        "distanceBallonUnitExt":   "1",
-        "infosSup":                ""
+        "distanceBallonUnitExt":   0,
+        "infosSup":                "RAS"
     },
     "quotation":                 {
         "origin":             "",
@@ -92,40 +84,44 @@
         "executionDelay":     "",
         "options":            [
             {
-                "id":    1,
-                "label": "Forfait accessoire nécessaire à la pose, au raccordement de l’installation",
-                "unit":  "u",
-                "value": 1,
-                "pu":    {
-                    "value": 1
-                }
+                "id":            1,
+                "fileType":      "cet",
+                "label":         "Forfait accessoire nécessaire à la pose, au raccordement de l’installation",
+                "unit":          "u",
+                "pu":            1,
+                "defaultNumber": 1,
+                "number":        1,
+                "position":      1
             },
             {
-                "id":    2,
-                "label": "Forfait pose ( Pose nouvel appareil, mise en service)",
-                "unit":  "u",
-                "value": 1,
-                "pu":    {
-                    "value": 1
-                }
+                "id":            2,
+                "fileType":      "cet",
+                "label":         "Forfait pose ( Pose nouvel appareil, mise en service)",
+                "unit":          "u",
+                "pu":            1,
+                "defaultNumber": 1,
+                "number":        1,
+                "position":      2
             },
             {
-                "id":    3,
-                "label": "Raccordement extérieur par chapeau de toiture",
-                "unit":  "u",
-                "value": 0,
-                "pu":    {
-                    "value": 0
-                }
+                "id":            3,
+                "fileType":      "cet",
+                "label":         "Raccordement extérieur par chapeau de toiture",
+                "unit":          "u",
+                "pu":            0,
+                "defaultNumber": 0,
+                "number":        0,
+                "position":      3
             },
             {
-                "id":    4,
-                "label": "Raccordement extérieur mural",
-                "unit":  "u",
-                "value": 0,
-                "pu":    {
-                    "value": 0
-                }
+                "id":            4,
+                "fileType":      "cet",
+                "label":         "Raccordement extérieur mural",
+                "unit":          "u",
+                "pu":            0,
+                "defaultNumber": 0,
+                "number":        0,
+                "position":      4
             }
         ],
         "blankOptions":       [
@@ -160,14 +156,15 @@
                 "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
             }
         ],
-        "tva":                "",
-        "ceeBonus":           "",
+        "tva":                5.5,
+        "ceeBonus":           0,
         "selectedProducts":   [],
         "products":           [
             {
                 "id":          1,
+                "productType": "cet",
                 "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
-                "ref":         "CETACMO200",
+                "reference":   "CETACMO200",
                 "pu":          2578,
                 "defaultPu":   2578,
                 "description": "Capacité: 200L MONOBLOC\r\nDimensions HxLxP: 1689*602*691\r\nPuissance acoustique: 50 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c\r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\n\r\nFonctionne sur air ambiant si volume de la pièce> 20M3",
@@ -176,8 +173,9 @@
             },
             {
                 "id":          2,
+                "productType": "cet",
                 "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 250L",
-                "ref":         "CETACMO250",
+                "reference":   "CETACMO250",
                 "pu":          2675,
                 "defaultPu":   2675,
                 "description": "Capacité: 250L MONOBLOC\r\nDimensions HxLxP: 1929*602*691\r\nPuissance acoustique: 50 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c \r\nAppoint électrique: 1800W\r\nCOP: 3,12 – Profil de soutirage : L\r\nClasse energetique: A+\r\n\r\nFonctionne sur air ambiant si volume de la pièce> 20M3",
@@ -186,8 +184,9 @@
             },
             {
                 "id":          3,
+                "productType": "cet",
                 "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
-                "ref":         "CETACSP200",
+                "reference":   "CETACSP200",
                 "pu":          2456,
                 "defaultPu":   2456,
                 "description": "Capacité: 200L SPLIT\r\nDimensions HxLxP: 1267*588*603mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
@@ -196,8 +195,9 @@
             },
             {
                 "id":          4,
+                "productType": "cet",
                 "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 270L",
-                "ref":         "CETACSP270",
+                "reference":   "CETACSP270",
                 "pu":          2666,
                 "defaultPu":   2666,
                 "description": "Capacité: 270L SPLIT\r\nDimensions HxLxP: 1600*588*652mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c  \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L pour une efficacité énergétique de 124%\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
@@ -206,7 +206,7 @@
             }
         ],
         "maPrimeRenovBonus":  0,
-        "discount":           "",
+        "discount":           0,
         "totalHt":            0,
         "totalTva":           0
     },
@@ -548,14 +548,6 @@
             }
         }
     ],
-    "statusInDci":               2,
-    "errorsStatusInDci":         [],
-    "technician":                {
-        "id":        "Jeremy",
-        "lastName":  "Thomas",
-        "firstName": 11,
-        "phone":     "0645118070"
-    },
     "lists":                     {
         "localTypeList":         {
             "slug":  "localTypeList",
@@ -750,11 +742,10 @@
         "puissanceCompteurList": {
             "slug":  "puissanceCompteurList",
             "items": [
-                {},
-                {},
-                {},
-                {},
-                {}
+                3,
+                6,
+                9,
+                12
             ]
         },
         "natureMurExtList":      {

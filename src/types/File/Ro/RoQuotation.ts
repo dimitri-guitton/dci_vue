@@ -27,7 +27,6 @@ interface RoQuotation {
     isKitBiZone: boolean;
     selectedKitBiZone?: RoKitBiZone;
     ceilingHeight: number;  // Hauteur sous plafond
-    quantity: number;
     deviceToReplace: {
         type?: string;
         brand?: string;

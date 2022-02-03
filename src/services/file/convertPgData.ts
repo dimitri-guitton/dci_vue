@@ -198,9 +198,14 @@ const convertOldPgItemList = ( oldData ): PgList => {
         const newItems: ItemList[] = [];
 
         oldList.forEach( ( data ) => {
-            newItems.push( {
-                               value: data[ Object.keys( data )[ 0 ] ],
-                           } );
+            if ( typeof data === 'object' ) {
+
+                newItems.push( {
+                                   value: data[ Object.keys( data )[ 0 ] ],
+                               } );
+            } else {
+                newItems.push( data );
+            }
         } );
 
         lists[ newName[ item ] ] = {
@@ -221,7 +226,7 @@ export const convertOldPgFile = ( oldData ): PgFile => {
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),
         updatedAt:                 getStringData( oldData[ 'updatedAt' ] ),
         settings:                  oldData[ 'settings' ],
-        devisTemplate:             getStringData( oldData[ 'devisTemplate' ] ),
+        quotationTemplate:         getStringData( oldData[ 'quotationTemplate' ] ),
         workSheetTemplate:         getStringData( oldData[ 'ficheTemplate' ] ),
         disabledBonus:             getBoolData( oldData[ 'disablePrime' ] ),
         disabledCeeBonus:          getBoolData( oldData[ 'disablePrimeCEE' ] ),
@@ -233,7 +238,7 @@ export const convertOldPgFile = ( oldData ): PgFile => {
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
         bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
         housing:                   {
-            nbOccupant:        getObjectData( oldData, [ 'logement', 'occupants' ] ),
+            nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
             isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
             addresse:          getObjectData( oldData, [ 'logement', 'adresse' ] ),
@@ -246,7 +251,6 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             insulationQuality: getObjectData( oldData, [ 'logement', 'qualiteIsolation' ] ),
             constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
-            availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },
         workSheet:                 {
             periodePose:                 getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
@@ -309,7 +313,7 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             zoneInstallation:            getObjectData( oldData, [ 'fiche', 'zoneInstallation' ] ),
             creation:                    getObjectData( oldData, [ 'fiche', 'creation' ] ),
         },
-        quotation: {
+        quotation:                 {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
@@ -318,12 +322,12 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
             partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),
             texts:              convertOldText( oldData ),
-            tva:                getObjectData( oldData, [ 'devis', 'tva20' ] ),
-            ceeBonus:           getObjectData( oldData, [ 'devis', 'primeCEE' ] ),
+            tva:                getNumberData( oldData [ 'devis' ][ 'tva' ] ),
+            ceeBonus:           getNumberData( oldData [ 'devis' ][ 'primeCEE' ] ),
             selectedProducts:   convertSelectedPgProduct( oldData ),
             products:           convertOldPgProduct( oldData ),
-            maPrimeRenovBonus:  getObjectData( oldData, [ 'devis', 'primeAnah' ] ),
-            discount:           getObjectData( oldData, [ 'devis', 'remise' ] ),
+            maPrimeRenovBonus:  getNumberData( oldData [ 'devis' ][ 'primeAnah' ] ),
+            discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
             totalHt:            convertOldTotalHt( oldData ),
             totalTva:           convertOldTotalTva( oldData ),
         },

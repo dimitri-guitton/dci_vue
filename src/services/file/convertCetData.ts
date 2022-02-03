@@ -10,7 +10,6 @@ import {
     convertOldText,
     convertOldTotalHt,
     convertOldTotalTva,
-    getArrayData,
     getBoolData,
     getNumberData,
     getObjectData,
@@ -50,20 +49,29 @@ const convertOldCetProduct = ( oldData ): Product[] => {
 
 const convertSelectedCetProduct = ( oldData ): Product[] => {
     const selectedCeProducts: Product[] = [];
-    const oldSelectedProducts: []       = getArrayData( oldData[ 'devis' ][ 'selectedProducts' ] );
+    const idSelectedProduct             = getNumberData( oldData[ 'devis' ][ 'chauffeEau' ][ 'selectedId' ] );
+    const oldProducts: []               = getObjectData( oldData,
+                                                         [ 'devis',
+                                                           'chauffeEau',
+                                                           'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                                                 [ 'devis',
+                                                                                                                   'chauffeEau',
+                                                                                                                   'products' ] );
 
-    oldSelectedProducts.forEach( product => {
-        selectedCeProducts.push( {
-                                     id:          product[ 'id' ],
-                                     productType: 'cet',
-                                     label:       product[ 'label' ],
-                                     reference:   product[ 'ref' ],
-                                     pu:          product[ 'pu' ],
-                                     defaultPu:   product[ 'defaultPU' ],
-                                     description: product[ 'descr' ],
-                                     size:        product[ 'size' ],
-                                     type:        product[ 'type' ],
-                                 } );
+    oldProducts.forEach( product => {
+        if ( product[ 'id' ] === idSelectedProduct ) {
+            selectedCeProducts.push( {
+                                         id:          product[ 'id' ],
+                                         productType: 'cet',
+                                         label:       product[ 'label' ],
+                                         reference:   product[ 'ref' ],
+                                         pu:          product[ 'pu' ],
+                                         defaultPu:   product[ 'defaultPU' ],
+                                         description: product[ 'descr' ],
+                                         size:        product[ 'size' ],
+                                         type:        product[ 'type' ],
+                                     } );
+        }
     } );
 
     return selectedCeProducts;
@@ -138,9 +146,14 @@ const convertOldCetItemList = ( oldData ): CetList => {
         const newItems: ItemList[] = [];
 
         oldList.forEach( ( data ) => {
-            newItems.push( {
-                               value: data[ Object.keys( data )[ 0 ] ],
-                           } );
+            if ( typeof data === 'object' ) {
+
+                newItems.push( {
+                                   value: data[ Object.keys( data )[ 0 ] ],
+                               } );
+            } else {
+                newItems.push( data );
+            }
         } );
 
         lists[ newName[ item ] ] = {
@@ -162,7 +175,7 @@ export const convertOldCetFile = ( oldData ): CetFile => {
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),
         updatedAt:                 getStringData( oldData[ 'updatedAt' ] ),
         settings:                  oldData[ 'settings' ],
-        devisTemplate:             getStringData( oldData[ 'devisTemplate' ] ),
+        quotationTemplate:         getStringData( oldData[ 'quotationTemplate' ] ),
         workSheetTemplate:         getStringData( oldData[ 'ficheTemplate' ] ),
         disabledBonus:             getBoolData( oldData[ 'disablePrime' ] ),
         disabledCeeBonus:          getBoolData( oldData[ 'disablePrimeCEE' ] ),
@@ -174,7 +187,7 @@ export const convertOldCetFile = ( oldData ): CetFile => {
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
         bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
         housing:                   {
-            nbOccupant:        getObjectData( oldData, [ 'logement', 'occupants' ] ),
+            nbOccupant:        getNumberData( oldData[ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
             isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
             addresse:          getObjectData( oldData, [ 'logement', 'adresse' ] ),
@@ -195,7 +208,7 @@ export const convertOldCetFile = ( oldData ): CetFile => {
             typeChantier:            getObjectData( oldData, [ 'fiche', 'typeChantier' ] ),
             disjoncteur:             getObjectData( oldData, [ 'fiche', 'disjoncteur' ] ),
             tensionDisponible:       getObjectData( oldData, [ 'fiche', 'tensionDisponible' ] ),
-            distanceCompteurCet:     getObjectData( oldData, [ 'fiche', 'distanceCompteurCet' ] ),
+            distanceCompteurCet:     getNumberData( oldData[ 'fiche' ] [ 'distanceCompteurCet' ] ),
             natureMurExt:            getObjectData( oldData, [ 'fiche', 'natureMurExt' ] ),
             naturePlafond:           getObjectData( oldData, [ 'fiche', 'naturePlafond' ] ),
             visiteComble:            getObjectData( oldData, [ 'fiche', 'visiteComble' ] ),
@@ -208,9 +221,9 @@ export const convertOldCetFile = ( oldData ): CetFile => {
             typeCouverture:          getObjectData( oldData, [ 'fiche', 'typeCouverture' ] ),
             etatToiture:             getObjectData( oldData, [ 'fiche', 'etatToiture' ] ),
             typeCharpente:           getObjectData( oldData, [ 'fiche', 'typeCharpente' ] ),
-            nbCompartimentComble:    getObjectData( oldData, [ 'fiche', 'nbrCompartementComble' ] ),
+            nbCompartimentComble:    getNumberData( oldData[ 'fiche' ][ 'nbrCompartementComble' ] ),
             presenceVolige:          getObjectData( oldData, [ 'fiche', 'presenceVolige' ] ),
-            nbAccesComble:           getObjectData( oldData, [ 'fiche', 'nbrAccesComble' ] ),
+            nbAccesComble:           getNumberData( oldData [ 'fiche' ][ 'nbrAccesComble' ] ),
             typeRadiateur:           getObjectData( oldData, [ 'fiche', 'typeRadiateur' ] ),
             nbrCompartementComble:   getObjectData( oldData, [ 'fiche', 'nbrCompartementComble' ] ),
             nbrAccesComble:          getObjectData( oldData, [ 'fiche', 'nbrAccesComble' ] ),
@@ -219,10 +232,10 @@ export const convertOldCetFile = ( oldData ): CetFile => {
             aspirationType:          getObjectData( oldData, [ 'fiche', 'aspirationType' ] ),
             ballonFixeMur:           getObjectData( oldData, [ 'fiche', 'ballonFixeMur' ] ),
             uniteExtFixeMur:         getObjectData( oldData, [ 'fiche', 'uniteExtFixeMur' ] ),
-            distanceBallonUnitExt:   getObjectData( oldData, [ 'fiche', 'distanceBallonUnitExt' ] ),
+            distanceBallonUnitExt:   getNumberData( oldData [ 'fiche' ][ 'distanceBallonUnitExt' ] ),
             infosSup:                getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
-        quotation: {
+        quotation:                 {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
@@ -231,12 +244,12 @@ export const convertOldCetFile = ( oldData ): CetFile => {
             commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
             partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),
             texts:              convertOldText( oldData ),
-            tva:                getObjectData( oldData, [ 'devis', 'tva20' ] ),
-            ceeBonus:           getObjectData( oldData, [ 'devis', 'primeCEE' ] ),
+            tva:                getNumberData( oldData [ 'devis' ][ 'tva' ] ),
+            ceeBonus:           getNumberData( oldData [ 'devis' ][ 'primeCEE' ] ),
             selectedProducts:   convertSelectedCetProduct( oldData ),
             products:           convertOldCetProduct( oldData ),
-            maPrimeRenovBonus:  getObjectData( oldData, [ 'devis', 'primeAnah' ] ),
-            discount:           getObjectData( oldData, [ 'devis', 'remise' ] ),
+            maPrimeRenovBonus:  getNumberData( oldData [ 'devis' ][ 'primeAnah' ] ),
+            discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
             totalHt:            convertOldTotalHt( oldData ),
             totalTva:           convertOldTotalTva( oldData ),
         },
@@ -244,9 +257,9 @@ export const convertOldCetFile = ( oldData ): CetFile => {
         statusInDci:               convertOldStatusDci( oldData ),
         errorsStatusInDci:         convertOldErrorStatusDci( oldData ),
         technician:                {
-            id:        getObjectData( oldData, [ 'technicien', 'nom' ] ),
-            lastName:  getObjectData( oldData, [ 'technicien', 'prenom' ] ),
-            firstName: getObjectData( oldData, [ 'technicien', 'id' ] ),
+            id:        getObjectData( oldData, [ 'technicien', 'id' ] ),
+            lastName:  getObjectData( oldData, [ 'technicien', 'nom' ] ),
+            firstName: getObjectData( oldData, [ 'technicien', 'prenom' ] ),
             phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
         },
         lists:                     convertOldCetItemList( oldData ),

@@ -146,11 +146,15 @@ const convertOldCombleItemList = ( oldData ): CombleList => {
         const newItems: ItemList[] = [];
 
         oldList.forEach( ( data ) => {
-            newItems.push( {
-                               value: data[ Object.keys( data )[ 0 ] ],
-                           } );
-        } );
+            if ( typeof data === 'object' ) {
 
+                newItems.push( {
+                                   value: data[ Object.keys( data )[ 0 ] ],
+                               } );
+            } else {
+                newItems.push( data );
+            }
+        } );
         lists[ newName[ item ] ] = {
             slug:  newName[ item ],
             items: newItems,
@@ -169,7 +173,7 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),
         updatedAt:                 getStringData( oldData[ 'updatedAt' ] ),
         settings:                  oldData[ 'settings' ],
-        devisTemplate:             getStringData( oldData[ 'devisTemplate' ] ),
+        quotationTemplate:         getStringData( oldData[ 'quotationTemplate' ] ),
         workSheetTemplate:         getStringData( oldData[ 'ficheTemplate' ] ),
         disabledBonus:             getBoolData( oldData[ 'disablePrime' ] ),
         disabledCeeBonus:          getBoolData( oldData[ 'disablePrimeCEE' ] ),
@@ -181,7 +185,7 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
         bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
         housing:                   {
-            nbOccupant:        getObjectData( oldData, [ 'logement', 'occupants' ] ),
+            nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
             isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
             addresse:          getObjectData( oldData, [ 'logement', 'adresse' ] ),
@@ -203,7 +207,7 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
             niveauHabitation:          getObjectData( oldData, [ 'fiche', 'niveauHabitation' ] ),
             gdEchelle:                 getObjectData( oldData, [ 'fiche', 'gdEchelle' ] ),
             partieAisoler:             getObjectData( oldData, [ 'fiche', 'partieAisoler' ] ),
-            puissanceCompteur:         getObjectData( oldData, [ 'fiche', 'puissanceCompteur' ] ),
+            puissanceCompteur:         getNumberData( oldData [ 'fiche' ][ 'puissanceCompteur' ] ),
             accesPl:                   getObjectData( oldData, [ 'fiche', 'accesPl' ] ),
             periodePose:               getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
             rueEtroite:                getObjectData( oldData, [ 'fiche', 'rueEtroite' ] ),
@@ -212,8 +216,8 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
             charpenteType:             getObjectData( oldData, [ 'fiche', 'charpenteType' ] ),
             etatToiture:               getObjectData( oldData, [ 'fiche', 'etatToiture' ] ),
             volige:                    getObjectData( oldData, [ 'fiche', 'volige' ] ),
-            nbreAccesComble:           getObjectData( oldData, [ 'fiche', 'nbreAccesComble' ] ),
-            nbreCompartiments:         getObjectData( oldData, [ 'fiche', 'nbreCompartiments' ] ),
+            nbreAccesComble:           getNumberData( oldData [ 'fiche' ][ 'nbreAccesComble' ] ),
+            nbreCompartiments:         getNumberData( oldData [ 'fiche' ][ 'nbreCompartiments' ] ),
             isolationExistante:        getObjectData( oldData, [ 'fiche', 'isolationExistante' ] ),
             isolationExistanteType:    getObjectData( oldData, [ 'fiche', 'isolationExistanteType' ] ),
             isolationExistanteCouches: getObjectData( oldData, [ 'fiche', 'isolationExistanteCouches' ] ),
@@ -233,10 +237,10 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
             commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
             partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),
             texts:              convertOldText( oldData ),
-            tva:                getObjectData( oldData, [ 'devis', 'tva20' ] ),
+            tva:                getNumberData( oldData [ 'devis' ][ 'tva' ] ),
             selectedProducts:   convertSelectedCombleProduct( oldData ),
             products:           convertOldCombleProduct( oldData ),
-            discount:           getObjectData( oldData, [ 'devis', 'remise' ] ),
+            discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
             totalHt:            convertOldTotalHt( oldData ),
             totalTva:           convertOldTotalTva( oldData ),
         },
@@ -244,9 +248,9 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
         statusInDci:               convertOldStatusDci( oldData ),
         errorsStatusInDci:         convertOldErrorStatusDci( oldData ),
         technician:                {
-            id:        getObjectData( oldData, [ 'technicien', 'nom' ] ),
-            lastName:  getObjectData( oldData, [ 'technicien', 'prenom' ] ),
-            firstName: getObjectData( oldData, [ 'technicien', 'id' ] ),
+            id:        getObjectData( oldData, [ 'technicien', 'id' ] ),
+            lastName:  getObjectData( oldData, [ 'technicien', 'nom' ] ),
+            firstName: getObjectData( oldData, [ 'technicien', 'prenom' ] ),
             phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
         },
         lists:                     convertOldCombleItemList( oldData ),

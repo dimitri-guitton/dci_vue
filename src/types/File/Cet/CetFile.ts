@@ -16,7 +16,7 @@ interface CetFile {
     settings: {
         ceeCoef: number;
     };
-    devisTemplate: string;
+    quotationTemplate: string;
     workSheetTemplate: string;
     disabledBonus: boolean;
     disabledCeeBonus: boolean;

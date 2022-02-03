@@ -178,9 +178,14 @@ const convertOldRrItemList = ( oldData ): RrList => {
 
         if ( oldList !== {} && oldList !== '' ) {
             oldList.forEach( ( data ) => {
-                newItems.push( {
-                                   value: data[ Object.keys( data )[ 0 ] ],
-                               } );
+                if ( typeof data === 'object' ) {
+
+                    newItems.push( {
+                                       value: data[ Object.keys( data )[ 0 ] ],
+                                   } );
+                } else {
+                    newItems.push( data );
+                }
             } );
 
             lists[ newName[ item ] ] = {
@@ -204,7 +209,7 @@ export const convertOldRrFile = ( oldData ): RrFile => {
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),
         updatedAt:                 getStringData( oldData[ 'updatedAt' ] ),
         settings:                  oldData[ 'settings' ],
-        devisTemplate:             getObjectData( oldData, [ 'devisTemplate', 'ro' ] ),
+        quotationTemplate:         getObjectData( oldData, [ 'quotationTemplate', 'ro' ] ),
         workSheetTemplate:         getObjectData( oldData, [ 'ficheTemplate', 'ro' ] ),
         disabledBonus:             getBoolData( oldData[ 'disablePrime' ] ),
         disabledCeeBonus:          getBoolData( oldData[ 'disablePrimeCEE' ] ),
@@ -216,7 +221,7 @@ export const convertOldRrFile = ( oldData ): RrFile => {
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
         bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
         housing:                   {
-            nbOccupant:        getObjectData( oldData, [ 'logement', 'occupants' ] ),
+            nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
             isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
             addresse:          getObjectData( oldData, [ 'logement', 'adresse' ] ),
@@ -226,7 +231,7 @@ export const convertOldRrFile = ( oldData ): RrFile => {
             area:              getObjectData( oldData, [ 'logement', 'superficie' ] ),
             dataGeoportail:    convertOldDataGeoportail( oldData ),
             location:          getObjectData( oldData, [ 'logement', 'location' ] ),
-            insulationQuality: getObjectData( oldData, [ 'logement', 'qualiteIsolation' ] ),
+            insulationQuality: getNumberData( oldData [ 'logement' ][ 'qualiteIsolation' ] ),
             constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
@@ -270,7 +275,7 @@ export const convertOldRrFile = ( oldData ): RrFile => {
             hauteurDuSol:         getObjectData( oldData, [ 'fiche', 'hauteurDuSol' ] ),
             infosSup:             getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
-        quotation: {
+        quotation:                 {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
@@ -279,16 +284,16 @@ export const convertOldRrFile = ( oldData ): RrFile => {
             commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
             partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),
             texts:              convertOldText( oldData ),
-            tva10:              getObjectData( oldData, [ 'devis', 'tva10' ] ),
-            tva20:              getObjectData( oldData, [ 'devis', 'tva20' ] ),
-            ceeBonus:           getObjectData( oldData, [ 'devis', 'primeCEE' ] ),
-            maPrimeRenovBonus:  getObjectData( oldData, [ 'devis', 'primeAnah' ] ),
+            tva10:              getNumberData( oldData [ 'devis' ][ 'tva10' ] ),
+            tva20:              getNumberData( oldData [ 'devis' ][ 'tva20' ] ),
+            ceeBonus:           getNumberData( oldData [ 'devis' ][ 'primeCEE' ] ),
+            maPrimeRenovBonus:  getNumberData( oldData [ 'devis' ][ 'primeAnah' ] ),
+            discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
             selectedProducts:   convertSelectedRProduct( oldData ),
             rrType:             getObjectData( oldData, [ 'devis', 'rrType' ] ),
             rrMulti:            convertOldRrMulti( oldData ),
             assortment:         getObjectData( oldData, [ 'devis', 'gamme' ] ),
             products:           convertOldRrProduct( oldData ),
-            discount:           getObjectData( oldData, [ 'devis', 'remise' ] ),
             totalHt:            convertOldTotalHt( oldData ),
             totalTva:           convertOldTotalTva( oldData ),
         },
@@ -303,9 +308,9 @@ export const convertOldRrFile = ( oldData ): RrFile => {
         statusInDci:               convertOldStatusDci( oldData ),
         errorsStatusInDci:         convertOldErrorStatusDci( oldData ),
         technician:                {
-            id:        getObjectData( oldData, [ 'technicien', 'nom' ] ),
-            lastName:  getObjectData( oldData, [ 'technicien', 'prenom' ] ),
-            firstName: getObjectData( oldData, [ 'technicien', 'id' ] ),
+            id:        getObjectData( oldData, [ 'technicien', 'id' ] ),
+            lastName:  getObjectData( oldData, [ 'technicien', 'nom' ] ),
+            firstName: getObjectData( oldData, [ 'technicien', 'prenom' ] ),
             phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
         },
         lists:                     convertOldRrItemList( oldData ),

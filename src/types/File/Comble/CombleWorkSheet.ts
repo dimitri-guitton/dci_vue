@@ -5,7 +5,7 @@ interface CombleWorkSheet {
     niveauHabitation: string;
     gdEchelle: boolean;
     partieAisoler: string;
-    puissanceCompteur: string;
+    puissanceCompteur: number;
     accesPl: boolean;
     periodePose: string;
     rueEtroite: boolean;
@@ -14,8 +14,8 @@ interface CombleWorkSheet {
     charpenteType: string;
     etatToiture: string;
     volige: boolean;
-    nbreAccesComble: string;
-    nbreCompartiments: string;
+    nbreAccesComble: number;
+    nbreCompartiments: number;
     isolationExistante: boolean;
     isolationExistanteType: string;
     isolationExistanteCouches: number;

@@ -4,7 +4,7 @@ interface CeWorkSheet {
     typeChantier: string;
     disjoncteur: boolean;
     tensionDisponible: string;  // NEW
-    distanceCompteurCet: string;    // NEW
+    distanceCompteurCet: number;    // NEW
     natureMurExt: string;
     naturePlafond: string;
     visiteComble: boolean;

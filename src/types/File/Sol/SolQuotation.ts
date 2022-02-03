@@ -5,6 +5,7 @@ import Option from '@/types/File/Option';
 
 interface SolQuotation {
     pose: number;
+    overridePose: number;
     tva: number;
     origin: string;
     dateTechnicalVisit: string;

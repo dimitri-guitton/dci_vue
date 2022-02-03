@@ -192,7 +192,8 @@ export const convertOldOptions = ( oldData ): Option[] => {
     const newOptions: Option[] = [];
     const oldOption: []        = getArrayData( oldData[ 'devis' ][ 'options' ] );
 
-    const type   = oldData[ 'type' ].toLowerCase();
+    const type = oldData[ 'type' ].toLowerCase();
+    console.log( 'Type des options -->', type );
     let fileType = 'default';
 
     if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'ro' ) {

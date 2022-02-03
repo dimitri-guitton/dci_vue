@@ -122,9 +122,14 @@ const convertOldSolItemList = ( oldData ): SolList => {
         const newItems: ItemList[] = [];
 
         oldList.forEach( ( data ) => {
-            newItems.push( {
-                               value: data[ Object.keys( data )[ 0 ] ],
-                           } );
+            if ( typeof data === 'object' ) {
+
+                newItems.push( {
+                                   value: data[ Object.keys( data )[ 0 ] ],
+                               } );
+            } else {
+                newItems.push( data );
+            }
         } );
 
         lists[ newName[ item ] ] = {
@@ -145,7 +150,7 @@ export const convertOldSolFile = ( oldData ): SolFile => {
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),
         updatedAt:                 getStringData( oldData[ 'updatedAt' ] ),
         settings:                  oldData[ 'settings' ],
-        devisTemplate:             getStringData( oldData[ 'devisTemplate' ] ),
+        quotationTemplate:         getStringData( oldData[ 'quotationTemplate' ] ),
         workSheetTemplate:         getStringData( oldData[ 'ficheTemplate' ] ),
         disabledBonus:             getBoolData( oldData[ 'disablePrime' ] ),
         disabledCeeBonus:          getBoolData( oldData[ 'disablePrimeCEE' ] ),
@@ -157,7 +162,7 @@ export const convertOldSolFile = ( oldData ): SolFile => {
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
         bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
         housing:                   {
-            nbOccupant:        getObjectData( oldData, [ 'logement', 'occupants' ] ),
+            nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
             isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
             addresse:          getObjectData( oldData, [ 'logement', 'adresse' ] ),
@@ -170,7 +175,6 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             insulationQuality: getObjectData( oldData, [ 'logement', 'qualiteIsolation' ] ),
             constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
-            availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },
         workSheet:                 {
             epaisseurProduit:        getObjectData( oldData, [ 'fiche', 'epaisseurProduit' ] ),
@@ -196,6 +200,7 @@ export const convertOldSolFile = ( oldData ): SolFile => {
         },
         quotation:                 {
             pose:               getObjectData( oldData, [ 'devis', 'pose' ] ),
+            overridePose:       getObjectData( oldData, [ 'devis', 'overridePose' ] ),
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
@@ -204,10 +209,10 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
             partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),
             texts:              convertOldText( oldData ),
-            tva:                getObjectData( oldData, [ 'devis', 'tva20' ] ),
+            tva:                getNumberData( oldData [ 'devis' ][ 'tva' ] ),
             selectedProducts:   convertSelectedSolProduct( oldData ),
             products:           convertOldSolProduct( oldData ),
-            discount:           getObjectData( oldData, [ 'devis', 'remise' ] ),
+            discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
             totalHt:            convertOldTotalHt( oldData ),
             totalTva:           convertOldTotalTva( oldData ),
         },
@@ -215,9 +220,9 @@ export const convertOldSolFile = ( oldData ): SolFile => {
         statusInDci:               convertOldStatusDci( oldData ),
         errorsStatusInDci:         convertOldErrorStatusDci( oldData ),
         technician:                {
-            id:        getObjectData( oldData, [ 'technicien', 'nom' ] ),
-            lastName:  getObjectData( oldData, [ 'technicien', 'prenom' ] ),
-            firstName: getObjectData( oldData, [ 'technicien', 'id' ] ),
+            id:        getObjectData( oldData, [ 'technicien', 'id' ] ),
+            lastName:  getObjectData( oldData, [ 'technicien', 'nom' ] ),
+            firstName: getObjectData( oldData, [ 'technicien', 'prenom' ] ),
             phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
         },
         lists:                     convertOldSolItemList( oldData ),
