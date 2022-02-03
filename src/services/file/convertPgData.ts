@@ -192,7 +192,6 @@ const convertOldPgItemList = ( oldData ): PgList => {
 
     for ( const item of pgItems ) {
         const oldList = getObjectData( oldData[ 'lists' ], [ item ] );
-        console.log( 'Old List --> ', oldList );
         if ( !oldList ) {
             continue;
         }
