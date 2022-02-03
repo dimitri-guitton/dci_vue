@@ -1,30 +1,13 @@
-# demo1
+![Logo](documentation/logo.svg)
 
-## Project setup
-```
-yarn install
-```
+## Technologies
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+VueJs 3, Electron 13, Node 14
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## Documentation
 
-### Lints and fixes files
+* [Lexique](documentation/vocabulary.md)
 
-```
-yarn lint
-```
+## Auteurs
 
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-Dossier (informatique (répertoire de stockage)) -> Folder
-
-Dossier d'un client -> File
+- [@Echo Numeric](https://echo-numeric.com/)
