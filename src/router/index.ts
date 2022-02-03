@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/views/file/FileList.vue'),
             },
             {
-                path:      '/file-edit/{slug}',
+                path:      '/file-edit',
                 name:      'file-edit',
                 component: () => import('@/views/file/FileEdit.vue'),
             },

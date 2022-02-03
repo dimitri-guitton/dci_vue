@@ -153,11 +153,11 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, ref } from 'vue';
-import Step5 from '@/views/file/cet/steps/Step5.vue';
-import Step4 from '@/views/file/cet/steps/Step4.vue';
-import Step3 from '@/views/file/cet/steps/Step3.vue';
-import Step2 from '@/views/file/cet/steps/Step2.vue';
-import Step1 from '@/views/file/cet/steps/Step1.vue';
+import Step5 from '@/views/file/steps/Step5.vue';
+import Step4 from '@/views/file/steps/Step4.vue';
+import Step3 from '@/views/file/steps/Step3.vue';
+import Step2 from '@/views/file/steps/Step2.vue';
+import Step1 from '@/views/file/steps/Step1.vue';
 import Swal from 'sweetalert2/dist/sweetalert2.min.js';
 import { StepperComponent } from '@/assets/ts/components';
 import { setCurrentPageBreadcrumbs } from '@/core/helpers/breadcrumb';
