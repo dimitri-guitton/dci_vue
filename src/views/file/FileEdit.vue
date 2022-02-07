@@ -55,7 +55,7 @@
 
         <!--begin::Form-->
         <form
-            class="mx-auto mw-600px w-100 pt-15 pb-10"
+            class="mx-auto mw-1000px w-100 pt-15 pb-10"
             novalidate="novalidate"
             id="kt_create_account_form"
             @submit="handleStep"
@@ -68,7 +68,7 @@
 
           <!--begin::Step 2-->
           <div data-kt-stepper-element="content">
-            <Step2></Step2>
+            <Step2 :assents="assents"></Step2>
           </div>
           <!--end::Step 2-->
 
@@ -173,18 +173,15 @@ import {
   getcurrentFolderName,
 } from '@/services/data/dataService';
 import SvairAvisImpot from '@/types/SvairAvisImpot';
+import Assent from '@/types/File/Assent';
 
 
-interface AssentForm {
+export interface AssentForm {
   numFiscal: string;
   refAvis: string;
 }
 
-interface Step1 {
-  assents: AssentForm[];
-}
-
-interface Step2 {
+export interface AssentDataForm {
   civility: string;
   lastName: string;
   firstName: string;
@@ -192,6 +189,15 @@ interface Step2 {
   zipCode: string;
   city: string;
   income: number;
+}
+
+interface Step1 {
+  assents: AssentForm[];
+}
+
+interface Step2 {
+  assentsDatas: AssentDataForm[];
+  isBeneficiary: number;
   email: string;
   phone: string;
   mobile: string;
@@ -246,21 +252,27 @@ export default defineComponent( {
                                     const horizontalWizardRef = ref<HTMLElement | null>( null );
                                     const currentStepIndex    = ref( 0 );
 
+
+                                    // TODO mettre en mode dynamique ou change l'event setup de la Step2
+                                    const assents = ref<Assent[]>( [] );
+
                                     const formData = ref<CreateAccount>( {
-                                                                           assents:             [ {
-                                                                             numFiscal: '',
-                                                                             refAvis:   '',
-                                                                           } ],
-                                                                           civility:            'm',
-                                                                           lastName:            '',
-                                                                           firstName:           '',
-                                                                           address:             '',
-                                                                           zipCode:             '',
-                                                                           city:                '',
-                                                                           income:              0,
+                                                                           assents:             [],
+                                                                           assentsDatas:        [
+                                                                             {
+                                                                               civility:  'm',
+                                                                               lastName:  '',
+                                                                               firstName: '',
+                                                                               address:   '',
+                                                                               zipCode:   '',
+                                                                               city:      '',
+                                                                               income:    0,
+                                                                             },
+                                                                           ],
                                                                            email:               '',
                                                                            phone:               '',
                                                                            mobile:              '',
+                                                                           isBeneficiary:       0,
                                                                            businessName:        'Keenthemes Inc.',
                                                                            businessDescriptor:  'KEENTHEMES',
                                                                            businessType:        '1',
@@ -288,48 +300,63 @@ export default defineComponent( {
                                                     assents: Yup.array()
                                                                 .of(
                                                                     Yup.object().shape( {
-                                                                                          numFiscal: Yup.string(),
-                                                                                          refAvis:   Yup.string(),
+                                                                                          numFiscal: Yup.string()
+                                                                                                        .min( 13,
+                                                                                                              'Le numéro doit faire 13 caractères' )
+                                                                                                        .max( 13,
+                                                                                                              'Le numéro doit faire 13 caractères' )
+                                                                                                        .required(),
+                                                                                          refAvis:   Yup.string()
+                                                                                                        .min( 13,
+                                                                                                              'Le numéro doit faire 13 caractères' )
+                                                                                                        .max( 13,
+                                                                                                              'Le numéro doit faire 13 caractères' )
+                                                                                                        .required(),
                                                                                         } ),
                                                                 ),
                                                   } ),
 
                                       // Step 2
                                       Yup.object( {
-                                                    civility:  Yup.string()
-                                                                  .required(),
-                                                    lastName:  Yup.string()
-                                                                  .required(),
-                                                    firstName: Yup.string()
-                                                                  .required(),
-                                                    address:   Yup.string()
-                                                                  .required(),
-                                                    zipCode:   Yup.string()
-                                                                  .min( 5, 'Le code postal doit faire 5 caractères' )
-                                                                  .max( 5, 'Le code postal doit faire 5 caractères' )
-                                                                  .required(),
-                                                    city:      Yup.string()
-                                                                  .required(),
-                                                    income:    Yup.number()
-                                                                  .required()
-                                                                  .min( 1, 'Le revenu doit être supérieur à 0' ),
-                                                    email:     Yup.string()
-                                                                  .required()
-                                                                  .email(),
-                                                    phone:     Yup.string()
-                                                                  .matches(
-                                                                      /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/gm,
-                                                                      {
-                                                                        message:            'Le numéro est incorrect',
-                                                                        excludeEmptyString: true,
-                                                                      } ),
-                                                    mobile:    Yup.string()
-                                                                  .matches(
-                                                                      /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/gm,
-                                                                      {
-                                                                        message:            'Le numéro est incorrect',
-                                                                        excludeEmptyString: true,
-                                                                      } ),
+                                                    assentsDatas:  Yup.array()
+                                                                      .of(
+                                                                          Yup.object().shape( {
+                                                                                                civility:  Yup.string()
+                                                                                                              .required(),
+                                                                                                lastName:  Yup.string()
+                                                                                                              .required(),
+                                                                                                firstName: Yup.string()
+                                                                                                              .required(),
+                                                                                                address:   Yup.string()
+                                                                                                              .required(),
+                                                                                                zipCode:   Yup.string()
+                                                                                                              .min( 5,
+                                                                                                                    'Le code postal doit faire 5 caractères' )
+                                                                                                              .max( 5,
+                                                                                                                    'Le code postal doit faire 5 caractères' )
+                                                                                                              .required(),
+                                                                                                city:      Yup.string()
+                                                                                                              .required(),
+                                                                                                income:    Yup.number()
+                                                                                                              .required()
+                                                                                                              .min( 1,
+                                                                                                                    'Le revenu doit être supérieur à 0' ),
+                                                                                              } ),
+                                                                      ),
+                                                    isBeneficiary: Yup.number().required(),
+                                                    email:         Yup.string().required().email(),
+                                                    phone:         Yup.string().matches(
+                                                        /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/gm,
+                                                        {
+                                                          message:            'Le numéro est incorrect',
+                                                          excludeEmptyString: true,
+                                                        } ),
+                                                    mobile:        Yup.string().matches(
+                                                        /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/gm,
+                                                        {
+                                                          message:            'Le numéro est incorrect',
+                                                          excludeEmptyString: true,
+                                                        } ),
                                                   } ),
                                       Yup.object( {
                                                     businessName:       Yup.string()
@@ -371,8 +398,7 @@ export default defineComponent( {
                                     const { resetForm, handleSubmit } = useForm<Step1 | Step2 | Step3 | Step4>( {
                                                                                                                   validationSchema: currentSchema,
                                                                                                                 } );
-
-                                    const totalSteps = computed( () => {
+                                    const totalSteps                  = computed( () => {
                                       if ( !_stepperObj.value ) {
                                         return;
                                       }
@@ -395,6 +421,8 @@ export default defineComponent( {
                                     };
 
                                     const checkAssentOnSvair = async ( assents: AssentForm[] ) => {
+                                      console.log( '%c IN CHECK API', 'background: #0fd80f; color: #000000' );
+
                                       const svair                         = new Svair( 'https://cfsmsp.impots.gouv.fr' );
                                       const svairCall: Promise<unknown>[] = [];
 
@@ -414,11 +442,14 @@ export default defineComponent( {
                                         svairCall.push( p );
                                       } );
 
+                                      console.log( '%c IN END API', 'background: #0fd80f; color: #000000' );
+
+
                                       return await Promise.all( svairCall.map( promiseEvery ) );
 
                                     };
-
-                                    const validateStepOne = async ( data: CreateAccount ) => {
+                                    const validateStepOne    = async ( data: CreateAccount ) => {
+                                      console.log( '%c IN VALIDE STEP 1', 'background: #0fd80f; color: #000000' );
                                       // Avis à vérifier pas l'api Svair
                                       const assentsToSvair: AssentForm[] = [];
 
@@ -433,9 +464,13 @@ export default defineComponent( {
                                         return;
                                       }
 
+                                      console.log( '%c IN before API', 'background: #0fd80f; color: #000000' );
                                       const svairData = await checkAssentOnSvair( assentsToSvair );
+                                      console.log( '%c IN after API', 'background: #0fd80f; color: #000000' );
                                       console.log( svairData );
 
+                                      assents.value = [];
+                                      let index     = 0;
                                       svairData.forEach( ( response: { result: { item: AssentForm; resp: SvairAvisImpot }; status: string } ) => {
                                         const isResolved = response.status === 'resolved';
                                         if ( isResolved ) {
@@ -453,19 +488,48 @@ export default defineComponent( {
 
                                           console.log( '%c BEFORE ADD ASSENT ON JSON',
                                                        'background: #fdd835; color: #000000' );
-                                          addAssent( response.result.resp, datagouv );
+                                          let isBeneficiary = false;
+                                          if ( index === 0 ) {
+                                            isBeneficiary = true;
+                                          }
+                                          const newAssent = addAssent( response.result.resp, datagouv, isBeneficiary );
+                                          assents.value.push( newAssent );
+
+                                          console.log( '%c BEFORE SET VALUE FORM DATA',
+                                                       'background: #fdd835; color: #000000' );
+                                          formData.value.assentsDatas[ index ] = {
+                                            civility:  'm',
+                                            lastName:  newAssent.nom,
+                                            firstName: newAssent.prenom,
+                                            address:   newAssent.adresse,
+                                            zipCode:   '',
+                                            city:      newAssent.ville,
+                                            income:    newAssent.revenu,
+                                          };
+                                          console.log( 'Form data -->', formData );
+
+                                          index++;
                                         } else {
                                           console.log( '%c PB LORS DE LA RECUP DE l\'avid D\'IMPOT',
                                                        'background: #fdd835; color: #000000' );
                                         }
 
-                                      } );
-                                    };
+                                        // Force le refersh des data du formulaire
+                                        resetForm( {
+                                                     values: {
+                                                       ...formData.value,
+                                                     },
+                                                   } );
 
-                                    const handleStep = handleSubmit( values => {
+                                      } );
+
+                                      console.log( 'ASSENTS -->', assents );
+                                    };
+                                    const handleStep         = handleSubmit( values => {
                                       console.log( values );
 
 
+                                      console.log( '%c HANDLE STEP', 'background: #0aa8ff; color: #000000' );
                                       formData.value = {
                                         ...formData.value,
                                         ...values,
@@ -476,7 +540,9 @@ export default defineComponent( {
                                       console.log( formData.value );
                                       if ( currentStepIndex.value === 0 ) {
                                         console.log( '%c Validation de step 1', 'background: #fdd835; color: #000000' );
+                                        console.log( 'forDat before validate step', formData.value );
                                         validateStepOne( formData.value );
+                                        console.log( 'forDat after validate step', formData.value );
                                       }
 
                                       currentStepIndex.value++;
@@ -519,6 +585,7 @@ export default defineComponent( {
                                       formSubmit,
                                       totalSteps,
                                       currentStepIndex,
+                                      assents,
                                     };
                                   },
 

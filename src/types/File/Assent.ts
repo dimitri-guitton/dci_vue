@@ -1,11 +1,11 @@
 import { DataGouv } from '@/types/File/DataGouv';
 
 interface Assent {
-    // uid: string;
     refAvis: string;
     numFiscal: string;
-    isbeneficiaire: boolean;
+    isBeneficiary: boolean;
     datagouv: DataGouv;
+    civility: string;
     nom: string;
     prenom: string;
     adresse: string;

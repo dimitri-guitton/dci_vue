@@ -75,22 +75,23 @@ export const resetCurrentFileData = () => {
     store.set( 'currentFileData', '' );
 };
 
-export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv ) => {
+export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficiary = false ): Assent => {
     let fileData = getCurrentFileData();
     console.log( 'FILE DATA', fileData );
 
     // TODO na pas ajouter si l'avis existe déja
     const assent: Assent = {
-        refAvis:        dataGouv.refAvis,
-        numFiscal:      dataGouv.numFiscal,
-        isbeneficiaire: false,// TODO check à quoi ça sert, peut être update à l'étape
-        datagouv:       dataGouv,
-        nom:            data.declarant1.nom,
-        prenom:         data.declarant1.prenoms,
-        adresse:        data.foyerFiscal.adresse,
-        codepostal:     '',// TODO faire la relation ville -> codePostal
-        ville:          data.foyerFiscal.ville,
-        revenu:         data.revenuFiscalReference,
+        civility:   'm', // Par défaut sur 'm'
+        refAvis:    dataGouv.refAvis,
+        numFiscal:  dataGouv.numFiscal,
+        isBeneficiary,
+        datagouv:   dataGouv,
+        nom:        data.declarant1.nom,
+        prenom:     data.declarant1.prenoms,
+        adresse:    data.foyerFiscal.adresse,
+        codepostal: '',// TODO faire la relation ville -> codePostal
+        ville:      data.foyerFiscal.ville,
+        revenu:     data.revenuFiscalReference,
     };
 
     const assents = fileData.assents;
@@ -103,4 +104,6 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv ) => {
     console.log( '%c NEW FILE DATA', 'background: #fdd835; color: #000000' );
     console.log( fileData );
     updateJsonData( fileData );
+
+    return assent;
 };

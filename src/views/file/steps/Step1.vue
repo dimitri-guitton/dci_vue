@@ -26,8 +26,6 @@
               v-model="assent.numFiscal"
               type="text"
               class="form-control form-control-solid"
-              minlength="13"
-              maxlength="13"
               placeholder="0001123456789"
               :name="`assents[${counter}].numFiscal`"
           />
@@ -57,8 +55,6 @@
               v-model="assent.refAvis"
               type="text"
               class="form-control form-control-solid"
-              minlength="13"
-              maxlength="13"
               placeholder="0001123456789"
               :name="`assents[${counter}].refAvis`"
           />
@@ -105,6 +101,8 @@ export default defineComponent( {
                                     };
                                   },
                                   methods: {
+                                    //TODO QUAND IL Y A PLUS DE 1 VIS PAR DEFAUT DEPLIER LES FORMAULRIE
+
                                     addNewAssent() {
                                       this.assents.push( {
                                                            numFiscal: '',

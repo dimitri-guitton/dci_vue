@@ -89,10 +89,10 @@ export const convertOldAssent = ( oldData ): Assent[] => {
     oldAssents.forEach( assent => {
         assents.push( {
                           // uid:            assent[ 'uid' ],
-                          refAvis:        assent[ 'refAvis' ],
-                          numFiscal:      assent[ 'numFiscal' ],
-                          isbeneficiaire: assent[ 'isbeneficiaire' ],
-                          datagouv:       {
+                          refAvis:       assent[ 'refAvis' ],
+                          numFiscal:     assent[ 'numFiscal' ],
+                          isBeneficiary: assent[ 'isbeneficiaire' ],
+                          datagouv:      {
                               refAvis:   assent[ 'datagouv' ][ 'refAvis' ],
                               numFiscal: assent[ 'datagouv' ][ 'numFiscal' ],
                               loaded:    assent[ 'datagouv' ][ 'loaded' ],
@@ -103,13 +103,13 @@ export const convertOldAssent = ( oldData ): Assent[] => {
                               revenu:    assent[ 'datagouv' ][ 'revenu' ],
                               error:     assent[ 'datagouv' ][ 'error' ],
                           },
-                          nom:            assent[ 'nom' ],
-                          prenom:         assent[ 'prenom' ],
-                          adresse:        assent[ 'adresse' ],
-                          codepostal:     assent[ 'codepostal' ],
-                          ville:          assent[ 'ville' ],
-                          revenu:         assent[ 'revenu' ],
-                          // civilite:       assent[ 'civilite' ],
+                          nom:           assent[ 'nom' ],
+                          prenom:        assent[ 'prenom' ],
+                          adresse:       assent[ 'adresse' ],
+                          codepostal:    assent[ 'codepostal' ],
+                          ville:         assent[ 'ville' ],
+                          revenu:        assent[ 'revenu' ],
+                          civility:      assent[ 'civilite' ],
                       } );
     } );
 
