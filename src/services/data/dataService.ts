@@ -4,6 +4,7 @@ import fs from 'fs';
 import SvairAvisImpot from '@/types/SvairAvisImpot';
 import Assent from '@/types/File/Assent';
 import { DataGouv } from '@/types/File/DataGouv';
+import { CreateAccount } from '@/views/file/FileEdit.vue';
 
 const schema = {
     dropboxPath:          {
@@ -106,4 +107,30 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficia
     updateJsonData( fileData );
 
     return assent;
+};
+
+export const updateBeneficiary = ( data: CreateAccount ) => {
+    let fileData = getCurrentFileData();
+
+    const beneficiary: Beneficiary = {
+        civility:  data.assentsDatas[ data.indexBeneficiary ].civility,
+        lastName:  data.assentsDatas[ data.indexBeneficiary ].lastName,
+        firstName: data.assentsDatas[ data.indexBeneficiary ].firstName,
+        address:   data.assentsDatas[ data.indexBeneficiary ].address,
+        zipCode:   data.assentsDatas[ data.indexBeneficiary ].zipCode,
+        city:      data.assentsDatas[ data.indexBeneficiary ].city,
+        email:     data.email,
+        phone:     data.phone,
+        mobile:    data.mobile,
+    };
+
+    fileData = {
+        ...fileData,
+        beneficiary: beneficiary,
+    };
+
+    console.log( '%c NEW FILE DATA', 'background: #fdd835; color: #000000' );
+    console.log( fileData );
+    updateJsonData( fileData );
+
 };

@@ -109,7 +109,7 @@ const createSubFolders = ( type: string, parent: string ) => {
 
 const addJsonData = ( type: string, parent: string, reference: string, folderName: string ) => {
     if ( type === FILE_CET_TYPE.slug ) {
-        const jsonPath = '/Users/dimitri/workspace/eco_atlantique/dci_vue/data_example/emptyNewDataCet.json';
+        const jsonPath = '/Users/dimitri/workspace/eco_atlantique/dci_vue/data_example/empty_new_data_cet.json';
 
         const rawdata         = fs.readFileSync( jsonPath ).toString( 'utf8' );
         let fileData: CetFile = JSON.parse( rawdata );

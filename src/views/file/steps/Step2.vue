@@ -142,7 +142,7 @@
         <div class="row mb-15">
           <div class="col-md-4">
             <label class="form-label mb-3">Est bénéficiaire</label>
-            <Field name="isBeneficiary" type="radio" :value="index" class="form-check-input ms-5"></Field>
+            <Field name="indexBeneficiary" type="radio" :value="index" class="form-check-input ms-5"></Field>
           </div>
         </div>
       </template>
@@ -160,13 +160,12 @@
               :name="`assentsDatas[0].civility`"
               as="select"
               class="form-control form-control-lg form-control-solid"
-              placeholder="Civilité"
           >
             <option value="m">Monsieur</option>
             <option value="f">Madame</option>
           </Field>
           <ErrorMessage
-              name="`assentsDatas[0].civility`"
+              :name="`assentsDatas[0].civility`"
               class="fv-plugins-message-container invalid-feedback"
           ></ErrorMessage>
         </div>
@@ -181,7 +180,7 @@
               value=""
           />
           <ErrorMessage
-              name="`assentsDatas[0].lastName`"
+              :name="`assentsDatas[0].lastName`"
               class="fv-plugins-message-container invalid-feedback"
           ></ErrorMessage>
         </div>
@@ -196,7 +195,7 @@
               value=""
           />
           <ErrorMessage
-              name="`assentsDatas[0].firstName`"
+              :name="`assentsDatas[0].firstName`"
               class="fv-plugins-message-container invalid-feedback"
           ></ErrorMessage>
         </div>
@@ -212,7 +211,7 @@
               value=""
           />
           <ErrorMessage
-              name="`assentsDatas[0].address`"
+              :name="`assentsDatas[0].address`"
               class="fv-plugins-message-container invalid-feedback"
           ></ErrorMessage>
         </div>
@@ -226,7 +225,7 @@
               value=""
           />
           <ErrorMessage
-              name="`assentsDatas[0].zipCode`"
+              :name="`assentsDatas[0].zipCode`"
               class="fv-plugins-message-container invalid-feedback"
           ></ErrorMessage>
         </div>
@@ -242,7 +241,7 @@
               value=""
           />
           <ErrorMessage
-              name="`assentsDatas[0].city`"
+              :name="`assentsDatas[0].city`"
               class="fv-plugins-message-container invalid-feedback"
           ></ErrorMessage>
         </div>
@@ -257,9 +256,16 @@
               value=""
           />
           <ErrorMessage
-              name="`assentsDatas[0].income`"
+              :name="`assentsDatas[0].income`"
               class="fv-plugins-message-container invalid-feedback"
           ></ErrorMessage>
+        </div>
+      </div>
+
+      <div class="row mb-15">
+        <div class="col-md-4">
+          <label class="form-label mb-3">Est bénéficiaire</label>
+          <Field name="indexBeneficiary" type="radio" :value="0" class="form-check-input ms-5"></Field>
         </div>
       </div>
     </template>

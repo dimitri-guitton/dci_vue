@@ -171,6 +171,7 @@ import {
   getCurrentFileData,
   getCurrentFileReference,
   getcurrentFolderName,
+  updateBeneficiary,
 } from '@/services/data/dataService';
 import SvairAvisImpot from '@/types/SvairAvisImpot';
 import Assent from '@/types/File/Assent';
@@ -197,7 +198,7 @@ interface Step1 {
 
 interface Step2 {
   assentsDatas: AssentDataForm[];
-  isBeneficiary: number;
+  indexBeneficiary: number;
   email: string;
   phone: string;
   mobile: string;
@@ -220,7 +221,7 @@ interface Step4 {
   saveCard: string;
 }
 
-interface CreateAccount extends Step1, Step2, Step3, Step4 {}
+export interface CreateAccount extends Step1, Step2, Step3, Step4 {}
 
 
 setLocale( {
@@ -234,16 +235,8 @@ setLocale( {
            } );
 
 export default defineComponent( {
-                                  name:       'cet-show',
+                                  name:       'file-edit',
                                   components: { Step1, Step2, Step3, Step4, Step5 },
-                                  // setup() {
-                                  //   const route     = useRoute();
-                                  //   const folderRef = route.query.reference;
-                                  //
-                                  //   return {
-                                  //     folderRef,
-                                  //   };
-                                  // },
                                   setup() {
                                     console.log( getcurrentFolderName() );
                                     console.log( getCurrentFileReference() );
@@ -253,7 +246,6 @@ export default defineComponent( {
                                     const currentStepIndex    = ref( 0 );
 
 
-                                    // TODO mettre en mode dynamique ou change l'event setup de la Step2
                                     const assents = ref<Assent[]>( [] );
 
                                     const formData = ref<CreateAccount>( {
@@ -261,18 +253,18 @@ export default defineComponent( {
                                                                            assentsDatas:        [
                                                                              {
                                                                                civility:  'm',
-                                                                               lastName:  '',
-                                                                               firstName: '',
-                                                                               address:   '',
-                                                                               zipCode:   '',
-                                                                               city:      '',
-                                                                               income:    0,
+                                                                               lastName:  'Dupond',
+                                                                               firstName: 'Jean',
+                                                                               address:   '5 rue des test',
+                                                                               zipCode:   '79000',
+                                                                               city:      'Niort',
+                                                                               income:    20000,
                                                                              },
                                                                            ],
-                                                                           email:               '',
-                                                                           phone:               '',
-                                                                           mobile:              '',
-                                                                           isBeneficiary:       0,
+                                                                           email:               'test@test.fr',
+                                                                           phone:               '0200000000',
+                                                                           mobile:              '0600000000',
+                                                                           indexBeneficiary:    0,
                                                                            businessName:        'Keenthemes Inc.',
                                                                            businessDescriptor:  'KEENTHEMES',
                                                                            businessType:        '1',
@@ -301,17 +293,19 @@ export default defineComponent( {
                                                                 .of(
                                                                     Yup.object().shape( {
                                                                                           numFiscal: Yup.string()
-                                                                                                        .min( 13,
-                                                                                                              'Le numéro doit faire 13 caractères' )
-                                                                                                        .max( 13,
-                                                                                                              'Le numéro doit faire 13 caractères' )
-                                                                                                        .required(),
+                                                                                                        .matches(
+                                                                                                            /^[0-9a-zA-Z]{13,14}$/m,
+                                                                                                            {
+                                                                                                              message:            'Le numéro est incorrect',
+                                                                                                              excludeEmptyString: true,
+                                                                                                            } ),
                                                                                           refAvis:   Yup.string()
-                                                                                                        .min( 13,
-                                                                                                              'Le numéro doit faire 13 caractères' )
-                                                                                                        .max( 13,
-                                                                                                              'Le numéro doit faire 13 caractères' )
-                                                                                                        .required(),
+                                                                                                        .matches(
+                                                                                                            /^[0-9a-zA-Z]{13,14}$/m,
+                                                                                                            {
+                                                                                                              message:            'Le numéro est incorrect',
+                                                                                                              excludeEmptyString: true,
+                                                                                                            } ),
                                                                                         } ),
                                                                 ),
                                                   } ),
@@ -343,15 +337,15 @@ export default defineComponent( {
                                                                                                                     'Le revenu doit être supérieur à 0' ),
                                                                                               } ),
                                                                       ),
-                                                    isBeneficiary: Yup.number().required(),
-                                                    email:         Yup.string().required().email(),
-                                                    phone:         Yup.string().matches(
+                                                    indexBeneficiary: Yup.number().required(),
+                                                    email: Yup.string().required().email(),
+                                                    phone: Yup.string().matches(
                                                         /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/gm,
                                                         {
                                                           message:            'Le numéro est incorrect',
                                                           excludeEmptyString: true,
                                                         } ),
-                                                    mobile:        Yup.string().matches(
+                                                    mobile: Yup.string().matches(
                                                         /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/gm,
                                                         {
                                                           message:            'Le numéro est incorrect',
@@ -448,7 +442,12 @@ export default defineComponent( {
                                       return await Promise.all( svairCall.map( promiseEvery ) );
 
                                     };
-                                    const validateStepOne    = async ( data: CreateAccount ) => {
+
+                                    const validateStepTwo = async ( data: CreateAccount ) => {
+                                      updateBeneficiary( data );
+                                    };
+
+                                    const validateStepOne = async ( data: CreateAccount ) => {
                                       console.log( '%c IN VALIDE STEP 1', 'background: #0fd80f; color: #000000' );
                                       // Avis à vérifier pas l'api Svair
                                       const assentsToSvair: AssentForm[] = [];
@@ -525,7 +524,7 @@ export default defineComponent( {
 
                                       console.log( 'ASSENTS -->', assents );
                                     };
-                                    const handleStep         = handleSubmit( values => {
+                                    const handleStep      = handleSubmit( values => {
                                       console.log( values );
 
 
@@ -543,6 +542,9 @@ export default defineComponent( {
                                         console.log( 'forDat before validate step', formData.value );
                                         validateStepOne( formData.value );
                                         console.log( 'forDat after validate step', formData.value );
+                                      } else if ( currentStepIndex.value === 1 ) {
+                                        console.log( '%c Validation step 2', 'background: #fdd835; color: #000000' );
+                                        validateStepTwo( formData.value );
                                       }
 
                                       currentStepIndex.value++;
