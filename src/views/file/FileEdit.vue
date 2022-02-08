@@ -205,11 +205,12 @@ interface Step2 {
 }
 
 interface Step3 {
-  businessName: string;
-  businessDescriptor: string;
-  businessType: string;
-  businessDescription: string;
-  businessEmail: string;
+  nbOccupant: number;
+  housingType: string;
+  housingInsulationQuality: number;
+  housingAvailableVoltage: string;
+  housingConstructionYear: number | null;
+  housingLessThan2Years: boolean;
 }
 
 interface Step4 {
@@ -249,8 +250,8 @@ export default defineComponent( {
                                     const assents = ref<Assent[]>( [] );
 
                                     const formData = ref<CreateAccount>( {
-                                                                           assents:             [],
-                                                                           assentsDatas:        [
+                                                                           assents:                  [],
+                                                                           assentsDatas:             [
                                                                              {
                                                                                civility:  'm',
                                                                                lastName:  'Dupond',
@@ -261,21 +262,22 @@ export default defineComponent( {
                                                                                income:    20000,
                                                                              },
                                                                            ],
-                                                                           email:               'test@test.fr',
-                                                                           phone:               '0200000000',
-                                                                           mobile:              '0600000000',
-                                                                           indexBeneficiary:    0,
-                                                                           businessName:        'Keenthemes Inc.',
-                                                                           businessDescriptor:  'KEENTHEMES',
-                                                                           businessType:        '1',
-                                                                           businessDescription: '',
-                                                                           businessEmail:       'corp@support.com',
-                                                                           nameOnCard:          'Max Doe',
-                                                                           cardNumber:          '4111 1111 1111 1111',
-                                                                           cardExpiryMonth:     '1',
-                                                                           cardExpiryYear:      '2',
-                                                                           cardCvv:             '123',
-                                                                           saveCard:            '1',
+                                                                           email:                    'test@test.fr',
+                                                                           phone:                    '0200000000',
+                                                                           mobile:                   '0600000000',
+                                                                           indexBeneficiary:         0,
+                                                                           nbOccupant:               1,
+                                                                           housingType:              'maison_individuelle',
+                                                                           housingInsulationQuality: 1,
+                                                                           housingAvailableVoltage:  'monophase',
+                                                                           housingConstructionYear:  null,
+                                                                           housingLessThan2Years:    true,
+                                                                           nameOnCard:               'Max Doe',
+                                                                           cardNumber:               '4111 1111 1111 1111',
+                                                                           cardExpiryMonth:          '1',
+                                                                           cardExpiryYear:           '2',
+                                                                           cardCvv:                  '123',
+                                                                           saveCard:                 '1',
                                                                          } );
 
                                     onMounted( () => {
@@ -312,59 +314,52 @@ export default defineComponent( {
 
                                       // Step 2
                                       Yup.object( {
-                                                    assentsDatas:  Yup.array()
-                                                                      .of(
-                                                                          Yup.object().shape( {
-                                                                                                civility:  Yup.string()
-                                                                                                              .required(),
-                                                                                                lastName:  Yup.string()
-                                                                                                              .required(),
-                                                                                                firstName: Yup.string()
-                                                                                                              .required(),
-                                                                                                address:   Yup.string()
-                                                                                                              .required(),
-                                                                                                zipCode:   Yup.string()
-                                                                                                              .min( 5,
-                                                                                                                    'Le code postal doit faire 5 caractères' )
-                                                                                                              .max( 5,
-                                                                                                                    'Le code postal doit faire 5 caractères' )
-                                                                                                              .required(),
-                                                                                                city:      Yup.string()
-                                                                                                              .required(),
-                                                                                                income:    Yup.number()
-                                                                                                              .required()
-                                                                                                              .min( 1,
-                                                                                                                    'Le revenu doit être supérieur à 0' ),
-                                                                                              } ),
-                                                                      ),
+                                                    assentsDatas:     Yup.array()
+                                                                         .of(
+                                                                             Yup.object().shape( {
+                                                                                                   civility:  Yup.string()
+                                                                                                                 .required(),
+                                                                                                   lastName:  Yup.string()
+                                                                                                                 .required(),
+                                                                                                   firstName: Yup.string()
+                                                                                                                 .required(),
+                                                                                                   address:   Yup.string()
+                                                                                                                 .required(),
+                                                                                                   zipCode:   Yup.string()
+                                                                                                                 .min( 5,
+                                                                                                                       'Le code postal doit faire 5 caractères' )
+                                                                                                                 .max( 5,
+                                                                                                                       'Le code postal doit faire 5 caractères' )
+                                                                                                                 .required(),
+                                                                                                   city:      Yup.string()
+                                                                                                                 .required(),
+                                                                                                   income:    Yup.number()
+                                                                                                                 .required()
+                                                                                                                 .min( 1,
+                                                                                                                       'Le revenu doit être supérieur à 0' ),
+                                                                                                 } ),
+                                                                         ),
                                                     indexBeneficiary: Yup.number().required(),
-                                                    email: Yup.string().required().email(),
-                                                    phone: Yup.string().matches(
+                                                    email:            Yup.string().required().email(),
+                                                    phone:            Yup.string().matches(
                                                         /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/gm,
                                                         {
                                                           message:            'Le numéro est incorrect',
                                                           excludeEmptyString: true,
                                                         } ),
-                                                    mobile: Yup.string().matches(
+                                                    mobile:           Yup.string().matches(
                                                         /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/gm,
                                                         {
                                                           message:            'Le numéro est incorrect',
                                                           excludeEmptyString: true,
                                                         } ),
                                                   } ),
+
+                                      // Step 3
                                       Yup.object( {
-                                                    businessName:       Yup.string()
-                                                                           .required()
-                                                                           .label( 'Business Name' ),
-                                                    businessDescriptor: Yup.string()
-                                                                           .required()
-                                                                           .label( 'Shortened Descriptor' ),
-                                                    businessType:       Yup.string()
-                                                                           .required()
-                                                                           .label( 'Corporation Type' ),
-                                                    businessEmail:      Yup.string()
-                                                                           .required()
-                                                                           .label( 'Contact Email' ),
+                                                    nbOccupant:               Yup.number().required(),
+                                                    housingType:              Yup.string().required(),
+                                                    housingInsulationQuality: Yup.number().required(),
                                                   } ),
                                       Yup.object( {
                                                     nameOnCard:      Yup.string()
