@@ -70,6 +70,14 @@ export const convertOldText = ( oldData ): Text[] => {
 };
 
 export const convertOldBeneficiary = ( oldData ): Beneficiary => {
+
+    let income = 0;
+    for ( const avis of oldData[ 'avis' ] ) {
+        if ( avis.isbeneficiaire ) {
+            income = avis.revenu;
+        }
+    }
+
     return {
         civility:  getObjectData( oldData, [ 'beneficiaire', 'civilite' ] ),
         lastName:  getObjectData( oldData, [ 'beneficiaire', 'nom' ] ),
@@ -80,6 +88,7 @@ export const convertOldBeneficiary = ( oldData ): Beneficiary => {
         email:     getStringData( oldData[ 'email' ] ),
         phone:     getStringData( oldData[ 'telfixe' ] ),
         mobile:    getStringData( oldData[ 'telportable' ] ),
+        income:    income,
     };
 };
 

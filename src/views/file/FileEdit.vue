@@ -62,7 +62,7 @@
         >
           <!--begin::Step 1-->
           <div class="current" data-kt-stepper-element="content">
-            <Step1></Step1>
+            <Step1 :nbAssent="nbAssent"></Step1>
           </div>
           <!--end::Step 1-->
 
@@ -152,7 +152,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue';
+import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue';
 import Step5 from '@/views/file/steps/Step5.vue';
 import Step4 from '@/views/file/steps/Step4.vue';
 import Step3 from '@/views/file/steps/Step3.vue';
@@ -171,6 +171,7 @@ import {
   getCurrentFileData,
   getCurrentFileReference,
   getcurrentFolderName,
+  resetCurrentFileData,
   updateBeneficiary,
 } from '@/services/data/dataService';
 import SvairAvisImpot from '@/types/SvairAvisImpot';
@@ -239,6 +240,11 @@ export default defineComponent( {
                                   name:       'file-edit',
                                   components: { Step1, Step2, Step3, Step4, Step5 },
                                   setup() {
+                                    onUnmounted( () => {
+                                      console.log( '%c UN MOUNTED', 'background: #fdd835; color: #000000' );
+                                      // Remove les données sauvgardé en mémoire quand on quitte la page
+                                      resetCurrentFileData();
+                                    } );
                                     console.log( getcurrentFolderName() );
                                     console.log( getCurrentFileReference() );
                                     console.log( getCurrentFileData() );
@@ -247,31 +253,76 @@ export default defineComponent( {
                                     const currentStepIndex    = ref( 0 );
 
 
+                                    const fileData = getCurrentFileData();
+                                    console.log( 'FILE DATA -->', fileData );
+
+
                                     const assents = ref<Assent[]>( [] );
 
+                                    const defaultAssents: AssentForm[]          = [];
+                                    const defaultAssentsDatas: AssentDataForm[] = [];
+                                    let defaultIndexBeneficiary                 = 0;
+
+                                    console.log( fileData.assents );
+                                    let index = 0;
+                                    for ( const assent of fileData.assents ) {
+
+                                      console.log( 'index', index );
+                                      console.log( 'assent', assent );
+                                      if ( assent.isBeneficiary ) {
+                                        defaultIndexBeneficiary = index;
+                                      }
+                                      defaultAssents.push( {
+                                                             numFiscal: assent.numFiscal,
+                                                             refAvis:   assent.refAvis,
+                                                           } );
+
+                                      defaultAssentsDatas.push( {
+                                                                  civility:  assent.civility,
+                                                                  lastName:  assent.nom,
+                                                                  firstName: assent.prenom,
+                                                                  address:   assent.adresse,
+                                                                  zipCode:   assent.codepostal,
+                                                                  city:      assent.ville,
+                                                                  income:    assent.revenu,
+                                                                } );
+
+                                      index++;
+                                    }
+
+                                    if ( fileData.assents.length === 0 ) {
+                                      defaultAssentsDatas.push( {
+                                                                  civility:  fileData.beneficiary.civility,
+                                                                  lastName:  fileData.beneficiary.lastName,
+                                                                  firstName: fileData.beneficiary.firstName,
+                                                                  address:   fileData.beneficiary.address,
+                                                                  zipCode:   fileData.beneficiary.zipCode,
+                                                                  city:      fileData.beneficiary.city,
+                                                                  income:    fileData.beneficiary.income,
+                                                                } );
+                                    }
+
+                                    console.log( '%c ', 'background: #fdd8f0; color: #000000' );
+                                    console.log( fileData.assents );
+                                    console.log( defaultAssents );
+                                    console.log( defaultAssentsDatas );
+                                    console.log( '%c ', 'background: #fdd8f0; color: #000000' );
+
+                                    const nbAssent = defaultAssents.length;
+
                                     const formData = ref<CreateAccount>( {
-                                                                           assents:                  [],
-                                                                           assentsDatas:             [
-                                                                             {
-                                                                               civility:  'm',
-                                                                               lastName:  'Dupond',
-                                                                               firstName: 'Jean',
-                                                                               address:   '5 rue des test',
-                                                                               zipCode:   '79000',
-                                                                               city:      'Niort',
-                                                                               income:    20000,
-                                                                             },
-                                                                           ],
-                                                                           email:                    'test@test.fr',
-                                                                           phone:                    '0200000000',
-                                                                           mobile:                   '0600000000',
-                                                                           indexBeneficiary:         0,
-                                                                           nbOccupant:               1,
-                                                                           housingType:              'maison_individuelle',
-                                                                           housingInsulationQuality: 1,
-                                                                           housingAvailableVoltage:  'monophase',
-                                                                           housingConstructionYear:  null,
-                                                                           housingLessThan2Years:    true,
+                                                                           assents:                  defaultAssents,
+                                                                           assentsDatas:             defaultAssentsDatas,
+                                                                           email:                    fileData.beneficiary.email,
+                                                                           phone:                    fileData.beneficiary.phone,
+                                                                           mobile:                   fileData.beneficiary.mobile,
+                                                                           indexBeneficiary:         defaultIndexBeneficiary,
+                                                                           nbOccupant:               fileData.housing.nbOccupant,
+                                                                           housingType:              fileData.housing.type,
+                                                                           housingInsulationQuality: fileData.housing.insulationQuality,
+                                                                           housingAvailableVoltage:  fileData.housing.availableVoltage,
+                                                                           housingConstructionYear:  fileData.housing.constructionYear,
+                                                                           housingLessThan2Years:    fileData.housing.lessThan2Years,
                                                                            nameOnCard:               'Max Doe',
                                                                            cardNumber:               '4111 1111 1111 1111',
                                                                            cardExpiryMonth:          '1',
@@ -325,12 +376,13 @@ export default defineComponent( {
                                                                                                                  .required(),
                                                                                                    address:   Yup.string()
                                                                                                                  .required(),
-                                                                                                   zipCode:   Yup.string()
-                                                                                                                 .min( 5,
-                                                                                                                       'Le code postal doit faire 5 caractères' )
-                                                                                                                 .max( 5,
-                                                                                                                       'Le code postal doit faire 5 caractères' )
-                                                                                                                 .required(),
+                                                                                                   zipCode: Yup.string()
+                                                                                                               .matches(
+                                                                                                                   /^([0-8][0-9]|9[0-5])[0-9]{3}/,
+                                                                                                                   {
+                                                                                                                     message: 'Le code postal est incorrect',
+                                                                                                                   } )
+                                                                                                               .required(),
                                                                                                    city:      Yup.string()
                                                                                                                  .required(),
                                                                                                    income:    Yup.number()
@@ -486,23 +538,33 @@ export default defineComponent( {
                                           if ( index === 0 ) {
                                             isBeneficiary = true;
                                           }
+
+                                          // Ajouye l'avis dans le json si il n'existe pas
+                                          console.log( '%c BEFORE ADD', 'background: #7950FF; color: #000000' );
                                           const newAssent = addAssent( response.result.resp, datagouv, isBeneficiary );
+                                          console.log( '%c ADTER ADD', 'background: #7950FF; color: #000000' );
+
+                                          console.log( '%c ASSENTS BEFORE', 'background: #fdd835; color: #000000' );
+                                          console.log( assents );
                                           assents.value.push( newAssent );
+                                          console.log( assents );
+                                          console.log( '%c ASSENTS AFTER', 'background: #fdd835; color: #000000' );
 
                                           console.log( '%c BEFORE SET VALUE FORM DATA',
                                                        'background: #fdd835; color: #000000' );
                                           formData.value.assentsDatas[ index ] = {
-                                            civility:  'm',
+                                            civility:  newAssent.civility,
                                             lastName:  newAssent.nom,
                                             firstName: newAssent.prenom,
                                             address:   newAssent.adresse,
-                                            zipCode:   '',
+                                            zipCode:   newAssent.codepostal,
                                             city:      newAssent.ville,
                                             income:    newAssent.revenu,
                                           };
                                           console.log( 'Form data -->', formData );
 
                                           index++;
+
                                         } else {
                                           console.log( '%c PB LORS DE LA RECUP DE l\'avid D\'IMPOT',
                                                        'background: #fdd835; color: #000000' );
@@ -583,6 +645,7 @@ export default defineComponent( {
                                       totalSteps,
                                       currentStepIndex,
                                       assents,
+                                      nbAssent,
                                     };
                                   },
 

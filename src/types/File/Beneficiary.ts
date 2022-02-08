@@ -8,4 +8,5 @@ interface Beneficiary {
     email: string;
     phone: string;
     mobile: string;
+    income: number;
 }

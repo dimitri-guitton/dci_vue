@@ -80,7 +80,37 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficia
     let fileData = getCurrentFileData();
     console.log( 'FILE DATA', fileData );
 
-    // TODO na pas ajouter si l'avis existe déja
+    console.log( fileData.assents );
+    if ( fileData.assents.length > 0 ) {
+        const find = fileData.assents.find( f => f.refAvis === dataGouv.refAvis && f.numFiscal === dataGouv.numFiscal );
+        console.log( 'FIND --> ', find );
+
+        if ( find !== undefined ) {
+            return find;
+        }
+    }
+
+    let zipCode = '';
+    let city    = '';
+    const regex = /^(([0-8][0-9]|9[0-5])[0-9]{3}) (.*)$/;
+    let m;
+    console.log( 'VILLE ', data.foyerFiscal.ville );
+    if ( ( m = regex.exec( data.foyerFiscal.ville ) ) !== null ) {
+        // The result can be accessed through the `m`-variable.
+        zipCode = m[ 0 ];
+
+        m.forEach( ( match, groupIndex ) => {
+            if ( groupIndex === 1 ) {
+                zipCode = match;
+                console.log( 'ZIP CODE -->', zipCode );
+            } else if ( groupIndex === 3 ) {
+                city = match;
+                console.log( 'CITY -->', city );
+            }
+        } );
+    }
+
+
     const assent: Assent = {
         civility:   'm', // Par défaut sur 'm'
         refAvis:    dataGouv.refAvis,
@@ -90,8 +120,8 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficia
         nom:        data.declarant1.nom,
         prenom:     data.declarant1.prenoms,
         adresse:    data.foyerFiscal.adresse,
-        codepostal: '',// TODO faire la relation ville -> codePostal
-        ville:      data.foyerFiscal.ville,
+        codepostal: zipCode,
+        ville:      city,
         revenu:     data.revenuFiscalReference,
     };
 
@@ -109,7 +139,47 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficia
     return assent;
 };
 
+export const updateAssent = ( data: CreateAccount ) => {
+    let fileData = getCurrentFileData();
+
+    const assents: Assent[ ] = [];
+    let index                = 0;
+    for ( const assent of data.assents ) {
+
+        const find = fileData.assents.find( a => a.refAvis === assent.refAvis && a.numFiscal === assent.numFiscal );
+
+        let datagouv;
+        if ( find !== undefined ) {
+            datagouv = find.datagouv;
+        }
+
+        const newAssent: Assent = {
+            ...assent,
+            datagouv,
+            civility:      data.assentsDatas[ index ].civility,
+            isBeneficiary: data.indexBeneficiary === index,
+            nom:           data.assentsDatas[ index ].lastName,
+            prenom:        data.assentsDatas[ index ].firstName,
+            adresse:       data.assentsDatas[ index ].address,
+            codepostal:    data.assentsDatas[ index ].zipCode,
+            ville:         data.assentsDatas[ index ].city,
+            revenu:        data.assentsDatas[ index ].income,
+        };
+
+        assents.push( newAssent );
+        index++;
+    }
+
+    fileData = {
+        ...fileData,
+        assents: assents,
+    };
+
+    updateJsonData( fileData );
+};
+
 export const updateBeneficiary = ( data: CreateAccount ) => {
+    updateAssent( data );
     let fileData = getCurrentFileData();
 
     const beneficiary: Beneficiary = {
@@ -122,6 +192,7 @@ export const updateBeneficiary = ( data: CreateAccount ) => {
         email:     data.email,
         phone:     data.phone,
         mobile:    data.mobile,
+        income:    data.assentsDatas[ data.indexBeneficiary ].income,
     };
 
     fileData = {

@@ -83,6 +83,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { ErrorMessage, Field } from 'vee-validate';
+import { AssentForm } from '@/views/file/FileEdit.vue';
 
 export default defineComponent( {
                                   name:       'step-1',
@@ -90,19 +91,30 @@ export default defineComponent( {
                                     Field,
                                     ErrorMessage,
                                   },
+                                  props:      [ 'nbAssent' ],
                                   data() {
+                                    const assents: AssentForm[] = [];
+
+                                    // Initialise le nombre d'avis
+                                    if ( this.$props.nbAssent === 0 ) {
+                                      assents.push( {
+                                                      numFiscal: '',
+                                                      refAvis:   '',
+                                                    } );
+                                    } else {
+                                      for ( let i = 1; i <= this.$props.nbAssent; i++ ) {
+                                        assents.push( {
+                                                        numFiscal: '',
+                                                        refAvis:   '',
+                                                      } );
+                                      }
+                                    }
+
                                     return {
-                                      assents: [
-                                        {
-                                          numFiscal: '',
-                                          refAvis:   '',
-                                        },
-                                      ],
+                                      assents: assents,
                                     };
                                   },
                                   methods: {
-                                    //TODO QUAND IL Y A PLUS DE 1 VIS PAR DEFAUT DEPLIER LES FORMAULRIE
-
                                     addNewAssent() {
                                       this.assents.push( {
                                                            numFiscal: '',

@@ -15,7 +15,7 @@
     "enabledHousingAction":      false,
     "disabledMaPrimeRenovBonus": false,
     "assents":                   [],
-    "beneficiary":               {
+    "beneficiary": {
         "civility":  "",
         "lastName":  "",
         "firstName": "",
@@ -24,7 +24,8 @@
         "city":      "",
         "email":     "",
         "phone":     "",
-        "mobile":    ""
+        "mobile":    "",
+        "income":    0
     },
     "codeBonus":                 null,
     "energyZone":                null,

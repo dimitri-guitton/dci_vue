@@ -301,11 +301,6 @@ export default defineComponent( {
                                       listFolderType,
                                     };
                                   },
-                                  methods: {
-                                    forceUpdate() {
-                                      this.$forceUpdate();
-                                    },
-                                  },
                                 } );
 </script>
 
