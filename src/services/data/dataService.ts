@@ -56,10 +56,6 @@ export const setCurrentFileData = ( fileData: string ) => {
     store.set( 'currentFileData', fileData );
 };
 
-export const getCurrentCetFileData = (): CetFile => {
-    return getCurrentCetFileData();
-};
-
 export const getCurrentFileData = () => {
     const currentFile = store.get( 'currentFileData' ) as string;
     if ( currentFile !== '' ) {
@@ -81,6 +77,10 @@ export const getCurrentFileData = () => {
         return fileData;
         // }
     }
+};
+
+export const getCurrentCetFileData = (): CetFile => {
+    return getCurrentFileData();
 };
 
 export const resetCurrentFileData = () => {
