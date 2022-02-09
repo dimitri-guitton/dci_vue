@@ -3,11 +3,6 @@ import { getFolderPath, updateJsonData } from '@/services/folder/folderService';
 import fs from 'fs';
 import SvairAvisImpot from '@/types/SvairAvisImpot';
 import { CetFile } from '@/types/v2/File/Cet/CetFile';
-import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
-import { PgFile } from '@/types/v2/File/Pg/PgFile';
-import { RoFile } from '@/types/v2/File/Ro/RoFile';
-import { RrFile } from '@/types/v2/File/Rr/RrFile';
-import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { DataGouv } from '@/types/v2/File/Common/DataGouv';
 import { Assent } from '@/types/v2/File/Common/Assent';
 import { Beneficiary } from '@/types/v2/File/Common/Beneficiary';
@@ -61,7 +56,11 @@ export const setCurrentFileData = ( fileData: string ) => {
     store.set( 'currentFileData', fileData );
 };
 
-export const getCurrentFileData = (): CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile => {
+export const getCurrentCetFileData = (): CetFile => {
+    return getCurrentCetFileData();
+};
+
+export const getCurrentFileData = () => {
     const currentFile = store.get( 'currentFileData' ) as string;
     if ( currentFile !== '' ) {
         console.log( '%c CURRENT FILE NOT EMPTY', 'background: #fdd835; color: #000000' );

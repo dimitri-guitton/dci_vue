@@ -5,6 +5,7 @@ import { DataGouv } from '@/types/v2/File/Common/DataGouv';
 import { addAssent } from '@/services/data/dataService';
 import Svair from 'svair-api/index';
 import { Assent } from '@/types/v2/File/Common/Assent';
+import * as Yup from 'yup';
 
 /**
  * Promise
@@ -117,4 +118,28 @@ export const validateStepOne = async ( data: FileStep ): Promise<{ assents: Asse
         assents,
         formData: data,
     };
+};
+
+export const yupConfigStep1 = () => {
+    return Yup.object( {
+                           assents: Yup.array()
+                                       .of(
+                                           Yup.object().shape( {
+                                                                   numFiscal: Yup.string()
+                                                                                 .matches(
+                                                                                     /^[0-9a-zA-Z]{13,14}$/m,
+                                                                                     {
+                                                                                         message:            'Le numéro est incorrect',
+                                                                                         excludeEmptyString: true,
+                                                                                     } ),
+                                                                   refAvis:   Yup.string()
+                                                                                 .matches(
+                                                                                     /^[0-9a-zA-Z]{13,14}$/m,
+                                                                                     {
+                                                                                         message:            'Le numéro est incorrect',
+                                                                                         excludeEmptyString: true,
+                                                                                     } ),
+                                                               } ),
+                                       ),
+                       } );
 };

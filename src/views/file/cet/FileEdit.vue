@@ -104,17 +104,8 @@ import { setCurrentPageBreadcrumbs } from '@/core/helpers/breadcrumb';
 import * as Yup from 'yup';
 import { setLocale } from 'yup';
 import { useForm } from 'vee-validate';
-import {
-  getCurrentFileData,
-  getCurrentFileReference,
-  getcurrentFolderName,
-  resetCurrentFileData,
-  updateBeneficiary,
-  updateHousing,
-} from '@/services/data/dataService';
+import { getCurrentCetFileData, resetCurrentFileData, updateHousing } from '@/services/data/dataService';
 import { Assent } from '@/types/v2/File/Common/Assent';
-import { AssentForm } from '@/types/v2/Wizzard/AssentForm';
-import { AssentDataForm } from '@/types/v2/Wizzard/AssentDataForm';
 import { FileStep } from '@/types/v2/Wizzard/FileStep';
 import CommonStep1 from '@/views/file/wizzard/steps/CommonStep1.vue';
 import CommonStep2 from '@/views/file/wizzard/steps/CommonStep2.vue';
@@ -126,7 +117,9 @@ import { Step2 } from '@/types/v2/Wizzard/Step2';
 import { Step3 } from '@/types/v2/Wizzard/Step3';
 import { Step4 } from '@/types/v2/Wizzard/Step4';
 import WizzardFileHeader from '@/components/DCI/wizzard-file/Header.vue';
-import { validateStepOne } from '@/services/file/wizzard/steap1Service';
+import { validateStepOne, yupConfigStep1 } from '@/services/file/wizzard/step1Service';
+import { initFormDataStep1And2 } from '@/services/file/wizzard/wizzardService';
+import { validateStepTwo, yupConfigStep2 } from '@/services/file/wizzard/step2Service';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -149,175 +142,48 @@ export default defineComponent( {
                                     CommonStep1,
                                   },
                                   setup() {
-                                    onUnmounted( () => {
-                                      console.log( '%c UN MOUNTED', 'background: #fdd835; color: #000000' );
-                                      // Remove les données sauvgardé en mémoire quand on quitte la page
-                                      resetCurrentFileData();
-                                    } );
-                                    console.log( getcurrentFolderName() );
-                                    console.log( getCurrentFileReference() );
-                                    console.log( getCurrentFileData() );
                                     const _stepperObj         = ref<StepperComponent | null>( null );
                                     const horizontalWizardRef = ref<HTMLElement | null>( null );
-                                    const currentStepIndex    = ref( 0 );
-
-
-                                    const fileData = getCurrentFileData();
-                                    console.log( 'FILE DATA -->', fileData );
-                                    const lists = fileData.lists;
-
-
-                                    const assents = ref<Assent[]>( [] );
-
-                                    const defaultAssents: AssentForm[]          = [];
-                                    const defaultAssentsDatas: AssentDataForm[] = [];
-                                    let defaultIndexBeneficiary                 = 0;
-
-                                    console.log( fileData.assents );
-                                    let index = 0;
-                                    for ( const assent of fileData.assents ) {
-
-                                      console.log( 'index', index );
-                                      console.log( 'assent', assent );
-                                      if ( assent.isBeneficiary ) {
-                                        defaultIndexBeneficiary = index;
-                                      }
-                                      defaultAssents.push( {
-                                                             numFiscal: assent.numFiscal,
-                                                             refAvis:   assent.refAvis,
-                                                           } );
-
-                                      defaultAssentsDatas.push( {
-                                                                  civility:  assent.civility,
-                                                                  lastName:  assent.nom,
-                                                                  firstName: assent.prenom,
-                                                                  address:   assent.adresse,
-                                                                  zipCode:   assent.codepostal,
-                                                                  city:      assent.ville,
-                                                                  income:    assent.revenu,
-                                                                } );
-
-                                      index++;
-                                    }
-
-                                    if ( fileData.assents.length === 0 ) {
-                                      defaultAssentsDatas.push( {
-                                                                  civility:  fileData.beneficiary.civility,
-                                                                  lastName:  fileData.beneficiary.lastName,
-                                                                  firstName: fileData.beneficiary.firstName,
-                                                                  address:   fileData.beneficiary.address,
-                                                                  zipCode:   fileData.beneficiary.zipCode,
-                                                                  city:      fileData.beneficiary.city,
-                                                                  income:    fileData.beneficiary.income,
-                                                                } );
-                                    }
-
-                                    console.log( '%c ', 'background: #fdd8f0; color: #000000' );
-                                    console.log( fileData.assents );
-                                    console.log( defaultAssents );
-                                    console.log( defaultAssentsDatas );
-                                    console.log( '%c ', 'background: #fdd8f0; color: #000000' );
-
-                                    const nbAssent = defaultAssents.length;
-
-                                    const formData = ref<FileStep>( {
-                                                                      assents:                  defaultAssents,
-                                                                      assentsDatas:             defaultAssentsDatas,
-                                                                      email:                    fileData.beneficiary.email,
-                                                                      phone:                    fileData.beneficiary.phone,
-                                                                      mobile:                   fileData.beneficiary.mobile,
-                                                                      indexBeneficiary:         defaultIndexBeneficiary,
-                                                                      nbOccupant:               fileData.housing.nbOccupant,
-                                                                      housingType:              fileData.housing.type,
-                                                                      housingInsulationQuality: fileData.housing.insulationQuality,
-                                                                      housingAvailableVoltage:  fileData.housing.availableVoltage,
-                                                                      housingConstructionYear:  fileData.housing.constructionYear,
-                                                                      housingLessThan2Years:    fileData.housing.lessThan2Years,
-                                                                      housingIsAddressBenef:    fileData.housing.isAddressBenef,
-                                                                      nameOnCard:               'Max Doe',
-                                                                      cardNumber:               '4111 1111 1111 1111',
-                                                                      cardExpiryMonth:          '1',
-                                                                      cardExpiryYear:           '2',
-                                                                      cardCvv:                  '123',
-                                                                      saveCard:                 '1',
-                                                                    } );
-
                                     onMounted( () => {
                                       _stepperObj.value = StepperComponent.createInsance(
                                           horizontalWizardRef.value as HTMLElement,
                                       );
-
                                       setCurrentPageBreadcrumbs( 'Horizontal', [ 'Pages', 'Wizards' ] );
                                     } );
+                                    onUnmounted( () => {
+                                      // Remove les données sauvgardé en mémoire quand on quitte la page
+                                      resetCurrentFileData();
+                                    } );
 
+
+                                    // Initialisation des variables
+                                    const currentStepIndex    = ref( 0 );
+                                    // Récupération des données du fichier JSON
+                                    const fileData            = getCurrentCetFileData();
+                                    const lists               = fileData.lists;
+                                    const assents             = ref<Assent[]>( [] );
+                                    const formData            = ref<FileStep>( {
+                                                                                 ...initFormDataStep1And2( fileData.assents,
+                                                                                                           fileData.beneficiary ),
+                                                                                 nbOccupant:               fileData.housing.nbOccupant,
+                                                                                 housingType:              fileData.housing.type,
+                                                                                 housingInsulationQuality: fileData.housing.insulationQuality,
+                                                                                 housingAvailableVoltage:  fileData.housing.availableVoltage,
+                                                                                 housingConstructionYear:  fileData.housing.constructionYear,
+                                                                                 housingLessThan2Years:    fileData.housing.lessThan2Years,
+                                                                                 housingIsAddressBenef:    fileData.housing.isAddressBenef,
+                                                                                 nameOnCard:               'Max Doe',
+                                                                                 cardNumber:               '4111 1111 1111 1111',
+                                                                                 cardExpiryMonth:          '1',
+                                                                                 cardExpiryYear:           '2',
+                                                                                 cardCvv:                  '123',
+                                                                                 saveCard:                 '1',
+                                                                               } );
+                                    const nbAssent            = formData.value?.assents.length;
+                                    // Configuration de la validation du formulaire
                                     const createAccountSchema = [
-                                      // STEP 1
-                                      Yup.object( {
-                                                    assents: Yup.array()
-                                                                .of(
-                                                                    Yup.object().shape( {
-                                                                                          numFiscal: Yup.string()
-                                                                                                        .matches(
-                                                                                                            /^[0-9a-zA-Z]{13,14}$/m,
-                                                                                                            {
-                                                                                                              message:            'Le numéro est incorrect',
-                                                                                                              excludeEmptyString: true,
-                                                                                                            } ),
-                                                                                          refAvis:   Yup.string()
-                                                                                                        .matches(
-                                                                                                            /^[0-9a-zA-Z]{13,14}$/m,
-                                                                                                            {
-                                                                                                              message:            'Le numéro est incorrect',
-                                                                                                              excludeEmptyString: true,
-                                                                                                            } ),
-                                                                                        } ),
-                                                                ),
-                                                  } ),
-
-                                      // Step 2
-                                      Yup.object( {
-                                                    assentsDatas:     Yup.array()
-                                                                         .of(
-                                                                             Yup.object().shape( {
-                                                                                                   civility:  Yup.string()
-                                                                                                                 .required(),
-                                                                                                   lastName:  Yup.string()
-                                                                                                                 .required(),
-                                                                                                   firstName: Yup.string()
-                                                                                                                 .required(),
-                                                                                                   address:   Yup.string()
-                                                                                                                 .required(),
-                                                                                                   zipCode:   Yup.string()
-                                                                                                                 .matches(
-                                                                                                                     /^([0-8][0-9]|9[0-5])[0-9]{3}/,
-                                                                                                                     {
-                                                                                                                       message: 'Le code postal est incorrect',
-                                                                                                                     } )
-                                                                                                                 .required(),
-                                                                                                   city:      Yup.string()
-                                                                                                                 .required(),
-                                                                                                   income:    Yup.number()
-                                                                                                                 .required()
-                                                                                                                 .min( 1,
-                                                                                                                       'Le revenu doit être supérieur à 0' ),
-                                                                                                 } ),
-                                                                         ),
-                                                    indexBeneficiary: Yup.number().required(),
-                                                    email:            Yup.string().required().email(),
-                                                    phone:            Yup.string().matches(
-                                                        /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/gm,
-                                                        {
-                                                          message:            'Le numéro est incorrect',
-                                                          excludeEmptyString: true,
-                                                        } ),
-                                                    mobile:           Yup.string().matches(
-                                                        /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/gm,
-                                                        {
-                                                          message:            'Le numéro est incorrect',
-                                                          excludeEmptyString: true,
-                                                        } ),
-                                                  } ),
-
+                                      yupConfigStep1(),
+                                      yupConfigStep2(),
                                       // Step 3
                                       Yup.object( {
                                                     nbOccupant:               Yup.number().required(),
@@ -343,39 +209,43 @@ export default defineComponent( {
                                                   } ),
                                     ];
 
-                                    const currentSchema = computed( () => {
+                                    // --------------------- Début config du Wizzard et du formulaire--------------------------
+                                    const currentSchema               = computed( () => {
                                       return createAccountSchema[ currentStepIndex.value ];
                                     } );
-
                                     const { resetForm, handleSubmit } = useForm<Step1 | Step2 | Step3 | Step4>( {
                                                                                                                   validationSchema: currentSchema,
                                                                                                                 } );
-
-                                    const refreshFormData = () => {
+                                    const refreshFormData             = () => {
                                       resetForm( {
                                                    values: {
                                                      ...formData.value,
                                                    },
                                                  } );
                                     };
-
-                                    const totalSteps = computed( () => {
+                                    const totalSteps                  = computed( () => {
                                       if ( !_stepperObj.value ) {
                                         return;
                                       }
 
                                       return _stepperObj.value.totatStepsNumber;
                                     } );
-
                                     resetForm( {
                                                  values: {
                                                    ...formData.value,
                                                  },
                                                } );
+                                    const previousStep = () => {
+                                      if ( !_stepperObj.value ) {
+                                        return;
+                                      }
 
-                                    const validateStepTwo   = async ( data: FileStep ) => {
-                                      updateBeneficiary( data );
+                                      currentStepIndex.value--;
+
+                                      _stepperObj.value.goPrev();
                                     };
+                                    // --------------------- Fin config du Wizzard et du formulaire--------------------------
+
                                     const validateStepThree = async ( data: FileStep ) => {
                                       console.log( 'data-->', data );
                                       updateHousing( data );
@@ -405,8 +275,9 @@ export default defineComponent( {
                                         // Force le refersh des data du formulaire
                                         refreshFormData();
                                       } else if ( currentStepIndex.value === 1 ) {
-                                        console.log( '%c Validation step 2', 'background: #fdd835; color: #000000' );
-                                        validateStepTwo( formData.value );
+                                        console.log( '%c Validation de l\'étape 1',
+                                                     'background: #FF7CA7; color: #000000' );
+                                        await validateStepTwo( formData.value );
                                       } else if ( currentStepIndex.value === 2 ) {
                                         console.log( '%c Validation step 3', 'background: #fdd835; color: #000000' );
                                         validateStepThree( formData.value );
@@ -421,15 +292,6 @@ export default defineComponent( {
                                       _stepperObj.value.goNext();
                                     } );
 
-                                    const previousStep = () => {
-                                      if ( !_stepperObj.value ) {
-                                        return;
-                                      }
-
-                                      currentStepIndex.value--;
-
-                                      _stepperObj.value.goPrev();
-                                    };
 
                                     const formSubmit = () => {
                                       Swal.fire( {
