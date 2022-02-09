@@ -24,6 +24,11 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/views/file/FileEdit.vue'),
             },
             {
+                path:      '/file-cet-edit',
+                name:      'file-cet-edit',
+                component: () => import('@/views/file/cet/FileEdit.vue'),
+            },
+            {
                 path:      '/parameters',
                 name:      'parameters',
                 component: () => import('@/views/Parameters.vue'),
@@ -45,8 +50,8 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter( {
                                  // history: createWebHashHistory(),
                                  history: process.env.IS_ELECTRON
-                                              ? createWebHashHistory()
-                                              : createWebHistory(),
+                                          ? createWebHashHistory()
+                                          : createWebHistory(),
                                  routes,
                              } );
 

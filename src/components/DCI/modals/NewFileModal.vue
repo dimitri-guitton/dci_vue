@@ -218,7 +218,8 @@ export default defineComponent( {
                                       const folderReference = await folderService.createAFolder( newFolderData.value.type,
                                                                                                  newFolderData.value.customer );
 
-                                      await router.push( { name: 'file-edit', query: { slug: folderReference } } );
+                                      // TODO rendre dynamique
+                                      await router.push( { name: 'file-cet-edit', query: { slug: folderReference } } );
                                     };
 
                                     return {

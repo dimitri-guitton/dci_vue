@@ -177,8 +177,10 @@ export const convertOldJsonToNewJson = () => {
     const dropboxPath          = store.get( 'dropboxPath' );
     let oldData: object | null = null;
 
-    if ( fs.existsSync( dropboxPath + '/DCI/old_data_cet.json' ) ) {
-        oldData = JSON.parse( fs.readFileSync( dropboxPath + '/DCI/old_data_cet.json', 'utf8' ) );
+    // if ( fs.existsSync( dropboxPath + '/DCI/old_data_cet.json' ) ) {
+    if ( fs.existsSync( '/Users/dimitri/workspace/eco_atlantique/dci_vue/data_example/old_data_cet.json' ) ) {
+        // oldData = JSON.parse( fs.readFileSync( dropboxPath + '/DCI/old_data_cet.json', 'utf8' ) );
+        oldData = JSON.parse( fs.readFileSync( '/Users/dimitri/workspace/eco_atlantique/dci_vue/data_example/old_data_cet.json', 'utf8' ) );
         console.log( oldData );
     }
 
@@ -210,10 +212,7 @@ export const convertOldJsonToNewJson = () => {
     console.log( '%c NEW DATA', 'background: #fdd835; color: #000000' );
     console.log( data );
 
-    const id = new Date().valueOf();
-    console.log( 'ID -->', id );
-    console.log( type );
-    const path = `${ dropboxPath }/DCI/new_data_${ type }_${ id }.json`;
+    const path = `${ dropboxPath }/DCI/new_data_${ type }.json`;
     console.log( path );
     if ( dropboxPath !== '' && !fs.existsSync( path ) ) {
         fs.writeFileSync( path, data );

@@ -1,5 +1,5 @@
 {
-    "version":                   "1",
+    "version":                   1,
     "type":                      "cet",
     "ref":                       "",
     "folderName":                "",
@@ -8,14 +8,14 @@
     "settings":                  {
         "ceeCoef": "6.6"
     },
-    "quotationTemplate":         "quotation_cet_v1.html",
-    "workSheetTemplate":         "work_sheet_cet_v1.html",
+    "quotationTemplate":         "quotation_template_v1",
+    "workSheetTemplate":         "worksheet_template_v1",
     "disabledBonus":             false,
     "disabledCeeBonus":          false,
     "enabledHousingAction":      false,
     "disabledMaPrimeRenovBonus": false,
     "assents":                   [],
-    "beneficiary": {
+    "beneficiary":               {
         "civility":  "",
         "lastName":  "",
         "firstName": "",
@@ -25,13 +25,12 @@
         "email":     "",
         "phone":     "",
         "mobile":    "",
-        "income":    0
+        "income":    ""
     },
-    "codeBonus":                 null,
-    "energyZone":                null,
-    "bonusRate":                 0,
+    "codeBonus":                 "",
+    "energyZone":                "",
     "housing":                   {
-        "nbOccupant":        "1",
+        "nbOccupant":        1,
         "type":              "maison_individuelle",
         "isAddressBenef":    true,
         "addresse":          "",
@@ -49,12 +48,12 @@
     "workSheet":                 {
         "period":                  "",
         "niveauHabitation":        "pp",
-        "typeChantier":            "neuf",
+        "typeChantier":            "reno",
         "disjoncteur":             false,
-        "tensionDisponible":       "monophase",
+        "tensionDisponible":       "triphase",
         "distanceCompteurCet":     0,
-        "natureMurExt":            "parpaing",
-        "naturePlafond":           "brique",
+        "natureMurExt":            "beton",
+        "naturePlafond":           "placo",
         "visiteComble":            false,
         "chantierHabite":          false,
         "grandeEchelle":           false,
@@ -62,9 +61,9 @@
         "puissanceCompteur":       6,
         "accesComble":             "trappe",
         "rueEtroite":              false,
-        "typeCouverture":          "meca",
+        "typeCouverture":          "mecanique",
         "etatToiture":             "propre",
-        "typeCharpente":           "trad",
+        "typeCharpente":           "metal",
         "nbCompartimentComble":    1,
         "presenceVolige":          false,
         "nbAccesComble":           1,
@@ -77,7 +76,7 @@
         "ballonFixeMur":           false,
         "uniteExtFixeMur":         false,
         "distanceBallonUnitExt":   0,
-        "infosSup":                "RAS"
+        "infosSup":                ""
     },
     "quotation":                 {
         "origin":             "",
@@ -159,7 +158,19 @@
         ],
         "tva":                5.5,
         "ceeBonus":           0,
-        "selectedProducts":   [],
+        "selectedProducts":   [
+            {
+                "id":          3,
+                "productType": "cet",
+                "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
+                "reference":   "CETACSP200",
+                "pu":          2456,
+                "defaultPu":   2456,
+                "description": "Capacité: 200L SPLIT\r\nDimensions HxLxP: 1267*588*603mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
+                "size":        "HxLxP: 1267*588*60",
+                "type":        "split"
+            }
+        ],
         "products":           [
             {
                 "id":          1,
@@ -549,7 +560,7 @@
             }
         }
     ],
-    "lists":       {
+    "lists":                     {
         "localTypeList":         [
             {
                 "slug":  "maison_individuelle",

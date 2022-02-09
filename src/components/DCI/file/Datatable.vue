@@ -281,7 +281,8 @@ export default defineComponent( {
                                     const edit = ( reference: string, folderName: string ) => {
                                       setCurrentFileReference( reference );
                                       setcurrentFolderName( folderName );
-                                      router.push( { name: 'file-edit' } );
+                                      // @TODO rendre dynamique
+                                      router.push( { name: 'file-cet-edit' } );
                                     };
 
                                     return {

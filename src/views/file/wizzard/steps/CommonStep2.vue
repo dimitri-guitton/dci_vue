@@ -19,13 +19,6 @@
           <el-descriptions-item label="Revenus référence">{{ assent.datagouv.revenu }}</el-descriptions-item>
         </el-descriptions>
 
-        <!--        <div class="row mb-15">-->
-        <!--          <div class="col-md-12 d-flex justify-content-center">-->
-        <!--            <button type="button" @click="copyAssentToForm(assent)" class="btn btn-primary btn-circle">-->
-        <!--              <i class="fa fa-arrow-circle-down fs-4"></i></button>-->
-        <!--          </div>-->
-        <!--        </div>-->
-
         <div class="pb-10 pb-lg-15">
           <h2 class="fw-bolder text-dark">Informations client</h2>
         </div>
@@ -139,12 +132,16 @@
           </div>
         </div>
 
-        <div class="row mb-15">
+        <div class="row">
           <div class="col-md-4">
             <label class="form-label mb-3">Est bénéficiaire</label>
             <Field name="indexBeneficiary" type="radio" :value="index" class="form-check-input ms-5"></Field>
           </div>
         </div>
+
+        <el-divider class="mb-15">
+          <i class="fa fa-user"></i>
+        </el-divider>
       </template>
     </template>
 
