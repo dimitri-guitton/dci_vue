@@ -21,7 +21,7 @@
 import { defineComponent } from 'vue';
 import NewFolderModal from '@/components/DCI/modals/NewFileModal.vue';
 import * as folderService from '../../services/folder/folderService';
-import FolderDatatable from '@/components/DCI/FileItemDatatable.vue';
+import FolderDatatable from '@/components/DCI/file/Datatable.vue';
 
 
 export default defineComponent( {

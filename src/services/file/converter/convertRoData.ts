@@ -1,5 +1,3 @@
-import RoKitBiZone from '@/types/File/Ro/RoKitBiZone';
-import RoEcsDeporte from '@/types/File/Ro/RoEcsDeporte';
 import {
     convertOldAssent,
     convertOldBeneficiary,
@@ -18,20 +16,26 @@ import {
     getObjectData,
     getStringData,
 } from '@/services/file/converter/convertData';
-import RoFile from '@/types/File/Ro/RoFile';
-import ItemList from '@/types/File/ItemList';
-import RoList from '@/types/File/Ro/RoList';
-import Product from '@/types/File/Product';
+import { Product } from '@/types/v2/File/Common/Product';
+import RoKitBiZone from '@/types/v2/File/Ro/RoKitBiZone';
+import RoEcsDeporte from '@/types/v2/File/Ro/RoEcsDeporte';
+import RoList from '@/types/v2/File/Ro/RoList';
+import { ItemList } from '@/types/v2/File/Common/ItemList';
+import { RoFile } from '@/types/v2/File/Ro/RoFile';
 
 const convertOldRoProduct = ( oldData ): Product[] => {
     const roProducts: Product[] = [];
     const oldProducts: []       = getObjectData( oldData,
-                                                 [ 'devis',
-                                                   'pompeAChaleur',
-                                                   'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
-                                                                                                         [ 'devis',
-                                                                                                           'pompeAChaleur',
-                                                                                                           'products' ] );
+                                                 [
+                                                     'devis',
+                                                     'pompeAChaleur',
+                                                     'products',
+                                                 ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                            [
+                                                                                                'devis',
+                                                                                                'pompeAChaleur',
+                                                                                                'products',
+                                                                                            ] );
 
     oldProducts.forEach( product => {
         roProducts.push( {
@@ -115,6 +119,9 @@ const convertOldRoItemList = ( oldData ): RoList => {
         tensionDisponibleList: [],
         positionEauChaudeList: [],
         typeChaudiereList:     [],
+        typeOrigineList:       [],
+        batimentNatureList:    [],
+        niveauHabitationList:  [],
     };
 
     const roItems = [
@@ -195,7 +202,6 @@ export const convertOldRoFile = ( oldData ): RoFile => {
         beneficiary:               convertOldBeneficiary( oldData ),
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
-        bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
         housing:                   {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),

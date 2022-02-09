@@ -5,15 +5,15 @@ import { toFrenchDate } from '../commonService';
 import { convertOldRoFile } from '@/services/file/converter/convertRoData';
 import { convertOldRrFile } from '@/services/file/converter/convertRrData';
 import { convertOldCetFile } from '@/services/file/converter/convertCetData';
-import Filetem from '@/types/FileItem/Filetem';
 import path from 'path';
 import { addFile, deleteFile } from '@/services/sqliteService';
 import { FILE_CET_TYPE } from '@/services/constantService';
 import { getcurrentFolderName, setCurrentFileData } from '@/services/data/dataService';
-import CetFile from '@/types/File/Cet/CetFile';
 import { convertOldPgFile } from '@/services/file/converter/convertPgData';
 import { convertOldCombleFile } from '@/services/file/converter/convertCombleData';
 import { convertOldSolFile } from '@/services/file/converter/convertSolData';
+import { CetFile } from '@/types/v2/File/Cet/CetFile';
+import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 
 const schema = {
     dropboxPath: {
@@ -237,7 +237,7 @@ export const getFolderPath = ( folderName: string ): string => {
  * Supprime un dossiser dans Drpbox et dans la DB
  * @param folder
  */
-export const removeFolder = async ( folder: Filetem ): Promise<boolean> => {
+export const removeFolder = async ( folder: DatatableFile ): Promise<boolean> => {
     const folderPath = getFolderPath( folder.folderName );
 
     if ( fs.existsSync( folderPath ) ) {

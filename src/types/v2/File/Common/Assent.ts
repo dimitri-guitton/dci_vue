@@ -1,8 +1,8 @@
-import { DataGouv } from '@/types/File/DataGouv';
-
 /**
  * Interface pour les avis d'imposition
  */
+import { DataGouv } from '@/types/v2/File/Common/DataGouv';
+
 export interface Assent {
     refAvis: string;
     numFiscal: string;

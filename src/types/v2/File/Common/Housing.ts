@@ -1,8 +1,8 @@
-import DataGeoportail from '@/types/File/DataGeoportail';
-
 /**
  * Interface pour les infos du logement du Devis
  */
+import { DataGeoportail } from '@/types/v2/File/Common/DataGeoportail';
+
 export interface Housing {
     nbOccupant: number;
     type: string;

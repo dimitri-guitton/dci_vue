@@ -3,6 +3,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { ItemList } from '@/types/v2/File/Common/ItemList';
 
 interface OptionList {
   type: string;
@@ -17,7 +18,7 @@ interface OptionList {
 export default defineComponent( {
                                   name:  'option-list',
                                   props: {
-                                    lists: Object,
+                                    lists: Object as () => ItemList,
                                   },
                                 } );
 </script>

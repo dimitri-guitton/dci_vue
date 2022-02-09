@@ -1,5 +1,5 @@
-import ItemList from '@/types/File/ItemList';
 import { BaseList } from '@/types/v2/File/Common/BaseList';
+import { ItemList } from '@/types/v2/File/Common/ItemList';
 
 interface PgList extends BaseList {
     qualiteIsolationList: ItemList[];

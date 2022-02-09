@@ -62,32 +62,32 @@
         >
           <!--begin::Step 1-->
           <div class="current" data-kt-stepper-element="content">
-            <Step1 :nbAssent="nbAssent"></Step1>
+            <CommonStep1 :nbAssent="nbAssent"></CommonStep1>
 
           </div>
           <!--end::Step 1-->
 
           <!--begin::Step 2-->
           <div data-kt-stepper-element="content">
-            <Step2 :assents="assents"></Step2>
+            <CommonStep2 :assents="assents"></CommonStep2>
           </div>
           <!--end::Step 2-->
 
           <!--begin::Step 3-->
           <div data-kt-stepper-element="content">
-            <Step3 :lists="lists"></Step3>
+            <CommonStep3 :lists="lists"></CommonStep3>
           </div>
           <!--end::Step 3-->
 
           <!--begin::Step 4-->
           <div data-kt-stepper-element="content">
-            <Step4></Step4>
+            <CommonStep4></CommonStep4>
           </div>
           <!--end::Step 4-->
 
           <!--begin::Step 5-->
           <div data-kt-stepper-element="content">
-            <Step5></Step5>
+            <CommonStep5></CommonStep5>
           </div>
           <!--end::Step 5-->
 
@@ -154,11 +154,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue';
-import Step5 from '@/views/file/steps/Step5.vue';
-import Step4 from '@/views/file/steps/Step4.vue';
-import Step3 from '@/views/file/steps/Step3.vue';
-import Step2 from '@/views/file/steps/Step2.vue';
-import Step1 from '@/views/file/steps/Step1.vue';
 import Swal from 'sweetalert2/dist/sweetalert2.min.js';
 import { StepperComponent } from '@/assets/ts/components';
 import { setCurrentPageBreadcrumbs } from '@/core/helpers/breadcrumb';
@@ -166,7 +161,6 @@ import * as Yup from 'yup';
 import { setLocale } from 'yup';
 import { useForm } from 'vee-validate';
 import Svair from 'svair-api/index.js';
-import { DataGouv } from '@/types/File/DataGouv';
 import {
   addAssent,
   getCurrentFileData,
@@ -177,57 +171,20 @@ import {
   updateHousing,
 } from '@/services/data/dataService';
 import SvairAvisImpot from '@/types/SvairAvisImpot';
-import Assent from '@/types/File/Assent';
-
-
-export interface AssentForm {
-  numFiscal: string;
-  refAvis: string;
-}
-
-export interface AssentDataForm {
-  civility: string;
-  lastName: string;
-  firstName: string;
-  address: string;
-  zipCode: string;
-  city: string;
-  income: number;
-}
-
-interface Step1 {
-  assents: AssentForm[];
-}
-
-interface Step2 {
-  assentsDatas: AssentDataForm[];
-  indexBeneficiary: number;
-  email: string;
-  phone: string;
-  mobile: string;
-}
-
-interface Step3 {
-  nbOccupant: number;
-  housingType: string;
-  housingInsulationQuality: number;
-  housingAvailableVoltage: string;
-  housingConstructionYear: number | null;
-  housingLessThan2Years: boolean;
-  housingIsAddressBenef: boolean;
-}
-
-interface Step4 {
-  nameOnCard: string;
-  cardNumber: string;
-  cardExpiryMonth: string;
-  cardExpiryYear: string;
-  cardCvv: string;
-  saveCard: string;
-}
-
-export interface CreateAccount extends Step1, Step2, Step3, Step4 {}
-
+import { Assent } from '@/types/v2/File/Common/Assent';
+import { AssentForm } from '@/types/v2/Wizzard/AssentForm';
+import { AssentDataForm } from '@/types/v2/Wizzard/AssentDataForm';
+import { FileStep } from '@/types/v2/Wizzard/FileStep';
+import CommonStep1 from '@/views/file/steps/CommonStep1.vue';
+import CommonStep2 from '@/views/file/steps/CommonStep2.vue';
+import CommonStep3 from '@/views/file/steps/CommonStep3.vue';
+import CommonStep4 from '@/views/file/steps/CommonStep4.vue';
+import CommonStep5 from '@/views/file/steps/CommonStep5.vue';
+import { Step1 } from '@/types/v2/Wizzard/Step1';
+import { Step2 } from '@/types/v2/Wizzard/Step2';
+import { Step3 } from '@/types/v2/Wizzard/Step3';
+import { Step4 } from '@/types/v2/Wizzard/Step4';
+import { DataGouv } from '@/types/v2/File/Common/DataGouv';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -241,7 +198,7 @@ setLocale( {
 
 export default defineComponent( {
                                   name:       'file-edit',
-                                  components: { Step1, Step2, Step3, Step4, Step5 },
+                                  components: { CommonStep5, CommonStep4, CommonStep3, CommonStep2, CommonStep1 },
                                   setup() {
                                     onUnmounted( () => {
                                       console.log( '%c UN MOUNTED', 'background: #fdd835; color: #000000' );
@@ -314,27 +271,27 @@ export default defineComponent( {
 
                                     const nbAssent = defaultAssents.length;
 
-                                    const formData = ref<CreateAccount>( {
-                                                                           assents:                  defaultAssents,
-                                                                           assentsDatas:             defaultAssentsDatas,
-                                                                           email:                    fileData.beneficiary.email,
-                                                                           phone:                    fileData.beneficiary.phone,
-                                                                           mobile:                   fileData.beneficiary.mobile,
-                                                                           indexBeneficiary:         defaultIndexBeneficiary,
-                                                                           nbOccupant:               fileData.housing.nbOccupant,
-                                                                           housingType:              fileData.housing.type,
-                                                                           housingInsulationQuality: fileData.housing.insulationQuality,
-                                                                           housingAvailableVoltage:  fileData.housing.availableVoltage,
-                                                                           housingConstructionYear:  fileData.housing.constructionYear,
-                                                                           housingLessThan2Years:    fileData.housing.lessThan2Years,
-                                                                           housingIsAddressBenef:    fileData.housing.isAddressBenef,
-                                                                           nameOnCard:               'Max Doe',
-                                                                           cardNumber:               '4111 1111 1111 1111',
-                                                                           cardExpiryMonth:          '1',
-                                                                           cardExpiryYear:           '2',
-                                                                           cardCvv:                  '123',
-                                                                           saveCard:                 '1',
-                                                                         } );
+                                    const formData = ref<FileStep>( {
+                                                                      assents:                  defaultAssents,
+                                                                      assentsDatas:             defaultAssentsDatas,
+                                                                      email:                    fileData.beneficiary.email,
+                                                                      phone:                    fileData.beneficiary.phone,
+                                                                      mobile:                   fileData.beneficiary.mobile,
+                                                                      indexBeneficiary:         defaultIndexBeneficiary,
+                                                                      nbOccupant:               fileData.housing.nbOccupant,
+                                                                      housingType:              fileData.housing.type,
+                                                                      housingInsulationQuality: fileData.housing.insulationQuality,
+                                                                      housingAvailableVoltage:  fileData.housing.availableVoltage,
+                                                                      housingConstructionYear:  fileData.housing.constructionYear,
+                                                                      housingLessThan2Years:    fileData.housing.lessThan2Years,
+                                                                      housingIsAddressBenef:    fileData.housing.isAddressBenef,
+                                                                      nameOnCard:               'Max Doe',
+                                                                      cardNumber:               '4111 1111 1111 1111',
+                                                                      cardExpiryMonth:          '1',
+                                                                      cardExpiryYear:           '2',
+                                                                      cardCvv:                  '123',
+                                                                      saveCard:                 '1',
+                                                                    } );
 
                                     onMounted( () => {
                                       _stepperObj.value = StepperComponent.createInsance(
@@ -495,15 +452,15 @@ export default defineComponent( {
 
                                     };
 
-                                    const validateStepTwo   = async ( data: CreateAccount ) => {
+                                    const validateStepTwo   = async ( data: FileStep ) => {
                                       updateBeneficiary( data );
                                     };
-                                    const validateStepThree = async ( data: CreateAccount ) => {
+                                    const validateStepThree = async ( data: FileStep ) => {
                                       console.log( 'data-->', data );
                                       updateHousing( data );
                                     };
 
-                                    const validateStepOne = async ( data: CreateAccount ) => {
+                                    const validateStepOne = async ( data: FileStep ) => {
                                       console.log( '%c IN VALIDE STEP 1', 'background: #0fd80f; color: #000000' );
                                       // Avis à vérifier pas l'api Svair
                                       const assentsToSvair: AssentForm[] = [];

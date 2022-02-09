@@ -16,21 +16,25 @@ import {
     getObjectData,
     getStringData,
 } from '@/services/file/converter/convertData';
-import RrFile from '@/types/File/Rr/RrFile';
-import RrMulti from '@/types/File/Rr/RrMulti';
-import ItemList from '@/types/File/ItemList';
-import RrList from '@/types/File/Rr/RrList';
-import Product from '@/types/File/Product';
+import { Product } from '@/types/v2/File/Common/Product';
+import RrMulti from '@/types/v2/File/Rr/RrMulti';
+import RrList from '@/types/v2/File/Rr/RrList';
+import { ItemList } from '@/types/v2/File/Common/ItemList';
+import { RrFile } from '@/types/v2/File/Rr/RrFile';
 
 const convertOldRrProduct = ( oldData ): Product[] => {
     const roProducts: Product[] = [];
     const oldProducts: []       = getObjectData( oldData,
-                                                 [ 'devis',
-                                                   'pompeAChaleur',
-                                                   'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
-                                                                                                         [ 'devis',
-                                                                                                           'pompeAChaleur',
-                                                                                                           'products' ] );
+                                                 [
+                                                     'devis',
+                                                     'pompeAChaleur',
+                                                     'products',
+                                                 ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                            [
+                                                                                                'devis',
+                                                                                                'pompeAChaleur',
+                                                                                                'products',
+                                                                                            ] );
 
     oldProducts.forEach( product => {
         roProducts.push( {
@@ -220,7 +224,6 @@ export const convertOldRrFile = ( oldData ): RrFile => {
         beneficiary:               convertOldBeneficiary( oldData ),
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
-        bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
         housing:                   {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),

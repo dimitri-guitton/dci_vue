@@ -2,16 +2,17 @@ import Store from 'electron-store';
 import { getFolderPath, updateJsonData } from '@/services/folder/folderService';
 import fs from 'fs';
 import SvairAvisImpot from '@/types/SvairAvisImpot';
-import Assent from '@/types/File/Assent';
-import { DataGouv } from '@/types/File/DataGouv';
-import { CreateAccount } from '@/views/file/FileEdit.vue';
-import Housing from '@/types/File/Housing';
-import CetFile from '@/types/File/Cet/CetFile';
-import CombleFile from '@/types/File/Comble/CombleFile';
-import PgFile from '@/types/File/Pg/PgFile';
-import RoFile from '@/types/File/Ro/RoFile';
-import RrFile from '@/types/File/Rr/RrFile';
-import SolFile from '@/types/File/Sol/SolFile';
+import { CetFile } from '@/types/v2/File/Cet/CetFile';
+import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
+import { PgFile } from '@/types/v2/File/Pg/PgFile';
+import { RoFile } from '@/types/v2/File/Ro/RoFile';
+import { RrFile } from '@/types/v2/File/Rr/RrFile';
+import { SolFile } from '@/types/v2/File/Sol/SolFile';
+import { DataGouv } from '@/types/v2/File/Common/DataGouv';
+import { Assent } from '@/types/v2/File/Common/Assent';
+import { Beneficiary } from '@/types/v2/File/Common/Beneficiary';
+import { Housing } from '@/types/v2/File/Common/Housing';
+import { FileStep } from '@/types/v2/Wizzard/FileStep';
 
 const schema = {
     dropboxPath:          {
@@ -151,7 +152,7 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficia
     return assent;
 };
 
-export const updateAssent = ( data: CreateAccount ) => {
+export const updateAssent = ( data: FileStep ) => {
     let fileData = getCurrentFileData();
 
     const assents: Assent[ ] = [];
@@ -190,7 +191,7 @@ export const updateAssent = ( data: CreateAccount ) => {
     updateJsonData( fileData );
 };
 
-export const updateBeneficiary = ( data: CreateAccount ) => {
+export const updateBeneficiary = ( data: FileStep ) => {
     updateAssent( data );
     let fileData = getCurrentFileData();
 
@@ -218,7 +219,7 @@ export const updateBeneficiary = ( data: CreateAccount ) => {
 
 };
 
-export const updateHousing = ( data: CreateAccount ) => {
+export const updateHousing = ( data: FileStep ) => {
     console.log( 'DATA -->', data );
     let fileData = getCurrentFileData();
 

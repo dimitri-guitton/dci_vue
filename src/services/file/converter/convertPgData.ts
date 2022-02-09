@@ -15,20 +15,24 @@ import {
     getObjectData,
     getStringData,
 } from '@/services/file/converter/convertData';
-import ItemList from '@/types/File/ItemList';
-import PgList from '@/types/File/Pg/PgList';
-import PgFile from '@/types/File/Pg/PgFile';
-import Product from '@/types/File/Product';
+import { Product } from '@/types/v2/File/Common/Product';
+import PgList from '@/types/v2/File/Pg/PgList';
+import { ItemList } from '@/types/v2/File/Common/ItemList';
+import { PgFile } from '@/types/v2/File/Pg/PgFile';
 
 const convertOldPgProduct = ( oldData ): Product[] => {
     const pgProducts: Product[] = [];
     const oldProducts: []       = getObjectData( oldData,
-                                                 [ 'devis',
-                                                   'poeles',
-                                                   'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
-                                                                                                         [ 'devis',
-                                                                                                           'poeles',
-                                                                                                           'products' ] );
+                                                 [
+                                                     'devis',
+                                                     'poeles',
+                                                     'products',
+                                                 ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                            [
+                                                                                                'devis',
+                                                                                                'poeles',
+                                                                                                'products',
+                                                                                            ] );
 
     oldProducts.forEach( product => {
         pgProducts.push( {
@@ -234,7 +238,6 @@ export const convertOldPgFile = ( oldData ): PgFile => {
         beneficiary:               convertOldBeneficiary( oldData ),
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
-        bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
         housing:                   {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
@@ -251,8 +254,8 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  '',
         },
-        workSheet:                 {
-            periodePose:                 getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
+        workSheet: {
+            period:                      getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
             generateur:                  getObjectData( oldData, [ 'fiche', 'generateur' ] ),
             marque:                      getObjectData( oldData, [ 'fiche', 'marque' ] ),
             modele:                      getObjectData( oldData, [ 'fiche', 'modele' ] ),

@@ -1,37 +1,37 @@
-import FileItemType from '@/types/FileItem/FileItemType';
-import FileItemStatus from '@/types/FileItem/FileItemStatus';
+import { DatatableFileType } from '@/types/v2/DatatableFile/DatatableFileType';
+import { DatatableFileStatus } from '@/types/v2/DatatableFile/DatatableFileStatus';
 
-export const FILE_COMBLE_TYPE: FileItemType = {
+export const FILE_COMBLE_TYPE: DatatableFileType = {
     slug: 'comble',
     name: 'Comble',
 };
 
-export const FILE_SOL_TYPE: FileItemType = {
+export const FILE_SOL_TYPE: DatatableFileType = {
     slug: 'sol',
     name: 'Sol',
 };
 
-export const FILE_PAC_RR_TYPE: FileItemType = {
+export const FILE_PAC_RR_TYPE: DatatableFileType = {
     slug: 'pac_rr',
     name: 'Chauffage RR',
 };
 
-export const FILE_PAC_RO_TYPE: FileItemType = {
+export const FILE_PAC_RO_TYPE: DatatableFileType = {
     slug: 'pac_ro',
     name: 'Chauffage RO',
 };
 
-export const FILE_CET_TYPE: FileItemType = {
+export const FILE_CET_TYPE: DatatableFileType = {
     slug: 'cet',
     name: 'Chauffe eau',
 };
 
-export const FILE_PG_TYPE: FileItemType = {
+export const FILE_PG_TYPE: DatatableFileType = {
     slug: 'pg',
     name: 'Poele à granulés',
 };
 
-export const LIST_FILE_TYPE: FileItemType[] = [
+export const LIST_FILE_TYPE: DatatableFileType[] = [
     FILE_COMBLE_TYPE,
     FILE_SOL_TYPE,
     FILE_PAC_RR_TYPE,
@@ -40,28 +40,28 @@ export const LIST_FILE_TYPE: FileItemType[] = [
     FILE_PG_TYPE,
 ];
 
-export const FILE_COMPLETE_STATUS: FileItemStatus = {
+export const FILE_COMPLETE_STATUS: DatatableFileStatus = {
     code:  1,
     state: 'complete',
     name:  'Complet',
     class: 'success',
 };
 
-export const FILE_INCOMPLETE_STATUS: FileItemStatus = {
+export const FILE_INCOMPLETE_STATUS: DatatableFileStatus = {
     code:  2,
     state: 'incomplete',
     name:  'Incomplet',
     class: 'warning',
 };
 
-export const FILE_TO_CORRECT_STATUS: FileItemStatus = {
+export const FILE_TO_CORRECT_STATUS: DatatableFileStatus = {
     code:  3,
     state: 'to_correct',
     name:  'À corriger',
     class: 'danger',
 };
 
-export const FILE_CLOSE_STATUS: FileItemStatus = {
+export const FILE_CLOSE_STATUS: DatatableFileStatus = {
     code:  4,
     state: 'close',
     name:  'Clos',

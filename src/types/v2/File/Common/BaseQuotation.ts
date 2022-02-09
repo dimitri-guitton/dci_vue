@@ -1,6 +1,7 @@
 import { Option } from '@/types/v2/File/Common/Option';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import { Product } from '@/types/v2/File/Common/Product';
+import { QuotationText } from '@/types/v2/File/Common/QuotationText';
 
 export interface BaseQuotation {
     origin: string;
@@ -10,7 +11,7 @@ export interface BaseQuotation {
     blankOptions: BlankOption[];
     commentary: string;
     partner: string;
-    texts: Text[];
+    texts: QuotationText[];
     selectedProducts: Product[];
     products: Product[];
     discount: number;

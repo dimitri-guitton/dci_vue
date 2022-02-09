@@ -1,16 +1,16 @@
-import FileItemStatus from '@/types/FileItem/FileItemStatus';
-import FileItemType from '@/types/FileItem/FileItemType';
+import { DatatableFileType } from '@/types/v2/DatatableFile/DatatableFileType';
+import { DatatableFileStatus } from '@/types/v2/DatatableFile/DatatableFileStatus';
 
 export interface DatatableFile {
     id: number;
     reference: string;
     folderName: string;
-    types: FileItemType[];
+    types: DatatableFileType[];
     customer: string;
     totalTTC: number;
     isProspect: boolean;
     isClosed: boolean;
-    status: FileItemStatus;
+    status: DatatableFileStatus;
     todos: string;
     createdAt: string;
     updatedAt: string;

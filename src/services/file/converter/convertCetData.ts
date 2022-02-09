@@ -15,20 +15,24 @@ import {
     getObjectData,
     getStringData,
 } from '@/services/file/converter/convertData';
-import ItemList from '@/types/File/ItemList';
-import CetList from '@/types/File/Cet/CetList';
-import CetFile from '@/types/File/Cet/CetFile';
-import Product from '@/types/File/Product';
+import { Product } from '@/types/v2/File/Common/Product';
+import { CetList } from '@/types/v2/File/Cet/CetList';
+import { ItemList } from '@/types/v2/File/Common/ItemList';
+import { CetFile } from '@/types/v2/File/Cet/CetFile';
 
 const convertOldCetProduct = ( oldData ): Product[] => {
     const ceProducts: Product[] = [];
     const oldProducts: []       = getObjectData( oldData,
-                                                 [ 'devis',
-                                                   'chauffeEau',
-                                                   'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
-                                                                                                         [ 'devis',
-                                                                                                           'chauffeEau',
-                                                                                                           'products' ] );
+                                                 [
+                                                     'devis',
+                                                     'chauffeEau',
+                                                     'products',
+                                                 ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                            [
+                                                                                                'devis',
+                                                                                                'chauffeEau',
+                                                                                                'products',
+                                                                                            ] );
 
     oldProducts.forEach( product => {
         ceProducts.push( {
@@ -182,7 +186,6 @@ export const convertOldCetFile = ( oldData ): CetFile => {
         beneficiary:               convertOldBeneficiary( oldData ),
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
-        bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
         housing:                   {
             nbOccupant:        getNumberData( oldData[ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),

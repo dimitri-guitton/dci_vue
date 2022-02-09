@@ -15,20 +15,24 @@ import {
     getObjectData,
     getStringData,
 } from '@/services/file/converter/convertData';
-import ItemList from '@/types/File/ItemList';
-import Product from '@/types/File/Product';
-import CombleList from '@/types/File/Comble/CombleList';
-import CombleFile from '@/types/File/Comble/CombleFile';
+import { Product } from '@/types/v2/File/Common/Product';
+import CombleList from '@/types/v2/File/Comble/CombleList';
+import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
+import { ItemList } from '@/types/v2/File/Common/ItemList';
 
 const convertOldCombleProduct = ( oldData ): Product[] => {
     const combleProducts: Product[] = [];
     const oldProducts: []           = getObjectData( oldData,
-                                                     [ 'devis',
-                                                       'isolants',
-                                                       'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
-                                                                                                             [ 'devis',
-                                                                                                               'isolants',
-                                                                                                               'products' ] );
+                                                     [
+                                                         'devis',
+                                                         'isolants',
+                                                         'products',
+                                                     ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                                [
+                                                                                                    'devis',
+                                                                                                    'isolants',
+                                                                                                    'products',
+                                                                                                ] );
 
     oldProducts.forEach( product => {
         combleProducts.push( {
@@ -51,13 +55,17 @@ const convertSelectedCombleProduct = ( oldData ): Product[] => {
     const selectedCombleProducts: Product[] = [];
     const idSelectedProduct                 = getNumberData( oldData[ 'devis' ][ 'isolants' ][ 'selectedId' ] );
     const oldProducts: []                   = getObjectData( oldData,
-                                                             [ 'devis',
-                                                               'isolants',
-                                                               'products' ] ) === ( {} || '' ) ? [] : getObjectData(
+                                                             [
+                                                                 'devis',
+                                                                 'isolants',
+                                                                 'products',
+                                                             ] ) === ( {} || '' ) ? [] : getObjectData(
         oldData,
-        [ 'devis',
-          'isolants',
-          'products' ] );
+        [
+            'devis',
+            'isolants',
+            'products',
+        ] );
     oldProducts.forEach( product => {
         if ( product[ 'id' ] === idSelectedProduct ) {
             selectedCombleProducts.push( {
@@ -96,6 +104,7 @@ const convertOldCombleItemList = ( oldData ): CombleList => {
               rehausseTrappeTypeList:     [],
               nbrAccesCombleList:         [],
               nbrCompartimentsList:       [],
+              typeOrigineList:            [],
           }
     ;
 
@@ -198,7 +207,7 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },
-        workSheet:                 {
+        workSheet: {
             visiteComble:              getObjectData( oldData, [ 'fiche', 'visiteComble' ] ),
             chantierHabite:            getObjectData( oldData, [ 'fiche', 'chantierHabite' ] ),
             chantierType:              getObjectData( oldData, [ 'fiche', 'chantierType' ] ),
@@ -207,7 +216,7 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
             partieAisoler:             getObjectData( oldData, [ 'fiche', 'partieAisoler' ] ),
             puissanceCompteur:         getNumberData( oldData [ 'fiche' ][ 'puissanceCompteur' ] ),
             accesPl:                   getObjectData( oldData, [ 'fiche', 'accesPl' ] ),
-            periodePose:               getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
+            period:                    getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
             rueEtroite:                getObjectData( oldData, [ 'fiche', 'rueEtroite' ] ),
             accesComble:               getObjectData( oldData, [ 'fiche', 'accesComble' ] ),
             couvertureType:            getObjectData( oldData, [ 'fiche', 'couvertureType' ] ),

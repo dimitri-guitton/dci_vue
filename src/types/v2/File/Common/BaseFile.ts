@@ -1,7 +1,8 @@
-import Assent from '@/types/File/Assent';
-import Housing from '@/types/File/Housing';
-import Scale from '@/types/File/Scale';
-import Technician from '@/types/File/Technician';
+import { Assent } from '@/types/v2/File/Common/Assent';
+import { Beneficiary } from '@/types/v2/File/Common/Beneficiary';
+import { Housing } from '@/types/v2/File/Common/Housing';
+import { Scale } from '@/types/v2/File/Common/Scale';
+import { Technician } from '@/types/v2/File/Common/Technician';
 
 export interface BaseFile {
     version: string;

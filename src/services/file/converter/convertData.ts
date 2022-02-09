@@ -1,9 +1,10 @@
-import Text from '@/types/File/Text';
-import Assent from '@/types/File/Assent';
-import DataGeoportail from '@/types/File/DataGeoportail';
-import Scale from '@/types/File/Scale';
-import BlankOption from '@/types/File/BlankOption';
-import Option from '@/types/File/Option';
+import { QuotationText } from '@/types/v2/File/Common/QuotationText';
+import { Beneficiary } from '@/types/v2/File/Common/Beneficiary';
+import { Assent } from '@/types/v2/File/Common/Assent';
+import { DataGeoportail } from '@/types/v2/File/Common/DataGeoportail';
+import { Scale } from '@/types/v2/File/Common/Scale';
+import { BlankOption } from '@/types/v2/File/Common/BlankOption';
+import { Option } from '@/types/v2/File/Common/Option';
 
 export const getObjectData = ( data: any, keys: any[] ): any => {
     // Si l'élément n'existe pas on retourne un objet vide ou un string
@@ -38,8 +39,8 @@ export const getArrayData = ( data: any ): [] => {
     return data === undefined ? [] : data;
 };
 
-export const convertOldText = ( oldData ): Text[] => {
-    const texts: Text[] = [];
+export const convertOldText = ( oldData ): QuotationText[] => {
+    const texts: QuotationText[] = [];
     if ( getObjectData( oldData, [ 'devis', 'texte1' ] ) !== '' ) {
         texts.push( {
                         title: getObjectData( oldData, [ 'devis', 'texte1', 'title' ] ),

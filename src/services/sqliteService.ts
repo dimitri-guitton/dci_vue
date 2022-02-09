@@ -2,10 +2,6 @@ import sqlite3 from 'sqlite3';
 import { ISqlite, open } from 'sqlite';
 import Store from 'electron-store';
 import { Database } from 'sqlite/build/Database';
-import Filetem from '@/types/FileItem/Filetem';
-import DbFile from '@/types/Sqlite/DbFile';
-import FileItemType from '@/types/FileItem/FileItemType';
-import FileItemStatus from '@/types/FileItem/FileItemStatus';
 import {
     FILE_CET_TYPE,
     FILE_CLOSE_STATUS,
@@ -19,6 +15,10 @@ import {
     FILE_TO_CORRECT_STATUS,
 } from '@/services/constantService';
 import { toFrenchDate } from '@/services/commonService';
+import { DbFile } from '@/types/v2/Sqlite/DbFile';
+import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
+import { DatatableFileType } from '@/types/v2/DatatableFile/DatatableFileType';
+import { DatatableFileStatus } from '@/types/v2/DatatableFile/DatatableFileStatus';
 import RunResult = ISqlite.RunResult;
 
 const schema = {
@@ -38,11 +38,11 @@ let db: Database;
  * @param items
  */
 function convertDbFileToFileItem( items: DbFile[] ) {
-    const data: Filetem[] = [];
+    const data: DatatableFile[] = [];
 
     items.forEach( ( item: DbFile ) => {
-        const types: FileItemType[] = [];
-        let status: FileItemStatus;
+        const types: DatatableFileType[] = [];
+        let status: DatatableFileStatus;
 
         switch ( parseInt( item.statusInDCI ) ) {
             case FILE_COMPLETE_STATUS.code:
@@ -210,7 +210,7 @@ export async function addFile( reference: string,
 /**
  * Récupère tous les dossiers de la DB
  */
-export async function getAllFiles(): Promise<Filetem[]> {
+export async function getAllFiles(): Promise<DatatableFile[]> {
     const query = `SELECT *
                    from file
                    ORDER BY createdAt DESC;`;

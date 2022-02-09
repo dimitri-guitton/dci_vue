@@ -15,20 +15,24 @@ import {
     getObjectData,
     getStringData,
 } from '@/services/file/converter/convertData';
-import ItemList from '@/types/File/ItemList';
-import Product from '@/types/File/Product';
-import SolList from '@/types/File/Sol/SolList';
-import SolFile from '@/types/File/Sol/SolFile';
+import { Product } from '@/types/v2/File/Common/Product';
+import SolList from '@/types/v2/File/Sol/SolList';
+import { ItemList } from '@/types/v2/File/Common/ItemList';
+import { SolFile } from '@/types/v2/File/Sol/SolFile';
 
 const convertOldSolProduct = ( oldData ): Product[] => {
     const solProducts: Product[] = [];
     const oldProducts: []        = getObjectData( oldData,
-                                                  [ 'devis',
-                                                    'isolants',
-                                                    'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
-                                                                                                          [ 'devis',
-                                                                                                            'isolants',
-                                                                                                            'products' ] );
+                                                  [
+                                                      'devis',
+                                                      'isolants',
+                                                      'products',
+                                                  ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                             [
+                                                                                                 'devis',
+                                                                                                 'isolants',
+                                                                                                 'products',
+                                                                                             ] );
 
     oldProducts.forEach( product => {
         solProducts.push( {
@@ -51,13 +55,17 @@ const convertSelectedSolProduct = ( oldData ): Product[] => {
     const selectedSolProducts: Product[] = [];
     const idSelectedProduct              = getNumberData( oldData[ 'devis' ][ 'isolants' ][ 'selectedId' ] );
     const oldProducts: []                = getObjectData( oldData,
-                                                          [ 'devis',
-                                                            'isolants',
-                                                            'products' ] ) === ( {} || '' ) ? [] : getObjectData(
+                                                          [
+                                                              'devis',
+                                                              'isolants',
+                                                              'products',
+                                                          ] ) === ( {} || '' ) ? [] : getObjectData(
         oldData,
-        [ 'devis',
-          'isolants',
-          'products' ] );
+        [
+            'devis',
+            'isolants',
+            'products',
+        ] );
     oldProducts.forEach( product => {
         if ( product[ 'id' ] === idSelectedProduct ) {
             selectedSolProducts.push( {
@@ -88,6 +96,7 @@ const convertOldSolItemList = ( oldData ): SolList => {
               porteGarageList:      [],
               accesCamionList:      [],
               supportList:          [],
+              typeOrigineList:      [],
           }
     ;
 
@@ -195,7 +204,7 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             porteGarage:             getObjectData( oldData, [ 'fiche', 'porteGarage' ] ),
             nbrPorteGarage:          getObjectData( oldData, [ 'fiche', 'nbrPorteGarage' ] ),
             infosSup:                getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
-            periodePose:             getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
+            period:                  getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
         },
         quotation:                 {
             pose:               getObjectData( oldData, [ 'devis', 'pose' ] ),
