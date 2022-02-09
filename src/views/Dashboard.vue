@@ -46,7 +46,6 @@ import { defineComponent, onMounted } from 'vue';
 // import MixedWidget10 from '@/components/widgets/mixed/Widget10.vue';
 import { setCurrentPageTitle } from '@/core/helpers/breadcrumb';
 import { convertOldJsonToNewJson } from '@/services/folder/folderService';
-import * as Gp from '@ignf-geoportal/sdk-2d';
 import { geocodingAddress } from '@/services/geocodingService';
 
 export default defineComponent( {
@@ -71,34 +70,34 @@ export default defineComponent( {
                                         coordinate = [ 46.160329, -1.151139 ];
                                       }
 
-                                      Gp.Map.load(
-                                          'map', // html div
-                                          {
-                                            apiKey:  'essentiels,cartes,parcellaire',
-                                            zoom:    18,
-                                            maxZoom: 20,
-                                            minZoom: 6,
-                                            center:  {
-                                              x:          coordinate[ 0 ],
-                                              y:          coordinate[ 1 ],
-                                              projection: 'CRS:84',
-                                            },
-                                            // layers to display
-                                            layersOptions: {
-                                              'ORTHOIMAGERY.ORTHOPHOTOS': {
-                                                opacity: 0.7,
-                                              },
-                                              'CADASTRALPARCELS.PARCELS': {},
-                                            },
-                                            // additional tools to display on the map
-                                            controlsOptions: {
-                                              'layerSwitcher': {},
-                                              'drawing':       {},
-                                              'length':        {},
-                                              'area':          {},
-                                            },
-                                          },
-                                      );
+                                      // Gp.Map.load(
+                                      //     'map', // html div
+                                      //     {
+                                      //       apiKey:  'essentiels,cartes,parcellaire',
+                                      //       zoom:    18,
+                                      //       maxZoom: 20,
+                                      //       minZoom: 6,
+                                      //       center:  {
+                                      //         x:          coordinate[ 0 ],
+                                      //         y:          coordinate[ 1 ],
+                                      //         projection: 'CRS:84',
+                                      //       },
+                                      //       // layers to display
+                                      //       layersOptions: {
+                                      //         'ORTHOIMAGERY.ORTHOPHOTOS': {
+                                      //           opacity: 0.7,
+                                      //         },
+                                      //         'CADASTRALPARCELS.PARCELS': {},
+                                      //       },
+                                      //       // additional tools to display on the map
+                                      //       controlsOptions: {
+                                      //         'layerSwitcher': {},
+                                      //         'drawing':       {},
+                                      //         'length':        {},
+                                      //         'area':          {},
+                                      //       },
+                                      //     },
+                                      // );
 
                                       // openDb();
                                       // for ( let i = 0; i < 10; i++ ) {

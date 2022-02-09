@@ -187,34 +187,34 @@
       <!--end::Input group-->
 
       <!--begin::Input group-->
-      <div class="d-flex flex-stack">
-        <!--begin::Label-->
-        <div class="me-5">
-          <label class="fs-6 fw-bold form-label"
-          >Save Card for further billing?</label
-          >
-          <div class="fs-7 fw-bold text-gray-400">
-            If you need more info, please check budget planning
-          </div>
-        </div>
-        <!--end::Label-->
+      <!--      <div class="d-flex flex-stack">-->
+      <!--        &lt;!&ndash;begin::Label&ndash;&gt;-->
+      <!--        <div class="me-5">-->
+      <!--          <label class="fs-6 fw-bold form-label"-->
+      <!--          >Save Card for further billing?</label-->
+      <!--          >-->
+      <!--          <div class="fs-7 fw-bold text-gray-400">-->
+      <!--            If you need more info, please check budget planning-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--        &lt;!&ndash;end::Label&ndash;&gt;-->
 
-        <!--begin::Switch-->
-        <label
-            class="form-check form-switch form-check-custom form-check-solid"
-        >
-          <Field
-              type="checkbox"
-              class="form-check-input"
-              name="saveCard"
-              value="1"
-          />
-          <span class="form-check-label fw-bold text-gray-400">
-            Save Card
-          </span>
-        </label>
-        <!--end::Switch-->
-      </div>
+      <!--        &lt;!&ndash;begin::Switch&ndash;&gt;-->
+      <!--        <label-->
+      <!--            class="form-check form-switch form-check-custom form-check-solid"-->
+      <!--        >-->
+      <!--          <Field-->
+      <!--              type="checkbox"-->
+      <!--              class="form-check-input"-->
+      <!--              name="saveCard"-->
+      <!--              value="1"-->
+      <!--          />-->
+      <!--          <span class="form-check-label fw-bold text-gray-400">-->
+      <!--            Save Card-->
+      <!--          </span>-->
+      <!--        </label>-->
+      <!--        &lt;!&ndash;end::Switch&ndash;&gt;-->
+      <!--      </div>-->
       <!--end::Input group-->
     </div>
   </div>

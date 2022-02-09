@@ -147,18 +147,16 @@ const convertOldCombleItemList = ( oldData ): CombleList => {
 
         oldList.forEach( ( data ) => {
             if ( typeof data === 'object' ) {
-
                 newItems.push( {
+                                   slug:  Object.keys( data )[ 0 ],
                                    value: data[ Object.keys( data )[ 0 ] ],
                                } );
             } else {
                 newItems.push( data );
             }
         } );
-        lists[ newName[ item ] ] = {
-            slug:  newName[ item ],
-            items: newItems,
-        };
+
+        lists[ newName[ item ] ] = newItems;
     }
 
     return lists;

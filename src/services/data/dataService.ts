@@ -5,6 +5,13 @@ import SvairAvisImpot from '@/types/SvairAvisImpot';
 import Assent from '@/types/File/Assent';
 import { DataGouv } from '@/types/File/DataGouv';
 import { CreateAccount } from '@/views/file/FileEdit.vue';
+import Housing from '@/types/File/Housing';
+import CetFile from '@/types/File/Cet/CetFile';
+import CombleFile from '@/types/File/Comble/CombleFile';
+import PgFile from '@/types/File/Pg/PgFile';
+import RoFile from '@/types/File/Ro/RoFile';
+import RrFile from '@/types/File/Rr/RrFile';
+import SolFile from '@/types/File/Sol/SolFile';
 
 const schema = {
     dropboxPath:          {
@@ -53,7 +60,7 @@ export const setCurrentFileData = ( fileData: string ) => {
     store.set( 'currentFileData', fileData );
 };
 
-export const getCurrentFileData = () => {
+export const getCurrentFileData = (): CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile => {
     const currentFile = store.get( 'currentFileData' ) as string;
     if ( currentFile !== '' ) {
         console.log( '%c CURRENT FILE NOT EMPTY', 'background: #fdd835; color: #000000' );
@@ -64,11 +71,15 @@ export const getCurrentFileData = () => {
         console.log( 'GET FILE DATA NAME -->', name );
         const path = `${ getFolderPath( name ) }/data.json`;
         console.log( 'GET FILE DATA PATH -->', path );
-        if ( fs.existsSync( path ) ) {
-            const rawdata  = fs.readFileSync( path ).toString( 'utf8' );
-            const fileData = JSON.parse( rawdata );
-            setCurrentFileData( JSON.stringify( fileData ) );
-        }
+
+        // TODO faire la verif si la path existe, si il n'existe pas créer le .json
+        // if ( fs.existsSync( path ) ) {
+        const rawdata  = fs.readFileSync( path ).toString( 'utf8' );
+        const fileData = JSON.parse( rawdata );
+        setCurrentFileData( JSON.stringify( fileData ) );
+
+        return fileData;
+        // }
     }
 };
 
@@ -79,6 +90,7 @@ export const resetCurrentFileData = () => {
 export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficiary = false ): Assent => {
     let fileData = getCurrentFileData();
     console.log( 'FILE DATA', fileData );
+
 
     console.log( fileData.assents );
     if ( fileData.assents.length > 0 ) {
@@ -204,4 +216,57 @@ export const updateBeneficiary = ( data: CreateAccount ) => {
     console.log( fileData );
     updateJsonData( fileData );
 
+};
+
+export const updateHousing = ( data: CreateAccount ) => {
+    console.log( 'DATA -->', data );
+    let fileData = getCurrentFileData();
+
+    if ( data.housingLessThan2Years === undefined ) {
+        data.housingLessThan2Years = false;
+    }
+
+    if ( data.housingIsAddressBenef === undefined ) {
+        data.housingIsAddressBenef = false;
+    }
+
+    let address = {
+        addresse: '',
+        zipCode:  '',
+        city:     '',
+        plot:     '',
+        area:     '',
+        location: '',
+    };
+    if ( data.housingIsAddressBenef ) {
+        address = {
+            addresse: fileData.beneficiary.address,
+            zipCode:  fileData.beneficiary.zipCode,
+            city:     fileData.beneficiary.city,
+            plot:     '',
+            area:     '',
+            location: '',
+        };
+    }
+
+    const housing: Housing = {
+        ...fileData.housing,
+        nbOccupant:     data.nbOccupant,
+        type:           data.housingType,
+        isAddressBenef: data.housingIsAddressBenef,
+        ...address,
+        insulationQuality: data.housingInsulationQuality,
+        constructionYear:  data.housingConstructionYear,
+        lessThan2Years:    data.housingLessThan2Years,
+        availableVoltage:  data.housingAvailableVoltage,
+    };
+
+    fileData = {
+        ...fileData,
+        housing: housing,
+    };
+
+    console.log( '%c NEW FILE DATA', 'background: #fdd835; color: #000000' );
+    console.log( fileData );
+    updateJsonData( fileData );
 };

@@ -125,8 +125,8 @@ export const convertOldAssent = ( oldData ): Assent[] => {
     return assents;
 };
 
-export const convertOldDataGeoportail = ( oldData ): DataGeoportail | undefined => {
-    let dataGeoportail: DataGeoportail | undefined;
+export const convertOldDataGeoportail = ( oldData ): DataGeoportail | null => {
+    let dataGeoportail: DataGeoportail | null = null;
 
     if ( getObjectData( oldData, [ 'logement', 'dataGeoportail' ] ) !== '' ) {
         dataGeoportail = {

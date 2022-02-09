@@ -199,8 +199,8 @@ const convertOldPgItemList = ( oldData ): PgList => {
 
         oldList.forEach( ( data ) => {
             if ( typeof data === 'object' ) {
-
                 newItems.push( {
+                                   slug:  Object.keys( data )[ 0 ],
                                    value: data[ Object.keys( data )[ 0 ] ],
                                } );
             } else {
@@ -208,10 +208,8 @@ const convertOldPgItemList = ( oldData ): PgList => {
             }
         } );
 
-        lists[ newName[ item ] ] = {
-            slug:  newName[ item ],
-            items: newItems,
-        };
+
+        lists[ newName[ item ] ] = newItems;
     }
 
     return lists;
@@ -251,6 +249,7 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             insulationQuality: getObjectData( oldData, [ 'logement', 'qualiteIsolation' ] ),
             constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
+            availableVoltage:  '',
         },
         workSheet:                 {
             periodePose:                 getObjectData( oldData, [ 'fiche', 'periodePose' ] ),

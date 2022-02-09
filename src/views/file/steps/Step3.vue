@@ -27,8 +27,7 @@
             as="select"
             class="form-control form-control-lg form-control-solid"
         >
-          <option value="maison_individuelle">Maison individuelle</option>
-          <option value="appartement">Appartement</option>
+          <option-list :lists="lists.localTypeList"></option-list>
         </Field>
         <ErrorMessage
             name="housingType"
@@ -43,10 +42,7 @@
             as="select"
             class="form-control form-control-lg form-control-solid"
         >
-          <option :value="0.6">0.6</option>
-          <option :value="0.65">0.65</option>
-          <option :value="0.8">0.8</option>
-          <option :value="1">1</option>
+          <option-list :lists="lists.qualiteIsolationList"></option-list>
         </Field>
         <ErrorMessage
             name="housingInsulationQuality"
@@ -62,8 +58,7 @@
             as="select"
             class="form-control form-control-lg form-control-solid"
         >
-          <option value="monophase">Monophasé</option>
-          <option value="triphase">Triphasé</option>
+          <option-list :lists="lists.tensionDisponibleList"></option-list>
         </Field>
         <ErrorMessage
             name="housingAvailableVoltage"
@@ -88,16 +83,40 @@
 
     </div>
 
-    <!--    TODO faire la logique-->
     <div class="row mb-15">
-      <div class="col-md-4">
-        <label class="form-label mb-3">Ce logement à moins de 2 ans</label>
-        <Field name="housingLessThan2Years" type="checkbox" class="form-check-input ms-5"></Field>
-      </div>
+      <label
+          class="form-check form-switch form-check-custom form-check-solid"
+      >
+        <Field
+            type="checkbox"
+            class="form-check-input"
+            name="housingLessThan2Years"
+            :value="true"
+        />
+        <span class="form-check-label fw-bold text-gray-400">
+            Ce logement à moins de 2 ans
+          </span>
+      </label>
     </div>
 
     <div class="pb-10 pb-lg-15">
       <h2 class="fw-bolder text-dark">Géolocalisation & superficie</h2>
+    </div>
+
+    <div class="row mb-15">
+      <label
+          class="form-check form-switch form-check-custom form-check-solid"
+      >
+        <Field
+            type="checkbox"
+            class="form-check-input"
+            name="housingIsAddressBenef"
+            :value="true"
+        />
+        <span class="form-check-label fw-bold text-gray-400">
+            L'adresse du logement est la même que le bénéficiaire
+          </span>
+      </label>
     </div>
 
   </div>
@@ -106,12 +125,22 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { ErrorMessage, Field } from 'vee-validate';
+import OptionList from '@/components/DCI/input/OptionList.vue';
 
 export default defineComponent( {
                                   name:       'step-3',
                                   components: {
+                                    OptionList,
                                     Field,
                                     ErrorMessage,
+                                  },
+                                  props:      {
+                                    lists: Object,
+                                  },
+                                  setup( props ) {
+                                    console.log( '%c SET UP', 'background: #fdd835; color: #000000' );
+                                    console.log( 'Assent -->', props.lists );
+
                                   },
                                 } );
 </script>

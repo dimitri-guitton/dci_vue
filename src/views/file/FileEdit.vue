@@ -63,6 +63,7 @@
           <!--begin::Step 1-->
           <div class="current" data-kt-stepper-element="content">
             <Step1 :nbAssent="nbAssent"></Step1>
+
           </div>
           <!--end::Step 1-->
 
@@ -74,7 +75,7 @@
 
           <!--begin::Step 3-->
           <div data-kt-stepper-element="content">
-            <Step3></Step3>
+            <Step3 :lists="lists"></Step3>
           </div>
           <!--end::Step 3-->
 
@@ -173,6 +174,7 @@ import {
   getcurrentFolderName,
   resetCurrentFileData,
   updateBeneficiary,
+  updateHousing,
 } from '@/services/data/dataService';
 import SvairAvisImpot from '@/types/SvairAvisImpot';
 import Assent from '@/types/File/Assent';
@@ -212,6 +214,7 @@ interface Step3 {
   housingAvailableVoltage: string;
   housingConstructionYear: number | null;
   housingLessThan2Years: boolean;
+  housingIsAddressBenef: boolean;
 }
 
 interface Step4 {
@@ -255,6 +258,7 @@ export default defineComponent( {
 
                                     const fileData = getCurrentFileData();
                                     console.log( 'FILE DATA -->', fileData );
+                                    const lists = fileData.lists;
 
 
                                     const assents = ref<Assent[]>( [] );
@@ -323,6 +327,7 @@ export default defineComponent( {
                                                                            housingAvailableVoltage:  fileData.housing.availableVoltage,
                                                                            housingConstructionYear:  fileData.housing.constructionYear,
                                                                            housingLessThan2Years:    fileData.housing.lessThan2Years,
+                                                                           housingIsAddressBenef:    fileData.housing.isAddressBenef,
                                                                            nameOnCard:               'Max Doe',
                                                                            cardNumber:               '4111 1111 1111 1111',
                                                                            cardExpiryMonth:          '1',
@@ -376,13 +381,13 @@ export default defineComponent( {
                                                                                                                  .required(),
                                                                                                    address:   Yup.string()
                                                                                                                  .required(),
-                                                                                                   zipCode: Yup.string()
-                                                                                                               .matches(
-                                                                                                                   /^([0-8][0-9]|9[0-5])[0-9]{3}/,
-                                                                                                                   {
-                                                                                                                     message: 'Le code postal est incorrect',
-                                                                                                                   } )
-                                                                                                               .required(),
+                                                                                                   zipCode:   Yup.string()
+                                                                                                                 .matches(
+                                                                                                                     /^([0-8][0-9]|9[0-5])[0-9]{3}/,
+                                                                                                                     {
+                                                                                                                       message: 'Le code postal est incorrect',
+                                                                                                                     } )
+                                                                                                                 .required(),
                                                                                                    city:      Yup.string()
                                                                                                                  .required(),
                                                                                                    income:    Yup.number()
@@ -490,8 +495,12 @@ export default defineComponent( {
 
                                     };
 
-                                    const validateStepTwo = async ( data: CreateAccount ) => {
+                                    const validateStepTwo   = async ( data: CreateAccount ) => {
                                       updateBeneficiary( data );
+                                    };
+                                    const validateStepThree = async ( data: CreateAccount ) => {
+                                      console.log( 'data-->', data );
+                                      updateHousing( data );
                                     };
 
                                     const validateStepOne = async ( data: CreateAccount ) => {
@@ -602,6 +611,9 @@ export default defineComponent( {
                                       } else if ( currentStepIndex.value === 1 ) {
                                         console.log( '%c Validation step 2', 'background: #fdd835; color: #000000' );
                                         validateStepTwo( formData.value );
+                                      } else if ( currentStepIndex.value === 2 ) {
+                                        console.log( '%c Validation step 3', 'background: #fdd835; color: #000000' );
+                                        validateStepThree( formData.value );
                                       }
 
                                       currentStepIndex.value++;
@@ -646,6 +658,7 @@ export default defineComponent( {
                                       currentStepIndex,
                                       assents,
                                       nbAssent,
+                                      lists,
                                     };
                                   },
 

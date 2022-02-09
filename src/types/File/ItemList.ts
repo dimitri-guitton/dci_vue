@@ -1,5 +1,6 @@
 interface ItemList {
-    value: string;
+    slug: string;
+    value: string | number;
 }
 
 export default ItemList;

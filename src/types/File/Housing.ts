@@ -9,12 +9,12 @@ interface Housing {
     city: string;
     plot: string;
     area: string;
-    dataGeoportail?: DataGeoportail;
+    dataGeoportail: DataGeoportail | null;
     location: string;
     insulationQuality: number;
-    constructionYear: number;
+    constructionYear: number | null;
     lessThan2Years: boolean;
-    availableVoltage?: string;
+    availableVoltage: string;
 }
 
 export default Housing;

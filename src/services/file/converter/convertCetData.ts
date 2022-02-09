@@ -147,8 +147,8 @@ const convertOldCetItemList = ( oldData ): CetList => {
 
         oldList.forEach( ( data ) => {
             if ( typeof data === 'object' ) {
-
                 newItems.push( {
+                                   slug:  Object.keys( data )[ 0 ],
                                    value: data[ Object.keys( data )[ 0 ] ],
                                } );
             } else {
@@ -156,10 +156,7 @@ const convertOldCetItemList = ( oldData ): CetList => {
             }
         } );
 
-        lists[ newName[ item ] ] = {
-            slug:  newName[ item ],
-            items: newItems,
-        };
+        lists[ newName[ item ] ] = newItems;
     } );
 
     return lists;

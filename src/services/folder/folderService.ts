@@ -107,7 +107,7 @@ const createSubFolders = ( type: string, parent: string ) => {
     } );
 };
 
-const addJsonData = ( type: string, parent: string, reference: string, folderName: string ) => {
+export const addJsonData = ( type: string, parent: string, reference: string, folderName: string ) => {
     if ( type === FILE_CET_TYPE.slug ) {
         const jsonPath = '/Users/dimitri/workspace/eco_atlantique/dci_vue/data_example/empty_new_data_cet.json';
 
@@ -177,8 +177,8 @@ export const convertOldJsonToNewJson = () => {
     const dropboxPath          = store.get( 'dropboxPath' );
     let oldData: object | null = null;
 
-    if ( fs.existsSync( dropboxPath + '/DCI/old_data_sol.json' ) ) {
-        oldData = JSON.parse( fs.readFileSync( dropboxPath + '/DCI/old_data_sol.json', 'utf8' ) );
+    if ( fs.existsSync( dropboxPath + '/DCI/old_data_cet.json' ) ) {
+        oldData = JSON.parse( fs.readFileSync( dropboxPath + '/DCI/old_data_cet.json', 'utf8' ) );
         console.log( oldData );
     }
 

@@ -549,290 +549,305 @@
             }
         }
     ],
-    "lists":                     {
-        "localTypeList":         {
-            "slug":  "localTypeList",
-            "items": [
-                {
-                    "value": "Maison individuelle"
-                },
-                {
-                    "value": "Appartement"
-                }
-            ]
-        },
-        "qualiteIsolationList":  {
-            "slug":  "qualiteIsolationList",
-            "items": [
-                {
-                    "value": "0.6"
-                },
-                {
-                    "value": "0.65"
-                },
-                {
-                    "value": "0.8"
-                },
-                {
-                    "value": "0.9"
-                },
-                {
-                    "value": "1"
-                },
-                {
-                    "value": "1.1"
-                },
-                {
-                    "value": "1.3"
-                },
-                {
-                    "value": "1.5"
-                }
-            ]
-        },
-        "statutMenageTypeList":  {
-            "slug":  "statutMenageTypeList",
-            "items": [
-                {
-                    "value": "Très bonfié"
-                },
-                {
-                    "value": "Bonfié"
-                },
-                {
-                    "value": "Classique"
-                },
-                {
-                    "value": "Intermédiaire"
-                }
-            ]
-        },
-        "batimentNatureList":    {
-            "slug":  "batimentNatureList",
-            "items": [
-                {
-                    "value": "-"
-                },
-                {
-                    "value": "Nouvelle résidence principale"
-                },
-                {
-                    "value": "Location"
-                },
-                {
-                    "value": "Résidence secondaire"
-                }
-            ]
-        },
-        "naturePlafondList":     {
-            "slug":  "naturePlafondList",
-            "items": [
-                {
-                    "value": "Brique"
-                },
-                {
-                    "value": "Placo"
-                },
-                {
-                    "value": "Bois"
-                },
-                {
-                    "value": "Béton"
-                }
-            ]
-        },
-        "niveauHabitationList":  {
-            "slug":  "niveauHabitationList",
-            "items": [
-                {
-                    "value": "Plein Pied"
-                },
-                {
-                    "value": "R+1"
-                },
-                {
-                    "value": "R+2"
-                },
-                {
-                    "value": "R+3"
-                },
-                {
-                    "value": "R+4"
-                },
-                {
-                    "value": "AUTRE"
-                }
-            ]
-        },
-        "typeChantierList":      {
-            "slug":  "typeChantierList",
-            "items": [
-                {
-                    "value": "Neuf"
-                },
-                {
-                    "value": "Reno"
-                }
-            ]
-        },
-        "accesCombleList":       {
-            "slug":  "accesCombleList",
-            "items": [
-                {
-                    "value": "TRAPPE"
-                },
-                {
-                    "value": "TOITURE"
-                },
-                {
-                    "value": "TRAPPE et TOITURE"
-                }
-            ]
-        },
-        "typeCouvertureList":    {
-            "slug":  "typeCouvertureList",
-            "items": [
-                {
-                    "value": "Mecanique"
-                },
-                {
-                    "value": "Tiges de bottes"
-                },
-                {
-                    "value": "Ardoise"
-                },
-                {
-                    "value": "Tuiles plates"
-                },
-                {
-                    "value": "Tuiles courbes"
-                }
-            ]
-        },
-        "typeCharpenteList":     {
-            "slug":  "typeCharpenteList",
-            "items": [
-                {
-                    "value": "Traditionnelle"
-                },
-                {
-                    "value": "Fermettes"
-                },
-                {
-                    "value": "Metallique"
-                },
-                {
-                    "value": "Autre"
-                }
-            ]
-        },
-        "etatToitureList":       {
-            "slug":  "etatToitureList",
-            "items": [
-                {
-                    "value": "Propre"
-                },
-                {
-                    "value": "Mousse en petite quantité"
-                },
-                {
-                    "value": "Mousse importante"
-                }
-            ]
-        },
-        "puissanceCompteurList": {
-            "slug":  "puissanceCompteurList",
-            "items": [
-                3,
-                6,
-                9,
-                12
-            ]
-        },
-        "natureMurExtList":      {
-            "slug":  "natureMurExtList",
-            "items": [
-                {
-                    "value": "Parpaing"
-                },
-                {
-                    "value": "Brique"
-                },
-                {
-                    "value": "Béton"
-                },
-                {
-                    "value": "Pierre"
-                },
-                {
-                    "value": "Bois"
-                }
-            ]
-        },
-        "chauffageTypeList":     {
-            "slug":  "chauffageTypeList",
-            "items": [
-                {
-                    "value": "Electrique"
-                },
-                {
-                    "value": "Combustible"
-                }
-            ]
-        },
-        "tensionDisponibleList": {
-            "slug":  "tensionDisponibleList",
-            "items": [
-                {
-                    "value": "Monophasé"
-                },
-                {
-                    "value": "Triphasé"
-                }
-            ]
-        },
-        "aspirationTypeList":    {
-            "slug":  "aspirationTypeList",
-            "items": [
-                {
-                    "value": "Sélectionnez un type d'installation"
-                },
-                {
-                    "value": "Aspiration et extraction gainées jusqu'au toit (tuiles à douilles)"
-                },
-                {
-                    "value": "Aspiration dans la pièce (au moins 20m3) et extraction par le toit (tuile à douille)"
-                },
-                {
-                    "value": "Aspiration et extraction dans la pièce (au moins 20m3)"
-                }
-            ]
-        },
-        "typeOrigineList":       {
-            "slug":  "typeOrigineList",
-            "items": [
-                {
-                    "value": "Téléphone"
-                },
-                {
-                    "value": "Internet"
-                },
-                {
-                    "value": "Presse"
-                },
-                {
-                    "value": "Campagne Google"
-                },
-                {
-                    "value": "Autre"
-                },
-                {
-                    "value": "hello watt"
-                },
-                {
-                    "value": "Angélique"
-                }
-            ]
-        }
+    "lists":       {
+        "localTypeList":         [
+            {
+                "slug":  "maison_individuelle",
+                "value": "Maison individuelle"
+            },
+            {
+                "slug":  "appartement",
+                "value": "Appartement"
+            }
+        ],
+        "qualiteIsolationList":  [
+            {
+                "slug":  "0.6",
+                "value": "0.6"
+            },
+            {
+                "slug":  "0.65",
+                "value": "0.65"
+            },
+            {
+                "slug":  "0.8",
+                "value": "0.8"
+            },
+            {
+                "slug":  "0.9",
+                "value": "0.9"
+            },
+            {
+                "slug":  "1",
+                "value": "1"
+            },
+            {
+                "slug":  "1.1",
+                "value": "1.1"
+            },
+            {
+                "slug":  "1.3",
+                "value": "1.3"
+            },
+            {
+                "slug":  "1.5",
+                "value": "1.5"
+            }
+        ],
+        "statutMenageTypeList":  [
+            {
+                "slug":  "tres_bonifie",
+                "value": "Très bonfié"
+            },
+            {
+                "slug":  "bonifie",
+                "value": "Bonfié"
+            },
+            {
+                "slug":  "classique",
+                "value": "Classique"
+            },
+            {
+                "slug":  "intermediaire",
+                "value": "Intermédiaire"
+            }
+        ],
+        "batimentNatureList":    [
+            {
+                "slug":  "",
+                "value": "-"
+            },
+            {
+                "slug":  "nouvelle_residence",
+                "value": "Nouvelle résidence principale"
+            },
+            {
+                "slug":  "location",
+                "value": "Location"
+            },
+            {
+                "slug":  "residence_secondaire",
+                "value": "Résidence secondaire"
+            }
+        ],
+        "naturePlafondList":     [
+            {
+                "slug":  "brique",
+                "value": "Brique"
+            },
+            {
+                "slug":  "placo",
+                "value": "Placo"
+            },
+            {
+                "slug":  "bois",
+                "value": "Bois"
+            },
+            {
+                "slug":  "beton",
+                "value": "Béton"
+            }
+        ],
+        "niveauHabitationList":  [
+            {
+                "slug":  "pp",
+                "value": "Plein Pied"
+            },
+            {
+                "slug":  "r1",
+                "value": "R+1"
+            },
+            {
+                "slug":  "r2",
+                "value": "R+2"
+            },
+            {
+                "slug":  "r3",
+                "value": "R+3"
+            },
+            {
+                "slug":  "r4",
+                "value": "R+4"
+            },
+            {
+                "slug":  "autre",
+                "value": "AUTRE"
+            }
+        ],
+        "typeChantierList":      [
+            {
+                "slug":  "neuf",
+                "value": "Neuf"
+            },
+            {
+                "slug":  "reno",
+                "value": "Reno"
+            }
+        ],
+        "accesCombleList":       [
+            {
+                "slug":  "trappe",
+                "value": "TRAPPE"
+            },
+            {
+                "slug":  "toit",
+                "value": "TOITURE"
+            },
+            {
+                "slug":  "trappe_et_toit",
+                "value": "TRAPPE et TOITURE"
+            }
+        ],
+        "typeCouvertureList":    [
+            {
+                "slug":  "meca",
+                "value": "Mecanique"
+            },
+            {
+                "slug":  "tige_bottes",
+                "value": "Tiges de bottes"
+            },
+            {
+                "slug":  "ardoise",
+                "value": "Ardoise"
+            },
+            {
+                "slug":  "tuiles_plates",
+                "value": "Tuiles plates"
+            },
+            {
+                "slug":  "tuiles_courbes",
+                "value": "Tuiles courbes"
+            }
+        ],
+        "typeCharpenteList":     [
+            {
+                "slug":  "trad",
+                "value": "Traditionnelle"
+            },
+            {
+                "slug":  "ferm",
+                "value": "Fermettes"
+            },
+            {
+                "slug":  "metal",
+                "value": "Metallique"
+            },
+            {
+                "slug":  "autre",
+                "value": "Autre"
+            }
+        ],
+        "etatToitureList":       [
+            {
+                "slug":  "propre",
+                "value": "Propre"
+            },
+            {
+                "slug":  "mousse_faible",
+                "value": "Mousse en petite quantité"
+            },
+            {
+                "slug":  "mousse_important",
+                "value": "Mousse importante"
+            }
+        ],
+        "puissanceCompteurList": [
+            3,
+            6,
+            9,
+            12,
+            18
+        ],
+        "natureMurExtList":      [
+            {
+                "slug":  "parpaing",
+                "value": "Parpaing"
+            },
+            {
+                "slug":  "brique",
+                "value": "Brique"
+            },
+            {
+                "slug":  "beton",
+                "value": "Béton"
+            },
+            {
+                "slug":  "pierre",
+                "value": "Pierre"
+            },
+            {
+                "slug":  "bois",
+                "value": "Bois"
+            }
+        ],
+        "chauffageTypeList":     [
+            {
+                "slug":  "electrique",
+                "value": "Electrique"
+            },
+            {
+                "slug":  "combustible",
+                "value": "Combustible"
+            }
+        ],
+        "tensionDisponibleList": [
+            {
+                "slug":  "monophase",
+                "value": "Monophasé"
+            },
+            {
+                "slug":  "triphase",
+                "value": "Triphasé"
+            }
+        ],
+        "aspirationTypeList":    [
+            {
+                "slug":  "none",
+                "value": "Sélectionnez un type d'installation"
+            },
+            {
+                "slug":  "aspiration_extraction_gainee",
+                "value": "Aspiration et extraction gainées jusqu'au toit (tuiles à douilles)"
+            },
+            {
+                "slug":  "aspiration_piece",
+                "value": "Aspiration dans la pièce (au moins 20m3) et extraction par le toit (tuile à douille)"
+            },
+            {
+                "slug":  "aspiration_extraction_piece",
+                "value": "Aspiration et extraction dans la pièce (au moins 20m3)"
+            }
+        ],
+        "typeOrigineList":       [
+            {
+                "slug":  "telephone",
+                "value": "Téléphone"
+            },
+            {
+                "slug":  "internet",
+                "value": "Internet"
+            },
+            {
+                "slug":  "presse",
+                "value": "Presse"
+            },
+            {
+                "slug":  "campagne-google",
+                "value": "Campagne Google"
+            },
+            {
+                "slug":  "autre",
+                "value": "Autre"
+            },
+            {
+                "slug":  "hello-watt",
+                "value": "hello watt"
+            },
+            {
+                "slug":  "angelique",
+                "value": "Angélique"
+            }
+        ]
     }
 }

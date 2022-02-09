@@ -179,14 +179,15 @@ const convertOldRrItemList = ( oldData ): RrList => {
         if ( oldList !== {} && oldList !== '' ) {
             oldList.forEach( ( data ) => {
                 if ( typeof data === 'object' ) {
-
                     newItems.push( {
+                                       slug:  Object.keys( data )[ 0 ],
                                        value: data[ Object.keys( data )[ 0 ] ],
                                    } );
                 } else {
                     newItems.push( data );
                 }
             } );
+
 
             lists[ newName[ item ] ] = {
                 slug:  newName[ item ],
@@ -215,7 +216,7 @@ export const convertOldRrFile = ( oldData ): RrFile => {
         disabledCeeBonus:          getBoolData( oldData[ 'disablePrimeCEE' ] ),
         enabledHousingAction:      getBoolData( oldData[ 'enabledActionLogement' ] ),
         disabledMaPrimeRenovBonus: getBoolData( oldData[ 'disablePrimeMaprimerenov' ] ),
-        assent:                    convertOldAssent( oldData ),
+        assents:                   convertOldAssent( oldData ),
         beneficiary:               convertOldBeneficiary( oldData ),
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
