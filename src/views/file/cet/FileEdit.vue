@@ -17,7 +17,7 @@
             @submit="handleStep"
         >
           <!-- Etape 1-->
-          <div class="current" data-kt-stepper-element="content">
+          <div data-kt-stepper-element="content">
             <CommonStep1 :nbAssent="nbAssent"></CommonStep1>
           </div>
 
@@ -34,8 +34,8 @@
           <!--end::Step 3-->
 
           <!--begin::Step 4-->
-          <div data-kt-stepper-element="content">
-            <CommonStep4></CommonStep4>
+          <div class="current" data-kt-stepper-element="content">
+            <CetStep4 :selectedProducts="selectedProducts" :products="products"></CetStep4>
           </div>
           <!--end::Step 4-->
 
@@ -101,7 +101,6 @@ import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue';
 import Swal from 'sweetalert2/dist/sweetalert2.min.js';
 import { StepperComponent } from '@/assets/ts/components';
 import { setCurrentPageBreadcrumbs } from '@/core/helpers/breadcrumb';
-import * as Yup from 'yup';
 import { setLocale } from 'yup';
 import { useForm } from 'vee-validate';
 import { getCurrentCetFileData, resetCurrentFileData } from '@/services/data/dataService';
@@ -109,18 +108,19 @@ import { Assent } from '@/types/v2/File/Common/Assent';
 import { CetFileStep } from '@/types/v2/Wizzard/FileStep';
 import CommonStep1 from '@/views/file/wizzard/steps/CommonStep1.vue';
 import CommonStep2 from '@/views/file/wizzard/steps/CommonStep2.vue';
-import CommonStep4 from '@/views/file/wizzard/steps/CommonStep4.vue';
 import CommonStep5 from '@/views/file/wizzard/steps/CommonStep5.vue';
 import { Step1 } from '@/types/v2/Wizzard/Step1';
 import { Step2 } from '@/types/v2/Wizzard/Step2';
 import { BaseStep3 } from '@/types/v2/Wizzard/step3/BaseStep3';
-import { Step4 } from '@/types/v2/Wizzard/Step4';
+import { BaseStep4 } from '@/types/v2/Wizzard/step4/BaseStep4';
 import WizzardFileHeader from '@/components/DCI/wizzard-file/Header.vue';
 import { validateStepOne, yupConfigStep1 } from '@/services/file/wizzard/step1Service';
 import { initFormDataStep1And2 } from '@/services/file/wizzard/wizzardService';
 import { validateStepTwo, yupConfigStep2 } from '@/services/file/wizzard/step2Service';
 import { initCetFormDataStep3, validateCetStep3, yupCetConfigStep3 } from '@/services/file/wizzard/step3Service';
 import CetStep3 from '@/views/file/cet/CetStep3.vue';
+import CetStep4 from '@/views/file/cet/CetStep4.vue';
+import { initCetFormDataStep4, yupCetConfigStep4 } from '@/services/file/wizzard/step4Service';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -135,10 +135,10 @@ setLocale( {
 export default defineComponent( {
                                   name:       'file-cet-edit',
                                   components: {
+                                    CetStep4,
                                     CetStep3,
                                     WizzardFileHeader,
                                     CommonStep5,
-                                    CommonStep4,
                                     CommonStep2,
                                     CommonStep1,
                                   },
@@ -162,17 +162,14 @@ export default defineComponent( {
                                     // Récupération des données du fichier JSON
                                     const fileData            = getCurrentCetFileData();
                                     const lists               = fileData.lists;
+                                    const products            = fileData.quotation.products;
+                                    const selectedProducts    = fileData.quotation.selectedProducts;
                                     const assents             = ref<Assent[]>( [] );
                                     const formData            = ref<CetFileStep>( {
                                                                                     ...initFormDataStep1And2( fileData.assents,
                                                                                                               fileData.beneficiary ),
                                                                                     ...initCetFormDataStep3( fileData ),
-                                                                                    nameOnCard:      'Max Doe',
-                                                                                    cardNumber:      '4111 1111 1111 1111',
-                                                                                    cardExpiryMonth: '1',
-                                                                                    cardExpiryYear:  '2',
-                                                                                    cardCvv:         '123',
-                                                                                    saveCard:        '1',
+                                                                                    ...initCetFormDataStep4( fileData ),
                                                                                   } );
                                     const nbAssent            = formData.value?.assents.length;
                                     // Configuration de la validation du formulaire
@@ -180,32 +177,17 @@ export default defineComponent( {
                                       yupConfigStep1(),
                                       yupConfigStep2(),
                                       yupCetConfigStep3(),
-                                      Yup.object( {
-                                                    nameOnCard:      Yup.string()
-                                                                        .required()
-                                                                        .label( 'Name On Card' ),
-                                                    cardNumber:      Yup.string()
-                                                                        .required()
-                                                                        .label( 'Card Number' ),
-                                                    cardExpiryMonth: Yup.string()
-                                                                        .required()
-                                                                        .label( 'Expiration Month' ),
-                                                    cardExpiryYear:  Yup.string()
-                                                                        .required()
-                                                                        .label( 'Expiration Year' ),
-                                                    cardCvv:         Yup.string()
-                                                                        .required()
-                                                                        .label( 'CVV' ),
-                                                  } ),
+                                      yupCetConfigStep4(),
                                     ];
 
                                     // --------------------- Début config du Wizzard et du formulaire--------------------------
                                     const currentSchema               = computed( () => {
                                       return createAccountSchema[ currentStepIndex.value ];
                                     } );
-                                    const { resetForm, handleSubmit } = useForm<Step1 | Step2 | BaseStep3 | Step4>( {
-                                                                                                                      validationSchema: currentSchema,
-                                                                                                                    } );
+                                    const { resetForm, handleSubmit } = useForm<Step1 | Step2 | BaseStep3 | BaseStep4>(
+                                        {
+                                          validationSchema: currentSchema,
+                                        } );
                                     const refreshFormData             = () => {
                                       resetForm( {
                                                    values: {
@@ -301,6 +283,8 @@ export default defineComponent( {
                                       assents,
                                       nbAssent,
                                       lists,
+                                      products,
+                                      selectedProducts,
                                     };
                                   },
 

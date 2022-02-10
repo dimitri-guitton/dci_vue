@@ -1,0 +1,109 @@
+<template>
+  <div class="w-100">
+    <div class="row mb-15">
+      <div class="col-md-4 fv-row">
+        <label class="form-label mb-3">Date visite technique</label>
+        <Field
+            type="text"
+            class="form-control form-control-lg form-control-solid"
+            name="dateTechnicalVisit"
+            placeholder="01/01/1970"
+            value=""
+        />
+        <ErrorMessage
+            name="dateTechnicalVisit"
+            class="fv-plugins-message-container invalid-feedback"
+        ></ErrorMessage>
+      </div>
+
+      <div class="col-md-4 fv-row">
+        <label class="form-label mb-3">Délais d'éxécution</label>
+        <Field
+            type="text"
+            class="form-control form-control-lg form-control-solid"
+            name="executionDelay"
+            placeholder="01/01/1970"
+            value=""
+        />
+        <ErrorMessage
+            name="executionDelay"
+            class="fv-plugins-message-container invalid-feedback"
+        ></ErrorMessage>
+      </div>
+
+      <div class="col-md-4 fv-row">
+        <label class="form-label mb-3">Origine</label>
+        <Field
+            type="text"
+            class="form-control form-control-lg form-control-solid"
+            name="origin"
+            placeholder="Origine"
+            value=""
+        />
+        <ErrorMessage
+            name="origin"
+            class="fv-plugins-message-container invalid-feedback"
+        ></ErrorMessage>
+      </div>
+    </div>
+
+    <step4-quotation-header></step4-quotation-header>
+
+    <selected-product :alert="alert"
+                      :products="products"
+                      :selectedProducts="selectedProducts"></selected-product>
+
+    <div class="row mt-15">
+      <div class="col-md-12 fv-row">
+        <label class="form-label mb-3">Commentaire</label>
+        <Field
+            as="textarea"
+            class="form-control form-control-lg form-control-solid"
+            name="commentary"
+            placeholder="RAS"
+            value=""
+        />
+        <ErrorMessage
+            name="commentary"
+            class="fv-plugins-message-container invalid-feedback"
+        ></ErrorMessage>
+      </div>
+    </div>
+
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { ErrorMessage, Field } from 'vee-validate';
+import SelectedProduct from '@/components/DCI/input/SelectedProduct.vue';
+import { Product } from '@/types/v2/File/Common/Product';
+import Step4QuotationHeader from '@/components/DCI/wizzard-file/Step4QuotationHeader.vue';
+
+export default defineComponent( {
+                                  name:       'cet-step-4',
+                                  components: {
+                                    Step4QuotationHeader,
+                                    SelectedProduct,
+                                    Field,
+                                    ErrorMessage,
+                                  },
+                                  props:      {
+                                    products:         Array as () => Product[],
+                                    selectedProducts: Array as () => Product[],
+                                  },
+                                  setup() {
+                                    return {
+                                      alert: `<span>Veuillez bien vérifier que l'installation est réalisable par rapport à la taille du chauffe-eau ? (escalier...)</span>
+                                                <br>
+                                              <span>Dimensions : {{ size }}</span>`,
+                                    };
+                                  },
+                                } );
+</script>
+
+<style>
+textarea {
+  resize : none;
+}
+</style>
