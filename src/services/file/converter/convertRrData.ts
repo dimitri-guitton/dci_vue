@@ -21,6 +21,7 @@ import RrMulti from '@/types/v2/File/Rr/RrMulti';
 import RrList from '@/types/v2/File/Rr/RrList';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
+import { FILE_PAC_RR } from '@/services/constantService';
 
 const convertOldRrProduct = ( oldData ): Product[] => {
     const roProducts: Product[] = [];
@@ -39,7 +40,7 @@ const convertOldRrProduct = ( oldData ): Product[] => {
     oldProducts.forEach( product => {
         roProducts.push( {
                              id:          product[ 'id' ],
-                             productType: 'pac_rr',
+                             productType: FILE_PAC_RR,
                              label:       product[ 'label' ],
                              reference:   product[ 'ref' ],
                              pu:          product[ 'pu' ],
@@ -59,7 +60,7 @@ const convertSelectedRProduct = ( oldData ): Product[] => {
     oldSelectedProducts.forEach( product => {
         selectedRoProducts.push( {
                                      id:          product[ 'id' ],
-                                     productType: 'pac_rr',
+                                     productType: FILE_PAC_RR,
                                      label:       product[ 'label' ],
                                      reference:   product[ 'ref' ],
                                      pu:          product[ 'pu' ],
@@ -208,7 +209,7 @@ export const convertOldRrFile = ( oldData ): RrFile => {
     console.log( '%c IN CONVERT OLD RR FILE', 'background: #fdd835; color: #000000' );
     return {
         version:                   getStringData( oldData[ 'version' ] ),
-        type:                      'pac_rr',
+        type:                      FILE_PAC_RR,
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),

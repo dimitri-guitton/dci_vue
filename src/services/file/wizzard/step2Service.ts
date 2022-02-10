@@ -1,18 +1,17 @@
 import * as Yup from 'yup';
-import { FileStep } from '@/types/v2/Wizzard/FileStep';
 import { updateBeneficiary } from '@/services/data/dataService';
 
-export const validateStepTwo = async ( data: FileStep ) => {
+export const validateStepTwo = ( data ) => {
     updateBeneficiary( data );
 };
 export const yupConfigStep2  = () => {
     return Yup.object( {
-                           assentsDatas:     Yup.array()
-                                                .of(
-                                                    Yup.object().shape( {
-                                                                            civility:  Yup.string()
+                           assentsDatas: Yup.array()
+                                            .of(
+                                                Yup.object().shape( {
+                                                                        civility:      Yup.string()
                                                                                           .required(),
-                                                                            lastName:  Yup.string()
+                                                                        lastName:      Yup.string()
                                                                                           .required(),
                                                                             firstName: Yup.string()
                                                                                           .required(),

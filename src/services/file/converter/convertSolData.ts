@@ -19,6 +19,7 @@ import { Product } from '@/types/v2/File/Common/Product';
 import SolList from '@/types/v2/File/Sol/SolList';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
+import { FILE_SOL } from '@/services/constantService';
 
 const convertOldSolProduct = ( oldData ): Product[] => {
     const solProducts: Product[] = [];
@@ -70,7 +71,7 @@ const convertSelectedSolProduct = ( oldData ): Product[] => {
         if ( product[ 'id' ] === idSelectedProduct ) {
             selectedSolProducts.push( {
                                           id:          product[ 'id' ],
-                                          productType: 'pg',
+                                          productType: FILE_SOL,
                                           label:       product[ 'label' ],
                                           reference:   product[ 'ref' ],
                                           pu:          product[ 'pu' ],
@@ -151,7 +152,7 @@ const convertOldSolItemList = ( oldData ): SolList => {
 export const convertOldSolFile = ( oldData ): SolFile => {
     return {
         version:                   getStringData( oldData[ 'version' ] ),
-        type:                      'sol',
+        type:                      FILE_SOL,
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),

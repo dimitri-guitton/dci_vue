@@ -14,8 +14,9 @@ export interface Housing {
     area: string;
     dataGeoportail: DataGeoportail | null;
     location: string;
-    insulationQuality: number;
-    constructionYear: number | null;
+    constructionYear: string;
     lessThan2Years: boolean;
-    availableVoltage: string;
+    insulationQuality?: number;
+    availableVoltage?: string;
+    heatingType?: string;
 }

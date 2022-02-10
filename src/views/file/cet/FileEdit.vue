@@ -29,7 +29,7 @@
 
           <!--begin::Step 3-->
           <div data-kt-stepper-element="content">
-            <CommonStep3 :lists="lists"></CommonStep3>
+            <CetStep3 :lists="lists"></CetStep3>
           </div>
           <!--end::Step 3-->
 
@@ -104,22 +104,23 @@ import { setCurrentPageBreadcrumbs } from '@/core/helpers/breadcrumb';
 import * as Yup from 'yup';
 import { setLocale } from 'yup';
 import { useForm } from 'vee-validate';
-import { getCurrentCetFileData, resetCurrentFileData, updateHousing } from '@/services/data/dataService';
+import { getCurrentCetFileData, resetCurrentFileData } from '@/services/data/dataService';
 import { Assent } from '@/types/v2/File/Common/Assent';
-import { FileStep } from '@/types/v2/Wizzard/FileStep';
+import { CetFileStep } from '@/types/v2/Wizzard/FileStep';
 import CommonStep1 from '@/views/file/wizzard/steps/CommonStep1.vue';
 import CommonStep2 from '@/views/file/wizzard/steps/CommonStep2.vue';
-import CommonStep3 from '@/views/file/wizzard/steps/CommonStep3.vue';
 import CommonStep4 from '@/views/file/wizzard/steps/CommonStep4.vue';
 import CommonStep5 from '@/views/file/wizzard/steps/CommonStep5.vue';
 import { Step1 } from '@/types/v2/Wizzard/Step1';
 import { Step2 } from '@/types/v2/Wizzard/Step2';
-import { Step3 } from '@/types/v2/Wizzard/Step3';
+import { BaseStep3 } from '@/types/v2/Wizzard/step3/BaseStep3';
 import { Step4 } from '@/types/v2/Wizzard/Step4';
 import WizzardFileHeader from '@/components/DCI/wizzard-file/Header.vue';
 import { validateStepOne, yupConfigStep1 } from '@/services/file/wizzard/step1Service';
 import { initFormDataStep1And2 } from '@/services/file/wizzard/wizzardService';
 import { validateStepTwo, yupConfigStep2 } from '@/services/file/wizzard/step2Service';
+import { initCetFormDataStep3, validateCetStep3, yupCetConfigStep3 } from '@/services/file/wizzard/step3Service';
+import CetStep3 from '@/views/file/cet/CetStep3.vue';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -134,10 +135,10 @@ setLocale( {
 export default defineComponent( {
                                   name:       'file-cet-edit',
                                   components: {
+                                    CetStep3,
                                     WizzardFileHeader,
                                     CommonStep5,
                                     CommonStep4,
-                                    CommonStep3,
                                     CommonStep2,
                                     CommonStep1,
                                   },
@@ -162,34 +163,23 @@ export default defineComponent( {
                                     const fileData            = getCurrentCetFileData();
                                     const lists               = fileData.lists;
                                     const assents             = ref<Assent[]>( [] );
-                                    const formData            = ref<FileStep>( {
-                                                                                 ...initFormDataStep1And2( fileData.assents,
-                                                                                                           fileData.beneficiary ),
-                                                                                 nbOccupant:               fileData.housing.nbOccupant,
-                                                                                 housingType:              fileData.housing.type,
-                                                                                 housingInsulationQuality: fileData.housing.insulationQuality,
-                                                                                 housingAvailableVoltage:  fileData.housing.availableVoltage,
-                                                                                 housingConstructionYear:  fileData.housing.constructionYear,
-                                                                                 housingLessThan2Years:    fileData.housing.lessThan2Years,
-                                                                                 housingIsAddressBenef:    fileData.housing.isAddressBenef,
-                                                                                 nameOnCard:               'Max Doe',
-                                                                                 cardNumber:               '4111 1111 1111 1111',
-                                                                                 cardExpiryMonth:          '1',
-                                                                                 cardExpiryYear:           '2',
-                                                                                 cardCvv:                  '123',
-                                                                                 saveCard:                 '1',
-                                                                               } );
+                                    const formData            = ref<CetFileStep>( {
+                                                                                    ...initFormDataStep1And2( fileData.assents,
+                                                                                                              fileData.beneficiary ),
+                                                                                    ...initCetFormDataStep3( fileData ),
+                                                                                    nameOnCard:      'Max Doe',
+                                                                                    cardNumber:      '4111 1111 1111 1111',
+                                                                                    cardExpiryMonth: '1',
+                                                                                    cardExpiryYear:  '2',
+                                                                                    cardCvv:         '123',
+                                                                                    saveCard:        '1',
+                                                                                  } );
                                     const nbAssent            = formData.value?.assents.length;
                                     // Configuration de la validation du formulaire
                                     const createAccountSchema = [
                                       yupConfigStep1(),
                                       yupConfigStep2(),
-                                      // Step 3
-                                      Yup.object( {
-                                                    nbOccupant:               Yup.number().required(),
-                                                    housingType:              Yup.string().required(),
-                                                    housingInsulationQuality: Yup.number().required(),
-                                                  } ),
+                                      yupCetConfigStep3(),
                                       Yup.object( {
                                                     nameOnCard:      Yup.string()
                                                                         .required()
@@ -213,9 +203,9 @@ export default defineComponent( {
                                     const currentSchema               = computed( () => {
                                       return createAccountSchema[ currentStepIndex.value ];
                                     } );
-                                    const { resetForm, handleSubmit } = useForm<Step1 | Step2 | Step3 | Step4>( {
-                                                                                                                  validationSchema: currentSchema,
-                                                                                                                } );
+                                    const { resetForm, handleSubmit } = useForm<Step1 | Step2 | BaseStep3 | Step4>( {
+                                                                                                                      validationSchema: currentSchema,
+                                                                                                                    } );
                                     const refreshFormData             = () => {
                                       resetForm( {
                                                    values: {
@@ -245,13 +235,7 @@ export default defineComponent( {
                                       _stepperObj.value.goPrev();
                                     };
                                     // --------------------- Fin config du Wizzard et du formulaire--------------------------
-
-                                    const validateStepThree = async ( data: FileStep ) => {
-                                      console.log( 'data-->', data );
-                                      updateHousing( data );
-                                    };
-
-                                    const handleStep = handleSubmit( async ( values ) => {
+                                    const handleStep   = handleSubmit( async ( values ) => {
                                       console.log( values );
 
 
@@ -268,10 +252,10 @@ export default defineComponent( {
                                         console.log( '%c Validation de l\'étape 1',
                                                      'background: #FF7CA7; color: #000000' );
 
+
                                         const response = await validateStepOne( formData.value );
                                         assents.value  = response.assents;
                                         formData.value = response.formData;
-
                                         // Force le refersh des data du formulaire
                                         refreshFormData();
                                       } else if ( currentStepIndex.value === 1 ) {
@@ -280,7 +264,7 @@ export default defineComponent( {
                                         await validateStepTwo( formData.value );
                                       } else if ( currentStepIndex.value === 2 ) {
                                         console.log( '%c Validation step 3', 'background: #fdd835; color: #000000' );
-                                        validateStepThree( formData.value );
+                                        await validateCetStep3( formData.value );
                                       }
 
                                       currentStepIndex.value++;

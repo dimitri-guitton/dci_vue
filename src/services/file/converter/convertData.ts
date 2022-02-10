@@ -5,6 +5,7 @@ import { DataGeoportail } from '@/types/v2/File/Common/DataGeoportail';
 import { Scale } from '@/types/v2/File/Common/Scale';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import { Option } from '@/types/v2/File/Common/Option';
+import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
 
 export const getObjectData = ( data: any, keys: any[] ): any => {
     // Si l'élément n'existe pas on retourne un objet vide ou un string
@@ -207,17 +208,17 @@ export const convertOldOptions = ( oldData ): Option[] => {
     let fileType = 'default';
 
     if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'ro' ) {
-        fileType = 'pac_ro';
+        fileType = FILE_PAC_RO;
     } else if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'rr' ) {
-        fileType = 'pac_rr';
+        fileType = FILE_PAC_RR;
     } else if ( type === 'cet' ) {
-        fileType = 'cet';
+        fileType = FILE_CET;
     } else if ( type === 'poele' ) {
-        fileType = 'pg';
+        fileType = FILE_PG;
     } else if ( type === 'comble' ) {
-        fileType = 'comble';
+        fileType = FILE_COMBLE;
     } else if ( type === 'sol' ) {
-        fileType = 'sol';
+        fileType = FILE_SOL;
     }
 
     let index = 1;

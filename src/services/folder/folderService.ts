@@ -7,7 +7,7 @@ import { convertOldRrFile } from '@/services/file/converter/convertRrData';
 import { convertOldCetFile } from '@/services/file/converter/convertCetData';
 import path from 'path';
 import { addFile, deleteFile } from '@/services/sqliteService';
-import { FILE_CET_TYPE } from '@/services/constantService';
+import { FILE_CET, FILE_CET_TYPE, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { getcurrentFolderName, setCurrentFileData } from '@/services/data/dataService';
 import { convertOldPgFile } from '@/services/file/converter/convertPgData';
 import { convertOldCombleFile } from '@/services/file/converter/convertCombleData';
@@ -68,22 +68,22 @@ const Folders = [
     { name: FoldersNames.FICHE_FOLDER, dossierType: [ 'all' ] },
     { name: FoldersNames.FICHE_SIGNE_FOLDER, dossierType: [ 'all' ] },
     { name: FoldersNames.ATTEST_ADRESSE_SIGNE_FOLDER, dossierType: [ 'all' ] },
-    { name: FoldersNames.PHOTOS_FACADE_FOLDER, dossierType: [ 'sol', 'comble', 'poele' ] },
-    { name: FoldersNames.PHOTOS_MAISON_FOLDER, dossierType: [ 'sol', 'comble' ] },
-    { name: FoldersNames.PHOTOS_CHANTIER_FOLDER, dossierType: [ 'sol' ] },
+    { name: FoldersNames.PHOTOS_FACADE_FOLDER, dossierType: [ FILE_SOL, FILE_COMBLE, FILE_PG ] },
+    { name: FoldersNames.PHOTOS_MAISON_FOLDER, dossierType: [ FILE_SOL, FILE_COMBLE ] },
+    { name: FoldersNames.PHOTOS_CHANTIER_FOLDER, dossierType: [ FILE_SOL ] },
     { name: FoldersNames.ATTESTATION_HONNEUR_FOLDER, dossierType: [ 'all' ] },
-    { name: FoldersNames.PHOTOS_TABLEAU_ELECTRIQUE, dossierType: [ 'pac_rr', 'pac_ro', 'poele' ] },
-    { name: FoldersNames.MANDAT_MA_PRIME_RENOV, dossierType: [ 'pac_ro', 'cet', 'poele' ] },
-    { name: FoldersNames.PHOTOS_ANCIENNE_CHAUDIERE, dossierType: [ 'pac_ro' ] },
-    { name: FoldersNames.PHOTOS_RADIATEUR, dossierType: [ 'pac_ro' ] },
-    { name: FoldersNames.PHOTOS_EMPLACEMENT_UNITE_EXT, dossierType: [ 'pac_rr', 'pac_ro' ] },
-    { name: FoldersNames.PHOTOS_EMPLACEMENT_SPLITS, dossierType: [ 'pac_rr' ] },
-    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_FOLDER, dossierType: [ 'pac_rr', 'pac_ro', 'cet', 'poele' ] },
-    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_SIGNE_FOLDER, dossierType: [ 'pac_rr', 'pac_ro', 'cet', 'poele' ] },
-    { name: FoldersNames.CADRE_CONTRIBUTION_CEE, dossierType: [ 'pac_rr', 'pac_ro' ] },
-    { name: FoldersNames.PHOTO_EMPLACEMENT_POELE, dossierType: [ 'poele' ] },
-    { name: FoldersNames.PHOTO_COMBLE_EMPLACEMENT_TUYAUX, dossierType: [ 'poele' ] },
-    { name: FoldersNames.PHOTO_TOITURE, dossierType: [ 'poele' ] },
+    { name: FoldersNames.PHOTOS_TABLEAU_ELECTRIQUE, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_PG ] },
+    { name: FoldersNames.MANDAT_MA_PRIME_RENOV, dossierType: [ FILE_PAC_RO, FILE_CET, FILE_PG ] },
+    { name: FoldersNames.PHOTOS_ANCIENNE_CHAUDIERE, dossierType: [ FILE_PAC_RO ] },
+    { name: FoldersNames.PHOTOS_RADIATEUR, dossierType: [ FILE_PAC_RO ] },
+    { name: FoldersNames.PHOTOS_EMPLACEMENT_UNITE_EXT, dossierType: [ FILE_PAC_RR, FILE_PAC_RO ] },
+    { name: FoldersNames.PHOTOS_EMPLACEMENT_SPLITS, dossierType: [ FILE_PAC_RR ] },
+    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_FOLDER, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_CET, FILE_PG ] },
+    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_SIGNE_FOLDER, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_CET, FILE_PG ] },
+    { name: FoldersNames.CADRE_CONTRIBUTION_CEE, dossierType: [ FILE_PAC_RR, FILE_PAC_RO ] },
+    { name: FoldersNames.PHOTO_EMPLACEMENT_POELE, dossierType: [ FILE_PG ] },
+    { name: FoldersNames.PHOTO_COMBLE_EMPLACEMENT_TUYAUX, dossierType: [ FILE_PG ] },
+    { name: FoldersNames.PHOTO_TOITURE, dossierType: [ FILE_PG ] },
 ];
 
 /**
@@ -256,9 +256,7 @@ export const removeFolder = async ( folder: DatatableFile ): Promise<boolean> =>
 export const updateJsonData = ( fileData ) => {
     const name = getcurrentFolderName() as string;
     const path = `${ getFolderPath( name ) }/data.json`;
-    console.log( 'JSON PATH -->', path );
     if ( fs.existsSync( path ) ) {
-        console.log( 'FILE EXISTS' );
         fs.writeFileSync( path, JSON.stringify( fileData, null, 2 ) );
         setCurrentFileData( JSON.stringify( fileData ) );
     }

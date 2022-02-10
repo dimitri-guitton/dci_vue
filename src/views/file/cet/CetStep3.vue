@@ -14,7 +14,7 @@
             as="select"
             class="form-control form-control-lg form-control-solid"
         >
-          <option-list :lists="lists.qualiteIsolationList"></option-list>
+          <option-list :lists="lists.chauffageTypeList"></option-list>
         </Field>
         <ErrorMessage
             name="housingInsulationQuality"
@@ -53,7 +53,7 @@ import OptionList from '@/components/DCI/input/OptionList.vue';
 import Step3Housing from '@/components/DCI/wizzard-file/Step3Housing.vue';
 
 export default defineComponent( {
-                                  name:       'common-step-3',
+                                  name:       'cet-step-3',
                                   components: {
                                     Step3Housing,
                                     OptionList,

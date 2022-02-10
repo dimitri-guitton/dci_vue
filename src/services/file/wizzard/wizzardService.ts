@@ -60,6 +60,11 @@ const initDefaultAssents = ( assents: Assent[], beneficiary: Beneficiary ): {
     };
 };
 
+/**
+ * Retourne les valeurs du formualire pour les étapes 1 et 2
+ * @param assents
+ * @param beneficiary
+ */
 export const initFormDataStep1And2 = ( assents: Assent[], beneficiary: Beneficiary ) => {
     const {
               defaultAssents,

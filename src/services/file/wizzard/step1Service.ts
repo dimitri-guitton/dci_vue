@@ -1,4 +1,3 @@
-import { FileStep } from '@/types/v2/Wizzard/FileStep';
 import { AssentForm } from '@/types/v2/Wizzard/AssentForm';
 import SvairAvisImpot from '@/types/SvairAvisImpot';
 import { DataGouv } from '@/types/v2/File/Common/DataGouv';
@@ -6,6 +5,7 @@ import { addAssent } from '@/services/data/dataService';
 import Svair from 'svair-api/index';
 import { Assent } from '@/types/v2/File/Common/Assent';
 import * as Yup from 'yup';
+import { ElLoading } from 'element-plus';
 
 /**
  * Promise
@@ -48,7 +48,9 @@ const checkAssentOnSvair = async ( assents: AssentForm[] ) => {
  * Validation de l'étape 1
  * @param data
  */
-export const validateStepOne = async ( data: FileStep ): Promise<{ assents: Assent[]; formData: FileStep }> => {
+export const validateStepOne = async ( data ): Promise<{ assents: Assent[]; formData }> => {
+    const loadingInstance = ElLoading.service( { fullscreen: true } );
+
     // Avis à vérifier pas l'api Svair
     const assentsToSvair: AssentForm[] = [];
 
@@ -114,6 +116,7 @@ export const validateStepOne = async ( data: FileStep ): Promise<{ assents: Asse
 
     } );
 
+    loadingInstance.close();
     return {
         assents,
         formData: data,

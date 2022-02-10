@@ -22,6 +22,7 @@ import RoEcsDeporte from '@/types/v2/File/Ro/RoEcsDeporte';
 import RoList from '@/types/v2/File/Ro/RoList';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
+import { FILE_PAC_RO } from '@/services/constantService';
 
 const convertOldRoProduct = ( oldData ): Product[] => {
     const roProducts: Product[] = [];
@@ -40,7 +41,7 @@ const convertOldRoProduct = ( oldData ): Product[] => {
     oldProducts.forEach( product => {
         roProducts.push( {
                              id:          product[ 'id' ],
-                             productType: 'pac_ro',
+                             productType: FILE_PAC_RO,
                              label:       product[ 'label' ],
                              reference:   product[ 'ref' ],
                              pu:          product[ 'pu' ],
@@ -60,7 +61,7 @@ const convertSelectedRoProduct = ( oldData ): Product[] => {
     oldSelectedProducts.forEach( product => {
         selectedRoProducts.push( {
                                      id:          product[ 'id' ],
-                                     productType: 'pac_ro',
+                                     productType: FILE_PAC_RO,
                                      label:       product[ 'label' ],
                                      reference:   product[ 'ref' ],
                                      pu:          product[ 'pu' ],
@@ -186,7 +187,7 @@ const convertOldRoItemList = ( oldData ): RoList => {
 export const convertOldRoFile = ( oldData ): RoFile => {
     return {
         version:                   getStringData( oldData[ 'version' ] ),
-        type:                      'pac_ro',
+        type:                      FILE_PAC_RO,
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),

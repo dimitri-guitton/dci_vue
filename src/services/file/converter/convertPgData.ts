@@ -19,6 +19,7 @@ import { Product } from '@/types/v2/File/Common/Product';
 import PgList from '@/types/v2/File/Pg/PgList';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
 import { PgFile } from '@/types/v2/File/Pg/PgFile';
+import { FILE_PG } from '@/services/constantService';
 
 const convertOldPgProduct = ( oldData ): Product[] => {
     const pgProducts: Product[] = [];
@@ -37,7 +38,7 @@ const convertOldPgProduct = ( oldData ): Product[] => {
     oldProducts.forEach( product => {
         pgProducts.push( {
                              id:          product[ 'id' ],
-                             productType: 'pg',
+                             productType: FILE_PG,
                              label:       product[ 'label' ],
                              reference:   product[ 'ref' ],
                              pu:          product[ 'pu' ],
@@ -98,7 +99,7 @@ const convertSelectedPgProduct = ( oldData ): Product[] => {
         if ( product[ 'id' ] === idSelectedProduct ) {
             selectedPgProducts.push( {
                                          id:          product[ 'id' ],
-                                         productType: 'pg',
+                                         productType: FILE_PG,
                                          label:       product[ 'label' ],
                                          reference:   product[ 'ref' ],
                                          pu:          product[ 'pu' ],
@@ -222,7 +223,7 @@ const convertOldPgItemList = ( oldData ): PgList => {
 export const convertOldPgFile = ( oldData ): PgFile => {
     return {
         version:                   getStringData( oldData[ 'version' ] ),
-        type:                      'pg',
+        type:                      FILE_PG,
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),

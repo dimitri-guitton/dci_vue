@@ -6,8 +6,6 @@ import { CetFile } from '@/types/v2/File/Cet/CetFile';
 import { DataGouv } from '@/types/v2/File/Common/DataGouv';
 import { Assent } from '@/types/v2/File/Common/Assent';
 import { Beneficiary } from '@/types/v2/File/Common/Beneficiary';
-import { Housing } from '@/types/v2/File/Common/Housing';
-import { FileStep } from '@/types/v2/Wizzard/FileStep';
 
 const schema = {
     dropboxPath:          {
@@ -151,7 +149,7 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficia
     return assent;
 };
 
-export const updateAssent = ( data: FileStep ) => {
+export const updateAssent = ( data ) => {
     let fileData = getCurrentFileData();
 
     const assents: Assent[ ] = [];
@@ -190,7 +188,7 @@ export const updateAssent = ( data: FileStep ) => {
     updateJsonData( fileData );
 };
 
-export const updateBeneficiary = ( data: FileStep ) => {
+export const updateBeneficiary = ( data ) => {
     updateAssent( data );
     let fileData = getCurrentFileData();
 
@@ -217,56 +215,53 @@ export const updateBeneficiary = ( data: FileStep ) => {
     updateJsonData( fileData );
 
 };
-
-export const updateHousing = ( data: FileStep ) => {
-    console.log( 'DATA -->', data );
-    let fileData = getCurrentFileData();
-
-    if ( data.housingLessThan2Years === undefined ) {
-        data.housingLessThan2Years = false;
-    }
-
-    if ( data.housingIsAddressBenef === undefined ) {
-        data.housingIsAddressBenef = false;
-    }
-
-    let address = {
-        addresse: '',
-        zipCode:  '',
-        city:     '',
-        plot:     '',
-        area:     '',
-        location: '',
-    };
-    if ( data.housingIsAddressBenef ) {
-        address = {
-            addresse: fileData.beneficiary.address,
-            zipCode:  fileData.beneficiary.zipCode,
-            city:     fileData.beneficiary.city,
-            plot:     '',
-            area:     '',
-            location: '',
-        };
-    }
-
-    const housing: Housing = {
-        ...fileData.housing,
-        nbOccupant:     data.nbOccupant,
-        type:           data.housingType,
-        isAddressBenef: data.housingIsAddressBenef,
-        ...address,
-        insulationQuality: data.housingInsulationQuality,
-        constructionYear:  data.housingConstructionYear,
-        lessThan2Years:    data.housingLessThan2Years,
-        availableVoltage:  data.housingAvailableVoltage,
-    };
-
-    fileData = {
-        ...fileData,
-        housing: housing,
-    };
-
-    console.log( '%c NEW FILE DATA', 'background: #fdd835; color: #000000' );
-    console.log( fileData );
-    updateJsonData( fileData );
-};
+// export const updateHousing     = ( data ) => {
+//     console.log( 'DATA -->', data );
+//     let fileData = getCurrentFileData();
+//
+//     if ( data.housingLessThan2Years === undefined ) {
+//         data.housingLessThan2Years = false;
+//     }
+//
+//     if ( data.housingIsAddressBenef === undefined ) {
+//         data.housingIsAddressBenef = false;
+//     }
+//
+//     let address = {
+//         addresse: '',
+//         zipCode:  '',
+//         city:     '',
+//         plot:     '',
+//         area:     '',
+//         location: '',
+//     };
+//     if ( data.housingIsAddressBenef ) {
+//         address = {
+//             addresse: fileData.beneficiary.address,
+//             zipCode:  fileData.beneficiary.zipCode,
+//             city:     fileData.beneficiary.city,
+//             plot:     '',
+//             area:     '',
+//             location: '',
+//         };
+//     }
+//
+//     const housing: Housing = {
+//         ...fileData.housing,
+//         nbOccupant:     data.nbOccupant,
+//         type:           data.housingType,
+//         isAddressBenef: data.housingIsAddressBenef,
+//         ...address,
+//         constructionYear: data.housingConstructionYear,
+//         lessThan2Years:   data.housingLessThan2Years,
+//     };
+//
+//     fileData = {
+//         ...fileData,
+//         housing: housing,
+//     };
+//
+//     console.log( '%c NEW FILE DATA', 'background: #fdd835; color: #000000' );
+//     console.log( fileData );
+//     updateJsonData( fileData );
+// };

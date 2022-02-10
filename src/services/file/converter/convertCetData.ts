@@ -19,6 +19,7 @@ import { Product } from '@/types/v2/File/Common/Product';
 import { CetList } from '@/types/v2/File/Cet/CetList';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
 import { CetFile } from '@/types/v2/File/Cet/CetFile';
+import { FILE_CET } from '@/services/constantService';
 
 const convertOldCetProduct = ( oldData ): Product[] => {
     const ceProducts: Product[] = [];
@@ -37,7 +38,7 @@ const convertOldCetProduct = ( oldData ): Product[] => {
     oldProducts.forEach( product => {
         ceProducts.push( {
                              id:          product[ 'id' ],
-                             productType: 'cet',
+                             productType: FILE_CET,
                              label:       product[ 'label' ],
                              reference:   product[ 'ref' ],
                              pu:          product[ 'pu' ],
@@ -66,7 +67,7 @@ const convertSelectedCetProduct = ( oldData ): Product[] => {
         if ( product[ 'id' ] === idSelectedProduct ) {
             selectedCeProducts.push( {
                                          id:          product[ 'id' ],
-                                         productType: 'cet',
+                                         productType: FILE_CET,
                                          label:       product[ 'label' ],
                                          reference:   product[ 'ref' ],
                                          pu:          product[ 'pu' ],
@@ -170,7 +171,7 @@ export const convertOldCetFile = ( oldData ): CetFile => {
     console.log( '%c IN CONVERT DATA FILE', 'background: #fdd835; color: #000000' );
     return {
         version:                   getStringData( oldData[ 'version' ] ),
-        type:                      'cet',
+        type:                      FILE_CET,
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),

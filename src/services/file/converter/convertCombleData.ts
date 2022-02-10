@@ -19,6 +19,7 @@ import { Product } from '@/types/v2/File/Common/Product';
 import CombleList from '@/types/v2/File/Comble/CombleList';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
+import { FILE_COMBLE, FILE_PG } from '@/services/constantService';
 
 const convertOldCombleProduct = ( oldData ): Product[] => {
     const combleProducts: Product[] = [];
@@ -70,7 +71,7 @@ const convertSelectedCombleProduct = ( oldData ): Product[] => {
         if ( product[ 'id' ] === idSelectedProduct ) {
             selectedCombleProducts.push( {
                                              id:          product[ 'id' ],
-                                             productType: 'pg',
+                                             productType: FILE_PG,
                                              label:       product[ 'label' ],
                                              reference:   product[ 'ref' ],
                                              pu:          product[ 'pu' ],
@@ -174,7 +175,7 @@ const convertOldCombleItemList = ( oldData ): CombleList => {
 export const convertOldCombleFile = ( oldData ): CombleFile => {
     return {
         version:                   getStringData( oldData[ 'version' ] ),
-        type:                      'comble',
+        type:                      FILE_COMBLE,
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),

@@ -46,7 +46,7 @@ import { defineComponent, onMounted } from 'vue';
 // import MixedWidget10 from '@/components/widgets/mixed/Widget10.vue';
 import { setCurrentPageTitle } from '@/core/helpers/breadcrumb';
 import { convertOldJsonToNewJson } from '@/services/folder/folderService';
-import { geocodingAddress } from '@/services/geocodingService';
+// import { geocodingAddress } from '@/services/geocodingService';
 
 export default defineComponent( {
                                   name:       'dashboard',
@@ -65,10 +65,10 @@ export default defineComponent( {
                                     onMounted( async () => {
 
                                       // On récupère les coordonnées de l'adresse
-                                      let coordinate = await geocodingAddress( '79000 Niort' );
-                                      if ( coordinate === null ) {
-                                        coordinate = [ 46.160329, -1.151139 ];
-                                      }
+                                      // let coordinate = await geocodingAddress( '79000 Niort' );
+                                      // if ( coordinate === null ) {
+                                      //   coordinate = [ 46.160329, -1.151139 ];
+                                      // }
 
                                       // Gp.Map.load(
                                       //     'map', // html div

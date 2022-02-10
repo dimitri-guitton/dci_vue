@@ -1,33 +1,40 @@
 import { DatatableFileType } from '@/types/v2/DatatableFile/DatatableFileType';
 import { DatatableFileStatus } from '@/types/v2/DatatableFile/DatatableFileStatus';
 
+export const FILE_CET    = 'cet';
+export const FILE_PG     = 'pg';
+export const FILE_SOL    = 'sol';
+export const FILE_COMBLE = 'comble';
+export const FILE_PAC_RR = 'pac_rr';
+export const FILE_PAC_RO = 'pac_ro';
+
 export const FILE_COMBLE_TYPE: DatatableFileType = {
-    slug: 'comble',
+    slug: FILE_COMBLE,
     name: 'Comble',
 };
 
 export const FILE_SOL_TYPE: DatatableFileType = {
-    slug: 'sol',
+    slug: FILE_SOL,
     name: 'Sol',
 };
 
 export const FILE_PAC_RR_TYPE: DatatableFileType = {
-    slug: 'pac_rr',
+    slug: FILE_PAC_RR,
     name: 'Chauffage RR',
 };
 
 export const FILE_PAC_RO_TYPE: DatatableFileType = {
-    slug: 'pac_ro',
+    slug: FILE_PAC_RO,
     name: 'Chauffage RO',
 };
 
 export const FILE_CET_TYPE: DatatableFileType = {
-    slug: 'cet',
+    slug: FILE_CET,
     name: 'Chauffe eau',
 };
 
 export const FILE_PG_TYPE: DatatableFileType = {
-    slug: 'pg',
+    slug: FILE_PG,
     name: 'Poele à granulés',
 };
 
