@@ -14,7 +14,7 @@
             as="select"
             class="form-control form-control-lg form-control-solid"
         >
-          <option-list :lists="lists.chauffageTypeList"></option-list>
+          <item-list :lists="lists.chauffageTypeList"></item-list>
         </Field>
         <ErrorMessage
             name="housingInsulationQuality"
@@ -49,14 +49,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { ErrorMessage, Field } from 'vee-validate';
-import OptionList from '@/components/DCI/input/OptionList.vue';
+import ItemList from '@/components/DCI/input/ItemList.vue';
 import Step3Housing from '@/components/DCI/wizzard-file/Step3Housing.vue';
 
 export default defineComponent( {
                                   name:       'cet-step-3',
                                   components: {
+                                    ItemList,
                                     Step3Housing,
-                                    OptionList,
                                     Field,
                                     ErrorMessage,
                                   },

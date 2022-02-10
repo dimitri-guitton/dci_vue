@@ -15,11 +15,11 @@
       <div class="col-md-2 fv-row">
         <Field
             :disabled="true"
-            type="text"
+            type="number"
             class="form-control form-control-lg"
             name="selectedProductQuantity"
             placeholder="1"
-            value="1"
+            :value="1"
         />
       </div>
       <div class="col-md-2 fv-row">
@@ -28,7 +28,7 @@
             type="number"
             class="form-control form-control-lg form-control-solid"
             :name="`selectedProducts[${index}].pu`"
-            placeholder="10"
+            placeholder="100"
         />
         <ErrorMessage
             :name="`selectedProducts[${index}].pu`"

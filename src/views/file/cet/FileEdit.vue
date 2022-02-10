@@ -35,7 +35,7 @@
 
           <!--begin::Step 4-->
           <div class="current" data-kt-stepper-element="content">
-            <CetStep4 :selectedProducts="selectedProducts" :products="products"></CetStep4>
+            <CetStep4 :options="options" :selectedProducts="selectedProducts" :products="products"></CetStep4>
           </div>
           <!--end::Step 4-->
 
@@ -164,6 +164,7 @@ export default defineComponent( {
                                     const lists               = fileData.lists;
                                     const products            = fileData.quotation.products;
                                     const selectedProducts    = fileData.quotation.selectedProducts;
+                                    const options             = fileData.quotation.options;
                                     const assents             = ref<Assent[]>( [] );
                                     const formData            = ref<CetFileStep>( {
                                                                                     ...initFormDataStep1And2( fileData.assents,
@@ -285,6 +286,7 @@ export default defineComponent( {
                                       lists,
                                       products,
                                       selectedProducts,
+                                      options,
                                     };
                                   },
 

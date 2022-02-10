@@ -6,7 +6,7 @@ import { defineComponent } from 'vue';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
 
 export default defineComponent( {
-                                  name:  'option-list',
+                                  name:  'item-list',
                                   props: {
                                     lists: Object as () => ItemList,
                                   },

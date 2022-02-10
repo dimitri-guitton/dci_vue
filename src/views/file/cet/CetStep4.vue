@@ -53,6 +53,8 @@
                       :products="products"
                       :selectedProducts="selectedProducts"></selected-product>
 
+    <options :options="options"></options>
+
     <div class="row mt-15">
       <div class="col-md-12 fv-row">
         <label class="form-label mb-3">Commentaire</label>
@@ -79,10 +81,13 @@ import { ErrorMessage, Field } from 'vee-validate';
 import SelectedProduct from '@/components/DCI/input/SelectedProduct.vue';
 import { Product } from '@/types/v2/File/Common/Product';
 import Step4QuotationHeader from '@/components/DCI/wizzard-file/Step4QuotationHeader.vue';
+import Options from '@/components/DCI/input/Options.vue';
+import { Option } from '@/types/v2/File/Common/Option';
 
 export default defineComponent( {
                                   name:       'cet-step-4',
                                   components: {
+                                    Options,
                                     Step4QuotationHeader,
                                     SelectedProduct,
                                     Field,
@@ -91,6 +96,7 @@ export default defineComponent( {
                                   props:      {
                                     products:         Array as () => Product[],
                                     selectedProducts: Array as () => Product[],
+                                    options:          Array as () => Option[],
                                   },
                                   setup() {
                                     return {

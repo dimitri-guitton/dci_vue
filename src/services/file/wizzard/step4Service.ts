@@ -43,6 +43,23 @@ export const yupCetConfigStep4 = () => {
                                                                                            'Le montant doit être supérieur ou égal à 0' ),
                                                                           } ),
                                                   ),
+                           options:            Yup.array()
+                                                  .of(
+                                                      Yup.object().shape( {
+                                                                              id:     Yup.number()
+                                                                                         .required()
+                                                                                         .min( 0,
+                                                                                               'L\'id du produit sélectionné est invalide' ),
+                                                                              pu:     Yup.number()
+                                                                                         .required()
+                                                                                         .min( 0,
+                                                                                               'Le montant doit être supérieur ou égal à 0' ),
+                                                                              number: Yup.number()
+                                                                                         .required()
+                                                                                         .min( 0,
+                                                                                               'Le nombre doit être supérieur ou égal à 0' ),
+                                                                          } ),
+                                                  ),
                        } );
 };
 

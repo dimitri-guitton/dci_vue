@@ -21,7 +21,7 @@
           as="select"
           class="form-control form-control-lg form-control-solid"
       >
-        <option-list :lists="lists.localTypeList"></option-list>
+        <item-list :lists="lists.localTypeList"></item-list>
       </Field>
       <ErrorMessage
           name="housingType"
@@ -60,13 +60,13 @@
 </template>
 
 <script lang="ts">
-import OptionList from '@/components/DCI/input/OptionList.vue';
+import ItemList from '@/components/DCI/input/ItemList.vue';
 import { defineComponent } from 'vue';
 import { ErrorMessage, Field } from 'vee-validate';
 
 export default defineComponent( {
                                   name:       'step3-housing',
-                                  components: { OptionList, Field, ErrorMessage },
+                                  components: { ItemList, Field, ErrorMessage },
                                   props:      {
                                     lists: Object,
                                   },
