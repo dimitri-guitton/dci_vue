@@ -1,51 +1,7 @@
 <template>
   <div class="w-100">
-    <div class="row mb-15">
-      <div class="col-md-4 fv-row">
-        <label class="form-label mb-3">Date visite technique</label>
-        <Field
-            type="text"
-            class="form-control form-control-lg form-control-solid"
-            name="dateTechnicalVisit"
-            placeholder="01/01/1970"
-            value=""
-        />
-        <ErrorMessage
-            name="dateTechnicalVisit"
-            class="fv-plugins-message-container invalid-feedback"
-        ></ErrorMessage>
-      </div>
 
-      <div class="col-md-4 fv-row">
-        <label class="form-label mb-3">Délais d'éxécution</label>
-        <Field
-            type="text"
-            class="form-control form-control-lg form-control-solid"
-            name="executionDelay"
-            placeholder="01/01/1970"
-            value=""
-        />
-        <ErrorMessage
-            name="executionDelay"
-            class="fv-plugins-message-container invalid-feedback"
-        ></ErrorMessage>
-      </div>
-
-      <div class="col-md-4 fv-row">
-        <label class="form-label mb-3">Origine</label>
-        <Field
-            type="text"
-            class="form-control form-control-lg form-control-solid"
-            name="origin"
-            placeholder="Origine"
-            value=""
-        />
-        <ErrorMessage
-            name="origin"
-            class="fv-plugins-message-container invalid-feedback"
-        ></ErrorMessage>
-      </div>
-    </div>
+    <step4-header></step4-header>
 
     <step4-quotation-header></step4-quotation-header>
 
@@ -55,7 +11,11 @@
 
     <options :options="options"></options>
 
-    <div class="row mt-15">
+    <blank-options :options="blankOptions"></blank-options>
+
+    <wizzard-file-price></wizzard-file-price>
+
+    <div class="row mt-10">
       <div class="col-md-12 fv-row">
         <label class="form-label mb-3">Commentaire</label>
         <Field
@@ -72,6 +32,15 @@
       </div>
     </div>
 
+    <el-divider class="mb-10"></el-divider>
+
+    <div class="row mt-5">
+      <div class="col-md-6 offset-md-3 d-flex justify-content-around">
+        <button class="btn btn-outline btn-outline-info">Générer l'attestation d'adresse</button>
+        <button class="btn btn-info">Générer le devis</button>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -83,10 +52,17 @@ import { Product } from '@/types/v2/File/Common/Product';
 import Step4QuotationHeader from '@/components/DCI/wizzard-file/Step4QuotationHeader.vue';
 import Options from '@/components/DCI/input/Options.vue';
 import { Option } from '@/types/v2/File/Common/Option';
+import BlankOptions from '@/components/DCI/input/BlankOptions.vue';
+import { BlankOption } from '@/types/v2/File/Common/BlankOption';
+import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
+import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 
 export default defineComponent( {
                                   name:       'cet-step-4',
                                   components: {
+                                    Step4Header,
+                                    WizzardFilePrice,
+                                    BlankOptions,
                                     Options,
                                     Step4QuotationHeader,
                                     SelectedProduct,
@@ -97,6 +73,7 @@ export default defineComponent( {
                                     products:         Array as () => Product[],
                                     selectedProducts: Array as () => Product[],
                                     options:          Array as () => Option[],
+                                    blankOptions:     Array as () => BlankOption[],
                                   },
                                   setup() {
                                     return {
