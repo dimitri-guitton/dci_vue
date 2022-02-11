@@ -6,7 +6,7 @@
         <Field
             type="text"
             class="form-control form-control-lg form-control-solid"
-            name="period"
+            name="worksheet.period"
             placeholder="01/01/1970"
             value=""
         />
@@ -73,7 +73,7 @@
         <Field
             as="textarea"
             class="form-control form-control-lg form-control-solid"
-            name="infosSup"
+            name="worksheet.infosSup"
             placeholder="RAS"
             value=""
         />

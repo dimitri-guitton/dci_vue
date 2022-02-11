@@ -34,9 +34,6 @@ export const yupCetConfigStep4 = () => {
                            selectedProducts:   Yup.array()
                                                   .of(
                                                       Yup.object().shape( {
-                                                                              id: Yup.number()
-                                                                                     .required()
-                                                                                     .min( 0, 'L\'id du produit sélectionné est invalide' ),
                                                                               pu: Yup.number()
                                                                                      .required()
                                                                                      .min( 0,
@@ -46,10 +43,6 @@ export const yupCetConfigStep4 = () => {
                            options:            Yup.array()
                                                   .of(
                                                       Yup.object().shape( {
-                                                                              id:     Yup.number()
-                                                                                         .required()
-                                                                                         .min( 0,
-                                                                                               'L\'id du produit sélectionné est invalide' ),
                                                                               pu:     Yup.number()
                                                                                          .required()
                                                                                          .min( 0,

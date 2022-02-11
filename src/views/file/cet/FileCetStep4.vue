@@ -36,8 +36,11 @@
 
     <div class="row mt-5">
       <div class="col-md-6 offset-md-3 d-flex justify-content-around">
-        <button class="btn btn-outline btn-outline-info">Générer l'attestation d'adresse</button>
-        <button class="btn btn-info">Générer le devis</button>
+        <button type="button" @click="generateAddressCertificate" class="btn btn-outline btn-outline-info">Générer
+                                                                                                           l'attestation
+                                                                                                           d'adresse
+        </button>
+        <button type="button" @click="generateQuotation" class="btn btn-info">Générer le devis</button>
       </div>
     </div>
 
@@ -58,7 +61,7 @@ import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 
 export default defineComponent( {
-                                  name:       'cet-step-4',
+                                  name:       'file-cet-step-4',
                                   components: {
                                     Step4Header,
                                     WizzardFilePrice,
@@ -75,8 +78,24 @@ export default defineComponent( {
                                     options:          Array as () => Option[],
                                     blankOptions:     Array as () => BlankOption[],
                                   },
-                                  setup() {
+                                  emits:      [ 'generateQuotation', 'generateAddressCertificate' ],
+                                  setup( props, ctx ) {
+
+                                    const generateQuotation = () => {
+                                      console.log( '%c On generateQuotation', 'background: #975CFF; color: #000000' );
+                                      ctx.emit( 'generateQuotation' );
+                                    };
+
+                                    const generateAddressCertificate = () => {
+                                      console.log( '%c On generateAddressCertificate',
+                                                   'background: #975CFF; color: #000000' );
+                                      ctx.emit( 'generateAddressCertificate' );
+                                    };
+
+
                                     return {
+                                      generateQuotation,
+                                      generateAddressCertificate,
                                       alert: `<span>Veuillez bien vérifier que l'installation est réalisable par rapport à la taille du chauffe-eau ? (escalier...)</span>
                                                 <br>
                                               <span>Dimensions : {{ size }}</span>`,

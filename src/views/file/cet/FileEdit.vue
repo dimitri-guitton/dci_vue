@@ -15,9 +15,10 @@
             novalidate="novalidate"
             id="kt_create_account_form"
             @submit="handleStep"
+            ref="stepForm"
         >
           <!-- Etape 1-->
-          <div data-kt-stepper-element="content">
+          <div class="current" data-kt-stepper-element="content">
             <CommonStep1 :nbAssent="nbAssent"></CommonStep1>
           </div>
 
@@ -29,22 +30,24 @@
 
           <!--begin::Step 3-->
           <div data-kt-stepper-element="content">
-            <CetStep3 :lists="lists"></CetStep3>
+            <FileCetStep3 :lists="lists"></FileCetStep3>
           </div>
           <!--end::Step 3-->
 
           <!--begin::Step 4-->
           <div data-kt-stepper-element="content">
-            <CetStep4 :blankOptions="blankOptions"
-                      :options="options"
-                      :selectedProducts="selectedProducts"
-                      :products="products"></CetStep4>
+            <FileCetStep4 @generateQuotation="onGenerateQuotation"
+                          @generateAddressCertificate="onGenerateAddressCertificate"
+                          :blankOptions="blankOptions"
+                          :options="options"
+                          :selectedProducts="selectedProducts"
+                          :products="products"></FileCetStep4>
           </div>
           <!--end::Step 4-->
 
           <!--begin::Step 5-->
-          <div class="current" data-kt-stepper-element="content">
-            <CetStep5 :lists="lists"></CetStep5>
+          <div data-kt-stepper-element="content">
+            <FileCetStep5 @generateWorksheet="onGenerateWorksheet" :lists="lists"></FileCetStep5>
           </div>
           <!--end::Step 5-->
 
@@ -64,27 +67,40 @@
             </div>
 
             <div>
+              <!--              {{ currentStepIndex }}<br>-->
+              <!--              {{ totalSteps - 1 }}<br>-->
+              <!--              {{ // currentStepIndex === totalSteps - 1 }}<br>-->
+              <!--              <button-->
+              <!--                  type="button"-->
+              <!--                  class="btn btn-lg btn-primary me-3"-->
+              <!--                  data-kt-stepper-action="submit"-->
+              <!--                  v-if="currentStepIndex === totalSteps - 1"-->
+              <!--                  @click="formSubmit()"-->
+              <!--              >-->
+              <!--                <span class="indicator-label">-->
+              <!--                  Submit-->
+              <!--                  <span class="svg-icon svg-icon-3 ms-2 me-0">-->
+              <!--                    <i class="fa-arrow-right"></i>-->
+              <!--                  </span>-->
+              <!--                </span>-->
+              <!--                <span class="indicator-progress">-->
+              <!--                  Please wait...-->
+              <!--                  <span-->
+              <!--                      class="spinner-border spinner-border-sm align-middle ms-2"-->
+              <!--                  ></span>-->
+              <!--                </span>-->
+              <!--              </button>-->
+
               <button
-                  type="button"
+                  type="submit"
                   class="btn btn-lg btn-primary me-3"
-                  data-kt-stepper-action="submit"
                   v-if="currentStepIndex === totalSteps - 1"
-                  @click="formSubmit()"
               >
-                <span class="indicator-label">
-                  Submit
-                  <span class="svg-icon svg-icon-3 ms-2 me-0">
-                    <i class="fa-arrow-right"></i>
-                  </span>
-                </span>
-                <span class="indicator-progress">
-                  Please wait...
-                  <span
-                      class="spinner-border spinner-border-sm align-middle ms-2"
-                  ></span>
+                STOP
+                <span class="svg-icon svg-icon-4 ms-1 me-0">
+                  <i class="fa fa-arrow-right"></i>
                 </span>
               </button>
-
               <button v-else type="submit" class="btn btn-lg btn-primary">
                 Suivant
                 <span class="svg-icon svg-icon-4 ms-1 me-0">
@@ -113,18 +129,19 @@ import CommonStep1 from '@/views/file/wizzard/steps/CommonStep1.vue';
 import CommonStep2 from '@/views/file/wizzard/steps/CommonStep2.vue';
 import { Step1 } from '@/types/v2/Wizzard/Step1';
 import { Step2 } from '@/types/v2/Wizzard/Step2';
-import { BaseStep3 } from '@/types/v2/Wizzard/step3/BaseStep3';
 import { BaseStep4 } from '@/types/v2/Wizzard/step4/BaseStep4';
 import WizzardFileHeader from '@/components/DCI/wizzard-file/Header.vue';
 import { validateStepOne, yupConfigStep1 } from '@/services/file/wizzard/step1Service';
 import { initFormDataStep1And2 } from '@/services/file/wizzard/wizzardService';
 import { validateStepTwo, yupConfigStep2 } from '@/services/file/wizzard/step2Service';
 import { initCetFormDataStep3, validateCetStep3, yupCetConfigStep3 } from '@/services/file/wizzard/step3Service';
-import CetStep3 from '@/views/file/cet/CetStep3.vue';
-import CetStep4 from '@/views/file/cet/CetStep4.vue';
+import FileCetStep3 from '@/views/file/cet/FileCetStep3.vue';
+import FileCetStep4 from '@/views/file/cet/FileCetStep4.vue';
 import { initCetFormDataStep4, yupCetConfigStep4 } from '@/services/file/wizzard/step4Service';
-import CetStep5 from '@/views/file/cet/CetStep5.vue';
+import FileCetStep5 from '@/views/file/cet/FileCetStep5.vue';
 import { initCetFormDataStep5, yupCetConfigStep5 } from '@/services/file/wizzard/cet/step5Service';
+import { CetStep3 } from '@/types/v2/Wizzard/step3/CetStep3';
+import { CetStep5 } from '@/types/v2/Wizzard/step5/CetStep5';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -139,9 +156,9 @@ setLocale( {
 export default defineComponent( {
                                   name:       'file-cet-edit',
                                   components: {
-                                    CetStep5,
-                                    CetStep4,
-                                    CetStep3,
+                                    FileCetStep5,
+                                    FileCetStep4,
+                                    FileCetStep3,
                                     WizzardFileHeader,
                                     CommonStep2,
                                     CommonStep1,
@@ -162,6 +179,7 @@ export default defineComponent( {
 
 
                                     // Initialisation des variables
+                                    const stepForm            = ref();
                                     const currentStepIndex    = ref( 0 );
                                     // Récupération des données du fichier JSON
                                     const fileData            = getCurrentCetFileData();
@@ -189,27 +207,36 @@ export default defineComponent( {
                                     ];
 
                                     // --------------------- Début config du Wizzard et du formulaire--------------------------
-                                    const currentSchema               = computed( () => {
+                                    const currentSchema   = computed( () => {
                                       return createAccountSchema[ currentStepIndex.value ];
                                     } );
-                                    const { resetForm, handleSubmit } = useForm<Step1 | Step2 | BaseStep3 | BaseStep4>(
+                                    // const { resetForm, handleSubmit } = useForm<Step1 | Step2 | BaseStep3 | BaseStep4>(
+                                    const {
+                                            resetForm,
+                                            handleSubmit,
+                                          }               = useForm<Step1 | Step2 | CetStep3 | BaseStep4 | CetStep5>(
                                         {
                                           validationSchema: currentSchema,
                                         } );
-                                    const refreshFormData             = () => {
+                                    const refreshFormData = () => {
                                       resetForm( {
                                                    values: {
                                                      ...formData.value,
                                                    },
                                                  } );
                                     };
-                                    const totalSteps                  = computed( () => {
+                                    const totalSteps      = computed( () => {
                                       if ( !_stepperObj.value ) {
                                         return;
                                       }
 
                                       return _stepperObj.value.totatStepsNumber;
                                     } );
+
+
+                                    console.log( 'Total Steps', totalSteps );
+                                    console.log( 'currentStepIndex', currentStepIndex );
+
                                     resetForm( {
                                                  values: {
                                                    ...formData.value,
@@ -225,7 +252,9 @@ export default defineComponent( {
                                       _stepperObj.value.goPrev();
                                     };
                                     // --------------------- Fin config du Wizzard et du formulaire--------------------------
-                                    const handleStep   = handleSubmit( async ( values ) => {
+
+
+                                    const handleStep = handleSubmit( async ( values ) => {
                                       console.log( values );
 
 
@@ -258,6 +287,9 @@ export default defineComponent( {
                                       }
 
                                       currentStepIndex.value++;
+                                      console.log( '%c OK', 'background: #CEFF00; color: #000000' );
+                                      console.log( currentStepIndex.value );
+                                      console.log( totalSteps.value );
 
                                       if ( !_stepperObj.value ) {
                                         return;
@@ -281,8 +313,28 @@ export default defineComponent( {
                                       } );
                                     };
 
+                                    const onGenerateWorksheet = handleSubmit( async ( values ) => {
+                                      console.log( '%c ON GENERATE Worksheet', 'background: #00FFCD; color: #000000' );
+                                      console.log( values );
+                                    } );
+
+                                    const onGenerateQuotation = handleSubmit( async ( values ) => {
+                                      console.log( '%c ONgenerateQuotation', 'background: #00FFCD; color: #000000' );
+                                      console.log( values );
+                                    } );
+
+                                    const onGenerateAddressCertificate = handleSubmit( async ( values ) => {
+                                      console.log( '%c onGenerateAddressCertificate',
+                                                   'background: #00FFCD; color: #000000' );
+                                      console.log( values );
+                                    } );
+
+
                                     return {
+                                      onGenerateWorksheet,
+                                      onGenerateQuotation,
                                       horizontalWizardRef,
+                                      onGenerateAddressCertificate,
                                       previousStep,
                                       handleStep,
                                       formSubmit,
@@ -295,6 +347,7 @@ export default defineComponent( {
                                       selectedProducts,
                                       options,
                                       blankOptions,
+                                      stepForm,
                                     };
                                   },
 

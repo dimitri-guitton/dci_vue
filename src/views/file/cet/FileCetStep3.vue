@@ -53,7 +53,7 @@ import ItemList from '@/components/DCI/input/ItemList.vue';
 import Step3Housing from '@/components/DCI/wizzard-file/Step3Housing.vue';
 
 export default defineComponent( {
-                                  name:       'cet-step-3',
+                                  name:       'file-cet-step-3',
                                   components: {
                                     ItemList,
                                     Step3Housing,

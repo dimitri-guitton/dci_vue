@@ -7,7 +7,7 @@
           v-model.number="option.id"
           type="number"
           class="form-control form-control-lg form-control-solid d-none"
-          :name="`options[${index}].id`"
+          :name="`blankOptions[${index}].id`"
       />
 
       <div class="row mb-10">
