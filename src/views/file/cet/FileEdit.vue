@@ -34,7 +34,7 @@
           <!--end::Step 3-->
 
           <!--begin::Step 4-->
-          <div class="current" data-kt-stepper-element="content">
+          <div data-kt-stepper-element="content">
             <CetStep4 :blankOptions="blankOptions"
                       :options="options"
                       :selectedProducts="selectedProducts"
@@ -43,8 +43,8 @@
           <!--end::Step 4-->
 
           <!--begin::Step 5-->
-          <div data-kt-stepper-element="content">
-            <CommonStep5></CommonStep5>
+          <div class="current" data-kt-stepper-element="content">
+            <CetStep5 :lists="lists"></CetStep5>
           </div>
           <!--end::Step 5-->
 
@@ -111,7 +111,6 @@ import { Assent } from '@/types/v2/File/Common/Assent';
 import { CetFileStep } from '@/types/v2/Wizzard/FileStep';
 import CommonStep1 from '@/views/file/wizzard/steps/CommonStep1.vue';
 import CommonStep2 from '@/views/file/wizzard/steps/CommonStep2.vue';
-import CommonStep5 from '@/views/file/wizzard/steps/CommonStep5.vue';
 import { Step1 } from '@/types/v2/Wizzard/Step1';
 import { Step2 } from '@/types/v2/Wizzard/Step2';
 import { BaseStep3 } from '@/types/v2/Wizzard/step3/BaseStep3';
@@ -124,6 +123,8 @@ import { initCetFormDataStep3, validateCetStep3, yupCetConfigStep3 } from '@/ser
 import CetStep3 from '@/views/file/cet/CetStep3.vue';
 import CetStep4 from '@/views/file/cet/CetStep4.vue';
 import { initCetFormDataStep4, yupCetConfigStep4 } from '@/services/file/wizzard/step4Service';
+import CetStep5 from '@/views/file/cet/CetStep5.vue';
+import { initCetFormDataStep5, yupCetConfigStep5 } from '@/services/file/wizzard/cet/step5Service';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -138,10 +139,10 @@ setLocale( {
 export default defineComponent( {
                                   name:       'file-cet-edit',
                                   components: {
+                                    CetStep5,
                                     CetStep4,
                                     CetStep3,
                                     WizzardFileHeader,
-                                    CommonStep5,
                                     CommonStep2,
                                     CommonStep1,
                                   },
@@ -175,6 +176,7 @@ export default defineComponent( {
                                                                                                               fileData.beneficiary ),
                                                                                     ...initCetFormDataStep3( fileData ),
                                                                                     ...initCetFormDataStep4( fileData ),
+                                                                                    ...initCetFormDataStep5( fileData.workSheet ),
                                                                                   } );
                                     const nbAssent            = formData.value?.assents.length;
                                     // Configuration de la validation du formulaire
@@ -183,6 +185,7 @@ export default defineComponent( {
                                       yupConfigStep2(),
                                       yupCetConfigStep3(),
                                       yupCetConfigStep4(),
+                                      yupCetConfigStep5(),
                                     ];
 
                                     // --------------------- Début config du Wizzard et du formulaire--------------------------

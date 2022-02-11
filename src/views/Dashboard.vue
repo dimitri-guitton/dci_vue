@@ -63,8 +63,7 @@ export default defineComponent( {
                                     console.log( 'URL API : ', process.env.VUE_APP_API_URL );
                                     console.log( 'OK' );
                                     onMounted( async () => {
-
-                                      // On récupère les coordonnées de l'adresse
+                                                                            // On récupère les coordonnées de l'adresse
                                       // let coordinate = await geocodingAddress( '79000 Niort' );
                                       // if ( coordinate === null ) {
                                       //   coordinate = [ 46.160329, -1.151139 ];

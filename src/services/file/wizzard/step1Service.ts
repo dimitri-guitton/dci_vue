@@ -6,6 +6,7 @@ import Svair from 'svair-api/index';
 import { Assent } from '@/types/v2/File/Common/Assent';
 import * as Yup from 'yup';
 import { ElLoading } from 'element-plus';
+import { checkInternet } from '@/services/commonService';
 
 /**
  * Promise
@@ -53,6 +54,16 @@ export const validateStepOne = async ( data ): Promise<{ assents: Assent[]; form
 
     // Avis à vérifier pas l'api Svair
     const assentsToSvair: AssentForm[] = [];
+    const assents: Assent[]            = [];
+
+
+    if ( !checkInternet() ) {
+        loadingInstance.close();
+        return {
+            assents,
+            formData: data,
+        };
+    }
 
     data.assents.forEach( assent => {
         if ( assent.numFiscal !== '' && assent.refAvis !== '' ) {
@@ -60,7 +71,6 @@ export const validateStepOne = async ( data ): Promise<{ assents: Assent[]; form
         }
     } );
 
-    const assents: Assent[] = [];
     if ( assentsToSvair.length === 0 ) {
         return {
             assents,

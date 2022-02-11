@@ -21,9 +21,6 @@ export interface CetWorkSheet extends BaseWorksheet {
     nbCompartimentComble: number;
     presenceVolige: boolean;
     nbAccesComble: number;
-    nbrCompartementComble: number;
-    nbrAccesComble: number;
-    typeRadiateur: string;
     emplacementCetExistante: string;
     emplacementCetNew: string;
     aspirationType: string;

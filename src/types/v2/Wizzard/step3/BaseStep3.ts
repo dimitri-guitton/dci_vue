@@ -4,5 +4,4 @@ export interface BaseStep3 {
     housingConstructionYear: string;
     housingLessThan2Years: boolean;
     housingIsAddressBenef: boolean;
-    housingHeatingType?: string;
 }

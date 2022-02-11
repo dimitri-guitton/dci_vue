@@ -173,7 +173,10 @@ const convertOldRoItemList = ( oldData ): RoList => {
                                    value: data[ Object.keys( data )[ 0 ] ],
                                } );
             } else {
-                newItems.push( data );
+                newItems.push( {
+                                   slug:  data,
+                                   value: data,
+                               } );
             }
         } );
 

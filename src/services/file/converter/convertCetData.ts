@@ -157,7 +157,10 @@ const convertOldCetItemList = ( oldData ): CetList => {
                                    value: data[ Object.keys( data )[ 0 ] ],
                                } );
             } else {
-                newItems.push( data );
+                newItems.push( {
+                                   slug:  data,
+                                   value: data,
+                               } );
             }
         } );
 
@@ -225,9 +228,6 @@ export const convertOldCetFile = ( oldData ): CetFile => {
             nbCompartimentComble:    getNumberData( oldData[ 'fiche' ][ 'nbrCompartementComble' ] ),
             presenceVolige:          getObjectData( oldData, [ 'fiche', 'presenceVolige' ] ),
             nbAccesComble:           getNumberData( oldData [ 'fiche' ][ 'nbrAccesComble' ] ),
-            typeRadiateur:           getObjectData( oldData, [ 'fiche', 'typeRadiateur' ] ),
-            nbrCompartementComble:   getObjectData( oldData, [ 'fiche', 'nbrCompartementComble' ] ),
-            nbrAccesComble:          getObjectData( oldData, [ 'fiche', 'nbrAccesComble' ] ),
             emplacementCetExistante: getObjectData( oldData, [ 'fiche', 'emplacementCetExistante' ] ),
             emplacementCetNew:       getObjectData( oldData, [ 'fiche', 'emplacementCetNew' ] ),
             aspirationType:          getObjectData( oldData, [ 'fiche', 'aspirationType' ] ),
