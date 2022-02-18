@@ -25,10 +25,12 @@
 
 ## Housing (Logement)
 
+- **area** &#8594; superficie
 - **isRentedHouse** &#8594; estUneLocation
-
+- **buildingNature** &#8594; Nature du batiment (ig : Nouvelle résidence principale, Location, Résidence secondaire...)
 # V1 &#8594; V2
 
 ## Housing (Logement)
 
 - localType &#8594; type
+- superficie &#8594; area

@@ -1,6 +1,7 @@
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
+import { ItemList } from '@/types/v2/File/Common/ItemList';
 
 export class PdfGenerator {
     private _docDefinition: TDocumentDefinitions;
@@ -12,6 +13,7 @@ export class PdfGenerator {
             pageMargins: [ 10, 10, 10, 10 ],
             styles:      {
                 icon:    { font: 'Fontello' },
+                table:   { fontSize: 9 },
                 text:    { fontSize: 9 },
                 xsText:  { fontSize: 8 },
                 xxsText: { fontSize: 7 },
@@ -68,5 +70,34 @@ export class PdfGenerator {
 
     protected set docDefinition( value: TDocumentDefinitions ) {
         this._docDefinition = value;
+    }
+
+    /**
+     * Retourne la valeur sélectionné du list
+     * @param list
+     * @param value
+     * @protected
+     */
+    protected getValueInList( list: ItemList[], value: string | number ): string {
+        const val = list.find( item => item.slug === value );
+
+        if ( val ) {
+            return String( val.value );
+        }
+
+        return '';
+    }
+
+    /**
+     * Retourne un boolean en français
+     * @param value
+     * @protected
+     */
+    protected yesOrNo( value: boolean ): string {
+        if ( value ) {
+            return 'Oui';
+        } else {
+            return 'Non';
+        }
     }
 }

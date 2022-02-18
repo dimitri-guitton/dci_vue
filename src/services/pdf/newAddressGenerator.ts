@@ -5,28 +5,26 @@ import { Beneficiary } from '@/types/v2/File/Common/Beneficiary';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 
 export class NewAddressGenerator extends PdfGenerator {
-    private houssing: Housing;
-    private beneficiary: Beneficiary;
+    private _houssing: Housing;
+    private _beneficiary: Beneficiary;
+    private _style: StyleDictionary = {
+        title: {
+            fontSize:  11,
+            bold:      true,
+            alignment: 'center',
+            margin:    [ 0, 15 ],
+        },
+    };
 
 
     constructor( houssing: Housing, beneficiary: Beneficiary ) {
         super();
-        this.houssing    = houssing;
-        this.beneficiary = beneficiary;
+        this._houssing    = houssing;
+        this._beneficiary = beneficiary;
 
         this.docDefinition = this._generateDocDefinition();
     }
 
-    private static _generateStyle(): StyleDictionary {
-        return {
-            title: {
-                fontSize:  11,
-                bold:      true,
-                alignment: 'center',
-                margin:    [ 0, 15 ],
-            },
-        };
-    }
 
     private _generateDocDefinition(): TDocumentDefinitions {
         return {
@@ -35,7 +33,7 @@ export class NewAddressGenerator extends PdfGenerator {
                 this._generateBody(),
                 NewAddressGenerator._generateSignature(),
             ],
-            styles:  NewAddressGenerator._generateStyle(),
+            styles:  this._style,
         };
     }
 
@@ -68,7 +66,7 @@ export class NewAddressGenerator extends PdfGenerator {
 
     private _generateBody(): Content {
         let type = 'propriétaire';
-        if ( this.houssing.isRentedHouse ) {
+        if ( this._houssing.isRentedHouse ) {
             type = 'locataire';
         }
 
@@ -79,7 +77,7 @@ export class NewAddressGenerator extends PdfGenerator {
             stack:      [
                 {
                     text: [
-                        `Je soussign(é)e, ${ this.beneficiary.firstName } ${ this.beneficiary.lastName }, atteste être `,
+                        `Je soussign(é)e, ${ this._beneficiary.firstName } ${ this._beneficiary.lastName }, atteste être `,
                         {
                             text: type,
                             bold: true,
@@ -87,15 +85,15 @@ export class NewAddressGenerator extends PdfGenerator {
                         ' du logement dans lequel ont lieu les travaux d\'isolation effectués par Eco Atlantique situé :',
                     ],
                 }, {
-                    text: `${ this.beneficiary.address }`,
+                    text: `${ this._beneficiary.address }`,
                     bold: true,
                 },
                 {
-                    text: `${ this.beneficiary.zipCode }`,
+                    text: `${ this._beneficiary.zipCode }`,
                     bold: true,
                 },
                 {
-                    text: `${ this.beneficiary.city }`,
+                    text: `${ this._beneficiary.city }`,
                     bold: true,
                 },
                 'L’adresse figurant sur mon avis d’imposition constitue mon ancienne adresse principale',

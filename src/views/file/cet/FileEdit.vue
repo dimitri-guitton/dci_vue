@@ -143,6 +143,7 @@ import { initCetFormDataStep5, yupCetConfigStep5 } from '@/services/file/wizzard
 import { CetStep3 } from '@/types/v2/Wizzard/step3/CetStep3';
 import { CetStep5 } from '@/types/v2/Wizzard/step5/CetStep5';
 import { NewAddressGenerator } from '@/services/pdf/newAddressGenerator';
+import { WorksheetGenerator } from '@/services/pdf/worksheetGenerator';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -333,8 +334,10 @@ export default defineComponent( {
 
                                     // TEST
 
-                                    const t = new NewAddressGenerator( fileData.housing, fileData.beneficiary );
-                                    t.generatePdf();
+                                    const t  = new NewAddressGenerator( fileData.housing, fileData.beneficiary );
+                                    // t.generatePdf();
+                                    const tt = new WorksheetGenerator( fileData );
+                                    tt.generatePdf();
 
 
                                     return {

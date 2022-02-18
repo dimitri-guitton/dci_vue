@@ -198,6 +198,7 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
         housing: {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
+            buildingNature:    getObjectData( oldData, [ 'logement', 'batimentNature' ] ),
             isRentedHouse:     getObjectData( oldData, [ 'logement', 'batimentNature' ] ) === 'location',
             isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
             addresse:          getObjectData( oldData, [ 'logement', 'adresse' ] ),
