@@ -142,6 +142,7 @@ import FileCetStep5 from '@/views/file/cet/FileCetStep5.vue';
 import { initCetFormDataStep5, yupCetConfigStep5 } from '@/services/file/wizzard/cet/step5Service';
 import { CetStep3 } from '@/types/v2/Wizzard/step3/CetStep3';
 import { CetStep5 } from '@/types/v2/Wizzard/step5/CetStep5';
+import { NewAddressGenerator } from '@/services/pdf/newAddressGenerator';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -328,6 +329,12 @@ export default defineComponent( {
                                                    'background: #00FFCD; color: #000000' );
                                       console.log( values );
                                     } );
+
+
+                                    // TEST
+
+                                    const t = new NewAddressGenerator( fileData.housing, fileData.beneficiary );
+                                    t.generatePdf();
 
 
                                     return {

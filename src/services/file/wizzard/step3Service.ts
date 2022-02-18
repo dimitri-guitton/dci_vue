@@ -60,7 +60,8 @@ export const validateCetStep3 = async ( data: CetFileStep ) => {
     const housing: Housing = {
         ...fileData.housing,
         nbOccupant:     data.nbOccupant,
-        type:           data.housingType,
+        type:           data.housingType,   // TODO Check si pas inverty isRentedHousse et Type
+        isRentedHouse:  false,  // TODO a faire
         isAddressBenef: data.housingIsAddressBenef,
         ...address,
         constructionYear: data.housingConstructionYear,

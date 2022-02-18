@@ -2,6 +2,7 @@
 
   <div id="map"></div>
   <button @click="convertOldJsonToNewJson" class="btn btn-info">UPDATE OLD JSON</button>
+  <button @click="testPdf" class="btn btn-dark">PDF</button>
   <!--begin::Dashboard-->
   <!--  <div class="row gy-5 g-xl-8">-->
   <!--    <div class="col-xxl-4">-->
@@ -47,6 +48,10 @@ import { defineComponent, onMounted } from 'vue';
 import { setCurrentPageTitle } from '@/core/helpers/breadcrumb';
 import { convertOldJsonToNewJson } from '@/services/folder/folderService';
 // import { geocodingAddress } from '@/services/geocodingService';
+// import pdfMake from 'pdfmake';
+// import pdfFonts from 'pdfmake/build/vfs_fonts';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
 export default defineComponent( {
                                   name:       'dashboard',
@@ -63,7 +68,7 @@ export default defineComponent( {
                                     console.log( 'URL API : ', process.env.VUE_APP_API_URL );
                                     console.log( 'OK' );
                                     onMounted( async () => {
-                                                                            // On récupère les coordonnées de l'adresse
+                                      // On récupère les coordonnées de l'adresse
                                       // let coordinate = await geocodingAddress( '79000 Niort' );
                                       // if ( coordinate === null ) {
                                       //   coordinate = [ 46.160329, -1.151139 ];
@@ -106,8 +111,25 @@ export default defineComponent( {
                                       // }
                                     } );
 
+                                    const testPdf = () => {
+                                      console.log( '%c PDF', 'background: #fdd835; color: #000000' );
+
+                                      const dd = {
+                                        content: [
+                                          'First paragraph',
+                                          'Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines',
+                                        ],
+
+                                      };
+
+                                      const pdf = pdfMake;
+                                      pdf.vfs   = pdfFonts.pdfMake.vfs;
+                                      pdf.createPdf( dd ).open();
+                                    };
+
                                     return {
                                       convertOldJsonToNewJson,
+                                      testPdf,
                                     };
                                   },
                                 } );

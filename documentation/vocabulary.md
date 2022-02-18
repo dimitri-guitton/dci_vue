@@ -22,3 +22,13 @@
 - PAC RO &#8594; Pompe à Chaleur Air Eau
 - CET &#8594; Chauffe Eau Thermodynamique
 - PG &#8594; Poele à Granulé
+
+## Housing (Logement)
+
+- **isRentedHouse** &#8594; estUneLocation
+
+# V1 &#8594; V2
+
+## Housing (Logement)
+
+- localType &#8594; type

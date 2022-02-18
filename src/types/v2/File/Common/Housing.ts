@@ -6,6 +6,7 @@ import { DataGeoportail } from '@/types/v2/File/Common/DataGeoportail';
 export interface Housing {
     nbOccupant: number;
     type: string;
+    isRentedHouse: boolean;
     isAddressBenef: boolean;
     addresse: string;
     zipCode: string;

@@ -206,9 +206,10 @@ export const convertOldRoFile = ( oldData ): RoFile => {
         beneficiary:               convertOldBeneficiary( oldData ),
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
-        housing:                   {
+        housing: {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
+            isRentedHouse:     getObjectData( oldData, [ 'logement', 'batimentNature' ] ) === 'location',
             isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
             addresse:          getObjectData( oldData, [ 'logement', 'adresse' ] ),
             zipCode:           getObjectData( oldData, [ 'logement', 'codepostal' ] ),
