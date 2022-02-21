@@ -4,6 +4,7 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
 import { savePdf } from '@/services/folder/folderService';
+import { numberToPrice } from '@/services/commonService';
 
 export enum PdfType {
     Undefined,
@@ -121,5 +122,18 @@ export class PdfGenerator {
         } else {
             return 'Non';
         }
+    }
+
+    protected formatPhone( value: string ): string {
+        const cleaned = ( '' + value ).replace( /\D/g, '' );
+        const match   = cleaned.match( /^(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/ );
+        if ( match ) {
+            return `${ match[ 1 ] }.${ match[ 2 ] }.${ match[ 3 ] }.${ match[ 4 ] }.${ match[ 5 ] }`;
+        }
+        return ' ';
+    }
+
+    protected formatPrice( value: number | string ): string {
+        return numberToPrice( value );
     }
 }

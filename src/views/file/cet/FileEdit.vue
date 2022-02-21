@@ -148,6 +148,7 @@ import { NewAddressGenerator } from '@/services/pdf/newAddressGenerator';
 import { WorksheetGenerator } from '@/services/pdf/worksheetGenerator';
 import { CetFile } from '@/types/v2/File/Cet/CetFile';
 import { Price } from '@/services/file/wizzard/Price';
+import { QuotationGenerator } from '@/services/pdf/quotationGenerator';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -322,6 +323,9 @@ export default defineComponent( {
                                     const onGenerateQuotation = handleSubmit( async ( values ) => {
                                       console.log( '%c ONgenerateQuotation', 'background: #00FFCD; color: #000000' );
                                       console.log( values );
+
+                                      const quotationGenerator = new QuotationGenerator( fileData );
+                                      quotationGenerator.generatePdf();
                                     } );
 
                                     const onGenerateAddressCertificate = handleSubmit( async ( values ) => {

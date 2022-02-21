@@ -39,3 +39,16 @@ export const checkInternet = (): boolean => {
     return false;
 };
 
+export const numberToPrice = ( number: number | string ): string => {
+    let convertedNumber: number;
+    if ( typeof number === 'string' ) {
+        convertedNumber = +number;
+    } else if ( isNaN( number ) ) {
+        convertedNumber = 0;
+    } else {
+        convertedNumber = number;
+    }
+
+    return `${ convertedNumber.toFixed( 2 ) } €`;
+};
+

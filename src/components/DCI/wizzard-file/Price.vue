@@ -2,14 +2,20 @@
   <div class="row">
     <div class="col-md-4 offset-8">
       <el-descriptions :column="1">
-        <el-descriptions-item class-name="text" align="right" label="Total HT">{{ formatNumber( price.HT ) }} €
+        <el-descriptions-item class-name="text" align="right" label="Total HT">{{
+            numberToPrice( price.HT )
+                                                                               }}
         </el-descriptions-item>
-        <el-descriptions-item align="right" label="TVA 5.5%">{{ formatNumber( price.TVA ) }} €</el-descriptions-item>
-        <el-descriptions-item align="right" label="Total TTC">{{ formatNumber( price.TTC ) }} €</el-descriptions-item>
-        <el-descriptions-item align="right" label="Prime CEE">- {{ formatNumber( price.CEE ) }} €</el-descriptions-item>
-        <el-descriptions-item align="right" label="MaprimeRenov">- {{ formatNumber( price.maPrimeRenov ) }} €
+        <el-descriptions-item align="right" label="TVA 5.5%">{{ numberToPrice( price.TVA ) }}</el-descriptions-item>
+        <el-descriptions-item align="right" label="Total TTC">{{ numberToPrice( price.TTC ) }}</el-descriptions-item>
+        <el-descriptions-item align="right" label="Prime CEE">- {{ numberToPrice( price.CEE ) }}</el-descriptions-item>
+        <el-descriptions-item align="right" label="MaprimeRenov">- {{
+            numberToPrice( price.maPrimeRenov )
+                                                                 }}
         </el-descriptions-item>
-        <el-descriptions-item align="right" label="Reste à Payer">{{ formatNumber( price.remainderToPay ) }} €
+        <el-descriptions-item align="right" label="Reste à Payer">{{
+            numberToPrice( price.remainderToPay )
+                                                                  }}
         </el-descriptions-item>
       </el-descriptions>
     </div>
@@ -19,6 +25,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { Price } from '@/services/file/wizzard/Price';
+import { numberToPrice } from '@/services/commonService';
 
 
 export default defineComponent( {
@@ -53,6 +60,7 @@ export default defineComponent( {
 
                                     return {
                                       formatNumber,
+                                      numberToPrice: numberToPrice,
                                     };
                                   },
                                 } );
