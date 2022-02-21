@@ -1,4 +1,4 @@
-import { PdfGenerator } from '@/services/pdf/pdfGenerator';
+import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
 import { GREY } from '@/services/pdf/pdfVariable';
 import { Housing } from '@/types/v2/File/Common/Housing';
 import { Beneficiary } from '@/types/v2/File/Common/Beneficiary';
@@ -21,6 +21,7 @@ export class NewAddressGenerator extends PdfGenerator {
         super();
         this._houssing    = houssing;
         this._beneficiary = beneficiary;
+        this.type         = PdfType.Address;
 
         this.docDefinition = this._generateDocDefinition();
     }

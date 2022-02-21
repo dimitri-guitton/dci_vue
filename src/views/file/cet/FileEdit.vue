@@ -143,7 +143,6 @@ import { initCetFormDataStep5, yupCetConfigStep5 } from '@/services/file/wizzard
 import { CetStep3 } from '@/types/v2/Wizzard/step3/CetStep3';
 import { CetStep5 } from '@/types/v2/Wizzard/step5/CetStep5';
 import { NewAddressGenerator } from '@/services/pdf/newAddressGenerator';
-import { WorksheetGenerator } from '@/services/pdf/worksheetGenerator';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -329,15 +328,18 @@ export default defineComponent( {
                                       console.log( '%c onGenerateAddressCertificate',
                                                    'background: #00FFCD; color: #000000' );
                                       console.log( values );
+
+                                      const addressGenerator = new NewAddressGenerator( fileData.housing,
+                                                                                        fileData.beneficiary );
+                                      addressGenerator.generatePdf();
                                     } );
 
 
                                     // TEST
-
-                                    const t  = new NewAddressGenerator( fileData.housing, fileData.beneficiary );
-                                    // t.generatePdf();
-                                    const tt = new WorksheetGenerator( fileData );
-                                    tt.generatePdf();
+                                    // const t  = new NewAddressGenerator( fileData.housing, fileData.beneficiary );
+                                    // // t.generatePdf();
+                                    // const tt = new WorksheetGenerator( fileData );
+                                    // tt.generatePdf();
 
 
                                     return {

@@ -14,6 +14,7 @@ import { convertOldCombleFile } from '@/services/file/converter/convertCombleDat
 import { convertOldSolFile } from '@/services/file/converter/convertSolData';
 import { CetFile } from '@/types/v2/File/Cet/CetFile';
 import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
+import { PdfType } from '@/services/pdf/pdfGenerator';
 
 const schema = {
     dropboxPath: {
@@ -168,7 +169,6 @@ export const createAFolder = async ( type: string, customer: string ) => {
     return reference;
 };
 
-
 /**
  * Convertie l'ancien système de données avec le nouveau
  */
@@ -267,4 +267,33 @@ export const updateJsonData = ( fileData ) => {
  */
 export const checkFolder = () => {
     return true;
+};
+
+export const savePdf = ( buffer: Buffer, type: PdfType ) => {
+    console.log( '%c ON SAVE PDF', 'background: #fdd835; color: #000000' );
+    const folderName = getcurrentFolderName() as string;
+    const folderPath = getFolderPath( folderName );
+
+    let folder = '';
+    let name   = '';
+    switch ( type ) {
+        case PdfType.Address:
+            folder = FoldersNames.ATTEST_ADRESSE_SIGNE_FOLDER;
+            name   = 'attestation_adresse.pdf';
+            break;
+        case PdfType.Quotation:
+            folder = FoldersNames.DEVIS_FOLDER;
+            name   = 'devis.pdf';
+            break;
+        case PdfType.Worksheet:
+            folder = FoldersNames.FICHE_FOLDER;
+            name   = 'fiche.pdf';
+            break;
+        default:
+            console.log( '%c ERROR', 'background: #fdd835; color: #000000' );
+    }
+
+    console.log( 'Folder -->', folder );
+    console.log( 'Path -->', `${ folderPath }/${ folder }` );
+    fs.createWriteStream( `${ folderPath }/${ folder }/${ name }` ).write( buffer );
 };

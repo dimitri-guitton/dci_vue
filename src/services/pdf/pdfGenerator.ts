@@ -1,11 +1,21 @@
 import * as pdfMake from 'pdfmake/build/pdfmake';
+import { TCreatedPdf } from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
+import { savePdf } from '@/services/folder/folderService';
+
+export enum PdfType {
+    Undefined,
+    Address,
+    Worksheet,
+    Quotation
+}
 
 export class PdfGenerator {
     private _docDefinition: TDocumentDefinitions;
     private readonly _defaultDocDefinition: TDocumentDefinitions;
+    protected type: number;
 
     constructor() {
         this._defaultDocDefinition = {
@@ -23,6 +33,7 @@ export class PdfGenerator {
         this._docDefinition        = {
             content: [],
         };
+        this.type                  = PdfType.Undefined;
     }
 
     /**
@@ -57,8 +68,20 @@ export class PdfGenerator {
             },
         };
 
-        pdf.vfs = pdfFonts.pdfMake.vfs;
-        pdf.createPdf( this._docDefinition ).open();
+        pdf.vfs          = pdfFonts.pdfMake.vfs;
+        const createdPdf = pdf.createPdf( this._docDefinition );
+        this.downloadPdf( createdPdf );
+        this.openPdf( createdPdf );
+    }
+
+    private openPdf( pdf: TCreatedPdf ) {
+        pdf.open();
+    }
+
+    private downloadPdf( pdf: TCreatedPdf ) {
+        pdf.getBuffer( ( buffer ) => {
+            savePdf( buffer, this.type );
+        } );
     }
 
 

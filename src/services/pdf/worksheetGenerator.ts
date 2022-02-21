@@ -1,4 +1,4 @@
-import { PdfGenerator } from '@/services/pdf/pdfGenerator';
+import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { CombleWorkSheet } from '@/types/v2/File/Comble/CombleWorkSheet';
 import { BROWN, DARK } from '@/services/pdf/pdfVariable';
@@ -43,6 +43,7 @@ export class WorksheetGenerator extends PdfGenerator {
     constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile ) {
         super();
         this._file = file;
+        this.type  = PdfType.Worksheet;
 
         this.docDefinition = this._generateDocDefinition();
 
