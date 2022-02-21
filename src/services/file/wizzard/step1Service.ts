@@ -48,9 +48,9 @@ const checkAssentOnSvair = async ( assents: AssentForm[] ) => {
 /**
  * Validation de l'étape 1
  * @param data
+ * @param assentOnJson  Avis déja présent dans le JSON
  */
-export const validateStepOne = async ( data ): Promise<{ assents: Assent[]; formData }> => {
-    const loadingInstance = ElLoading.service( { fullscreen: true } );
+export const validateStepOne = async ( data, assentOnJson: Assent[] ): Promise<{ assents: Assent[]; formData }> => {
 
     // Avis à vérifier pas l'api Svair
     const assentsToSvair: AssentForm[] = [];
@@ -58,7 +58,6 @@ export const validateStepOne = async ( data ): Promise<{ assents: Assent[]; form
 
 
     if ( !checkInternet() ) {
-        loadingInstance.close();
         return {
             assents,
             formData: data,
@@ -67,7 +66,16 @@ export const validateStepOne = async ( data ): Promise<{ assents: Assent[]; form
 
     data.assents.forEach( assent => {
         if ( assent.numFiscal !== '' && assent.refAvis !== '' ) {
-            assentsToSvair.push( assent );
+
+            // On check si l'avis existe déja dans le Json et si il à des données de Datagouv
+            // Si c'est le cas on ne fait pas la requete API
+            const assentAlreadyExist = assentOnJson.find( ( a ) => a.refAvis === assent.refAvis && a.numFiscal === assent.numFiscal && Object.keys(
+                a.datagouv ).length > 0 );
+
+            if ( assentAlreadyExist === undefined ) {
+                assentsToSvair.push( assent );
+            }
+
         }
     } );
 
@@ -77,6 +85,9 @@ export const validateStepOne = async ( data ): Promise<{ assents: Assent[]; form
             formData: data,
         };
     }
+
+    // Loader
+    const loadingInstance = ElLoading.service( { fullscreen: true } );
 
     const svairData = await checkAssentOnSvair( assentsToSvair );
 

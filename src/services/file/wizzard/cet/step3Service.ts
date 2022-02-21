@@ -16,6 +16,7 @@ export const initCetFormDataStep3 = ( fileData ) => {
         housingLessThan2Years:   fileData.housing.lessThan2Years,
         housingIsAddressBenef:   fileData.housing.isAddressBenef,
         housingHeatingType:      fileData.housing.heatingType !== undefined ? fileData.housing.heatingType : '',
+        housingBuildingNature:   fileData.housing.buildingNature !== undefined ? fileData.housing.buildingNature : '',
     };
 };
 
@@ -57,12 +58,14 @@ export const validateCetStep3 = async ( data: CetFileStep ) => {
         };
     }
 
+    console.log( data );
     const housing: Housing = {
         ...fileData.housing,
         nbOccupant:     data.nbOccupant,
-        type:           data.housingType,   // TODO Check si pas inverty isRentedHousse et Type
-        isRentedHouse:  false,  // TODO a faire
-        buildingNature: '',  // TODO a faire
+        type:           data.housingType,
+        heatingType:    data.housingHeatingType,
+        isRentedHouse:  data.housingBuildingNature === 'location',
+        buildingNature: data.housingBuildingNature,
         isAddressBenef: data.housingIsAddressBenef,
         ...address,
         constructionYear: data.housingConstructionYear,

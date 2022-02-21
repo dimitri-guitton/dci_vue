@@ -10,14 +10,14 @@
       <div class="col-md-4 fv-row">
         <label class="form-label mb-3">Type de chauffage</label>
         <Field
-            name="housingInsulationQuality"
+            name="housingHeatingType"
             as="select"
             class="form-control form-control-lg form-control-solid"
         >
           <item-list :lists="lists.chauffageTypeList"></item-list>
         </Field>
         <ErrorMessage
-            name="housingInsulationQuality"
+            name="housingHeatingType"
             class="fv-plugins-message-container invalid-feedback"
         ></ErrorMessage>
       </div>
@@ -41,6 +41,23 @@
             L'adresse du logement est la même que le bénéficiaire
           </span>
       </label>
+    </div>
+
+    <div class="row mb-15">
+      <div class="col-md-4 fv-row">
+        <label class="form-label mb-3">Nature du batiment</label>
+        <Field
+            name="housingBuildingNature"
+            as="select"
+            class="form-control form-control-lg form-control-solid"
+        >
+          <item-list :lists="lists.batimentNatureList"></item-list>
+        </Field>
+        <ErrorMessage
+            name="housingBuildingNature"
+            class="fv-plugins-message-container invalid-feedback"
+        ></ErrorMessage>
+      </div>
     </div>
 
   </div>

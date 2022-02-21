@@ -134,7 +134,7 @@ import WizzardFileHeader from '@/components/DCI/wizzard-file/Header.vue';
 import { validateStepOne, yupConfigStep1 } from '@/services/file/wizzard/step1Service';
 import { initFormDataStep1And2 } from '@/services/file/wizzard/wizzardService';
 import { validateStepTwo, yupConfigStep2 } from '@/services/file/wizzard/step2Service';
-import { initCetFormDataStep3, validateCetStep3, yupCetConfigStep3 } from '@/services/file/wizzard/step3Service';
+import { initCetFormDataStep3, validateCetStep3, yupCetConfigStep3 } from '@/services/file/wizzard/cet/step3Service';
 import FileCetStep3 from '@/views/file/cet/FileCetStep3.vue';
 import FileCetStep4 from '@/views/file/cet/FileCetStep4.vue';
 import { initCetFormDataStep4, yupCetConfigStep4 } from '@/services/file/wizzard/step4Service';
@@ -273,7 +273,7 @@ export default defineComponent( {
                                                      'background: #FF7CA7; color: #000000' );
 
 
-                                        const response = await validateStepOne( formData.value );
+                                        const response = await validateStepOne( formData.value, fileData.assents );
                                         assents.value  = response.assents;
                                         formData.value = response.formData;
                                         // Force le refersh des data du formulaire
@@ -284,6 +284,9 @@ export default defineComponent( {
                                         await validateStepTwo( formData.value );
                                       } else if ( currentStepIndex.value === 2 ) {
                                         console.log( '%c Validation step 3', 'background: #fdd835; color: #000000' );
+                                        await validateCetStep3( formData.value );
+                                      } else if ( currentStepIndex.value === 3 ) {
+                                        console.log( '%c Validation step 4', 'background: #fdd835; color: #000000' );
                                         await validateCetStep3( formData.value );
                                       }
 
