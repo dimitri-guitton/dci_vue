@@ -3,7 +3,7 @@
     <div class="col-md-4 fv-row">
       <label class="form-label mb-3">Date visite technique</label>
       <Field
-          type="text"
+          type="date"
           class="form-control form-control-lg form-control-solid"
           name="dateTechnicalVisit"
           placeholder="01/01/1970"
@@ -17,7 +17,7 @@
     <div class="col-md-4 fv-row">
       <label class="form-label mb-3">Délais d'éxécution</label>
       <Field
-          type="text"
+          type="date"
           class="form-control form-control-lg form-control-solid"
           name="executionDelay"
           placeholder="01/01/1970"

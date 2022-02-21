@@ -215,7 +215,6 @@ export const yupCetConfigStep5 = () => {
  * @param worksheet
  */
 export const initCetFormDataStep5 = ( worksheet: CetWorkSheet ) => {
-    console.log( 'ww', worksheet );
     const data = {
         worksheet: {
             period:                  worksheet.period,
@@ -249,9 +248,6 @@ export const initCetFormDataStep5 = ( worksheet: CetWorkSheet ) => {
         },
     };
 
-    console.log( '%c DATA', 'background: #fdd835; color: #000000' );
-    console.log( data );
-
     return data;
 };
 
@@ -260,14 +256,11 @@ export const saveCetWorksheet = ( data: CetFileStep ): CetFile => {
 
     let worksheet: CetWorkSheet = fileData.worksheet;
 
-    console.log( '%c WORKSHEET BEFORE', 'background: #7950FF; color: #000000' );
-    console.log( worksheet );
     worksheet = {
         ...worksheet,
         ...data.worksheet,
     };
-    console.log( '%c WORKSHEET AFTER', 'background: #7950FF; color: #000000' );
-    console.log( worksheet );
+
     fileData = {
         ...fileData,
         worksheet,

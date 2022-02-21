@@ -188,11 +188,11 @@ export const convertOldBlankOptions = ( oldData ): BlankOption[] => {
 
     oldBlankOptions.forEach( option => {
         blankOptions.push( {
-                               id:    option[ 'id' ],
-                               label: option[ 'label' ],
-                               unit:  option[ 'unit' ],
-                               pu:    option[ 'pu' ],
-                               value: option[ 'value' ],
+                               id:     option[ 'id' ],
+                               label:  option[ 'label' ],
+                               unit:   option[ 'unit' ],
+                               pu:     option[ 'pu' ],
+                               number: option[ 'value' ],
                            } );
     } );
 

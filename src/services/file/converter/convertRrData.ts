@@ -209,7 +209,6 @@ const convertOldRrItemList = ( oldData ): RrList => {
 
 
 export const convertOldRrFile = ( oldData ): RrFile => {
-    console.log( '%c IN CONVERT OLD RR FILE', 'background: #fdd835; color: #000000' );
     return {
         version:                   getStringData( oldData[ 'version' ] ),
         type:                      FILE_PAC_RR,
@@ -306,6 +305,8 @@ export const convertOldRrFile = ( oldData ): RrFile => {
             products:           convertOldRrProduct( oldData ),
             totalHt:            convertOldTotalHt( oldData ),
             totalTva:           convertOldTotalTva( oldData ),
+            totalTtc:           0,
+            remainderToPay:     0,
         },
         scales:                    convertOldScales( oldData ),
         bonusWithoutCdp:           {

@@ -8,6 +8,7 @@
           type="number"
           class="form-control form-control-lg form-control-solid d-none"
           :name="`options[${index}].id`"
+          @change="onChangeOption()"
       />
 
       <div class="row mb-10">
@@ -21,6 +22,7 @@
               class="form-control form-control-lg form-control-solid"
               :name="`options[${index}].number`"
               placeholder="1"
+              @change="onChangeOption()"
           />
           <ErrorMessage
               :name="`options[${index}].number`"
@@ -34,6 +36,7 @@
               class="form-control form-control-lg form-control-solid"
               :name="`options[${index}].pu`"
               placeholder="100"
+              @change="onChangeOption()"
           />
           <ErrorMessage
               :name="`options[${index}].pu`"
@@ -65,14 +68,17 @@ export default defineComponent( {
                                       default: () => [],
                                     },
                                   },
-                                  setup( props ) {
-                                    console.log( 'Props -->', props );
-                                    console.log( 'Option -->', props.options );
-
+                                  emits:      [ 'optionsAreUpdated' ],
+                                  setup( props, ctx ) {
                                     const optionList = ref( props.options );
+
+                                    const onChangeOption = () => {
+                                      ctx.emit( 'optionsAreUpdated', props.options );
+                                    };
 
                                     return {
                                       optionList,
+                                      onChangeOption,
                                     };
                                   },
                                 } );

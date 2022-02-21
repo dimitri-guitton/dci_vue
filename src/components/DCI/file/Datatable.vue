@@ -164,7 +164,6 @@ export default defineComponent( {
 
                                     // Fonction appelé quand un filtre est modifié ou la pagination
                                     const filterData = computed<DatatableFile[]>( () => {
-                                      console.log( '%c COMPUTED', 'background: #fdd835; color: #000000' );
                                       let tempData: DatatableFile[] = tableData.value;
 
                                       // Filtre sur la barre de recherche
@@ -219,10 +218,8 @@ export default defineComponent( {
                                     };
 
                                     const handleAction = async ( command: { type: string; folder: DatatableFile } ) => {
-                                      console.log( command );
                                       switch ( command.type ) {
                                         case 'check_element':
-                                          console.log( '%c ON CHECK ELEM', 'background: #fdd835; color: #000000' );
                                           checkFolder();
                                           break;
                                         case 'open':
@@ -238,8 +235,6 @@ export default defineComponent( {
                                           }
                                           break;
                                         case 'remove_dci':
-                                          console.log( command.folder );
-                                          console.log( command.folder.id );
                                           const response = await deleteFile( command.folder.id );
                                           if ( response.changes !== undefined && response.changes > 0 ) {
                                             ElMessage( {
@@ -254,7 +249,6 @@ export default defineComponent( {
                                                          type:    'warning',
                                                        } );
                                           }
-                                          console.log( '%c AFTER', 'background: #fdd835; color: #000000' );
                                           break;
                                         case 'remove_all':
                                           const res = await removeFolder( command.folder );

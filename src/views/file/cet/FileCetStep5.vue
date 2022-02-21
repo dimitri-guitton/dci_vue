@@ -34,7 +34,6 @@ export default defineComponent( {
                                   emits:      [ 'generateWorksheet' ],
                                   setup( props, ctx ) {
                                     const generateWorksheet = () => {
-                                      console.log( '%c On generate Worksheet', 'background: #975CFF; color: #000000' );
                                       ctx.emit( 'generateWorksheet' );
                                     };
                                     return {

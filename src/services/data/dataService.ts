@@ -6,6 +6,11 @@ import { CetFile } from '@/types/v2/File/Cet/CetFile';
 import { DataGouv } from '@/types/v2/File/Common/DataGouv';
 import { Assent } from '@/types/v2/File/Common/Assent';
 import { Beneficiary } from '@/types/v2/File/Common/Beneficiary';
+import { Product } from '@/types/v2/File/Common/Product';
+import { Option } from '@/types/v2/File/Common/Option';
+import { BlankOption } from '@/types/v2/File/Common/BlankOption';
+import { FILE_PAC_RO, FILE_PAC_RR } from '@/services/constantService';
+import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 
 const schema = {
     dropboxPath:          {
@@ -265,3 +270,70 @@ export const updateBeneficiary = ( data ) => {
 //     console.log( fileData );
 //     updateJsonData( fileData );
 // };
+
+export const getProductById = ( id: number ): Product => {
+    const fileData = getCurrentFileData();
+    console.log( 'file data', fileData );
+
+    return fileData.quotation.products.find( ( p: Product ) => p.id === id );
+};
+
+export const getOptionById = ( id: number ): Option => {
+    const fileData = getCurrentFileData();
+    console.log( 'file data', fileData );
+
+    return fileData.quotation.options.find( ( o: Option ) => o.id === id );
+};
+
+export const getBlankOptionById = ( id: number ): BlankOption => {
+    const fileData = getCurrentFileData();
+    console.log( 'file data', fileData );
+
+    return fileData.quotation.blankOptions.find( ( bo: BlankOption ) => bo.id === id );
+};
+
+export const getTva = (): number => {
+    const fileData = getCurrentFileData();
+
+    if ( fileData.type === FILE_PAC_RO || fileData.type === FILE_PAC_RR ) {
+        return 0;
+    } else {
+        return +fileData.quotation.tva;
+    }
+};
+
+/**
+ * Retourne le palier selon les revenues et lenombre d'occupant d'un logement
+ * @param stages
+ * @param occupant
+ * @param revenu
+ */
+const filterScale = ( stages, occupant, revenu ) => {
+    return stages.filter( ( stage ) =>
+                              Object.prototype.hasOwnProperty.call( stage, 'max' )
+                              ? stage.nbr === parseFloat( occupant ) && revenu >= stage.min && revenu < stage.max
+                              : stage.nbr === parseFloat( occupant ) && revenu >= stage.min,
+    );
+};
+
+/**
+ * Retourne le code pour le devis en cours (ig: GP, P, ...)
+ */
+export const getCodeBonus = () => {
+    const fileData: BaseFile = getCurrentFileData();
+
+    const totalRevenu = fileData.assents.reduce( ( a, b ) => ( b.revenu && !Number.isNaN( b.revenu ) ? a + b.revenu : a ), 0 );
+
+    // Quand la prime est désactivé retourne 'CL'
+    if ( fileData.disabledBonus ) {
+        return 'CL';
+    }
+
+    const scales = fileData.scales.filter( ( scale ) => filterScale( scale.stages, fileData.housing.nbOccupant, totalRevenu ).length > 0 );
+    return ( scales.length > 0 ? scales[ 0 ].code : 'CL' ).toUpperCase();
+};
+
+export const getLessThan2Year = () => {
+    const fileData: BaseFile = getCurrentFileData();
+    return fileData.housing.lessThan2Years;
+};

@@ -194,7 +194,7 @@ export const convertOldCetFile = ( oldData ): CetFile => {
         beneficiary:               convertOldBeneficiary( oldData ),
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
-        housing: {
+        housing:   {
             nbOccupant:        getNumberData( oldData[ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
             buildingNature:    getObjectData( oldData, [ 'logement', 'batimentNature' ] ),
@@ -242,7 +242,7 @@ export const convertOldCetFile = ( oldData ): CetFile => {
             distanceBallonUnitExt:   getNumberData( oldData [ 'fiche' ][ 'distanceBallonUnitExt' ] ),
             infosSup:                getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
-        quotation:                 {
+        quotation: {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
@@ -259,6 +259,8 @@ export const convertOldCetFile = ( oldData ): CetFile => {
             discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
             totalHt:            convertOldTotalHt( oldData ),
             totalTva:           convertOldTotalTva( oldData ),
+            totalTtc:           0,
+            remainderToPay:     0,
         },
         scales:                    convertOldScales( oldData ),
         statusInDci:               convertOldStatusDci( oldData ),

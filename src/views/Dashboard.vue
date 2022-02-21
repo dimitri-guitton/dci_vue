@@ -66,7 +66,6 @@ export default defineComponent( {
                                     console.log( 'Version de l\'app : ', process.env.VUE_APP_VERSION );
                                     console.log( 'Environnement : ', process.env.NODE_ENV );
                                     console.log( 'URL API : ', process.env.VUE_APP_API_URL );
-                                    console.log( 'OK' );
                                     onMounted( async () => {
                                       // On récupère les coordonnées de l'adresse
                                       // let coordinate = await geocodingAddress( '79000 Niort' );
@@ -112,8 +111,6 @@ export default defineComponent( {
                                     } );
 
                                     const testPdf = () => {
-                                      console.log( '%c PDF', 'background: #fdd835; color: #000000' );
-
                                       const dd = {
                                         content: [
                                           'First paragraph',

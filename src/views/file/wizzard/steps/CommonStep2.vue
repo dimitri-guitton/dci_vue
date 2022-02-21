@@ -338,9 +338,6 @@ export default defineComponent( {
                                     assents: Array,
                                   },
                                   setup( props ) {
-                                    console.log( '%c SET UP', 'background: #fdd835; color: #000000' );
-                                    console.log( 'Assent -->', props.assents );
-
                                     const copyAssentToForm = ( assent: Assent ) => {
                                       console.log( assent );
                                     };

@@ -16,5 +16,7 @@ export interface BaseQuotation {
     products: Product[];
     discount: number;
     totalHt: number;
+    totalTtc: number;
     totalTva: number;
+    remainderToPay: number;
 }

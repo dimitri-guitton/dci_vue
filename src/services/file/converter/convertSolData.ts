@@ -172,7 +172,7 @@ export const convertOldSolFile = ( oldData ): SolFile => {
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
         bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
-        housing: {
+        housing:   {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
             buildingNature:    getObjectData( oldData, [ 'logement', 'batimentNature' ] ),
@@ -212,7 +212,7 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             infosSup:                getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
             period:                  getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
         },
-        quotation:                 {
+        quotation: {
             pose:               getObjectData( oldData, [ 'devis', 'pose' ] ),
             overridePose:       getObjectData( oldData, [ 'devis', 'overridePose' ] ),
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
@@ -229,6 +229,8 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
             totalHt:            convertOldTotalHt( oldData ),
             totalTva:           convertOldTotalTva( oldData ),
+            totalTtc:           0,
+            remainderToPay:     0,
         },
         scales:                    convertOldScales( oldData ),
         statusInDci:               convertOldStatusDci( oldData ),

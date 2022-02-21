@@ -8,6 +8,7 @@
           type="number"
           class="form-control form-control-lg form-control-solid d-none"
           :name="`blankOptions[${index}].id`"
+          @change="onChangeOption()"
       />
 
       <div class="row mb-10">
@@ -18,6 +19,7 @@
               class="form-control form-control-lg form-control-solid"
               :name="`blankOptions[${index}].label`"
               :placeholder="`Supplément ${index + 1}`"
+              @change="onChangeOption()"
           />
           <ErrorMessage
               :name="`blankOptions[${index}].label`"
@@ -31,6 +33,7 @@
               class="form-control form-control-lg form-control-solid"
               :name="`blankOptions[${index}].number`"
               placeholder="1"
+              @change="onChangeOption()"
           />
           <ErrorMessage
               :name="`blankOptions[${index}].number`"
@@ -44,6 +47,7 @@
               class="form-control form-control-lg form-control-solid"
               :name="`blankOptions[${index}].pu`"
               placeholder="100"
+              @change="onChangeOption()"
           />
           <ErrorMessage
               :name="`blankOptions[${index}].pu`"
@@ -81,14 +85,18 @@ export default defineComponent( {
                                       default: () => [],
                                     },
                                   },
-                                  setup( props ) {
-                                    console.log( 'Props -->', props );
-                                    console.log( 'Option -->', props.options );
-
+                                  emits:      [ 'optionsAreUpdated' ],
+                                  setup( props, ctx ) {
                                     const optionList = ref( props.options );
+
+                                    const onChangeOption = () => {
+                                      ctx.emit( 'optionsAreUpdated', props.options );
+                                    };
+
 
                                     return {
                                       optionList,
+                                      onChangeOption,
                                     };
                                   },
                                 } );

@@ -5,8 +5,8 @@
         <Field :name="`selectedProducts[${index}].id`"
                class="form-select form-select-solid"
                as="select"
-               v-model="selectedP"
-               @change="onChangeProduct(selectedP)">
+               v-model="selectedId"
+               @change="onChangeProduct(selectedId)">
           <option v-for="product in products" :key="product.id" :value="product.id">
             {{ product.label }}
           </option>
@@ -20,6 +20,7 @@
             name="selectedProductQuantity"
             placeholder="1"
             :value="1"
+            @change="onChangeProduct(selectedId)"
         />
       </div>
       <div class="col-md-2 fv-row">
@@ -29,6 +30,7 @@
             class="form-control form-control-lg form-control-solid"
             :name="`selectedProducts[${index}].pu`"
             placeholder="100"
+            @change="onChangeProduct(selectedId)"
         />
         <ErrorMessage
             :name="`selectedProducts[${index}].pu`"
@@ -82,16 +84,9 @@ export default defineComponent( {
                                     // Affichage du alert en dessous du produit
                                     alert: String,
                                   },
-                                  setup( props ) {
+                                  emits:      [ 'selectedProductIsUpdated' ],
+                                  setup( props, ctx ) {
                                     let currentProduct = ref<Product>();
-
-                                    console.log( 'Props -->', props );
-                                    console.log( 'Index -->', props.index );
-                                    console.log( 'Products -->', props.products );
-                                    console.log( 'SelectProducts -->', props.selectedProducts );
-                                    console.log( '%c ', 'background: #975CFF; color: #000000' );
-
-
                                     if ( props.selectedProducts.length > 0 ) {
                                       currentProduct = ref( props.selectedProducts[ 0 ] );
                                     } else {
@@ -99,11 +94,8 @@ export default defineComponent( {
                                     }
 
                                     const onChangeProduct = ( value ) => {
-                                      console.log( '%c ON CHANGE', 'background: #fdd835; color: #000000' );
-                                      console.log( 'Val -->', value );
-                                      console.log( 'currentProduct -->', currentProduct );
-
                                       currentProduct.value = props.products.find( p => p.id === value );
+                                      ctx.emit( 'selectedProductIsUpdated', currentProduct.value, 'product' );
                                     };
 
                                     // Récupère le texte de l'alerte check si il y a des données envoyé et les remplaces
@@ -125,11 +117,10 @@ export default defineComponent( {
                                       return value;
                                     } );
 
-                                    console.log( 'Current product -->', currentProduct );
                                     return {
                                       onChangeProduct,
                                       htmlAlert,
-                                      selectedP: 3,
+                                      selectedId: currentProduct.value?.id,
                                       currentProduct,
                                     };
                                   },

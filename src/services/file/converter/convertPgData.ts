@@ -114,8 +114,6 @@ const convertSelectedPgProduct = ( oldData ): Product[] => {
     } );
 
     oldFumisteries.forEach( product => {
-        console.log( product[ 'id' ] );
-        console.log( idSelectedFumisterie );
         if ( product[ 'id' ] === idSelectedFumisterie ) {
             selectedPgProducts.push( {
                                          id:          product[ 'id' ],
@@ -338,6 +336,8 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
             totalHt:            convertOldTotalHt( oldData ),
             totalTva:           convertOldTotalTva( oldData ),
+            totalTtc:           0,
+            remainderToPay:     0,
         },
         scales:                    convertOldScales( oldData ),
         statusInDci:               convertOldStatusDci( oldData ),

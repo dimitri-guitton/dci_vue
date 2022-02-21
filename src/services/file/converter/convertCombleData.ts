@@ -195,7 +195,7 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
         bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
-        housing: {
+        housing:   {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
             buildingNature:    getObjectData( oldData, [ 'logement', 'batimentNature' ] ),
@@ -239,7 +239,7 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
             desencombrement:           getObjectData( oldData, [ 'fiche', 'desencombrement' ] ),
             infosSup:                  getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
-        quotation:                 {
+        quotation: {
             pose:               getObjectData( oldData, [ 'devis', 'pose' ] ),
             overridePose:       getObjectData( oldData, [ 'devis', 'overridePose' ] ),
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
@@ -256,6 +256,8 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
             discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
             totalHt:            convertOldTotalHt( oldData ),
             totalTva:           convertOldTotalTva( oldData ),
+            totalTtc:           0,
+            remainderToPay:     0,
         },
         scales:                    convertOldScales( oldData ),
         statusInDci:               convertOldStatusDci( oldData ),

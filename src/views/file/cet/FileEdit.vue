@@ -38,9 +38,11 @@
           <div data-kt-stepper-element="content">
             <FileCetStep4 @generateQuotation="onGenerateQuotation"
                           @generateAddressCertificate="onGenerateAddressCertificate"
+                          @calculedPrice="onCalculedPrice"
                           :blankOptions="blankOptions"
                           :options="options"
                           :selectedProducts="selectedProducts"
+                          :forceRefresh="forceRefreshStep4"
                           :products="products"></FileCetStep4>
           </div>
           <!--end::Step 4-->
@@ -137,7 +139,7 @@ import { validateStepTwo, yupConfigStep2 } from '@/services/file/wizzard/step2Se
 import { initCetFormDataStep3, validateCetStep3, yupCetConfigStep3 } from '@/services/file/wizzard/cet/step3Service';
 import FileCetStep3 from '@/views/file/cet/FileCetStep3.vue';
 import FileCetStep4 from '@/views/file/cet/FileCetStep4.vue';
-import { initCetFormDataStep4, yupCetConfigStep4 } from '@/services/file/wizzard/step4Service';
+import { initCetFormDataStep4, validateCetStep4, yupCetConfigStep4 } from '@/services/file/wizzard/cet/step4Service';
 import FileCetStep5 from '@/views/file/cet/FileCetStep5.vue';
 import { initCetFormDataStep5, saveCetWorksheet, yupCetConfigStep5 } from '@/services/file/wizzard/cet/step5Service';
 import { CetStep3 } from '@/types/v2/Wizzard/step3/CetStep3';
@@ -145,6 +147,7 @@ import { CetStep5 } from '@/types/v2/Wizzard/step5/CetStep5';
 import { NewAddressGenerator } from '@/services/pdf/newAddressGenerator';
 import { WorksheetGenerator } from '@/services/pdf/worksheetGenerator';
 import { CetFile } from '@/types/v2/File/Cet/CetFile';
+import { Price } from '@/services/file/wizzard/Price';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -181,18 +184,27 @@ export default defineComponent( {
                                     } );
 
 
+                                    const forceRefreshStep4 = ref( false );
+                                    let price: Price        = {
+                                      HT:             0,
+                                      TVA:            0,
+                                      TTC:            0,
+                                      maPrimeRenov:   0,
+                                      remainderToPay: 0,
+                                    };
+
+
                                     // Initialisation des variables
-                                    const stepForm         = ref();
-                                    const currentStepIndex = ref( 0 );
+                                    const stepForm            = ref();
+                                    const currentStepIndex    = ref( 0 );
                                     // Récupération des données du fichier JSON
-                                    const fileData         = getCurrentCetFileData();
-                                    const lists            = fileData.lists;
-                                    const products         = fileData.quotation.products;
-                                    const selectedProducts = fileData.quotation.selectedProducts;
-                                    const options          = fileData.quotation.options;
-                                    const blankOptions     = fileData.quotation.blankOptions;
-                                    const assents          = ref<Assent[]>( [] );
-                                    console.log( 'File data', fileData );
+                                    const fileData            = getCurrentCetFileData();
+                                    const lists               = fileData.lists;
+                                    const products            = fileData.quotation.products;
+                                    const selectedProducts    = fileData.quotation.selectedProducts;
+                                    const options             = fileData.quotation.options;
+                                    const blankOptions        = fileData.quotation.blankOptions;
+                                    const assents             = ref<Assent[]>( [] );
                                     const formData            = ref<CetFileStep>( {
                                                                                     ...initFormDataStep1And2( fileData.assents,
                                                                                                               fileData.beneficiary ),
@@ -237,10 +249,6 @@ export default defineComponent( {
                                       return _stepperObj.value.totatStepsNumber;
                                     } );
 
-
-                                    console.log( 'Total Steps', totalSteps );
-                                    console.log( 'currentStepIndex', currentStepIndex );
-
                                     resetForm( {
                                                  values: {
                                                    ...formData.value,
@@ -259,18 +267,11 @@ export default defineComponent( {
 
 
                                     const handleStep = handleSubmit( async ( values ) => {
-                                      console.log( values );
-
-
-                                      console.log( '%c HANDLE STEP', 'background: #0aa8ff; color: #000000' );
                                       formData.value = {
                                         ...formData.value,
                                         ...values,
                                       };
 
-                                      console.log( 'Ancien step -->', currentStepIndex.value );
-
-                                      console.log( formData.value );
                                       if ( currentStepIndex.value === 0 ) {
                                         console.log( '%c Validation de l\'étape 1',
                                                      'background: #FF7CA7; color: #000000' );
@@ -288,16 +289,13 @@ export default defineComponent( {
                                       } else if ( currentStepIndex.value === 2 ) {
                                         console.log( '%c Validation step 3', 'background: #fdd835; color: #000000' );
                                         await validateCetStep3( formData.value );
+                                        forceRefreshStep4.value = !forceRefreshStep4.value;
                                       } else if ( currentStepIndex.value === 3 ) {
                                         console.log( '%c Validation step 4', 'background: #fdd835; color: #000000' );
-                                        await validateCetStep3( formData.value );
+                                        await validateCetStep4( formData.value, price );
                                       }
 
                                       currentStepIndex.value++;
-                                      console.log( '%c OK', 'background: #CEFF00; color: #000000' );
-                                      console.log( currentStepIndex.value );
-                                      console.log( totalSteps.value );
-
                                       if ( !_stepperObj.value ) {
                                         return;
                                       }
@@ -349,6 +347,10 @@ export default defineComponent( {
                                       worksheetGenerator.generatePdf();
                                     } );
 
+                                    const onCalculedPrice = ( newPrice: Price ) => {
+                                      price = newPrice;
+                                    };
+
                                     // TEST
                                     // const t  = new NewAddressGenerator( fileData.housing, fileData.beneficiary );
                                     // // t.generatePdf();
@@ -357,6 +359,8 @@ export default defineComponent( {
 
 
                                     return {
+                                      onCalculedPrice,
+                                      forceRefreshStep4,
                                       onGenerateWorksheet,
                                       onGenerateQuotation,
                                       horizontalWizardRef,

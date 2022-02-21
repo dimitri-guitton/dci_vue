@@ -5,6 +5,6 @@ export interface BlankOption {
     id: number;
     label: string;
     unit: string;
-    pu: string;
-    value: string;
+    pu: number;
+    number: number;
 }

@@ -287,6 +287,8 @@ export const convertOldRoFile = ( oldData ): RoFile => {
             products:           convertOldRoProduct( oldData ),
             totalHt:            convertOldTotalHt( oldData ),
             totalTva:           convertOldTotalTva( oldData ),
+            totalTtc:           0,
+            remainderToPay:     0,
         },
         scales:                    convertOldScales( oldData ),
         bonusWithoutCdp:           {
