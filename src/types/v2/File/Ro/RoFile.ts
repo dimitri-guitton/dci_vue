@@ -11,7 +11,7 @@ export interface RoFile extends BaseFile {
             h3: number;
         };
     };
-    workSheet: RoWorkSheet;
+    worksheet: RoWorkSheet;
     quotation: RoQuotation;
     lists: RoList;
 }

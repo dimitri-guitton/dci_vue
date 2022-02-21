@@ -5,7 +5,7 @@ import { CombleQuotation } from '@/types/v2/File/Comble/CombleQuotation';
 
 export interface CombleFile extends BaseFile {
     bonusRate: number; // Anciennement tauxPrime
-    workSheet: CombleWorkSheet;
+    worksheet: CombleWorkSheet;
     quotation: CombleQuotation;
     lists: CombleList;
 }

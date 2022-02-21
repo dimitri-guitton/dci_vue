@@ -44,7 +44,7 @@
         "constructionYear":  "",
         "lessThan2Years":    false
     },
-    "workSheet":                 {
+    "worksheet": {
         "epaisseurProduit":        "115 mm",
         "accesCamion":             "facile",
         "distCamion":              0,

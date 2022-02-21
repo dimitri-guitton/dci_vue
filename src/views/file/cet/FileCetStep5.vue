@@ -35,7 +35,7 @@ export default defineComponent( {
                                   setup( props, ctx ) {
                                     const generateWorksheet = () => {
                                       console.log( '%c On generate Worksheet', 'background: #975CFF; color: #000000' );
-                                      ctx.emit( 'generateWorksheet', 'value' );
+                                      ctx.emit( 'generateWorksheet' );
                                     };
                                     return {
                                       worksheetBuilder: cetWorksheetBuilder(),

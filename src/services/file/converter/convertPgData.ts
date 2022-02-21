@@ -260,7 +260,7 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  '',
         },
-        workSheet: {
+        worksheet: {
             period:                      getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
             generateur:                  getObjectData( oldData, [ 'fiche', 'generateur' ] ),
             marque:                      getObjectData( oldData, [ 'fiche', 'marque' ] ),

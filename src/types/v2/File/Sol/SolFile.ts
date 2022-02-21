@@ -5,7 +5,7 @@ import { SolQuotation } from '@/types/v2/File/Sol/SolQuotation';
 
 export interface SolFile extends BaseFile {
     bonusRate: number; // Anciennement tauxPrime
-    workSheet: SolWorkSheet;
+    worksheet: SolWorkSheet;
     quotation: SolQuotation;
     lists: SolList;
 }

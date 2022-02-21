@@ -190,7 +190,7 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  '',
         },
-        workSheet:                 {
+        worksheet: {
             epaisseurProduit:        getObjectData( oldData, [ 'fiche', 'epaisseurProduit' ] ),
             accesCamion:             getObjectData( oldData, [ 'fiche', 'accesCamion' ] ),
             distCamion:              getObjectData( oldData, [ 'fiche', 'distCamion' ] ),

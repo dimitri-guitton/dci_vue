@@ -12,7 +12,7 @@ export interface RrFile extends BaseFile {
             h3: number;
         };
     };
-    workSheet: RrWorkSheet;
+    worksheet: RrWorkSheet;
     quotation: RrQuotation;
     lists: RrList;
 }

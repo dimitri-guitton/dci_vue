@@ -18,10 +18,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted } from 'vue';
 import NewFolderModal from '@/components/DCI/modals/NewFileModal.vue';
 import * as folderService from '../../services/folder/folderService';
 import FolderDatatable from '@/components/DCI/file/Datatable.vue';
+import { resetCurrentFileData } from '@/services/data/dataService';
 
 
 export default defineComponent( {
@@ -32,6 +33,12 @@ export default defineComponent( {
                                   },
                                   setup() {
                                     folderService.createDciFolderIfNotExist();
+
+                                    onMounted( () => {
+                                      resetCurrentFileData();
+                                    } );
+
+
                                     return {};
                                   },
                                 } );

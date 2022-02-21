@@ -4,7 +4,7 @@ import { CetQuotation } from '@/types/v2/File/Cet/CetQuotation';
 import { CetList } from '@/types/v2/File/Cet/CetList';
 
 export interface CetFile extends BaseFile {
-    workSheet: CetWorkSheet;
+    worksheet: CetWorkSheet;
     quotation: CetQuotation;
     lists: CetList;
 }

@@ -45,7 +45,7 @@
         "lessThan2Years":    false,
         "availableVoltage":  ""
     },
-    "workSheet":                 {
+    "worksheet": {
         "visiteComble":              true,
         "chantierHabite":            true,
         "chantierType":              "reno",

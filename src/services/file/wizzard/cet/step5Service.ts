@@ -1,6 +1,10 @@
 import { WorksheetBuilder, WorksheetBuilderItemType } from '@/types/v2/Wizzard/WorksheetBuilder';
 import * as Yup from 'yup';
 import { CetWorkSheet } from '@/types/v2/File/Cet/CetWorkSheet';
+import { CetFileStep } from '@/types/v2/Wizzard/FileStep';
+import { getCurrentCetFileData } from '@/services/data/dataService';
+import { updateJsonData } from '@/services/folder/folderService';
+import { CetFile } from '@/types/v2/File/Cet/CetFile';
 
 /**
  * Création du formualaire pour la fiche d'info
@@ -208,39 +212,40 @@ export const yupCetConfigStep5 = () => {
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 5
- * @param workSheet
+ * @param worksheet
  */
-export const initCetFormDataStep5 = ( workSheet: CetWorkSheet ) => {
+export const initCetFormDataStep5 = ( worksheet: CetWorkSheet ) => {
+    console.log( 'ww', worksheet );
     const data = {
         worksheet: {
-            period:                  workSheet.period,
-            infosSup:                workSheet.infosSup,
-            niveauHabitation:        workSheet.niveauHabitation,
-            typeChantier:            workSheet.typeChantier,
-            disjoncteur:             workSheet.disjoncteur,
-            tensionDisponible:       workSheet.tensionDisponible,
-            distanceCompteurCet:     workSheet.distanceCompteurCet,
-            natureMurExt:            workSheet.natureMurExt,
-            naturePlafond:           workSheet.naturePlafond,
-            visiteComble:            workSheet.visiteComble,
-            chantierHabite:          workSheet.chantierHabite,
-            grandeEchelle:           workSheet.grandeEchelle,
-            demandeVoirie:           workSheet.demandeVoirie,
-            puissanceCompteur:       workSheet.puissanceCompteur,
-            accesComble:             workSheet.accesComble,
-            rueEtroite:              workSheet.rueEtroite,
-            typeCouverture:          workSheet.typeCouverture,
-            etatToiture:             workSheet.etatToiture,
-            typeCharpente:           workSheet.typeCharpente,
-            nbCompartimentComble:    workSheet.nbCompartimentComble,
-            presenceVolige:          workSheet.presenceVolige,
-            nbAccesComble:           workSheet.nbAccesComble,
-            emplacementCetExistante: workSheet.emplacementCetExistante,
-            emplacementCetNew:       workSheet.emplacementCetNew,
-            aspirationType:          workSheet.aspirationType,
-            ballonFixeMur:           workSheet.ballonFixeMur,
-            uniteExtFixeMur:         workSheet.uniteExtFixeMur,
-            distanceBallonUnitExt:   workSheet.distanceBallonUnitExt,
+            period:                  worksheet.period,
+            infosSup:                worksheet.infosSup,
+            niveauHabitation:        worksheet.niveauHabitation,
+            typeChantier:            worksheet.typeChantier,
+            disjoncteur:             worksheet.disjoncteur,
+            tensionDisponible:       worksheet.tensionDisponible,
+            distanceCompteurCet:     worksheet.distanceCompteurCet,
+            natureMurExt:            worksheet.natureMurExt,
+            naturePlafond:           worksheet.naturePlafond,
+            visiteComble:            worksheet.visiteComble,
+            chantierHabite:          worksheet.chantierHabite,
+            grandeEchelle:           worksheet.grandeEchelle,
+            demandeVoirie:           worksheet.demandeVoirie,
+            puissanceCompteur:       worksheet.puissanceCompteur,
+            accesComble:             worksheet.accesComble,
+            rueEtroite:              worksheet.rueEtroite,
+            typeCouverture:          worksheet.typeCouverture,
+            etatToiture:             worksheet.etatToiture,
+            typeCharpente:           worksheet.typeCharpente,
+            nbCompartimentComble:    worksheet.nbCompartimentComble,
+            presenceVolige:          worksheet.presenceVolige,
+            nbAccesComble:           worksheet.nbAccesComble,
+            emplacementCetExistante: worksheet.emplacementCetExistante,
+            emplacementCetNew:       worksheet.emplacementCetNew,
+            aspirationType:          worksheet.aspirationType,
+            ballonFixeMur:           worksheet.ballonFixeMur,
+            uniteExtFixeMur:         worksheet.uniteExtFixeMur,
+            distanceBallonUnitExt:   worksheet.distanceBallonUnitExt,
         },
     };
 
@@ -248,4 +253,27 @@ export const initCetFormDataStep5 = ( workSheet: CetWorkSheet ) => {
     console.log( data );
 
     return data;
+};
+
+export const saveCetWorksheet = ( data: CetFileStep ): CetFile => {
+    let fileData = getCurrentCetFileData();
+
+    let worksheet: CetWorkSheet = fileData.worksheet;
+
+    console.log( '%c WORKSHEET BEFORE', 'background: #7950FF; color: #000000' );
+    console.log( worksheet );
+    worksheet = {
+        ...worksheet,
+        ...data.worksheet,
+    };
+    console.log( '%c WORKSHEET AFTER', 'background: #7950FF; color: #000000' );
+    console.log( worksheet );
+    fileData = {
+        ...fileData,
+        worksheet,
+    };
+
+    updateJsonData( fileData );
+
+    return fileData;
 };

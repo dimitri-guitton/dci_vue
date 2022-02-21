@@ -5,7 +5,7 @@ import { PgQuotation } from '@/types/v2/File/Pg/PgQuotation';
 
 
 export interface PgFile extends BaseFile {
-    workSheet: PgWorkSheet;
+    worksheet: PgWorkSheet;
     quotation: PgQuotation;
     lists: PgList;
 }

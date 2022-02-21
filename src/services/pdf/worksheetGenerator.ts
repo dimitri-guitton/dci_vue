@@ -84,7 +84,7 @@ export class WorksheetGenerator extends PdfGenerator {
                         `DATE DE VISITE : ${ this._file.quotation.dateTechnicalVisit }`,
                     ],
                     [
-                        `PÉRIODE DE POSE SOUHAITÉE : ${ this._file.workSheet.period }`,
+                        `PÉRIODE DE POSE SOUHAITÉE : ${ this._file.worksheet.period }`,
                         `CATÉGORIE DU CLIENT : ${ this._file.codeBonus }`,
                     ],
                 ],
@@ -200,7 +200,7 @@ export class WorksheetGenerator extends PdfGenerator {
                 style: 'text',
                 stack: [
                     this._createTitle( ' COMPLÉMENT D\'INFORMATION (INDIQUER RAS SI PAS DE COMMENTAIRE)' ),
-                    this._file.workSheet.infosSup,
+                    this._file.worksheet.infosSup,
                     {
                         margin:  [ 0, 15, 0, 0 ],
                         columns: [
@@ -279,14 +279,14 @@ export class WorksheetGenerator extends PdfGenerator {
     private _parseWorksheet( type: string ): ParsedWorksheet[] {
         let data: ParsedWorksheet[] = [];
         const housing               = this._file.housing;
-        let workSheet: CombleWorkSheet | SolWorkSheet | RoWorkSheet | RrWorkSheet | CetWorkSheet | PgWorkSheet;
+        let worksheet: CombleWorkSheet | SolWorkSheet | RoWorkSheet | RrWorkSheet | CetWorkSheet | PgWorkSheet;
         let list: CombleList | SolList | RoList | RrList | CetList | PgList;
         let quotation: CombleQuotation | SolQuotation | RoQuotation | RrQuotation | CetQuotation | PgQuotation;
         let selectedProduct         = '';
 
         switch ( type ) {
             case FILE_COMBLE:
-                workSheet = ( this._file.workSheet as CombleWorkSheet );
+                worksheet = ( this._file.worksheet as CombleWorkSheet );
                 list      = ( this._file.lists as CombleList );
                 quotation = ( this._file.quotation as CombleQuotation );
 
@@ -300,66 +300,66 @@ export class WorksheetGenerator extends PdfGenerator {
                         items: [
                             {
                                 label: 'VISITE DES COMBLES',
-                                value: this.yesOrNo( workSheet.visiteComble ),
+                                value: this.yesOrNo( worksheet.visiteComble ),
                             },
                             {
                                 label: 'NIVEAUX HABITATION',
-                                value: this.getValueInList( list.niveauHabitationList, workSheet.niveauHabitation ),
+                                value: this.getValueInList( list.niveauHabitationList, worksheet.niveauHabitation ),
                             },
                             {
                                 label: 'CHANTIER HABITE',
-                                value: this.yesOrNo( workSheet.chantierHabite ),
+                                value: this.yesOrNo( worksheet.chantierHabite ),
                             },
                             {
                                 label: 'GRANDE ECHELLE NECESSAIRE',
-                                value: this.yesOrNo( workSheet.gdEchelle ),
+                                value: this.yesOrNo( worksheet.gdEchelle ),
                             },
                             {
                                 label: 'TYPE CHANTIER',
-                                value: this.getValueInList( list.chantierTypeList, workSheet.chantierType ),
+                                value: this.getValueInList( list.chantierTypeList, worksheet.chantierType ),
                             },
                             {
                                 label: 'PARTIE A ISOLER',
-                                value: this.getValueInList( list.partieAIsolerList, workSheet.partieAisoler ),
+                                value: this.getValueInList( list.partieAIsolerList, worksheet.partieAisoler ),
                             },
                             {
                                 label: 'DEMANDE DE VOIRIE / ACCES PL',
-                                value: this.yesOrNo( workSheet.accesPl ),
+                                value: this.yesOrNo( worksheet.accesPl ),
                             },
                             {
                                 label: 'PUISSANCE COMPTEUR',
-                                value: workSheet.puissanceCompteur,
+                                value: worksheet.puissanceCompteur,
                             },
                             {
                                 label: 'ACCES COMBLES',
-                                value: workSheet.accesComble,
+                                value: worksheet.accesComble,
                             },
                             {
                                 label: 'RUE ETROITE(sens unique)',
-                                value: this.yesOrNo( workSheet.rueEtroite ),
+                                value: this.yesOrNo( worksheet.rueEtroite ),
                             },
                             {
                                 label: 'TYPE COUVERTURE',
-                                value: this.getValueInList( list.couvertureTypeList, workSheet.couvertureType ),
+                                value: this.getValueInList( list.couvertureTypeList, worksheet.couvertureType ),
                             },
                             {
                                 label: 'ETAT TOITURE',
-                                value: this.getValueInList( list.etatToitureList, workSheet.etatToiture ),
+                                value: this.getValueInList( list.etatToitureList, worksheet.etatToiture ),
                             },
                             {
                                 label: 'TYPE CHARPENTE',
-                                value: this.getValueInList( list.chantierTypeList, workSheet.charpenteType ),
+                                value: this.getValueInList( list.chantierTypeList, worksheet.charpenteType ),
                             },
                             {
                                 label: 'NOMBRE COMPARTIMENTS COMBLES',
-                                value: workSheet.nbreCompartiments,
+                                value: worksheet.nbreCompartiments,
                             }, {
                                 label: 'PRESENCE VOLIGE',
-                                value: this.yesOrNo( workSheet.volige ),
+                                value: this.yesOrNo( worksheet.volige ),
                             },
                             {
                                 label: 'NOMBRE ACCES AUX COMBLES',
-                                value: workSheet.nbreAccesComble,
+                                value: worksheet.nbreAccesComble,
                             },
 
                         ],
@@ -377,21 +377,21 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'ANCIENNE ISOLATION',
-                                value: this.yesOrNo( workSheet.isolationExistante ),
+                                value: this.yesOrNo( worksheet.isolationExistante ),
                             },
                             {
                                 label: 'TYPE ANCIENNE ISOLATION',
-                                value: this.getValueInList( list.isolationExistanteTypeList, workSheet.isolationExistanteType ),
+                                value: this.getValueInList( list.isolationExistanteTypeList, worksheet.isolationExistanteType ),
                             },
                             // TODO faire ENLEVEMENT DE L'EXISTANT /  TODO OPTION 1
                             {
                                 label: 'Nbre de couches',
-                                value: workSheet.isolationExistanteCouches,
+                                value: worksheet.isolationExistanteCouches,
                             },
                             // TODO REMISE DE L'EXISTANT /  TODO OPTION 2
                             {
                                 label: 'LARDAGE PARE VAPEUR',
-                                value: this.yesOrNo( workSheet.lardagePareVapeur ),
+                                value: this.yesOrNo( worksheet.lardagePareVapeur ),
                             },
                             {
                                 label: 'CREATION TROU D\'HOMME',
@@ -403,7 +403,7 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'TYPE DE TRAPPE',
-                                value: this.getValueInList( list.rehausseTrappeTypeList, workSheet.rehausseTrappeType ),
+                                value: this.getValueInList( list.rehausseTrappeTypeList, worksheet.rehausseTrappeType ),
                             }, {
                                 label: 'ISOLATION DE LA TRAPPE',
                                 value: ' ',    // TODO OPTION 5
@@ -434,7 +434,7 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'DESENCOMBREMENT COMBLES',
-                                value: this.yesOrNo( workSheet.desencombrement ),
+                                value: this.yesOrNo( worksheet.desencombrement ),
                             },
                             {
                                 label: 'ENTOURAGE VMC',
@@ -449,7 +449,7 @@ export class WorksheetGenerator extends PdfGenerator {
                 ];
                 break;
             case FILE_SOL:
-                workSheet = ( this._file.workSheet as SolWorkSheet );
+                worksheet = ( this._file.worksheet as SolWorkSheet );
                 list      = ( this._file.lists as SolList );
                 quotation = ( this._file.quotation as SolQuotation );
 
@@ -467,7 +467,7 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'Epaisseur',
-                                value: workSheet.epaisseurProduit,
+                                value: worksheet.epaisseurProduit,
                             },
                             {
                                 label: 'SURFACE A ISOLER',
@@ -475,27 +475,27 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'Hauteur sous plafond',
-                                value: workSheet.hautPlafond,
+                                value: worksheet.hautPlafond,
                             },
                             {
                                 label: 'Support',
-                                value: this.getValueInList( list.supportList, workSheet.support ),
+                                value: this.getValueInList( list.supportList, worksheet.support ),
                             },
                             {
                                 label: 'Resistance thermique',
-                                value: workSheet.resistTherm,
+                                value: worksheet.resistTherm,
                             },
                             {
                                 label: 'Dimensions des pièces',
-                                value: workSheet.epaisseurProduit,// TODO FAIRE la dimension des pieces
+                                value: worksheet.epaisseurProduit,// TODO FAIRE la dimension des pieces
                             },
                             {
                                 label: 'ISOLATION EXISTANTE',
-                                value: this.yesOrNo( workSheet.isolationExistante ),
+                                value: this.yesOrNo( worksheet.isolationExistante ),
                             },
                             {
                                 label: 'Distance camion <-> point d\'eau',
-                                value: workSheet.distPointEau,
+                                value: worksheet.distPointEau,
                             },
 
                         ],
@@ -505,27 +505,27 @@ export class WorksheetGenerator extends PdfGenerator {
                         items: [
                             {
                                 label: 'NIVEAUX HABITATION',
-                                value: this.getValueInList( list.niveauHabitationList, workSheet.niveauHabitation ),
+                                value: this.getValueInList( list.niveauHabitationList, worksheet.niveauHabitation ),
                             },
                             {
                                 label: 'Habitation sur un local non chauffé (garage, cave)',
-                                value: this.yesOrNo( workSheet.habitationSurLocalFroid ),
+                                value: this.yesOrNo( worksheet.habitationSurLocalFroid ),
                             },
                             {
                                 label: 'Vide sinataire',
-                                value: this.yesOrNo( workSheet.videSanitaire ),
+                                value: this.yesOrNo( worksheet.videSanitaire ),
                             },
                             {
                                 label: 'Terre plein',
-                                value: this.yesOrNo( workSheet.terrePlein ),
+                                value: this.yesOrNo( worksheet.terrePlein ),
                             },
                             {
                                 label: 'Y\'a t\'il des réseaux au plafond\nLes réseaux seront pris dans la mousse',
-                                value: this.yesOrNo( workSheet.reseauPlafond ),
+                                value: this.yesOrNo( worksheet.reseauPlafond ),
                             },
                             {
                                 label: 'Y\'a t\'il des luminaires au plafond',
-                                value: this.yesOrNo( workSheet.luminairesPlafond ),
+                                value: this.yesOrNo( worksheet.luminairesPlafond ),
                             },
                             {
                                 // TODO prévoir une option fullWith (colspan = 4)
@@ -539,11 +539,11 @@ export class WorksheetGenerator extends PdfGenerator {
                             // TODO faire distancePortesPalfond < 3 et > 3
                             {
                                 label: 'Porte de garage',
-                                value: this.getValueInList( list.porteGarageList, workSheet.porteGarage ),
+                                value: this.getValueInList( list.porteGarageList, worksheet.porteGarage ),
                             },
                             {
                                 label: 'Quantité',
-                                value: workSheet.nbrPorteGarage,
+                                value: worksheet.nbrPorteGarage,
                             },
                         ],
                     },
@@ -554,12 +554,12 @@ export class WorksheetGenerator extends PdfGenerator {
             case FILE_PAC_RR:
                 break;
             case FILE_CET:
-                workSheet = ( this._file.workSheet as CetWorkSheet );
+                worksheet = ( this._file.worksheet as CetWorkSheet );
                 list      = ( this._file.lists as CetList );
                 quotation = ( this._file.quotation as CetQuotation );
 
                 console.log( '%c ___', 'background: #5ADFFF; color: #000000' );
-                console.log( workSheet );
+                console.log( worksheet );
                 console.log( list );
                 console.log( quotation );
                 console.log( housing );
@@ -583,7 +583,7 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'TYPE CHANTIER',
-                                value: this.getValueInList( list.typeChantierList, workSheet.typeChantier ),
+                                value: this.getValueInList( list.typeChantierList, worksheet.typeChantier ),
                             },
                             {
                                 label: 'ZONE GEOGRAPHIQUE',
@@ -591,86 +591,86 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'VISITE DES COMBLES',
-                                value: this.yesOrNo( workSheet.visiteComble ),
+                                value: this.yesOrNo( worksheet.visiteComble ),
                             },
                             {
                                 label: 'NIVEAUX HABITATION',
-                                value: this.getValueInList( list.niveauHabitationList, workSheet.niveauHabitation ),
+                                value: this.getValueInList( list.niveauHabitationList, worksheet.niveauHabitation ),
                             },
                             {
                                 label: 'CHANTIER HABITE',
-                                value: this.yesOrNo( workSheet.chantierHabite ),
+                                value: this.yesOrNo( worksheet.chantierHabite ),
                             },
                             {
                                 label: 'GRANDE ECHELLE NECESSAIRE',
-                                value: this.yesOrNo( workSheet.grandeEchelle ),
+                                value: this.yesOrNo( worksheet.grandeEchelle ),
                             },
                             {
                                 label: 'DEMANDE DE VOIRIE / ACCES PL',
-                                value: this.yesOrNo( workSheet.demandeVoirie ),
+                                value: this.yesOrNo( worksheet.demandeVoirie ),
                             },
                             {
                                 label: 'DISTANCE COMPTEUR ELECTRIQUE - CHAUFFE EAU',
-                                value: workSheet.distanceCompteurCet,
+                                value: worksheet.distanceCompteurCet,
                             },
                             {
                                 label: 'ACCES COMBLES',
-                                value: this.getValueInList( list.accesCombleList, workSheet.accesComble ),
+                                value: this.getValueInList( list.accesCombleList, worksheet.accesComble ),
                             },
                             {
                                 label: 'RUE ETROITE(sens unique)',
-                                value: this.yesOrNo( workSheet.rueEtroite ),
+                                value: this.yesOrNo( worksheet.rueEtroite ),
                             },
                             {
                                 label: 'TYPE COUVERTURE',
-                                value: this.getValueInList( list.typeCouvertureList, workSheet.typeCouverture ),
+                                value: this.getValueInList( list.typeCouvertureList, worksheet.typeCouverture ),
                             },
                             {
                                 label: 'ETAT TOITURE',
-                                value: this.getValueInList( list.etatToitureList, workSheet.etatToiture ),
+                                value: this.getValueInList( list.etatToitureList, worksheet.etatToiture ),
                             },
                             {
                                 label: 'TYPE CHARPENTE',
-                                value: this.getValueInList( list.typeCharpenteList, workSheet.typeCharpente ),
+                                value: this.getValueInList( list.typeCharpenteList, worksheet.typeCharpente ),
                             },
                             {
                                 label: 'NOMBRE COMPARTIMENTS COMBLES',
-                                value: workSheet.nbCompartimentComble,
+                                value: worksheet.nbCompartimentComble,
                             }, {
                                 label: 'PRESENCE VOLIGE',
-                                value: this.yesOrNo( workSheet.presenceVolige ),
+                                value: this.yesOrNo( worksheet.presenceVolige ),
                             },
                             {
                                 label: 'NOMBRE ACCES AUX COMBLES',
-                                value: workSheet.nbAccesComble,
+                                value: worksheet.nbAccesComble,
                             },
                             {
                                 label: 'NATURE DES MURS EXTERIEURS',
-                                value: this.getValueInList( list.natureMurExtList, workSheet.natureMurExt ),
+                                value: this.getValueInList( list.natureMurExtList, worksheet.natureMurExt ),
                             },
                             {
                                 label: 'NATURE DU PLAFOND',
-                                value: this.getValueInList( list.naturePlafondList, workSheet.naturePlafond ),
+                                value: this.getValueInList( list.naturePlafondList, worksheet.naturePlafond ),
                             },
                             {
                                 label: 'TENSION DISPONIBLE',
-                                value: this.getValueInList( list.tensionDisponibleList, workSheet.tensionDisponible ),
+                                value: this.getValueInList( list.tensionDisponibleList, worksheet.tensionDisponible ),
                             },
                             {
                                 label: 'DISJONCTEUR 30mA',
-                                value: this.yesOrNo( workSheet.disjoncteur ),
+                                value: this.yesOrNo( worksheet.disjoncteur ),
                             },
                             {
                                 label: 'PUISSANCE COMPTEUR',
-                                value: workSheet.puissanceCompteur,
+                                value: worksheet.puissanceCompteur,
                             },
                             {
                                 label: 'EMPLACEMENT DU CHAUFFE EAU (OU DE LA CHAUDIÈRE) EXISTANTE',
-                                value: workSheet.emplacementCetExistante,
+                                value: worksheet.emplacementCetExistante,
                             },
                             {
                                 label: 'EMPLACEMENT DU CHAUFFE EAU THERMODYNAMIQUE',
-                                value: workSheet.emplacementCetNew,
+                                value: worksheet.emplacementCetNew,
                             },
                         ],
                     },
@@ -683,19 +683,19 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'TYPE D\'INSTALLATION',
-                                value: this.getValueInList( list.aspirationTypeList, workSheet.aspirationType ),
+                                value: this.getValueInList( list.aspirationTypeList, worksheet.aspirationType ),
                             },
                             {
                                 label: 'BALLON FIXÉ AU MUR',
-                                value: this.yesOrNo( workSheet.ballonFixeMur ),
+                                value: this.yesOrNo( worksheet.ballonFixeMur ),
                             },
                             {
                                 label: 'UNITÉ EXTERIEUR FIXÉE AU MUR',
-                                value: this.yesOrNo( workSheet.uniteExtFixeMur ),
+                                value: this.yesOrNo( worksheet.uniteExtFixeMur ),
                             },
                             {
                                 label: 'DISTANCE ENTRE LE BALLON ET L’UNITÉ EXTERIEUR',
-                                value: workSheet.distanceBallonUnitExt,
+                                value: worksheet.distanceBallonUnitExt,
                             },
                         ],
                     },

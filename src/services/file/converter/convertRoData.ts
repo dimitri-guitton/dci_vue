@@ -224,7 +224,7 @@ export const convertOldRoFile = ( oldData ): RoFile => {
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },
-        workSheet:                 {
+        worksheet: {
             period:                    getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
             niveauHabitation:          getObjectData( oldData, [ 'fiche', 'niveauHabitation' ] ),
             typeChantier:              getObjectData( oldData, [ 'fiche', 'typeChantier' ] ),

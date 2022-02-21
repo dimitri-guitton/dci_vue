@@ -213,7 +213,7 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },
-        workSheet: {
+        worksheet: {
             visiteComble:              getObjectData( oldData, [ 'fiche', 'visiteComble' ] ),
             chantierHabite:            getObjectData( oldData, [ 'fiche', 'chantierHabite' ] ),
             chantierType:              getObjectData( oldData, [ 'fiche', 'chantierType' ] ),

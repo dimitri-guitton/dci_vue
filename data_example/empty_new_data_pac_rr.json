@@ -45,7 +45,7 @@
         "lessThan2Years":    false,
         "availableVoltage":  "monophase"
     },
-    "workSheet":                 {
+    "worksheet": {
         "period":               "",
         "niveauHabitation":     "pp",
         "typeChantier":         "neuf",

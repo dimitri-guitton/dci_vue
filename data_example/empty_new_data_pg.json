@@ -44,7 +44,7 @@
         "constructionYear":  "",
         "lessThan2Years":    false
     },
-    "workSheet":                 {
+    "worksheet": {
         "periodePose":                 "",
         "generateur":                  "electrique",
         "marque":                      "",

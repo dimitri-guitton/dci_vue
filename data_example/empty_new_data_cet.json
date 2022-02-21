@@ -45,7 +45,7 @@
         "lessThan2Years":    false,
         "availableVoltage":  ""
     },
-    "workSheet":                 {
+    "worksheet": {
         "period":                  "",
         "niveauHabitation":        "pp",
         "typeChantier":            "reno",

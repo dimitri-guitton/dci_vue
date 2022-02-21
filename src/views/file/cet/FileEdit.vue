@@ -139,10 +139,12 @@ import FileCetStep3 from '@/views/file/cet/FileCetStep3.vue';
 import FileCetStep4 from '@/views/file/cet/FileCetStep4.vue';
 import { initCetFormDataStep4, yupCetConfigStep4 } from '@/services/file/wizzard/step4Service';
 import FileCetStep5 from '@/views/file/cet/FileCetStep5.vue';
-import { initCetFormDataStep5, yupCetConfigStep5 } from '@/services/file/wizzard/cet/step5Service';
+import { initCetFormDataStep5, saveCetWorksheet, yupCetConfigStep5 } from '@/services/file/wizzard/cet/step5Service';
 import { CetStep3 } from '@/types/v2/Wizzard/step3/CetStep3';
 import { CetStep5 } from '@/types/v2/Wizzard/step5/CetStep5';
 import { NewAddressGenerator } from '@/services/pdf/newAddressGenerator';
+import { WorksheetGenerator } from '@/services/pdf/worksheetGenerator';
+import { CetFile } from '@/types/v2/File/Cet/CetFile';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -180,22 +182,23 @@ export default defineComponent( {
 
 
                                     // Initialisation des variables
-                                    const stepForm            = ref();
-                                    const currentStepIndex    = ref( 0 );
+                                    const stepForm         = ref();
+                                    const currentStepIndex = ref( 0 );
                                     // Récupération des données du fichier JSON
-                                    const fileData            = getCurrentCetFileData();
-                                    const lists               = fileData.lists;
-                                    const products            = fileData.quotation.products;
-                                    const selectedProducts    = fileData.quotation.selectedProducts;
-                                    const options             = fileData.quotation.options;
-                                    const blankOptions        = fileData.quotation.blankOptions;
-                                    const assents             = ref<Assent[]>( [] );
+                                    const fileData         = getCurrentCetFileData();
+                                    const lists            = fileData.lists;
+                                    const products         = fileData.quotation.products;
+                                    const selectedProducts = fileData.quotation.selectedProducts;
+                                    const options          = fileData.quotation.options;
+                                    const blankOptions     = fileData.quotation.blankOptions;
+                                    const assents          = ref<Assent[]>( [] );
+                                    console.log( 'File data', fileData );
                                     const formData            = ref<CetFileStep>( {
                                                                                     ...initFormDataStep1And2( fileData.assents,
                                                                                                               fileData.beneficiary ),
                                                                                     ...initCetFormDataStep3( fileData ),
                                                                                     ...initCetFormDataStep4( fileData ),
-                                                                                    ...initCetFormDataStep5( fileData.workSheet ),
+                                                                                    ...initCetFormDataStep5( fileData.worksheet ),
                                                                                   } );
                                     const nbAssent            = formData.value?.assents.length;
                                     // Configuration de la validation du formulaire
@@ -317,10 +320,6 @@ export default defineComponent( {
                                       } );
                                     };
 
-                                    const onGenerateWorksheet = handleSubmit( async ( values ) => {
-                                      console.log( '%c ON GENERATE Worksheet', 'background: #00FFCD; color: #000000' );
-                                      console.log( values );
-                                    } );
 
                                     const onGenerateQuotation = handleSubmit( async ( values ) => {
                                       console.log( '%c ONgenerateQuotation', 'background: #00FFCD; color: #000000' );
@@ -337,6 +336,18 @@ export default defineComponent( {
                                       addressGenerator.generatePdf();
                                     } );
 
+                                    const onGenerateWorksheet = handleSubmit( async ( values ) => {
+                                      console.log( '%c ON GENERATE Worksheet', 'background: #00FFCD; color: #000000' );
+                                      console.log( values );
+                                      console.log( '%c ', 'background: #fdd835; color: #000000' );
+                                      console.log( '%c ', 'background: #fdd835; color: #000000' );
+                                      console.log( '%c ', 'background: #fdd835; color: #000000' );
+                                      console.log( formData.value );
+
+                                      const newFileData: CetFile = saveCetWorksheet( ( values as CetFileStep ) );
+                                      const worksheetGenerator   = new WorksheetGenerator( newFileData );
+                                      worksheetGenerator.generatePdf();
+                                    } );
 
                                     // TEST
                                     // const t  = new NewAddressGenerator( fileData.housing, fileData.beneficiary );
