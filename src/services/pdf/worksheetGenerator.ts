@@ -448,6 +448,105 @@ export class WorksheetGenerator extends PdfGenerator {
                 ];
                 break;
             case FILE_SOL:
+                workSheet = ( this._file.workSheet as SolWorkSheet );
+                list      = ( this._file.lists as SolList );
+                quotation = ( this._file.quotation as SolQuotation );
+
+                if ( quotation.selectedProducts.length > 0 ) {
+                    selectedProduct = quotation.selectedProducts[ 0 ].label;
+                }
+
+                data = [
+                    {
+                        title: 'CARACTERISTIQUES DU CHANTIER',
+                        items: [
+                            {
+                                label: 'PRODUIT COMMANDE',
+                                value: selectedProduct,
+                            },
+                            {
+                                label: 'Epaisseur',
+                                value: workSheet.epaisseurProduit,
+                            },
+                            {
+                                label: 'SURFACE A ISOLER',
+                                value: housing.area,
+                            },
+                            {
+                                label: 'Hauteur sous plafond',
+                                value: workSheet.hautPlafond,
+                            },
+                            {
+                                label: 'Support',
+                                value: this.getValueInList( list.supportList, workSheet.support ),
+                            },
+                            {
+                                label: 'Resistance thermique',
+                                value: workSheet.resistTherm,
+                            },
+                            {
+                                label: 'Dimensions des pièces',
+                                value: workSheet.epaisseurProduit,// TODO FAIRE la dimension des pieces
+                            },
+                            {
+                                label: 'ISOLATION EXISTANTE',
+                                value: this.yesOrNo( workSheet.isolationExistante ),
+                            },
+                            {
+                                label: 'Distance camion <-> point d\'eau',
+                                value: workSheet.distPointEau,
+                            },
+
+                        ],
+                    },
+                    {
+                        title: 'TYPOLOGIE DU CHANTIER',
+                        items: [
+                            {
+                                label: 'NIVEAUX HABITATION',
+                                value: this.getValueInList( list.niveauHabitationList, workSheet.niveauHabitation ),
+                            },
+                            {
+                                label: 'Habitation sur un local non chauffé (garage, cave)',
+                                value: this.yesOrNo( workSheet.habitationSurLocalFroid ),
+                            },
+                            {
+                                label: 'Vide sinataire',
+                                value: this.yesOrNo( workSheet.videSanitaire ),
+                            },
+                            {
+                                label: 'Terre plein',
+                                value: this.yesOrNo( workSheet.terrePlein ),
+                            },
+                            {
+                                label: 'Y\'a t\'il des réseaux au plafond\nLes réseaux seront pris dans la mousse',
+                                value: this.yesOrNo( workSheet.reseauPlafond ),
+                            },
+                            {
+                                label: 'Y\'a t\'il des luminaires au plafond',
+                                value: this.yesOrNo( workSheet.luminairesPlafond ),
+                            },
+                            {
+                                // TODO prévoir une option fullWith (colspan = 4)
+                                label: 'Une réservation sear faite autour du luminaires sauf si idéalement, le client l\'abaisse de 12 cm',
+                                value: ' ',
+                            },
+                            {
+                                label: 'Quelle distance y\'a-t-il entre le haut des portes et le plafond',
+                                value: ' ',
+                            },
+                            // TODO faire distancePortesPalfond < 3 et > 3
+                            {
+                                label: 'Porte de garage',
+                                value: this.getValueInList( list.porteGarageList, workSheet.porteGarage ),
+                            },
+                            {
+                                label: 'Quantité',
+                                value: workSheet.nbrPorteGarage,
+                            },
+                        ],
+                    },
+                ];
                 break;
             case FILE_PAC_RO:
                 break;

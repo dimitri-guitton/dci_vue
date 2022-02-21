@@ -23,17 +23,13 @@ export class PdfGenerator {
         this._docDefinition        = {
             content: [],
         };
-
-        console.log( 'Default DocDefinition -->', this._defaultDocDefinition );
     }
 
+    /**
+     * Génère le PDF
+     */
     public generatePdf() {
         // Parametre par défaut de tout les PDF
-
-        console.log( '%c DOC DEFINTION', 'background: #CEFF00; color: #000000' );
-        console.log( this._docDefinition );
-        console.log( { ...this._docDefinition, ...this._defaultDocDefinition } );
-        console.log( '%c DOC DEFINTION', 'background: #CEFF00; color: #000000' );
         this._docDefinition = {
             ...this._defaultDocDefinition,
             ...this._docDefinition,
@@ -42,8 +38,6 @@ export class PdfGenerator {
                 ...this._docDefinition.styles,
             },
         };
-        console.log( 'NEW DOC DEF', this._docDefinition );
-
 
         const pdf = pdfMake;
 
@@ -68,6 +62,11 @@ export class PdfGenerator {
     }
 
 
+    /**
+     * Setter pour docDefinition
+     * @param value
+     * @protected
+     */
     protected set docDefinition( value: TDocumentDefinitions ) {
         this._docDefinition = value;
     }
