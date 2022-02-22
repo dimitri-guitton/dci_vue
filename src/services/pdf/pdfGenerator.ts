@@ -1,7 +1,7 @@
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import { TCreatedPdf } from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-import { TDocumentDefinitions } from 'pdfmake/interfaces';
+import { ContentText, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
 import { savePdf } from '@/services/folder/folderService';
 import { numberToPrice } from '@/services/commonService';
@@ -10,13 +10,17 @@ export enum PdfType {
     Undefined,
     Address,
     Worksheet,
-    Quotation
+    Quotation,
+    Tva
 }
 
 export class PdfGenerator {
     private _docDefinition: TDocumentDefinitions;
     private readonly _defaultDocDefinition: TDocumentDefinitions;
+    private _icons: Icons;
+
     protected type: number;
+
 
     constructor() {
         this._defaultDocDefinition = {
@@ -35,12 +39,17 @@ export class PdfGenerator {
             content: [],
         };
         this.type                  = PdfType.Undefined;
+
+        this._icons = {
+            emptyCheckBox: { text: '', style: 'icon' },
+            checkBox:      { text: '', style: 'icon' },
+        };
     }
 
     /**
      * Génère le PDF
      */
-    public generatePdf() {
+    public generatePdf( openAfterGenerate = true ) {
         // Parametre par défaut de tout les PDF
         this._docDefinition = {
             ...this._defaultDocDefinition,
@@ -72,11 +81,10 @@ export class PdfGenerator {
         pdf.vfs          = pdfFonts.pdfMake.vfs;
         const createdPdf = pdf.createPdf( this._docDefinition );
         this.downloadPdf( createdPdf );
-        this.openPdf( createdPdf );
-    }
 
-    private openPdf( pdf: TCreatedPdf ) {
-        pdf.open();
+        if ( openAfterGenerate ) {
+            createdPdf.open();
+        }
     }
 
     private downloadPdf( pdf: TCreatedPdf ) {
@@ -136,4 +144,17 @@ export class PdfGenerator {
     protected formatPrice( value: number | string ): string {
         return numberToPrice( value );
     }
+
+    protected getCheckBox( value = false ) {
+        if ( value ) {
+            return this._icons.checkBox;
+        }
+
+        return this._icons.emptyCheckBox;
+    }
+}
+
+interface Icons {
+    emptyCheckBox: ContentText;
+    checkBox: ContentText;
 }

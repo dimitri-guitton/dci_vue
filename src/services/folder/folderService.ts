@@ -290,6 +290,10 @@ export const savePdf = ( buffer: Buffer, type: PdfType ) => {
             folder = FoldersNames.FICHE_FOLDER;
             name   = 'fiche.pdf';
             break;
+        case PdfType.Tva:
+            folder = FoldersNames.ATTEST_TVA_SIMPLIFIEE_FOLDER;
+            name   = 'attestation_tva_simplifiee.pdf';
+            break;
         default:
             console.log( '%c ERROR', 'background: #fdd835; color: #000000' );
     }

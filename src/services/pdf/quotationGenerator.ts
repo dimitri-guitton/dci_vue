@@ -30,6 +30,7 @@ import { RrQuotation } from '@/types/v2/File/Rr/RrQuotation';
 import { CetQuotation } from '@/types/v2/File/Cet/CetQuotation';
 import { PgQuotation } from '@/types/v2/File/Pg/PgQuotation';
 import { toFrenchDate } from '@/services/commonService';
+import { TvaCertificateGenerator } from '@/services/pdf/tvaCertificateGenerator';
 
 enum PriceQuotation {
     HT            = 'Total HT',
@@ -73,6 +74,19 @@ export class QuotationGenerator extends PdfGenerator {
 
         this.docDefinition = this._generateDocDefinition();
     }
+
+
+    generatePdf() {
+        super.generatePdf();
+
+        // Génération de l'attestation de TVA simplifé
+        // Pour les devis CET, Poele, PAC RR et RO
+        if ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR ) {
+            const tvaGenerator = new TvaCertificateGenerator( this._file );
+            tvaGenerator.generatePdf( false );
+        }
+    }
+
 
     private _generateDocDefinition(): TDocumentDefinitions {
         return {
