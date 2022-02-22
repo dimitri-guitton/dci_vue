@@ -87,16 +87,19 @@ export default defineComponent( {
                                   emits:      [ 'selectedProductIsUpdated' ],
                                   setup( props, ctx ) {
                                     let currentProduct = ref<Product>();
-                                    if ( props.selectedProducts.length > 0 ) {
-                                      currentProduct = ref( props.selectedProducts[ 0 ] );
-                                    } else {
-                                      currentProduct = ref( props.products[ 0 ] );
-                                    }
 
                                     const onChangeProduct = ( value ) => {
                                       currentProduct.value = props.products.find( p => p.id === value );
                                       ctx.emit( 'selectedProductIsUpdated', currentProduct.value, 'product' );
                                     };
+
+                                    if ( props.selectedProducts.length > 0 ) {
+                                      currentProduct = ref( props.selectedProducts[ 0 ] );
+                                    } else {
+                                      currentProduct = ref( props.products[ 0 ] );
+                                      onChangeProduct( props.products[ 0 ].id );
+                                    }
+
 
                                     // Récupère le texte de l'alerte check si il y a des données envoyé et les remplaces
                                     const htmlAlert = computed( () => {

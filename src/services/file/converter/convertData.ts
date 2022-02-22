@@ -221,7 +221,6 @@ export const convertOldOptions = ( oldData ): Option[] => {
         fileType = FILE_SOL;
     }
 
-    let index = 1;
     oldOption.forEach( option => {
         newOptions.push( {
                              id:            option[ 'id' ],
@@ -232,10 +231,8 @@ export const convertOldOptions = ( oldData ): Option[] => {
                              pu:            option[ 'pu' ][ 'value' ],
                              defaultNumber: option[ 'value' ],
                              number:        option[ 'value' ],
-                             position:      index,
                          } );
 
-        index++;
     } );
 
     return newOptions;

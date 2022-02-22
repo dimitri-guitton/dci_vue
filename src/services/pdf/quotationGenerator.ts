@@ -595,9 +595,9 @@ export class QuotationGenerator extends PdfGenerator {
         return {
             margin: [ 0, 3 ],
             style:  'text',
-            table:  {
+            table: {
                 widths: [ '25%', '25%', '25%', '25%' ],
-                body: tableBody,
+                body:   tableBody,
             },
             layout: {
                 ...this._getBorderLayout(),
@@ -740,7 +740,7 @@ export class QuotationGenerator extends PdfGenerator {
                                alignment: 'right',
                            },
                            {
-                               text:      this.formatPrice( product.pu * 1 ),  // TODO GÉRER LA QUANTITÉ
+                               text:      this.formatPrice( product.pu * 1 ),  // TODO GÉRER LA QUANTITÉ + pour isolant * area
                                alignment: 'right',
                            },
                        ] );
@@ -789,9 +789,13 @@ export class QuotationGenerator extends PdfGenerator {
         const data: TableCell[][] = [];
 
         for ( const blankOption of this._file.quotation.blankOptions ) {
-            if ( blankOption.number <= 0 && blankOption.label === '' ) {
+            console.log( '%c BL OPTION', 'background: #fdd835; color: #000000' );
+            console.log( blankOption );
+            if ( blankOption.number <= 0 || blankOption.label === '' ) {
                 continue;
             }
+
+            console.log( '%c After IF', 'background: #FF0007; color: #000000' );
 
             data.push( [
                            {
@@ -896,9 +900,16 @@ export class QuotationGenerator extends PdfGenerator {
                     PriceQuotation.HT,
                     PriceQuotation.TVA,
                     PriceQuotation.TTC,
-                    PriceQuotation.CEE,
-                    PriceQuotation.maPrimeRenov,
                 ];
+
+                if ( this._file.quotation.ceeBonus > 0 ) {
+                    items.push( PriceQuotation.CEE );
+                }
+
+                if ( ( this._file.quotation as CetQuotation | PgQuotation ).maPrimeRenovBonus > 0 ) {
+                    items.push( PriceQuotation.maPrimeRenov );
+                }
+
                 break;
             case FILE_PAC_RO:
                 const roQuotation = ( this._file.quotation as RoQuotation );
@@ -907,17 +918,26 @@ export class QuotationGenerator extends PdfGenerator {
                         PriceQuotation.HT,
                         PriceQuotation.TVA,
                         PriceQuotation.TTC,
-                        PriceQuotation.CEE,
-                        PriceQuotation.maPrimeRenov,
                     ];
+
+                    if ( this._file.quotation.ceeBonus > 0 ) {
+                        items.push( PriceQuotation.CEE );
+                    }
+
                 } else {
                     items = [
                         PriceQuotation.HT,
                         PriceQuotation.TVA,
                         PriceQuotation.TTC,
-                        PriceQuotation.CEE_CPC,
-                        PriceQuotation.maPrimeRenov,
                     ];
+
+                    if ( this._file.quotation.ceeBonus > 0 ) {
+                        items.push( PriceQuotation.CEE_CPC );
+                    }
+                }
+
+                if ( roQuotation.maPrimeRenovBonus > 0 ) {
+                    items.push( PriceQuotation.maPrimeRenov );
                 }
 
                 if ( roQuotation.discount > 0 ) {
@@ -932,8 +952,6 @@ export class QuotationGenerator extends PdfGenerator {
                         PriceQuotation.HT,
                         PriceQuotation.TVA,
                         PriceQuotation.TTC,
-                        PriceQuotation.CEE,
-                        PriceQuotation.maPrimeRenov,
                     ];
 
                 } else {
@@ -942,9 +960,15 @@ export class QuotationGenerator extends PdfGenerator {
                         PriceQuotation.TVA10,
                         PriceQuotation.TVA20,
                         PriceQuotation.TTC,
-                        PriceQuotation.CEE,
-                        PriceQuotation.maPrimeRenov,
                     ];
+                }
+
+                if ( this._file.quotation.ceeBonus > 0 ) {
+                    items.push( PriceQuotation.CEE );
+                }
+
+                if ( rrQuotation.maPrimeRenovBonus > 0 ) {
+                    items.push( PriceQuotation.maPrimeRenov );
                 }
 
                 if ( rrQuotation.discount > 0 ) {
@@ -961,7 +985,7 @@ export class QuotationGenerator extends PdfGenerator {
                 ];
                 if ( this._file.enabledHousingAction ) {
                     items.push( PriceQuotation.housingAction );
-                } else if ( !this._file.housing.lessThan2Years && !this._file.disabledBonus ) {
+                } else if ( !this._file.housing.lessThan2Years && !this._file.disabledBonus && this._file.quotation.ceeBonus > 0 ) {
                     items.push( PriceQuotation.CEE );
                 }
                 break;
@@ -1166,8 +1190,8 @@ export class QuotationGenerator extends PdfGenerator {
      * @private
      */
     private _generateTexts(): Content {
+        console.log( 'CEE BONUS -->', this._file.quotation.ceeBonus );
         // TODO revoir les texts
-        // Logique si présent ou non selon les primes actives
         // Inclure des données dedans (montant prime, ....)
         const tableTexts: Table[] = [];
 
@@ -1176,6 +1200,15 @@ export class QuotationGenerator extends PdfGenerator {
             if ( text.text === '' || text.text === null || text.text === undefined ) {
                 continue;
             }
+
+            if ( text.type === 'cee' && this._file.quotation.ceeBonus <= 0 ) {
+                continue;
+            }
+
+            if ( text.type === 'maPrimeRenovBonus' && ( this._file.quotation as RoQuotation | RrQuotation | PgQuotation | CetQuotation ).maPrimeRenovBonus <= 0 ) {
+                continue;
+            }
+
             tableTexts.push( {
                                  body:   [
                                      [

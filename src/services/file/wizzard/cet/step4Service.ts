@@ -74,7 +74,7 @@ export const yupCetConfigStep4 = () => {
 };
 
 
-export const validateCetStep4 = async ( data: CetFileStep, price: Price ) => {
+export const validateCetStep4 = async ( data: CetFileStep, price: Price ): Promise<CetFile> => {
     let fileData = getCurrentCetFileData();
 
     const selectedProducts: Product[] = [];
@@ -131,5 +131,7 @@ export const validateCetStep4 = async ( data: CetFileStep, price: Price ) => {
     };
 
     updateJsonData( fileData );
+
+    return fileData;
 };
 

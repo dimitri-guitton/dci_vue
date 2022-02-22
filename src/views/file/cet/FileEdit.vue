@@ -93,17 +93,17 @@
               <!--                </span>-->
               <!--              </button>-->
 
-              <button
-                  type="submit"
-                  class="btn btn-lg btn-primary me-3"
-                  v-if="currentStepIndex === totalSteps - 1"
-              >
-                STOP
-                <span class="svg-icon svg-icon-4 ms-1 me-0">
-                  <i class="fa fa-arrow-right"></i>
-                </span>
-              </button>
-              <button v-else type="submit" class="btn btn-lg btn-primary">
+              <!--              <button-->
+              <!--                  type="submit"-->
+              <!--                  class="btn btn-lg btn-primary me-3"-->
+              <!--                  v-if="currentStepIndex === totalSteps - 1"-->
+              <!--              >-->
+              <!--                STOP-->
+              <!--                <span class="svg-icon svg-icon-4 ms-1 me-0">-->
+              <!--                  <i class="fa fa-arrow-right"></i>-->
+              <!--                </span>-->
+              <!--              </button>-->
+              <button v-if="currentStepIndex !== totalSteps - 1" type="submit" class="btn btn-lg btn-primary">
                 Suivant
                 <span class="svg-icon svg-icon-4 ms-1 me-0">
                   <i class="fa fa-arrow-right"></i>
@@ -324,7 +324,9 @@ export default defineComponent( {
                                       console.log( '%c ONgenerateQuotation', 'background: #00FFCD; color: #000000' );
                                       console.log( values );
 
-                                      const quotationGenerator = new QuotationGenerator( fileData );
+                                      const newFileData        = await validateCetStep4( ( values as CetFileStep ),
+                                                                                         price );
+                                      const quotationGenerator = new QuotationGenerator( newFileData );
                                       quotationGenerator.generatePdf();
                                     } );
 

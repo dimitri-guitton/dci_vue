@@ -14,8 +14,6 @@ export interface BaseFile {
     settings: {
         ceeCoef: number;
     };
-    quotationTemplate: string;
-    workSheetTemplate: string;
     disabledBonus: boolean;
     disabledCeeBonus: boolean;
     enabledHousingAction: boolean;

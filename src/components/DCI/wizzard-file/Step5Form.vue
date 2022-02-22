@@ -4,7 +4,7 @@
       <div class="col-md-4 offset-8 fv-row">
         <label class="form-label mb-3">Période de pose souhaité</label>
         <Field
-            type="text"
+            type="date"
             class="form-control form-control-lg form-control-solid"
             name="worksheet.period"
             placeholder="01/01/1970"

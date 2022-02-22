@@ -8,15 +8,13 @@
     "settings":                  {
         "ceeCoef": "6.6"
     },
-    "quotationTemplate":         "quotation_template_v1",
-    "workSheetTemplate":         "worksheet_template_v1",
     "disabledBonus":             false,
     "disabledCeeBonus":          false,
     "enabledHousingAction":      false,
     "disabledMaPrimeRenovBonus": false,
     "assents":                   [],
-    "beneficiary":               {
-        "civility":  "",
+    "beneficiary": {
+        "civility":  "m",
         "lastName":  "",
         "firstName": "",
         "address":   "",
@@ -29,7 +27,7 @@
     },
     "codeBonus":                 "",
     "energyZone":                "",
-    "housing":                   {
+    "housing":     {
         "nbOccupant":        1,
         "type":              "maison_individuelle",
         "isAddressBenef":    true,
@@ -43,17 +41,20 @@
         "insulationQuality": "",
         "constructionYear":  "",
         "lessThan2Years":    false,
-        "availableVoltage":  ""
+        "availableVoltage":  "",
+        "isRentedHouse":     false,
+        "buildingNature":    "",
+        "heatingType":       "electrique"
     },
-    "worksheet": {
+    "worksheet":   {
         "period":                  "",
         "niveauHabitation":        "pp",
-        "typeChantier":            "reno",
+        "typeChantier":            "neuf",
         "disjoncteur":             false,
-        "tensionDisponible":       "triphase",
+        "tensionDisponible":       "monophase",
         "distanceCompteurCet":     0,
-        "natureMurExt":            "beton",
-        "naturePlafond":           "placo",
+        "natureMurExt":            "parpaing",
+        "naturePlafond":           "brique",
         "visiteComble":            false,
         "chantierHabite":          false,
         "grandeEchelle":           false,
@@ -63,7 +64,7 @@
         "rueEtroite":              false,
         "typeCouverture":          "mecanique",
         "etatToiture":             "propre",
-        "typeCharpente":           "metal",
+        "typeCharpente":           "traditionnelle",
         "nbCompartimentComble":    1,
         "presenceVolige":          false,
         "nbAccesComble":           1,
@@ -76,9 +77,9 @@
         "ballonFixeMur":           false,
         "uniteExtFixeMur":         false,
         "distanceBallonUnitExt":   0,
-        "infosSup":                ""
+        "infosSup":                "RAS"
     },
-    "quotation":                 {
+    "quotation":   {
         "origin":             "",
         "dateTechnicalVisit": "",
         "executionDelay":     "",
@@ -88,40 +89,40 @@
                 "fileType":      "cet",
                 "label":         "Forfait accessoire nécessaire à la pose, au raccordement de l’installation",
                 "unit":          "u",
-                "pu":            1,
+                "pu":            100,
+                "defaultPu":     100,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      1
+                "number":        1
             },
             {
                 "id":            2,
                 "fileType":      "cet",
                 "label":         "Forfait pose ( Pose nouvel appareil, mise en service)",
                 "unit":          "u",
-                "pu":            1,
+                "pu":            350,
+                "defaultPu":     350,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      2
+                "number":        1
             },
             {
                 "id":            3,
                 "fileType":      "cet",
                 "label":         "Raccordement extérieur par chapeau de toiture",
                 "unit":          "u",
-                "pu":            0,
+                "pu":            100,
+                "defaultPu":     100,
                 "defaultNumber": 0,
-                "number":        0,
-                "position":      3
+                "number":        0
             },
             {
                 "id":            4,
                 "fileType":      "cet",
                 "label":         "Raccordement extérieur mural",
                 "unit":          "u",
-                "pu":            0,
+                "pu":            100,
+                "defaultPu":     100,
                 "defaultNumber": 0,
-                "number":        0,
-                "position":      4
+                "number":        0
             }
         ],
         "blankOptions":       [
@@ -130,47 +131,33 @@
                 "label": "",
                 "unit":  "u",
                 "pu":    0,
-                "value": 0
+                "number": 0
             },
             {
-                "id":    "sup2",
-                "label": "",
-                "unit":  "u",
-                "pu":    0,
-                "value": 0
+                "id":     "sup2",
+                "label":  "",
+                "unit":   "u",
+                "pu":     0,
+                "number": 0
             }
         ],
         "commentary":         "",
         "partner":            "VTE",
         "texts":              [
             {
+                "type":  "cee",
                 "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
                 "text":  "Les travaux prévus dans ce devis peuvent être conditionnels à un dépôt de déclaration préalable de travaux. Il revient au maître d'ouvrage (le client) d'en faire lui-même la demande.\r\nLa TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.\r\n\r\nLes travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique.\r\n\r\n* « Dans le cas où l'aide notifiée au client est inférieure au montant de l'aide prévisionnelle, l'usager n'est pas lié par le devis et l'entreprise s'engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d'une durée de quatorze jours à partir de la date de présentation du devis rectificatif.L'aide MaPrimeRénov' est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire. En cas de fausse déclaration, de manœuvre frauduleuse ou de changement du projet de travaux subventionnés, le bénéficiaire s'expose au retrait et reversement de tout ou partie de l'aide. Les services de l'Anah pourront faire procéder à tout contrôle des engagements et sanctionner le bénéficiaire et son mandataire éventuel des manquements constatés »."
             },
             {
-                "title": null,
-                "text":  null
-            },
-            {
+                "type":  "maPrimeRenovBonus",
                 "title": "AIDE A LA RENOVATION ÉNERGÉTIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
-                "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
+                "text":  "«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
             }
         ],
         "tva":                5.5,
         "ceeBonus":           0,
-        "selectedProducts":   [
-            {
-                "id":          3,
-                "productType": "cet",
-                "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
-                "reference":   "CETACSP200",
-                "pu":          2456,
-                "defaultPu":   2456,
-                "description": "Capacité: 200L SPLIT\r\nDimensions HxLxP: 1267*588*603mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
-                "size":        "HxLxP: 1267*588*60",
-                "type":        "split"
-            }
-        ],
+        "selectedProducts":   [],
         "products":           [
             {
                 "id":          1,

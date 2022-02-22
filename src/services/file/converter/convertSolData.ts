@@ -161,8 +161,6 @@ export const convertOldSolFile = ( oldData ): SolFile => {
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),
         updatedAt:                 getStringData( oldData[ 'updatedAt' ] ),
         settings:                  oldData[ 'settings' ],
-        quotationTemplate:         getStringData( oldData[ 'quotationTemplate' ] ),
-        workSheetTemplate:         getStringData( oldData[ 'ficheTemplate' ] ),
         disabledBonus:             getBoolData( oldData[ 'disablePrime' ] ),
         disabledCeeBonus:          getBoolData( oldData[ 'disablePrimeCEE' ] ),
         enabledHousingAction:      getBoolData( oldData[ 'enabledActionLogement' ] ),

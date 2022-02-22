@@ -110,7 +110,8 @@ const createSubFolders = ( type: string, parent: string ) => {
 
 export const addJsonData = ( type: string, parent: string, reference: string, folderName: string ) => {
     if ( type === FILE_CET_TYPE.slug ) {
-        const jsonPath = '/Users/dimitri/workspace/eco_atlantique/dci_vue/data_example/empty_new_data_cet.json';
+        // const jsonPath = '/Users/dimitri/workspace/eco_atlantique/dci_vue/data_example/empty_new_data_cet.json';
+        const jsonPath = 'data_example/empty_new_data_cet.json';
 
         const rawdata         = fs.readFileSync( jsonPath ).toString( 'utf8' );
         let fileData: CetFile = JSON.parse( rawdata );
@@ -140,7 +141,7 @@ export const createFolderRef = ( type: string ): string => {
     const today      = new Date();
     const stringDate = `${ today.getFullYear() }${ commonService.minTwoDigits( today.getMonth() + 1 ) }${ commonService.minTwoDigits(
         today.getDate() ) }${ commonService.minTwoDigits( today.getHours() ) }${ commonService.minTwoDigits( today.getMinutes() ) }${ commonService.minTwoDigits(
-        today.getMilliseconds() ) }${ ( Math.random() ).toString().slice( -8 ) }`;
+        today.getSeconds() ) }`;
     return `ID_COM-${ stringDate }-${ type.toUpperCase() }`;
 };
 

@@ -196,8 +196,6 @@ export const convertOldRoFile = ( oldData ): RoFile => {
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),
         updatedAt:                 getStringData( oldData[ 'updatedAt' ] ),
         settings:                  oldData[ 'settings' ],
-        quotationTemplate:         getObjectData( oldData, [ 'quotationTemplate', 'ro' ] ),
-        workSheetTemplate:         getObjectData( oldData, [ 'ficheTemplate', 'ro' ] ),
         disabledBonus:             getBoolData( oldData[ 'disablePrime' ] ),
         disabledCeeBonus:          getBoolData( oldData[ 'disablePrimeCEE' ] ),
         enabledHousingAction:      getBoolData( oldData[ 'enabledActionLogement' ] ),
