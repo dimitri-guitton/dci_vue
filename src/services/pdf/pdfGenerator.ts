@@ -11,7 +11,8 @@ export enum PdfType {
     Address,
     Worksheet,
     Quotation,
-    Tva
+    Tva,
+    ContributionFramework
 }
 
 export class PdfGenerator {

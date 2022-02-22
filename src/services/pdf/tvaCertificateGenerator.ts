@@ -45,14 +45,14 @@ export class TvaCertificateGenerator extends PdfGenerator {
                     fontSize:  12,
                     alignment: 'center',
                 },
-                this.generateRow1(),
-                this.generateRow2( this._file.housing.type !== 'appartement', this._file.housing.isRentedHouse ),
-                this.generateRow3( this._file.type === FILE_PAC_RO ),
-                this.generateRow4(),
-                this.generateRow5(),
-                this.generateSignature,
-                this.generateFooter,
-                this.addPages,
+                this._generateRow1(),
+                this._generateRow2( this._file.housing.type !== 'appartement', this._file.housing.isRentedHouse ),
+                this._generateRow3( this._file.type === FILE_PAC_RO ),
+                this._generateRow4(),
+                this._generateRow5(),
+                this._generateSignature,
+                this._generateFooter,
+                this._addPages,
             ],
             styles:  this._style,
         };
@@ -94,12 +94,12 @@ export class TvaCertificateGenerator extends PdfGenerator {
         ],
     };
 
-    private generateRow1(): Content {
+    private _generateRow1(): Content {
         return {
             style:  [ 'table' ],
             margin: [ 0, 3 ],
             table:  {
-                body:   [
+                body: [
                     [
                         {
                             text:    '1 IDENTITÉ DU CLIENT OU DE SON REPRÉSENTANT :',
@@ -116,29 +116,29 @@ export class TvaCertificateGenerator extends PdfGenerator {
                         {},
                     ],
                     [
-                        'Nom : ${last_name}',
-                        'Prénom : ${first_name}',
+                        `Nom : ${ this._file.beneficiary.lastName }`,
+                        `Prénom : ${ this._file.beneficiary.firstName }`,
                     ],
                     [
-                        'Adresse : ${address}',
-                        'Code postal : ${zip_code} Commune : ${city}',
+                        `Adresse : ${ this._file.housing.addresse }`,
+                        `Code postal : ${ this._file.housing.zipCode } Commune : ${ this._file.housing.city }`,
                     ],
                 ],
                 widths: [ '50%', '*' ],
             },
             layout: {
-                ...this.rowLayout,
+                ...this._rowLayout,
             },
         };
 
     }
 
-    private generateRow2( isHouse, isRentedHouse ): Content {
+    private _generateRow2( isHouse, isRentedHouse ): Content {
         return {
             style:  [ 'table' ],
             margin: [ 0, 3 ],
             table:  {
-                body:   [
+                body: [
                     [
                         {
                             text:    '2 NATURE DES LOCAUX',
@@ -281,13 +281,13 @@ export class TvaCertificateGenerator extends PdfGenerator {
                 widths: [ '50%', '*' ],
             },
             layout: {
-                ...this.rowLayout,
+                ...this._rowLayout,
             },
         };
 
     }
 
-    private generateRow3( isPacRo ): Content {
+    private _generateRow3( isPacRo ): Content {
         return {
             style:  [ 'table' ],
             margin: [ 0, 3 ],
@@ -387,13 +387,13 @@ export class TvaCertificateGenerator extends PdfGenerator {
                 ],
             },
             layout: {
-                ...this.rowLayout,
+                ...this._rowLayout,
             },
         };
 
     }
 
-    private generateRow4(): Content {
+    private _generateRow4(): Content {
         return {
             style:  [ 'table' ],
             margin: [ 0, 3 ],
@@ -412,12 +412,12 @@ export class TvaCertificateGenerator extends PdfGenerator {
                 ],
             },
             layout: {
-                ...this.rowLayout,
+                ...this._rowLayout,
             },
         };
     }
 
-    private generateRow5(): Content {
+    private _generateRow5(): Content {
         return {
             style:  [ 'table' ],
             margin: [ 0, 3 ],
@@ -434,7 +434,7 @@ export class TvaCertificateGenerator extends PdfGenerator {
                 ],
             },
             layout: {
-                ...this.rowLayout,
+                ...this._rowLayout,
                 hLineWidth: function () {
                     return 4;
                 },
@@ -446,7 +446,7 @@ export class TvaCertificateGenerator extends PdfGenerator {
 
     }
 
-    private generateSignature: Content = {
+    private _generateSignature: Content = {
         style:     'xsText',
         alignment: 'center',
         margin:    [ 0, 15, 0, 0 ],
@@ -460,7 +460,7 @@ export class TvaCertificateGenerator extends PdfGenerator {
         ],
     };
 
-    private generateFooter: Content = {
+    private _generateFooter: Content = {
         style:  'xxsText',
         margin: [ 0, 80, 0, 0 ],
         stack:  [
@@ -478,7 +478,7 @@ export class TvaCertificateGenerator extends PdfGenerator {
         ],
     };
 
-    private addPages: Content[] = [
+    private _addPages: Content[] = [
         {
             margin:    [ 0, 0, 0, 0 ],
             image:     TVA_PAGE_2,
@@ -492,7 +492,7 @@ export class TvaCertificateGenerator extends PdfGenerator {
         },
     ];
 
-    private rowLayout = {
+    private _rowLayout = {
         hLineWidth: function ( i, node ) {
             return ( i === 0 || i === node.table.body.length ) ? 2 : 0;
         },

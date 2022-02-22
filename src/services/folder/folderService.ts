@@ -294,6 +294,10 @@ export const savePdf = ( buffer: Buffer, type: PdfType ) => {
             folder = FoldersNames.ATTEST_TVA_SIMPLIFIEE_FOLDER;
             name   = 'attestation_tva_simplifiee.pdf';
             break;
+        case PdfType.ContributionFramework:
+            folder = FoldersNames.CADRE_CONTRIBUTION_CEE;
+            name   = 'cadre_contribution.pdf';
+            break;
         default:
             console.log( '%c ERROR', 'background: #fdd835; color: #000000' );
     }

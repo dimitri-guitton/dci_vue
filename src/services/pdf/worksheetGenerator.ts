@@ -558,13 +558,6 @@ export class WorksheetGenerator extends PdfGenerator {
                 list      = ( this._file.lists as CetList );
                 quotation = ( this._file.quotation as CetQuotation );
 
-                console.log( '%c ___', 'background: #5ADFFF; color: #000000' );
-                console.log( worksheet );
-                console.log( list );
-                console.log( quotation );
-                console.log( housing );
-                console.log( '%c ___', 'background: #5ADFFF; color: #000000' );
-
                 if ( quotation.selectedProducts.length > 0 ) {
                     selectedProduct = quotation.selectedProducts[ 0 ].label;
                 }

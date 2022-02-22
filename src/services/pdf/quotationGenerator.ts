@@ -31,6 +31,7 @@ import { CetQuotation } from '@/types/v2/File/Cet/CetQuotation';
 import { PgQuotation } from '@/types/v2/File/Pg/PgQuotation';
 import { toFrenchDate } from '@/services/commonService';
 import { TvaCertificateGenerator } from '@/services/pdf/tvaCertificateGenerator';
+import { ContributionFrameworkGenerator } from '@/services/pdf/contributionFrameworkGenerator';
 
 enum PriceQuotation {
     HT            = 'Total HT',
@@ -69,8 +70,7 @@ export class QuotationGenerator extends PdfGenerator {
     constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile ) {
         super();
         this._file = file;
-        console.log( 'FILE -->', file );
-        this.type = PdfType.Quotation;
+        this.type  = PdfType.Quotation;
 
         this.docDefinition = this._generateDocDefinition();
     }
@@ -85,6 +85,19 @@ export class QuotationGenerator extends PdfGenerator {
             const tvaGenerator = new TvaCertificateGenerator( this._file );
             tvaGenerator.generatePdf( false );
         }
+
+        // Génération du cadre de contribution
+        // Pour les pompes à chaleur RO et RR quand la prime CEE est > à 0
+        if ( ( this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR ) && this._file.quotation.ceeBonus > 0 ) {
+            const contributionFrameworkGenerator = new ContributionFrameworkGenerator( this._file );
+            contributionFrameworkGenerator.generatePdf( false );
+        }
+
+        // Génération du mandat de maPrimeRenov
+        if ( ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO ) && ( this._file.quotation as CetQuotation | PgQuotation | RoQuotation ).maPrimeRenovBonus > 0 ) {
+            // TODO A FAIRE
+        }
+
     }
 
 
@@ -286,9 +299,6 @@ export class QuotationGenerator extends PdfGenerator {
      * @private
      */
     private _generateCustomerInfo(): Content {
-        console.log( 'HOUSING -->', this._file.housing );
-        console.log( this._file.housing.isAddressBenef );
-        console.log( !this._file.housing.isAddressBenef );
         return {
             margin:     [ 0, 3 ],
             lineHeight: 1.3,
@@ -803,13 +813,9 @@ export class QuotationGenerator extends PdfGenerator {
         const data: TableCell[][] = [];
 
         for ( const blankOption of this._file.quotation.blankOptions ) {
-            console.log( '%c BL OPTION', 'background: #fdd835; color: #000000' );
-            console.log( blankOption );
             if ( blankOption.number <= 0 || blankOption.label === '' ) {
                 continue;
             }
-
-            console.log( '%c After IF', 'background: #FF0007; color: #000000' );
 
             data.push( [
                            {
@@ -1204,13 +1210,11 @@ export class QuotationGenerator extends PdfGenerator {
      * @private
      */
     private _generateTexts(): Content {
-        console.log( 'CEE BONUS -->', this._file.quotation.ceeBonus );
         // TODO revoir les texts
         // Inclure des données dedans (montant prime, ....)
         const tableTexts: Table[] = [];
 
         for ( const text of this._file.quotation.texts ) {
-            console.log( 'TEXT', text.text );
             if ( text.text === '' || text.text === null || text.text === undefined ) {
                 continue;
             }
