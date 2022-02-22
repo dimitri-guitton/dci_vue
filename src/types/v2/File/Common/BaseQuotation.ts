@@ -19,4 +19,6 @@ export interface BaseQuotation {
     totalTtc: number;
     totalTva: number;
     remainderToPay: number;
+    ceeBonus: number;
+    tva: number;
 }

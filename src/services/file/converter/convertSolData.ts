@@ -231,6 +231,7 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             totalTva:           convertOldTotalTva( oldData ),
             totalTtc:           0,
             remainderToPay:     0,
+            ceeBonus:           0,
         },
         scales:                    convertOldScales( oldData ),
         statusInDci:               convertOldStatusDci( oldData ),

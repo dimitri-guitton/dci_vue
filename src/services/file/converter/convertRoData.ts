@@ -265,8 +265,6 @@ export const convertOldRoFile = ( oldData ): RoFile => {
             commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
             partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),
             texts:              convertOldText( oldData ),
-            tva10:              getNumberData( oldData [ 'devis' ][ 'tva10' ] ),
-            tva20:              getNumberData( oldData [ 'devis' ][ 'tva20' ] ),
             ceeBonus:           getNumberData( oldData [ 'devis' ][ 'primeCEE' ] ),
             maPrimeRenovBonus:  getNumberData( oldData [ 'devis' ][ 'primeAnah' ] ),
             discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
@@ -289,6 +287,7 @@ export const convertOldRoFile = ( oldData ): RoFile => {
             totalTva:           convertOldTotalTva( oldData ),
             totalTtc:           0,
             remainderToPay:     0,
+            tva:                getNumberData( oldData [ 'devis' ][ 'tva' ] ),
         },
         scales:                    convertOldScales( oldData ),
         bonusWithoutCdp:           {

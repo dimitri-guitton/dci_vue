@@ -1,6 +1,15 @@
 import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
-import { Content, ContentText, CustomTableLayout, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
-import { BLUE, GREEN, LOGO_ECO, LOGO_QUALIBOIS, LOGO_RGE_CERTIBAT } from '@/services/pdf/pdfVariable';
+import {
+    Content,
+    ContentStack,
+    ContentText,
+    CustomTableLayout,
+    StyleDictionary,
+    Table,
+    TableCell,
+    TDocumentDefinitions,
+} from 'pdfmake/interfaces';
+import { BLUE, GREEN, LOGO_ECO, LOGO_QUALIBOIS, LOGO_QUALIFELEC, LOGO_RGE_CERTIBAT } from '@/services/pdf/pdfVariable';
 import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { CetFile } from '@/types/v2/File/Cet/CetFile';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
@@ -22,12 +31,26 @@ import { CetQuotation } from '@/types/v2/File/Cet/CetQuotation';
 import { PgQuotation } from '@/types/v2/File/Pg/PgQuotation';
 import { toFrenchDate } from '@/services/commonService';
 
+enum PriceQuotation {
+    HT            = 'Total HT',
+    TTC           = 'Total TTC',
+    TVA           = 'TVA ${tva}',
+    TVA10         = 'TVA 10%',
+    TVA20         = 'TVA 20%',
+    CEE           = 'Prime CEE',
+    CEE_CPC       = 'Prime CEE « coup de pouce chauffage »',
+    maPrimeRenov  = 'Estimation MaPrimeRenov',
+    discount      = 'Remise',
+    laying        = 'Pose',
+    housingAction = 'Action logement'
+}
+
 export class QuotationGenerator extends PdfGenerator {
     private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile;
 
     private _style: StyleDictionary = {
         header:          {
-            fontSize: 14,
+            fontSize: 12,
             bold:     true,
         },
         tableHeader:     {
@@ -42,20 +65,19 @@ export class QuotationGenerator extends PdfGenerator {
         },
     };
 
-
     constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile ) {
         super();
         this._file = file;
-        this.type  = PdfType.Quotation;
+        console.log( 'FILE -->', file );
+        this.type = PdfType.Quotation;
 
         this.docDefinition = this._generateDocDefinition();
     }
 
-
     private _generateDocDefinition(): TDocumentDefinitions {
         return {
             content: [
-                this._generateHeader,
+                this._generateHeader(),
                 this._generateCommercialHeader(),
                 this._generateCustomerInfo(),
                 this._generateHousingInfo(),
@@ -63,77 +85,134 @@ export class QuotationGenerator extends PdfGenerator {
                 this._generateQuotationPrice(),
                 this._generateTexts(),
                 this._generateFinalePrice(),
-                this._generateSignature,
+                this._generateSignature(),
             ],
             styles:  this._style,
         };
     }
 
-    private _generateHeader: Content = {
-        margin:     [ 0, 0, 0, 5 ],
-        lineHeight: 1.5,
-        columns:    [
-            {
-                width: '60%',
-                stack: [
-                    {
-                        table:  {
-                            body: [
-                                [
-                                    {
-                                        image: LOGO_RGE_CERTIBAT,
-                                        width: 45,
-                                    },
-                                    {
-                                        image: LOGO_ECO,
-                                        width: 220,
-                                    },
-                                    {
-                                        image: LOGO_QUALIBOIS,
-                                        width: 45,
-                                    },
-                                ],
-                            ],
-                        },
-                        layout: {
-                            defaultBorder: false,
-                        },
-                    },
-                    {
-                        text:      'Siège social : 11 rue Françoise Giroud 17000 La Rochelle. Tél : 05.46.52.95.94',
-                        style:     'xsText',
-                        alignment: 'center',
-                    },
-                    {
-                        text:      'RCS LA ROCHELLE 79943519300054',
-                        style:     'xsText',
-                        alignment: 'center',
-                    },
-                ],
-            },
-            {
-                width: '*',
-                stack: [
-                    {
-                        text:  'Devis N° AA9-20360822T1752-PO',
-                        style: 'header',
-                    },
-                    {
-                        text:  'Qualibois QB/59396',
-                        style: 'text',
-                    },
-                    {
-                        columns: [
-                            { text: 'Date visite technique :' },
-                            { text: '22/08/2036', alignment: 'right' },
-                        ],
-                        style:   'text',
-                    },
-                ],
-            },
-        ],
-    };
+    /**
+     * Retoune les logo du header selon le type de devis
+     * @private
+     */
+    private _getHeaderLogo(): TableCell[][] {
+        const body: TableCell[][] = [
+            [
+                {
+                    image: LOGO_RGE_CERTIBAT,
+                    width: 45,
+                },
+                {
+                    image: LOGO_ECO,
+                    width: 220,
+                },
+            ],
+        ];
 
+        switch ( this._file.type ) {
+            case FILE_PAC_RR:
+            case FILE_PAC_RO:
+            case FILE_CET:
+                body[ 0 ].push( {
+                                    image: LOGO_QUALIFELEC,
+                                    width: 45,
+                                } );
+                break;
+            case FILE_PG:
+                body[ 0 ].push( {
+                                    image: LOGO_QUALIBOIS,
+                                    width: 45,
+                                } );
+                break;
+        }
+
+        return body;
+    }
+
+    /**
+     * Retoune le code RGE selon le type de devis
+     * @private
+     */
+    private _getHeaderCertificate(): ContentText {
+        let text = '';
+        switch ( this._file.type ) {
+            case FILE_PAC_RR:
+            case FILE_PAC_RO:
+            case FILE_CET:
+                text = 'RGE PAC : 09522 / RGE CET : 09520';
+                break;
+            case FILE_COMBLE:
+            case FILE_SOL:
+                text = 'RGE : RE15061';
+                break;
+            case FILE_PG:
+                text = 'Qualibois QB/59396';
+                break;
+        }
+
+        return {
+            text,
+            style: 'text',
+        };
+    }
+
+    /**
+     * Génère le Header
+     * @private
+     */
+    private _generateHeader(): Content {
+        return {
+            margin:     [ 0, 0, 0, 5 ],
+            lineHeight: 1.5,
+            columns:    [
+                {
+                    width: '60%',
+                    stack: [
+                        {
+                            table:  {
+                                body: this._getHeaderLogo(),
+                            },
+                            layout: {
+                                defaultBorder: false,
+                            },
+                        },
+                        {
+                            text:      'Siège social : 11 rue Françoise Giroud 17000 La Rochelle. Tél : 05.46.52.95.94',
+                            style:     'xsText',
+                            alignment: 'center',
+                        },
+                        {
+                            text:      'RCS LA ROCHELLE 79943519300054',
+                            style:     'xsText',
+                            alignment: 'center',
+                        },
+                    ],
+                },
+                {
+                    width: '40%',
+                    stack: [
+                        {
+                            text:  `Devis N° ${ this._file.ref }`,
+                            style: 'header',
+                        },
+                        this._getHeaderCertificate(),
+                        {
+                            columns: [
+                                { text: 'Date visite technique :' },
+                                { text: toFrenchDate( this._file.quotation.dateTechnicalVisit ), alignment: 'right' },
+                            ],
+                            style:   'text',
+                        },
+                    ],
+                },
+            ],
+        };
+    }
+
+    /**
+     * Génère les infos du commercial
+     * @private
+     */
     private _generateCommercialHeader(): Content {
         let technician = this._file.technician;
         if ( technician === undefined ) {
@@ -188,7 +267,14 @@ export class QuotationGenerator extends PdfGenerator {
         };
     }
 
+    /**
+     * Génère les infos du clients
+     * @private
+     */
     private _generateCustomerInfo(): Content {
+        console.log( 'HOUSING -->', this._file.housing );
+        console.log( this._file.housing.isAddressBenef );
+        console.log( !this._file.housing.isAddressBenef );
         return {
             margin:     [ 0, 3 ],
             lineHeight: 1.3,
@@ -201,6 +287,10 @@ export class QuotationGenerator extends PdfGenerator {
                                 {
                                     width: '30%',
                                     stack: [
+                                        {
+                                            text: 'Bénéficiaire(s)',
+                                            bold: true,
+                                        },
                                         'Nom / prénom :',
                                         'Adresse :',
                                         'Ville :',
@@ -213,6 +303,20 @@ export class QuotationGenerator extends PdfGenerator {
                                 {
                                     width: '*',
                                     stack: [
+                                        {
+                                            columns: [
+                                                {
+                                                    width: '50%',
+                                                    text:  `Nb.avis ${ this._file.assents.length }`,
+                                                    bold:  true,
+                                                },
+                                                {
+                                                    width: '*',
+                                                    text:  `Nb.per ${ this._file.housing.nbOccupant }`,
+                                                    bold:  true,
+                                                },
+                                            ],
+                                        },
                                         `${ this._file.beneficiary.firstName } ${ this._file.beneficiary.lastName }`,
                                         this._file.beneficiary.address,
                                         this._file.beneficiary.city,
@@ -225,7 +329,6 @@ export class QuotationGenerator extends PdfGenerator {
                             ],
                         },
                         {
-                            // TODO faire la différence des adresses
                             columns: [
                                 [
                                     {
@@ -249,10 +352,13 @@ export class QuotationGenerator extends PdfGenerator {
                                             {
                                                 width: '*',
                                                 stack: [
-                                                    ' ',
-                                                    ' ',
-                                                    ' ',
-                                                    '-',
+                                                    !this._file.housing.isAddressBenef ? this._file.housing.addresse : ' ',
+                                                    !this._file.housing.isAddressBenef ? this._file.housing.city : ' ',
+                                                    !this._file.housing.isAddressBenef ? this._file.housing.zipCode : ' ',
+                                                    !this._file.housing.isAddressBenef
+                                                    ? this.getValueInList( this._file.lists.batimentNatureList,
+                                                                           this._file.housing.buildingNature )
+                                                    : ' ',
                                                 ],
                                             },
                                         ],
@@ -288,11 +394,13 @@ export class QuotationGenerator extends PdfGenerator {
         };
     }
 
+    /**
+     * Retourne les infos du logement selon le type de devis
+     * @private
+     */
     private _getHousingData(): HousingItem {
         const housing = this._file.housing;
         let list: CombleList | SolList | RoList | RrList | CetList | PgList;
-        let quotation: CombleQuotation | SolQuotation | RoQuotation | RrQuotation | CetQuotation | PgQuotation;
-
         switch ( this._file.type ) {
             case FILE_COMBLE:
             case FILE_SOL:
@@ -310,8 +418,8 @@ export class QuotationGenerator extends PdfGenerator {
                     ],
                 };
             case FILE_PAC_RO:
-                list      = ( this._file.lists as RoList );
-                quotation = ( this._file.quotation as RoQuotation );
+                list              = ( this._file.lists as RoList );
+                const roQuotation = ( this._file.quotation as RoQuotation );
                 return {
                     left:  [
                         {
@@ -334,21 +442,21 @@ export class QuotationGenerator extends PdfGenerator {
                     right: [
                         {
                             label: 'Appareil à remplacer',
-                            value: quotation.deviceToReplace.type ? quotation.deviceToReplace.type : ' ',
+                            value: roQuotation.deviceToReplace.type ? roQuotation.deviceToReplace.type : ' ',
                         },
                         {
                             label: 'Marque',
-                            value: quotation.deviceToReplace.brand ? quotation.deviceToReplace.brand : ' ',
+                            value: roQuotation.deviceToReplace.brand ? roQuotation.deviceToReplace.brand : ' ',
                         },
                         {
                             label: 'Modèle',
-                            value: quotation.deviceToReplace.model ? quotation.deviceToReplace.model : ' ',
+                            value: roQuotation.deviceToReplace.model ? roQuotation.deviceToReplace.model : ' ',
                         },
                     ],
                 };
             case FILE_PAC_RR:
-                list      = ( this._file.lists as RrList );
-                quotation = ( this._file.quotation as RrQuotation );
+                list              = ( this._file.lists as RrList );
+                const rrQuotation = ( this._file.quotation as RrQuotation );
                 return {
                     left:  [
                         {
@@ -369,29 +477,29 @@ export class QuotationGenerator extends PdfGenerator {
                         },
                         {
                             label: 'Nombre de pièces',  // TODO ajouter le nombre de piece
-                            value: quotation.rrMulti.roomNumber.toString(),
+                            value: rrQuotation.rrMulti.roomNumber.toString(),
                         },
                     ],
                     right: [
                         {
                             label: 'Superficie de la pièce 1 (m2)',
-                            value: quotation.rrMulti.areaP1.toString(),
+                            value: rrQuotation.rrMulti.areaP1.toString(),
                         },
                         {
                             label: 'Superficie de la pièce 2 (m2)',
-                            value: quotation.rrMulti.roomNumber >= 2 ? quotation.rrMulti.areaP2.toString() : ' ',
+                            value: rrQuotation.rrMulti.roomNumber >= 2 ? rrQuotation.rrMulti.areaP2.toString() : ' ',
                         },
                         {
                             label: 'Superficie de la pièce 3 (m2)',
-                            value: quotation.rrMulti.roomNumber >= 3 ? quotation.rrMulti.areaP3.toString() : ' ',
+                            value: rrQuotation.rrMulti.roomNumber >= 3 ? rrQuotation.rrMulti.areaP3.toString() : ' ',
                         },
                         {
                             label: 'Superficie de la pièce 4 (m2)',
-                            value: quotation.rrMulti.roomNumber >= 4 ? quotation.rrMulti.areaP4.toString() : ' ',
+                            value: rrQuotation.rrMulti.roomNumber >= 4 ? rrQuotation.rrMulti.areaP4.toString() : ' ',
                         },
                         {
                             label: 'Superficie de la pièce 5 (m2)',
-                            value: quotation.rrMulti.roomNumber >= 4 ? quotation.rrMulti.areaP5.toString() : ' ',
+                            value: rrQuotation.rrMulti.roomNumber >= 4 ? rrQuotation.rrMulti.areaP5.toString() : ' ',
                         },
                     ],
                 };
@@ -436,6 +544,10 @@ export class QuotationGenerator extends PdfGenerator {
         };
     }
 
+    /**
+     * Génère les infos du logements
+     * @private
+     */
     private _generateHousingInfo(): Content {
         const data = this._getHousingData();
 
@@ -485,7 +597,7 @@ export class QuotationGenerator extends PdfGenerator {
             style:  'text',
             table:  {
                 widths: [ '25%', '25%', '25%', '25%' ],
-                body:   tableBody,
+                body: tableBody,
             },
             layout: {
                 ...this._getBorderLayout(),
@@ -509,6 +621,206 @@ export class QuotationGenerator extends PdfGenerator {
         };
     }
 
+    /**
+     * Retourne un sous titre dans le corp du devis si il y en à un
+     * @private
+     */
+    private _getQuotationSubTitle(): TableCell[] {
+        let text = '';
+        switch ( this._file.type ) {
+            case FILE_SOL:
+                text = 'Isolation d\'un plancher bas';
+                break;
+            case FILE_COMBLE:
+                text = 'Isolation des combles perdues';
+                break;
+            case FILE_PG:
+                text = 'Nature des travaux réalisés (Poêle à granulé ou pellets)';
+                break;
+            case FILE_PAC_RO:
+                text = 'Remplacement du système de chauffage par une pompe à chaleur air/eau';
+                break;
+            case FILE_PAC_RR:
+                text = 'Installation d\'une pompe à chaleur air/air';
+                break;
+        }
+
+        if ( text !== '' ) {
+            return [
+                {
+                    text,
+                    colSpan: 5,
+                },
+                {},
+                {},
+                {},
+                {},
+            ];
+        }
+
+        return [
+            {},
+            {},
+            {},
+            {},
+            {},
+        ];
+    }
+
+    /**
+     * Retourne les garanties selon le type de projet
+     * @private
+     */
+    private _getQuotationGuarantee(): TableCell[] {
+        let text = '';
+        switch ( this._file.type ) {
+            case FILE_PG:
+                text = 'GARANTIE 2ANS PIECES';
+                break;
+            case FILE_PAC_RO:
+                const rrQuotation = ( this._file.quotation as RrQuotation );
+
+                // TODO check que rrType est bien égale à 'mono' et a 'multi'
+                if ( rrQuotation.rrType === 'mono' && rrQuotation.assortment === 'sensira' ) {
+                    text = 'GARANTIE DAIKIN 3ANS PIECES ET 5ANS COMPRESSEUR';
+                } else {
+                    text = 'GARANTIE DAIKIN 3ANS PIECES ET 5ANS COMPRESSEUR';
+                }
+                break;
+            case FILE_PAC_RR:
+                text = 'Installation d\'une pompe à chaleur air/air';
+                break;
+        }
+
+        if ( text !== '' ) {
+            return [
+                {
+                    text,
+                    bold:     true,
+                    fontSize: 12,
+                    colSpan:  5,
+                },
+                {},
+                {},
+                {},
+                {},
+            ];
+        }
+
+        return [
+            {},
+            {},
+            {},
+            {},
+            {},
+        ];
+    }
+
+    /**
+     * Retourne les produits sélectionnés
+     * @private
+     */
+    private _getSelectedProducts(): TableCell[][] {
+        const data: TableCell[][] = [];
+
+        for ( const product of this._file.quotation.selectedProducts ) {
+            data.push( [
+                           {
+                               text: product.label,
+                           },
+                           {
+                               text: product.description,
+                           },
+                           {
+                               text:      '1u', // TODO GÉRER LA QUANTITÉ
+                               alignment: 'right',
+                           },
+                           {
+                               text:      this.formatPrice( product.pu ),
+                               alignment: 'right',
+                           },
+                           {
+                               text:      this.formatPrice( product.pu * 1 ),  // TODO GÉRER LA QUANTITÉ
+                               alignment: 'right',
+                           },
+                       ] );
+        }
+
+        return data;
+    }
+
+    /**
+     * Retournes les options
+     * @private
+     */
+    private _getOptions(): TableCell[][] {
+        const data: TableCell[][] = [];
+
+        for ( const option of this._file.quotation.options ) {
+            data.push( [
+                           {
+                               text:    option.label,
+                               colSpan: 2,
+                           },
+                           {},
+                           {
+                               text:      `${ option.number }u`,
+                               alignment: 'right',
+                           },
+                           {
+                               text:      this.formatPrice( option.pu ),
+                               alignment: 'right',
+                           },
+                           {
+                               text:      this.formatPrice( option.pu * option.number ),
+                               alignment: 'right',
+                           },
+                       ] );
+        }
+
+        return data;
+    }
+
+    /**
+     * Retourne les options vides
+     * @private
+     */
+    private _getBlankOptions(): TableCell[][] {
+        const data: TableCell[][] = [];
+
+        for ( const blankOption of this._file.quotation.blankOptions ) {
+            if ( blankOption.number <= 0 && blankOption.label === '' ) {
+                continue;
+            }
+
+            data.push( [
+                           {
+                               text:    blankOption.label,
+                               colSpan: 2,
+                           },
+                           {},
+                           {
+                               text:      `${ blankOption.number }u`,
+                               alignment: 'right',
+                           },
+                           {
+                               text:      this.formatPrice( blankOption.pu ),
+                               alignment: 'right',
+                           },
+                           {
+                               text:      this.formatPrice( blankOption.pu * blankOption.number ),
+                               alignment: 'right',
+                           },
+                       ] );
+        }
+
+        return data;
+    }
+
+    /**
+     * Génère le corp du devis
+     * @private
+     */
     private _generateQuotation(): Content {
         return {
             margin: [ 0, 3, 0, 0 ],
@@ -537,198 +849,11 @@ export class QuotationGenerator extends PdfGenerator {
                             style: 'tableHeader',
                         },
                     ],
-                    [
-                        {
-                            text:    'Nature des travaux réalisés (Poêle à granulé ou pellets)',
-                            colSpan: 5,
-                        },
-                        {},
-                        {},
-                        {},
-                        {},
-                    ],
-                    [
-                        {
-                            text: 'BRIDGE/1/8KW/C/4',
-                        },
-                        {
-                            text: 'JOLLY MEC BRIDGE 8KW PIERRE OLLAIRE\n' +
-                                      'Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n' +
-                                      '\n- Sortie de fumée arrière ou supérieure.\n' +
-                                      '- 5 niveau de fonctionnement + fonction SILENT.\n' +
-                                      '- Humidificateur intégré (améliore la qualité de l’air).\n' +
-                                      '- Brasier en fonte\n' +
-                                      '- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n' +
-                                      '- Résistance en céramique (réduction de 40 % des temps d’allumage).\n' +
-                                      '- Capacité du réservoir : 18 litres\n' +
-                                      '- Autonomie min : 10h\n' +
-                                      '- Autonomie max : 29h\n' +
-                                      '- Volume à chauffer : 174m3 à 230 m3\n' +
-                                      '- Poids : 116 kg\n' +
-                                      '- Dimensions en cm : P= 53,5 L = 52,6 H = 1162',
-                        },
-                        {
-                            text:      '1u',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '3620.00 €',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '3620.00 €',
-                            alignment: 'right',
-                        },
-                    ],
-                    [
-                        {
-                            text: ' ',
-                        },
-                        {
-                            text: 'Boisseau existant maçonné départ au plafond\n' +
-                                      'KIT KRFLCTé fumée Té air\n' +
-                                      'Adaptateur poêle Tuyau réglable\n' +
-                                      'Tube concentrique 1000mm Tube concentrique 500mm Chapeau CTIVCollier de maintien Gaine',
-                        },
-                        {
-                            text:      '1u',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '1000.00 €',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '1000.00 €',
-                            alignment: 'right',
-                        },
-                    ],
-                    [
-                        {
-                            text:     'GARANTIE 2ANS PIECES',
-                            bold:     true,
-                            fontSize: 14,
-                            colSpan:  5,
-                        },
-                        {},
-                        {},
-                        {},
-                        {},
-                    ],
-                    [
-                        {
-                            text:    'Forfait pose (livraison,pose et mise en service de l’appareil)',
-                            colSpan: 2,
-                        },
-                        {},
-                        {
-                            text:      '1u',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '700.00 €',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '700.00 €',
-                            alignment: 'right',
-                        },
-                    ],
-                    [
-                        {
-                            text:    'Forfait fournitures',
-                            colSpan: 2,
-                        },
-                        {},
-                        {
-                            text:      '1u',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '50.00 €',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '50.00 €',
-                            alignment: 'right',
-                        },
-                    ],
-                    [
-                        {
-                            text:    'Forfait enlèvement cheminée existante',
-                            colSpan: 2,
-                        },
-                        {},
-                        {
-                            text:      '0u',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '950.00 €',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '950.00 €',
-                            alignment: 'right',
-                        },
-                    ],
-                    [
-                        {
-                            text:    'Plaque de sol en acier noir',
-                            colSpan: 2,
-                        },
-                        {},
-                        {
-                            text:      '0u',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '149.00 €',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '149.00 €',
-                            alignment: 'right',
-                        },
-                    ],
-                    [
-                        {
-                            text:    'Option poêle 6 KW',
-                            colSpan: 2,
-                        },
-                        {},
-                        {
-                            text:      '1u',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '0.00 €',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '0.00 €',
-                            alignment: 'right',
-                        },
-                    ],
-                    [
-                        {
-                            text:    'Option WIFI intégrée',
-                            colSpan: 2,
-                        },
-                        {},
-                        {
-                            text:      '1u',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '0.00 €',
-                            alignment: 'right',
-                        },
-                        {
-                            text:      '0.00 €',
-                            alignment: 'right',
-                        },
-                    ],
+                    this._getQuotationSubTitle(),
+                    ...this._getSelectedProducts(),
+                    this._getQuotationGuarantee(),
+                    ...this._getOptions(),
+                    ...this._getBlankOptions(),
                 ],
             },
             layout: this._getTableLayout(),
@@ -736,6 +861,229 @@ export class QuotationGenerator extends PdfGenerator {
         };
     }
 
+    /**
+     * Retourne MaPrimeRenov si i y en a une
+     * @private
+     */
+    private _getMaPrimeRenov(): ContentText {
+        let text = '';
+        switch ( this._file.type ) {
+            case FILE_PG:
+            case FILE_CET:
+            case FILE_PAC_RO:
+                const quotation = ( this._file.quotation as PgQuotation | CetQuotation | RoQuotation );
+                text            = this.formatPrice( quotation.maPrimeRenovBonus );
+        }
+
+        return {
+            text,
+            alignment:  'right',
+            lineHeight: 2,
+        };
+    }
+
+    /**
+     * Retourne les prix (HT, TVA, prime,...)
+     * @private
+     */
+    private _getPriceColumn(): ContentStack {
+        let items: string[] = [];
+
+        switch ( this._file.type ) {
+            case FILE_CET:
+            case FILE_PG:
+                items = [
+                    PriceQuotation.HT,
+                    PriceQuotation.TVA,
+                    PriceQuotation.TTC,
+                    PriceQuotation.CEE,
+                    PriceQuotation.maPrimeRenov,
+                ];
+                break;
+            case FILE_PAC_RO:
+                const roQuotation = ( this._file.quotation as RoQuotation );
+                if ( roQuotation.deviceToReplace.type === 'aucun' || roQuotation.deviceToReplace.type === 'autre' ) {
+                    items = [
+                        PriceQuotation.HT,
+                        PriceQuotation.TVA,
+                        PriceQuotation.TTC,
+                        PriceQuotation.CEE,
+                        PriceQuotation.maPrimeRenov,
+                    ];
+                } else {
+                    items = [
+                        PriceQuotation.HT,
+                        PriceQuotation.TVA,
+                        PriceQuotation.TTC,
+                        PriceQuotation.CEE_CPC,
+                        PriceQuotation.maPrimeRenov,
+                    ];
+                }
+
+                if ( roQuotation.discount > 0 ) {
+                    items.push( PriceQuotation.discount );
+                }
+                break;
+            case FILE_PAC_RR:
+                const rrQuotation = ( this._file.quotation as RrQuotation );
+
+                if ( this._file.housing.lessThan2Years ) {
+                    items = [
+                        PriceQuotation.HT,
+                        PriceQuotation.TVA,
+                        PriceQuotation.TTC,
+                        PriceQuotation.CEE,
+                        PriceQuotation.maPrimeRenov,
+                    ];
+
+                } else {
+                    items = [
+                        PriceQuotation.HT,
+                        PriceQuotation.TVA10,
+                        PriceQuotation.TVA20,
+                        PriceQuotation.TTC,
+                        PriceQuotation.CEE,
+                        PriceQuotation.maPrimeRenov,
+                    ];
+                }
+
+                if ( rrQuotation.discount > 0 ) {
+                    items.push( PriceQuotation.discount );
+                }
+                break;
+            case FILE_COMBLE:
+            case FILE_SOL:
+                items = [
+                    PriceQuotation.laying,
+                    PriceQuotation.HT,
+                    PriceQuotation.TVA,
+                    PriceQuotation.TTC,
+                ];
+                if ( this._file.enabledHousingAction ) {
+                    items.push( PriceQuotation.housingAction );
+                } else if ( !this._file.housing.lessThan2Years && !this._file.disabledBonus ) {
+                    items.push( PriceQuotation.CEE );
+                }
+                break;
+        }
+
+        const leftColumn: ContentText[]                                                                          = [];
+        const rightColumn: ContentText[]                                                                         = [];
+        const quotation: CombleQuotation | SolQuotation | RoQuotation | RrQuotation | CetQuotation | PgQuotation = this._file.quotation;
+        for ( const item of items ) {
+            if ( item === PriceQuotation.TVA ) {
+                leftColumn.push( {
+                                     text:       item.replace( '${tva}', this.formatPrice( this._file.quotation.tva ) ),
+                                     lineHeight: 2,
+                                 } );
+
+            } else {
+                leftColumn.push( {
+                                     text:       item,
+                                     lineHeight: 2,
+                                 } );
+            }
+
+            switch ( item ) {
+                case PriceQuotation.HT:
+                    rightColumn.push( {
+                                          text:       this.formatPrice( quotation.totalHt ),
+                                          alignment:  'right',
+                                          lineHeight: 2,
+                                      } );
+                    break;
+                case PriceQuotation.TTC:
+                    rightColumn.push( {
+                                          text:       this.formatPrice( quotation.totalTtc ),
+                                          alignment:  'right',
+                                          lineHeight: 2,
+                                      } );
+                    break;
+                case PriceQuotation.TVA:
+                    rightColumn.push( {
+                                          text:       this.formatPrice( quotation.totalTva ),
+                                          alignment:  'right',
+                                          lineHeight: 2,
+                                      } );
+                    break;
+                case PriceQuotation.TVA10:
+                    rightColumn.push( {
+                                          text:       this.formatPrice( ( quotation as RrQuotation ).tva10 ),
+                                          alignment:  'right',
+                                          lineHeight: 2,
+                                      } );
+                    break;
+                case PriceQuotation.TVA20:
+                    rightColumn.push( {
+                                          text:       this.formatPrice( ( quotation as RrQuotation ).tva20 ),
+                                          alignment:  'right',
+                                          lineHeight: 2,
+                                      } );
+                    break;
+                case PriceQuotation.CEE:
+                    rightColumn.push( {
+                                          text:       this.formatPrice( quotation.ceeBonus ),
+                                          alignment:  'right',
+                                          lineHeight: 2,
+                                      } );
+                    break;
+                case PriceQuotation.CEE_CPC:
+                    rightColumn.push( {
+                                          text:       this.formatPrice( quotation.ceeBonus ),
+                                          alignment:  'right',
+                                          lineHeight: 2,
+                                      } );
+                    break;
+                case PriceQuotation.maPrimeRenov:
+                    rightColumn.push( this._getMaPrimeRenov() );
+                    break;
+                case PriceQuotation.discount:
+                    rightColumn.push( {
+                                          text:       this.formatPrice( quotation.discount ),
+                                          alignment:  'right',
+                                          lineHeight: 2,
+                                      } );
+                    break;
+                case PriceQuotation.laying:
+                    rightColumn.push( {
+                                          text:       'TODO',
+                                          alignment:  'right',
+                                          lineHeight: 2,
+                                      } );
+                    break;
+                case PriceQuotation.housingAction:
+                    rightColumn.push( {
+                                          text:       'TODO',
+                                          alignment:  'right',
+                                          lineHeight: 2,
+                                      } );
+                    break;
+            }
+        }
+
+
+        return {
+            stack: [
+                {
+                    columns: [
+                        {
+                            width: '70%',
+                            stack: leftColumn,
+                        },
+                        {
+                            width: '*',
+                            stack: rightColumn,
+                        },
+                    ],
+                },
+            ],
+        };
+    }
+
+    /**
+     * Génère les prix du devis
+     * @private
+     */
     private _generateQuotationPrice(): Content {
         const quotation: CombleQuotation | SolQuotation | RoQuotation | RrQuotation | CetQuotation | PgQuotation = this._file.quotation;
 
@@ -743,7 +1091,7 @@ export class QuotationGenerator extends PdfGenerator {
             margin: [ 0, 0 ],
             style:  [ 'table' ],
             table:  {
-                body:   [
+                body: [
                     [
                         {
                             stack: [
@@ -758,69 +1106,7 @@ export class QuotationGenerator extends PdfGenerator {
                                 },
                             ],
                         },
-                        {
-                            stack: [
-                                {
-                                    columns: [
-                                        {
-                                            width: '70%',
-                                            stack: [
-                                                {
-                                                    text:       'Total HT',
-                                                    lineHeight: 2,
-                                                },
-                                                {
-                                                    text:       'TVA 5.5%',
-                                                    lineHeight: 2,
-                                                },
-                                                {
-                                                    text:       'Total TTC',
-                                                    lineHeight: 2,
-                                                },
-                                                {
-                                                    text:       'Primce CEE (1)',
-                                                    lineHeight: 2,
-                                                },
-                                                {
-                                                    text:       'Estimation MaPrimeRenov',
-                                                    lineHeight: 2,
-                                                },
-                                            ],
-                                        },
-                                        {
-                                            width: '*',
-                                            stack: [
-                                                {
-                                                    text:       this.formatPrice( quotation.totalHt ),
-                                                    alignment:  'right',
-                                                    lineHeight: 2,
-                                                },
-                                                {
-                                                    text:       this.formatPrice( quotation.totalTva ),
-                                                    alignment:  'right',
-                                                    lineHeight: 2,
-                                                },
-                                                {
-                                                    text:       this.formatPrice( quotation.totalTtc ),
-                                                    alignment:  'right',
-                                                    lineHeight: 2,
-                                                },
-                                                {
-                                                    text:       `TODO`,
-                                                    alignment:  'right',
-                                                    lineHeight: 2,
-                                                },
-                                                {
-                                                    text:       `TODO`,
-                                                    alignment:  'right',
-                                                    lineHeight: 2,
-                                                },
-                                            ],
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
+                        this._getPriceColumn(),
                     ],
                     [
                         {
@@ -875,55 +1161,60 @@ export class QuotationGenerator extends PdfGenerator {
         };
     }
 
+    /**
+     * Génère les textes selon le type de devis
+     * @private
+     */
     private _generateTexts(): Content {
+        // TODO revoir les texts
+        // Logique si présent ou non selon les primes actives
+        // Inclure des données dedans (montant prime, ....)
+        const tableTexts: Table[] = [];
+
+        for ( const text of this._file.quotation.texts ) {
+            console.log( 'TEXT', text.text );
+            if ( text.text === '' || text.text === null || text.text === undefined ) {
+                continue;
+            }
+            tableTexts.push( {
+                                 body:   [
+                                     [
+                                         {
+                                             text:  text.title,
+                                             style: 'tableHeader',
+                                         },
+                                     ],
+                                     [
+                                         {
+                                             text: text.text,
+                                         },
+                                     ],
+                                 ],
+                                 widths: [ '100%' ],
+                             } );
+        }
+
+        const stack: Content[] = [];
+        for ( const table of tableTexts ) {
+            stack.push( {
+                            unbreakable: true,
+                            margin:      [ 0, 10 ],
+                            table,
+                            layout:      this._getTableLayout(),
+                        } );
+        }
+
+
         return {
             style: [ 'table' ],
-            stack: [
-                {
-                    margin: [ 0, 10 ],
-                    table:  {
-                        body:   [
-                            [
-                                {
-                                    text:  'Modalité de paiement : Prime CEE versée directement à Eco Atlantique par Vos Travaux Eco',
-                                    style: 'tableHeader',
-                                },
-                            ],
-                            [
-                                {
-                                    text: 'Les travaux relatifs à ce document sont éligibles au dispositif des certificats d’économies d’énergie. Dans ce cadre, l’obligé « Vos Travaux Eco », grâce à son partenaire Eco Atlantique, me fait bénéficier d’une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique.\n' +
-                                              'La TVA à taux réduit de 5,5% ne s\'applique qu\'à des commandes passées par des particuliers et relative à des locaux à usage d\'habitation dont la construction est achevée depuis plus de deux ans. Réalisation du chantier par Allaire du temps and co Siren 852284983 Qualibois Module Air QB/58881',
-                                },
-                            ],
-                        ],
-                        widths: [ '100%' ],
-                    },
-                    layout: this._getTableLayout(),
-                },
-                {
-                    margin: [ 0, 10 ],
-                    table:  {
-                        body:   [
-                            [
-                                {
-                                    text:  'MaPrimeRénov\'',
-                                    style: 'tableHeader',
-                                },
-                            ],
-                            [
-                                {
-                                    text: '«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif.L’aide MaPrimeRénov’ est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire. En cas de fausse déclaration, de manœuvre frauduleuse ou de changement du projet de travaux subventionnés, le bénéficiaire s’expose au retrait et reversement de tout ou partie de l’aide. Les services de l’Anah pourront faire procéder à tout contrôle des engagements et sanctionner le bénéficiaire et son mandataire éventuel des manquements constatés ».',
-                                },
-                            ],
-                        ],
-                        widths: [ '100%' ],
-                    },
-                    layout: this._getTableLayout(),
-                },
-            ],
+            stack,
         };
     }
 
+    /**
+     * Génère le prix final
+     * @private
+     */
     private _generateFinalePrice(): Content {
         return {
             margin:     [ 0, 15, 0, 0 ],
@@ -1002,54 +1293,64 @@ export class QuotationGenerator extends PdfGenerator {
         };
     }
 
-    private _generateSignature: Content = {
-        margin:     [ 0, 25, 0, 0 ],
-        lineHeight: 2,
-        fontSize:   10,
-        stack:      [
-            {
-                columns: [
-                    {
-                        width: '50%',
-                        stack: [
-                            {
-                                text: 'Technicien conseil :',
-                            },
-                            {
-                                text: 'Fait à :',
-                            },
-                            {
-                                text: 'Le :',
-                            },
-                        ],
-                    },
-                    {
-                        width: '*',
-                        stack: [
-                            {
-                                text: 'DEVIS N° AA9-20360822T1752-PO',
-                            },
-                            {
-                                text: [
-                                    'Signature du client avec la mention ',
-                                    { text: '"bon pour commande"', bold: true },
-                                    ' :',
-                                ],
-                            },
-                            {
-                                text: 'Fait à :',
-                            },
-                            {
-                                text: 'Le :',
-                            },
-                        ],
-                    },
-                ],
-            },
-            'Conditions générales de vente et bon de rétractation au verso',
-        ],
-    };
+    /**
+     * Génère la partie signature
+     * @private
+     */
+    private _generateSignature(): Content {
+        return {
+            margin:     [ 0, 25, 0, 0 ],
+            lineHeight: 2,
+            fontSize:   10,
+            stack:      [
+                {
+                    columns: [
+                        {
+                            width: '50%',
+                            stack: [
+                                {
+                                    text: 'Technicien conseil :',
+                                },
+                                {
+                                    text: 'Fait à :',
+                                },
+                                {
+                                    text: 'Le :',
+                                },
+                            ],
+                        },
+                        {
+                            width: '*',
+                            stack: [
+                                {
+                                    text: `DEVIS N° ${ this._file.ref }`,
+                                },
+                                {
+                                    text: [
+                                        'Signature du client avec la mention ',
+                                        { text: '"bon pour commande"', bold: true },
+                                        ' :',
+                                    ],
+                                },
+                                {
+                                    text: 'Fait à :',
+                                },
+                                {
+                                    text: 'Le :',
+                                },
+                            ],
+                        },
+                    ],
+                },
+                'Conditions générales de vente et bon de rétractation au verso',
+            ],
+        };
+    }
 
+    /**
+     * Retourne la layout pour les tableau bordures vertes + header bleu
+     * @private
+     */
     private _getTableLayout(): CustomTableLayout {
         {
             return {
@@ -1097,6 +1398,10 @@ export class QuotationGenerator extends PdfGenerator {
         }
     }
 
+    /**
+     * Retourne la layout pour les tableau bordures vertes
+     * @private
+     */
     private _getBorderLayout(): CustomTableLayout {
         return {
             hLineWidth:    function ( i, node ) {

@@ -3,9 +3,6 @@ import RoEcsDeporte from '@/types/v2/File/Ro/RoEcsDeporte';
 import RoKitBiZone from '@/types/v2/File/Ro/RoKitBiZone';
 
 export interface RoQuotation extends BaseQuotation {
-    tva10: number;
-    tva20: number;
-    ceeBonus: number;
     maPrimeRenovBonus: number;
     assortment: string; // Anciennement gamme
     volumeECS: number;
