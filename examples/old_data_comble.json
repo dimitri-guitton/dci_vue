@@ -220,43 +220,18 @@
     "disablePrimeCEE":          false,
     "disablePrimeMaprimerenov": false,
     "enabledActionLogement":    false,
-    "avis":                     [
-        {
-            "uid":            "WRlP3t_ls",
-            "refAvis":        "",
-            "numFiscal":      "",
-            "isbeneficiaire": true,
-            "datagouv":       {
-                "loaded":    false,
-                "refAvis":   "",
-                "numFiscal": "",
-                "nom":       "",
-                "prenom":    "",
-                "adresse":   "",
-                "ville":     "",
-                "revenu":    "",
-                "error":     false
-            },
-            "civilite":       "M",
-            "nom":            "BARS",
-            "prenom":         "DAVID",
-            "adresse":        "14 RUE DU VAL DE l'INDRE APPARTEMENT 15",
-            "codepostal":     "36250",
-            "ville":          "SAINT MAUR",
-            "revenu":         "500000"
-        }
-    ],
+    "avis":                     [],
     "beneficiaire":             {
         "civilite":   "M",
-        "nom":        "BARS",
-        "prenom":     "DAVID",
-        "adresse":    "14 RUE DU VAL DE l'INDRE APPARTEMENT 15",
-        "codepostal": "36250",
-        "ville":      "SAINT MAUR"
+        "nom":        "DUPOND",
+        "prenom":     "JEAN",
+        "adresse":    "",
+        "codepostal": "",
+        "ville":      ""
     },
-    "email":                    "d_bars@orange.fr",
+    "email":                    "test@test.fr",
     "telfixe":                  "",
-    "telportable":              "06 62 70 36 18",
+    "telportable":              "",
     "codePrime":                "CL",
     "zoneEnergetique":          "H2",
     "tauxPrime":                9.24,
@@ -267,10 +242,10 @@
         "batimentNature": "",
         "typeChaudiere":  "aucun",
         "isAdresseBenef": true,
-        "adresse":        "3 r du val de l'indre",
-        "codepostal":     "36250",
-        "ville":          "Saint-Maur",
-        "parcelle":       "000 / AW / 0122",
+        "adresse":        "",
+        "codepostal":     "",
+        "ville":          "",
+        "parcelle":       "",
         "superficie":     "45",
         "dataGeoportail": {
             "zoom":       20,
@@ -282,10 +257,10 @@
                 1.6624210774898531,
                 46.81178439857038
             ],
-            "codepostal": "36250",
-            "ville":      "Saint-Maur",
-            "adresse":    "3 r du val de l'indre",
-            "parcelle":   "000 / AW / 0122"
+            "codepostal": "",
+            "ville":      "",
+            "adresse":    "",
+            "parcelle":   ""
         },
         "location":       "",
         "moinsDe2Ans":    false
@@ -904,7 +879,7 @@
         "H3": 9.24
     },
     "ref":                      "JT11-20210928T1514-CO",
-    "folderName":               "JT11-20210928T1514-CO (BARS DAVID)",
+    "folderName":               "JT11-20210928T1514-CO (DUPOND JEAN)",
     "createdAt":                "2021-09-28T15:14:31.621",
     "statutInDCI":              2,
     "statutInDCIErrors":        [
@@ -913,9 +888,9 @@
     ],
     "technicien":               {
         "nom":    "Jeremy",
-        "prenom": "Thomas",
+        "prenom": "JEAN",
         "id":     11,
-        "tel":    "0645118070"
+        "tel":    ""
     },
     "updatedAt":                "2021-09-28T15:21:48.420"
 }

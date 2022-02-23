@@ -1232,43 +1232,18 @@
     "disablePrimeCEE":          false,
     "disablePrimeMaprimerenov": false,
     "enabledActionLogement":    false,
-    "avis":                     [
-        {
-            "uid":            "os7XDVzmr",
-            "refAvis":        "2136A10015363",
-            "numFiscal":      "1563464696409",
-            "isbeneficiaire": true,
-            "datagouv":       {
-                "refAvis":   "2136A10015363",
-                "numFiscal": "1563464696409",
-                "loaded":    true,
-                "nom":       "CLEMENT",
-                "prenom":    "JEAN MICHEL ALAIN",
-                "adresse":   "6 RTE DE MEUSNES",
-                "ville":     "36600 LA VERNELLE",
-                "revenu":    26177,
-                "error":     false
-            },
-            "nom":            "CLEMENT",
-            "prenom":         "JEAN MICHEL ALAIN",
-            "adresse":        "6 RTE DE MEUSNES",
-            "codepostal":     "36600",
-            "ville":          "LA VERNELLE",
-            "revenu":         26177,
-            "civilite":       "M"
-        }
-    ],
+    "avis":                     [],
     "beneficiaire":             {
         "civilite":   "M",
-        "nom":        "CLEMENT",
-        "prenom":     "JEAN MICHEL ALAIN",
-        "adresse":    "6 RTE DE MEUSNES",
-        "codepostal": "36600",
-        "ville":      "LA VERNELLE"
+        "nom":        "DUPOND",
+        "prenom":     "JEAN",
+        "adresse":    "",
+        "codepostal": "",
+        "ville":      ""
     },
-    "email":                    "jean-michelclement@orange.fr",
+    "email":                    "test@test.fr",
     "telfixe":                  "",
-    "telportable":              "06 84 92 21 93",
+    "telportable":              "",
     "codePrime":                "IT",
     "zoneEnergetique":          "H2",
     "tauxPrime":                13,
@@ -1942,7 +1917,7 @@
         }
     },
     "ref":                      "JT11-20211005T1533-PA_RO",
-    "folderName":               "JT11-20211005T1533-PA_RO (CLEMENT JEAN MICHEL)",
+    "folderName":               "JT11-20211005T1533-PA_RO (DUPOND JEAN)",
     "createdAt":                "2021-10-05T15:33:32.971",
     "statutInDCI":              2,
     "statutInDCIErrors":        [
@@ -1953,9 +1928,9 @@
     ],
     "technicien":               {
         "nom":    "Jeremy",
-        "prenom": "Thomas",
+        "prenom": "JEAN",
         "id":     11,
-        "tel":    "0645118070"
+        "tel":    ""
     },
     "updatedAt":                "2021-10-05T15:41:43.702"
 }

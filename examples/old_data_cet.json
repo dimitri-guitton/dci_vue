@@ -141,43 +141,18 @@
     "disablePrimeCEE":          false,
     "disablePrimeMaprimerenov": false,
     "enabledActionLogement":    false,
-    "avis":                     [
-        {
-            "uid":            "CypsAx8ze",
-            "refAvis":        "2039A11448488",
-            "numFiscal":      "1585668444185",
-            "isbeneficiaire": true,
-            "datagouv":       {
-                "refAvis":   "2039A11448488",
-                "numFiscal": "1585668444185",
-                "loaded":    true,
-                "nom":       "RAYMOND",
-                "prenom":    "JEAN JACQUES",
-                "adresse":   "19 AV HENRI GRENAT",
-                "ville":     "39000 LONS LE SAUNIER",
-                "revenu":    19858,
-                "error":     false
-            },
-            "civilite":       "M",
-            "nom":            "RAYMOND",
-            "prenom":         "JEAN JACQUES",
-            "adresse":        "12 ROUTE DE LA CHATRE LIEU DIT CHASSIGNIERES",
-            "codepostal":     "36230",
-            "ville":          "MONTIPOURET",
-            "revenu":         "19858"
-        }
-    ],
+    "avis":                     [],
     "beneficiaire":             {
         "civilite":   "M",
-        "nom":        "RAYMOND",
-        "prenom":     "JEAN JACQUES",
-        "adresse":    "12 ROUTE DE LA CHATRE LIEU DIT CHASSIGNIERES",
-        "codepostal": "36230",
-        "ville":      "MONTIPOURET"
+        "nom":        "DUPOND",
+        "prenom":     "JEAN",
+        "adresse":    "",
+        "codepostal": "",
+        "ville":      ""
     },
     "email":                    "",
     "telfixe":                  "",
-    "telportable":              "06 28 32 83 69",
+    "telportable":              "",
     "codePrime":                "GP",
     "zoneEnergetique":          "H2",
     "tauxPrime":                "206.00",
@@ -187,10 +162,10 @@
         "batimentNature":    "",
         "typeChaudiere":     "aucun",
         "isAdresseBenef":    true,
-        "adresse":           "328 chassignieres",
-        "codepostal":        "36230",
-        "ville":             "Montipouret",
-        "parcelle":          "000 / 0C / 1092",
+        "adresse":           "",
+        "codepostal":        "",
+        "ville":             "",
+        "parcelle":          "",
         "superficie":        "",
         "dataGeoportail":    {
             "zoom":       19,
@@ -202,10 +177,10 @@
                 1.9021166861057277,
                 46.636677695942126
             ],
-            "codepostal": "36230",
-            "ville":      "Montipouret",
-            "adresse":    "328 chassignieres",
-            "parcelle":   "000 / 0C / 1092"
+            "codepostal": "",
+            "ville":      "",
+            "adresse":    "",
+            "parcelle":   ""
         },
         "location":          "",
         "moinsDe2Ans":       false,
@@ -820,7 +795,7 @@
     "attestationTvaSimplifiee": "attestationTvaSimplifiee.html",
     "cerfaMandat":              "cerfa-mandat.html",
     "ref":                      "JT11-20211001T0957-CE",
-    "folderName":               "JT11-20211001T0957-CE (RAYMOND JEAN)",
+    "folderName":               "JT11-20211001T0957-CE (DUPOND JEAN)",
     "createdAt":                "2021-10-01T09:57:32.594",
     "statutInDCI":              2,
     "statutInDCIErrors":        [
@@ -829,9 +804,9 @@
     ],
     "technicien":               {
         "nom":    "Jeremy",
-        "prenom": "Thomas",
+        "prenom": "JEAN",
         "id":     11,
-        "tel":    "0645118070"
+        "tel":    ""
     },
     "updatedAt":                "2021-10-07T11:45:54.626"
 }

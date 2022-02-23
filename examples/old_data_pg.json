@@ -878,43 +878,18 @@
     "disablePrimeCEE":          false,
     "disablePrimeMaprimerenov": false,
     "enabledActionLogement":    false,
-    "avis":                     [
-        {
-            "uid":            "uXIpQbdZb",
-            "refAvis":        "2036A02699916",
-            "numFiscal":      "1562873023474",
-            "isbeneficiaire": true,
-            "datagouv":       {
-                "refAvis":   "2036A02699916",
-                "numFiscal": "1562873023474",
-                "loaded":    true,
-                "nom":       "JAILLET",
-                "prenom":    "THIERRY",
-                "adresse":   "31 RUE DE PIED FAVE",
-                "ville":     "36120 MARON",
-                "revenu":    27246,
-                "error":     false
-            },
-            "nom":            "JAILLET",
-            "prenom":         "THIERRY",
-            "adresse":        "31 RUE DE PIED FAVE",
-            "codepostal":     "36120",
-            "ville":          "MARON",
-            "revenu":         27246,
-            "civilite":       "M"
-        }
-    ],
+    "avis":                     [],
     "beneficiaire":             {
         "civilite":   "M",
-        "nom":        "JAILLET",
-        "prenom":     "THIERRY",
-        "adresse":    "31 RUE DE PIED FAVE",
-        "codepostal": "36120",
-        "ville":      "MARON"
+        "nom":        "DUPOND",
+        "prenom":     "JEAN",
+        "adresse":    "",
+        "codepostal": "",
+        "ville":      ""
     },
-    "email":                    "laouaria.asstito@wanadoo.fr",
+    "email":                    "test@test.fr",
     "telfixe":                  "",
-    "telportable":              "06 07 01 52 29",
+    "telportable":              "",
     "codePrime":                "GP",
     "zoneEnergetique":          "H2",
     "tauxPrime":                31.3,
@@ -1563,7 +1538,7 @@
         "H3": 20.9
     },
     "ref":                      "JT11-20211006T1139-PO",
-    "folderName":               "JT11-20211006T1139-PO (JAILLET THIERRY)",
+    "folderName":               "JT11-20211006T1139-PO (DUPOND JEAN)",
     "createdAt":                "2021-10-06T11:39:29.697",
     "statutInDCI":              2,
     "statutInDCIErrors":        [
@@ -1575,9 +1550,9 @@
     ],
     "technicien":               {
         "nom":    "Jeremy",
-        "prenom": "Thomas",
+        "prenom": "JEAN",
         "id":     11,
-        "tel":    "0645118070"
+        "tel":    ""
     },
     "updatedAt":                "2021-10-06T11:49:47.650"
 }

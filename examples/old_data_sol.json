@@ -108,39 +108,14 @@
     "disablePrimeCEE":          false,
     "disablePrimeMaprimerenov": false,
     "enabledActionLogement":    false,
-    "avis":                     [
-        {
-            "uid":            "aZ-FL7PBc",
-            "refAvis":        "2087A13656564",
-            "numFiscal":      "1189014087380",
-            "isbeneficiaire": true,
-            "datagouv":       {
-                "refAvis":   "2087A13656564",
-                "numFiscal": "1189014087380",
-                "loaded":    true,
-                "nom":       "BOIJOUX",
-                "prenom":    "SOLANGE",
-                "adresse":   "7 RUE PIERRE DE COUBERTIN",
-                "ville":     "87420 ST VICTURNIEN",
-                "revenu":    6749,
-                "error":     false
-            },
-            "nom":            "BOIJOUX",
-            "prenom":         "SOLANGE",
-            "adresse":        "7 RUE PIERRE DE COUBERTIN",
-            "codepostal":     "87420",
-            "ville":          "ST VICTURNIEN",
-            "revenu":         6749,
-            "civilite":       "Mme"
-        }
-    ],
+    "avis":                     [],
     "beneficiaire":             {
         "civilite":   "Mme",
-        "nom":        "BOIJOUX",
-        "prenom":     "SOLANGE",
-        "adresse":    "7 RUE PIERRE DE COUBERTIN",
-        "codepostal": "87420",
-        "ville":      "ST VICTURNIEN"
+        "nom":        "DUPOND",
+        "prenom":     "JEAN",
+        "adresse":    "",
+        "codepostal": "",
+        "ville":      ""
     },
     "email":                    "",
     "telfixe":                  "",
@@ -155,10 +130,10 @@
         "batimentNature": "",
         "typeChaudiere":  "aucun",
         "isAdresseBenef": true,
-        "adresse":        "7 r pierre de coubertin",
-        "codepostal":     "87420",
-        "ville":          "Saint-Victurnien",
-        "parcelle":       "000 / AD / 0023",
+        "adresse":        "",
+        "codepostal":     "",
+        "ville":          "",
+        "parcelle":       "",
         "superficie":     "37",
         "dataGeoportail": {
             "zoom":       19,
@@ -170,10 +145,10 @@
                 1.0057809055833786,
                 45.87803039242806
             ],
-            "codepostal": "87420",
-            "ville":      "Saint-Victurnien",
-            "adresse":    "7 r pierre de coubertin",
-            "parcelle":   "000 / AD / 0023"
+            "codepostal": "",
+            "ville":      "",
+            "adresse":    "",
+            "parcelle":   ""
         },
         "location":       "",
         "moinsDe2Ans":    false
@@ -708,15 +683,15 @@
         ]
     },
     "ref":                      "LP8-20210217T1405-SO",
-    "folderName":               "LP8-20210217T1405-SO (BOIJOUX SOLANGE)",
+    "folderName":               "LP8-20210217T1405-SO (DUPOND JEAN)",
     "createdAt":                "2021-02-17T14:05:13.215",
     "statutInDCI":              1,
     "statutInDCIErrors":        [],
     "technicien":               {
-        "nom":    "Ludovic",
-        "prenom": "Poupard",
+        "nom":    "DUPOND",
+        "prenom": "JEAN",
         "id":     8,
-        "tel":    "0685051968"
+        "tel":    ""
     },
     "updatedAt":                "2021-02-17T15:50:45.506"
 }
