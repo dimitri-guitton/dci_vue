@@ -62,6 +62,7 @@ import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/services/file/wizzard/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
+import { getCetCeeBonus } from '@/services/file/fileCommonService';
 
 export default defineComponent( {
                                   name:       'file-cet-step-4',
@@ -154,18 +155,22 @@ export default defineComponent( {
                                         }
                                       }
 
+                                      const ceeBonus = getCetCeeBonus();
+
                                       console.log( 'maPrimeRenov --> ', maPrimeRenov );
 
-                                      const tva      = getTva();
-                                      const totalTva = tva * totalHt / 100;
-                                      const totalTtc = totalHt + totalTva;
+                                      const tva        = getTva();
+                                      const totalTva   = tva * totalHt / 100;
+                                      const totalTtc   = totalHt + totalTva;
+                                      const totalPrime = maPrimeRenov + ceeBonus;
 
-                                      const price = {
+                                      const price: Price = {
                                         HT:             totalHt,
                                         TVA:            totalTva,
                                         TTC:            totalTtc,
                                         maPrimeRenov:   maPrimeRenov,
-                                        remainderToPay: totalTtc - maPrimeRenov,
+                                        remainderToPay: totalTtc - totalPrime,
+                                        CEE:            ceeBonus,
                                       };
 
                                       ctx.emit( 'calculedPrice', price );

@@ -11,6 +11,7 @@ import { Option } from '@/types/v2/File/Common/Option';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import { FILE_PAC_RO, FILE_PAC_RR } from '@/services/constantService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
+import { getEnergyZone } from '@/services/file/fileCommonService';
 
 const schema = {
     dropboxPath:          {
@@ -195,7 +196,7 @@ export const updateAssent = ( data ) => {
 
 export const updateBeneficiary = ( data ) => {
     updateAssent( data );
-    let fileData = getCurrentFileData();
+    let fileData: BaseFile = getCurrentFileData();
 
     const beneficiary: Beneficiary = {
         civility:  data.assentsDatas[ data.indexBeneficiary ].civility,
@@ -210,66 +211,19 @@ export const updateBeneficiary = ( data ) => {
         income:    data.assentsDatas[ data.indexBeneficiary ].income,
     };
 
+    let zipCode = beneficiary.zipCode;
+    if ( !fileData.housing.isAddressBenef ) {
+        zipCode = fileData.housing.zipCode;
+    }
+
     fileData = {
         ...fileData,
         beneficiary: beneficiary,
+        energyZone:  getEnergyZone( +zipCode ),
     };
 
-    console.log( '%c NEW FILE DATA', 'background: #fdd835; color: #000000' );
-    console.log( fileData );
     updateJsonData( fileData );
-
 };
-// export const updateHousing     = ( data ) => {
-//     console.log( 'DATA -->', data );
-//     let fileData = getCurrentFileData();
-//
-//     if ( data.housingLessThan2Years === undefined ) {
-//         data.housingLessThan2Years = false;
-//     }
-//
-//     if ( data.housingIsAddressBenef === undefined ) {
-//         data.housingIsAddressBenef = false;
-//     }
-//
-//     let address = {
-//         address: '',
-//         zipCode:  '',
-//         city:     '',
-//         plot:     '',
-//         area:     '',
-//         location: '',
-//     };
-//     if ( data.housingIsAddressBenef ) {
-//         address = {
-//             address: fileData.beneficiary.address,
-//             zipCode:  fileData.beneficiary.zipCode,
-//             city:     fileData.beneficiary.city,
-//             plot:     '',
-//             area:     '',
-//             location: '',
-//         };
-//     }
-//
-//     const housing: Housing = {
-//         ...fileData.housing,
-//         nbOccupant:     data.nbOccupant,
-//         type:           data.housingType,
-//         isAddressBenef: data.housingIsAddressBenef,
-//         ...address,
-//         constructionYear: data.housingConstructionYear,
-//         lessThan2Years:   data.housingLessThan2Years,
-//     };
-//
-//     fileData = {
-//         ...fileData,
-//         housing: housing,
-//     };
-//
-//     console.log( '%c NEW FILE DATA', 'background: #fdd835; color: #000000' );
-//     console.log( fileData );
-//     updateJsonData( fileData );
-// };
 
 export const getProductById = ( id: number ): Product => {
     const fileData = getCurrentFileData();
@@ -331,6 +285,12 @@ export const getCodeBonus = () => {
 
     const scales = fileData.scales.filter( ( scale ) => filterScale( scale.stages, fileData.housing.nbOccupant, totalRevenu ).length > 0 );
     return ( scales.length > 0 ? scales[ 0 ].code : 'CL' ).toUpperCase();
+};
+
+export const getHousingType = (): string => {
+    const fileData: BaseFile = getCurrentFileData();
+
+    return fileData.housing.type;
 };
 
 export const getLessThan2Year = () => {

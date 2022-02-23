@@ -3,6 +3,7 @@ import { getCurrentCetFileData } from '@/services/data/dataService';
 import { CetFileStep } from '@/types/v2/Wizzard/FileStep';
 import { Housing } from '@/types/v2/File/Common/Housing';
 import { updateJsonData } from '@/services/folder/folderService';
+import { getEnergyZone } from '@/services/file/fileCommonService';
 
 /**
  * Retourne les valeurs du formualire pour l'etape 3 selon le type de dossiser
@@ -72,9 +73,15 @@ export const validateCetStep3 = async ( data: CetFileStep ) => {
         lessThan2Years:   data.housingLessThan2Years,
     };
 
+    let zipCode = fileData.beneficiary.zipCode;
+    if ( !housing.isAddressBenef ) {
+        zipCode = housing.zipCode;
+    }
+
     fileData = {
         ...fileData,
-        housing: housing,
+        housing:    housing,
+        energyZone: getEnergyZone( +zipCode ),
     };
 
     updateJsonData( fileData );

@@ -84,8 +84,6 @@
 import { defineComponent } from 'vue';
 import { ErrorMessage, Field } from 'vee-validate';
 import { AssentForm } from '@/types/v2/Wizzard/AssentForm';
-import { QuotationGenerator } from '@/services/pdf/quotationGenerator';
-import { getCurrentCetFileData } from '@/services/data/dataService';
 
 export default defineComponent( {
                                   name:       'common-step-1',
@@ -112,9 +110,9 @@ export default defineComponent( {
                                       }
                                     }
 
-                                    const fileData           = getCurrentCetFileData();
-                                    const quotationGenerator = new QuotationGenerator( fileData );
-                                    quotationGenerator.previewPdf();
+                                    // const fileData           = getCurrentCetFileData();
+                                    // const quotationGenerator = new QuotationGenerator( fileData );
+                                    // quotationGenerator.previewPdf();
 
                                     return {
                                       assents: assents,
