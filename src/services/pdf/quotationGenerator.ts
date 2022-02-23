@@ -40,7 +40,7 @@ enum PriceQuotation {
     TVA           = 'TVA ${tva}',
     TVA10         = 'TVA 10%',
     TVA20         = 'TVA 20%',
-    CEE           = 'Prime CEE',
+    CEE           = 'PRIME CEE EDF SIREN 552 081 317',
     CEE_CPC       = 'Prime CEE « coup de pouce chauffage »',
     maPrimeRenov  = 'Estimation MaPrimeRenov',
     discount      = 'Remise',
@@ -1252,8 +1252,18 @@ export class QuotationGenerator extends PdfGenerator {
                 continue;
             }
 
+            let textToDisplay = text.text;
+
             if ( text.type === 'cee' && this._file.quotation.ceeBonus <= 0 ) {
                 continue;
+            } else if ( text.type === 'cee' ) {
+                textToDisplay = this.getTextWithValue( textToDisplay,
+                                                       [
+                                                           {
+                                                               searchValue:  'ceeBonus',
+                                                               replaceValue: this._file.quotation.ceeBonus.toString(),
+                                                           },
+                                                       ] );
             }
 
             if ( text.type === 'maPrimeRenovBonus' && ( this._file.quotation as RoQuotation | RrQuotation | PgQuotation | CetQuotation ).maPrimeRenovBonus <= 0 ) {
@@ -1270,7 +1280,7 @@ export class QuotationGenerator extends PdfGenerator {
                                      ],
                                      [
                                          {
-                                             text: text.text,
+                                             text: textToDisplay,
                                          },
                                      ],
                                  ],

@@ -52,9 +52,10 @@ export class PdfGenerator {
     }
 
     /**
-     * Génère le PDF
+     * Build le pdf
+     * @private
      */
-    public generatePdf( openAfterGenerate = true ) {
+    private buildPdf(): TCreatedPdf {
         // Parametre par défaut de tout les PDF
         this._docDefinition = {
             ...this._defaultDocDefinition,
@@ -89,9 +90,19 @@ export class PdfGenerator {
             },
         };
 
-        pdf.vfs          = pdfFonts.pdfMake.vfs;
-        const createdPdf = pdf.createPdf( this._docDefinition );
-        this.downloadPdf( createdPdf, openAfterGenerate );
+        pdf.vfs = pdfFonts.pdfMake.vfs;
+        return pdf.createPdf( this._docDefinition );
+    }
+
+    /**
+     * Génère le PDF
+     */
+    public generatePdf( openAfterGenerate = true ) {
+        this.downloadPdf( this.buildPdf(), openAfterGenerate );
+    }
+
+    public previewPdf() {
+        this.buildPdf().open();
     }
 
     private downloadPdf( pdf: TCreatedPdf, openAfterGenerate = true ) {
@@ -139,6 +150,11 @@ export class PdfGenerator {
         }
     }
 
+    /**
+     * Formate le numéro de téléphone
+     * @param value
+     * @protected
+     */
     protected formatPhone( value: string ): string {
         const cleaned = ( '' + value ).replace( /\D/g, '' );
         const match   = cleaned.match( /^(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/ );
@@ -148,16 +164,41 @@ export class PdfGenerator {
         return ' ';
     }
 
+    /**
+     * Formate le prix en xx.xx €
+     * @param value
+     * @protected
+     */
     protected formatPrice( value: number | string ): string {
         return numberToPrice( value );
     }
 
-    protected getCheckBox( value = false ) {
-        if ( value ) {
+    /**
+     * Retourne une checkBox
+     * @param checked
+     * @protected
+     */
+    protected getCheckBox( checked = false ) {
+        if ( checked ) {
             return this._icons.checkBox;
         }
 
         return this._icons.emptyCheckBox;
+    }
+
+    /**
+     * Retourne un texte en remplaçant les values souhaitées dans le texte
+     * @param text
+     * @param values
+     * @protected
+     */
+    protected getTextWithValue( text: string, values: { searchValue: string; replaceValue: string }[] ): string {
+        let nexText = text;
+        for ( const value of values ) {
+            nexText = text.replace( `{{${ value.searchValue }}}`, value.replaceValue );
+        }
+
+        return nexText;
     }
 }
 
