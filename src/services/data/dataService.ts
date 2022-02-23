@@ -233,7 +233,7 @@ export const updateBeneficiary = ( data ) => {
 //     }
 //
 //     let address = {
-//         addresse: '',
+//         address: '',
 //         zipCode:  '',
 //         city:     '',
 //         plot:     '',
@@ -242,7 +242,7 @@ export const updateBeneficiary = ( data ) => {
 //     };
 //     if ( data.housingIsAddressBenef ) {
 //         address = {
-//             addresse: fileData.beneficiary.address,
+//             address: fileData.beneficiary.address,
 //             zipCode:  fileData.beneficiary.zipCode,
 //             city:     fileData.beneficiary.city,
 //             plot:     '',

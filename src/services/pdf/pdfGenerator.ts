@@ -12,7 +12,8 @@ export enum PdfType {
     Worksheet,
     Quotation,
     Tva,
-    ContributionFramework
+    ContributionFramework,
+    MaPrimeRenov
 }
 
 export class PdfGenerator {
@@ -25,16 +26,19 @@ export class PdfGenerator {
 
     constructor() {
         this._defaultDocDefinition = {
-            pageSize:    'A4',
-            pageMargins: [ 10, 10, 10, 10 ],
-            styles:      {
+            pageSize:     'A4',
+            pageMargins:  [ 10, 10, 10, 10 ],
+            styles:       {
                 icon:    { font: 'Fontello' },
                 table:   { fontSize: 9 },
                 text:    { fontSize: 9 },
                 xsText:  { fontSize: 8 },
                 xxsText: { fontSize: 7 },
             },
-            content:     [],
+            content:      [],
+            defaultStyle: {
+                font: 'Roboto',
+            },
         };
         this._docDefinition        = {
             content: [],
@@ -77,20 +81,22 @@ export class PdfGenerator {
                 italics:     'Roboto-Italic.ttf',
                 bolditalics: 'Roboto-BlackItalic.ttf',
             },
+            Times:    {
+                normal:      'times-new-roman.ttf',
+                bold:        'times-new-roman-bold.ttf',
+                italics:     'times-new-roman-italic.ttf',
+                bolditalics: 'times-new-roman-bold-italic.ttf',
+            },
         };
 
         pdf.vfs          = pdfFonts.pdfMake.vfs;
         const createdPdf = pdf.createPdf( this._docDefinition );
-        this.downloadPdf( createdPdf );
-
-        if ( openAfterGenerate ) {
-            createdPdf.open();
-        }
+        this.downloadPdf( createdPdf, openAfterGenerate );
     }
 
-    private downloadPdf( pdf: TCreatedPdf ) {
+    private downloadPdf( pdf: TCreatedPdf, openAfterGenerate = true ) {
         pdf.getBuffer( ( buffer ) => {
-            savePdf( buffer, this.type );
+            savePdf( buffer, this.type, openAfterGenerate );
         } );
     }
 

@@ -40,7 +40,7 @@ export const validateCetStep3 = async ( data: CetFileStep ) => {
     }
 
     let address = {
-        addresse: '',
+        address:  '',
         zipCode:  '',
         city:     '',
         plot:     '',
@@ -49,7 +49,7 @@ export const validateCetStep3 = async ( data: CetFileStep ) => {
     };
     if ( data.housingIsAddressBenef ) {
         address = {
-            addresse: fileData.beneficiary.address,
+            address:  fileData.beneficiary.address,
             zipCode:  fileData.beneficiary.zipCode,
             city:     fileData.beneficiary.city,
             plot:     '',

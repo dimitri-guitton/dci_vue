@@ -149,6 +149,7 @@ import { WorksheetGenerator } from '@/services/pdf/worksheetGenerator';
 import { CetFile } from '@/types/v2/File/Cet/CetFile';
 import { Price } from '@/services/file/wizzard/Price';
 import { QuotationGenerator } from '@/services/pdf/quotationGenerator';
+import { ElLoading } from 'element-plus';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -324,10 +325,15 @@ export default defineComponent( {
                                       console.log( '%c ONgenerateQuotation', 'background: #00FFCD; color: #000000' );
                                       console.log( values );
 
-                                      const newFileData        = await validateCetStep4( ( values as CetFileStep ),
-                                                                                         price );
-                                      const quotationGenerator = new QuotationGenerator( newFileData );
-                                      quotationGenerator.generatePdf();
+                                      const newFileData     = await validateCetStep4( ( values as CetFileStep ),
+                                                                                      price );
+                                      // Loader
+                                      const loadingInstance = ElLoading.service( { fullscreen: true } );
+                                      setTimeout( () => {
+                                        const quotationGenerator = new QuotationGenerator( newFileData );
+                                        quotationGenerator.generatePdf();
+                                        loadingInstance.close();
+                                      }, 500 );
                                     } );
 
                                     const onGenerateAddressCertificate = handleSubmit( async ( values ) => {

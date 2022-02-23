@@ -32,6 +32,7 @@ import { PgQuotation } from '@/types/v2/File/Pg/PgQuotation';
 import { toFrenchDate } from '@/services/commonService';
 import { TvaCertificateGenerator } from '@/services/pdf/tvaCertificateGenerator';
 import { ContributionFrameworkGenerator } from '@/services/pdf/contributionFrameworkGenerator';
+import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
 
 enum PriceQuotation {
     HT            = 'Total HT',
@@ -83,21 +84,21 @@ export class QuotationGenerator extends PdfGenerator {
         // Pour les devis CET, Poele, PAC RR et RO
         if ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR ) {
             const tvaGenerator = new TvaCertificateGenerator( this._file );
-            tvaGenerator.generatePdf( false );
+            tvaGenerator.generatePdf();
         }
 
         // Génération du cadre de contribution
         // Pour les pompes à chaleur RO et RR quand la prime CEE est > à 0
         if ( ( this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR ) && this._file.quotation.ceeBonus > 0 ) {
             const contributionFrameworkGenerator = new ContributionFrameworkGenerator( this._file );
-            contributionFrameworkGenerator.generatePdf( false );
+            contributionFrameworkGenerator.generatePdf();
         }
 
         // Génération du mandat de maPrimeRenov
         if ( ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO ) && ( this._file.quotation as CetQuotation | PgQuotation | RoQuotation ).maPrimeRenovBonus > 0 ) {
-            // TODO A FAIRE
+            const maPrimeRenovGenerator = new MaPrimeRenovGenerator( this._file );
+            maPrimeRenovGenerator.generatePdf();
         }
-
     }
 
 
@@ -376,7 +377,7 @@ export class QuotationGenerator extends PdfGenerator {
                                             {
                                                 width: '*',
                                                 stack: [
-                                                    !this._file.housing.isAddressBenef ? this._file.housing.addresse : ' ',
+                                                    !this._file.housing.isAddressBenef ? this._file.housing.address : ' ',
                                                     !this._file.housing.isAddressBenef ? this._file.housing.city : ' ',
                                                     !this._file.housing.isAddressBenef ? this._file.housing.zipCode : ' ',
                                                     !this._file.housing.isAddressBenef

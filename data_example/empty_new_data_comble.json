@@ -29,11 +29,11 @@
     "codeBonus":                 null,
     "energyZone":                null,
     "bonusRate":                 null,
-    "housing":                   {
+    "housing": {
         "nbOccupant":        1,
         "type":              "residentiel",
         "isAddressBenef":    true,
-        "addresse":          "",
+        "address":           "",
         "zipCode":           "",
         "city":              "",
         "plot":              "",

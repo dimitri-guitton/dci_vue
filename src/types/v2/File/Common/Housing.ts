@@ -9,7 +9,7 @@ export interface Housing {
     buildingNature: string;
     isRentedHouse: boolean;
     isAddressBenef: boolean;
-    addresse: string;
+    address: string;
     zipCode: string;
     city: string;
     plot: string;

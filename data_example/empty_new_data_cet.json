@@ -27,11 +27,11 @@
     },
     "codeBonus":                 "",
     "energyZone":                "",
-    "housing":     {
+    "housing": {
         "nbOccupant":        1,
         "type":              "maison_individuelle",
         "isAddressBenef":    true,
-        "addresse":          "",
+        "address":           "",
         "zipCode":           "",
         "city":              "",
         "plot":              "",

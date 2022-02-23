@@ -192,13 +192,13 @@ export const convertOldCetFile = ( oldData ): CetFile => {
         beneficiary:               convertOldBeneficiary( oldData ),
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
-        housing:   {
+        housing: {
             nbOccupant:        getNumberData( oldData[ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
             buildingNature:    getObjectData( oldData, [ 'logement', 'batimentNature' ] ),
             isRentedHouse:     getObjectData( oldData, [ 'logement', 'batimentNature' ] ) === 'location',
             isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
-            addresse:          getObjectData( oldData, [ 'logement', 'adresse' ] ),
+            address:           getObjectData( oldData, [ 'logement', 'adresse' ] ),
             zipCode:           getObjectData( oldData, [ 'logement', 'codepostal' ] ),
             city:              getObjectData( oldData, [ 'logement', 'ville' ] ),
             plot:              getObjectData( oldData, [ 'logement', 'parcelle' ] ),

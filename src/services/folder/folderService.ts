@@ -15,6 +15,7 @@ import { convertOldSolFile } from '@/services/file/converter/convertSolData';
 import { CetFile } from '@/types/v2/File/Cet/CetFile';
 import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 import { PdfType } from '@/services/pdf/pdfGenerator';
+import { shell } from 'electron';
 
 const schema = {
     dropboxPath: {
@@ -270,7 +271,12 @@ export const checkFolder = () => {
     return true;
 };
 
-export const savePdf = ( buffer: Buffer, type: PdfType ) => {
+
+export const openPdf = ( filePath: string ) => {
+    shell.openPath( filePath );
+};
+
+export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) => {
     console.log( '%c ON SAVE PDF', 'background: #fdd835; color: #000000' );
     const folderName = getcurrentFolderName() as string;
     const folderPath = getFolderPath( folderName );
@@ -298,11 +304,20 @@ export const savePdf = ( buffer: Buffer, type: PdfType ) => {
             folder = FoldersNames.CADRE_CONTRIBUTION_CEE;
             name   = 'cadre_contribution.pdf';
             break;
+        case PdfType.MaPrimeRenov:
+            folder = FoldersNames.MANDAT_MA_PRIME_RENOV;
+            name   = 'mandat_ma_prime_renov.pdf';
+            break;
         default:
             console.log( '%c ERROR', 'background: #fdd835; color: #000000' );
     }
 
-    console.log( 'Folder -->', folder );
-    console.log( 'Path -->', `${ folderPath }/${ folder }` );
-    fs.createWriteStream( `${ folderPath }/${ folder }/${ name }` ).write( buffer );
+    const filePath = `${ folderPath }/${ folder }/${ name }`;
+    fs.createWriteStream( filePath ).write( buffer );
+
+    if ( openAfterSave ) {
+        setTimeout( () => {
+            openPdf( filePath );
+        }, 500 );
+    }
 };
