@@ -12,7 +12,7 @@
       </div>
     </template>
     <template #fallback>
-      <span>Loading...</span>
+      <span>Chargement...</span>
     </template>
   </Suspense>
 </template>
@@ -37,8 +37,6 @@ export default defineComponent( {
                                     onMounted( () => {
                                       resetCurrentFileData();
                                     } );
-
-
                                     return {};
                                   },
                                 } );

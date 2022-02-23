@@ -101,6 +101,7 @@ app.on( 'ready', async () => {
         }
     }
     createWindow();
+    console.log( 'Version -->', process.env.VUE_APP_VERSION );
 } );
 
 // Exit cleanly on request from parent process in development mode.
