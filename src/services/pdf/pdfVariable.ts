@@ -4,6 +4,7 @@ export const BLUE        = '#278EFF';
 export const BROWN       = '#FAEBD7';
 export const DARK        = '#1E1E1E';
 export const GREY        = '#CDCDCD';
+export const DARK_GREY   = '#A4A4A4';
 export const ORANGE      = '#FD5814';
 export const LIGHT_GREEN = '#A4D3C9';
 

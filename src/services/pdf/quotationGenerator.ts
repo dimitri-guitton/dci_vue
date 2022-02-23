@@ -9,7 +9,7 @@ import {
     TableCell,
     TDocumentDefinitions,
 } from 'pdfmake/interfaces';
-import { BLUE, GREEN, LOGO_ECO, LOGO_QUALIBOIS, LOGO_QUALIFELEC, LOGO_RGE_CERTIBAT } from '@/services/pdf/pdfVariable';
+import { BLUE, DARK_GREY, GREEN, LOGO_ECO, LOGO_QUALIBOIS, LOGO_QUALIFELEC, LOGO_RGE_CERTIBAT } from '@/services/pdf/pdfVariable';
 import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { CetFile } from '@/types/v2/File/Cet/CetFile';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
@@ -103,8 +103,9 @@ export class QuotationGenerator extends PdfGenerator {
 
 
     private _generateDocDefinition(): TDocumentDefinitions {
+        const quotationRef: string = this._file.ref;
         return {
-            content: [
+            content:     [
                 this._generateHeader(),
                 this._generateCommercialHeader(),
                 this._generateCustomerInfo(),
@@ -115,7 +116,38 @@ export class QuotationGenerator extends PdfGenerator {
                 this._generateFinalePrice(),
                 this._generateSignature(),
             ],
-            styles:  this._style,
+            pageMargins: [ 10, 10, 10, 30 ],
+            footer:      function ( currentPage, pageCount ) {
+                return {
+                    style: 'xxsText',
+                    stack: [
+                        {
+                            canvas:
+                                [
+                                    {
+                                        type:      'line',
+                                        x1:        200, y1: 0,
+                                        x2:        395, y2: 0,
+                                        lineWidth: 1,
+                                        lineColor: DARK_GREY,
+                                    },
+                                ],
+                        },
+                        {
+                            margin:    [ 0, 5, 0, 0 ],
+                            text:      `N° ${ quotationRef }`,
+                            alignment: 'center',
+                            color:     DARK_GREY,
+                        },
+                        {
+                            text:      `${ currentPage }/${ pageCount }`,
+                            alignment: 'center',
+                            color:     DARK_GREY,
+                        },
+                    ],
+                };
+            },
+            styles:      this._style,
         };
     }
 
