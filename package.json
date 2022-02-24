@@ -1,7 +1,7 @@
 {
     "name":            "eco-atl-dci",
     "productName":     "DCI",
-    "version":         "3.0.0-beta.2",
+    "version":         "3.0.0",
     "private":         true,
     "description":     "Logiciel de devis",
     "author":          {
@@ -12,6 +12,7 @@
     "scripts":         {
         "serve":                   "vue-cli-service serve",
         "build":                   "vue-cli-service build",
+        "deploy":                  "./deploy.sh",
         "lint":                    "vue-cli-service lint",
         "clean":                   "yarn clean-deps && rm -rf dist_electron",
         "clean-deps":              "rm -rf node_modules",
