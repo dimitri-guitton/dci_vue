@@ -5,7 +5,6 @@
 # Créer un tag GIT et PUSH
 createTag()
 {
-git tag "v${PACKAGE_VERSION//[[:blank:]]/}"
 git push && git push --tags
 }
 
