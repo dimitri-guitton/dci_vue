@@ -6,7 +6,7 @@
 createTag()
 {
 git tag "v${PACKAGE_VERSION//[[:blank:]]/}"
-git git push && git push --tags
+git push && git push --tags
 }
 
 # Met à jour la version selon le type de nouvelle version
