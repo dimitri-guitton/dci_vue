@@ -5,14 +5,14 @@
 # Créer un tag GIT et PUSH
 createTag()
 {
-git tag "v$PACKAGE_VERSION"
+git tag "v${PACKAGE_VERSION//[[:blank:]]/}"
 git git push && git push --tags
 }
 
 # Met à jour la version selon le type de nouvelle version
 updateVersion()
 {
-  error="false"
+error="false"
 case $1 in
  1)
     npm version major
@@ -31,10 +31,11 @@ esac
 echo "$error"
 }
 
-# Affiche le choix des version possible
-displayChoice()
+# Lancement du script
+start()
 {
 echo "Changement de version : "
+
 select item in "- Majeur- " "- Mineur -" "- Fix -"
 do
   error=$( updateVersion $REPLY )
@@ -43,6 +44,13 @@ do
   then
     echo "Error: Please try again (select 1..3)!"
   else
+    PACKAGE_VERSION=$(cat package.json \
+  | grep version \
+  | head -1 \
+  | awk -F: '{ print $2 }' \
+  | sed 's/[",]//g')
+
+    echo "Nouvelle version" $PACKAGE_VERSION
     createTag
     break;
   fi
@@ -57,14 +65,5 @@ OLD_PACKAGE_VERSION=$(cat package.json \
 
 echo "Version précédente : $OLD_PACKAGE_VERSION"
 
-displayChoice
-
-PACKAGE_VERSION=$(cat package.json \
-  | grep version \
-  | head -1 \
-  | awk -F: '{ print $2 }' \
-  | sed 's/[",]//g')
-
-OLD_PACKAGE_VERSION=$PACKAGE_VERSION
-echo "Nouvelle version" $PACKAGE_VERSION
+start
 
