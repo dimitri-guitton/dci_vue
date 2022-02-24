@@ -2,12 +2,6 @@
 
 # MES FONCTIONS
 
-# Créer un tag GIT et PUSH
-createTag()
-{
-git push && git push --tags
-}
-
 # Met à jour la version selon le type de nouvelle version
 updateVersion()
 {
@@ -50,7 +44,7 @@ do
   | sed 's/[",]//g')
 
     echo "Nouvelle version" $PACKAGE_VERSION
-    createTag
+    git push && git push --tags
     break;
   fi
 done
