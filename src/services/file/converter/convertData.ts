@@ -42,26 +42,26 @@ export const getArrayData = ( data: any ): [] => {
 
 export const convertOldText = ( oldData ): QuotationText[] => {
     const texts: QuotationText[] = [];
-    if ( getObjectData( oldData, [ 'devis', 'texte1' ] ) !== '' ) {
+    if ( getObjectData( oldData, [ 'devis', 'texte1' ] ) !== '' && getObjectData( oldData, [ 'devis', 'texte1' ] ).text !== null ) {
         texts.push( {
                         title: getObjectData( oldData, [ 'devis', 'texte1', 'title' ] ),
                         text:  getObjectData( oldData, [ 'devis', 'texte1', 'text' ] ),
                     } );
     }
-    if ( getObjectData( oldData, [ 'devis', 'texte2' ] ) !== '' ) {
+    if ( getObjectData( oldData, [ 'devis', 'texte2' ] ) !== '' && getObjectData( oldData, [ 'devis', 'texte2' ] ).text !== null ) {
         texts.push( {
                         title: getObjectData( oldData, [ 'devis', 'texte2', 'title' ] ),
                         text:  getObjectData( oldData, [ 'devis', 'texte2', 'text' ] ),
                     } );
     }
-    if ( getObjectData( oldData, [ 'devis', 'texte3' ] ) !== '' ) {
+    if ( getObjectData( oldData, [ 'devis', 'texte3' ] ) !== '' && getObjectData( oldData, [ 'devis', 'texte3' ] ).text !== null ) {
         texts.push( {
                         title: getObjectData( oldData, [ 'devis', 'texte3', 'title' ] ),
                         text:  getObjectData( oldData, [ 'devis', 'texte3', 'text' ] ),
                     } );
     }
 
-    if ( getObjectData( oldData, [ 'devis', 'texte4' ] ) !== '' ) {
+    if ( getObjectData( oldData, [ 'devis', 'texte4' ] ) !== '' && getObjectData( oldData, [ 'devis', 'texte4' ] ).text !== null ) {
         texts.push( {
                         title: getObjectData( oldData, [ 'devis', 'texte4', 'title' ] ),
                         text:  getObjectData( oldData, [ 'devis', 'texte4', 'text' ] ),

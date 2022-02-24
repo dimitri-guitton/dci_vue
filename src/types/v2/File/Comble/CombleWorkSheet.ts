@@ -15,8 +15,8 @@ export interface CombleWorkSheet extends BaseWorksheet {
     charpenteType: string;
     etatToiture: string;
     volige: boolean;
-    nbreAccesComble: number;
-    nbreCompartiments: number;
+    nbAccesComble: number;
+    nbCompartimentComble: number;
     isolationExistante: boolean;
     isolationExistanteType: string;
     isolationExistanteCouches: number;

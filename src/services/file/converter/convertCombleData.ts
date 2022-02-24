@@ -177,7 +177,7 @@ const convertOldCombleItemList = ( oldData ): CombleList => {
 
 export const convertOldCombleFile = ( oldData ): CombleFile => {
     return {
-        version:                   getStringData( oldData[ 'version' ] ),
+        version:                   '1',
         type:                      FILE_COMBLE,
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
@@ -193,9 +193,10 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
         bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
-        housing: {
+        housing:                   {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
+            heatingType:       getObjectData( oldData, [ 'logement', 'chauffageType' ] ),
             buildingNature:    getObjectData( oldData, [ 'logement', 'batimentNature' ] ),
             isRentedHouse:     getObjectData( oldData, [ 'logement', 'batimentNature' ] ) === 'location',
             isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
@@ -211,7 +212,7 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },
-        worksheet: {
+        worksheet:                 {
             visiteComble:              getObjectData( oldData, [ 'fiche', 'visiteComble' ] ),
             chantierHabite:            getObjectData( oldData, [ 'fiche', 'chantierHabite' ] ),
             chantierType:              getObjectData( oldData, [ 'fiche', 'chantierType' ] ),
@@ -227,8 +228,8 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
             charpenteType:             getObjectData( oldData, [ 'fiche', 'charpenteType' ] ),
             etatToiture:               getObjectData( oldData, [ 'fiche', 'etatToiture' ] ),
             volige:                    getObjectData( oldData, [ 'fiche', 'volige' ] ),
-            nbreAccesComble:           getNumberData( oldData [ 'fiche' ][ 'nbreAccesComble' ] ),
-            nbreCompartiments:         getNumberData( oldData [ 'fiche' ][ 'nbreCompartiments' ] ),
+            nbAccesComble:             getNumberData( oldData [ 'fiche' ][ 'nbreAccesComble' ] ),
+            nbCompartimentComble:      getNumberData( oldData [ 'fiche' ][ 'nbreCompartiments' ] ),
             isolationExistante:        getObjectData( oldData, [ 'fiche', 'isolationExistante' ] ),
             isolationExistanteType:    getObjectData( oldData, [ 'fiche', 'isolationExistanteType' ] ),
             isolationExistanteCouches: getObjectData( oldData, [ 'fiche', 'isolationExistanteCouches' ] ),

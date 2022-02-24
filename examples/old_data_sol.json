@@ -1,12 +1,90 @@
 {
+    "settings":                 {
+        "ceeCoef": "5.5"
+    },
+    "type":                     "sol",
+    "version":                  "5",
+    "devisTemplate":            "devisTpl-v5-vte.html",
+    "ficheTemplate":            "ficheSolTpl-v5.html",
+    "ficheGenerator":           "solV3.xlsx",
     "disablePrime":             false,
+    "disablePrimeCEE":          false,
+    "disablePrimeMaprimerenov": false,
+    "enabledActionLogement":    false,
+    "avis":                     [],
+    "beneficiaire":             {
+        "civilite":   "m",
+        "nom":        "",
+        "prenom":     "",
+        "adresse":    "",
+        "codepostal": "",
+        "ville":      ""
+    },
+    "email":                    "",
+    "telfixe":                  "",
+    "telportable":              "",
+    "codePrime":                null,
+    "zoneEnergetique":          null,
+    "tauxPrime":                null,
+    "logement":                 {
+        "occupants":      1,
+        "batimentType":   "residentiel",
+        "chauffageType":  "electrique",
+        "batimentNature": "",
+        "typeChaudiere":  "aucun",
+        "isAdresseBenef": true,
+        "adresse":        "",
+        "codepostal":     "",
+        "ville":          "",
+        "parcelle":       "",
+        "superficie":     "",
+        "dataGeoportail": {},
+        "location":       "",
+        "moinsDe2Ans":    false
+    },
+    "fiche":                    {
+        "epaisseurProduit":        "115 mm",
+        "accesCamion":             "facile",
+        "distCamion":              0,
+        "hautPlafond":             "",
+        "support":                 "bois",
+        "distPointEau":            "",
+        "resistTherm":             "",
+        "dimensionsPieces":        [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "isolationExistante":      false,
+        "niveauHabitation":        "r1",
+        "habitationSurLocalFroid": false,
+        "videSanitaire":           false,
+        "terrePlein":              false,
+        "reseauPlafond":           false,
+        "luminairesPlafond":       false,
+        "distancePortesPalfond":   [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "porteGarage":             "",
+        "nbrPorteGarage":          "",
+        "infosSup":                "RAS"
+    },
     "devis":                    {
-        "noPrimeUseCode":  "CL",
         "pose":            2.5,
+        "overridePose":    2.5,
         "tva":             5.5,
-        "origine":         "ANGEL",
-        "dateVisiteTech":  "2021-02-17",
-        "delaisExecution": "2021-05-17",
+        "noPrimeUseCode":  "CL",
+        "origine":         "",
+        "dateVisiteTech":  "",
+        "delaisExecution": "",
         "calcul0PU":       0,
         "options":         [
             {
@@ -23,7 +101,7 @@
                 "id":    52,
                 "label": "Si Jetspray : Mise en place d'un nergalto (uniquement si support bois)",
                 "unit":  "u",
-                "value": "34",
+                "value": 0,
                 "pu":    {
                     "default": 15,
                     "value":   15
@@ -82,112 +160,19 @@
             }
         ],
         "commentaires":    "",
+        "partner":         "VTE",
         "texte1":          {
             "title": "Les travaux prévus dans ce devis concernent l'isolation d'un plancher bas",
-            "text":  "Nous vous informons qu’en exécution du mandat signé en date du 01/11/2018 avec Total Marketing France, agissant en sa qualité d’obligé au sens de la réglementation sur les certificats d’économies d’énergie, nous nous sommes engagés à vous reverser un soutien (subvention) d’un montant de {{prime}} €\r\nCe soutien pourra, selon la modalité de paiement que vous préférerez en cochant l’une des options suivantes* : \r\n◻ Vous être versé directement ; \r\n⊠ Vous être déduit du montant dont vous nous êtes redevable au titre des travaux réalisés en application du présent devis. ...\r\nLa TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans. Réalisation du chantier : France Menuisiers 43346499700157 RGE qualibat N°E-E93378"
+            "text":  "La TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans. Réalisation du chantier : France Menuisiers 43346499700157 RGE qualibat N°E-E93378"
         },
         "texte2":          {
-            "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Total",
-            "text":  "Les travaux ou prestations objet du présent document donneront lieu à une contribution financière de Total Marketing France (TMF), versée par TMF dans le cadre de son rôle incitatif sous forme de prime, directement ou via son (ses) mandataire(s), sous réserve de l’engagement de fournir exclusivement à TMF les documents nécessaires à la valorisation des opérations au titre du dispositif des Certificats d’Économies d’Énergie et sous réserve de la validation de l’éligibilité du dossier par TMF puis par l’autorité administrative compétente. Le montant de cette contribution financière, hors champ d’application de la TVA,  est susceptible de varier en fonction des travaux effectivement réalisés et de la valorisation des CEE concernés au moment de l’établissement de la facture et est estimé à :  {{prime}} €"
+            "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
+            "text":  "Les travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique."
         },
         "texte3":          {
-            "title": "AIDE A LA RENOVATION ENERGETIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
+            "title": "AIDE A LA RENOVATION ÉNERGÉTIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
             "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
-        },
-        "totalHT":         1805,
-        "totalTVA":        99.275
-    },
-    "settings":                 {
-        "roCeeCoef": "7.3"
-    },
-    "type":                     "sol",
-    "version":                  "3",
-    "devisTemplate":            "devisTpl-v3.html",
-    "ficheTemplate":            "ficheSolTpl-v3.html",
-    "ficheGenerator":           "solV3.xlsx",
-    "disablePrimeCEE":          false,
-    "disablePrimeMaprimerenov": false,
-    "enabledActionLogement":    false,
-    "avis":                     [],
-    "beneficiaire":             {
-        "civilite":   "Mme",
-        "nom":        "DUPOND",
-        "prenom":     "JEAN",
-        "adresse":    "",
-        "codepostal": "",
-        "ville":      ""
-    },
-    "email":                    "",
-    "telfixe":                  "",
-    "telportable":              "06.28.29.96.18",
-    "codePrime":                "GP",
-    "zoneEnergetique":          "H1",
-    "tauxPrime":                26.28,
-    "logement":                 {
-        "occupants":      1,
-        "batimentType":   "residentiel",
-        "chauffageType":  "combustible",
-        "batimentNature": "",
-        "typeChaudiere":  "aucun",
-        "isAdresseBenef": true,
-        "adresse":        "",
-        "codepostal":     "",
-        "ville":          "",
-        "parcelle":       "",
-        "superficie":     "37",
-        "dataGeoportail": {
-            "zoom":       19,
-            "center":     [
-                1.005923,
-                45.87810400000001
-            ],
-            "position":   [
-                1.0057809055833786,
-                45.87803039242806
-            ],
-            "codepostal": "",
-            "ville":      "",
-            "adresse":    "",
-            "parcelle":   ""
-        },
-        "location":       "",
-        "moinsDe2Ans":    false
-    },
-    "fiche":                    {
-        "epaisseurProduit":        "115 mm",
-        "accesCamion":             "facile",
-        "distCamion":              0,
-        "hautPlafond":             "1.6",
-        "support":                 "bois",
-        "distPointEau":            "",
-        "resistTherm":             "3",
-        "dimensionsPieces":        [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-        ],
-        "isolationExistante":      false,
-        "niveauHabitation":        "r1",
-        "habitationSurLocalFroid": true,
-        "videSanitaire":           false,
-        "terrePlein":              true,
-        "reseauPlafond":           false,
-        "luminairesPlafond":       false,
-        "distancePortesPalfond":   [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-        ],
-        "porteGarage":             "",
-        "nbrPorteGarage":          "",
-        "infosSup":                "RAS",
-        "periodePose":             ""
+        }
     },
     "baremes":                  [
         {
@@ -195,57 +180,57 @@
             "palierRevenu": [
                 {
                     "nbre": 1,
-                    "min":  19074
+                    "min":  19565
                 },
                 {
                     "nbre": 2,
-                    "min":  27896
+                    "min":  28614
                 },
                 {
                     "nbre": 3,
-                    "min":  33547
+                    "min":  34411
                 },
                 {
                     "nbre": 4,
-                    "min":  39192
+                    "min":  40201
                 },
                 {
                     "nbre": 5,
-                    "min":  44860
+                    "min":  46015
                 },
                 {
                     "nbre": 6,
-                    "min":  50511
+                    "min": 51812
                 },
                 {
                     "nbre": 7,
-                    "min":  56162
+                    "min": 57609
                 },
                 {
                     "nbre": 8,
-                    "min":  61813
+                    "min": 63406
                 },
                 {
                     "nbre": 9,
-                    "min":  67464
+                    "min": 69203
                 },
                 {
                     "nbre": 10,
-                    "min":  73115
+                    "min": 75000
                 }
             ],
             "primeCEE":     {
                 "H1": {
-                    "electrique":  13.14,
-                    "combustible": 13.14
+                    "electrique":  8.8,
+                    "combustible": 8.8
                 },
                 "H2": {
-                    "electrique":  13.14,
-                    "combustible": 13.14
+                    "electrique":  7.15,
+                    "combustible": 7.15
                 },
                 "H3": {
-                    "electrique":  13.14,
-                    "combustible": 13.14
+                    "electrique":  7.15,
+                    "combustible": 7.15
                 }
             }
         },
@@ -255,66 +240,66 @@
                 {
                     "nbre": 1,
                     "min":  0,
-                    "max":  19074
+                    "max":  19565
                 },
                 {
                     "nbre": 2,
                     "min":  0,
-                    "max":  27896
+                    "max":  28614
                 },
                 {
                     "nbre": 3,
                     "min":  0,
-                    "max":  33547
+                    "max":  34411
                 },
                 {
                     "nbre": 4,
                     "min":  0,
-                    "max":  39192
+                    "max":  40201
                 },
                 {
                     "nbre": 5,
                     "min":  0,
-                    "max":  44860
+                    "max":  46015
                 },
                 {
                     "nbre": 6,
                     "min":  0,
-                    "max":  50511
+                    "max":  51812
                 },
                 {
                     "nbre": 7,
                     "min":  0,
-                    "max":  56162
+                    "max":  57609
                 },
                 {
                     "nbre": 8,
                     "min":  0,
-                    "max":  61813
+                    "max":  63406
                 },
                 {
                     "nbre": 9,
                     "min":  0,
-                    "max":  67464
+                    "max":  69203
                 },
                 {
                     "nbre": 10,
                     "min":  0,
-                    "max":  73115
+                    "max":  75000
                 }
             ],
             "primeCEE":     {
                 "H1": {
-                    "electrique":  26.28,
-                    "combustible": 26.28
+                    "electrique":  8.8,
+                    "combustible": 8.8
                 },
                 "H2": {
-                    "electrique":  26.28,
-                    "combustible": 26.28
+                    "electrique":  7.15,
+                    "combustible": 7.15
                 },
                 "H3": {
-                    "electrique":  26.28,
-                    "combustible": 26.28
+                    "electrique":  7.15,
+                    "combustible": 7.15
                 }
             }
         },
@@ -387,7 +372,20 @@
                     "max":  139033
                 }
             ],
-            "primeCEE":     []
+            "primeCEE":     {
+                "H1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "H2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "H3": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                }
+            }
         },
         {
             "code":         "PACGP",
@@ -395,70 +393,83 @@
                 {
                     "nbre": 1,
                     "min":  0,
-                    "max":  14879
+                    "max":  15262
                 },
                 {
                     "nbre": 2,
                     "min":  0,
-                    "max":  21760
+                    "max":  22320
                 },
                 {
                     "nbre": 3,
                     "min":  0,
-                    "max":  26170
+                    "max":  26844
                 },
                 {
                     "nbre": 4,
                     "min":  0,
-                    "max":  30572
+                    "max":  31359
                 },
                 {
                     "nbre": 5,
                     "min":  0,
-                    "max":  34993
+                    "max":  35894
                 },
                 {
                     "nbre": 6,
                     "min":  0,
-                    "max":  39405
+                    "max":  40420
                 },
                 {
                     "nbre": 7,
                     "min":  0,
-                    "max":  43817
+                    "max":  44946
                 },
                 {
                     "nbre": 8,
                     "min":  0,
-                    "max":  48229
+                    "max":  49472
                 },
                 {
                     "nbre": 9,
                     "min":  0,
-                    "max":  52641
+                    "max":  53998
                 },
                 {
                     "nbre": 10,
                     "min":  0,
-                    "max":  57053
+                    "max":  58524
                 },
                 {
                     "nbre": 11,
                     "min":  0,
-                    "max":  61465
+                    "max":  63050
                 },
                 {
                     "nbre": 12,
                     "min":  0,
-                    "max":  65877
+                    "max":  67576
                 },
                 {
                     "nbre": 13,
                     "min":  0,
-                    "max":  70289
+                    "max":  72102
                 }
             ],
-            "primeCEE":     []
+            "primeCEE":     {
+                "H1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "H2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "H3": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                }
+            }
         },
         {
             "code":         "PACIT",
@@ -529,7 +540,20 @@
                     "max":  139033
                 }
             ],
-            "primeCEE":     []
+            "primeCEE":     {
+                "H1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "H2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "H3": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                }
+            }
         },
         {
             "code":         "PACP",
@@ -537,74 +561,87 @@
                 {
                     "nbre": 1,
                     "min":  0,
-                    "max":  19074
+                    "max":  19565
                 },
                 {
                     "nbre": 2,
                     "min":  0,
-                    "max":  27896
+                    "max":  28614
                 },
                 {
                     "nbre": 3,
                     "min":  0,
-                    "max":  33547
+                    "max":  34411
                 },
                 {
                     "nbre": 4,
                     "min":  0,
-                    "max":  39192
+                    "max":  40201
                 },
                 {
                     "nbre": 5,
                     "min":  0,
-                    "max":  44860
+                    "max":  46015
                 },
                 {
                     "nbre": 6,
                     "min":  0,
-                    "max":  50511
+                    "max":  51812
                 },
                 {
                     "nbre": 7,
                     "min":  0,
-                    "max":  56162
+                    "max":  57609
                 },
                 {
                     "nbre": 8,
                     "min":  0,
-                    "max":  61813
+                    "max":  63406
                 },
                 {
                     "nbre": 9,
                     "min":  0,
-                    "max":  67464
+                    "max":  69203
                 },
                 {
                     "nbre": 10,
                     "min":  0,
-                    "max":  73115
+                    "max":  75000
                 },
                 {
                     "nbre": 11,
                     "min":  0,
-                    "max":  78766
+                    "max":  80797
                 },
                 {
                     "nbre": 12,
                     "min":  0,
-                    "max":  84417
+                    "max":  86594
                 },
                 {
                     "nbre": 13,
                     "min":  0,
-                    "max":  90068
+                    "max":  92391
                 }
             ],
-            "primeCEE":     []
+            "primeCEE":     {
+                "H1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "H2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "H3": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                }
+            }
         }
     ],
     "lists":                    {
-        "batimentType":     [
+        "batimentType":   [
             {
                 "residentiel": "Résidentiel"
             },
@@ -615,7 +652,7 @@
                 "santé": "Santé"
             }
         ],
-        "chauffageType":    [
+        "chauffageType":  [
             {
                 "electrique": "Electrique"
             },
@@ -623,7 +660,7 @@
                 "combustible": "Combustible"
             }
         ],
-        "batimentNature":   [
+        "batimentNature": [
             {
                 "": "-"
             },
@@ -648,7 +685,7 @@
                 "r2": "R+2"
             }
         ],
-        "porteGarage":      [
+        "porteGarage":    [
             {
                 "": "non"
             },
@@ -659,7 +696,7 @@
                 "coulissante": "coulissante"
             }
         ],
-        "accesCamion":      [
+        "accesCamion":    [
             {
                 "facile": "Facile"
             },
@@ -667,7 +704,7 @@
                 "difficile": "Difficile"
             }
         ],
-        "support":          [
+        "support":        [
             {
                 "bois": "Bois"
             },
@@ -682,16 +719,9 @@
             }
         ]
     },
-    "ref":                      "LP8-20210217T1405-SO",
-    "folderName":               "LP8-20210217T1405-SO (DUPOND JEAN)",
-    "createdAt":                "2021-02-17T14:05:13.215",
-    "statutInDCI":              1,
-    "statutInDCIErrors":        [],
-    "technicien":               {
-        "nom":    "DUPOND",
-        "prenom": "JEAN",
-        "id":     8,
-        "tel":    ""
-    },
-    "updatedAt":                "2021-02-17T15:50:45.506"
+    "zoneMontant":              {
+        "H1": 8.8,
+        "H2": 7.15,
+        "H3": 7.15
+    }
 }

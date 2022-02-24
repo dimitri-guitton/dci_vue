@@ -7,15 +7,15 @@ import { convertOldRrFile } from '@/services/file/converter/convertRrData';
 import { convertOldCetFile } from '@/services/file/converter/convertCetData';
 import path from 'path';
 import { addFile, deleteFile } from '@/services/sqliteService';
-import { FILE_CET, FILE_CET_TYPE, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
+import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { getcurrentFolderName, setCurrentFileData } from '@/services/data/dataService';
 import { convertOldPgFile } from '@/services/file/converter/convertPgData';
 import { convertOldCombleFile } from '@/services/file/converter/convertCombleData';
 import { convertOldSolFile } from '@/services/file/converter/convertSolData';
-import { CetFile } from '@/types/v2/File/Cet/CetFile';
 import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 import { PdfType } from '@/services/pdf/pdfGenerator';
 import { shell } from 'electron';
+import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 
 const schema = {
     dropboxPath: {
@@ -110,31 +110,26 @@ const createSubFolders = ( type: string, parent: string ) => {
 };
 
 export const addJsonData = ( type: string, parent: string, reference: string, folderName: string ) => {
-    if ( type === FILE_CET_TYPE.slug ) {
-        const jsonPath = 'examples/empty_new_data_cet.json';
 
-        const rawdata         = fs.readFileSync( jsonPath ).toString( 'utf8' );
-        let fileData: CetFile = JSON.parse( rawdata );
-        fileData              = {
-            ...fileData,
-            ref:               reference,
-            folderName:        folderName,
-            createdAt:         toFrenchDate( new Date().toString() ),
-            updatedAt:         toFrenchDate( new Date().toString() ),
-            statusInDci:       2,
-            errorsStatusInDci: [],
-            quotation:         {
-                ...fileData.quotation,
-                totalHt:  0,
-                totalTva: 0,
-            },
-        };
+    const jsonPath = `examples/empty_new_data_${ type }.json`;
 
-        console.log( `${ parent }/data.json` );
-        console.log( fileData );
-        fs.writeFileSync( `${ parent }/data.json`, JSON.stringify( fileData ) );
-        setCurrentFileData( JSON.stringify( fileData ) );
-    }
+    const rawdata            = fs.readFileSync( jsonPath ).toString( 'utf8' );
+    let fileData: CombleFile = JSON.parse( rawdata );
+    fileData                 = {
+        ...fileData,
+        ref:               reference,
+        folderName:        folderName,
+        createdAt:         toFrenchDate( new Date().toString() ),
+        updatedAt:         toFrenchDate( new Date().toString() ),
+        statusInDci:       2,
+        errorsStatusInDci: [],
+    };
+
+    console.log( `${ parent }/data.json` );
+    console.log( fileData );
+    fs.writeFileSync( `${ parent }/data.json`, JSON.stringify( fileData ) );
+    setCurrentFileData( JSON.stringify( fileData ) );
+
 };
 
 export const createFolderRef = ( type: string ): string => {
@@ -171,53 +166,73 @@ export const createAFolder = async ( type: string, customer: string ) => {
 };
 
 /**
- * Convertie l'ancien système de données avec le nouveau
+ * Convertie les anciens JSON
  */
-export const convertOldJsonToNewJson = () => {
+export const convertAllOldJsonToNewJson = () => {
     console.log( '%c CONVERT', 'background: #fdd835; color: #000000' );
-    const dropboxPath          = store.get( 'dropboxPath' );
-    let oldData: object | null = null;
+    const dropboxPath        = store.get( 'dropboxPath' );
+    const oldDatas: object[] = [];
 
-    // if ( fs.existsSync( dropboxPath + '/DCI/old_data_cet.json' ) ) {
     if ( fs.existsSync( 'examples/old_data_cet.json' ) ) {
-        // oldData = JSON.parse( fs.readFileSync( dropboxPath + '/DCI/old_data_cet.json', 'utf8' ) );
-        oldData = JSON.parse( fs.readFileSync( 'examples/old_data_cet.json', 'utf8' ) );
-        console.log( oldData );
+        console.log( '%c CONVERT OLD CET', 'background: #4CD439; color: #000000' );
+        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_cet.json', 'utf8' ) ) );
+    }
+    if ( fs.existsSync( 'examples/old_data_pg.json' ) ) {
+        console.log( '%c CONVERT OLD PG', 'background: #4CD439; color: #000000' );
+        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_pg.json', 'utf8' ) ) );
+    }
+    if ( fs.existsSync( 'examples/old_data_sol.json' ) ) {
+        console.log( '%c CONVERT OLD SOL', 'background: #4CD439; color: #000000' );
+        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_sol.json', 'utf8' ) ) );
+    }
+    if ( fs.existsSync( 'examples/old_data_comble.json' ) ) {
+        console.log( '%c CONVERT OLD COMBLE', 'background: #4CD439; color: #000000' );
+        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_comble.json', 'utf8' ) ) );
+    }
+    if ( fs.existsSync( 'examples/old_data_pac_ro.json' ) ) {
+        console.log( '%c CONVERT OLD PAC RO', 'background: #4CD439; color: #000000' );
+        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_pac_ro.json', 'utf8' ) ) );
+    }
+    if ( fs.existsSync( 'examples/old_data_pac_rr.json' ) ) {
+        console.log( '%c CONVERT OLD PAC RR', 'background: #4CD439; color: #000000' );
+        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_pac_rr.json', 'utf8' ) ) );
     }
 
-    if ( oldData === null || oldData === undefined ) {
-        return false;
+    for ( const oldData of oldDatas ) {
+        let data = '';
+
+        let type = oldData[ 'type' ].toLowerCase();
+
+        if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'ro' ) {
+            data = JSON.stringify( convertOldRoFile( oldData ), null, 2 );
+            type += '_ro';
+        } else if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'rr' ) {
+            data = JSON.stringify( convertOldRrFile( oldData ), null, 2 );
+            type += '_rr';
+        } else if ( type === 'cet' ) {
+            data = JSON.stringify( convertOldCetFile( oldData ), null, 2 );
+        } else if ( type === 'poele' ) {
+            data = JSON.stringify( convertOldPgFile( oldData ), null, 2 );
+            type += 'pg';
+        } else if ( type === 'comble' ) {
+            data = JSON.stringify( convertOldCombleFile( oldData ), null, 2 );
+        } else if ( type === 'sol' ) {
+            data = JSON.stringify( convertOldSolFile( oldData ), null, 2 );
+        } else {
+            console.log( '%c RETURN FALSE', 'background: #fdd835; color: #000000' );
+            return false;
+        }
+
+        // console.log( '%c NEW DATA', 'background: #fdd835; color: #000000' );
+        // console.log( data );
+
+        const path = `${ dropboxPath }/DCI/empty_new_data_${ type }.json`;
+        console.log( path );
+        if ( dropboxPath !== '' && !fs.existsSync( path ) ) {
+            fs.writeFileSync( path, data );
+        }
     }
 
-    let data = '';
-
-    const type = oldData[ 'type' ].toLowerCase();
-
-    if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'ro' ) {
-        data = JSON.stringify( convertOldRoFile( oldData ), null, 2 );
-    } else if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'rr' ) {
-        data = JSON.stringify( convertOldRrFile( oldData ), null, 2 );
-    } else if ( type === 'cet' ) {
-        data = JSON.stringify( convertOldCetFile( oldData ), null, 2 );
-    } else if ( type === 'poele' ) {
-        data = JSON.stringify( convertOldPgFile( oldData ), null, 2 );
-    } else if ( type === 'comble' ) {
-        data = JSON.stringify( convertOldCombleFile( oldData ), null, 2 );
-    } else if ( type === 'sol' ) {
-        data = JSON.stringify( convertOldSolFile( oldData ), null, 2 );
-    } else {
-        console.log( '%c RETURN FALSE', 'background: #fdd835; color: #000000' );
-        return false;
-    }
-
-    console.log( '%c NEW DATA', 'background: #fdd835; color: #000000' );
-    console.log( data );
-
-    const path = `${ dropboxPath }/DCI/new_data_${ type }.json`;
-    console.log( path );
-    if ( dropboxPath !== '' && !fs.existsSync( path ) ) {
-        fs.writeFileSync( path, data );
-    }
     return true;
 };
 

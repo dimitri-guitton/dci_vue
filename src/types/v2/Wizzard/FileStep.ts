@@ -3,7 +3,11 @@ import { Step2 } from '@/types/v2/Wizzard/Step2';
 import { BaseStep4 } from '@/types/v2/Wizzard/step4/BaseStep4';
 import { CetStep3 } from '@/types/v2/Wizzard/step3/CetStep3';
 import { CetStep5 } from '@/types/v2/Wizzard/step5/CetStep5';
+import { CombleStep3 } from '@/types/v2/Wizzard/step3/CombleStep3';
+import { CombleStep5 } from '@/types/v2/Wizzard/step5/CombleStep5';
 
 // export interface FileStep extends Step1, Step2, BaseStep3, Step4 {}
 
 export interface CetFileStep extends Step1, Step2, CetStep3, BaseStep4, CetStep5 {}
+
+export interface CombleFileStep extends Step1, Step2, CombleStep3, BaseStep4, CombleStep5 {}

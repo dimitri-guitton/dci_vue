@@ -6,17 +6,15 @@
     "createdAt":                 "",
     "updatedAt":                 "",
     "settings":                  {
-        "ceeCoef": "6.6"
+        "ceeCoef": "5.5"
     },
-    "quotationTemplate":         "quotation_pac_rr_v1.html",
-    "workSheetTemplate":         "work_sheet_pac_rr_v1.html",
     "disabledBonus":             false,
     "disabledCeeBonus":          false,
     "enabledHousingAction":      false,
     "disabledMaPrimeRenovBonus": false,
-    "assent":                    [],
+    "assents":                   [],
     "beneficiary":               {
-        "civility":  "",
+        "civility":  "m",
         "lastName":  "",
         "firstName": "",
         "address":   "",
@@ -24,14 +22,17 @@
         "city":      "",
         "email":     "",
         "phone":     "",
-        "mobile":    ""
+        "mobile":    "",
+        "income":    0
     },
     "codeBonus":                 null,
     "energyZone":                null,
-    "bonusRate":                 null,
-    "housing": {
+    "housing":                   {
         "nbOccupant":        1,
         "type":              "maison_individuelle",
+        "heatingType":       "",
+        "buildingNature":    "",
+        "isRentedHouse":     false,
         "isAddressBenef":    true,
         "address":           "",
         "zipCode":           "",
@@ -45,7 +46,7 @@
         "lessThan2Years":    false,
         "availableVoltage":  "monophase"
     },
-    "worksheet": {
+    "worksheet":                 {
         "period":               "",
         "niveauHabitation":     "pp",
         "typeChantier":         "neuf",
@@ -91,89 +92,89 @@
         "options":            [
             {
                 "id":            1,
-                "fileType":      "cet",
+                "fileType":      "pac_rr",
                 "label":         "Forfait pompe de relevage des condensats interieurs",
                 "unit":          "u",
-                "pu":            "0",
-                "defaultNumber": "0",
-                "number":        "0",
-                "position":      1
+                "defaultPu":     120,
+                "pu":            120,
+                "defaultNumber": 1,
+                "number":        1
             },
             {
                 "id":            2,
-                "fileType":      "cet",
+                "fileType":      "pac_rr",
                 "label":         "Forfait pose ( Pose nouvel appareil, mise en service)",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     450,
+                "pu":            450,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      2
+                "number":        1
             },
             {
                 "id":            3,
-                "fileType":      "cet",
+                "fileType":      "pac_rr",
                 "label":         "Télécommande programmable, accessoires d’installation et explications.",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     0,
+                "pu":            0,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      3
+                "number":        1
             },
             {
                 "id":            4,
-                "fileType":      "cet",
+                "fileType":      "pac_rr",
                 "label":         "Nettoyage et désembouage (si nécessaire) du circuit de chauffage.",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     0,
+                "pu":            0,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      4
+                "number":        1
             },
             {
                 "id":            5,
-                "fileType":      "cet",
+                "fileType":      "pac_rr",
                 "label":         "Forfait accessoires nécessaires à la pose, au raccordement et au bon fonctionnement de l’installation.",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     500,
+                "pu":            500,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      5
+                "number":        1
             },
             {
                 "id":            6,
-                "fileType":      "cet",
+                "fileType":      "pac_rr",
                 "label":         "Forfait pose (dépose ancien appareil, pose nouvel appareil et mise en service).",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     2000,
+                "pu":            2000,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      6
+                "number":        1
             },
             {
                 "id":            7,
-                "fileType":      "cet",
+                "fileType":      "pac_rr",
                 "label":         "Wifi",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     120,
+                "pu":            120,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      7
+                "number":        1
             }
         ],
         "blankOptions":       [
             {
-                "id":    "sup1",
-                "label": "",
-                "unit":  "u",
-                "pu":    0,
-                "value": 0
+                "id":     "sup1",
+                "label":  "",
+                "unit":   "u",
+                "pu":     0,
+                "number": 0
             },
             {
-                "id":    "sup2",
-                "label": "",
-                "unit":  "u",
-                "pu":    0,
-                "value": 0
+                "id":     "sup2",
+                "label":  "",
+                "unit":   "u",
+                "pu":     0,
+                "number": 0
             }
         ],
         "commentary":         "",
@@ -196,10 +197,11 @@
         "tva20":              0,
         "ceeBonus":           0,
         "maPrimeRenovBonus":  0,
+        "discount":           0,
         "selectedProducts":   [],
         "rrType":             "rr_mono",
         "rrMulti":            {
-            "roomNumber": 1,
+            "roomNumber": 2,
             "areaP1":     0,
             "areaP2":     0,
             "areaP3":     0,
@@ -1239,9 +1241,11 @@
                 "scop":        null
             }
         ],
-        "discount":           0,
         "totalHt":            0,
-        "totalTva":           0
+        "totalTva":           0,
+        "totalTtc":           0,
+        "remainderToPay":     0,
+        "tva":                5.5
     },
     "scales":                    [
         {
@@ -1249,67 +1253,67 @@
                 {
                     "nbr": 1,
                     "min": 0,
-                    "max": 14879
+                    "max": 15262
                 },
                 {
                     "nbr": 2,
                     "min": 0,
-                    "max": 21760
+                    "max": 22320
                 },
                 {
                     "nbr": 3,
                     "min": 0,
-                    "max": 26170
+                    "max": 26844
                 },
                 {
                     "nbr": 4,
                     "min": 0,
-                    "max": 30572
+                    "max": 31359
                 },
                 {
                     "nbr": 5,
                     "min": 0,
-                    "max": 34993
+                    "max": 35894
                 },
                 {
                     "nbr": 6,
                     "min": 0,
-                    "max": 39405
+                    "max": 40420
                 },
                 {
                     "nbr": 7,
                     "min": 0,
-                    "max": 43817
+                    "max": 44946
                 },
                 {
                     "nbr": 8,
                     "min": 0,
-                    "max": 48229
+                    "max": 49472
                 },
                 {
                     "nbr": 9,
                     "min": 0,
-                    "max": 52641
+                    "max": 53998
                 },
                 {
                     "nbr": 10,
                     "min": 0,
-                    "max": 57053
+                    "max": 58524
                 },
                 {
                     "nbr": 11,
                     "min": 0,
-                    "max": 61465
+                    "max": 63050
                 },
                 {
                     "nbr": 12,
                     "min": 0,
-                    "max": 65877
+                    "max": 67576
                 },
                 {
                     "nbr": 13,
                     "min": 0,
-                    "max": 70289
+                    "max": 72102
                 }
             ],
             "code":     "GP",
@@ -1324,67 +1328,67 @@
                 {
                     "nbr": 1,
                     "min": 0,
-                    "max": 19074
+                    "max": 19565
                 },
                 {
                     "nbr": 2,
                     "min": 0,
-                    "max": 27896
+                    "max": 28614
                 },
                 {
                     "nbr": 3,
                     "min": 0,
-                    "max": 33547
+                    "max": 34411
                 },
                 {
                     "nbr": 4,
                     "min": 0,
-                    "max": 39192
+                    "max": 40201
                 },
                 {
                     "nbr": 5,
                     "min": 0,
-                    "max": 44860
+                    "max": 46015
                 },
                 {
                     "nbr": 6,
                     "min": 0,
-                    "max": 50511
+                    "max": 51812
                 },
                 {
                     "nbr": 7,
                     "min": 0,
-                    "max": 56162
+                    "max": 57609
                 },
                 {
                     "nbr": 8,
                     "min": 0,
-                    "max": 61813
+                    "max": 63406
                 },
                 {
                     "nbr": 9,
                     "min": 0,
-                    "max": 67464
+                    "max": 69203
                 },
                 {
                     "nbr": 10,
                     "min": 0,
-                    "max": 73115
+                    "max": 75000
                 },
                 {
                     "nbr": 11,
                     "min": 0,
-                    "max": 78766
+                    "max": 80797
                 },
                 {
                     "nbr": 12,
                     "min": 0,
-                    "max": 84417
+                    "max": 86594
                 },
                 {
                     "nbr": 13,
                     "min": 0,
-                    "max": 90068
+                    "max": 92391
                 }
             ],
             "code":     "P",
@@ -1552,14 +1556,24 @@
             "h3": 43.6
         }
     },
+    "statusInDci":               1,
+    "errorsStatusInDci":         [],
+    "technician":                {
+        "id":        {},
+        "lastName":  {},
+        "firstName": {},
+        "phone":     {}
+    },
     "lists":                     {
         "localTypeList":         {
             "slug":  "localTypeList",
             "items": [
                 {
+                    "slug":  "maison_individuelle",
                     "value": "Maison individuelle"
                 },
                 {
+                    "slug":  "appartement",
                     "value": "Appartement"
                 }
             ]
@@ -1568,9 +1582,11 @@
             "slug":  "rrTypeList",
             "items": [
                 {
+                    "slug":  "rr_mono",
                     "value": "RR Mono"
                 },
                 {
+                    "slug":  "rr_multi",
                     "value": "RR Multi"
                 }
             ]
@@ -1581,12 +1597,15 @@
             "slug":  "accesCombleList",
             "items": [
                 {
+                    "slug":  "trappe",
                     "value": "TRAPPE"
                 },
                 {
+                    "slug":  "toit",
                     "value": "TOITURE"
                 },
                 {
+                    "slug":  "trappe_et_toit",
                     "value": "TRAPPE et TOITURE"
                 }
             ]
@@ -1595,18 +1614,23 @@
             "slug":  "typeCouvertureList",
             "items": [
                 {
+                    "slug":  "meca",
                     "value": "Mecanique"
                 },
                 {
+                    "slug":  "tige_bottes",
                     "value": "Tiges de bottes"
                 },
                 {
+                    "slug":  "ardoise",
                     "value": "Ardoise"
                 },
                 {
+                    "slug":  "tuiles_plates",
                     "value": "Tuiles plates"
                 },
                 {
+                    "slug":  "tuiles_courbes",
                     "value": "Tuiles courbes"
                 }
             ]
@@ -1615,15 +1639,19 @@
             "slug":  "typeCharpenteList",
             "items": [
                 {
+                    "slug":  "trad",
                     "value": "Traditionnelle"
                 },
                 {
+                    "slug":  "ferm",
                     "value": "Fermettes"
                 },
                 {
+                    "slug":  "metal",
                     "value": "Metallique"
                 },
                 {
+                    "slug":  "autre",
                     "value": "Autre"
                 }
             ]
@@ -1632,12 +1660,15 @@
             "slug":  "etatToitureList",
             "items": [
                 {
+                    "slug":  "propre",
                     "value": "Propre"
                 },
                 {
+                    "slug":  "mousse_faible",
                     "value": "Mousse en petite quantité"
                 },
                 {
+                    "slug":  "mousse_important",
                     "value": "Mousse importante"
                 }
             ]
@@ -1645,29 +1676,49 @@
         "puissanceCompteurList": {
             "slug":  "puissanceCompteurList",
             "items": [
-                {},
-                {},
-                {},
-                {},
-                {}
+                {
+                    "slug":  3,
+                    "value": 3
+                },
+                {
+                    "slug":  6,
+                    "value": 6
+                },
+                {
+                    "slug":  9,
+                    "value": 9
+                },
+                {
+                    "slug":  12,
+                    "value": 12
+                },
+                {
+                    "slug":  18,
+                    "value": 18
+                }
             ]
         },
         "natureMurExtList":      {
             "slug":  "natureMurExtList",
             "items": [
                 {
+                    "slug":  "parpaing",
                     "value": "Parpaing"
                 },
                 {
+                    "slug":  "brique",
                     "value": "Brique"
                 },
                 {
+                    "slug":  "beton",
                     "value": "Béton"
                 },
                 {
+                    "slug":  "pierre",
                     "value": "Pierre"
                 },
                 {
+                    "slug":  "bois",
                     "value": "Bois"
                 }
             ]
@@ -1676,12 +1727,15 @@
             "slug":  "typeRadiateurList",
             "items": [
                 {
+                    "slug":  "alu",
                     "value": "Alu"
                 },
                 {
+                    "slug":  "fonte",
                     "value": "Fonte"
                 },
                 {
+                    "slug":  "acier",
                     "value": "Acier"
                 }
             ]
@@ -1690,9 +1744,11 @@
             "slug":  "tensionDisponibleList",
             "items": [
                 {
+                    "slug":  "monophase",
                     "value": "Monophasé"
                 },
                 {
+                    "slug":  "triphase",
                     "value": "Triphasé"
                 }
             ]
@@ -1701,9 +1757,11 @@
             "slug":  "positionEauChaudeList",
             "items": [
                 {
+                    "slug":  "sol",
                     "value": "Au sol"
                 },
                 {
+                    "slug":  "mur",
                     "value": "Au mur"
                 }
             ]
@@ -1712,18 +1770,23 @@
             "slug":  "typeChaudiereList",
             "items": [
                 {
+                    "slug":  "aucun",
                     "value": "Aucun"
                 },
                 {
+                    "slug":  "CCHC",
                     "value": "Chaudière charbon hors condensation"
                 },
                 {
+                    "slug":  "CFHC",
                     "value": "Chaudière fioul hors condensation"
                 },
                 {
+                    "slug":  "CGHC",
                     "value": "Chaudière gaz hors condensation"
                 },
                 {
+                    "slug":  "autre",
                     "value": "Autre"
                 }
             ]
@@ -1732,27 +1795,35 @@
             "slug":  "gammeTypeList",
             "items": [
                 {
+                    "slug":  "sensira",
                     "value": "Sensira"
                 },
                 {
+                    "slug":  "perfera",
                     "value": "Perfera"
                 },
                 {
+                    "slug":  "stylish_blanc",
                     "value": "Stylish Blanc"
                 },
                 {
+                    "slug":  "stylish_noir",
                     "value": "Stylish Noir"
                 },
                 {
+                    "slug":  "stylish_argent",
                     "value": "Stylish Argent"
                 },
                 {
+                    "slug":  "stylish_bois",
                     "value": "Stylish Bois"
                 },
                 {
+                    "slug":  "emura_blanc",
                     "value": "Emura Blanc"
                 },
                 {
+                    "slug":  "emura_argent",
                     "value": "Emura Argent"
                 }
             ]
@@ -1761,27 +1832,35 @@
             "slug":  "qualiteIsolationList",
             "items": [
                 {
+                    "slug":  "0.6",
                     "value": "0.6"
                 },
                 {
+                    "slug":  "0.65",
                     "value": "0.65"
                 },
                 {
+                    "slug":  "0.8",
                     "value": "0.8"
                 },
                 {
+                    "slug":  "0.9",
                     "value": "0.9"
                 },
                 {
+                    "slug":  "1",
                     "value": "1"
                 },
                 {
+                    "slug":  "1.1",
                     "value": "1.1"
                 },
                 {
+                    "slug":  "1.3",
                     "value": "1.3"
                 },
                 {
+                    "slug":  "1.5",
                     "value": "1.5"
                 }
             ]
@@ -1790,15 +1869,19 @@
             "slug":  "batimentNatureList",
             "items": [
                 {
+                    "slug":  "",
                     "value": "-"
                 },
                 {
+                    "slug":  "nouvelle_residence",
                     "value": "Nouvelle résidence principale"
                 },
                 {
+                    "slug":  "location",
                     "value": "Location"
                 },
                 {
+                    "slug":  "residence_secondaire",
                     "value": "Résidence secondaire"
                 }
             ]
@@ -1807,15 +1890,19 @@
             "slug":  "naturePlafondList",
             "items": [
                 {
+                    "slug":  "brique",
                     "value": "Brique"
                 },
                 {
+                    "slug":  "placo",
                     "value": "Placo"
                 },
                 {
+                    "slug":  "bois",
                     "value": "Bois"
                 },
                 {
+                    "slug":  "beton",
                     "value": "Béton"
                 }
             ]
@@ -1824,12 +1911,15 @@
             "slug":  "EcsDeporteList",
             "items": [
                 {
+                    "slug":  "volume",
                     "value": 150
                 },
                 {
+                    "slug":  "volume",
                     "value": 200
                 },
                 {
+                    "slug":  "volume",
                     "value": 300
                 }
             ]
@@ -1838,21 +1928,27 @@
             "slug":  "niveauHabitationList",
             "items": [
                 {
+                    "slug":  "pp",
                     "value": "Plein Pied"
                 },
                 {
+                    "slug":  "r1",
                     "value": "R+1"
                 },
                 {
+                    "slug":  "r2",
                     "value": "R+2"
                 },
                 {
+                    "slug":  "r3",
                     "value": "R+3"
                 },
                 {
+                    "slug":  "r4",
                     "value": "R+4"
                 },
                 {
+                    "slug":  "autre",
                     "value": "AUTRE"
                 }
             ]
@@ -1861,9 +1957,11 @@
             "slug":  "typeChantierList",
             "items": [
                 {
+                    "slug":  "neuf",
                     "value": "Neuf"
                 },
                 {
+                    "slug":  "reno",
                     "value": "Reno"
                 }
             ]
@@ -1872,24 +1970,31 @@
             "slug":  "typeOrigineList",
             "items": [
                 {
+                    "slug":  "telephone",
                     "value": "Téléphone"
                 },
                 {
+                    "slug":  "internet",
                     "value": "Internet"
                 },
                 {
+                    "slug":  "presse",
                     "value": "Presse"
                 },
                 {
+                    "slug":  "campagne-google",
                     "value": "Campagne Google"
                 },
                 {
+                    "slug":  "autre",
                     "value": "Autre"
                 },
                 {
+                    "slug":  "hello-watt",
                     "value": "hello watt"
                 },
                 {
+                    "slug":  "angelique",
                     "value": "Angélique"
                 }
             ]

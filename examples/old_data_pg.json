@@ -1,13 +1,117 @@
 {
+    "settings":                 {
+        "ceeCoef": "5.5"
+    },
+    "type":                     "poele",
+    "version":                  "5",
+    "devisTemplate":            "devisPoele-v5.html",
+    "ficheTemplate":            "fichePoele-v5.html",
+    "ficheGenerator":           "poeleV3.xlsx",
     "disablePrime":             false,
+    "disablePrimeCEE":          false,
+    "disablePrimeMaprimerenov": false,
+    "enabledActionLogement":    false,
+    "avis":                     [],
+    "beneficiaire":             {
+        "civilite":   "m",
+        "nom":        "",
+        "prenom":     "",
+        "adresse":    "",
+        "codepostal": "",
+        "ville":      ""
+    },
+    "email":                    "",
+    "telfixe":                  "",
+    "telportable":              "",
+    "codePrime":                null,
+    "zoneEnergetique":          null,
+    "tauxPrime":                null,
+    "logement":                 {
+        "occupants":         1,
+        "chauffageType":     "electrique",
+        "batimentNature":    "",
+        "typeChaudiere":     "aucun",
+        "isAdresseBenef":    true,
+        "adresse":           "",
+        "codepostal":        "",
+        "ville":             "",
+        "parcelle":          "",
+        "superficie":        "",
+        "dataGeoportail":    {},
+        "location":          "",
+        "moinsDe2Ans":       false,
+        "anneeConstruction": "",
+        "localType":         "maison_individuelle"
+    },
+    "fiche":                    {
+        "periodePose":                 "",
+        "generateur":                  "electrique",
+        "marque":                      "",
+        "modele":                      "",
+        "puissance":                   "",
+        "conduiteMateriau":            "",
+        "conduiteDiametre":            "",
+        "longueurTotal":               "",
+        "longeurProjection":           "",
+        "nbCoude90":                   "",
+        "nbCoude45":                   "",
+        "reductionSection":            false,
+        "etat":                        false,
+        "demontable":                  false,
+        "distanceSecurite":            "",
+        "conduitType":                 "maconne",
+        "conduitMateriauConstitutif":  "",
+        "plaqueSignaletique":          false,
+        "classeTemperature":           "",
+        "classePression":              "",
+        "resistanceCondansat":         "dry",
+        "resistanceCorrosion":         "no",
+        "resistanceFeu":               "",
+        "distanceSecuriteCombustible": "",
+        "presenceTrappe":              "no",
+        "hauteurTotal":                "",
+        "hauteurLocauxChauffe":        "",
+        "hauteurLocauxNonChauffe":     "",
+        "hauteurExterieur":            "",
+        "devoiement":                  false,
+        "distanceDevoiement":          "",
+        "conduitIsole":                false,
+        "sectionConduitLargeur":       "",
+        "sectionConduitLongeur":       "",
+        "sectionConduitDiametre":      "",
+        "deboucheSup40":               "no",
+        "obstacleInf8":                false,
+        "deboucheAccessible":          false,
+        "typeDebouche":                "nu",
+        "toiture":                     "pente_sup_15",
+        "pieceLogement":               "",
+        "pieceLongueur":               "",
+        "pieceLargeur":                "",
+        "pieceHauteur":                "",
+        "pieceSurface":                "",
+        "accesPorteLargeur":           "",
+        "accesPorteHauteur":           "",
+        "natureMur":                   "",
+        "natureSol":                   "",
+        "naturePlafond":               "",
+        "ameneeAir":                   false,
+        "priseElec":                   "",
+        "niveauHabitation":            "pp",
+        "typeChantier":                "neuf",
+        "infosSup":                    "RAS",
+        "escalier":                    false,
+        "escalierLargeur":             "",
+        "zoneInstallation":            "z1",
+        "creation":                    true
+    },
     "devis":                    {
-        "noPrimeUseCode":  "CL",
         "pose":            5.5,
         "overridePose":    5.5,
         "tva":             5.5,
-        "origine":         "PERSO",
-        "dateVisiteTech":  "2021-10-06",
-        "delaisExecution": "2022-01-06",
+        "noPrimeUseCode":  "CL",
+        "origine":         "",
+        "dateVisiteTech":  "",
+        "delaisExecution": "",
         "calcul0PU":       0,
         "options":         [
             {
@@ -18,6 +122,36 @@
                 "pu":    {
                     "default": 700,
                     "value":   700
+                }
+            },
+            {
+                "id":    2,
+                "label": "Forfait fournitures",
+                "unit":  "u",
+                "value": 1,
+                "pu":    {
+                    "default": 50,
+                    "value":   50
+                }
+            },
+            {
+                "id":    3,
+                "label": "Forfait enlèvement cheminée existante",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "default": 950,
+                    "value":   950
+                }
+            },
+            {
+                "id":    4,
+                "label": "Plaque de sol en acier noir",
+                "unit":  "u",
+                "value": 0,
+                "pu":    {
+                    "default": 149,
+                    "value":   149
                 }
             }
         ],
@@ -52,7 +186,7 @@
             "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
         },
         "poeles":          {
-            "selectedId": "2",
+            "selectedId": 1,
             "products":   [
                 {
                     "id":             1,
@@ -728,248 +862,105 @@
             ]
         },
         "fumisteries":     {
-            "selectedId": "1",
+            "selectedId": 1,
             "products":   [
                 {
                     "id":        1,
-                    "label":     "Fumisterie et accessoires de pose pour maison plein pied et plafond plat",
-                    "ref":       "RED/PLAFONDPLAT",
-                    "pu":        1790,
-                    "defaultPU": 1790,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125, Té 90° concentrique élément droit prise d’air, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
-                    "type":      "red"
+                    "label":     "Création complète interieur conduit isolé Poujoulat",
+                    "ref":       "POUJOULAT-1",
+                    "pu":        1890,
+                    "defaultPU": 1890,
+                    "descr":     "Création complète interieur conduit isolé Poujoulat\r\nTuyau isolé double paroi 500mm\r\nCoude 45°\r\nSupport plancher\r\nMaintien au toît galva\r\nSolin\r\nChapeau\r\nElément de depart plafond\r\nRosace\r\nTuyau emaillé + kit air",
+                    "type":      null,
+                    "air":       true
                 },
                 {
                     "id":        2,
-                    "label":     "Fumisterie et accessoires de pose pour maison plein pied et plafond rampant",
-                    "ref":       "RED/RAMPAN/80-5M",
-                    "pu":        1790,
-                    "defaultPU": 1790,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125,Té 90° concentrique élément droit prise d’air, élément droit prise d’air, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
-                    "type":      "red"
+                    "label":     "Boisseau intérieur maçonné",
+                    "ref":       "POUJOULAT-2",
+                    "pu":        1100,
+                    "defaultPU": 1100,
+                    "descr":     "Raccord pour tubage\r\nRaccord pour tubage\r\nGaine\r\nCollier soutien\r\nPlaque étanche\r\nChapeau\r\nTube concentrique 1000mm\r\nTuyau simple paroi émaillé 500\r\nTuyau simple paroi émaillé 250\r\nTuyau réglable\r\nTé fumée\r\nCoude 45°\r\nKit air",
+                    "type":      null,
+                    "air":       true
                 },
                 {
                     "id":        3,
-                    "label":     "Fumisterie et accessoires de pose pour maison plein pied et plafond rampant",
-                    "ref":       "RED/RAMPAN/100+5M",
-                    "pu":        1990,
-                    "defaultPU": 1990,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 100/150, élément droit prise d’air, Té 90° concentrique élément droit prise d’air, plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
-                    "type":      "red"
+                    "label":     "Ventouse Poujoulat",
+                    "ref":       "POUJOULAT-3",
+                    "pu":        800,
+                    "defaultPU": 800,
+                    "descr":     "Tuyau concentrique\r\nTé à 90°\r\nElement prise d’air 90°\r\nAdaptateur poêle universel\r\nGalva flexible air\r\nAdaptateur air etanche\r\nPlaque de propreté\r\nElément réglable\r\nCoude à 90°\r\nTherminal horizontal\r\n",
+                    "type":      null,
+                    "air":       true
                 },
                 {
                     "id":        4,
-                    "label":     "Fumisterie et accessoires ventouse horizontale",
-                    "ref":       "RED/VENTOUZMURAL",
-                    "pu":        990,
-                    "defaultPU": 990,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125, Té 90° concentrique élément droit prise d’air, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal horizontal concentrique noir mat et rosace.",
-                    "type":      "red"
+                    "label":     "Création complète exterieur conduit isolé Poujoulat",
+                    "ref":       "POUJOULAT-4",
+                    "pu":        1640,
+                    "defaultPU": 1640,
+                    "descr":     "Création complète exterieur conduit isolé Poujoulat\r\nTuyau isolé simple paroi 500mm\r\nTuyau isolé simple paroi 250mm\r\nCoude 45°\r\nElement de départ plafond\r\nRosace noir\r\nRosace inox\r\nChapeau\r\nChaise\r\nBride murale\r\nRallonge\r\nTuyau isolé émaillé 500mm\r\nManchon F.F\r\nTé\r\nKit air",
+                    "type":      null,
+                    "air":       true
                 },
                 {
                     "id":        5,
-                    "label":     "Fumisterie et accessoires de pose pour maison R+1 et plafond plat",
-                    "ref":       "RED/R+1/DIAMETR100",
-                    "pu":        2290,
-                    "defaultPU": 2290,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 100/150, Té 90° concentrique élément droit prise d’air, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
-                    "type":      "red"
+                    "label":     "Création complète intérieur tuyaux concentrique Poujoulat",
+                    "ref":       "POUJOULAT-5",
+                    "pu":        1790,
+                    "defaultPU": 1790,
+                    "descr":     "Tube concentrique 1000mm\nTube concentrique 500mm\nTuyau réglable\nCoude 45°\nSupport plancher\nMaintien au toît\nRosace\nTé fumée\nTé air\nAdaptateur poêle\nSolin et collerette\nChapeau",
+                    "type":      null,
+                    "air":       false
                 },
                 {
                     "id":        6,
-                    "label":     "Fumisterie et accessoires de pose pour maison reprise sur conduit existant.",
-                    "ref":       "RED/COND-EXIST-5M",
-                    "pu":        1100,
-                    "defaultPU": 1100,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125, Té 90° concentrique élément droit prise d’air, flexible pour conduit existant, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
-                    "type":      "red"
+                    "label":     "Boisseau existant maçonné départ au sol",
+                    "ref":       "POUJOULAT-6",
+                    "pu":        1200,
+                    "defaultPU": 1200,
+                    "descr":     "Kit KFRL\nGaine\nChapeau CTIV\nCollier CTF\nEmaillé 500\nManchon F.F",
+                    "type":      null,
+                    "air":       false
                 },
                 {
                     "id":        7,
-                    "label":     "Fumisterie et accessoires de pose pour maison reprise sur conduit existant.",
-                    "ref":       "RED/COND-EXIST+5M",
-                    "pu":        1300,
-                    "defaultPU": 1300,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 100/150,Té 90° concentrique élément droit prise d’air, flexible pour conduis existant, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
-                    "type":      "red"
+                    "label":     "Boisseau existant maçonné départ au plafond",
+                    "ref":       "POUJOULAT-7",
+                    "pu":        1000,
+                    "defaultPU": 1000,
+                    "descr":     "KIT KRFLCTé fumée\r\nTé air\r\nAdaptateur poêle\r\nTuyau réglable\r\nTube concentrique 1000mm\r\nTube concentrique 500mm\r\nChapeau CTIVCollier de maintien\r\nGaine",
+                    "type":      null,
+                    "air":       false
                 },
                 {
                     "id":        8,
-                    "label":     "Fumisterie et accessoires de pose pour maison plein pied et plafond plat",
-                    "ref":       "JM/PLAFONDPLAT-5M",
-                    "pu":        1790,
-                    "defaultPU": 1790,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125, raccord concentrique, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
-                    "type":      "jm"
+                    "label":     "Boisseau existant maçonné extérieur",
+                    "ref":       "POUJOULAT-8",
+                    "pu":        1200,
+                    "defaultPU": 1200,
+                    "descr":     "Kit KFRL\r\nGaine\r\nChapeau CTIV\r\nCollier CTF\r\nEmaillé 500\r\nManchon F.F",
+                    "type":      null,
+                    "air":       true
                 },
                 {
                     "id":        9,
-                    "label":     "Fumisterie et accessoires de pose pour maison plein pied et plafond rampant",
-                    "ref":       "JM/RAMPANT/80-5M",
-                    "pu":        1790,
-                    "defaultPU": 1790,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125, élément droit prise d’air, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
-                    "type":      "jm"
-                },
-                {
-                    "id":        10,
-                    "label":     "Fumisterie et accessoires de pose pour maison plein pied et plafond rampant",
-                    "ref":       "JM/RAMPANT/100+5M",
-                    "pu":        1990,
-                    "defaultPU": 1990,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 100/150, élément droit prise d’air, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
-                    "type":      "jm"
-                },
-                {
-                    "id":        11,
-                    "label":     "Fumisterie et accessoires ventouse horizontale",
-                    "ref":       "JM/VENTOUZMURAL",
-                    "pu":        900,
-                    "defaultPU": 900,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125, élément droit prise d’air, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal horizontal concentrique noir mat et rosace.",
-                    "type":      "jm"
-                },
-                {
-                    "id":        12,
-                    "label":     "Fumisterie et accessoires de pose pour maison R+1 et plafond plat",
-                    "ref":       "JM/R+1/DIAMETRE100",
-                    "pu":        2290,
-                    "defaultPU": 2290,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 100/150, raccord concentrique, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
-                    "type":      "jm"
-                },
-                {
-                    "id":        13,
-                    "label":     "Fumisterie et accessoires de pose pour maison reprise sur conduit existant.",
-                    "ref":       "JM/COND-EXIST-5M",
-                    "pu":        1100,
-                    "defaultPU": 1100,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 80/125,flexible pour conduis existant, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
-                    "type":      "jm"
-                },
-                {
-                    "id":        14,
-                    "label":     "Fumisterie et accessoires de pose pour maison reprise sur conduit existant.",
-                    "ref":       "JM/COND-EXIST+5M",
-                    "pu":        1300,
-                    "defaultPU": 1300,
-                    "descr":     "Conduit de fumé en PGI TUBEST noir mat, diamètre 100/150,flexible pour conduis existant, coquille thermique, plaque coupe feu, Plaque de proprété noir mat, solin d’étanchéité inox Coax pellet avec collet anti-intempéries (base plomb), Terminal vertical concentrique inox.",
-                    "type":      "jm"
+                    "label":     "Création complète extérieure conduit isolé Poujoulat R+1",
+                    "ref":       "POUJOULAT-9",
+                    "pu":        2200,
+                    "defaultPU": 2200,
+                    "descr":     "Création complète exterieur conduit isolé Poujoulat\r\nTuyau isolé simple paroi 500mm\r\nTuyau isolé simple paroi 250mm\r\nCoude 45°\r\nElement de départ plafond\r\nRosace noir\r\nRosace inox\r\nChapeau\r\nChaise\r\nBride murale\r\nRallonge\r\nTuyau isolé émaillé 500mm\r\nManchon F.F\r\nTé\r\nKit air",
+                    "type":      null,
+                    "air":       true
                 }
             ]
         },
+        "outsideSocket":   "Non",
         "couleurProfile":  "blanc_creme",
         "couleurFacade":   "gres_ivoire",
         "marque":          "red",
-        "puissancePoele":  6,
-        "totalHT":         4480,
-        "totalTVA":        246.4,
-        "primeCEE":        "413.00",
-        "primeAnah":       "3000.00"
-    },
-    "settings":                 {
-        "ceeCoef": "6.6"
-    },
-    "type":                     "poele",
-    "version":                  "5",
-    "devisTemplate":            "devisPoele-v5.html",
-    "ficheTemplate":            "fichePoele-v5.html",
-    "ficheGenerator":           "poeleV3.xlsx",
-    "disablePrimeCEE":          false,
-    "disablePrimeMaprimerenov": false,
-    "enabledActionLogement":    false,
-    "avis":                     [],
-    "beneficiaire":             {
-        "civilite":   "M",
-        "nom":        "DUPOND",
-        "prenom":     "JEAN",
-        "adresse":    "",
-        "codepostal": "",
-        "ville":      ""
-    },
-    "email":                    "test@test.fr",
-    "telfixe":                  "",
-    "telportable":              "",
-    "codePrime":                "GP",
-    "zoneEnergetique":          "H2",
-    "tauxPrime":                31.3,
-    "logement":                 {
-        "occupants":         "4",
-        "chauffageType":     "electrique",
-        "batimentNature":    "",
-        "typeChaudiere":     "aucun",
-        "isAdresseBenef":    true,
-        "adresse":           "",
-        "codepostal":        "",
-        "ville":             "",
-        "parcelle":          "",
-        "superficie":        "36",
-        "dataGeoportail":    {},
-        "location":          "",
-        "moinsDe2Ans":       false,
-        "anneeConstruction": "1976",
-        "localType":         "maison_individuelle"
-    },
-    "fiche":                    {
-        "periodePose":                 "",
-        "generateur":                  "electrique",
-        "marque":                      "",
-        "modele":                      "",
-        "puissance":                   "",
-        "conduiteMateriau":            "",
-        "conduiteDiametre":            "",
-        "longueurTotal":               "",
-        "longeurProjection":           "",
-        "nbCoude90":                   "",
-        "nbCoude45":                   "",
-        "reductionSection":            false,
-        "etat":                        false,
-        "demontable":                  false,
-        "distanceSecurite":            "",
-        "conduitType":                 "maconne",
-        "conduitMateriauConstitutif":  "",
-        "plaqueSignaletique":          false,
-        "classeTemperature":           "",
-        "classePression":              "",
-        "resistanceCondansat":         "dry",
-        "resistanceCorrosion":         "no",
-        "resistanceFeu":               "",
-        "distanceSecuriteCombustible": "",
-        "presenceTrappe":              "no",
-        "hauteurTotal":                "",
-        "hauteurLocauxChauffe":        "",
-        "hauteurLocauxNonChauffe":     "",
-        "hauteurExterieur":            "",
-        "devoiement":                  false,
-        "distanceDevoiement":          "",
-        "conduitIsole":                false,
-        "sectionConduitLargeur":       "",
-        "sectionConduitLongeur":       "",
-        "sectionConduitDiametre":      "",
-        "deboucheSup40":               "no",
-        "obstacleInf8":                false,
-        "deboucheAccessible":          false,
-        "typeDebouche":                "nu",
-        "toiture":                     "pente_sup_15",
-        "pieceLogement":               "",
-        "pieceLongueur":               "",
-        "pieceLargeur":                "",
-        "pieceHauteur":                "",
-        "pieceSurface":                "",
-        "accesPorteLargeur":           "",
-        "accesPorteHauteur":           "",
-        "natureMur":                   "",
-        "natureSol":                   "",
-        "naturePlafond":               "",
-        "ameneeAir":                   false,
-        "priseElec":                   "",
-        "niveauHabitation":            "pp",
-        "typeChantier":                "neuf",
-        "infosSup":                    "RAS",
-        "escalier":                    false,
-        "escalierLargeur":             "",
-        "zoneInstallation":            "z1",
-        "creation":                    true
+        "puissancePoele":  6
     },
     "baremes":                  [
         {
@@ -977,67 +968,67 @@
                 {
                     "nbre": 1,
                     "min":  0,
-                    "max":  14879
+                    "max":  15262
                 },
                 {
                     "nbre": 2,
                     "min":  0,
-                    "max":  21760
+                    "max":  22320
                 },
                 {
                     "nbre": 3,
                     "min":  0,
-                    "max":  26170
+                    "max":  26844
                 },
                 {
                     "nbre": 4,
                     "min":  0,
-                    "max":  30572
+                    "max":  31359
                 },
                 {
                     "nbre": 5,
                     "min":  0,
-                    "max":  34993
+                    "max":  35894
                 },
                 {
                     "nbre": 6,
                     "min":  0,
-                    "max":  39405
+                    "max":  40420
                 },
                 {
                     "nbre": 7,
                     "min":  0,
-                    "max":  43817
+                    "max":  44946
                 },
                 {
                     "nbre": 8,
                     "min":  0,
-                    "max":  48229
+                    "max":  49472
                 },
                 {
                     "nbre": 9,
                     "min":  0,
-                    "max":  52641
+                    "max":  53998
                 },
                 {
                     "nbre": 10,
                     "min":  0,
-                    "max":  57053
+                    "max":  58524
                 },
                 {
                     "nbre": 11,
                     "min":  0,
-                    "max":  61465
+                    "max":  63050
                 },
                 {
                     "nbre": 12,
                     "min":  0,
-                    "max":  65877
+                    "max":  67576
                 },
                 {
                     "nbre": 13,
                     "min":  0,
-                    "max":  70289
+                    "max":  72102
                 }
             ],
             "code":         "GP",
@@ -1052,67 +1043,67 @@
                 {
                     "nbre": 1,
                     "min":  0,
-                    "max":  19074
+                    "max":  19565
                 },
                 {
                     "nbre": 2,
                     "min":  0,
-                    "max":  27896
+                    "max":  28614
                 },
                 {
                     "nbre": 3,
                     "min":  0,
-                    "max":  33547
+                    "max":  34411
                 },
                 {
                     "nbre": 4,
                     "min":  0,
-                    "max":  39192
+                    "max":  40201
                 },
                 {
                     "nbre": 5,
                     "min":  0,
-                    "max":  44860
+                    "max":  46015
                 },
                 {
                     "nbre": 6,
                     "min":  0,
-                    "max":  50511
+                    "max":  51812
                 },
                 {
                     "nbre": 7,
                     "min":  0,
-                    "max":  56162
+                    "max":  57609
                 },
                 {
                     "nbre": 8,
                     "min":  0,
-                    "max":  61813
+                    "max":  63406
                 },
                 {
                     "nbre": 9,
                     "min":  0,
-                    "max":  67464
+                    "max":  69203
                 },
                 {
                     "nbre": 10,
                     "min":  0,
-                    "max":  73115
+                    "max":  75000
                 },
                 {
                     "nbre": 11,
                     "min":  0,
-                    "max":  78766
+                    "max":  80797
                 },
                 {
                     "nbre": 12,
                     "min":  0,
-                    "max":  84417
+                    "max":  86594
                 },
                 {
                     "nbre": 13,
                     "min":  0,
-                    "max":  90068
+                    "max":  92391
                 }
             ],
             "code":         "P",
@@ -1274,7 +1265,7 @@
         }
     ],
     "lists":                    {
-        "localType":         [
+        "localType":        [
             {
                 "maison_individuelle": "Maison individuelle"
             },
@@ -1282,7 +1273,7 @@
                 "appartement": "Appartement"
             }
         ],
-        "qualiteIsolation":  [
+        "qualiteIsolation": [
             {
                 "0.6": "0.6"
             },
@@ -1308,7 +1299,7 @@
                 "1.5": "1.5"
             }
         ],
-        "statutMenageType":  [
+        "statutMenageType": [
             {
                 "tres_bonifie": "Très bonfié"
             },
@@ -1322,7 +1313,7 @@
                 "intermediaire": "Intermédiaire"
             }
         ],
-        "batimentNature":    [
+        "batimentNature":   [
             {
                 "": "-"
             },
@@ -1336,7 +1327,7 @@
                 "residence_secondaire": "Résidence secondaire"
             }
         ],
-        "niveauHabitation":  [
+        "niveauHabitation": [
             {
                 "pp": "Plein Pied"
             },
@@ -1356,7 +1347,7 @@
                 "autre": "AUTRE"
             }
         ],
-        "typeChantier":      [
+        "typeChantier":     [
             {
                 "neuf": "Neuf"
             },
@@ -1371,7 +1362,7 @@
             12,
             18
         ],
-        "generateur":        [
+        "generateur":       [
             {
                 "electrique": "Electrique"
             },
@@ -1388,7 +1379,7 @@
                 "propane": "Propane"
             }
         ],
-        "conduitType":       [
+        "conduitType":      [
             {
                 "maconne": "Maconné"
             },
@@ -1402,7 +1393,7 @@
                 "chemise": "Chemisé"
             }
         ],
-        "resistance":        [
+        "resistance":       [
             {
                 "dry": "D (dry)"
             },
@@ -1413,7 +1404,7 @@
                 "dont_know": "Ne sais pas"
             }
         ],
-        "typeDebouche":      [
+        "typeDebouche":     [
             {
                 "nu": "Nu"
             },
@@ -1427,7 +1418,7 @@
                 "ecm": "Extracteur stato-mécanique"
             }
         ],
-        "toiture":           [
+        "toiture":          [
             {
                 "pente_sup_15": "Pente > 15°"
             },
@@ -1438,7 +1429,7 @@
                 "terrasse": "Toiture terrasse"
             }
         ],
-        "yON":               [
+        "yON":              [
             {
                 "yes": "Oui"
             },
@@ -1449,7 +1440,7 @@
                 "dontKnow": "Ne sais pas"
             }
         ],
-        "couleurProfile":    [
+        "couleurProfile":   [
             {
                 "blanc_creme": "Blanc crème"
             },
@@ -1460,7 +1451,7 @@
                 "tourterelle": "Tourterelle"
             }
         ],
-        "couleurFacade":     [
+        "couleurFacade":    [
             {
                 "gres_ivoire": "Gres ivoire"
             },
@@ -1480,7 +1471,7 @@
                 "tourterelle": "Tourterelle"
             }
         ],
-        "puissancePoele":    [
+        "puissancePoele":   [
             {
                 "6": 6
             },
@@ -1494,7 +1485,7 @@
                 "10": 10
             }
         ],
-        "zoneInstallation":  [
+        "zoneInstallation": [
             {
                 "z1": "Zone 1"
             },
@@ -1505,7 +1496,15 @@
                 "z3": "Zone 3"
             }
         ],
-        "typeOrigine":       [
+        "outsideSocket":    [
+            {
+                "Non": "Non"
+            },
+            {
+                "Oui": "Oui"
+            }
+        ],
+        "typeOrigine":      [
             {
                 "telephone": "Téléphone"
             },
@@ -1536,23 +1535,5 @@
         "H1": 38.2,
         "H2": 31.3,
         "H3": 20.9
-    },
-    "ref":                      "JT11-20211006T1139-PO",
-    "folderName":               "JT11-20211006T1139-PO (DUPOND JEAN)",
-    "createdAt":                "2021-10-06T11:39:29.697",
-    "statutInDCI":              2,
-    "statutInDCIErrors":        [
-        1,
-        2,
-        7,
-        4,
-        6
-    ],
-    "technicien":               {
-        "nom":    "Jeremy",
-        "prenom": "JEAN",
-        "id":     11,
-        "tel":    ""
-    },
-    "updatedAt":                "2021-10-06T11:49:47.650"
+    }
 }

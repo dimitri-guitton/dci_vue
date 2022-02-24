@@ -6,17 +6,15 @@
     "createdAt":                 "",
     "updatedAt":                 "",
     "settings":                  {
-        "ceeCoef": "6.6"
+        "ceeCoef": "5.5"
     },
-    "quotationTemplate":         "quotation_comble_v1.html",
-    "workSheetTemplate":         "work_sheet_comble_v1.html",
     "disabledBonus":             false,
     "disabledCeeBonus":          false,
     "enabledHousingAction":      false,
     "disabledMaPrimeRenovBonus": false,
     "assents":                   [],
     "beneficiary":               {
-        "civility":  "",
+        "civility":  "m",
         "lastName":  "",
         "firstName": "",
         "address":   "",
@@ -24,14 +22,18 @@
         "city":      "",
         "email":     "",
         "phone":     "",
-        "mobile":    ""
+        "mobile":    "",
+        "income":    0
     },
     "codeBonus":                 null,
     "energyZone":                null,
-    "bonusRate":                 null,
-    "housing": {
+    "bonusRate":                 0,
+    "housing":                   {
         "nbOccupant":        1,
-        "type":              "residentiel",
+        "type":              "",
+        "heatingType":       "electrique",
+        "buildingNature":    "",
+        "isRentedHouse":     false,
         "isAddressBenef":    true,
         "address":           "",
         "zipCode":           "",
@@ -45,7 +47,7 @@
         "lessThan2Years":    false,
         "availableVoltage":  ""
     },
-    "worksheet": {
+    "worksheet":                 {
         "visiteComble":              true,
         "chantierHabite":            true,
         "chantierType":              "reno",
@@ -54,15 +56,15 @@
         "partieAisoler":             "hab_ss_gge",
         "puissanceCompteur":         0,
         "accesPl":                   false,
-        "periodePose":               "",
+        "period":                    "",
         "rueEtroite":                false,
         "accesComble":               "trappe",
         "couvertureType":            "meca",
         "charpenteType":             "ferm",
         "etatToiture":               "propre",
         "volige":                    false,
-        "nbreAccesComble":           0,
-        "nbreCompartiments":         0,
+        "nbAccesComble":             0,
+        "nbCompartimentComble":      0,
         "isolationExistante":        true,
         "isolationExistanteType":    "vrac",
         "isolationExistanteCouches": 0,
@@ -83,146 +85,146 @@
                 "fileType":      "comble",
                 "label":         "Enlèvement de la laine existante en rouleau",
                 "unit":          "m2",
-                "pu":            0,
+                "defaultPu":     8,
+                "pu":            8,
                 "defaultNumber": 0,
-                "number":        0,
-                "position":      1
+                "number":        0
             },
             {
                 "id":            2,
                 "fileType":      "comble",
                 "label":         "Remise en place de la laine existante ou lardage du pare vapeur",
                 "unit":          "m2",
-                "pu":            0,
+                "defaultPu":     4,
+                "pu":            4,
                 "defaultNumber": 0,
-                "number":        0,
-                "position":      2
+                "number":        0
             },
             {
                 "id":            3,
                 "fileType":      "comble",
                 "label":         "Création d'un trou d'homme",
                 "unit":          "u",
-                "pu":            0,
+                "defaultPu":     50,
+                "pu":            50,
                 "defaultNumber": 0,
-                "number":        0,
-                "position":      3
+                "number":        0
             },
             {
                 "id":            10,
                 "fileType":      "comble",
                 "label":         "Nbre de coffrage volets roulant < 1.5m",
                 "unit":          "u",
-                "pu":            0,
+                "defaultPu":     15,
+                "pu":            15,
                 "defaultNumber": 0,
-                "number":        0,
-                "position":      4
+                "number":        0
             },
             {
                 "id":            11,
                 "fileType":      "comble",
                 "label":         "Nbre de coffrage volets roulant > 1.5m",
                 "unit":          "u",
-                "pu":            0,
+                "defaultPu":     15,
+                "pu":            15,
                 "defaultNumber": 0,
-                "number":        0,
-                "position":      5
+                "number":        0
             },
             {
                 "id":            12,
                 "fileType":      "comble",
                 "label":         "Coffrage bloc moteur VMC ou Moteur Cheminée",
                 "unit":          "u",
-                "pu":            0,
+                "defaultPu":     10,
+                "pu":            10,
                 "defaultNumber": 0,
-                "number":        0,
-                "position":      6
+                "number":        0
             },
             {
                 "id":            4,
                 "fileType":      "comble",
                 "label":         "Coffrage de la trappe",
                 "unit":          "u",
-                "pu":            "1",
-                "defaultNumber": "1",
-                "number":        "1",
-                "position":      7
+                "defaultPu":     10,
+                "pu":            10,
+                "defaultNumber": 0,
+                "number":        0
             },
             {
                 "id":            5,
                 "fileType":      "comble",
                 "label":         "Isolation de la trappe",
                 "unit":          "u",
-                "pu":            "1",
-                "defaultNumber": "1",
-                "number":        "1",
-                "position":      8
+                "defaultPu":     10,
+                "pu":            10,
+                "defaultNumber": 0,
+                "number":        0
             },
             {
                 "id":            6,
                 "fileType":      "comble",
                 "label":         "Entourage de la cheminée",
                 "unit":          "u",
-                "pu":            0,
+                "defaultPu":     20,
+                "pu":            20,
                 "defaultNumber": 0,
-                "number":        0,
-                "position":      9
+                "number":        0
             },
             {
                 "id":            7,
                 "fileType":      "comble",
                 "label":         "Protection des spots électriques",
                 "unit":          "u",
-                "pu":            0,
+                "defaultPu":     10,
+                "pu":            10,
                 "defaultNumber": 0,
-                "number":        0,
-                "position":      10
+                "number":        0
             },
             {
                 "id":            8,
                 "fileType":      "comble",
                 "label":         "Pose de la signalétique des boîtiers électriques",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     0,
+                "pu":            0,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      11
+                "number":        1
             },
             {
                 "id":            9,
                 "fileType":      "comble",
                 "label":         "Pose des piges de graduation de coefficient",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     0,
+                "pu":            0,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      12
+                "number":        1
             },
             {
                 "id":            13,
                 "fileType":      "comble",
                 "label":         "Arrêtoires en Polypro",
                 "unit":          "u",
-                "pu":            0,
+                "defaultPu":     15,
+                "pu":            15,
                 "defaultNumber": 0,
-                "number":        0,
-                "position":      13
+                "number":        0
             }
         ],
         "blankOptions":       [
             {
-                "id":    "sup1",
-                "label": "",
-                "unit":  "u",
-                "pu":    0,
-                "value": 0
+                "id":     "sup1",
+                "label":  "",
+                "unit":   "u",
+                "pu":     0,
+                "number": 0
             },
             {
-                "id":    "sup2",
-                "label": "",
-                "unit":  "u",
-                "pu":    0,
-                "value": 0
+                "id":     "sup2",
+                "label":  "",
+                "unit":   "u",
+                "pu":     0,
+                "number": 0
             }
         ],
         "commentary":         "",
@@ -242,7 +244,17 @@
             }
         ],
         "tva":                5.5,
-        "selectedProducts":   [],
+        "selectedProducts":   [
+            {
+                "id":          1,
+                "productType": "pg",
+                "label":       "Isolation par soufflage d'un matelas de laine minérale de marque KNAUF INSULATION – SUPAFIL LOFT 045",
+                "reference":   "Laine minérale de Verre SUPAFIL Thermo Loft. R = 7m².K/W, ép.320mm",
+                "pu":          12.2,
+                "defaultPu":   12.2,
+                "description": "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 7 m².k/w   Épaisseur mini (mm) : 320 mm\r\n- Pouvoir couvrant (kg/m²) : 3,8 - Classement au feu : A1 (incombustible)"
+            }
+        ],
         "products":           [
             {
                 "id":          1,
@@ -274,57 +286,60 @@
         ],
         "discount":           0,
         "totalHt":            0,
-        "totalTva":           0
+        "totalTva":           0,
+        "totalTtc":           0,
+        "remainderToPay":     0,
+        "ceeBonus":           0
     },
     "scales":                    [
         {
             "stages":   [
                 {
                     "nbr": 1,
-                    "min": 19074
+                    "min": 19565
                 },
                 {
                     "nbr": 2,
-                    "min": 27896
+                    "min": 28614
                 },
                 {
                     "nbr": 3,
-                    "min": 33547
+                    "min": 34411
                 },
                 {
                     "nbr": 4,
-                    "min": 39192
+                    "min": 40201
                 },
                 {
                     "nbr": 5,
-                    "min": 44860
+                    "min": 46015
                 },
                 {
                     "nbr": 6,
-                    "min": 50511
+                    "min": 51812
                 },
                 {
                     "nbr": 7,
-                    "min": 56162
+                    "min": 57609
                 },
                 {
                     "nbr": 8,
-                    "min": 61813
+                    "min": 63406
                 },
                 {
                     "nbr": 9,
-                    "min": 67464
+                    "min": 69203
                 },
                 {
                     "nbr": 10,
-                    "min": 73115
+                    "min": 75000
                 }
             ],
             "code":     "CL",
             "ceeBonus": {
-                "h1": 11.22,
-                "h2": 9.24,
-                "h3": 11.22
+                "h1": 9.35,
+                "h2": 7.7,
+                "h3": 9.35
             }
         },
         {
@@ -332,59 +347,59 @@
                 {
                     "nbr": 1,
                     "min": 0,
-                    "max": 19074
+                    "max": 19565
                 },
                 {
                     "nbr": 2,
                     "min": 0,
-                    "max": 27896
+                    "max": 28614
                 },
                 {
                     "nbr": 3,
                     "min": 0,
-                    "max": 33547
+                    "max": 34411
                 },
                 {
                     "nbr": 4,
                     "min": 0,
-                    "max": 39192
+                    "max": 40201
                 },
                 {
                     "nbr": 5,
                     "min": 0,
-                    "max": 44860
+                    "max": 46015
                 },
                 {
                     "nbr": 6,
                     "min": 0,
-                    "max": 50511
+                    "max": 51812
                 },
                 {
                     "nbr": 7,
                     "min": 0,
-                    "max": 56162
+                    "max": 57609
                 },
                 {
                     "nbr": 8,
                     "min": 0,
-                    "max": 61813
+                    "max": 63406
                 },
                 {
                     "nbr": 9,
                     "min": 0,
-                    "max": 67464
+                    "max": 69203
                 },
                 {
                     "nbr": 10,
                     "min": 0,
-                    "max": 73115
+                    "max": 75000
                 }
             ],
             "code":     "GP",
             "ceeBonus": {
-                "h1": 11.22,
-                "h2": 9.24,
-                "h3": 11.22
+                "h1": 9.35,
+                "h2": 7.7,
+                "h3": 9.35
             }
         },
         {
@@ -457,9 +472,9 @@
             ],
             "code":     "PACCL",
             "ceeBonus": {
-                "h1": 11.22,
-                "h2": 9.24,
-                "h3": 11.22
+                "h1": 9.35,
+                "h2": 7.7,
+                "h3": 9.35
             }
         },
         {
@@ -467,74 +482,74 @@
                 {
                     "nbr": 1,
                     "min": 0,
-                    "max": 14879
+                    "max": 15262
                 },
                 {
                     "nbr": 2,
                     "min": 0,
-                    "max": 21760
+                    "max": 22320
                 },
                 {
                     "nbr": 3,
                     "min": 0,
-                    "max": 26170
+                    "max": 26844
                 },
                 {
                     "nbr": 4,
                     "min": 0,
-                    "max": 30572
+                    "max": 31359
                 },
                 {
                     "nbr": 5,
                     "min": 0,
-                    "max": 34993
+                    "max": 35894
                 },
                 {
                     "nbr": 6,
                     "min": 0,
-                    "max": 39405
+                    "max": 40420
                 },
                 {
                     "nbr": 7,
                     "min": 0,
-                    "max": 43817
+                    "max": 44946
                 },
                 {
                     "nbr": 8,
                     "min": 0,
-                    "max": 48229
+                    "max": 49472
                 },
                 {
                     "nbr": 9,
                     "min": 0,
-                    "max": 52641
+                    "max": 53998
                 },
                 {
                     "nbr": 10,
                     "min": 0,
-                    "max": 57053
+                    "max": 58524
                 },
                 {
                     "nbr": 11,
                     "min": 0,
-                    "max": 61465
+                    "max": 63050
                 },
                 {
                     "nbr": 12,
                     "min": 0,
-                    "max": 65877
+                    "max": 67576
                 },
                 {
                     "nbr": 13,
                     "min": 0,
-                    "max": 70289
+                    "max": 72102
                 }
             ],
             "code":     "PACGP",
             "ceeBonus": {
-                "h1": 11.22,
-                "h2": 9.24,
-                "h3": 11.22
+                "h1": 9.35,
+                "h2": 7.7,
+                "h3": 9.35
             }
         },
         {
@@ -607,9 +622,9 @@
             ],
             "code":     "PACIT",
             "ceeBonus": {
-                "h1": 11.22,
-                "h2": 9.24,
-                "h3": 11.22
+                "h1": 9.35,
+                "h2": 7.7,
+                "h3": 9.35
             }
         },
         {
@@ -617,246 +632,285 @@
                 {
                     "nbr": 1,
                     "min": 0,
-                    "max": 19074
+                    "max": 19565
                 },
                 {
                     "nbr": 2,
                     "min": 0,
-                    "max": 27896
+                    "max": 28614
                 },
                 {
                     "nbr": 3,
                     "min": 0,
-                    "max": 33547
+                    "max": 34411
                 },
                 {
                     "nbr": 4,
                     "min": 0,
-                    "max": 39192
+                    "max": 40201
                 },
                 {
                     "nbr": 5,
                     "min": 0,
-                    "max": 44860
+                    "max": 46015
                 },
                 {
                     "nbr": 6,
                     "min": 0,
-                    "max": 50511
+                    "max": 51812
                 },
                 {
                     "nbr": 7,
                     "min": 0,
-                    "max": 56162
+                    "max": 57609
                 },
                 {
                     "nbr": 8,
                     "min": 0,
-                    "max": 61813
+                    "max": 63406
                 },
                 {
                     "nbr": 9,
                     "min": 0,
-                    "max": 67464
+                    "max": 69203
                 },
                 {
                     "nbr": 10,
                     "min": 0,
-                    "max": 73115
+                    "max": 75000
                 },
                 {
                     "nbr": 11,
                     "min": 0,
-                    "max": 78766
+                    "max": 80797
                 },
                 {
                     "nbr": 12,
                     "min": 0,
-                    "max": 84417
+                    "max": 86594
                 },
                 {
                     "nbr": 13,
                     "min": 0,
-                    "max": 90068
+                    "max": 92391
                 }
             ],
             "code":     "PACP",
             "ceeBonus": {
-                "h1": 11.22,
-                "h2": 9.24,
-                "h3": 11.22
+                "h1": 9.35,
+                "h2": 7.7,
+                "h3": 9.35
             }
         }
     ],
+    "statusInDci":               1,
+    "errorsStatusInDci":         [],
+    "technician":                {
+        "id":        {},
+        "lastName":  {},
+        "firstName": {},
+        "phone":     {}
+    },
     "lists":                     {
-        "localTypeList":              [],
-        "chauffageTypeList":          {
-            "slug":  "chauffageTypeList",
-            "items": [
-                {
-                    "value": "Electrique"
-                },
-                {
-                    "value": "Combustible"
-                }
-            ]
-        },
-        "batimentNatureList":         {
-            "slug":  "batimentNatureList",
-            "items": [
-                {
-                    "value": "-"
-                },
-                {
-                    "value": "Nouvelle résidence principale"
-                },
-                {
-                    "value": "Location"
-                },
-                {
-                    "value": "Résidence secondaire"
-                }
-            ]
-        },
-        "chantierTypeList":           {
-            "slug":  "chantierTypeList",
-            "items": [
-                {
-                    "value": "RENO"
-                },
-                {
-                    "value": "NEUF"
-                }
-            ]
-        },
-        "niveauHabitationList":       {
-            "slug":  "niveauHabitationList",
-            "items": [
-                {
-                    "value": "RDC"
-                },
-                {
-                    "value": "R+1"
-                },
-                {
-                    "value": "R+2"
-                },
-                {
-                    "value": "R+3"
-                },
-                {
-                    "value": "R+4"
-                },
-                {
-                    "value": "AUTRE"
-                }
-            ]
-        },
+        "localTypeList":              [
+            {
+                "slug":  "residentiel",
+                "value": "Résidentiel"
+            },
+            {
+                "slug":  "tertiaire",
+                "value": "Tertiaire"
+            },
+            {
+                "slug":  "sante",
+                "value": "Santé"
+            }
+        ],
+        "chauffageTypeList":          [
+            {
+                "slug":  "electrique",
+                "value": "Electrique"
+            },
+            {
+                "slug":  "combustible",
+                "value": "Combustible"
+            }
+        ],
+        "batimentNatureList":         [
+            {
+                "slug":  "",
+                "value": "-"
+            },
+            {
+                "slug":  "nouvelle_residence",
+                "value": "Nouvelle résidence principale"
+            },
+            {
+                "slug":  "location",
+                "value": "Location"
+            },
+            {
+                "slug":  "residence_secondaire",
+                "value": "Résidence secondaire"
+            }
+        ],
+        "chantierTypeList":           [
+            {
+                "slug":  "reno",
+                "value": "RENO"
+            },
+            {
+                "slug":  "neuf",
+                "value": "NEUF"
+            }
+        ],
+        "niveauHabitationList":       [
+            {
+                "slug":  "rdc",
+                "value": "RDC"
+            },
+            {
+                "slug":  "r1",
+                "value": "R+1"
+            },
+            {
+                "slug":  "r2",
+                "value": "R+2"
+            },
+            {
+                "slug":  "r3",
+                "value": "R+3"
+            },
+            {
+                "slug":  "r4",
+                "value": "R+4"
+            },
+            {
+                "slug":  "autre",
+                "value": "AUTRE"
+            }
+        ],
         "partieAIsolerList":          [],
-        "puissanceCompteurList":      {
-            "slug":  "puissanceCompteurList",
-            "items": [
-                {},
-                {},
-                {},
-                {},
-                {}
-            ]
-        },
-        "accesCombleList":            {
-            "slug":  "accesCombleList",
-            "items": [
-                {
-                    "value": "TRAPPE"
-                },
-                {
-                    "value": "TOITURE"
-                },
-                {
-                    "value": "TRAPPE et TOITURE"
-                }
-            ]
-        },
-        "couvertureTypeList":         {
-            "slug":  "couvertureTypeList",
-            "items": [
-                {
-                    "value": "Mecanique"
-                },
-                {
-                    "value": "Tiges de bottes"
-                },
-                {
-                    "value": "Ardoise"
-                },
-                {
-                    "value": "Tuiles plates"
-                },
-                {
-                    "value": "Tuiles courbes"
-                }
-            ]
-        },
-        "charpenteTypeList":          {
-            "slug":  "charpenteTypeList",
-            "items": [
-                {
-                    "value": "Traditionnelle"
-                },
-                {
-                    "value": "Fermettes"
-                },
-                {
-                    "value": "Metallique"
-                },
-                {
-                    "value": "Autre"
-                }
-            ]
-        },
-        "etatToitureList":            {
-            "slug":  "etatToitureList",
-            "items": [
-                {
-                    "value": "Propre"
-                },
-                {
-                    "value": "Mousse en petite quantité"
-                },
-                {
-                    "value": "Mousse importante"
-                }
-            ]
-        },
-        "isolationExistanteTypeList": {
-            "slug":  "isolationExistanteTypeList",
-            "items": [
-                {
-                    "value": "ROULEAU"
-                },
-                {
-                    "value": "VRAC"
-                },
-                {
-                    "value": "Vrac et rouleau"
-                },
-                {
-                    "value": "pas d’isolant"
-                }
-            ]
-        },
-        "rehausseTrappeTypeList":     {
-            "slug":  "rehausseTrappeTypeList",
-            "items": [
-                {
-                    "value": "POLYPRO"
-                },
-                {
-                    "value": "BOIS"
-                }
-            ]
-        },
+        "puissanceCompteurList":      [
+            {
+                "slug":  3,
+                "value": 3
+            },
+            {
+                "slug":  6,
+                "value": 6
+            },
+            {
+                "slug":  9,
+                "value": 9
+            },
+            {
+                "slug":  12,
+                "value": 12
+            },
+            {
+                "slug":  18,
+                "value": 18
+            }
+        ],
+        "accesCombleList":            [
+            {
+                "slug":  "trappe",
+                "value": "TRAPPE"
+            },
+            {
+                "slug":  "toit",
+                "value": "TOITURE"
+            },
+            {
+                "slug":  "trappe_et_toit",
+                "value": "TRAPPE et TOITURE"
+            }
+        ],
+        "couvertureTypeList":         [
+            {
+                "slug":  "meca",
+                "value": "Mecanique"
+            },
+            {
+                "slug":  "tige_bottes",
+                "value": "Tiges de bottes"
+            },
+            {
+                "slug":  "ardoise",
+                "value": "Ardoise"
+            },
+            {
+                "slug":  "tuiles_plates",
+                "value": "Tuiles plates"
+            },
+            {
+                "slug":  "tuiles_courbes",
+                "value": "Tuiles courbes"
+            }
+        ],
+        "charpenteTypeList":          [
+            {
+                "slug":  "trad",
+                "value": "Traditionnelle"
+            },
+            {
+                "slug":  "ferm",
+                "value": "Fermettes"
+            },
+            {
+                "slug":  "metal",
+                "value": "Metallique"
+            },
+            {
+                "slug":  "autre",
+                "value": "Autre"
+            }
+        ],
+        "etatToitureList":            [
+            {
+                "slug":  "propre",
+                "value": "Propre"
+            },
+            {
+                "slug":  "mousse_faible",
+                "value": "Mousse en petite quantité"
+            },
+            {
+                "slug":  "mousse_important",
+                "value": "Mousse importante"
+            }
+        ],
+        "isolationExistanteTypeList": [
+            {
+                "slug":  "rouleau",
+                "value": "ROULEAU"
+            },
+            {
+                "slug":  "vrac",
+                "value": "VRAC"
+            },
+            {
+                "slug":  "vrac_rouleau",
+                "value": "Vrac et rouleau"
+            },
+            {
+                "slug":  "",
+                "value": "pas d’isolant"
+            }
+        ],
+        "rehausseTrappeTypeList":     [
+            {
+                "slug":  "polypro",
+                "value": "POLYPRO"
+            },
+            {
+                "slug":  "bois",
+                "value": "BOIS"
+            }
+        ],
         "nbrAccesCombleList":         [],
-        "nbrCompartimentsList":       []
+        "nbrCompartimentsList":       [],
+        "typeOrigineList":            []
     }
 }

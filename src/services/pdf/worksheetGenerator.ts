@@ -352,14 +352,14 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'NOMBRE COMPARTIMENTS COMBLES',
-                                value: worksheet.nbreCompartiments,
+                                value: worksheet.nbCompartimentComble,
                             }, {
                                 label: 'PRESENCE VOLIGE',
                                 value: this.yesOrNo( worksheet.volige ),
                             },
                             {
                                 label: 'NOMBRE ACCES AUX COMBLES',
-                                value: worksheet.nbreAccesComble,
+                                value: worksheet.nbAccesComble,
                             },
 
                         ],

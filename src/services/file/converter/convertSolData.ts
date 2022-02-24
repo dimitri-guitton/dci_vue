@@ -154,7 +154,7 @@ const convertOldSolItemList = ( oldData ): SolList => {
 
 export const convertOldSolFile = ( oldData ): SolFile => {
     return {
-        version:                   getStringData( oldData[ 'version' ] ),
+        version:                   '1',
         type:                      FILE_SOL,
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
@@ -170,9 +170,10 @@ export const convertOldSolFile = ( oldData ): SolFile => {
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
         bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
-        housing: {
+        housing:                   {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
+            heatingType:       getObjectData( oldData, [ 'logement', 'chauffageType' ] ),
             buildingNature:    getObjectData( oldData, [ 'logement', 'batimentNature' ] ),
             isRentedHouse:     getObjectData( oldData, [ 'logement', 'batimentNature' ] ) === 'location',
             isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
@@ -188,7 +189,7 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  '',
         },
-        worksheet: {
+        worksheet:                 {
             epaisseurProduit:        getObjectData( oldData, [ 'fiche', 'epaisseurProduit' ] ),
             accesCamion:             getObjectData( oldData, [ 'fiche', 'accesCamion' ] ),
             distCamion:              getObjectData( oldData, [ 'fiche', 'distCamion' ] ),
@@ -210,7 +211,7 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             infosSup:                getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
             period:                  getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
         },
-        quotation: {
+        quotation:                 {
             pose:               getObjectData( oldData, [ 'devis', 'pose' ] ),
             overridePose:       getObjectData( oldData, [ 'devis', 'overridePose' ] ),
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),

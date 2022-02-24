@@ -1,13 +1,108 @@
 {
+    "settings":                 {
+        "ceeCoef": "5.5"
+    },
+    "type":                     "pac",
+    "version":                  "5",
+    "devisTemplate":            {
+        "ro":       "devisRoTpl-v5.html",
+        "rr_mono":  "devisRrMonoTpl-v5.html",
+        "rr_multi": "devisRrMultiTpl-v5.html"
+    },
+    "ficheTemplate":            {
+        "ro": "ficheRoTpl-v5.html",
+        "rr": "ficheRrTpl-v5.html"
+    },
+    "ficheGenerator":           "solV1.xlsx",
     "disablePrime":             false,
+    "disablePrimeCEE":          false,
+    "disablePrimeMaprimerenov": false,
+    "enabledActionLogement":    false,
+    "avis":                     [],
+    "beneficiaire":             {
+        "civilite":   "m",
+        "nom":        "",
+        "prenom":     "",
+        "adresse":    "",
+        "codepostal": "",
+        "ville":      ""
+    },
+    "email":                    "",
+    "telfixe":                  "",
+    "telportable":              "",
+    "codePrime":                null,
+    "zoneEnergetique":          null,
+    "tauxPrime":                null,
+    "logement":                 {
+        "occupants":         1,
+        "localType":         "maison_individuelle",
+        "batimentNature":    "",
+        "isAdresseBenef":    true,
+        "adresse":           "",
+        "codepostal":        "",
+        "ville":             "",
+        "parcelle":          "",
+        "superficie":        "",
+        "dataGeoportail":    [],
+        "location":          "",
+        "qualiteIsolation":  0.8,
+        "anneeConstruction": "",
+        "moinsDe2Ans":       false,
+        "tensionDisponible": "monophase"
+    },
+    "fiche":                    {
+        "periodePose":                "",
+        "niveauHabitation":           "pp",
+        "typeChantier":               "neuf",
+        "disjoncteur":                false,
+        "distanceCompteurPac":        0,
+        "natureMurExt":               "parpaing",
+        "naturePlafond":              "brique",
+        "visiteComble":               false,
+        "chantierHabite":             false,
+        "grandeEchelle":              false,
+        "demandeVoirie":              false,
+        "puissanceCompteur":          6,
+        "accesComble":                "trappe",
+        "rueEtroite":                 false,
+        "typeCouverture":             "mecanique",
+        "etatToiture":                "propre",
+        "typeCharpente":              "traditionnelle",
+        "nbrCompartementComble":      1,
+        "presenceVolige":             false,
+        "nbrAccesComble":             1,
+        "distanceGpExtUnitInt":       0,
+        "nbrTotalRadiateur":          1,
+        "nbrRadiateurThermostatique": 1,
+        "typeRadiateur":              "alu",
+        "positionEauChaude":          "sol",
+        "hauteurDuSol":               1,
+        "espaceSolRequisUnitInt":     false,
+        "hauteurRequiseUnitInt":      false,
+        "emplacementSplit1":          "",
+        "emplacementSplit2":          "",
+        "emplacementSplit3":          "",
+        "emplacementSplit4":          "",
+        "emplacementSplit5":          "",
+        "emplacementGrpExt":          "",
+        "emplacementSplitMono":       "",
+        "distanceGpExtSplit1":        0,
+        "distanceGpExtSplit2":        0,
+        "distanceGpExtSplit3":        0,
+        "distanceGpExtSplit4":        0,
+        "distanceGpExtSplit5":        0,
+        "nbrPompeRelevage":           1,
+        "infosSup":                   "RAS",
+        "tensionDisponible":          "monophase"
+    },
     "devis":                    {
-        "noPrimeUseCode":   "CL",
         "pose":             2.5,
         "overridePose":     2.5,
         "tva":              5.5,
-        "origine":          "ANGEL",
-        "dateVisiteTech":   "2021-10-05",
-        "delaisExecution":  "2022-01-05",
+        "noPrimeUseCode":   "CL",
+        "origine":          "",
+        "dateVisiteTech":   "",
+        "delaisExecution":  "",
         "calcul0PU":        0,
         "options":          [
             {
@@ -98,10 +193,10 @@
         "blankOptions":     [
             {
                 "id":    "sup1",
-                "label": "Vase sanitaire",
+                "label": "",
                 "unit":  "u",
-                "pu":    "100",
-                "value": "1"
+                "pu":    0,
+                "value": 0
             },
             {
                 "id":    "sup2",
@@ -127,31 +222,10 @@
         },
         "tva10":            0,
         "tva20":            0,
-        "primeCEE":         "3000.00",
-        "primeAnah":        "2000.00",
+        "primeCEE":         0,
+        "primeAnah":        0,
         "pacType":          "rr_mono",
-        "selectedProducts": [
-            {
-                "id":        72,
-                "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE ERGA06EV",
-                "ref":       "DAIERGA06EV",
-                "pu":        2345.67,
-                "defaultPU": 2345.67,
-                "descr":     "- Puissance calorifique +7°c/-7°c : 5,81/5,72 kW\r\n- COP +7°c/-7°c : 2,7/1,74\r\n- ETAs : 127 %\r\n- Classe énergétique : A++\r\n- Dimension : 740*884*388 mm Poids : 58,5kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 38 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 6,67 € HT",
-                "calcul0":   true,
-                "scop":      null
-            },
-            {
-                "id":        78,
-                "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S18D6V",
-                "ref":       "DAIEHVH08S18E6V",
-                "pu":        5779.33,
-                "defaultPU": 5779.33,
-                "descr":     "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 131kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "calcul0":   true,
-                "scop":      null
-            }
-        ],
+        "selectedProducts": [],
         "gamme":            "sensira",
         "rrType":           "rr_mono",
         "rrMulti":          {
@@ -163,17 +237,18 @@
             "superficieP5":  0
         },
         "ro":               {
-            "volumeECS":          "180",
+            "volumeECS":          0,
             "volumeECSDeporte":   0,
             "isEcsDeporte":       false,
             "selectedEcsDeporte": null,
+            "isKitBiZone":        false,
+            "selectedKitBiZone":  null,
             "hauteurSousPlafond": 2.5,
             "appareilRemplacer":  {
-                "type":   "CCHC",
-                "marque": "COUSSEMENT",
-                "modele": "SIERRA"
-            },
-            "quantity":           1
+                "type":   "aucun",
+                "marque": "",
+                "modele": ""
+            }
         },
         "pompeAChaleur":    {
             "selectedId": 1,
@@ -922,8 +997,8 @@
                     "id":        75,
                     "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EHVH04S18E6V",
                     "ref":       "DAIEHVH04S18E6V",
-                    "pu":        5591.33,
-                    "defaultPU": 5591.33,
+                    "pu":        5015.33,
+                    "defaultPU": 5015.33,
                     "descr":     "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 131kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                     "calcul0":   true,
                     "scop":      null
@@ -932,8 +1007,8 @@
                     "id":        76,
                     "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EHVH04S23E6V",
                     "ref":       "DAIEHVH04S23E6V",
-                    "pu":        5869.33,
-                    "defaultPU": 5869.33,
+                    "pu":        5254.33,
+                    "defaultPU": 5254.33,
                     "descr":     "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 139kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                     "calcul0":   true,
                     "scop":      null
@@ -942,8 +1017,8 @@
                     "id":        77,
                     "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EBH08D6V",
                     "ref":       "DAIEHBH08E6V",
-                    "pu":        3893.33,
-                    "defaultPU": 3893.33,
+                    "pu":        3618.33,
+                    "defaultPU": 3618.33,
                     "descr":     "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 42kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                     "calcul0":   true,
                     "scop":      null
@@ -952,8 +1027,8 @@
                     "id":        78,
                     "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S18D6V",
                     "ref":       "DAIEHVH08S18E6V",
-                    "pu":        5779.33,
-                    "defaultPU": 5779.33,
+                    "pu":        5233.33,
+                    "defaultPU": 5233.33,
                     "descr":     "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 131kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                     "calcul0":   true,
                     "scop":      null
@@ -962,8 +1037,8 @@
                     "id":        79,
                     "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S23E6V",
                     "ref":       "DAIEHVH08S23E6V",
-                    "pu":        6069.33,
-                    "defaultPU": 6069.33,
+                    "pu":        5482.33,
+                    "defaultPU": 5482.33,
                     "descr":     "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 139kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                     "calcul0":   true,
                     "scop":      null
@@ -1002,8 +1077,8 @@
                     "id":        83,
                     "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EABH16D6V",
                     "ref":       "DAIEABH16D6V",
-                    "pu":        4997.33,
-                    "defaultPU": 4997.33,
+                    "pu":        4711.33,
+                    "defaultPU": 4711.33,
                     "descr":     "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 38kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 36 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                     "calcul0":   true,
                     "scop":      null
@@ -1012,8 +1087,8 @@
                     "id":        84,
                     "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EAVH16S18D6V",
                     "ref":       "DAIEAVH16S18D6V",
-                    "pu":        7283.33,
-                    "defaultPU": 7283.33,
+                    "pu":        6670.33,
+                    "defaultPU": 6670.33,
                     "descr":     "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 109kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 36 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                     "calcul0":   true,
                     "scop":      null
@@ -1022,8 +1097,8 @@
                     "id":        85,
                     "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EAVH16S23D6V",
                     "ref":       "DAIEAVH16S23D6V",
-                    "pu":        7554.33,
-                    "defaultPU": 7554.33,
+                    "pu":        6902.33,
+                    "defaultPU": 6902.33,
                     "descr":     "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 118kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 36 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                     "calcul0":   true,
                     "scop":      null
@@ -1210,104 +1285,7 @@
                 }
             ]
         },
-        "remise":           0,
-        "totalHT":          10725,
-        "totalTVA":         589.875
-    },
-    "settings":                 {
-        "ceeCoef": "6.6"
-    },
-    "type":                     "pac",
-    "version":                  "5",
-    "devisTemplate":            {
-        "ro":       "devisRoTpl-v5.html",
-        "rr_mono":  "devisRrMonoTpl-v5.html",
-        "rr_multi": "devisRrMultiTpl-v5.html"
-    },
-    "ficheTemplate":            {
-        "ro": "ficheRoTpl-v5.html",
-        "rr": "ficheRrTpl-v5.html"
-    },
-    "ficheGenerator":           "solV1.xlsx",
-    "disablePrimeCEE":          false,
-    "disablePrimeMaprimerenov": false,
-    "enabledActionLogement":    false,
-    "avis":                     [],
-    "beneficiaire":             {
-        "civilite":   "M",
-        "nom":        "DUPOND",
-        "prenom":     "JEAN",
-        "adresse":    "",
-        "codepostal": "",
-        "ville":      ""
-    },
-    "email":                    "test@test.fr",
-    "telfixe":                  "",
-    "telportable":              "",
-    "codePrime":                "IT",
-    "zoneEnergetique":          "H2",
-    "tauxPrime":                13,
-    "logement":                 {
-        "occupants":         1,
-        "localType":         "maison_individuelle",
-        "batimentNature":    "",
-        "isAdresseBenef":    true,
-        "adresse":           "",
-        "codepostal":        "",
-        "ville":             "",
-        "parcelle":          "",
-        "superficie":        "71",
-        "dataGeoportail":    [],
-        "location":          "",
-        "qualiteIsolation":  "1.1",
-        "anneeConstruction": "1900",
-        "moinsDe2Ans":       false,
-        "tensionDisponible": "monophase"
-    },
-    "fiche":                    {
-        "periodePose":                "",
-        "niveauHabitation":           "pp",
-        "typeChantier":               "neuf",
-        "disjoncteur":                false,
-        "distanceCompteurPac":        0,
-        "natureMurExt":               "parpaing",
-        "naturePlafond":              "brique",
-        "visiteComble":               false,
-        "chantierHabite":             false,
-        "grandeEchelle":              false,
-        "demandeVoirie":              false,
-        "puissanceCompteur":          6,
-        "accesComble":                "trappe",
-        "rueEtroite":                 false,
-        "typeCouverture":             "mecanique",
-        "etatToiture":                "propre",
-        "typeCharpente":              "traditionnelle",
-        "nbrCompartementComble":      1,
-        "presenceVolige":             false,
-        "nbrAccesComble":             1,
-        "distanceGpExtUnitInt":       0,
-        "nbrTotalRadiateur":          1,
-        "nbrRadiateurThermostatique": 1,
-        "typeRadiateur":              "alu",
-        "positionEauChaude":          "sol",
-        "hauteurDuSol":               1,
-        "espaceSolRequisUnitInt":     false,
-        "hauteurRequiseUnitInt":      false,
-        "emplacementSplit1":          "",
-        "emplacementSplit2":          "",
-        "emplacementSplit3":          "",
-        "emplacementSplit4":          "",
-        "emplacementSplit5":          "",
-        "emplacementGrpExt":          "",
-        "emplacementSplitMono":       "",
-        "distanceGpExtSplit1":        0,
-        "distanceGpExtSplit2":        0,
-        "distanceGpExtSplit3":        0,
-        "distanceGpExtSplit4":        0,
-        "distanceGpExtSplit5":        0,
-        "nbrPompeRelevage":           1,
-        "infosSup":                   "RAS",
-        "tensionDisponible":          "monophase"
+        "remise":           0
     },
     "baremes":                  [
         {
@@ -1315,67 +1293,67 @@
                 {
                     "nbre": 1,
                     "min":  0,
-                    "max":  14879
+                    "max": 15262
                 },
                 {
                     "nbre": 2,
                     "min":  0,
-                    "max":  21760
+                    "max": 22320
                 },
                 {
                     "nbre": 3,
                     "min":  0,
-                    "max":  26170
+                    "max": 26844
                 },
                 {
                     "nbre": 4,
                     "min":  0,
-                    "max":  30572
+                    "max": 31359
                 },
                 {
                     "nbre": 5,
                     "min":  0,
-                    "max":  34993
+                    "max": 35894
                 },
                 {
                     "nbre": 6,
                     "min":  0,
-                    "max":  39405
+                    "max": 40420
                 },
                 {
                     "nbre": 7,
                     "min":  0,
-                    "max":  43817
+                    "max": 44946
                 },
                 {
                     "nbre": 8,
                     "min":  0,
-                    "max":  48229
+                    "max": 49472
                 },
                 {
                     "nbre": 9,
                     "min":  0,
-                    "max":  52641
+                    "max": 53998
                 },
                 {
                     "nbre": 10,
                     "min":  0,
-                    "max":  57053
+                    "max": 58524
                 },
                 {
                     "nbre": 11,
                     "min":  0,
-                    "max":  61465
+                    "max": 63050
                 },
                 {
                     "nbre": 12,
                     "min":  0,
-                    "max":  65877
+                    "max": 67576
                 },
                 {
                     "nbre": 13,
                     "min":  0,
-                    "max":  70289
+                    "max": 72102
                 }
             ],
             "code":         "GP",
@@ -1390,67 +1368,67 @@
                 {
                     "nbre": 1,
                     "min":  0,
-                    "max":  19074
+                    "max": 19565
                 },
                 {
                     "nbre": 2,
                     "min":  0,
-                    "max":  27896
+                    "max": 28614
                 },
                 {
                     "nbre": 3,
                     "min":  0,
-                    "max":  33547
+                    "max": 34411
                 },
                 {
                     "nbre": 4,
                     "min":  0,
-                    "max":  39192
+                    "max": 40201
                 },
                 {
                     "nbre": 5,
                     "min":  0,
-                    "max":  44860
+                    "max": 46015
                 },
                 {
                     "nbre": 6,
                     "min":  0,
-                    "max":  50511
+                    "max": 51812
                 },
                 {
                     "nbre": 7,
                     "min":  0,
-                    "max":  56162
+                    "max": 57609
                 },
                 {
                     "nbre": 8,
                     "min":  0,
-                    "max":  61813
+                    "max": 63406
                 },
                 {
                     "nbre": 9,
                     "min":  0,
-                    "max":  67464
+                    "max": 69203
                 },
                 {
                     "nbre": 10,
                     "min":  0,
-                    "max":  73115
+                    "max": 75000
                 },
                 {
                     "nbre": 11,
                     "min":  0,
-                    "max":  78766
+                    "max": 80797
                 },
                 {
                     "nbre": 12,
                     "min":  0,
-                    "max":  84417
+                    "max": 86594
                 },
                 {
                     "nbre": 13,
                     "min":  0,
-                    "max":  90068
+                    "max": 92391
                 }
             ],
             "code":         "P",
@@ -1731,6 +1709,13 @@
                 "descr":  "Livré avec une vanne 3 voies et une sonde de température"
             }
         ],
+        "kitBiZone":         [
+            {
+                "label": "Kit bi-Zone",
+                "ref":   "BZKA7V3",
+                "pu":    2015
+            }
+        ],
         "niveauHabitation":  [
             {
                 "pp": "Plein Pied"
@@ -1915,22 +1900,5 @@
             "H2": 65.4,
             "H3": 43.6
         }
-    },
-    "ref":                      "JT11-20211005T1533-PA_RO",
-    "folderName":               "JT11-20211005T1533-PA_RO (DUPOND JEAN)",
-    "createdAt":                "2021-10-05T15:33:32.971",
-    "statutInDCI":              2,
-    "statutInDCIErrors":        [
-        2,
-        7,
-        4,
-        6
-    ],
-    "technicien":               {
-        "nom":    "Jeremy",
-        "prenom": "JEAN",
-        "id":     11,
-        "tel":    ""
-    },
-    "updatedAt":                "2021-10-05T15:41:43.702"
+    }
 }

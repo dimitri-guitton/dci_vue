@@ -10,6 +10,22 @@ ElectronStore.initRenderer();
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
+const schema = {
+    windowWidth:  {
+        type:    'number',
+        minimum: 200,
+        default: 800,
+    },
+    windowHeight: {
+        type:    'number',
+        minimum: 100,
+        default: 400,
+    },
+} as const;
+
+// First instantiate
+const store = new ElectronStore( { schema } );
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
@@ -20,10 +36,15 @@ protocol.registerSchemesAsPrivileged( [
                                       ] );
 
 async function createWindow() {
+    // First we'll get our height and width. This will be the defaults if there wasn't anything saved
+    const width = ( store.get( 'windowWidth' ) as number );
+    console.log( 'Width -->', width );
+    const height = ( store.get( 'windowHeight' ) as number );
+    console.log( 'Height -->', height );
     // Create the browser window.
     win = new BrowserWindow( {
-                                 width:          1200,
-                                 height:         800,
+                                 width,
+                                 height,
                                  webPreferences: {
                                      // Use pluginOptions.nodeIntegration, leave this alone
                                      // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
@@ -47,6 +68,15 @@ async function createWindow() {
         const response = await autoUpdater.checkForUpdatesAndNotify();
         console.log( 'Update -->', response );
     }
+
+    win.on( 'resize', () => {
+        // The event doesn't pass us the window size, so we call the `getBounds` method which returns an object with
+        // the height, width, and x and y coordinates.
+        const { width, height } = win.getBounds();
+        // Now that we have them, save them using the `set` method.
+        store.set( 'windowWidth', width );
+        store.set( 'windowHeight', height );
+    } );
 
     win.on( 'closed', () => {
         win = null;

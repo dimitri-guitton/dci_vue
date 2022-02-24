@@ -6,17 +6,15 @@
     "createdAt":                 "",
     "updatedAt":                 "",
     "settings":                  {
-        "roCeeCoef": "7.3"
+        "ceeCoef": "5.5"
     },
-    "quotationTemplate":         "quotation_sol_v1.html",
-    "workSheetTemplate":         "work_sheet_sol_v1.html",
     "disabledBonus":             false,
     "disabledCeeBonus":          false,
     "enabledHousingAction":      false,
     "disabledMaPrimeRenovBonus": false,
     "assents":                   [],
     "beneficiary":               {
-        "civility":  "",
+        "civility":  "m",
         "lastName":  "",
         "firstName": "",
         "address":   "",
@@ -24,14 +22,18 @@
         "city":      "",
         "email":     "",
         "phone":     "",
-        "mobile":    ""
+        "mobile":    "",
+        "income":    0
     },
     "codeBonus":                 null,
     "energyZone":                null,
-    "bonusRate":                 null,
-    "housing": {
+    "bonusRate":                 0,
+    "housing":                   {
         "nbOccupant":        1,
         "type":              "",
+        "heatingType":       "electrique",
+        "buildingNature":    "",
+        "isRentedHouse":     false,
         "isAddressBenef":    true,
         "address":           "",
         "zipCode":           "",
@@ -42,9 +44,10 @@
         "location":          "",
         "insulationQuality": "",
         "constructionYear":  "",
-        "lessThan2Years":    false
+        "lessThan2Years":    false,
+        "availableVoltage":  ""
     },
-    "worksheet": {
+    "worksheet":                 {
         "epaisseurProduit":        "115 mm",
         "accesCamion":             "facile",
         "distCamion":              0,
@@ -62,9 +65,9 @@
         ],
         "isolationExistante":      false,
         "niveauHabitation":        "r1",
-        "habitationSurLocalFroid": true,
+        "habitationSurLocalFroid": false,
         "videSanitaire":           false,
-        "terrePlein":              true,
+        "terrePlein":              false,
         "reseauPlafond":           false,
         "luminairesPlafond":       false,
         "distancePortesPalfond":   [
@@ -78,10 +81,11 @@
         "porteGarage":             "",
         "nbrPorteGarage":          "",
         "infosSup":                "RAS",
-        "periodePose":             ""
+        "period":                  ""
     },
     "quotation":                 {
         "pose":               2.5,
+        "overridePose":       2.5,
         "origin":             "",
         "dateTechnicalVisit": "",
         "executionDelay":     "",
@@ -91,66 +95,76 @@
                 "fileType":      "sol",
                 "label":         "Préparation chantier (protection si nécessaire)",
                 "unit":          "u",
+                "defaultPu":     0,
                 "pu":            0,
                 "defaultNumber": 0,
-                "number":        0,
-                "position":      1
+                "number":        0
             },
             {
                 "id":            52,
                 "fileType":      "sol",
                 "label":         "Si Jetspray : Mise en place d'un nergalto (uniquement si support bois)",
                 "unit":          "u",
-                "pu":            "34",
-                "defaultNumber": "34",
-                "number":        "34",
-                "position":      2
+                "defaultPu":     15,
+                "pu":            15,
+                "defaultNumber": 0,
+                "number":        0
             },
             {
                 "id":            53,
                 "fileType":      "sol",
                 "label":         "Si Jetspray : Passage du primaire d'accroche Jetspray primer",
                 "unit":          "u",
+                "defaultPu":     0,
                 "pu":            0,
                 "defaultNumber": 0,
-                "number":        0,
-                "position":      3
+                "number":        0
             }
         ],
         "blankOptions":       [
             {
-                "id":    "sup1",
-                "label": "",
-                "unit":  "u",
-                "pu":    0,
-                "value": 0
+                "id":     "sup1",
+                "label":  "",
+                "unit":   "u",
+                "pu":     0,
+                "number": 0
             },
             {
-                "id":    "sup2",
-                "label": "",
-                "unit":  "u",
-                "pu":    0,
-                "value": 0
+                "id":     "sup2",
+                "label":  "",
+                "unit":   "u",
+                "pu":     0,
+                "number": 0
             }
         ],
         "commentary":         "",
-        "partner":            "",
+        "partner":            "VTE",
         "texts":              [
             {
                 "title": "Les travaux prévus dans ce devis concernent l'isolation d'un plancher bas",
-                "text":  "Nous vous informons qu’en exécution du mandat signé en date du 01/11/2018 avec Total Marketing France, agissant en sa qualité d’obligé au sens de la réglementation sur les certificats d’économies d’énergie, nous nous sommes engagés à vous reverser un soutien (subvention) d’un montant de {{prime}} €\r\nCe soutien pourra, selon la modalité de paiement que vous préférerez en cochant l’une des options suivantes* : \r\n◻ Vous être versé directement ; \r\n⊠ Vous être déduit du montant dont vous nous êtes redevable au titre des travaux réalisés en application du présent devis. ...\r\nLa TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans. Réalisation du chantier : France Menuisiers 43346499700157 RGE qualibat N°E-E93378"
+                "text":  "La TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans. Réalisation du chantier : France Menuisiers 43346499700157 RGE qualibat N°E-E93378"
             },
             {
-                "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Total",
-                "text":  "Les travaux ou prestations objet du présent document donneront lieu à une contribution financière de Total Marketing France (TMF), versée par TMF dans le cadre de son rôle incitatif sous forme de prime, directement ou via son (ses) mandataire(s), sous réserve de l’engagement de fournir exclusivement à TMF les documents nécessaires à la valorisation des opérations au titre du dispositif des Certificats d’Économies d’Énergie et sous réserve de la validation de l’éligibilité du dossier par TMF puis par l’autorité administrative compétente. Le montant de cette contribution financière, hors champ d’application de la TVA,  est susceptible de varier en fonction des travaux effectivement réalisés et de la valorisation des CEE concernés au moment de l’établissement de la facture et est estimé à :  {{prime}} €"
+                "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
+                "text":  "Les travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique."
             },
             {
-                "title": "AIDE A LA RENOVATION ENERGETIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
+                "title": "AIDE A LA RENOVATION ÉNERGÉTIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
                 "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
             }
         ],
-        "tva":                "",
-        "selectedProducts":   [],
+        "tva":                5.5,
+        "selectedProducts":   [
+            {
+                "id":          2,
+                "productType": "sol",
+                "label":       "Isolation par projection pneumatique de laine minérale de marque KNAUF INSULATION – JETSPRAY THERMAL",
+                "reference":   "Laine minérale de verre Jet Spray R = 3m².K/W",
+                "pu":          32.5,
+                "defaultPu":   32.5,
+                "description": "- Certification ACERMI : 15/016/1050/1\r\n\r\n            - Résistance thermique : 3,05 m².k/w\r\n\r\n            - Épaisseur mini (mm) : 110\r\n\r\n            - Masse volumique : 52 kg / m3\r\n\r\n            - Classement au feu : A1 Euroclasse\r\n\r\n            - Qualité de l'air intérieur : A+ Médaille d'or eurofins\r\n\r\n\r\n            - Nivellement de la surface"
+            }
+        ],
         "products":           [
             {
                 "id":          2,
@@ -173,65 +187,68 @@
         ],
         "discount":           0,
         "totalHt":            0,
-        "totalTva":           0
+        "totalTva":           0,
+        "totalTtc":           0,
+        "remainderToPay":     0,
+        "ceeBonus":           0
     },
     "scales":                    [
         {
             "stages":   [
                 {
                     "nbr": 1,
-                    "min": 19074
+                    "min": 19565
                 },
                 {
                     "nbr": 2,
-                    "min": 27896
+                    "min": 28614
                 },
                 {
                     "nbr": 3,
-                    "min": 33547
+                    "min": 34411
                 },
                 {
                     "nbr": 4,
-                    "min": 39192
+                    "min": 40201
                 },
                 {
                     "nbr": 5,
-                    "min": 44860
+                    "min": 46015
                 },
                 {
                     "nbr": 6,
-                    "min": 50511
+                    "min": 51812
                 },
                 {
                     "nbr": 7,
-                    "min": 56162
+                    "min": 57609
                 },
                 {
                     "nbr": 8,
-                    "min": 61813
+                    "min": 63406
                 },
                 {
                     "nbr": 9,
-                    "min": 67464
+                    "min": 69203
                 },
                 {
                     "nbr": 10,
-                    "min": 73115
+                    "min": 75000
                 }
             ],
             "code":     "CL",
             "ceeBonus": {
                 "h1": {
-                    "electrique":  13.14,
-                    "combustible": 13.14
+                    "electrique":  8.8,
+                    "combustible": 8.8
                 },
                 "h2": {
-                    "electrique":  13.14,
-                    "combustible": 13.14
+                    "electrique":  7.15,
+                    "combustible": 7.15
                 },
                 "h3": {
-                    "electrique":  13.14,
-                    "combustible": 13.14
+                    "electrique":  8.8,
+                    "combustible": 8.8
                 }
             }
         },
@@ -240,67 +257,67 @@
                 {
                     "nbr": 1,
                     "min": 0,
-                    "max": 19074
+                    "max": 19565
                 },
                 {
                     "nbr": 2,
                     "min": 0,
-                    "max": 27896
+                    "max": 28614
                 },
                 {
                     "nbr": 3,
                     "min": 0,
-                    "max": 33547
+                    "max": 34411
                 },
                 {
                     "nbr": 4,
                     "min": 0,
-                    "max": 39192
+                    "max": 40201
                 },
                 {
                     "nbr": 5,
                     "min": 0,
-                    "max": 44860
+                    "max": 46015
                 },
                 {
                     "nbr": 6,
                     "min": 0,
-                    "max": 50511
+                    "max": 51812
                 },
                 {
                     "nbr": 7,
                     "min": 0,
-                    "max": 56162
+                    "max": 57609
                 },
                 {
                     "nbr": 8,
                     "min": 0,
-                    "max": 61813
+                    "max": 63406
                 },
                 {
                     "nbr": 9,
                     "min": 0,
-                    "max": 67464
+                    "max": 69203
                 },
                 {
                     "nbr": 10,
                     "min": 0,
-                    "max": 73115
+                    "max": 75000
                 }
             ],
             "code":     "GP",
             "ceeBonus": {
                 "h1": {
-                    "electrique":  26.28,
-                    "combustible": 26.28
+                    "electrique":  8.8,
+                    "combustible": 8.8
                 },
                 "h2": {
-                    "electrique":  26.28,
-                    "combustible": 26.28
+                    "electrique":  7.15,
+                    "combustible": 7.15
                 },
                 "h3": {
-                    "electrique":  26.28,
-                    "combustible": 26.28
+                    "electrique":  8.8,
+                    "combustible": 8.8
                 }
             }
         },
@@ -373,78 +390,104 @@
                 }
             ],
             "code":     "PACCL",
-            "ceeBonus": {}
+            "ceeBonus": {
+                "h1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "h2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "h3": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                }
+            }
         },
         {
             "stages":   [
                 {
                     "nbr": 1,
                     "min": 0,
-                    "max": 14879
+                    "max": 15262
                 },
                 {
                     "nbr": 2,
                     "min": 0,
-                    "max": 21760
+                    "max": 22320
                 },
                 {
                     "nbr": 3,
                     "min": 0,
-                    "max": 26170
+                    "max": 26844
                 },
                 {
                     "nbr": 4,
                     "min": 0,
-                    "max": 30572
+                    "max": 31359
                 },
                 {
                     "nbr": 5,
                     "min": 0,
-                    "max": 34993
+                    "max": 35894
                 },
                 {
                     "nbr": 6,
                     "min": 0,
-                    "max": 39405
+                    "max": 40420
                 },
                 {
                     "nbr": 7,
                     "min": 0,
-                    "max": 43817
+                    "max": 44946
                 },
                 {
                     "nbr": 8,
                     "min": 0,
-                    "max": 48229
+                    "max": 49472
                 },
                 {
                     "nbr": 9,
                     "min": 0,
-                    "max": 52641
+                    "max": 53998
                 },
                 {
                     "nbr": 10,
                     "min": 0,
-                    "max": 57053
+                    "max": 58524
                 },
                 {
                     "nbr": 11,
                     "min": 0,
-                    "max": 61465
+                    "max": 63050
                 },
                 {
                     "nbr": 12,
                     "min": 0,
-                    "max": 65877
+                    "max": 67576
                 },
                 {
                     "nbr": 13,
                     "min": 0,
-                    "max": 70289
+                    "max": 72102
                 }
             ],
             "code":     "PACGP",
-            "ceeBonus": {}
+            "ceeBonus": {
+                "h1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "h2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "h3": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                }
+            }
         },
         {
             "stages":   [
@@ -515,165 +558,200 @@
                 }
             ],
             "code":     "PACIT",
-            "ceeBonus": {}
+            "ceeBonus": {
+                "h1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "h2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "h3": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                }
+            }
         },
         {
             "stages":   [
                 {
                     "nbr": 1,
                     "min": 0,
-                    "max": 19074
+                    "max": 19565
                 },
                 {
                     "nbr": 2,
                     "min": 0,
-                    "max": 27896
+                    "max": 28614
                 },
                 {
                     "nbr": 3,
                     "min": 0,
-                    "max": 33547
+                    "max": 34411
                 },
                 {
                     "nbr": 4,
                     "min": 0,
-                    "max": 39192
+                    "max": 40201
                 },
                 {
                     "nbr": 5,
                     "min": 0,
-                    "max": 44860
+                    "max": 46015
                 },
                 {
                     "nbr": 6,
                     "min": 0,
-                    "max": 50511
+                    "max": 51812
                 },
                 {
                     "nbr": 7,
                     "min": 0,
-                    "max": 56162
+                    "max": 57609
                 },
                 {
                     "nbr": 8,
                     "min": 0,
-                    "max": 61813
+                    "max": 63406
                 },
                 {
                     "nbr": 9,
                     "min": 0,
-                    "max": 67464
+                    "max": 69203
                 },
                 {
                     "nbr": 10,
                     "min": 0,
-                    "max": 73115
+                    "max": 75000
                 },
                 {
                     "nbr": 11,
                     "min": 0,
-                    "max": 78766
+                    "max": 80797
                 },
                 {
                     "nbr": 12,
                     "min": 0,
-                    "max": 84417
+                    "max": 86594
                 },
                 {
                     "nbr": 13,
                     "min": 0,
-                    "max": 90068
+                    "max": 92391
                 }
             ],
             "code":     "PACP",
-            "ceeBonus": {}
+            "ceeBonus": {
+                "h1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "h2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "h3": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                }
+            }
         }
     ],
+    "statusInDci":               1,
+    "errorsStatusInDci":         [],
+    "technician":                {
+        "id":        {},
+        "lastName":  {},
+        "firstName": {},
+        "phone":     {}
+    },
     "lists":                     {
         "localTypeList":        [],
-        "chauffageTypeList":    {
-            "slug":  "chauffageTypeList",
-            "items": [
-                {
-                    "value": "Electrique"
-                },
-                {
-                    "value": "Combustible"
-                }
-            ]
-        },
-        "batimentNatureList":   {
-            "slug":  "batimentNatureList",
-            "items": [
-                {
-                    "value": "-"
-                },
-                {
-                    "value": "Nouvelle résidence principale"
-                },
-                {
-                    "value": "Location"
-                },
-                {
-                    "value": "Résidence secondaire"
-                }
-            ]
-        },
-        "niveauHabitationList": {
-            "slug":  "niveauHabitationList",
-            "items": [
-                {
-                    "value": "Plein pied"
-                },
-                {
-                    "value": "R+1"
-                },
-                {
-                    "value": "R+2"
-                }
-            ]
-        },
-        "porteGarageList":      {
-            "slug":  "porteGarageList",
-            "items": [
-                {
-                    "value": "non"
-                },
-                {
-                    "value": "sectionnelle"
-                },
-                {
-                    "value": "coulissante"
-                }
-            ]
-        },
-        "accesCamionList":      {
-            "slug":  "accesCamionList",
-            "items": [
-                {
-                    "value": "Facile"
-                },
-                {
-                    "value": "Difficile"
-                }
-            ]
-        },
-        "supportList":          {
-            "slug":  "supportList",
-            "items": [
-                {
-                    "value": "Bois"
-                },
-                {
-                    "value": "Brique"
-                },
-                {
-                    "value": "Béton"
-                },
-                {
-                    "value": "Hourdis"
-                }
-            ]
-        }
+        "chauffageTypeList":    [
+            {
+                "slug":  "electrique",
+                "value": "Electrique"
+            },
+            {
+                "slug":  "combustible",
+                "value": "Combustible"
+            }
+        ],
+        "batimentNatureList":   [
+            {
+                "slug":  "",
+                "value": "-"
+            },
+            {
+                "slug":  "nouvelle_residence",
+                "value": "Nouvelle résidence principale"
+            },
+            {
+                "slug":  "location",
+                "value": "Location"
+            },
+            {
+                "slug":  "residence_secondaire",
+                "value": "Résidence secondaire"
+            }
+        ],
+        "niveauHabitationList": [
+            {
+                "slug":  "pp",
+                "value": "Plein pied"
+            },
+            {
+                "slug":  "r1",
+                "value": "R+1"
+            },
+            {
+                "slug":  "r2",
+                "value": "R+2"
+            }
+        ],
+        "porteGarageList":      [
+            {
+                "slug":  "",
+                "value": "non"
+            },
+            {
+                "slug":  "sectionnelle",
+                "value": "sectionnelle"
+            },
+            {
+                "slug":  "coulissante",
+                "value": "coulissante"
+            }
+        ],
+        "accesCamionList":      [
+            {
+                "slug":  "facile",
+                "value": "Facile"
+            },
+            {
+                "slug":  "difficile",
+                "value": "Difficile"
+            }
+        ],
+        "supportList":          [
+            {
+                "slug":  "bois",
+                "value": "Bois"
+            },
+            {
+                "slug":  "brique",
+                "value": "Brique"
+            },
+            {
+                "slug":  "beton",
+                "value": "Béton"
+            },
+            {
+                "slug":  "hourdis",
+                "value": "Hourdis"
+            }
+        ],
+        "typeOrigineList":      []
     }
 }

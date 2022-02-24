@@ -177,7 +177,7 @@ const convertOldCetItemList = ( oldData ): CetList => {
 export const convertOldCetFile = ( oldData ): CetFile => {
     console.log( '%c IN CONVERT DATA FILE', 'background: #fdd835; color: #000000' );
     return {
-        version:                   getStringData( oldData[ 'version' ] ),
+        version:                   '1',
         type:                      FILE_CET,
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
@@ -192,10 +192,11 @@ export const convertOldCetFile = ( oldData ): CetFile => {
         beneficiary:               convertOldBeneficiary( oldData ),
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
-        housing: {
+        housing:                   {
             nbOccupant:        getNumberData( oldData[ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
             buildingNature:    getObjectData( oldData, [ 'logement', 'batimentNature' ] ),
+            heatingType:       getObjectData( oldData, [ 'logement', 'chauffageType' ] ),
             isRentedHouse:     getObjectData( oldData, [ 'logement', 'batimentNature' ] ) === 'location',
             isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
             address:           getObjectData( oldData, [ 'logement', 'adresse' ] ),
@@ -210,7 +211,7 @@ export const convertOldCetFile = ( oldData ): CetFile => {
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },
-        worksheet: {
+        worksheet:                 {
             period:                  getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
             niveauHabitation:        getObjectData( oldData, [ 'fiche', 'niveauHabitation' ] ),
             typeChantier:            getObjectData( oldData, [ 'fiche', 'typeChantier' ] ),
@@ -240,7 +241,7 @@ export const convertOldCetFile = ( oldData ): CetFile => {
             distanceBallonUnitExt:   getNumberData( oldData [ 'fiche' ][ 'distanceBallonUnitExt' ] ),
             infosSup:                getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
-        quotation: {
+        quotation:                 {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),

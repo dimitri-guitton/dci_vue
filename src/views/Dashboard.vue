@@ -46,7 +46,7 @@ import { defineComponent, onMounted } from 'vue';
 // import MixedWidget7 from '@/components/widgets/mixed/Widget7.vue';
 // import MixedWidget10 from '@/components/widgets/mixed/Widget10.vue';
 import { setCurrentPageTitle } from '@/core/helpers/breadcrumb';
-import { convertOldJsonToNewJson } from '@/services/folder/folderService';
+import { convertAllOldJsonToNewJson } from '@/services/folder/folderService';
 // import { geocodingAddress } from '@/services/geocodingService';
 // import pdfMake from 'pdfmake';
 // import pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -125,7 +125,7 @@ export default defineComponent( {
                                     };
 
                                     return {
-                                      convertOldJsonToNewJson,
+                                      convertOldJsonToNewJson: convertAllOldJsonToNewJson,
                                       testPdf,
                                     };
                                   },

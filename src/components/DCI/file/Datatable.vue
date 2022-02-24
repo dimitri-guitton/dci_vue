@@ -66,7 +66,8 @@
             <!--                         class="btn btn-icon btn-primary btn-sm me-2"><i class="fas fa-pen"></i></router-link>-->
             <!--            <router-link :to="{ name: 'cet_show', query: { reference: data.reference } }"-->
             <!--                         class="btn btn-icon btn-primary btn-sm me-2"><i class="fas fa-pen"></i></router-link>-->
-            <button @click="edit(data.reference, data.folderName)" class="btn btn-icon btn-primary btn-sm me-2">
+            <button @click="edit(data.reference, data.folderName, data.types)"
+                    class="btn btn-icon btn-primary btn-sm me-2">
               <i class="fas fa-pen"></i>
             </button>
 
@@ -131,6 +132,7 @@ import { LIST_FILE_TYPE } from '@/services/constantService';
 import router from '@/router';
 import { setCurrentFileReference, setcurrentFolderName } from '@/services/data/dataService';
 import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
+import { DatatableFileType } from '@/types/v2/DatatableFile/DatatableFileType';
 
 
 export default defineComponent( {
@@ -272,11 +274,13 @@ export default defineComponent( {
                                       }
                                     };
 
-                                    const edit = ( reference: string, folderName: string ) => {
+                                    const edit = ( reference: string,
+                                                   folderName: string,
+                                                   type: DatatableFileType[] ) => {
                                       setCurrentFileReference( reference );
                                       setcurrentFolderName( folderName );
                                       // @TODO rendre dynamique
-                                      router.push( { name: 'file-cet-edit' } );
+                                      router.push( { name: `file-${ type[ 0 ].slug }-edit` } );
                                     };
 
                                     return {

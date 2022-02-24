@@ -1,13 +1,81 @@
 {
+    "settings":                 {
+        "ceeCoef": "5.5"
+    },
+    "type":                     "comble",
+    "version":                  "5",
+    "devisTemplate":            "devisTpl-v5-vte.html",
+    "ficheTemplate":            "ficheCombleTpl-v5.html",
+    "ficheGenerator":           "combleV1.xlsx",
     "disablePrime":             false,
+    "disablePrimeCEE":          false,
+    "disablePrimeMaprimerenov": false,
+    "enabledActionLogement":    false,
+    "avis":                     [],
+    "beneficiaire":             {
+        "civilite":   "m",
+        "nom":        "",
+        "prenom":     "",
+        "adresse":    "",
+        "codepostal": "",
+        "ville":      ""
+    },
+    "email":                    "",
+    "telfixe":                  "",
+    "telportable":              "",
+    "codePrime":                null,
+    "zoneEnergetique":          null,
+    "tauxPrime":                null,
+    "logement":                 {
+        "occupants":      1,
+        "batimentType":   "residentiel",
+        "chauffageType":  "electrique",
+        "batimentNature": "",
+        "typeChaudiere":  "aucun",
+        "isAdresseBenef": true,
+        "adresse":        "",
+        "codepostal":     "",
+        "ville":          "",
+        "parcelle":       "",
+        "superficie":     "",
+        "dataGeoportail": {},
+        "location":       "",
+        "moinsDe2Ans":    false
+    },
+    "fiche":                    {
+        "visiteComble":              true,
+        "chantierHabite":            true,
+        "chantierType":              "reno",
+        "niveauHabitation":          "rdc",
+        "gdEchelle":                 false,
+        "partieAisoler":             "hab_ss_gge",
+        "puissanceCompteur":         0,
+        "accesPl":                   false,
+        "periodePose":               "",
+        "rueEtroite":                false,
+        "accesComble":               "trappe",
+        "couvertureType":            "meca",
+        "charpenteType":             "ferm",
+        "etatToiture":               "propre",
+        "volige":                    false,
+        "nbreAccesComble":           0,
+        "nbreCompartiments":         0,
+        "isolationExistante":        true,
+        "isolationExistanteType":    "vrac",
+        "isolationExistanteCouches": 0,
+        "lardagePareVapeur":         false,
+        "rehausseTrappeType":        "polypro",
+        "desencombrement":           false,
+        "infosSup":                  "RAS"
+    },
     "devis":                    {
-        "noPrimeUseCode":  "CL",
         "pose":            2.5,
         "overridePose":    2.5,
         "tva":             5.5,
-        "origine":         "NOUVELLE REPUBLIQUE",
-        "dateVisiteTech":  "2021-09-28",
-        "delaisExecution": "2021-12-28",
+        "noPrimeUseCode":  "CL",
+        "origine":         "",
+        "dateVisiteTech":  "",
+        "delaisExecution": "",
         "calcul0PU":       0,
         "options":         [
             {
@@ -74,7 +142,7 @@
                 "id":    4,
                 "label": "Coffrage de la trappe",
                 "unit":  "u",
-                "value": "1",
+                "value": 0,
                 "pu":    {
                     "default": 10,
                     "value":   10
@@ -84,7 +152,7 @@
                 "id":    5,
                 "label": "Isolation de la trappe",
                 "unit":  "u",
-                "value": "1",
+                "value": 0,
                 "pu":    {
                     "default": 10,
                     "value":   10
@@ -205,91 +273,7 @@
         "texte3":          {
             "title": "AIDE A LA RENOVATION ÉNERGÉTIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
             "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
-        },
-        "totalHT":         681.5,
-        "totalTVA":        37.4825
-    },
-    "settings":                 {
-        "ceeCoef": "6.6"
-    },
-    "type":                     "comble",
-    "version":                  "5",
-    "devisTemplate":            "devisTpl-v5-vte.html",
-    "ficheTemplate":            "ficheCombleTpl-v5.html",
-    "ficheGenerator":           "combleV1.xlsx",
-    "disablePrimeCEE":          false,
-    "disablePrimeMaprimerenov": false,
-    "enabledActionLogement":    false,
-    "avis":                     [],
-    "beneficiaire":             {
-        "civilite":   "M",
-        "nom":        "DUPOND",
-        "prenom":     "JEAN",
-        "adresse":    "",
-        "codepostal": "",
-        "ville":      ""
-    },
-    "email":                    "test@test.fr",
-    "telfixe":                  "",
-    "telportable":              "",
-    "codePrime":                "CL",
-    "zoneEnergetique":          "H2",
-    "tauxPrime":                9.24,
-    "logement":                 {
-        "occupants":      1,
-        "batimentType":   "residentiel",
-        "chauffageType":  "electrique",
-        "batimentNature": "",
-        "typeChaudiere":  "aucun",
-        "isAdresseBenef": true,
-        "adresse":        "",
-        "codepostal":     "",
-        "ville":          "",
-        "parcelle":       "",
-        "superficie":     "45",
-        "dataGeoportail": {
-            "zoom":       20,
-            "center":     [
-                1.6624853731555946,
-                46.81175379237931
-            ],
-            "position":   [
-                1.6624210774898531,
-                46.81178439857038
-            ],
-            "codepostal": "",
-            "ville":      "",
-            "adresse":    "",
-            "parcelle":   ""
-        },
-        "location":       "",
-        "moinsDe2Ans":    false
-    },
-    "fiche":                    {
-        "visiteComble":              true,
-        "chantierHabite":            true,
-        "chantierType":              "reno",
-        "niveauHabitation":          "rdc",
-        "gdEchelle":                 false,
-        "partieAisoler":             "hab_ss_gge",
-        "puissanceCompteur":         "6",
-        "accesPl":                   false,
-        "periodePose":               "",
-        "rueEtroite":                false,
-        "accesComble":               "trappe",
-        "couvertureType":            "meca",
-        "charpenteType":             "trad",
-        "etatToiture":               "propre",
-        "volige":                    false,
-        "nbreAccesComble":           "1",
-        "nbreCompartiments":         "1",
-        "isolationExistante":        true,
-        "isolationExistanteType":    "rouleau",
-        "isolationExistanteCouches": 0,
-        "lardagePareVapeur":         false,
-        "rehausseTrappeType":        "polypro",
-        "desencombrement":           false,
-        "infosSup":                  "ENTRER DANS LA COURS DU GRAND BATIMENT AU FOND A GAUCHE MAISON SEUL"
+        }
     },
     "baremes":                  [
         {
@@ -297,49 +281,49 @@
             "palierRevenu": [
                 {
                     "nbre": 1,
-                    "min":  19074
+                    "min":  19565
                 },
                 {
                     "nbre": 2,
-                    "min":  27896
+                    "min":  28614
                 },
                 {
                     "nbre": 3,
-                    "min":  33547
+                    "min":  34411
                 },
                 {
                     "nbre": 4,
-                    "min":  39192
+                    "min":  40201
                 },
                 {
                     "nbre": 5,
-                    "min":  44860
+                    "min":  46015
                 },
                 {
                     "nbre": 6,
-                    "min":  50511
+                    "min":  51812
                 },
                 {
                     "nbre": 7,
-                    "min":  56162
+                    "min":  57609
                 },
                 {
                     "nbre": 8,
-                    "min":  61813
+                    "min":  63406
                 },
                 {
                     "nbre": 9,
-                    "min":  67464
+                    "min":  69203
                 },
                 {
                     "nbre": 10,
-                    "min":  73115
+                    "min":  75000
                 }
             ],
             "primeCEE":     {
-                "H1": 11.22,
-                "H2": 9.24,
-                "H3": 9.24
+                "H1": 9.35,
+                "H2": 7.7,
+                "H3": 7.7
             }
         },
         {
@@ -348,58 +332,58 @@
                 {
                     "nbre": 1,
                     "min":  0,
-                    "max":  19074
+                    "max":  19565
                 },
                 {
                     "nbre": 2,
                     "min":  0,
-                    "max":  27896
+                    "max":  28614
                 },
                 {
                     "nbre": 3,
                     "min":  0,
-                    "max":  33547
+                    "max":  34411
                 },
                 {
                     "nbre": 4,
                     "min":  0,
-                    "max":  39192
+                    "max":  40201
                 },
                 {
                     "nbre": 5,
                     "min":  0,
-                    "max":  44860
+                    "max":  46015
                 },
                 {
                     "nbre": 6,
                     "min":  0,
-                    "max":  50511
+                    "max":  51812
                 },
                 {
                     "nbre": 7,
                     "min":  0,
-                    "max":  56162
+                    "max":  57609
                 },
                 {
                     "nbre": 8,
                     "min":  0,
-                    "max":  61813
+                    "max":  63406
                 },
                 {
                     "nbre": 9,
                     "min":  0,
-                    "max":  67464
+                    "max":  69203
                 },
                 {
                     "nbre": 10,
                     "min":  0,
-                    "max":  73115
+                    "max":  75000
                 }
             ],
             "primeCEE":     {
-                "H1": 11.22,
-                "H2": 9.24,
-                "H3": 9.24
+                "H1": 9.35,
+                "H2": 7.7,
+                "H3": 7.7
             }
         },
         {
@@ -472,9 +456,9 @@
                 }
             ],
             "primeCEE":     {
-                "H1": 11.22,
-                "H2": 9.24,
-                "H3": 9.24
+                "H1": 9.35,
+                "H2": 7.7,
+                "H3": 7.7
             }
         },
         {
@@ -483,73 +467,73 @@
                 {
                     "nbre": 1,
                     "min":  0,
-                    "max":  14879
+                    "max":  15262
                 },
                 {
                     "nbre": 2,
                     "min":  0,
-                    "max":  21760
+                    "max":  22320
                 },
                 {
                     "nbre": 3,
                     "min":  0,
-                    "max":  26170
+                    "max":  26844
                 },
                 {
                     "nbre": 4,
                     "min":  0,
-                    "max":  30572
+                    "max":  31359
                 },
                 {
                     "nbre": 5,
                     "min":  0,
-                    "max":  34993
+                    "max":  35894
                 },
                 {
                     "nbre": 6,
                     "min":  0,
-                    "max":  39405
+                    "max":  40420
                 },
                 {
                     "nbre": 7,
                     "min":  0,
-                    "max":  43817
+                    "max":  44946
                 },
                 {
                     "nbre": 8,
                     "min":  0,
-                    "max":  48229
+                    "max":  49472
                 },
                 {
                     "nbre": 9,
                     "min":  0,
-                    "max":  52641
+                    "max":  53998
                 },
                 {
                     "nbre": 10,
                     "min":  0,
-                    "max":  57053
+                    "max":  58524
                 },
                 {
                     "nbre": 11,
                     "min":  0,
-                    "max":  61465
+                    "max":  63050
                 },
                 {
                     "nbre": 12,
                     "min":  0,
-                    "max":  65877
+                    "max":  67576
                 },
                 {
                     "nbre": 13,
                     "min":  0,
-                    "max":  70289
+                    "max":  72102
                 }
             ],
             "primeCEE":     {
-                "H1": 11.22,
-                "H2": 9.24,
-                "H3": 9.24
+                "H1": 9.35,
+                "H2": 7.7,
+                "H3": 7.7
             }
         },
         {
@@ -622,9 +606,9 @@
                 }
             ],
             "primeCEE":     {
-                "H1": 11.22,
-                "H2": 9.24,
-                "H3": 9.24
+                "H1": 9.35,
+                "H2": 7.7,
+                "H3": 7.7
             }
         },
         {
@@ -633,73 +617,73 @@
                 {
                     "nbre": 1,
                     "min":  0,
-                    "max":  19074
+                    "max":  19565
                 },
                 {
                     "nbre": 2,
                     "min":  0,
-                    "max":  27896
+                    "max":  28614
                 },
                 {
                     "nbre": 3,
                     "min":  0,
-                    "max":  33547
+                    "max":  34411
                 },
                 {
                     "nbre": 4,
                     "min":  0,
-                    "max":  39192
+                    "max":  40201
                 },
                 {
                     "nbre": 5,
                     "min":  0,
-                    "max":  44860
+                    "max":  46015
                 },
                 {
                     "nbre": 6,
                     "min":  0,
-                    "max":  50511
+                    "max":  51812
                 },
                 {
                     "nbre": 7,
                     "min":  0,
-                    "max":  56162
+                    "max":  57609
                 },
                 {
                     "nbre": 8,
                     "min":  0,
-                    "max":  61813
+                    "max":  63406
                 },
                 {
                     "nbre": 9,
                     "min":  0,
-                    "max":  67464
+                    "max":  69203
                 },
                 {
                     "nbre": 10,
                     "min":  0,
-                    "max":  73115
+                    "max":  75000
                 },
                 {
                     "nbre": 11,
                     "min":  0,
-                    "max":  78766
+                    "max":  80797
                 },
                 {
                     "nbre": 12,
                     "min":  0,
-                    "max":  84417
+                    "max":  86594
                 },
                 {
                     "nbre": 13,
                     "min":  0,
-                    "max":  90068
+                    "max":  92391
                 }
             ],
             "primeCEE":     {
-                "H1": 11.22,
-                "H2": 9.24,
-                "H3": 9.24
+                "H1": 9.35,
+                "H2": 7.7,
+                "H3": 7.7
             }
         }
     ],
@@ -712,7 +696,7 @@
                 "tertiaire": "Tertiaire"
             },
             {
-                "santé": "Santé"
+                "santé": " "
             }
         ],
         "chauffageType":          [
@@ -874,23 +858,8 @@
         ]
     },
     "zoneMontant":              {
-        "H1": 11.22,
-        "H2": 9.24,
-        "H3": 9.24
-    },
-    "ref":                      "JT11-20210928T1514-CO",
-    "folderName":               "JT11-20210928T1514-CO (DUPOND JEAN)",
-    "createdAt":                "2021-09-28T15:14:31.621",
-    "statutInDCI":              2,
-    "statutInDCIErrors":        [
-        2,
-        6
-    ],
-    "technicien":               {
-        "nom":    "Jeremy",
-        "prenom": "JEAN",
-        "id":     11,
-        "tel":    ""
-    },
-    "updatedAt":                "2021-09-28T15:21:48.420"
+        "H1": 9.35,
+        "H2": 7.7,
+        "H3": 7.7
+    }
 }

@@ -6,17 +6,15 @@
     "createdAt":                 "",
     "updatedAt":                 "",
     "settings":                  {
-        "ceeCoef": "6.6"
+        "ceeCoef": "5.5"
     },
-    "quotationTemplate":         "quotation_pac_ro_v1.html",
-    "workSheetTemplate":         "work_sheet_pac_ro_v1.html",
     "disabledBonus":             false,
     "disabledCeeBonus":          false,
     "enabledHousingAction":      false,
     "disabledMaPrimeRenovBonus": false,
-    "assent":                    [],
+    "assents":                   [],
     "beneficiary":               {
-        "civility":  "",
+        "civility":  "m",
         "lastName":  "",
         "firstName": "",
         "address":   "",
@@ -24,14 +22,17 @@
         "city":      "",
         "email":     "",
         "phone":     "",
-        "mobile":    ""
+        "mobile":    "",
+        "income":    0
     },
     "codeBonus":                 null,
     "energyZone":                null,
-    "bonusRate":                 0,
-    "housing": {
+    "housing":                   {
         "nbOccupant":        1,
         "type":              "maison_individuelle",
+        "heatingType":       "",
+        "buildingNature":    "",
+        "isRentedHouse":     false,
         "isAddressBenef":    true,
         "address":           "",
         "zipCode":           "",
@@ -45,7 +46,7 @@
         "lessThan2Years":    false,
         "availableVoltage":  "monophase"
     },
-    "worksheet": {
+    "worksheet":                 {
         "period":                    "",
         "niveauHabitation":          "pp",
         "typeChantier":              "neuf",
@@ -84,89 +85,89 @@
         "options":            [
             {
                 "id":            1,
-                "fileType":      "cet",
+                "fileType":      "pac_ro",
                 "label":         "Forfait pompe de relevage des condensats interieurs",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     120,
+                "pu":            120,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      1
+                "number":        1
             },
             {
                 "id":            2,
-                "fileType":      "cet",
+                "fileType":      "pac_ro",
                 "label":         "Forfait pose ( Pose nouvel appareil, mise en service)",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     450,
+                "pu":            450,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      2
+                "number":        1
             },
             {
                 "id":            3,
-                "fileType":      "cet",
+                "fileType":      "pac_ro",
                 "label":         "Télécommande programmable, accessoires d’installation et explications.",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     0,
+                "pu":            0,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      3
+                "number":        1
             },
             {
                 "id":            4,
-                "fileType":      "cet",
+                "fileType":      "pac_ro",
                 "label":         "Nettoyage et désembouage (si nécessaire) du circuit de chauffage.",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     0,
+                "pu":            0,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      4
+                "number":        1
             },
             {
                 "id":            5,
-                "fileType":      "cet",
+                "fileType":      "pac_ro",
                 "label":         "Forfait accessoires nécessaires à la pose, au raccordement et au bon fonctionnement de l’installation.",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     500,
+                "pu":            500,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      5
+                "number":        1
             },
             {
                 "id":            6,
-                "fileType":      "cet",
+                "fileType":      "pac_ro",
                 "label":         "Forfait pose (dépose ancien appareil, pose nouvel appareil et mise en service).",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     2000,
+                "pu":            2000,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      6
+                "number":        1
             },
             {
                 "id":            7,
-                "fileType":      "cet",
+                "fileType":      "pac_ro",
                 "label":         "Wifi",
                 "unit":          "u",
-                "pu":            1,
+                "defaultPu":     120,
+                "pu":            120,
                 "defaultNumber": 1,
-                "number":        1,
-                "position":      7
+                "number":        1
             }
         ],
         "blankOptions":       [
             {
-                "id":    "sup1",
-                "label": "Vase sanitaire",
-                "unit":  "u",
-                "pu":    "100",
-                "value": "1"
+                "id":     "sup1",
+                "label":  "",
+                "unit":   "u",
+                "pu":     0,
+                "number": 0
             },
             {
-                "id":    "sup2",
-                "label": "",
-                "unit":  "u",
-                "pu":    0,
-                "value": 0
+                "id":     "sup2",
+                "label":  "",
+                "unit":   "u",
+                "pu":     0,
+                "number": 0
             }
         ],
         "commentary":         "",
@@ -185,32 +186,10 @@
                 "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
             }
         ],
-        "tva10":              0,
-        "tva20":              0,
         "ceeBonus":           0,
         "maPrimeRenovBonus":  0,
-        "selectedProducts":   [
-            {
-                "id":          72,
-                "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE ERGA06EV",
-                "reference":   "DAIERGA06EV",
-                "pu":          2345.67,
-                "defaultPu":   2345.67,
-                "description": "- Puissance calorifique +7°c/-7°c : 5,81/5,72 kW\r\n- COP +7°c/-7°c : 2,7/1,74\r\n- ETAs : 127 %\r\n- Classe énergétique : A++\r\n- Dimension : 740*884*388 mm Poids : 58,5kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 38 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 6,67 € HT",
-                "scop":        null
-            },
-            {
-                "id":          78,
-                "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S18D6V",
-                "reference":   "DAIEHVH08S18E6V",
-                "pu":          5779.33,
-                "defaultPu":   5779.33,
-                "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 131kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
-            }
-        ],
+        "discount":           0,
+        "selectedProducts":   [],
         "assortment":         "sensira",
         "volumeECS":          0,
         "volumeECSDeporte":   0,
@@ -968,8 +947,8 @@
                 "productType": "pac_ro",
                 "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVH04S18E6V",
                 "reference":   "DAIEHVH04S18E6V",
-                "pu":          5591.33,
-                "defaultPu":   5591.33,
+                "pu":          5015.33,
+                "defaultPu":   5015.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 131kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                 "scop":        null
             },
@@ -978,8 +957,8 @@
                 "productType": "pac_ro",
                 "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVH04S23E6V",
                 "reference":   "DAIEHVH04S23E6V",
-                "pu":          5869.33,
-                "defaultPu":   5869.33,
+                "pu":          5254.33,
+                "defaultPu":   5254.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 139kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                 "scop":        null
             },
@@ -988,8 +967,8 @@
                 "productType": "pac_ro",
                 "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EBH08D6V",
                 "reference":   "DAIEHBH08E6V",
-                "pu":          3893.33,
-                "defaultPu":   3893.33,
+                "pu":          3618.33,
+                "defaultPu":   3618.33,
                 "description": "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 42kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                 "scop":        null
             },
@@ -998,8 +977,8 @@
                 "productType": "pac_ro",
                 "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S18D6V",
                 "reference":   "DAIEHVH08S18E6V",
-                "pu":          5779.33,
-                "defaultPu":   5779.33,
+                "pu":          5233.33,
+                "defaultPu":   5233.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 131kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                 "scop":        null
             },
@@ -1008,8 +987,8 @@
                 "productType": "pac_ro",
                 "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S23E6V",
                 "reference":   "DAIEHVH08S23E6V",
-                "pu":          6069.33,
-                "defaultPu":   6069.33,
+                "pu":          5482.33,
+                "defaultPu":   5482.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 139kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                 "scop":        null
             },
@@ -1048,8 +1027,8 @@
                 "productType": "pac_ro",
                 "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EABH16D6V",
                 "reference":   "DAIEABH16D6V",
-                "pu":          4997.33,
-                "defaultPu":   4997.33,
+                "pu":          4711.33,
+                "defaultPu":   4711.33,
                 "description": "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 38kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 36 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                 "scop":        null
             },
@@ -1058,8 +1037,8 @@
                 "productType": "pac_ro",
                 "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EAVH16S18D6V",
                 "reference":   "DAIEAVH16S18D6V",
-                "pu":          7283.33,
-                "defaultPu":   7283.33,
+                "pu":          6670.33,
+                "defaultPu":   6670.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 109kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 36 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                 "scop":        null
             },
@@ -1068,8 +1047,8 @@
                 "productType": "pac_ro",
                 "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EAVH16S23D6V",
                 "reference":   "DAIEAVH16S23D6V",
-                "pu":          7554.33,
-                "defaultPu":   7554.33,
+                "pu":          6902.33,
+                "defaultPu":   6902.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 118kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 36 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
                 "scop":        null
             },
@@ -1254,9 +1233,11 @@
                 "scop":        null
             }
         ],
-        "discount":           0,
         "totalHt":            0,
-        "totalTva":           0
+        "totalTva":           0,
+        "totalTtc":           0,
+        "remainderToPay":     0,
+        "tva":                5.5
     },
     "scales":                    [
         {
@@ -1264,67 +1245,67 @@
                 {
                     "nbr": 1,
                     "min": 0,
-                    "max": 14879
+                    "max": 15262
                 },
                 {
                     "nbr": 2,
                     "min": 0,
-                    "max": 21760
+                    "max": 22320
                 },
                 {
                     "nbr": 3,
                     "min": 0,
-                    "max": 26170
+                    "max": 26844
                 },
                 {
                     "nbr": 4,
                     "min": 0,
-                    "max": 30572
+                    "max": 31359
                 },
                 {
                     "nbr": 5,
                     "min": 0,
-                    "max": 34993
+                    "max": 35894
                 },
                 {
                     "nbr": 6,
                     "min": 0,
-                    "max": 39405
+                    "max": 40420
                 },
                 {
                     "nbr": 7,
                     "min": 0,
-                    "max": 43817
+                    "max": 44946
                 },
                 {
                     "nbr": 8,
                     "min": 0,
-                    "max": 48229
+                    "max": 49472
                 },
                 {
                     "nbr": 9,
                     "min": 0,
-                    "max": 52641
+                    "max": 53998
                 },
                 {
                     "nbr": 10,
                     "min": 0,
-                    "max": 57053
+                    "max": 58524
                 },
                 {
                     "nbr": 11,
                     "min": 0,
-                    "max": 61465
+                    "max": 63050
                 },
                 {
                     "nbr": 12,
                     "min": 0,
-                    "max": 65877
+                    "max": 67576
                 },
                 {
                     "nbr": 13,
                     "min": 0,
-                    "max": 70289
+                    "max": 72102
                 }
             ],
             "code":     "GP",
@@ -1339,67 +1320,67 @@
                 {
                     "nbr": 1,
                     "min": 0,
-                    "max": 19074
+                    "max": 19565
                 },
                 {
                     "nbr": 2,
                     "min": 0,
-                    "max": 27896
+                    "max": 28614
                 },
                 {
                     "nbr": 3,
                     "min": 0,
-                    "max": 33547
+                    "max": 34411
                 },
                 {
                     "nbr": 4,
                     "min": 0,
-                    "max": 39192
+                    "max": 40201
                 },
                 {
                     "nbr": 5,
                     "min": 0,
-                    "max": 44860
+                    "max": 46015
                 },
                 {
                     "nbr": 6,
                     "min": 0,
-                    "max": 50511
+                    "max": 51812
                 },
                 {
                     "nbr": 7,
                     "min": 0,
-                    "max": 56162
+                    "max": 57609
                 },
                 {
                     "nbr": 8,
                     "min": 0,
-                    "max": 61813
+                    "max": 63406
                 },
                 {
                     "nbr": 9,
                     "min": 0,
-                    "max": 67464
+                    "max": 69203
                 },
                 {
                     "nbr": 10,
                     "min": 0,
-                    "max": 73115
+                    "max": 75000
                 },
                 {
                     "nbr": 11,
                     "min": 0,
-                    "max": 78766
+                    "max": 80797
                 },
                 {
                     "nbr": 12,
                     "min": 0,
-                    "max": 84417
+                    "max": 86594
                 },
                 {
                     "nbr": 13,
                     "min": 0,
-                    "max": 90068
+                    "max": 92391
                 }
             ],
             "code":     "P",
@@ -1567,222 +1548,253 @@
             "h3": 43.6
         }
     },
+    "statusInDci":               1,
+    "errorsStatusInDci":         [],
+    "technician":                {
+        "id":        {},
+        "lastName":  {},
+        "firstName": {},
+        "phone":     {}
+    },
     "lists":                     {
-        "localTypeList":         {
-            "slug":  "localTypeList",
-            "items": [
-                {
-                    "value": "Maison individuelle"
-                },
-                {
-                    "value": "Appartement"
-                }
-            ]
-        },
-        "rrTypeList":            {
-            "slug":  "rrTypeList",
-            "items": [
-                {
-                    "value": "RR Mono"
-                },
-                {
-                    "value": "RR Multi"
-                }
-            ]
-        },
-        "assortmentList":        {
-            "slug":  "assortmentList",
-            "items": [
-                {
-                    "value": "Sensira"
-                },
-                {
-                    "value": "Perfera"
-                },
-                {
-                    "value": "Stylish Blanc"
-                },
-                {
-                    "value": "Stylish Noir"
-                },
-                {
-                    "value": "Stylish Argent"
-                },
-                {
-                    "value": "Stylish Bois"
-                },
-                {
-                    "value": "Emura Blanc"
-                },
-                {
-                    "value": "Emura Argent"
-                }
-            ]
-        },
-        "ecsDeporteList":        {
-            "slug":  "ecsDeporteList",
-            "items": [
-                {
-                    "value": 150
-                },
-                {
-                    "value": 200
-                },
-                {
-                    "value": 300
-                }
-            ]
-        },
-        "accesCombleList":       {
-            "slug":  "accesCombleList",
-            "items": [
-                {
-                    "value": "TRAPPE"
-                },
-                {
-                    "value": "TOITURE"
-                },
-                {
-                    "value": "TRAPPE et TOITURE"
-                }
-            ]
-        },
-        "typeCouvertureList":    {
-            "slug":  "typeCouvertureList",
-            "items": [
-                {
-                    "value": "Mecanique"
-                },
-                {
-                    "value": "Tiges de bottes"
-                },
-                {
-                    "value": "Ardoise"
-                },
-                {
-                    "value": "Tuiles plates"
-                },
-                {
-                    "value": "Tuiles courbes"
-                }
-            ]
-        },
-        "typeCharpenteList":     {
-            "slug":  "typeCharpenteList",
-            "items": [
-                {
-                    "value": "Traditionnelle"
-                },
-                {
-                    "value": "Fermettes"
-                },
-                {
-                    "value": "Metallique"
-                },
-                {
-                    "value": "Autre"
-                }
-            ]
-        },
-        "etatToitureList":       {
-            "slug":  "etatToitureList",
-            "items": [
-                {
-                    "value": "Propre"
-                },
-                {
-                    "value": "Mousse en petite quantité"
-                },
-                {
-                    "value": "Mousse importante"
-                }
-            ]
-        },
-        "puissanceCompteurList": {
-            "slug":  "puissanceCompteurList",
-            "items": [
-                {},
-                {},
-                {},
-                {},
-                {}
-            ]
-        },
-        "natureMurExtList":      {
-            "slug":  "natureMurExtList",
-            "items": [
-                {
-                    "value": "Parpaing"
-                },
-                {
-                    "value": "Brique"
-                },
-                {
-                    "value": "Béton"
-                },
-                {
-                    "value": "Pierre"
-                },
-                {
-                    "value": "Bois"
-                }
-            ]
-        },
-        "typeRadiateurList":     {
-            "slug":  "typeRadiateurList",
-            "items": [
-                {
-                    "value": "Alu"
-                },
-                {
-                    "value": "Fonte"
-                },
-                {
-                    "value": "Acier"
-                }
-            ]
-        },
-        "tensionDisponibleList": {
-            "slug":  "tensionDisponibleList",
-            "items": [
-                {
-                    "value": "Monophasé"
-                },
-                {
-                    "value": "Triphasé"
-                }
-            ]
-        },
-        "positionEauChaudeList": {
-            "slug":  "positionEauChaudeList",
-            "items": [
-                {
-                    "value": "Au sol"
-                },
-                {
-                    "value": "Au mur"
-                }
-            ]
-        },
-        "typeChaudiereList":     {
-            "slug":  "typeChaudiereList",
-            "items": [
-                {
-                    "value": "Aucun"
-                },
-                {
-                    "value": "Chaudière charbon hors condensation"
-                },
-                {
-                    "value": "Chaudière fioul hors condensation"
-                },
-                {
-                    "value": "Chaudière gaz hors condensation"
-                },
-                {
-                    "value": "Autre"
-                }
-            ]
-        }
+        "localTypeList":         [
+            {
+                "slug":  "maison_individuelle",
+                "value": "Maison individuelle"
+            },
+            {
+                "slug":  "appartement",
+                "value": "Appartement"
+            }
+        ],
+        "rrTypeList":            [
+            {
+                "slug":  "rr_mono",
+                "value": "RR Mono"
+            },
+            {
+                "slug":  "rr_multi",
+                "value": "RR Multi"
+            }
+        ],
+        "assortmentList":        [
+            {
+                "slug":  "sensira",
+                "value": "Sensira"
+            },
+            {
+                "slug":  "perfera",
+                "value": "Perfera"
+            },
+            {
+                "slug":  "stylish_blanc",
+                "value": "Stylish Blanc"
+            },
+            {
+                "slug":  "stylish_noir",
+                "value": "Stylish Noir"
+            },
+            {
+                "slug":  "stylish_argent",
+                "value": "Stylish Argent"
+            },
+            {
+                "slug":  "stylish_bois",
+                "value": "Stylish Bois"
+            },
+            {
+                "slug":  "emura_blanc",
+                "value": "Emura Blanc"
+            },
+            {
+                "slug":  "emura_argent",
+                "value": "Emura Argent"
+            }
+        ],
+        "ecsDeporteList":        [
+            {
+                "slug":  "volume",
+                "value": 150
+            },
+            {
+                "slug":  "volume",
+                "value": 200
+            },
+            {
+                "slug":  "volume",
+                "value": 300
+            }
+        ],
+        "accesCombleList":       [
+            {
+                "slug":  "trappe",
+                "value": "TRAPPE"
+            },
+            {
+                "slug":  "toit",
+                "value": "TOITURE"
+            },
+            {
+                "slug":  "trappe_et_toit",
+                "value": "TRAPPE et TOITURE"
+            }
+        ],
+        "typeCouvertureList":    [
+            {
+                "slug":  "meca",
+                "value": "Mecanique"
+            },
+            {
+                "slug":  "tige_bottes",
+                "value": "Tiges de bottes"
+            },
+            {
+                "slug":  "ardoise",
+                "value": "Ardoise"
+            },
+            {
+                "slug":  "tuiles_plates",
+                "value": "Tuiles plates"
+            },
+            {
+                "slug":  "tuiles_courbes",
+                "value": "Tuiles courbes"
+            }
+        ],
+        "typeCharpenteList":     [
+            {
+                "slug":  "trad",
+                "value": "Traditionnelle"
+            },
+            {
+                "slug":  "ferm",
+                "value": "Fermettes"
+            },
+            {
+                "slug":  "metal",
+                "value": "Metallique"
+            },
+            {
+                "slug":  "autre",
+                "value": "Autre"
+            }
+        ],
+        "etatToitureList":       [
+            {
+                "slug":  "propre",
+                "value": "Propre"
+            },
+            {
+                "slug":  "mousse_faible",
+                "value": "Mousse en petite quantité"
+            },
+            {
+                "slug":  "mousse_important",
+                "value": "Mousse importante"
+            }
+        ],
+        "puissanceCompteurList": [
+            {
+                "slug":  3,
+                "value": 3
+            },
+            {
+                "slug":  6,
+                "value": 6
+            },
+            {
+                "slug":  9,
+                "value": 9
+            },
+            {
+                "slug":  12,
+                "value": 12
+            },
+            {
+                "slug":  18,
+                "value": 18
+            }
+        ],
+        "natureMurExtList":      [
+            {
+                "slug":  "parpaing",
+                "value": "Parpaing"
+            },
+            {
+                "slug":  "brique",
+                "value": "Brique"
+            },
+            {
+                "slug":  "beton",
+                "value": "Béton"
+            },
+            {
+                "slug":  "pierre",
+                "value": "Pierre"
+            },
+            {
+                "slug":  "bois",
+                "value": "Bois"
+            }
+        ],
+        "typeRadiateurList":     [
+            {
+                "slug":  "alu",
+                "value": "Alu"
+            },
+            {
+                "slug":  "fonte",
+                "value": "Fonte"
+            },
+            {
+                "slug":  "acier",
+                "value": "Acier"
+            }
+        ],
+        "tensionDisponibleList": [
+            {
+                "slug":  "monophase",
+                "value": "Monophasé"
+            },
+            {
+                "slug":  "triphase",
+                "value": "Triphasé"
+            }
+        ],
+        "positionEauChaudeList": [
+            {
+                "slug":  "sol",
+                "value": "Au sol"
+            },
+            {
+                "slug":  "mur",
+                "value": "Au mur"
+            }
+        ],
+        "typeChaudiereList":     [
+            {
+                "slug":  "aucun",
+                "value": "Aucun"
+            },
+            {
+                "slug":  "CCHC",
+                "value": "Chaudière charbon hors condensation"
+            },
+            {
+                "slug":  "CFHC",
+                "value": "Chaudière fioul hors condensation"
+            },
+            {
+                "slug":  "CGHC",
+                "value": "Chaudière gaz hors condensation"
+            },
+            {
+                "slug":  "autre",
+                "value": "Autre"
+            }
+        ],
+        "typeOrigineList":       [],
+        "batimentNatureList":    [],
+        "niveauHabitationList":  []
     }
 }

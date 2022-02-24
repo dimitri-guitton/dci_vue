@@ -210,7 +210,7 @@ const convertOldRrItemList = ( oldData ): RrList => {
 
 export const convertOldRrFile = ( oldData ): RrFile => {
     return {
-        version:                   getStringData( oldData[ 'version' ] ),
+        version:                   '1',
         type:                      FILE_PAC_RR,
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
@@ -225,9 +225,10 @@ export const convertOldRrFile = ( oldData ): RrFile => {
         beneficiary:               convertOldBeneficiary( oldData ),
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
-        housing: {
+        housing:                   {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
+            heatingType:       getObjectData( oldData, [ 'logement', 'chauffageType' ] ),
             buildingNature:    getObjectData( oldData, [ 'logement', 'batimentNature' ] ),
             isRentedHouse:     getObjectData( oldData, [ 'logement', 'batimentNature' ] ) === 'location',
             isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
