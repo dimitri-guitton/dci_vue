@@ -4,26 +4,11 @@ import { app, BrowserWindow, protocol } from 'electron';
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const Store = require( 'electron-store' );
+import ElectronStore from 'electron-store';
 
+ElectronStore.initRenderer();
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
-
-const schema = {
-    windowWidth:  {
-        type:    'number',
-        minimum: 200,
-        default: 800,
-    },
-    windowHeight: {
-        type:    'number',
-        minimum: 100,
-        default: 400,
-    },
-};
-// First instantiate
-const store  = new Store( { schema } );
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged( [
@@ -31,32 +16,19 @@ protocol.registerSchemesAsPrivileged( [
                                       ] );
 
 async function createWindow() {
-    // First we'll get our height and width. This will be the defaults if there wasn't anything saved
-    const width = store.get( 'windowWidth' );
-    console.log( 'Width -->', width );
-    const height = store.get( 'windowHeight' );
-    console.log( 'Height -->', height );
     // Create the browser window.
     const win = new BrowserWindow( {
-                                       width:          width,
-                                       height:         height,
+                                       width:          1200,
+                                       height:         1200,
                                        webPreferences: {
                                            // Use pluginOptions.nodeIntegration, leave this alone
                                            // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-                                           nodeIntegration:    ( process.env.ELECTRON_NODE_INTEGRATION as unknown ) as boolean,
+                                           nodeIntegration:    ( process.env
+                                               .ELECTRON_NODE_INTEGRATION as unknown ) as boolean,
                                            contextIsolation:   !process.env.ELECTRON_NODE_INTEGRATION,
                                            enableRemoteModule: true,
                                        },
                                    } );
-
-    win.on( 'resize', () => {
-        // The event doesn't pass us the window size, so we call the `getBounds` method which returns an object with
-        // the height, width, and x and y coordinates.
-        const { width, height } = win.getBounds();
-        // Now that we have them, save them using the `set` method.
-        store.set( 'windowWidth', width );
-        store.set( 'windowHeight', height );
-    } );
 
     if ( process.env.WEBPACK_DEV_SERVER_URL ) {
         // Load the url of the dev server if in development mode
@@ -101,7 +73,6 @@ app.on( 'ready', async () => {
         }
     }
     createWindow();
-    console.log( 'Version -->', process.env.VUE_APP_VERSION );
 } );
 
 // Exit cleanly on request from parent process in development mode.

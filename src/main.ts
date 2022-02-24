@@ -20,7 +20,7 @@ import '@/core/plugins/keenthemes';
 import '@/core/plugins/prismjs';
 import 'bootstrap';
 
-process.noAsar = true;
+// process.noAsar = true;
 
 const app = createApp( App );
 
