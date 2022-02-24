@@ -29,7 +29,7 @@ start()
 {
 echo "Changement de version : "
 
-select item in "- Majeur- " "- Mineur -" "- Fix -"
+select item in "- Majeur- " "- Mineur -" "- Patch -"
 do
   error=$( updateVersion $REPLY )
 
