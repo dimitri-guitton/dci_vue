@@ -135,6 +135,16 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
 
     private _generateTable(): Content {
 
+        let address = this._file.housing.address;
+        let zipCode = this._file.housing.zipCode;
+        let city    = this._file.housing.city;
+
+        if ( this._file.housing.isAddressBenef ) {
+            address = this._file.beneficiary.address;
+            zipCode = this._file.beneficiary.zipCode;
+            city    = this._file.beneficiary.city;
+        }
+
         let cee  = '';
         let work = '';
         switch ( this._file.type ) {
@@ -227,7 +237,7 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
                     text:   [
                         'Au bénéfice de : (Nom, Prénom et Adresse du bénéficiaire) : ',
                         {
-                            text: '${last_name} ${first_name}, ${address}, ${city} ${zip_code}',
+                            text: `${ this._file.beneficiary.lastName } ${ this._file.beneficiary.firstName }, ${ address }, ${ city } ${ zipCode }`,
                             bold: true,
                         },
                     ],

@@ -171,6 +171,7 @@ import * as Yup from 'yup';
 import * as folderService from '@/services/folder/folderService';
 import { LIST_FILE_TYPE } from '@/services/constantService';
 import router from '@/router';
+import { setCurrentFileReference, setcurrentFolderName } from '@/services/data/dataService';
 
 export interface NewFolderData {
   type: string;
@@ -229,11 +230,13 @@ export default defineComponent( {
 
                                         //Disable button
                                         submitButtonRef.value.disabled = true;
-                                        const type                     = await folderService.createAFolder(
+                                        const response                 = await folderService.createAFolder(
                                             newFolderData.value );
 
+                                        setCurrentFileReference( response.reference );
+                                        setcurrentFolderName( response.folderName );
                                         // TODO rendre dynamique
-                                        router.push( { name: `file-${ type }-edit` } );
+                                        router.push( { name: `file-${ newFolderData.value.type }-edit` } );
                                       }, 200 );
                                     };
 

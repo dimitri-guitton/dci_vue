@@ -154,7 +154,7 @@ export const createFolderRef = ( type: string ): string => {
  * Créer un dossier de devis avec le type et le nom du client
  * @param newFolder
  */
-export const createAFolder = async ( newFolder: NewFolderData ) => {
+export const createAFolder = async ( newFolder: NewFolderData ): Promise<{ reference: string; folderName: string }> => {
     const dropboxPath = store.get( 'dropboxPath' );
     const today       = new Date();
 
@@ -174,7 +174,10 @@ export const createAFolder = async ( newFolder: NewFolderData ) => {
         await addFile( reference, folderName, type, customer, 0, false, false, '2', null, today, today, null );
     }
 
-    return type;
+    return {
+        reference,
+        folderName,
+    };
 };
 
 /**
@@ -283,11 +286,16 @@ export const removeFolder = async ( folder: DatatableFile ): Promise<boolean> =>
 };
 
 export const updateJsonData = ( fileData ) => {
+    console.log( '%c UPDATE JSON DATA', 'background: #35D452; color: #000000' );
     const name = getcurrentFolderName() as string;
     const path = `${ getFolderPath( name ) }/data.json`;
+    console.log( path );
     if ( fs.existsSync( path ) ) {
+        console.log( 'File data -->', fileData );
         fs.writeFileSync( path, JSON.stringify( fileData, null, 2 ) );
         setCurrentFileData( JSON.stringify( fileData ) );
+    } else {
+        console.log( `'%c LE FICHIER (${ path }) n'existe pas'`, 'background: #FF0017; color: #000000' );
     }
 };
 
