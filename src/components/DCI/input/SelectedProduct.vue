@@ -14,24 +14,35 @@
       </div>
       <div class="col-md-2 fv-row">
         <template v-if="refQuantityArea > 0">
-          <Field
-              :disabled="true"
-              type="number"
-              class="form-control form-control-lg"
-              name="selectedProductQuantity"
-              placeholder="1"
-              v-model="refQuantityArea"
-          />
+          <div class="input-group">
+            <Field
+                :disabled="true"
+                type="number"
+                class="form-control"
+                name="selectedProductQuantity"
+                placeholder="1"
+                v-model="refQuantityArea"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text">U</span>
+            </div>
+          </div>
         </template>
         <template v-else>
-          <Field
-              :disabled="true"
-              type="number"
-              class="form-control form-control-lg"
-              name="selectedProductQuantity"
-              placeholder="1"
-              :value="1"
-          />
+          <div class="input-group">
+            <Field
+                :disabled="true"
+                type="number"
+                class="form-control form-control-lg"
+                name="selectedProductQuantity"
+                placeholder="1"
+                :value="1"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text">U</span>
+            </div>
+          </div>
+
         </template>
       </div>
       <div class="col-md-2 fv-row">

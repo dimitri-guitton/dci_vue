@@ -16,14 +16,19 @@
           {{ option.label }}
         </div>
         <div class="col-md-2 fv-row">
-          <Field
-              v-model.number="option.number"
-              type="number"
-              class="form-control form-control-lg form-control-solid"
-              :name="`options[${index}].number`"
-              placeholder="1"
-              @change="onChangeOption()"
-          />
+          <div class="input-group">
+            <Field
+                v-model.number="option.number"
+                type="number"
+                class="form-control form-control-lg form-control-solid"
+                :name="`options[${index}].number`"
+                placeholder="1"
+                @change="onChangeOption()"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text">{{ option.unit }}</span>
+            </div>
+          </div>
           <ErrorMessage
               :name="`options[${index}].number`"
               class="fv-plugins-message-container invalid-feedback"

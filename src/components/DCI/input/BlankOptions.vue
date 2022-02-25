@@ -27,14 +27,19 @@
           ></ErrorMessage>
         </div>
         <div class="col-md-2 fv-row">
-          <Field
-              v-model.number="option.number"
-              type="number"
-              class="form-control form-control-lg form-control-solid"
-              :name="`blankOptions[${index}].number`"
-              placeholder="1"
-              @change="onChangeOption()"
-          />
+          <div class="input-group">
+            <Field
+                v-model.number="option.number"
+                type="number"
+                class="form-control form-control-lg form-control-solid"
+                :name="`blankOptions[${index}].number`"
+                placeholder="1"
+                @change="onChangeOption()"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text">U</span>
+            </div>
+          </div>
           <ErrorMessage
               :name="`blankOptions[${index}].number`"
               class="fv-plugins-message-container invalid-feedback"
