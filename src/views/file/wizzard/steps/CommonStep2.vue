@@ -337,7 +337,7 @@ export default defineComponent( {
                                   props:      {
                                     assents: Array,
                                   },
-                                  setup( props ) {
+                                  setup() {
                                     const copyAssentToForm = ( assent: Assent ) => {
                                       console.log( assent );
                                     };

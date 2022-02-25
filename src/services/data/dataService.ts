@@ -13,6 +13,7 @@ import { FILE_PAC_RO, FILE_PAC_RR } from '@/services/constantService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 import { getEnergyZone } from '@/services/file/fileCommonService';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
+import { SolFile } from '@/types/v2/File/Sol/SolFile';
 
 const schema = {
     dropboxPath:          {
@@ -89,6 +90,10 @@ export const getCurrentCetFileData = (): CetFile => {
 };
 
 export const getCurrentCombleFileData = (): CombleFile => {
+    return getCurrentFileData();
+};
+
+export const getCurrentSolFileData = (): SolFile => {
     return getCurrentFileData();
 };
 

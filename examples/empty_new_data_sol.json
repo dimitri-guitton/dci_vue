@@ -30,7 +30,7 @@
     "bonusRate":                 0,
     "housing":                   {
         "nbOccupant":        1,
-        "type":              "",
+        "type":              "residentiel",
         "heatingType":       "electrique",
         "buildingNature":    "",
         "isRentedHouse":     false,
@@ -84,8 +84,8 @@
         "period":                  ""
     },
     "quotation":                 {
-        "pose":               2.5,
-        "overridePose":       2.5,
+        "laying":             2.5,
+        "overrideLaying":     2.5,
         "origin":             "",
         "dateTechnicalVisit": "",
         "executionDelay":     "",
@@ -667,7 +667,20 @@
         "phone":     {}
     },
     "lists":                     {
-        "localTypeList":        [],
+        "localTypeList":        [
+            {
+                "slug":  "residentiel",
+                "value": "Résidentiel"
+            },
+            {
+                "slug":  "tertiaire",
+                "value": "Tertiaire"
+            },
+            {
+                "slug":  "sante",
+                "value": "Santé"
+            }
+        ],
         "chauffageTypeList":    [
             {
                 "slug":  "electrique",

@@ -28,7 +28,7 @@
     "codeBonus":                 null,
     "energyZone":                null,
     "bonusRate":                 0,
-    "housing": {
+    "housing":                   {
         "nbOccupant":        1,
         "type":              "residentiel",
         "heatingType":       "electrique",
@@ -74,8 +74,8 @@
         "infosSup":                  "RAS"
     },
     "quotation":                 {
-        "pose":               2.5,
-        "overridePose":       2.5,
+        "laying":             2.5,
+        "overrideLaying":     2.5,
         "origin":             "",
         "dateTechnicalVisit": "",
         "executionDelay":     "",
@@ -169,36 +169,6 @@
                 "pu":            20,
                 "defaultNumber": 0,
                 "number":        0
-            },
-            {
-                "id":            7,
-                "fileType":      "comble",
-                "label":         "Protection des spots électriques",
-                "unit":          "u",
-                "defaultPu":     10,
-                "pu":            10,
-                "defaultNumber": 0,
-                "number":        0
-            },
-            {
-                "id":            8,
-                "fileType":      "comble",
-                "label":         "Pose de la signalétique des boîtiers électriques",
-                "unit":          "u",
-                "defaultPu":     0,
-                "pu":            0,
-                "defaultNumber": 1,
-                "number":        1
-            },
-            {
-                "id":            9,
-                "fileType":      "comble",
-                "label":         "Pose des piges de graduation de coefficient",
-                "unit":          "u",
-                "defaultPu":     0,
-                "pu":            0,
-                "defaultNumber": 1,
-                "number":        1
             },
             {
                 "id":            13,
@@ -711,7 +681,7 @@
         "firstName": {},
         "phone":     {}
     },
-    "lists":   {
+    "lists":                     {
         "localTypeList":              [
             {
                 "slug":  "residentiel",

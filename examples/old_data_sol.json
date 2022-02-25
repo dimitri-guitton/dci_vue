@@ -92,9 +92,9 @@
                 "label": "Préparation chantier (protection si nécessaire)",
                 "unit":  "u",
                 "value": 0,
-                "pu":    {
-                    "default": 0,
-                    "value":   0
+                "pu": {
+                    "default": 15,
+                    "value":   15
                 }
             },
             {
@@ -102,9 +102,9 @@
                 "label": "Si Jetspray : Mise en place d'un nergalto (uniquement si support bois)",
                 "unit":  "u",
                 "value": 0,
-                "pu":    {
-                    "default": 15,
-                    "value":   15
+                "pu": {
+                    "default": 0,
+                    "value":   0
                 }
             },
             {
@@ -649,7 +649,7 @@
                 "tertiaire": "Tertiaire"
             },
             {
-                "santé": "Santé"
+                "sante": "Santé"
             }
         ],
         "chauffageType":  [

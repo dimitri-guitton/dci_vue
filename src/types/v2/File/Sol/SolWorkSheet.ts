@@ -4,11 +4,11 @@ export interface SolWorkSheet extends BaseWorksheet {
     epaisseurProduit: string;
     accesCamion: string;
     distCamion: number;
-    hautPlafond: string;
+    hautPlafond: number;
     support: string;
-    distPointEau: string;
+    distPointEau: number;
     resistTherm: string;
-    dimensionsPieces: string[];
+    dimensionsPieces: number[];
     isolationExistante: boolean;
     niveauHabitation: string;
     habitationSurLocalFroid: boolean;
@@ -16,7 +16,7 @@ export interface SolWorkSheet extends BaseWorksheet {
     terrePlein: boolean;
     reseauPlafond: boolean;
     luminairesPlafond: boolean;
-    distancePortesPalfond: string[];
+    distancePortesPalfond: number[];
     porteGarage: string;
-    nbrPorteGarage: string;
+    nbrPorteGarage: number;
 }

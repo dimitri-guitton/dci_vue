@@ -102,7 +102,7 @@ const convertOldSolItemList = ( oldData ): SolList => {
     ;
 
     const solItems = [
-        'localType',
+        'batimentType',
         'chauffageType',
         'batimentNature',
         'niveauHabitation',
@@ -112,7 +112,7 @@ const convertOldSolItemList = ( oldData ): SolList => {
     ];
 
     const newName: { [ key: string ]: string } = {
-        'localType':        'localTypeList',
+        'batimentType':     'localTypeList',
         'chauffageType':    'chauffageTypeList',
         'batimentNature':   'batimentNatureList',
         'niveauHabitation': 'niveauHabitationList',
@@ -170,9 +170,9 @@ export const convertOldSolFile = ( oldData ): SolFile => {
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
         bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
-        housing:                   {
+        housing: {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
-            type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
+            type:              getObjectData( oldData, [ 'logement', 'batimentType' ] ),
             heatingType:       getObjectData( oldData, [ 'logement', 'chauffageType' ] ),
             buildingNature:    getObjectData( oldData, [ 'logement', 'batimentNature' ] ),
             isRentedHouse:     getObjectData( oldData, [ 'logement', 'batimentNature' ] ) === 'location',

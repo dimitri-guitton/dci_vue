@@ -1,5 +1,5 @@
 import { ceil10 } from '@/services/MathService';
-import { FILE_CET, FILE_COMBLE } from '@/services/constantService';
+import { FILE_CET, FILE_COMBLE, FILE_SOL } from '@/services/constantService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 
 export const getEnergyZone = ( zipCode: number ): string => {
@@ -165,6 +165,22 @@ export const getCetCeeBonus = ( data: BaseFile ): number => {
                     value = 8.05;
                 } else {
                     value = 7.56;
+                }
+            }
+            break;
+        case FILE_SOL:
+            if ( energyZone === 'H1' ) {
+                if ( codeBonus === 'GP' ) {
+                    value = 9.2;
+                } else {
+                    value = 8.64;
+                }
+
+            } else {
+                if ( codeBonus === 'GP' ) {
+                    value = 7.475;
+                } else {
+                    value = 7.02;
                 }
             }
             break;

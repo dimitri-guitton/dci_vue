@@ -65,11 +65,10 @@ import { Price } from '@/services/file/wizzard/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
 import { getCetCeeBonus } from '@/services/file/fileCommonService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
-import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
 
 export default defineComponent( {
-                                  name:       'file-comble-step-4',
+                                  name:       'file-sol-step-4',
                                   components: {
                                     Step4Header,
                                     WizzardFilePrice,
@@ -85,7 +84,7 @@ export default defineComponent( {
                                     selectedProducts: Array as () => Product[],
                                     options:          Array as () => Option[],
                                     blankOptions:     Array as () => BlankOption[],
-                                    quantityArea: {
+                                    quantityArea:     {
                                       type:     Number,
                                       required: true,
                                     },
@@ -164,7 +163,7 @@ export default defineComponent( {
                                       console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
                                       let ceeBonus = getCetCeeBonus( ( props.fileData as BaseFile ) );
-                                      ceeBonus = ceeBonus * props.quantityArea;
+                                      ceeBonus     = ceeBonus * props.quantityArea;
 
 
                                       const tva      = getTva();
@@ -174,7 +173,7 @@ export default defineComponent( {
                                       let remainderToPay = totalTtc - ceeBonus;
                                       let housingAction  = 0;
 
-                                      if ( ( props.fileData as CombleFile ).enabledHousingAction ) {
+                                      if ( ( props.fileData as SolFile ).enabledHousingAction ) {
                                         console.log( '%c ACTION LOGEMENT', 'background: #FF0000; color: #000000' );
                                         remainderToPay = 0;
                                         housingAction  = totalTtc;

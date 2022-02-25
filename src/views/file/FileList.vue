@@ -2,10 +2,10 @@
   <Suspense>
     <template #default>
       <div class="row gy-5">
-        <NewFolderModal></NewFolderModal>
+        <NewFolderModal @hideModal="onHideModal"></NewFolderModal>
         <FolderDatatable></FolderDatatable>
         <el-affix position="bottom" :offset="25">
-          <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#kt_modal_new_folder">
+          <button ref="btnModal" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#kt_modal_new_folder">
             Nouveau Dossier
           </button>
         </el-affix>
@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import NewFolderModal from '@/components/DCI/modals/NewFileModal.vue';
 import * as folderService from '../../services/folder/folderService';
 import FolderDatatable from '@/components/DCI/file/Datatable.vue';
@@ -32,12 +32,26 @@ export default defineComponent( {
                                     NewFolderModal,
                                   },
                                   setup() {
+                                    // const btnModal = ref( null );
+                                    const btnModal = ref<null | { click: () => null }>( null );
+
                                     folderService.createDciFolderIfNotExist();
 
                                     onMounted( () => {
                                       resetCurrentFileData();
                                     } );
-                                    return {};
+
+                                    const onHideModal = () => {
+                                      console.log( '%c HIDE MODAL', 'background: #fdd835; color: #000000' );
+                                      console.log( btnModal.value );
+                                      if ( btnModal.value ) {
+                                        btnModal.value.click();
+                                      }
+                                    };
+                                    return {
+                                      onHideModal,
+                                      btnModal,
+                                    };
                                   },
                                 } );
 </script>

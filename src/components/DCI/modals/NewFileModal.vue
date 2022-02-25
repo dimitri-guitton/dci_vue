@@ -168,9 +168,9 @@
 import { defineComponent, ref } from 'vue';
 import { ErrorMessage, Field, Form } from 'vee-validate';
 import * as Yup from 'yup';
-import router from '@/router';
-import * as folderService from '../../../services/folder/folderService';
+import * as folderService from '@/services/folder/folderService';
 import { LIST_FILE_TYPE } from '@/services/constantService';
+import router from '@/router';
 
 export interface NewFolderData {
   type: string;
@@ -189,7 +189,8 @@ export default defineComponent( {
                                     Field,
                                     Form,
                                   },
-                                  setup() {
+                                  emits:      [ 'hideModal' ],
+                                  setup( props, ctx ) {
                                     const submitButtonRef = ref<null | HTMLButtonElement>( null );
                                     const listFolderType  = LIST_FILE_TYPE;
 
@@ -216,14 +217,24 @@ export default defineComponent( {
                                         return;
                                       }
 
-                                      //Disable button
-                                      submitButtonRef.value.disabled = true;
+                                      // Hide la modal
+                                      ctx.emit( 'hideModal' );
 
-                                      const type = await folderService.createAFolder( newFolderData.value );
+                                      // Timeout pour que le modal se ferme bien
+                                      // Si on ne ferme pas la modal pb de scroll par la suite
+                                      setTimeout( async () => {
+                                        if ( !submitButtonRef.value ) {
+                                          return;
+                                        }
 
-                                      // TODO rendre dynamique
-                                      // await router.push( { name: 'file-cet-edit', query: { slug: folderReference } } );
-                                      router.push( { name: `file-${ type }-edit` } );
+                                        //Disable button
+                                        submitButtonRef.value.disabled = true;
+                                        const type                     = await folderService.createAFolder(
+                                            newFolderData.value );
+
+                                        // TODO rendre dynamique
+                                        router.push( { name: `file-${ type }-edit` } );
+                                      }, 200 );
                                     };
 
                                     return {

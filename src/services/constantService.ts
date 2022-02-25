@@ -40,7 +40,7 @@ export const FILE_PG_TYPE: DatatableFileType = {
 
 export const LIST_FILE_TYPE: DatatableFileType[] = [
     FILE_COMBLE_TYPE,
-    // FILE_SOL_TYPE,
+    FILE_SOL_TYPE,
     // FILE_PAC_RR_TYPE,
     // FILE_PAC_RO_TYPE,
     FILE_CET_TYPE,

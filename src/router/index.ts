@@ -29,6 +29,11 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/views/file/comble/FileEdit.vue'),
             },
             {
+                path:      '/file-sol-edit',
+                name:      'file-sol-edit',
+                component: () => import('@/views/file/sol/FileEdit.vue'),
+            },
+            {
                 path:      '/file-cet-edit',
                 name:      'file-cet-edit',
                 component: () => import('@/views/file/cet/FileEdit.vue'),

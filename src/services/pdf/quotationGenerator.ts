@@ -1128,7 +1128,7 @@ export class QuotationGenerator extends PdfGenerator {
                     break;
                 case PriceQuotation.laying:
                     rightColumn.push( {
-                                          text:       this.formatPrice( ( quotation as CombleQuotation | SolQuotation ).laying ),
+                                          text:       this.formatPrice( ( quotation as CombleQuotation | SolQuotation ).overrideLaying * this._file.housing.area ),
                                           alignment:  'right',
                                           lineHeight: 2,
                                       } );
