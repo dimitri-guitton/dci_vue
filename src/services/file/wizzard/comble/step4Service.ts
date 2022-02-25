@@ -121,6 +121,7 @@ export const validateCombleStep4 = async ( data: CombleFileStep, price: Price ):
         totalTtc:           price.TTC,
         ceeBonus:           price.CEE ? price.CEE : 0,
         discount:           price.discount ? price.discount : 0,
+        laying:             price.laying ? price.laying : 0,
         remainderToPay:     price.remainderToPay,
     };
 

@@ -8,6 +8,7 @@
     <selected-product :alert="alert"
                       :products="products"
                       :selectedProducts="selectedProducts"
+                      :quantity-area="quantityArea"
                       @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
 
     <options @optionsAreUpdated="updateOptions" :options="options"></options>
@@ -83,7 +84,7 @@ export default defineComponent( {
                                     selectedProducts: Array as () => Product[],
                                     options:          Array as () => Option[],
                                     blankOptions:     Array as () => BlankOption[],
-                                    area:             {
+                                    quantityArea: {
                                       type:     Number,
                                       required: true,
                                     },
@@ -126,16 +127,18 @@ export default defineComponent( {
                                       }
                                       console.log( '%c IN COMPUTED', 'background: #007C83; color: #FFFFFF' );
                                       let totalHt = 0;
+                                      let laying  = 0;
 
                                       console.log( '%c AREA', 'background: #61C60B; color: #000000' );
-                                      console.log( 'area', props.area );
+                                      console.log( 'area', props.quantityArea );
 
                                       console.log( 'Prix par defaut -->', totalHt );
                                       console.log( 'Prix par defaut -->', totalHt );
                                       console.log( 'Prix par defaut -->', totalHt );
                                       for ( const selectedProduct of _selectedProducts.value ) {
-                                        totalHt += selectedProduct.pu * props.area;
+                                        totalHt += selectedProduct.pu * props.quantityArea;
                                       }
+                                      laying = totalHt;
                                       console.log( 'Prix avec les produits -->', totalHt );
 
                                       for ( const option of _options.value ) {
@@ -158,7 +161,7 @@ export default defineComponent( {
                                       console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
                                       let ceeBonus = getCetCeeBonus( ( props.fileData as BaseFile ) );
-                                      ceeBonus     = ceeBonus * props.area;
+                                      ceeBonus = ceeBonus * props.quantityArea;
 
 
                                       const tva      = getTva();
@@ -177,6 +180,7 @@ export default defineComponent( {
                                       }
 
                                       const price: Price = {
+                                        laying,
                                         HT:  totalHt,
                                         TVA: totalTva,
                                         TTC: totalTtc,

@@ -44,7 +44,7 @@
                              :selected-products="selectedProducts"
                              :force-refresh="forceRefreshStep4"
                              :file-data="fileData"
-                             :area="area"
+                             :quantity-area="+area"
                              :products="products"></FileCombleStep4>
           </div>
           <!--end::Step 4-->

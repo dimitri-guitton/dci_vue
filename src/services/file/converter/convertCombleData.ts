@@ -239,8 +239,8 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
             infosSup:                  getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
         quotation: {
-            pose:               getObjectData( oldData, [ 'devis', 'pose' ] ),
-            overridePose:       getObjectData( oldData, [ 'devis', 'overridePose' ] ),
+            laying:             getObjectData( oldData, [ 'devis', 'pose' ] ),
+            overrideLaying:     getObjectData( oldData, [ 'devis', 'overridePose' ] ),
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),

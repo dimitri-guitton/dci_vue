@@ -1,4 +1,5 @@
 export interface Price {
+    laying?: number;
     HT: number;
     TTC: number;
     TVA: number;

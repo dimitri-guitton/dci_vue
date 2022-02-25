@@ -13,15 +13,26 @@
         </Field>
       </div>
       <div class="col-md-2 fv-row">
-        <Field
-            :disabled="true"
-            type="number"
-            class="form-control form-control-lg"
-            name="selectedProductQuantity"
-            placeholder="1"
-            :value="1"
-            @change="onChangeProduct(selectedId)"
-        />
+        <template v-if="refQuantityArea > 0">
+          <Field
+              :disabled="true"
+              type="number"
+              class="form-control form-control-lg"
+              name="selectedProductQuantity"
+              placeholder="1"
+              v-model="refQuantityArea"
+          />
+        </template>
+        <template v-else>
+          <Field
+              :disabled="true"
+              type="number"
+              class="form-control form-control-lg"
+              name="selectedProductQuantity"
+              placeholder="1"
+              :value="1"
+          />
+        </template>
       </div>
       <div class="col-md-2 fv-row">
         <Field
@@ -38,7 +49,13 @@
         ></ErrorMessage>
       </div>
       <div class="col-md-2 fv-row d-flex justify-content-end align-items-center">
-        <h5 class="mb-3">{{ currentProduct.pu.toFixed( 2 ) }} €</h5>
+        <template v-if="refQuantityArea > 0">
+          <h5 class="mb-3">{{ ( currentProduct.pu * quantityArea ).toFixed( 2 ) }} €</h5>
+        </template>
+        <template v-else>
+          <h5 class="mb-3">{{ currentProduct.pu.toFixed( 2 ) }} €</h5>
+        </template>
+
       </div>
     </div>
     <div class="row mb-10" v-if="alert">
@@ -58,7 +75,7 @@
 
 </template>
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue';
+import { computed, defineComponent, ref, toRef } from 'vue';
 import { Product } from '@/types/v2/File/Common/Product';
 import { ErrorMessage, Field } from 'vee-validate';
 
@@ -70,6 +87,10 @@ export default defineComponent( {
                                   },
                                   props:      {
                                     index:            {
+                                      type:    Number,
+                                      default: 0,
+                                    },
+                                    quantityArea:     {// Qauntité au metre carré
                                       type:    Number,
                                       default: 0,
                                     },
@@ -100,6 +121,7 @@ export default defineComponent( {
                                       onChangeProduct( props.products[ 0 ].id );
                                     }
 
+                                    const refQuantityArea = toRef( props, 'quantityArea' );
 
                                     // Récupère le texte de l'alerte check si il y a des données envoyé et les remplaces
                                     const htmlAlert = computed( () => {
@@ -122,6 +144,7 @@ export default defineComponent( {
 
                                     return {
                                       onChangeProduct,
+                                      refQuantityArea,
                                       htmlAlert,
                                       selectedId: currentProduct.value?.id,
                                       currentProduct,
