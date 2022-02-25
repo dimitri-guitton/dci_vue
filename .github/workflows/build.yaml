@@ -34,7 +34,7 @@ jobs:
             -   name: Upload artifact
                 uses: actions/upload-artifact@v2
                 with:
-                    # Artifact name
+                    # Artifact name 
                     name: ${{ matrix.os }}-artifact
                     # Directory containing files to upload
                     path: dist_electron
