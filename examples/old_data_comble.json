@@ -37,7 +37,7 @@
         "codepostal":     "",
         "ville":          "",
         "parcelle":       "",
-        "superficie":     "",
+        "superficie":     0,
         "dataGeoportail": {},
         "location":       "",
         "moinsDe2Ans":    false
@@ -166,36 +166,6 @@
                 "pu":    {
                     "default": 20,
                     "value":   20
-                }
-            },
-            {
-                "id":    7,
-                "label": "Protection des spots électriques",
-                "unit":  "u",
-                "value": 0,
-                "pu":    {
-                    "default": 10,
-                    "value":   10
-                }
-            },
-            {
-                "id":    8,
-                "label": "Pose de la signalétique des boîtiers électriques",
-                "unit":  "u",
-                "value": 1,
-                "pu":    {
-                    "default": 0,
-                    "value":   0
-                }
-            },
-            {
-                "id":    9,
-                "label": "Pose des piges de graduation de coefficient",
-                "unit":  "u",
-                "value": 1,
-                "pu":    {
-                    "default": 0,
-                    "value":   0
                 }
             },
             {
@@ -696,7 +666,7 @@
                 "tertiaire": "Tertiaire"
             },
             {
-                "santé": " "
+                "sante": "Santé"
             }
         ],
         "chauffageType":          [

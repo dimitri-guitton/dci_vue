@@ -38,7 +38,7 @@
         "zipCode":           "",
         "city":              "",
         "plot":              "",
-        "area":              "",
+        "area":              0,
         "dataGeoportail":    {},
         "location":          "",
         "insulationQuality": 0.8,

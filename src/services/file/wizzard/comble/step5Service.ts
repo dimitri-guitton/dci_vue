@@ -10,7 +10,7 @@ import { updateJsonData } from '@/services/folder/folderService';
 /**
  * Création du formualaire pour la fiche d'info
  */
-export const cetWorksheetBuilder = (): WorksheetBuilder => {
+export const combleWorksheetBuilder = (): WorksheetBuilder => {
     return {
         steps: [
             {

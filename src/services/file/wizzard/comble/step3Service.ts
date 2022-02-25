@@ -4,18 +4,20 @@ import { getCurrentCombleFileData } from '@/services/data/dataService';
 import { Housing } from '@/types/v2/File/Common/Housing';
 import { getEnergyZone } from '@/services/file/fileCommonService';
 import { updateJsonData } from '@/services/folder/folderService';
+import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 
 /**
  * Retourne les valeurs du formualire pour l'etape 3 selon le type de dossiser
  * @param fileData
  */
-export const initCombleFormDataStep3 = ( fileData ) => {
+export const initCombleFormDataStep3 = ( fileData: CombleFile ) => {
     return {
         nbOccupant:              fileData.housing.nbOccupant,
         housingType:             fileData.housing.type,
         housingConstructionYear: fileData.housing.constructionYear,
         housingLessThan2Years:   fileData.housing.lessThan2Years,
         housingIsAddressBenef:   fileData.housing.isAddressBenef,
+        area:                    fileData.housing.area,
         housingHeatingType:      fileData.housing.heatingType !== undefined ? fileData.housing.heatingType : '',
         housingBuildingNature:   fileData.housing.buildingNature !== undefined ? fileData.housing.buildingNature : '',
     };
@@ -26,6 +28,7 @@ export const yupCombleConfigStep3 = () => {
                            nbOccupant:              Yup.number().required(),
                            housingType:             Yup.string().required(),
                            housingConstructionYear: Yup.number().required(),
+                           area:                    Yup.number().required().min( 1, 'La superficie doit être supérieur à 0' ),
                        } );
 };
 
@@ -45,7 +48,6 @@ export const validateCombleStep3 = async ( data: CombleFileStep ) => {
         zipCode:  '',
         city:     '',
         plot:     '',
-        area:     '',
         location: '',
     };
     if ( data.housingIsAddressBenef ) {
@@ -54,7 +56,6 @@ export const validateCombleStep3 = async ( data: CombleFileStep ) => {
             zipCode:  fileData.beneficiary.zipCode,
             city:     fileData.beneficiary.city,
             plot:     '',
-            area:     '',
             location: '',
         };
     }
@@ -68,6 +69,7 @@ export const validateCombleStep3 = async ( data: CombleFileStep ) => {
         isRentedHouse:  data.housingBuildingNature === 'location',
         buildingNature: data.housingBuildingNature,
         isAddressBenef: data.housingIsAddressBenef,
+        area:           data.area,
         ...address,
         constructionYear: data.housingConstructionYear,
         lessThan2Years:   data.housingLessThan2Years,

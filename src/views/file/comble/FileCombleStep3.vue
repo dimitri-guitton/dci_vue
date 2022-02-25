@@ -60,6 +60,23 @@
       </div>
     </div>
 
+    <div class="row mb-15">
+      <div class="col-md-4 fv-row">
+        <label class="form-label mb-3">Superficie à isoler (<var>m<sup>2</sup></var>)</label>
+        <Field
+            type="number"
+            class="form-control form-control-lg form-control-solid"
+            name="area"
+            placeholder="0"
+            value=""
+        />
+        <ErrorMessage
+            name="area"
+            class="fv-plugins-message-container invalid-feedback"
+        ></ErrorMessage>
+      </div>
+    </div>
+
   </div>
 </template>
 

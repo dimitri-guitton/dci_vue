@@ -110,12 +110,12 @@ const convertOldCombleItemList = ( oldData ): CombleList => {
     ;
 
     const combleItems = [
-        'localType',
+        'batimentType',
         'chauffageType',
         'batimentNature',
         'chantierType',
         'niveauHabitation',
-        'partieAIsoler',
+        'partieAisoler',
         'puissanceCompteur',
         'accesComble',
         'couvertureType',
@@ -123,17 +123,17 @@ const convertOldCombleItemList = ( oldData ): CombleList => {
         'etatToiture',
         'isolationExistanteType',
         'rehausseTrappeType',
-        'nbrAccesComble',
-        'nbrCompartiments',
+        'nbreAccesComble',
+        'nbreCompartiments',
     ];
 
     const newName: { [ key: string ]: string } = {
-        'localType':              'localTypeList',
+        'batimentType':           'localTypeList',
         'chauffageType':          'chauffageTypeList',
         'batimentNature':         'batimentNatureList',
         'chantierType':           'chantierTypeList',
         'niveauHabitation':       'niveauHabitationList',
-        'partieAIsoler':          'partieAIsolerList',
+        'partieAisoler':          'partieAIsolerList',
         'puissanceCompteur':      'puissanceCompteurList',
         'accesComble':            'accesCombleList',
         'couvertureType':         'couvertureTypeList',
@@ -141,8 +141,8 @@ const convertOldCombleItemList = ( oldData ): CombleList => {
         'etatToiture':            'etatToitureList',
         'isolationExistanteType': 'isolationExistanteTypeList',
         'rehausseTrappeType':     'rehausseTrappeTypeList',
-        'nbrAccesComble':         'nbrAccesCombleList',
-        'nbrCompartiments':       'nbrCompartimentsList',
+        'nbreAccesComble':        'nbrAccesCombleList',
+        'nbreCompartiments':      'nbrCompartimentsList',
     };
 
 
@@ -193,9 +193,9 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
         bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
-        housing:                   {
+        housing:   {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
-            type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
+            type:              getObjectData( oldData, [ 'logement', 'batimentType' ] ),
             heatingType:       getObjectData( oldData, [ 'logement', 'chauffageType' ] ),
             buildingNature:    getObjectData( oldData, [ 'logement', 'batimentNature' ] ),
             isRentedHouse:     getObjectData( oldData, [ 'logement', 'batimentNature' ] ) === 'location',

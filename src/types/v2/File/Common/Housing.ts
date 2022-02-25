@@ -13,7 +13,7 @@ export interface Housing {
     zipCode: string;
     city: string;
     plot: string;
-    area: string;
+    area: number;
     dataGeoportail: DataGeoportail | null;
     location: string;
     constructionYear: string;

@@ -3,7 +3,8 @@ export interface Price {
     TTC: number;
     TVA: number;
     CEE?: number;
-    maPrimeRenov: number;
+    maPrimeRenov?: number;
+    housingAction?: number;
     remainderToPay: number;
     discount?: number;
 }

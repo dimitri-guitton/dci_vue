@@ -16,6 +16,7 @@ export const initCetFormDataStep3 = ( fileData ) => {
         housingConstructionYear: fileData.housing.constructionYear,
         housingLessThan2Years:   fileData.housing.lessThan2Years,
         housingIsAddressBenef:   fileData.housing.isAddressBenef,
+        area:                    fileData.housing.area !== '' ? fileData.housing.area : 0,
         housingHeatingType:      fileData.housing.heatingType !== undefined ? fileData.housing.heatingType : '',
         housingBuildingNature:   fileData.housing.buildingNature !== undefined ? fileData.housing.buildingNature : '',
     };
@@ -45,7 +46,6 @@ export const validateCetStep3 = async ( data: CetFileStep ) => {
         zipCode:  '',
         city:     '',
         plot:     '',
-        area:     '',
         location: '',
     };
     if ( data.housingIsAddressBenef ) {
@@ -54,7 +54,6 @@ export const validateCetStep3 = async ( data: CetFileStep ) => {
             zipCode:  fileData.beneficiary.zipCode,
             city:     fileData.beneficiary.city,
             plot:     '',
-            area:     '',
             location: '',
         };
     }
@@ -68,6 +67,7 @@ export const validateCetStep3 = async ( data: CetFileStep ) => {
         isRentedHouse:  data.housingBuildingNature === 'location',
         buildingNature: data.housingBuildingNature,
         isAddressBenef: data.housingIsAddressBenef,
+        area:           data.area,
         ...address,
         constructionYear: data.housingConstructionYear,
         lessThan2Years:   data.housingLessThan2Years,

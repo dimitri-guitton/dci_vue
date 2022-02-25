@@ -39,10 +39,12 @@
             <FileCombleStep4 @generateQuotation="onGenerateQuotation"
                              @generateAddressCertificate="onGenerateAddressCertificate"
                              @calculedPrice="onCalculedPrice"
-                             :blankOptions="blankOptions"
+                             :blank-options="blankOptions"
                              :options="options"
-                             :selectedProducts="selectedProducts"
-                             :forceRefresh="forceRefreshStep4"
+                             :selected-products="selectedProducts"
+                             :force-refresh="forceRefreshStep4"
+                             :file-data="fileData"
+                             :area="area"
                              :products="products"></FileCombleStep4>
           </div>
           <!--end::Step 4-->
@@ -175,17 +177,18 @@ export default defineComponent( {
 
 
                                     // Initialisation des variables
-                                    const stepForm            = ref();
-                                    const currentStepIndex    = ref( 0 );
+                                    const stepForm         = ref();
+                                    const currentStepIndex = ref( 0 );
                                     // Récupération des données du fichier JSON
-                                    const fileData            = getCurrentCombleFileData();
-                                    const lists               = fileData.lists;
-                                    const products            = fileData.quotation.products;
-                                    const selectedProducts    = fileData.quotation.selectedProducts;
-                                    const options             = fileData.quotation.options;
-                                    const blankOptions        = fileData.quotation.blankOptions;
-                                    const assents             = ref<Assent[]>( [] );
-                                    const formData            = ref<CombleFileStep>( {
+                                    const fileData         = getCurrentCombleFileData();
+                                    const lists            = fileData.lists;
+                                    const products         = fileData.quotation.products;
+                                    const selectedProducts = fileData.quotation.selectedProducts;
+                                    const options          = fileData.quotation.options;
+                                    const blankOptions     = fileData.quotation.blankOptions;
+                                    const area             = ref<number>( fileData.housing.area );
+                                    const assents          = ref<Assent[]>( [] );
+                                    const formData         = ref<CombleFileStep>( {
                                                                                        ...initFormDataStep1And2(
                                                                                            fileData.assents,
                                                                                            fileData.beneficiary ),
@@ -269,10 +272,12 @@ export default defineComponent( {
                                       } else if ( currentStepIndex.value === 1 ) {
                                         console.log( '%c Validation de l\'étape 1',
                                                      'background: #FF7CA7; color: #000000' );
+                                        console.log( formData.value );
                                         await validateStepTwo( formData.value );
                                       } else if ( currentStepIndex.value === 2 ) {
                                         console.log( '%c Validation step 3', 'background: #fdd835; color: #000000' );
                                         await validateCombleStep3( formData.value );
+                                        area.value              = formData.value.area;
                                         forceRefreshStep4.value = !forceRefreshStep4.value;
                                       } else if ( currentStepIndex.value === 3 ) {
                                         console.log( '%c Validation step 4', 'background: #fdd835; color: #000000' );
@@ -364,7 +369,9 @@ export default defineComponent( {
                                       selectedProducts,
                                       options,
                                       blankOptions,
+                                      area,
                                       stepForm,
+                                      fileData,
                                     };
                                   },
 

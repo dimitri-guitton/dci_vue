@@ -28,9 +28,9 @@
     "codeBonus":                 null,
     "energyZone":                null,
     "bonusRate":                 0,
-    "housing":                   {
+    "housing": {
         "nbOccupant":        1,
-        "type":              "",
+        "type":              "residentiel",
         "heatingType":       "electrique",
         "buildingNature":    "",
         "isRentedHouse":     false,
@@ -39,7 +39,7 @@
         "zipCode":           "",
         "city":              "",
         "plot":              "",
-        "area":              "",
+        "area":              0,
         "dataGeoportail":    {},
         "location":          "",
         "insulationQuality": "",
@@ -711,7 +711,7 @@
         "firstName": {},
         "phone":     {}
     },
-    "lists":                     {
+    "lists":   {
         "localTypeList":              [
             {
                 "slug":  "residentiel",
@@ -790,7 +790,20 @@
                 "value": "AUTRE"
             }
         ],
-        "partieAIsolerList":          [],
+        "partieAIsolerList":          [
+            {
+                "slug":  "hab_av_gge",
+                "value": "HABITATION (av garage)"
+            },
+            {
+                "slug":  "hab_ss_gge",
+                "value": "HABITATION (ss garage)"
+            },
+            {
+                "slug":  "autre",
+                "value": "AUTRE"
+            }
+        ],
         "puissanceCompteurList":      [
             {
                 "slug":  3,
@@ -909,8 +922,50 @@
                 "value": "BOIS"
             }
         ],
-        "nbrAccesCombleList":         [],
-        "nbrCompartimentsList":       [],
+        "nbrAccesCombleList":         [
+            {
+                "slug":  0,
+                "value": 0
+            },
+            {
+                "slug":  1,
+                "value": 1
+            },
+            {
+                "slug":  2,
+                "value": 2
+            },
+            {
+                "slug":  3,
+                "value": 3
+            },
+            {
+                "slug":  4,
+                "value": 4
+            }
+        ],
+        "nbrCompartimentsList":       [
+            {
+                "slug":  0,
+                "value": 0
+            },
+            {
+                "slug":  1,
+                "value": 1
+            },
+            {
+                "slug":  2,
+                "value": 2
+            },
+            {
+                "slug":  3,
+                "value": 3
+            },
+            {
+                "slug":  4,
+                "value": 4
+            }
+        ],
         "typeOrigineList":            []
     }
 }

@@ -16,6 +16,7 @@ import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 import { PdfType } from '@/services/pdf/pdfGenerator';
 import { shell } from 'electron';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
+import { NewFolderData } from '@/components/DCI/modals/NewFileModal.vue';
 
 const schema = {
     dropboxPath: {
@@ -93,7 +94,7 @@ const Folders = [
  * @param type
  * @param parent
  */
-const createSubFolders = ( type: string, parent: string ) => {
+const createSubFolders   = ( type: string, parent: string ) => {
     const subFolders = Folders.filter( folder => {
         if ( folder.dossierType !== undefined ) {
             return folder.dossierType.filter( t => t === 'all' || t === type ).length > 0;
@@ -108,21 +109,30 @@ const createSubFolders = ( type: string, parent: string ) => {
         }
     } );
 };
+// TODO argument inutile comme type qui est déja dans NewFolderData
+export const addJsonData = ( type: string, parent: string, reference: string, folderName: string, newFolder: NewFolderData ) => {
 
-export const addJsonData = ( type: string, parent: string, reference: string, folderName: string ) => {
-
+    console.log( '%c ', 'background: #fdd835; color: #000000' );
+    console.log( '%c ', 'background: #fdd835; color: #000000' );
+    console.log( '%c ', 'background: #fdd835; color: #000000' );
+    console.log( '%c ', 'background: #fdd835; color: #000000' );
+    console.log( newFolder );
     const jsonPath = `examples/empty_new_data_${ type }.json`;
 
     const rawdata            = fs.readFileSync( jsonPath ).toString( 'utf8' );
     let fileData: CombleFile = JSON.parse( rawdata );
     fileData                 = {
         ...fileData,
-        ref:               reference,
-        folderName:        folderName,
-        createdAt:         toFrenchDate( new Date().toString() ),
-        updatedAt:         toFrenchDate( new Date().toString() ),
-        statusInDci:       2,
-        errorsStatusInDci: [],
+        ref:                       reference,
+        folderName:                folderName,
+        createdAt:                 toFrenchDate( new Date().toString() ),
+        updatedAt:                 toFrenchDate( new Date().toString() ),
+        disabledBonus:             newFolder.disabledBonus,
+        disabledCeeBonus:          newFolder.disabledCeeBonus,
+        enabledHousingAction:      newFolder.enabledHousingAction,
+        disabledMaPrimeRenovBonus: newFolder.disabledMaPrimeRenovBonus,
+        statusInDci:               2,
+        errorsStatusInDci:         [],
     };
 
     console.log( `${ parent }/data.json` );
@@ -142,13 +152,15 @@ export const createFolderRef = ( type: string ): string => {
 
 /**
  * Créer un dossier de devis avec le type et le nom du client
- * @param type
- * @param customer
+ * @param newFolder
  */
-export const createAFolder = async ( type: string, customer: string ) => {
+export const createAFolder = async ( newFolder: NewFolderData ) => {
     const dropboxPath = store.get( 'dropboxPath' );
     const today       = new Date();
 
+
+    const type     = newFolder.type;
+    const customer = newFolder.customer;
 
     const reference  = createFolderRef( type );
     const folderName = `${ reference } (${ customer.toUpperCase() })`;
@@ -158,11 +170,11 @@ export const createAFolder = async ( type: string, customer: string ) => {
         fs.mkdirSync( path );
 
         createSubFolders( type, path );
-        addJsonData( type, path, reference, folderName );
+        addJsonData( type, path, reference, folderName, newFolder );
         await addFile( reference, folderName, type, customer, 0, false, false, '2', null, today, today, null );
     }
 
-    return reference;
+    return type;
 };
 
 /**
@@ -170,7 +182,7 @@ export const createAFolder = async ( type: string, customer: string ) => {
  */
 export const convertAllOldJsonToNewJson = () => {
     console.log( '%c CONVERT', 'background: #fdd835; color: #000000' );
-    const dropboxPath        = store.get( 'dropboxPath' );
+    // const dropboxPath        = store.get( 'dropboxPath' );
     const oldDatas: object[] = [];
 
     if ( fs.existsSync( 'examples/old_data_cet.json' ) ) {
@@ -213,7 +225,7 @@ export const convertAllOldJsonToNewJson = () => {
             data = JSON.stringify( convertOldCetFile( oldData ), null, 2 );
         } else if ( type === 'poele' ) {
             data = JSON.stringify( convertOldPgFile( oldData ), null, 2 );
-            type += 'pg';
+            type = 'pg';
         } else if ( type === 'comble' ) {
             data = JSON.stringify( convertOldCombleFile( oldData ), null, 2 );
         } else if ( type === 'sol' ) {
@@ -226,11 +238,12 @@ export const convertAllOldJsonToNewJson = () => {
         // console.log( '%c NEW DATA', 'background: #fdd835; color: #000000' );
         // console.log( data );
 
-        const path = `${ dropboxPath }/DCI/empty_new_data_${ type }.json`;
+        // const path = `${ dropboxPath }/DCI/empty_new_data_${ type }.json`;
+        const path = `examples/empty_new_data_${ type }.json`;
         console.log( path );
-        if ( dropboxPath !== '' && !fs.existsSync( path ) ) {
-            fs.writeFileSync( path, data );
-        }
+        // if ( dropboxPath !== '' && !fs.existsSync( path ) ) {
+        fs.writeFileSync( path, data );
+        // }
     }
 
     return true;

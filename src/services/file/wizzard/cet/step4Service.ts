@@ -121,7 +121,7 @@ export const validateCetStep4 = async ( data: CetFileStep, price: Price ): Promi
         totalTtc:           price.TTC,
         ceeBonus:           price.CEE ? price.CEE : 0,
         discount:           price.discount ? price.discount : 0,
-        maPrimeRenovBonus:  price.maPrimeRenov,
+        maPrimeRenovBonus:  price.maPrimeRenov !== undefined ? price.maPrimeRenov : 0,
         remainderToPay:     price.remainderToPay,
     };
 

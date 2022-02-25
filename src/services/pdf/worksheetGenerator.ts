@@ -383,54 +383,68 @@ export class WorksheetGenerator extends PdfGenerator {
                                 label: 'TYPE ANCIENNE ISOLATION',
                                 value: this.getValueInList( list.isolationExistanteTypeList, worksheet.isolationExistanteType ),
                             },
-                            // TODO faire ENLEVEMENT DE L'EXISTANT /  TODO OPTION 1
+                            {
+                                label: 'ENLEVEMENT DE L\'EXISTANT',
+                                value: this.yesOrNo( quotation.options[ 0 ].number > 0 ),
+                            },
+                            {
+                                label: 'SURFACE À RETIRER',
+                                value: quotation.options[ 0 ].number,
+                            },
                             {
                                 label: 'Nbre de couches',
                                 value: worksheet.isolationExistanteCouches,
                             },
-                            // TODO REMISE DE L'EXISTANT /  TODO OPTION 2
+                            {
+                                label: 'REMISE DE L\'EXISTANT',
+                                value: this.yesOrNo( quotation.options[ 1 ].number > 0 ),
+                            },
+                            {
+                                label: 'SURFACE À REMETTRE',
+                                value: quotation.options[ 1 ].number,
+                            },
                             {
                                 label: 'LARDAGE PARE VAPEUR',
                                 value: this.yesOrNo( worksheet.lardagePareVapeur ),
                             },
                             {
                                 label: 'CREATION TROU D\'HOMME',
-                                value: ' ',  // TODO OPTION 3
+                                value: quotation.options[ 2 ].number,
                             },
                             {
                                 label: 'REHAUSSE DE TRAPPE',
-                                value: ' ',  // TODO OPTION 4
+                                value: quotation.options[ 6 ].number,
                             },
                             {
                                 label: 'TYPE DE TRAPPE',
                                 value: this.getValueInList( list.rehausseTrappeTypeList, worksheet.rehausseTrappeType ),
                             }, {
                                 label: 'ISOLATION DE LA TRAPPE',
-                                value: ' ',    // TODO OPTION 5
+                                value: quotation.options[ 7 ].number,
                             },
                             {
                                 label: 'ENTOURAGE CHEMINEE',
-                                value: ' ',    // TODO OPTION 6
+                                value: quotation.options[ 8 ].number,
                             },
                             {
                                 label: 'PROTECTION DES SPOTS',
-                                value: ' ',    // TODO OPTION 7
+                                value: this.yesOrNo( quotation.options[ 9 ].number > 0 ),
                             },
                             {
                                 label: 'NBRE DE SPOTS',
-                                value: ' ',    // TODO OPTION 7
+                                value: quotation.options[ 9 ].number,
                             },
                             {
                                 label: 'ENTOURAGE VOLETS ROULANTS',
-                                value: ' ', // TODO OPTION 10
+                                value: this.yesOrNo( quotation.options[ 3 ].number > 0 || quotation.options[ 3 ].number > 0 ),
                             },
                             {
                                 label: 'LONG < 1.50m',
-                                value: ' ',    // TODO OPTION 10
+                                value: quotation.options[ 3 ].number,
                             },
                             {
                                 label: 'LONG > 1.50m',
-                                value: ' ',// TODO OPTION 11
+                                value: quotation.options[ 4 ].number,
                             },
                             {
                                 label: 'DESENCOMBREMENT COMBLES',
@@ -438,11 +452,11 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'ENTOURAGE VMC',
-                                value: ' ',// TODO OPTION 12
+                                value: quotation.options[ 5 ].number,
                             },
                             {
                                 label: 'ARRÊTOIRAS EN POLYRO',
-                                value: ' ',// TODO OPTION 13
+                                value: quotation.options[ 12 ].number,
                             },
                         ],
                     },

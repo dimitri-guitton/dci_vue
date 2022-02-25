@@ -1,5 +1,6 @@
-import { getCodeBonus, getHousingType } from '@/services/data/dataService';
 import { ceil10 } from '@/services/MathService';
+import { FILE_CET, FILE_COMBLE } from '@/services/constantService';
+import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 
 export const getEnergyZone = ( zipCode: number ): string => {
     const formatedZipCode = parseFloat( zipCode.toString().substr( 0, 2 ) );
@@ -119,30 +120,57 @@ const roundCeeBonus = ( ceeBonus: number | string ): number => {
     return ceil10( ceeBonus, -2 );
 };
 
-export const getCetCeeBonus = (): number => {
-    const codeBonus   = getCodeBonus();
-    const housingType = getHousingType();
+export const getCetCeeBonus = ( data: BaseFile ): number => {
+    const type        = data.type;
+    const codeBonus   = data.codeBonus;
+    const housingType = data.housing.type;
+    const energyZone  = data.energyZone;
+    console.log( '%c TYPE', 'background: #5ADFFF; color: #000000' );
+    console.log( type );
     console.log( '%c BUILD NATURE', 'background: #5ADFFF; color: #000000' );
     console.log( housingType );
     console.log( '%c CODE BONUS', 'background: #5ADFFF; color: #000000' );
     console.log( codeBonus );
-    console.log( codeBonus === 'GP' );
-    let value: number;
+    console.log( '%c ENERGY ZONE', 'background: #5ADFFF; color: #000000' );
+    console.log( energyZone );
+    let value = 0;
 
-    if ( housingType === 'appartement' ) {
-        if ( codeBonus === 'GP' ) {
-            value = 68.425;
-        } else {
-            value = 64.26;
-        }
+    switch ( type ) {
+        case FILE_CET:
+            if ( housingType === 'appartement' ) {
+                if ( codeBonus === 'GP' ) {
+                    value = 68.425;
+                } else {
+                    value = 64.26;
+                }
 
-    } else {
-        if ( codeBonus === 'GP' ) {
-            value = 89.7;
-        } else {
-            value = 84.24;
-        }
+            } else {
+                if ( codeBonus === 'GP' ) {
+                    value = 89.7;
+                } else {
+                    value = 84.24;
+                }
+            }
+            break;
+        case FILE_COMBLE:
+            if ( energyZone === 'H1' ) {
+                if ( codeBonus === 'GP' ) {
+                    value = 9.775;
+                } else {
+                    value = 9.18;
+                }
+
+            } else {
+                if ( codeBonus === 'GP' ) {
+                    value = 8.05;
+                } else {
+                    value = 7.56;
+                }
+            }
+            break;
+
     }
+
 
     return roundCeeBonus( value );
 };

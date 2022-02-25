@@ -63,6 +63,8 @@ import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/services/file/wizzard/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
 import { getCetCeeBonus } from '@/services/file/fileCommonService';
+import { BaseFile } from '@/types/v2/File/Common/BaseFile';
+import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 
 export default defineComponent( {
                                   name:       'file-comble-step-4',
@@ -81,6 +83,14 @@ export default defineComponent( {
                                     selectedProducts: Array as () => Product[],
                                     options:          Array as () => Option[],
                                     blankOptions:     Array as () => BlankOption[],
+                                    area:             {
+                                      type:     Number,
+                                      required: true,
+                                    },
+                                    fileData:         {
+                                      type:     Object,
+                                      required: true,
+                                    },
                                     forceRefresh:     Boolean,  // Pour focer le compute des prix quand on arrive sur la step4
                                   },
                                   emits:      [ 'generateQuotation', 'generateAddressCertificate', 'calculedPrice' ],
@@ -115,12 +125,16 @@ export default defineComponent( {
                                         console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
                                       }
                                       console.log( '%c IN COMPUTED', 'background: #007C83; color: #FFFFFF' );
-                                      let totalHt      = 0;
-                                      let maPrimeRenov = 0;
+                                      let totalHt = 0;
+
+                                      console.log( '%c AREA', 'background: #61C60B; color: #000000' );
+                                      console.log( 'area', props.area );
 
                                       console.log( 'Prix par defaut -->', totalHt );
+                                      console.log( 'Prix par defaut -->', totalHt );
+                                      console.log( 'Prix par defaut -->', totalHt );
                                       for ( const selectedProduct of _selectedProducts.value ) {
-                                        totalHt += selectedProduct.pu;
+                                        totalHt += selectedProduct.pu * props.area;
                                       }
                                       console.log( 'Prix avec les produits -->', totalHt );
 
@@ -143,35 +157,35 @@ export default defineComponent( {
                                       const lessThan2Year = getLessThan2Year();
                                       console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
-                                      if ( !lessThan2Year ) {
-                                        if ( codeBonus === 'GP' ) {
-                                          maPrimeRenov = 1200;
-                                        }
-                                        if ( codeBonus === 'P' ) {
-                                          maPrimeRenov = 800;
-                                        }
-                                        if ( codeBonus === 'IT' ) {
-                                          maPrimeRenov = 400;
-                                        }
+                                      let ceeBonus = getCetCeeBonus( ( props.fileData as BaseFile ) );
+                                      ceeBonus     = ceeBonus * props.area;
+
+
+                                      const tva      = getTva();
+                                      const totalTva = tva * totalHt / 100;
+                                      const totalTtc = totalHt + totalTva;
+
+                                      let remainderToPay = totalTtc - ceeBonus;
+                                      let housingAction  = 0;
+
+                                      if ( ( props.fileData as CombleFile ).enabledHousingAction ) {
+                                        console.log( '%c ACTION LOGEMENT', 'background: #FF0000; color: #000000' );
+                                        remainderToPay = 0;
+                                        housingAction  = totalTtc;
+                                        // Pas de prime CEE quand il y a action logement
+                                        ceeBonus       = 0;
                                       }
 
-                                      const ceeBonus = getCetCeeBonus();
-
-                                      console.log( 'maPrimeRenov --> ', maPrimeRenov );
-
-                                      const tva        = getTva();
-                                      const totalTva   = tva * totalHt / 100;
-                                      const totalTtc   = totalHt + totalTva;
-                                      const totalPrime = maPrimeRenov + ceeBonus;
-
                                       const price: Price = {
-                                        HT:             totalHt,
-                                        TVA:            totalTva,
-                                        TTC:            totalTtc,
-                                        maPrimeRenov:   maPrimeRenov,
-                                        remainderToPay: totalTtc - totalPrime,
-                                        CEE:            ceeBonus,
+                                        HT:  totalHt,
+                                        TVA: totalTva,
+                                        TTC: totalTtc,
+                                        housingAction,
+                                        remainderToPay,
+                                        CEE: ceeBonus,
                                       };
+
+                                      console.log( 'PRICE -->', price );
 
                                       ctx.emit( 'calculedPrice', price );
 

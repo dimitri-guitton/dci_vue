@@ -21,7 +21,7 @@
 import { defineComponent } from 'vue';
 import { CetList } from '@/types/v2/File/Cet/CetList';
 import Step5Form from '@/components/DCI/wizzard-file/Step5Form.vue';
-import { cetWorksheetBuilder } from '@/services/file/wizzard/cet/step5Service';
+import { combleWorksheetBuilder } from '@/services/file/wizzard/comble/step5Service';
 
 export default defineComponent( {
                                   name:       'file-comble-step-5',
@@ -37,7 +37,7 @@ export default defineComponent( {
                                       ctx.emit( 'generateWorksheet' );
                                     };
                                     return {
-                                      worksheetBuilder: cetWorksheetBuilder(),
+                                      worksheetBuilder: combleWorksheetBuilder(),
                                       generateWorksheet,
                                     };
                                   },

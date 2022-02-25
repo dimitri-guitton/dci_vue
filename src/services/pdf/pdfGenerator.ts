@@ -167,10 +167,11 @@ export class PdfGenerator {
     /**
      * Formate le prix en xx.xx €
      * @param value
+     * @param positiveNumber
      * @protected
      */
-    protected formatPrice( value: number | string ): string {
-        return numberToPrice( value );
+    protected formatPrice( value: number | string, positiveNumber = true ): string {
+        return positiveNumber ? numberToPrice( value ) : `- ${ numberToPrice( value ) }`;
     }
 
     /**

@@ -485,7 +485,7 @@ export class QuotationGenerator extends PdfGenerator {
                         },
                         {
                             label: 'Surface à chauffer (m2)',
-                            value: housing.area,
+                            value: housing.area.toString(),
                         },
                         {
                             label: 'Ce logement à moins de 2 ans',
@@ -522,7 +522,7 @@ export class QuotationGenerator extends PdfGenerator {
                         },
                         {
                             label: 'Surface à chauffer (m2)',
-                            value: housing.area,
+                            value: housing.area.toString(),
                         },
                         {
                             label: 'Ce logement à moins de 2 ans',
@@ -571,7 +571,7 @@ export class QuotationGenerator extends PdfGenerator {
                         },
                         {
                             label: 'Surface à chauffer (m2)',
-                            value: housing.area,
+                            value: housing.area.toString(),
                         },
                         {
                             label: 'Ce logement à moins de 2 ans',
@@ -781,6 +781,11 @@ export class QuotationGenerator extends PdfGenerator {
         const data: TableCell[][] = [];
 
         for ( const product of this._file.quotation.selectedProducts ) {
+            // TODO GÉRER LA QUANTITÉ
+            let price = this.formatPrice( product.pu );
+            if ( this._file.type === FILE_SOL || this._file.type === FILE_COMBLE ) {
+                price = this.formatPrice( product.pu * this._file.housing.area );
+            }
             data.push( [
                            {
                                text: product.label,
@@ -797,7 +802,7 @@ export class QuotationGenerator extends PdfGenerator {
                                alignment: 'right',
                            },
                            {
-                               text:      this.formatPrice( product.pu * 1 ),  // TODO GÉRER LA QUANTITÉ + pour isolant * area
+                               text:      price,
                                alignment: 'right',
                            },
                        ] );
@@ -929,7 +934,7 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_CET:
             case FILE_PAC_RO:
                 const quotation = ( this._file.quotation as PgQuotation | CetQuotation | RoQuotation );
-                text            = this.formatPrice( quotation.maPrimeRenovBonus );
+                text = this.formatPrice( quotation.maPrimeRenovBonus, false );
         }
 
         return {
@@ -1099,14 +1104,14 @@ export class QuotationGenerator extends PdfGenerator {
                     break;
                 case PriceQuotation.CEE:
                     rightColumn.push( {
-                                          text:       this.formatPrice( quotation.ceeBonus ),
+                                          text:       this.formatPrice( quotation.ceeBonus, false ),
                                           alignment:  'right',
                                           lineHeight: 2,
                                       } );
                     break;
                 case PriceQuotation.CEE_CPC:
                     rightColumn.push( {
-                                          text:       this.formatPrice( quotation.ceeBonus ),
+                                          text:       this.formatPrice( quotation.ceeBonus, false ),
                                           alignment:  'right',
                                           lineHeight: 2,
                                       } );
@@ -1116,7 +1121,7 @@ export class QuotationGenerator extends PdfGenerator {
                     break;
                 case PriceQuotation.discount:
                     rightColumn.push( {
-                                          text:       this.formatPrice( quotation.discount ),
+                                          text:       this.formatPrice( quotation.discount, false ),
                                           alignment:  'right',
                                           lineHeight: 2,
                                       } );
@@ -1129,11 +1134,14 @@ export class QuotationGenerator extends PdfGenerator {
                                       } );
                     break;
                 case PriceQuotation.housingAction:
-                    rightColumn.push( {
-                                          text:       'TODO',
-                                          alignment:  'right',
-                                          lineHeight: 2,
-                                      } );
+                    if ( this._file.enabledHousingAction ) {
+                        rightColumn.push( {
+                                              text:       this.formatPrice( quotation.totalTtc, false ),
+                                              alignment:  'right',
+                                              lineHeight: 2,
+                                          } );
+                    }
+
                     break;
             }
         }

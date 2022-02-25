@@ -37,7 +37,7 @@
         "codepostal":     "",
         "ville":          "",
         "parcelle":       "",
-        "superficie":     "",
+        "superficie":     0,
         "dataGeoportail": {},
         "location":       "",
         "moinsDe2Ans":    false

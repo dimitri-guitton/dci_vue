@@ -39,10 +39,11 @@
             <FileCetStep4 @generateQuotation="onGenerateQuotation"
                           @generateAddressCertificate="onGenerateAddressCertificate"
                           @calculedPrice="onCalculedPrice"
-                          :blankOptions="blankOptions"
+                          :blank-options="blankOptions"
                           :options="options"
-                          :selectedProducts="selectedProducts"
-                          :forceRefresh="forceRefreshStep4"
+                          :selected-products="selectedProducts"
+                          :force-refresh="forceRefreshStep4"
+                          :file-data="fileData"
                           :products="products"></FileCetStep4>
           </div>
           <!--end::Step 4-->
@@ -390,6 +391,7 @@ export default defineComponent( {
                                       options,
                                       blankOptions,
                                       stepForm,
+                                      fileData,
                                     };
                                   },
 

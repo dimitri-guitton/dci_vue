@@ -26,7 +26,7 @@
     "codePrime":                null,
     "zoneEnergetique":          null,
     "tauxPrime":                null,
-    "logement":                 {
+    "logement": {
         "occupants":         1,
         "chauffageType":     "electrique",
         "batimentNature":    "",
@@ -36,7 +36,7 @@
         "codepostal":        "",
         "ville":             "",
         "parcelle":          "",
-        "superficie":        "",
+        "superficie":        0,
         "dataGeoportail":    {},
         "location":          "",
         "moinsDe2Ans":       false,

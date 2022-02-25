@@ -79,6 +79,7 @@
                         class="form-check-input"
                         v-model="newFolderData.disabledBonus"
                         type="checkbox"
+                        :value="true"
                     />
                     <span class="form-check-label">Désactiver la prime</span>
                   </label>
@@ -95,6 +96,7 @@
                         class="form-check-input"
                         v-model="newFolderData.disabledCeeBonus"
                         type="checkbox"
+                        :value="true"
                     />
                     <span class="form-check-label">Désactiver la prime CEE</span>
                   </label>
@@ -111,6 +113,7 @@
                         class="form-check-input"
                         v-model="newFolderData.enabledHousingAction"
                         type="checkbox"
+                        :value="true"
                     />
                     <span class="form-check-label">Activer action logement</span>
                   </label>
@@ -127,6 +130,7 @@
                         class="form-check-input"
                         v-model="newFolderData.disabledMaPrimeRenovBonus"
                         type="checkbox"
+                        :value="true"
                     />
                     <span class="form-check-label">Désactiver MaPrimeRenov</span>
                   </label>
@@ -168,7 +172,7 @@ import router from '@/router';
 import * as folderService from '../../../services/folder/folderService';
 import { LIST_FILE_TYPE } from '@/services/constantService';
 
-interface NewFolderData {
+export interface NewFolderData {
   type: string;
   customer: string;
   disabledBonus: boolean;
@@ -215,11 +219,11 @@ export default defineComponent( {
                                       //Disable button
                                       submitButtonRef.value.disabled = true;
 
-                                      const folderReference = await folderService.createAFolder( newFolderData.value.type,
-                                                                                                 newFolderData.value.customer );
+                                      const type = await folderService.createAFolder( newFolderData.value );
 
                                       // TODO rendre dynamique
-                                      await router.push( { name: 'file-cet-edit', query: { slug: folderReference } } );
+                                      // await router.push( { name: 'file-cet-edit', query: { slug: folderReference } } );
+                                      router.push( { name: `file-${ type }-edit` } );
                                     };
 
                                     return {

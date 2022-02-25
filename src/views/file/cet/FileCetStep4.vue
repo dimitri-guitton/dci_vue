@@ -63,6 +63,7 @@ import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/services/file/wizzard/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
 import { getCetCeeBonus } from '@/services/file/fileCommonService';
+import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 
 export default defineComponent( {
                                   name:       'file-cet-step-4',
@@ -81,6 +82,10 @@ export default defineComponent( {
                                     selectedProducts: Array as () => Product[],
                                     options:          Array as () => Option[],
                                     blankOptions:     Array as () => BlankOption[],
+                                    fileData:         {
+                                      type:     Object,
+                                      required: true,
+                                    },
                                     forceRefresh:     Boolean,  // Pour focer le compute des prix quand on arrive sur la step4
                                   },
                                   emits:      [ 'generateQuotation', 'generateAddressCertificate', 'calculedPrice' ],
@@ -155,7 +160,8 @@ export default defineComponent( {
                                         }
                                       }
 
-                                      const ceeBonus = getCetCeeBonus();
+                                      const ceeBonus = getCetCeeBonus( ( props.fileData as BaseFile ) );
+
 
                                       console.log( 'maPrimeRenov --> ', maPrimeRenov );
 
