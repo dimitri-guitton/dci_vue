@@ -106,42 +106,6 @@
         "calcul0PU":        0,
         "options":          [
             {
-                "id":        1,
-                "label":     "Forfait pompe de relevage des condensats interieurs",
-                "unit":      "u",
-                "value":     1,
-                "pu":        {
-                    "default": 120,
-                    "value":   120
-                },
-                "type":      "rr",
-                "calcTva10": false
-            },
-            {
-                "id":        2,
-                "label":     "Forfait pose ( Pose nouvel appareil, mise en service)",
-                "unit":      "u",
-                "value":     1,
-                "pu":        {
-                    "default": 450,
-                    "value":   450
-                },
-                "type":      "rr",
-                "calcTva10": true
-            },
-            {
-                "id":        3,
-                "label":     "Télécommande programmable, accessoires d’installation et explications.",
-                "unit":      "u",
-                "value":     1,
-                "pu":        {
-                    "default": 0,
-                    "value":   0
-                },
-                "type":      "rr",
-                "calcTva10": false
-            },
-            {
                 "id":        4,
                 "label":     "Nettoyage et désembouage (si nécessaire) du circuit de chauffage.",
                 "unit":      "u",
@@ -175,18 +139,6 @@
                     "value":   2000
                 },
                 "type":      "ro",
-                "calcTva10": false
-            },
-            {
-                "id":        7,
-                "label":     "Wifi",
-                "unit":      "u",
-                "value":     1,
-                "pu":        {
-                    "default": 120,
-                    "value":   120
-                },
-                "type":      "rr",
                 "calcTva10": false
             }
         ],

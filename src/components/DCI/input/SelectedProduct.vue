@@ -3,7 +3,7 @@
     <div class="row" v-bind:class="{ 'mb-10': !alert, 'mb-2': alert }">
       <div class="col-md-6 fv-row">
         <Field :name="`selectedProducts[${index}].id`"
-               class="form-select form-select-solid"
+               class="form-select"
                as="select"
                v-model="selectedId"
                @change="onChangeProduct(selectedId)">
@@ -33,7 +33,7 @@
             <Field
                 :disabled="true"
                 type="number"
-                class="form-control form-control-lg"
+                class="form-control"
                 name="selectedProductQuantity"
                 placeholder="1"
                 :value="1"
@@ -49,7 +49,7 @@
         <Field
             v-model.number="currentProduct.pu"
             type="number"
-            class="form-control form-control-lg form-control-solid"
+            class="form-control"
             :name="`selectedProducts[${index}].pu`"
             placeholder="100"
             @change="onChangeProduct(selectedId)"

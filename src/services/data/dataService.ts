@@ -15,6 +15,8 @@ import { getEnergyZone } from '@/services/file/fileCommonService';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { PgFile } from '@/types/v2/File/Pg/PgFile';
+import { RoFile } from '@/types/v2/File/Ro/RoFile';
+import { RrFile } from '@/types/v2/File/Rr/RrFile';
 
 const schema = {
     dropboxPath:          {
@@ -91,6 +93,14 @@ export const getCurrentCetFileData = (): CetFile => {
 };
 
 export const getCurrentPgFileData = (): PgFile => {
+    return getCurrentFileData();
+};
+
+export const getCurrentRoFileData = (): RoFile => {
+    return getCurrentFileData();
+};
+
+export const getCurrentRrFileData = (): RrFile => {
     return getCurrentFileData();
 };
 
@@ -245,6 +255,12 @@ export const getProductById = ( id: number ): Product => {
     console.log( 'file data', fileData );
 
     return fileData.quotation.products.find( ( p: Product ) => p.id === id );
+};
+
+export const getProductByRef = ( ref: string ): Product => {
+    const fileData = getCurrentFileData();
+
+    return fileData.quotation.products.find( ( p: Product ) => p.reference === ref );
 };
 
 export const getOptionById = ( id: number ): Option => {

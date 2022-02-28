@@ -123,6 +123,7 @@ const convertOldRoItemList = ( oldData ): RoList => {
         typeOrigineList:       [],
         batimentNatureList:    [],
         niveauHabitationList:  [],
+        qualiteIsolationList:  [],
     };
 
     const roItems = [
@@ -140,6 +141,7 @@ const convertOldRoItemList = ( oldData ): RoList => {
         'tensionDisponible',
         'positionEauChaude',
         'typeChaudiere',
+        'qualiteIsolation',
     ];
 
     const newName: { [ key: string ]: string } = {
@@ -157,6 +159,7 @@ const convertOldRoItemList = ( oldData ): RoList => {
         'tensionDisponible': 'tensionDisponibleList',
         'positionEauChaude': 'positionEauChaudeList',
         'typeChaudiere':     'typeChaudiereList',
+        'qualiteIsolation':  'qualiteIsolationList',
     };
 
 

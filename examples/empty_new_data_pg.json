@@ -186,6 +186,7 @@
             }
         ],
         "tva":                5.5,
+        "tva20":              0,
         "ceeBonus":           0,
         "selectedProducts":   [
             {

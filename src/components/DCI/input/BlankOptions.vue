@@ -6,7 +6,7 @@
       <Field
           v-model.number="option.id"
           type="number"
-          class="form-control form-control-lg form-control-solid d-none"
+          class="form-control d-none"
           :name="`blankOptions[${index}].id`"
           @change="onChangeOption()"
       />
@@ -16,7 +16,7 @@
           <Field
               v-model.number="option.label"
               type="text"
-              class="form-control form-control-lg form-control-solid"
+              class="form-control"
               :name="`blankOptions[${index}].label`"
               :placeholder="`Supplément ${index + 1}`"
               @change="onChangeOption()"
@@ -31,7 +31,7 @@
             <Field
                 v-model.number="option.number"
                 type="number"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control"
                 :name="`blankOptions[${index}].number`"
                 placeholder="1"
                 @change="onChangeOption()"
@@ -49,7 +49,7 @@
           <Field
               v-model.number="option.pu"
               type="number"
-              class="form-control form-control-lg form-control-solid"
+              class="form-control"
               :name="`blankOptions[${index}].pu`"
               placeholder="100"
               @change="onChangeOption()"

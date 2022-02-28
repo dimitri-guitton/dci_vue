@@ -15,6 +15,7 @@ interface RoList extends BaseList {
     tensionDisponibleList: ItemList[];
     positionEauChaudeList: ItemList[];
     typeChaudiereList: ItemList[];
+    qualiteIsolationList: ItemList[];
 }
 
 export default RoList;
