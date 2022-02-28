@@ -13,7 +13,7 @@ export interface Product {
     model?: string;
     type?: string;
     scop?: string;
-    power?: string;
+    power?: number;
     color?: string;
     air?: boolean;
     addedValue?: number;

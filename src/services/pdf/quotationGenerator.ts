@@ -37,7 +37,7 @@ import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
 enum PriceQuotation {
     HT            = 'Total HT',
     TTC           = 'Total TTC',
-    TVA           = 'TVA ${tva}',
+    TVA           = 'TVA 5.5%',
     TVA10         = 'TVA 10%',
     TVA20         = 'TVA 20%',
     CEE           = 'PRIME CEE EDF SIREN 552 081 317',
@@ -957,6 +957,7 @@ export class QuotationGenerator extends PdfGenerator {
                 items = [
                     PriceQuotation.HT,
                     PriceQuotation.TVA,
+                    PriceQuotation.TVA20,
                     PriceQuotation.TTC,
                 ];
 

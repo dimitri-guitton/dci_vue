@@ -7,10 +7,12 @@ import { CombleStep3 } from '@/types/v2/Wizzard/step3/CombleStep3';
 import { CombleStep5 } from '@/types/v2/Wizzard/step5/CombleStep5';
 import { SolStep3 } from '@/types/v2/Wizzard/step3/SolStep3';
 import { SolStep5 } from '@/types/v2/Wizzard/step5/SolStep5';
-
-// export interface FileStep extends Step1, Step2, BaseStep3, Step4 {}
+import { PgStep3 } from '@/types/v2/Wizzard/step3/PgStep3';
+import { PgStep5 } from '@/types/v2/Wizzard/step5/PgStep5';
 
 export interface CetFileStep extends Step1, Step2, CetStep3, BaseStep4, CetStep5 {}
+
+export interface PgFileStep extends Step1, Step2, PgStep3, BaseStep4, PgStep5 {}
 
 export interface CombleFileStep extends Step1, Step2, CombleStep3, BaseStep4, CombleStep5 {}
 

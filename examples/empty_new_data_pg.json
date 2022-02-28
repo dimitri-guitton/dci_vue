@@ -945,96 +945,106 @@
                 "color":       "tourterelle"
             },
             {
-                "id":          1,
+                "id":          101,
                 "productType": "fumisterie",
                 "label":       "Création complète interieur conduit isolé Poujoulat",
                 "reference":   "POUJOULAT-1",
                 "pu":          1890,
                 "defaultPu":   1890,
                 "description": "Création complète interieur conduit isolé Poujoulat\r\nTuyau isolé double paroi 500mm\r\nCoude 45°\r\nSupport plancher\r\nMaintien au toît galva\r\nSolin\r\nChapeau\r\nElément de depart plafond\r\nRosace\r\nTuyau emaillé + kit air",
-                "type":        null
+                "type":        null,
+                "air":         true
             },
             {
-                "id":          2,
+                "id":          102,
                 "productType": "fumisterie",
                 "label":       "Boisseau intérieur maçonné",
                 "reference":   "POUJOULAT-2",
                 "pu":          1100,
                 "defaultPu":   1100,
                 "description": "Raccord pour tubage\r\nRaccord pour tubage\r\nGaine\r\nCollier soutien\r\nPlaque étanche\r\nChapeau\r\nTube concentrique 1000mm\r\nTuyau simple paroi émaillé 500\r\nTuyau simple paroi émaillé 250\r\nTuyau réglable\r\nTé fumée\r\nCoude 45°\r\nKit air",
-                "type":        null
+                "type":        null,
+                "air":         true
             },
             {
-                "id":          3,
+                "id":          103,
                 "productType": "fumisterie",
                 "label":       "Ventouse Poujoulat",
                 "reference":   "POUJOULAT-3",
                 "pu":          800,
                 "defaultPu":   800,
                 "description": "Tuyau concentrique\r\nTé à 90°\r\nElement prise d’air 90°\r\nAdaptateur poêle universel\r\nGalva flexible air\r\nAdaptateur air etanche\r\nPlaque de propreté\r\nElément réglable\r\nCoude à 90°\r\nTherminal horizontal\r\n",
-                "type":        null
+                "type":        null,
+                "air":         true
             },
             {
-                "id":          4,
+                "id":          104,
                 "productType": "fumisterie",
                 "label":       "Création complète exterieur conduit isolé Poujoulat",
                 "reference":   "POUJOULAT-4",
                 "pu":          1640,
                 "defaultPu":   1640,
                 "description": "Création complète exterieur conduit isolé Poujoulat\r\nTuyau isolé simple paroi 500mm\r\nTuyau isolé simple paroi 250mm\r\nCoude 45°\r\nElement de départ plafond\r\nRosace noir\r\nRosace inox\r\nChapeau\r\nChaise\r\nBride murale\r\nRallonge\r\nTuyau isolé émaillé 500mm\r\nManchon F.F\r\nTé\r\nKit air",
-                "type":        null
+                "type":        null,
+                "air":         true
             },
             {
-                "id":          5,
+                "id":          105,
                 "productType": "fumisterie",
                 "label":       "Création complète intérieur tuyaux concentrique Poujoulat",
                 "reference":   "POUJOULAT-5",
                 "pu":          1790,
                 "defaultPu":   1790,
                 "description": "Tube concentrique 1000mm\nTube concentrique 500mm\nTuyau réglable\nCoude 45°\nSupport plancher\nMaintien au toît\nRosace\nTé fumée\nTé air\nAdaptateur poêle\nSolin et collerette\nChapeau",
-                "type":        null
+                "type":        null,
+                "air":         false
             },
             {
-                "id":          6,
+                "id":          106,
                 "productType": "fumisterie",
                 "label":       "Boisseau existant maçonné départ au sol",
                 "reference":   "POUJOULAT-6",
                 "pu":          1200,
                 "defaultPu":   1200,
                 "description": "Kit KFRL\nGaine\nChapeau CTIV\nCollier CTF\nEmaillé 500\nManchon F.F",
-                "type":        null
+                "type":        null,
+                "air":         false
             },
             {
-                "id":          7,
+                "id":          107,
                 "productType": "fumisterie",
                 "label":       "Boisseau existant maçonné départ au plafond",
                 "reference":   "POUJOULAT-7",
                 "pu":          1000,
                 "defaultPu":   1000,
                 "description": "KIT KRFLCTé fumée\r\nTé air\r\nAdaptateur poêle\r\nTuyau réglable\r\nTube concentrique 1000mm\r\nTube concentrique 500mm\r\nChapeau CTIVCollier de maintien\r\nGaine",
-                "type":        null
+                "type":        null,
+                "air":         false
             },
             {
-                "id":          8,
+                "id":          108,
                 "productType": "fumisterie",
                 "label":       "Boisseau existant maçonné extérieur",
                 "reference":   "POUJOULAT-8",
                 "pu":          1200,
                 "defaultPu":   1200,
                 "description": "Kit KFRL\r\nGaine\r\nChapeau CTIV\r\nCollier CTF\r\nEmaillé 500\r\nManchon F.F",
-                "type":        null
+                "type":        null,
+                "air":         true
             },
             {
-                "id":          9,
+                "id":          109,
                 "productType": "fumisterie",
                 "label":       "Création complète extérieure conduit isolé Poujoulat R+1",
                 "reference":   "POUJOULAT-9",
                 "pu":          2200,
                 "defaultPu":   2200,
                 "description": "Création complète exterieur conduit isolé Poujoulat\r\nTuyau isolé simple paroi 500mm\r\nTuyau isolé simple paroi 250mm\r\nCoude 45°\r\nElement de départ plafond\r\nRosace noir\r\nRosace inox\r\nChapeau\r\nChaise\r\nBride murale\r\nRallonge\r\nTuyau isolé émaillé 500mm\r\nManchon F.F\r\nTé\r\nKit air",
-                "type":        null
+                "type":        null,
+                "air":         true
             }
         ],
+        "outsideSocket":      false,
         "maPrimeRenovBonus":  0,
         "discount":           0,
         "totalHt":            0,
@@ -1550,32 +1560,6 @@
             {
                 "slug":  "noir",
                 "value": "Noir"
-            },
-            {
-                "slug":  "tourterelle",
-                "value": "Tourterelle"
-            }
-        ],
-        "couleurFacadeList":     [
-            {
-                "slug":  "gres_ivoire",
-                "value": "Gres ivoire"
-            },
-            {
-                "slug":  "gres_rouille",
-                "value": "Gres rouille"
-            },
-            {
-                "slug":  "verre_noir_strille",
-                "value": "Verre noir strille"
-            },
-            {
-                "slug":  "acier_noir",
-                "value": "Acier Noir"
-            },
-            {
-                "slug":  "pierre_ollaire",
-                "value": "Pierre ollaire"
             },
             {
                 "slug":  "tourterelle",

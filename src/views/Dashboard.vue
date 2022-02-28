@@ -52,8 +52,8 @@ import MixedWidget7 from '@/components/widgets/mixed/Widget7.vue';
 import MixedWidget10 from '@/components/widgets/mixed/Widget10.vue';
 import { setCurrentPageTitle } from '@/core/helpers/breadcrumb';
 import { convertAllOldJsonToNewJson } from '@/services/folder/folderService';
-import { geocodingAddress } from '@/services/geocodingService';
-import * as Gp from '@ignf-geoportal/sdk-2d';
+// import { geocodingAddress } from '@/services/geocodingService';
+// import * as Gp from '@ignf-geoportal/sdk-2d';
 import { NewAddressGenerator } from '@/services/pdf/newAddressGenerator';
 import { CetFile } from '@/types/v2/File/Cet/CetFile';
 import { QuotationGenerator } from '@/services/pdf/quotationGenerator';
@@ -79,39 +79,39 @@ export default defineComponent( {
                                     console.log( 'URL API : ', process.env.VUE_APP_API_URL );
                                     onMounted( async () => {
                                       // On récupère les coordonnées de l'adresse
-                                      let coordinate = await geocodingAddress( '79000 Niort' );
-                                      if ( coordinate === null ) {
-                                        coordinate = [ 46.160329, -1.151139 ];
-                                      }
+                                      // let coordinate = await geocodingAddress( '79000 Niort' );
+                                      // if ( coordinate === null ) {
+                                      //   coordinate = [ 46.160329, -1.151139 ];
+                                      // }
 
-                                      Gp.Map.load(
-                                          'map', // html div
-                                          {
-                                            apiKey:  'essentiels,cartes,parcellaire',
-                                            zoom:    18,
-                                            maxZoom: 20,
-                                            minZoom: 6,
-                                            center:  {
-                                              x:          coordinate[ 0 ],
-                                              y:          coordinate[ 1 ],
-                                              projection: 'CRS:84',
-                                            },
-                                            // layers to display
-                                            layersOptions: {
-                                              'ORTHOIMAGERY.ORTHOPHOTOS': {
-                                                opacity: 0.7,
-                                              },
-                                              'CADASTRALPARCELS.PARCELS': {},
-                                            },
-                                            // additional tools to display on the map
-                                            controlsOptions: {
-                                              'layerSwitcher': {},
-                                              'drawing':       {},
-                                              'length':        {},
-                                              'area':          {},
-                                            },
-                                          },
-                                      );
+                                      // Gp.Map.load(
+                                      //     'map', // html div
+                                      //     {
+                                      //       apiKey:  'essentiels,cartes,parcellaire',
+                                      //       zoom:    18,
+                                      //       maxZoom: 20,
+                                      //       minZoom: 6,
+                                      //       center:  {
+                                      //         x:          coordinate[ 0 ],
+                                      //         y:          coordinate[ 1 ],
+                                      //         projection: 'CRS:84',
+                                      //       },
+                                      //       // layers to display
+                                      //       layersOptions: {
+                                      //         'ORTHOIMAGERY.ORTHOPHOTOS': {
+                                      //           opacity: 0.7,
+                                      //         },
+                                      //         'CADASTRALPARCELS.PARCELS': {},
+                                      //       },
+                                      //       // additional tools to display on the map
+                                      //       controlsOptions: {
+                                      //         'layerSwitcher': {},
+                                      //         'drawing':       {},
+                                      //         'length':        {},
+                                      //         'area':          {},
+                                      //       },
+                                      //     },
+                                      // );
                                     } );
 
                                     const testPdf = ( type: string ) => {

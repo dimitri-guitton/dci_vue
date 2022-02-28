@@ -39,6 +39,11 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/views/file/cet/FileEdit.vue'),
             },
             {
+                path:      '/file-pg-edit',
+                name:      'file-pg-edit',
+                component: () => import('@/views/file/pg/FileEdit.vue'),
+            },
+            {
                 path:      '/parameters',
                 name:      'parameters',
                 component: () => import('@/views/Parameters.vue'),

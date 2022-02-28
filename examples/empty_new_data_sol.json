@@ -95,8 +95,8 @@
                 "fileType":      "sol",
                 "label":         "Préparation chantier (protection si nécessaire)",
                 "unit":          "u",
-                "defaultPu":     0,
-                "pu":            0,
+                "defaultPu":     15,
+                "pu":            15,
                 "defaultNumber": 0,
                 "number":        0
             },
@@ -105,8 +105,8 @@
                 "fileType":      "sol",
                 "label":         "Si Jetspray : Mise en place d'un nergalto (uniquement si support bois)",
                 "unit":          "u",
-                "defaultPu":     15,
-                "pu":            15,
+                "defaultPu":     0,
+                "pu":            0,
                 "defaultNumber": 0,
                 "number":        0
             },

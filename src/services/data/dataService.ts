@@ -14,6 +14,7 @@ import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 import { getEnergyZone } from '@/services/file/fileCommonService';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
+import { PgFile } from '@/types/v2/File/Pg/PgFile';
 
 const schema = {
     dropboxPath:          {
@@ -86,6 +87,10 @@ export const getCurrentFileData = () => {
 };
 
 export const getCurrentCetFileData = (): CetFile => {
+    return getCurrentFileData();
+};
+
+export const getCurrentPgFileData = (): PgFile => {
     return getCurrentFileData();
 };
 

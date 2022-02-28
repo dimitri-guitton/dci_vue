@@ -119,6 +119,7 @@ export default defineComponent( {
                                   emits:      [ 'selectedProductIsUpdated' ],
                                   setup( props, ctx ) {
                                     let currentProduct = ref<Product>();
+                                    const selectedId   = ref<number>();
 
                                     const onChangeProduct = ( value ) => {
                                       currentProduct.value = props.products.find( p => p.id === value );
@@ -131,6 +132,7 @@ export default defineComponent( {
                                       currentProduct = ref( props.products[ 0 ] );
                                       onChangeProduct( props.products[ 0 ].id );
                                     }
+
 
                                     const refQuantityArea = toRef( props, 'quantityArea' );
 
@@ -153,11 +155,21 @@ export default defineComponent( {
                                       return value;
                                     } );
 
+
+                                    const resetSelectedValue = ( products: Product[] ) => {
+                                      currentProduct.value = products[ 0 ];
+                                      selectedId.value     = currentProduct.value?.id;
+                                      return currentProduct.value;
+                                    };
+
+                                    selectedId.value = currentProduct.value?.id;
+
                                     return {
                                       onChangeProduct,
+                                      resetSelectedValue,
                                       refQuantityArea,
                                       htmlAlert,
-                                      selectedId: currentProduct.value?.id,
+                                      selectedId,
                                       currentProduct,
                                     };
                                   },
