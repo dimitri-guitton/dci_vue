@@ -85,7 +85,7 @@ const Folders = [
     { name: FoldersNames.PHOTOS_EMPLACEMENT_SPLITS, dossierType: [ FILE_PAC_RR ] },
     { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_FOLDER, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_CET, FILE_PG ] },
     { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_SIGNE_FOLDER, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_CET, FILE_PG ] },
-    { name: FoldersNames.CADRE_CONTRIBUTION_CEE, dossierType: [ FILE_PAC_RR, FILE_PAC_RO ] },
+    { name: FoldersNames.CADRE_CONTRIBUTION_CEE, dossierType: [ 'all' ] },
     { name: FoldersNames.PHOTO_EMPLACEMENT_POELE, dossierType: [ FILE_PG ] },
     { name: FoldersNames.PHOTO_COMBLE_EMPLACEMENT_TUYAUX, dossierType: [ FILE_PG ] },
     { name: FoldersNames.PHOTO_TOITURE, dossierType: [ FILE_PG ] },

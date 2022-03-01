@@ -64,7 +64,7 @@
             <h5 class="mb-3">{{ numberToPrice( option.pu * option.number ) }}</h5>
           </template>
           <template v-else>
-            <h5>0 €</h5>
+            <h5>0.00 €</h5>
           </template>
 
         </div>
