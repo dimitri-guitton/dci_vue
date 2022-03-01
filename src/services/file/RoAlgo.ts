@@ -5,6 +5,8 @@
  * @param zone  Zone géographique
  * @param insulationQuality Isolation
  */
+import { Product } from '@/types/v2/File/Common/Product';
+
 const calcRequiredPower = ( ceilingHeight: number, area: number, zone: string, insulationQuality: number ): number => {
     let initZone = 27;
     if ( zone !== null && zone.toUpperCase() === 'H2' ) {
@@ -238,6 +240,67 @@ export const getPrimeCee = ( codePrime: string, ceeCoef: number ): number => {
 };
 
 /**
+ * Retourne la Prime CEE de Synerciel
+ */
+export const getCeeSynerciel = ( pac: Product, localType: string, area: number, zone: string, codePrime: string ) => {
+    localType = localType.toUpperCase();
+
+    // if ( zone === 'H1' ) {
+    //     if ( localType === 'APPARTEMENT' ) {
+    //         if ( pac.etas >= 120 ) {
+    //             if ( codePrime === 'GP' ) {
+    //                 if ( area > 0 && area < 35 ) {
+    //                     return 92.575;
+    //                 }
+    //                 if ( area >= 35 && area < 60 ) {
+    //                     return 129.605;
+    //                 }
+    //                 if ( area >= 60 && area < 70 ) {
+    //                     return 185.15;
+    //                 }
+    //                 if ( area >= 70 && area < 90 ) {
+    //                     return 222.18;
+    //                 }
+    //                 if ( area >= 90 && area < 110 ) {
+    //                     return 277.725;
+    //                 }
+    //                 if ( area >= 110 && area <= 130 ) {
+    //                     return 351.785;
+    //                 }
+    //                 if ( area > 130 ) {
+    //                     return 462.875;
+    //                 }
+    //             } else {
+    //                 if ( area > 0 && area < 35 ) {
+    //                     return 86.94;
+    //                 }
+    //                 if ( area >= 35 && area < 60 ) {
+    //                     return 121.72;
+    //                 }
+    //                 if ( area >= 60 && area < 70 ) {
+    //                     return 173.88;
+    //                 }
+    //                 if ( area >= 70 && area < 90 ) {
+    //                     return 208.66;
+    //                 }
+    //                 if ( area >= 90 && area < 110 ) {
+    //                     return 260.82;
+    //                 }
+    //                 if ( area >= 110 && area <= 130 ) {
+    //                     return 330.37;
+    //                 }
+    //                 if ( area > 130 ) {
+    //                     return 434.70;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+
+};
+
+/**
  * Retourne le montant de l'aide pour les PAC RO
  * @param totalTTC
  * @param cee
@@ -281,17 +344,17 @@ export const getPacRo = ( ceilingHeight: number,
                           zone: string,
                           insulationQuality: number,
                           availableVoltage: string,
-                          volumeECS: number ): { quantity: number; productInt: string; productExt: string } => {
-    // TODO HAUTEUR SOUS PLAFOND
+                          volumeECS: number ): { cascadeSystem: boolean; productInt: string; productExt: string } => {
+
     const power = calcRequiredPower( ceilingHeight, area, zone, insulationQuality );
     const model = calcModel( power );
 
-    let quantity = 1;
+    let cascadeSystem = false;
     let productInt: string;
     let productExt: string;
 
     if ( model > 20 ) {
-        quantity = 2;
+        cascadeSystem = true;
     }
 
 
@@ -304,7 +367,7 @@ export const getPacRo = ( ceilingHeight: number,
     }
 
     return {
-        quantity,
+        cascadeSystem,
         productInt,
         productExt,
     };

@@ -3,6 +3,17 @@
 
     <step4-header></step4-header>
 
+    <!--    <div class="row mt-10">-->
+    <!--      <h1>Values</h1>-->
+    <!--      <ul>-->
+    <!--        <li>isKitBiZone : {{ isKitBiZone }}</li>-->
+    <!--        <li>isEcsDeporte : {{ isEcsDeporte }}</li>-->
+    <!--        <li>volumeECS : {{ volumeECS }}</li>-->
+    <!--        <li>volumeECSDeporte : {{ volumeECSDeporte }}</li>-->
+    <!--        <li>cascadeSystem : {{ cascadeSystem }}</li>-->
+    <!--      </ul>-->
+    <!--    </div>-->
+
     <div class="row mt-10">
       <div class="col-md-6 mb-5">
         <label for="q_deviceToReplaceType" class="form-label">Appareil à remplacer</label>
@@ -35,7 +46,7 @@
               name="q_deviceToReplaceModel"
               id="q_deviceToReplaceModel"
               class="form-control"
-              v-model="deviceToReplace.my_model"
+              v-model="deviceToReplace.model"
           >
           </Field>
         </div>
@@ -111,32 +122,19 @@
     <step4-quotation-header></step4-quotation-header>
 
     <template v-for="p in products" v-bind:key="p.reference">
-      <div class="row mb-10">
-        <div class="col-md-6 fv-row">
-          <p>{{ p.label }}</p>
-        </div>
-        <div class="col-md-2 fv-row">
-          <div class="input-group">
-            <Field
-                :disabled="true"
-                type="number"
-                class="form-control"
-                name="selectedProductQuantity"
-                placeholder="1"
-                :value="1"
-            />
-            <div class="input-group-append">
-              <span class="input-group-text">U</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2 fv-row">
-          <p>{{ p.pu }}</p>
-        </div>
-        <div class="col-md-2 fv-row d-flex justify-content-end align-items-center">
-          <p>{{ p.pu }}</p>
-        </div>
-      </div>
+      <row-price :product="p"></row-price>
+    </template>
+
+    <template v-for="kit in selectedKitCascade" v-bind:key="kit.reference">
+      <row-price :product="kit"></row-price>
+    </template>
+
+    <template v-for="ecs in selectedEcsDeportes" v-bind:key="ecs.reference">
+      <row-price :product="ecs"></row-price>
+    </template>
+
+    <template v-for="kit in selectedKitBiZones" v-bind:key="kit.reference">
+      <row-price :product="kit"></row-price>
     </template>
 
     <options @optionsAreUpdated="updateOptions" :options="options"></options>
@@ -194,10 +192,12 @@ import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import RoList from '@/types/v2/File/Ro/RoList';
 import ItemList from '@/components/DCI/input/ItemList.vue';
 import { getPacRo } from '@/services/file/RoAlgo';
+import RowPrice from '@/components/DCI/wizzard-file/rowPrice.vue';
 
 export default defineComponent( {
                                   name:       'file-pac-ro-step-4',
                                   components: {
+                                    RowPrice,
                                     ItemList,
                                     Step4Header,
                                     WizzardFilePrice,
@@ -222,6 +222,12 @@ export default defineComponent( {
                                     const _blankOptions = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                     const lists         = ref<RoList>( ( props.fileData.lists as RoList ) );
 
+                                    const isKitBiZone      = ref<boolean>( props.fileData.quotation.isKitBiZone );
+                                    const isEcsDeporte     = ref<boolean>( props.fileData.quotation.isEcsDeporte );
+                                    const volumeECS        = ref<number>( props.fileData.quotation.volumeECS );
+                                    const volumeECSDeporte = ref<number>( props.fileData.quotation.volumeECSDeporte );
+                                    const cascadeSystem    = ref<boolean>( props.fileData.quotation.cascadeSystem );
+
                                     const generateQuotation = () => {
                                       ctx.emit( 'generateQuotation' );
                                     };
@@ -238,50 +244,105 @@ export default defineComponent( {
                                       _blankOptions.value = blankOptions;
                                     };
 
+                                    const updateCascadeSystem = ( value: boolean ) => {
+                                      cascadeSystem.value = value;
+                                    };
+
+                                    const kitBiZones = props.fileData.quotation.products.filter( p => p.productType === 'kit_bi_zone' );
+                                    const ecsDeporte = props.fileData.quotation.products.filter( p => p.productType === 'ecs' );
+                                    const kitCascade = props.fileData.quotation.products.filter( p => p.productType === 'kit_cascade' );
+
+                                    const selectedEcsDeportes = computed<Product[]>( () => {
+                                      if ( !isEcsDeporte.value ) {
+                                        return [];
+                                      }
+                                      return ecsDeporte.filter( ecs => ecs.volume === volumeECSDeporte.value );
+                                    } );
+
+                                    const selectedKitCascade = computed<Product[]>( () => {
+                                      console.log( '%c KIT CASCADE', 'background: #fdd835; color: #000000' );
+                                      console.log( cascadeSystem );
+                                      if ( !cascadeSystem.value ) {
+                                        return [];
+                                      }
+                                      return kitCascade;
+                                    } );
+
+                                    const selectedKitBiZones = computed<Product[]>( () => {
+                                      if ( !isKitBiZone.value ) {
+                                        return [];
+                                      }
+                                      return kitBiZones;
+                                    } );
+
+
                                     const products = computed<Product[]>(
                                         () => {
                                           console.log( '%c COMPUTED PRODUCTS RO',
                                                        'background: #252FD4; color: #FFFFFF' );
 
-                                          const pac = getPacRo( props.fileData.quotation.ceilingHeight,
-                                                                props.fileData.housing.area,
-                                                                props.fileData.energyZone,
-                                                                ( props.fileData.housing.insulationQuality as number ),
-                                                                ( props.fileData.housing.availableVoltage as string ),
-                                                                props.fileData.quotation.volumeECS );
-
-                                          const p1 = getProductByRef( pac.productInt );
-                                          const p2 = getProductByRef( pac.productExt );
-                                          // TODO GESTION QTY
+                                          const response = getPacRo( props.fileData.quotation.ceilingHeight,
+                                                                     props.fileData.housing.area,
+                                                                     props.fileData.energyZone,
+                                                                     ( props.fileData.housing.insulationQuality as number ),
+                                                                     ( props.fileData.housing.availableVoltage as string ),
+                                                                     volumeECS.value );
 
 
-                                          console.log( p1 );
-                                          console.log( p2 );
+                                          const productInt = getProductByRef( response.productInt );
+                                          const productExt = getProductByRef( response.productExt );
 
-                                          return [ p1, p2 ];
+                                          // Système cascade  = 2 produits
+                                          if ( productInt === undefined || productExt === undefined ) {
+                                            return [];
+                                          }
+
+                                          if ( response.cascadeSystem ) {
+                                            productInt.quantity = 2;
+                                            productExt.quantity = 2;
+                                          } else {
+                                            productInt.quantity = 1;
+                                            productExt.quantity = 1;
+                                          }
+
+                                          updateCascadeSystem( response.cascadeSystem );
+
+                                          console.log( productInt );
+                                          console.log( productExt );
+
+                                          return [ productInt, productExt ];
                                         } );
 
                                     const price = computed<Price>( () => {
-                                      // On utilise props.forceRefresh pour recalculer les prix
-                                      if ( props.forceRefresh ) {
-                                        console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
-                                      }
                                       let totalHt      = 0;
                                       let maPrimeRenov = 0;
                                       let ceeBonus     = 0;
 
                                       console.log( 'Prix par defaut -->', totalHt );
+
                                       for ( const product of products.value ) {
-                                        console.log( 'SL ->', product );
-                                        totalHt += product.pu;
+                                        totalHt += product.pu * product.quantity;
                                       }
                                       console.log( 'Prix avec les produits -->', totalHt );
+
+                                      for ( const product of selectedEcsDeportes.value ) {
+                                        totalHt += product.pu * product.quantity;
+                                      }
+
+                                      for ( const product of selectedKitCascade.value ) {
+                                        totalHt += product.pu * product.quantity;
+                                      }
+
+                                      for ( const product of selectedKitBiZones.value ) {
+                                        totalHt += product.pu * product.quantity;
+                                      }
 
                                       for ( const option of _options.value ) {
                                         if ( option.number > 0 ) {
                                           totalHt += option.pu * option.number;
                                         }
                                       }
+
                                       console.log( 'Prix avec les options -->', totalHt );
 
                                       for ( const option of _blankOptions.value ) {
@@ -300,8 +361,9 @@ export default defineComponent( {
                                       const totalTva = tva * totalHt / 100;
                                       const totalTtc = totalHt + totalTva;
 
-                                      ceeBonus     = -1;
-                                      maPrimeRenov = -1;
+                                      // TODO PRIMCE CEEE MAPRIME RENOV
+                                      ceeBonus     = 100;
+                                      maPrimeRenov = 100;
                                       // if ( !lessThan2Year ) {
                                       //   if ( !props.fileData.disabledCeeBonus ) {
                                       //     ceeBonus = getCetCeeBonus( ( props.fileData as BaseFile ) );
@@ -334,16 +396,27 @@ export default defineComponent( {
                                       return price;
                                     } );
 
+                                    console.log( '%c END SET UP', 'background: #fdd835; color: #000000' );
+                                    console.log( ecsDeporte );
+                                    console.log( kitBiZones );
+                                    console.log( kitCascade );
+                                    console.log( products );
+                                    console.log( '%c END SET UP', 'background: #fdd835; color: #000000' );
+
                                     return {
-                                      deviceToReplace:  {
+                                      deviceToReplace: {
                                         type:  'CCHC',
                                         brand: 'my_marque',
                                         model: 'my_model',
                                       },
-                                      isKitBiZone:      true,
-                                      isEcsDeporte:     true,
-                                      volumeECS:        0,
-                                      volumeECSDeporte: 200,
+                                      selectedEcsDeportes,
+                                      selectedKitCascade,
+                                      selectedKitBiZones,
+                                      isKitBiZone,
+                                      isEcsDeporte,
+                                      volumeECS,
+                                      volumeECSDeporte,
+                                      cascadeSystem,
                                       lists,
                                       price,
                                       products,

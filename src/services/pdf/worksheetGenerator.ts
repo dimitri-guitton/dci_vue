@@ -586,7 +586,7 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'ANNÉE DE CONSTRUCTION',
-                                value: housing.constructionYear === undefined ? 'Non renseigné' : housing.constructionYear.toString(),
+                                value: housing.constructionYear === null ? 'Non renseigné' : housing.constructionYear.toString(),
                             },
                             {
                                 label: 'TYPE CHANTIER',

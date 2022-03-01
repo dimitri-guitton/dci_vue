@@ -257,7 +257,7 @@ export const getProductById = ( id: number ): Product => {
     return fileData.quotation.products.find( ( p: Product ) => p.id === id );
 };
 
-export const getProductByRef = ( ref: string ): Product => {
+export const getProductByRef = ( ref: string ): Product | undefined => {
     const fileData = getCurrentFileData();
 
     return fileData.quotation.products.find( ( p: Product ) => p.reference === ref );

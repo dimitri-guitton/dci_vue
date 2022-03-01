@@ -43,7 +43,7 @@
         "dataGeoportail":    {},
         "location":          "",
         "insulationQuality": "",
-        "constructionYear":  "",
+        "constructionYear":  null,
         "lessThan2Years":    false,
         "availableVoltage":  ""
     },
@@ -162,7 +162,8 @@
                 "reference":   "Laine minérale de verre Jet Spray R = 3m².K/W",
                 "pu":          32.5,
                 "defaultPu":   32.5,
-                "description": "- Certification ACERMI : 15/016/1050/1\r\n\r\n            - Résistance thermique : 3,05 m².k/w\r\n\r\n            - Épaisseur mini (mm) : 110\r\n\r\n            - Masse volumique : 52 kg / m3\r\n\r\n            - Classement au feu : A1 Euroclasse\r\n\r\n            - Qualité de l'air intérieur : A+ Médaille d'or eurofins\r\n\r\n\r\n            - Nivellement de la surface"
+                "description": "- Certification ACERMI : 15/016/1050/1\r\n\r\n            - Résistance thermique : 3,05 m².k/w\r\n\r\n            - Épaisseur mini (mm) : 110\r\n\r\n            - Masse volumique : 52 kg / m3\r\n\r\n            - Classement au feu : A1 Euroclasse\r\n\r\n            - Qualité de l'air intérieur : A+ Médaille d'or eurofins\r\n\r\n\r\n            - Nivellement de la surface",
+                "quantity":    1
             }
         ],
         "products":           [
@@ -173,7 +174,8 @@
                 "reference":   "Laine minérale de verre Jet Spray R = 3m².K/W",
                 "pu":          32.5,
                 "defaultPu":   32.5,
-                "description": "- Certification ACERMI : 15/016/1050/1\r\n\r\n            - Résistance thermique : 3,05 m².k/w\r\n\r\n            - Épaisseur mini (mm) : 110\r\n\r\n            - Masse volumique : 52 kg / m3\r\n\r\n            - Classement au feu : A1 Euroclasse\r\n\r\n            - Qualité de l'air intérieur : A+ Médaille d'or eurofins\r\n\r\n\r\n            - Nivellement de la surface"
+                "description": "- Certification ACERMI : 15/016/1050/1\r\n\r\n            - Résistance thermique : 3,05 m².k/w\r\n\r\n            - Épaisseur mini (mm) : 110\r\n\r\n            - Masse volumique : 52 kg / m3\r\n\r\n            - Classement au feu : A1 Euroclasse\r\n\r\n            - Qualité de l'air intérieur : A+ Médaille d'or eurofins\r\n\r\n\r\n            - Nivellement de la surface",
+                "quantity":    1
             },
             {
                 "id":          6,
@@ -182,7 +184,8 @@
                 "reference":   "Panneau polystyrène TERRADALL PORTE IGNI R=3m².K/W",
                 "pu":          32.5,
                 "defaultPu":   32.5,
-                "description": "- Panneaux polystyrène expansé 1\r\n            - conductivité thermique 0,038 mW/m.k\r\n            - Certifié ACERMI 10/081/617\r\n            - Produit 100% Recyclable\r\n            - Resistance thermique :3 m².k/w\r\n            - Epaisseur mini 'mm) : 115\r\n            Pose collée ou chevillée"
+                "description": "- Panneaux polystyrène expansé 1\r\n            - conductivité thermique 0,038 mW/m.k\r\n            - Certifié ACERMI 10/081/617\r\n            - Produit 100% Recyclable\r\n            - Resistance thermique :3 m².k/w\r\n            - Epaisseur mini 'mm) : 115\r\n            Pose collée ou chevillée",
+                "quantity":    1
             }
         ],
         "discount":           0,

@@ -11,6 +11,7 @@ import {
     convertOldTotalHt,
     convertOldTotalTva,
     getBoolData,
+    getNullableNumberData,
     getNumberData,
     getObjectData,
     getStringData,
@@ -47,6 +48,7 @@ const convertOldSolProduct = ( oldData ): Product[] => {
                               type:        product[ 'type' ],
                               power:       product[ 'puissance' ],
                               color:       product[ 'couleurProfile' ],
+                              quantity:    1,
                           } );
     } );
     return solProducts;
@@ -80,6 +82,7 @@ const convertSelectedSolProduct = ( oldData ): Product[] => {
                                           type:        product[ 'type' ],
                                           power:       product[ 'puissance' ],
                                           color:       product[ 'couleurProfile' ],
+                                          quantity:    1,
                                       } );
 
         }
@@ -170,7 +173,7 @@ export const convertOldSolFile = ( oldData ): SolFile => {
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
         bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
-        housing: {
+        housing:   {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'batimentType' ] ),
             heatingType:       getObjectData( oldData, [ 'logement', 'chauffageType' ] ),
@@ -185,7 +188,7 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             dataGeoportail:    convertOldDataGeoportail( oldData ),
             location:          getObjectData( oldData, [ 'logement', 'location' ] ),
             insulationQuality: getObjectData( oldData, [ 'logement', 'qualiteIsolation' ] ),
-            constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
+            constructionYear:  getNullableNumberData( oldData [ 'logement' ][ 'anneeConstruction' ] ),
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  '',
         },

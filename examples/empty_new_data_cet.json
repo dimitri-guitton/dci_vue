@@ -42,7 +42,7 @@
         "dataGeoportail":    {},
         "location":          "",
         "insulationQuality": "",
-        "constructionYear":  "",
+        "constructionYear":  null,
         "lessThan2Years":    false,
         "availableVoltage":  ""
     },
@@ -162,7 +162,8 @@
                 "defaultPu":   2578,
                 "description": "Capacité: 200L MONOBLOC\r\nDimensions HxLxP: 1689*602*691\r\nPuissance acoustique: 50 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c\r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\n\r\nFonctionne sur air ambiant si volume de la pièce> 20M3",
                 "size":        "HxLxP: 1689*602*691",
-                "type":        "mono"
+                "type":        "mono",
+                "quantity":    1
             }
         ],
         "products":           [
@@ -175,7 +176,8 @@
                 "defaultPu":   2578,
                 "description": "Capacité: 200L MONOBLOC\r\nDimensions HxLxP: 1689*602*691\r\nPuissance acoustique: 50 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c\r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\n\r\nFonctionne sur air ambiant si volume de la pièce> 20M3",
                 "size":        "HxLxP: 1689*602*691",
-                "type":        "mono"
+                "type":        "mono",
+                "quantity":    1
             },
             {
                 "id":          2,
@@ -186,7 +188,8 @@
                 "defaultPu":   2675,
                 "description": "Capacité: 250L MONOBLOC\r\nDimensions HxLxP: 1929*602*691\r\nPuissance acoustique: 50 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c \r\nAppoint électrique: 1800W\r\nCOP: 3,12 – Profil de soutirage : L\r\nClasse energetique: A+\r\n\r\nFonctionne sur air ambiant si volume de la pièce> 20M3",
                 "size":        "HxLxP: 1929*602*691",
-                "type":        "mono"
+                "type":        "mono",
+                "quantity":    1
             },
             {
                 "id":          3,
@@ -197,7 +200,8 @@
                 "defaultPu":   2456,
                 "description": "Capacité: 200L SPLIT\r\nDimensions HxLxP: 1267*588*603mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
                 "size":        "HxLxP: 1267*588*60",
-                "type":        "split"
+                "type":        "split",
+                "quantity":    1
             },
             {
                 "id":          4,
@@ -208,7 +212,8 @@
                 "defaultPu":   2666,
                 "description": "Capacité: 270L SPLIT\r\nDimensions HxLxP: 1600*588*652mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c  \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L pour une efficacité énergétique de 124%\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
                 "size":        "HxLxP: 1600*588*652",
-                "type":        "split"
+                "type":        "split",
+                "quantity":    1
             }
         ],
         "maPrimeRenovBonus":  0,

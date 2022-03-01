@@ -42,7 +42,7 @@
         "dataGeoportail":    {},
         "location":          "",
         "insulationQuality": 0.8,
-        "constructionYear":  "",
+        "constructionYear":  null,
         "lessThan2Years":    false,
         "availableVoltage":  "monophase"
     },
@@ -84,36 +84,6 @@
         "executionDelay":     "",
         "options":            [
             {
-                "id":            1,
-                "fileType":      "pac_ro",
-                "label":         "Forfait pompe de relevage des condensats interieurs",
-                "unit":          "u",
-                "defaultPu":     120,
-                "pu":            120,
-                "defaultNumber": 1,
-                "number":        1
-            },
-            {
-                "id":            2,
-                "fileType":      "pac_ro",
-                "label":         "Forfait pose ( Pose nouvel appareil, mise en service)",
-                "unit":          "u",
-                "defaultPu":     450,
-                "pu":            450,
-                "defaultNumber": 1,
-                "number":        1
-            },
-            {
-                "id":            3,
-                "fileType":      "pac_ro",
-                "label":         "Télécommande programmable, accessoires d’installation et explications.",
-                "unit":          "u",
-                "defaultPu":     0,
-                "pu":            0,
-                "defaultNumber": 1,
-                "number":        1
-            },
-            {
                 "id":            4,
                 "fileType":      "pac_ro",
                 "label":         "Nettoyage et désembouage (si nécessaire) du circuit de chauffage.",
@@ -140,16 +110,6 @@
                 "unit":          "u",
                 "defaultPu":     2000,
                 "pu":            2000,
-                "defaultNumber": 1,
-                "number":        1
-            },
-            {
-                "id":            7,
-                "fileType":      "pac_ro",
-                "label":         "Wifi",
-                "unit":          "u",
-                "defaultPu":     120,
-                "pu":            120,
                 "defaultNumber": 1,
                 "number":        1
             }
@@ -192,7 +152,7 @@
         "selectedProducts":   [],
         "assortment":         "sensira",
         "volumeECS":          0,
-        "volumeECSDeporte":   0,
+        "volumeECSDeporte":   150,
         "isEcsDeporte":       false,
         "isKitBiZone":        false,
         "ceilingHeight":      2.5,
@@ -210,7 +170,9 @@
                 "pu":          1999.67,
                 "defaultPu":   1999.67,
                 "description": "Puissance restituée froid /chaud+7°c = 4kw/4,2kw\r\nPuissance absorbée froid/chaud = 0,97kw/ 0,98kw\r\nPuissance sonore 50dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 36 kg\r\nFluide = R32\r\nSCOP = 4,64\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.64
+                "scop":        4.64,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          2,
@@ -220,7 +182,9 @@
                 "pu":          2319.67,
                 "defaultPu":   2319.67,
                 "description": "Puissance restituée froid/chaud +7°c = 5kw/5,60kw\r\nPuissance absorbée froid/chaud = 1,25kw/ 1,37kw\r\nPuissance sonore 48dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 41 kg\r\nFluide = R32\r\nSCOP = 4,61\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.61
+                "scop":        4.61,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          3,
@@ -230,7 +194,9 @@
                 "pu":          2401.67,
                 "defaultPu":   2401.67,
                 "description": "Puissance restituée froid/chaud +7°c = 4kw/4,6kw\r\nPuissance absorbée froid/chaud = 0,79kw/ 0,89kw\r\nPuissance sonore 47dBa\r\nDimension HxLxP = 734*868*328 mm - Poids = 57 kg\r\nFluide = R32\r\nSCOP = 4,65\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.65
+                "scop":        4.65,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          4,
@@ -240,7 +206,9 @@
                 "pu":          2818.67,
                 "defaultPu":   2818.67,
                 "description": "Puissance restituée froid/chaud +7°c = 5,2kw/6,8kw\r\nPuissance absorbée froid/chaud = 1,07kw/ 01,39kw\r\nPuissance sonore 47dBa\r\nDimension HxLxP = 734*868*328 mm - Poids = 57 kg\r\nFluide = R32\r\nSCOP = 4,61\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.61
+                "scop":        4.61,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          5,
@@ -250,7 +218,9 @@
                 "pu":          3391.67,
                 "defaultPu":   3391.67,
                 "description": "Puissance restituée froid/chaud +7°c = 6kw/7,8kw\r\nPuissance absorbée froid/chaud = 1,34kw/1,72kw\r\nPuissance sonore 48dBa\r\nDimension HxLxP = 734*868*328 mm - Poids = 62 kg\r\nFluide = R32\r\nSCOP = 4,07\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.07
+                "scop":        4.07,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          6,
@@ -260,7 +230,9 @@
                 "pu":          3884.67,
                 "defaultPu":   3884.67,
                 "description": "Puissance restituée froid/chaud +7°c = 6,8kw/8,6kw\r\nPuissance absorbée froid/chaud = 1,58kw/ 1,86kw\r\nPuissance sonore 47dBa\r\nDimension HxLxP = 734*868*328 mm - Poids = 62 kg\r\nFluide = R32\r\nSCOP = 4,24\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.24
+                "scop":        4.24,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          7,
@@ -270,7 +242,9 @@
                 "pu":          4288.67,
                 "defaultPu":   4288.67,
                 "description": "Puissance restituée froid/chaud +7°c = 7,4kw/9,6kw\r\nPuissance absorbée froid/chaud = 1,62kw/ 1,94kw\r\nPuissance sonore 49dBa\r\nDimension HxLxP = 734*868*328 mm - Poids = 67 kg\r\nFluide = R32\r\nSCOP = 4,55\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.55
+                "scop":        4.55,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          8,
@@ -280,7 +254,9 @@
                 "pu":          4689.67,
                 "defaultPu":   4689.67,
                 "description": "Puissance restituée froid/chaud +7°c = 8,5kw/10kw\r\nPuissance absorbée froid/chaud = 1,83kw/ 2,05kw\r\nPuissance sonore 52dBa\r\nDimension HxLxP = 734*868*328 mm - Poids = 68 kg\r\nFluide = R32\r\nSCOP = 4,47\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.47
+                "scop":        4.47,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          9,
@@ -290,7 +266,9 @@
                 "pu":          496.08,
                 "defaultPu":   496.08,
                 "description": "Puissance restituée froid/chaud +7°c = 1,5kw/1,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 294*811*272 mm - Poids = 10 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          10,
@@ -300,7 +278,9 @@
                 "pu":          511.08,
                 "defaultPu":   511.08,
                 "description": "Puissance restituée froid/chaud +7°c = 2kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 294*811*272 mm - Poids = 10 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          11,
@@ -310,7 +290,9 @@
                 "pu":          529.08,
                 "defaultPu":   529.08,
                 "description": "Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 294*811*272 mm - Poids = 10 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          12,
@@ -320,7 +302,9 @@
                 "pu":          695.08,
                 "defaultPu":   695.08,
                 "description": "Puissance restituée froid/chaud +7°c = 3,5kw/ 3,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 294*811*272 mm - Poids = 10 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          13,
@@ -330,7 +314,9 @@
                 "pu":          897.08,
                 "defaultPu":   897.08,
                 "description": "Puissance restituée froid/chaud +7°c = 4,2kw/ 5,4kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 294*811*272 mm - Poids = 10 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          14,
@@ -340,7 +326,9 @@
                 "pu":          941.08,
                 "defaultPu":   941.08,
                 "description": "Puissance restituée froid/chaud +7°c = 5kw/ 5,8kw\r\nPuissance sonore 27 dBa\r\nDimension HxLxP= 300*1040*295mm - Poids=14,5 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          15,
@@ -350,7 +338,9 @@
                 "pu":          1073.08,
                 "defaultPu":   1073.08,
                 "description": "Puissance restituée froid/chaud +7°c = 6kw/ 7kw\r\nPuissance sonore 30 dBa\r\nDimension HxLxP= 300*1040*295mm - Poids=14,5 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          16,
@@ -360,7 +350,9 @@
                 "pu":          1208.08,
                 "defaultPu":   1208.08,
                 "description": "Puissance restituée froid/chaud +7°c = 7,1kw/ 8,2kw\r\nPuissance sonore 32 dBa\r\nDimension HxLxP= 300*1040*295mm - Poids=14,5 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          17,
@@ -370,7 +362,9 @@
                 "pu":          994.67,
                 "defaultPu":   994.67,
                 "description": "Puissance absorbée froid/chaud = 0,44kw/ 0,5kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,1\r\nDont éco-participation 6,67 € HT",
-                "scop":        5.1
+                "scop":        5.1,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          18,
@@ -380,7 +374,9 @@
                 "pu":          1108.67,
                 "defaultPu":   1108.67,
                 "description": "Puissance absorbée froid/chaud = 0,56kw/ 0,56kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,1\r\nDont éco-participation 6,67 € HT",
-                "scop":        5.1
+                "scop":        5.1,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          19,
@@ -390,7 +386,9 @@
                 "pu":          1283.67,
                 "defaultPu":   1283.67,
                 "description": "Puissance absorbée froid/chaud = 0,8kw/ 0,99kw\r\nPuissance sonore 61dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,1\r\nDont éco-participation 6,67 € HT",
-                "scop":        5.1
+                "scop":        5.1,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          20,
@@ -400,7 +398,9 @@
                 "pu":          1608.67,
                 "defaultPu":   1608.67,
                 "description": "Puissance absorbée froid/chaud = 0,97kw/ 1,31kw\r\nPuissance sonore 62dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,71\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.71
+                "scop":        4.71,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          21,
@@ -410,7 +410,9 @@
                 "pu":          1979.67,
                 "defaultPu":   1979.67,
                 "description": "Puissance absorbée froid/chaud = 1,36kw/ 1,45kw\r\nPuissance sonore 62dBa\r\nDimension HxLxP = 734*870*320 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,71\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.71
+                "scop":        4.71,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          22,
@@ -420,7 +422,9 @@
                 "pu":          2536.67,
                 "defaultPu":   2536.67,
                 "description": "Puissance absorbée froid/chaud = 1,77kw/ 1,94kw\r\nPuissance sonore 63dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,3\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.3
+                "scop":        4.3,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          23,
@@ -430,7 +434,9 @@
                 "pu":          3415.67,
                 "defaultPu":   3415.67,
                 "description": "Puissance absorbée froid/chaud = 2,12kw/ 2,25kw\r\nPuissance sonore 64dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 56 kg\r\nFluide = R32\r\nSCOP = 3,81\r\nDont éco-participation 6,67 € HT",
-                "scop":        3.81
+                "scop":        3.81,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          24,
@@ -440,7 +446,9 @@
                 "pu":          679.08,
                 "defaultPu":   679.08,
                 "description": "Puissance restituée froid/chaud +7°c = 1,5kw/1,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          25,
@@ -450,7 +458,9 @@
                 "pu":          700.08,
                 "defaultPu":   700.08,
                 "description": "Puissance restituée froid/chaud +7°c = 2kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          26,
@@ -460,7 +470,9 @@
                 "pu":          724.08,
                 "defaultPu":   724.08,
                 "description": "Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          27,
@@ -470,7 +482,9 @@
                 "pu":          952.08,
                 "defaultPu":   952.08,
                 "description": "Puissance restituée froid/chaud +7°c = 3,5kw/ 3,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          28,
@@ -480,7 +494,9 @@
                 "pu":          1230.08,
                 "defaultPu":   1230.08,
                 "description": "Puissance restituée froid/chaud +7°c = 4,2kw/ 5,4kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          29,
@@ -490,7 +506,9 @@
                 "pu":          1290.08,
                 "defaultPu":   1290.08,
                 "description": "Puissance restituée froid/chaud +7°c = 5kw/ 5,8kw\r\nPuissance sonore 27 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          30,
@@ -500,7 +518,9 @@
                 "pu":          614.08,
                 "defaultPu":   614.08,
                 "description": "Puissance restituée froid/chaud +7°c = 1,5kw/1,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          31,
@@ -510,7 +530,9 @@
                 "pu":          632.08,
                 "defaultPu":   632.08,
                 "description": "Puissance restituée froid/chaud +7°c = 2kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          32,
@@ -520,7 +542,9 @@
                 "pu":          653.08,
                 "defaultPu":   653.08,
                 "description": "Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          33,
@@ -530,7 +554,9 @@
                 "pu":          859.08,
                 "defaultPu":   859.08,
                 "description": "Puissance restituée froid/chaud +7°c = 3,5kw/ 3,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          34,
@@ -540,7 +566,9 @@
                 "pu":          1112.08,
                 "defaultPu":   1112.08,
                 "description": "Puissance restituée froid/chaud +7°c = 4,2kw/ 5,4kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          35,
@@ -550,7 +578,9 @@
                 "pu":          1164.08,
                 "defaultPu":   1164.08,
                 "description": "Puissance restituée froid/chaud +7°c = 5kw/ 5,8kw\r\nPuissance sonore 27 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          36,
@@ -560,7 +590,9 @@
                 "pu":          649.08,
                 "defaultPu":   649.08,
                 "description": "Puissance restituée froid/chaud +7°c = 1,5kw/1,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          37,
@@ -570,7 +602,9 @@
                 "pu":          670.08,
                 "defaultPu":   670.08,
                 "description": "Puissance restituée froid/chaud +7°c = 2kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          38,
@@ -580,7 +614,9 @@
                 "pu":          692.08,
                 "defaultPu":   692.08,
                 "description": "Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          39,
@@ -590,7 +626,9 @@
                 "pu":          909.08,
                 "defaultPu":   909.08,
                 "description": "Puissance restituée froid/chaud +7°c = 3,5kw/ 3,8kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          40,
@@ -600,7 +638,9 @@
                 "pu":          1176.08,
                 "defaultPu":   1176.08,
                 "description": "Puissance restituée froid/chaud +7°c = 4,2kw/ 5,4kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          41,
@@ -610,7 +650,9 @@
                 "pu":          1232.08,
                 "defaultPu":   1232.08,
                 "description": "Puissance restituée froid/chaud +7°c = 5kw/ 5,8kw\r\nPuissance sonore 27 dBa\r\nDimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          42,
@@ -620,7 +662,9 @@
                 "pu":          1099.08,
                 "defaultPu":   1099.08,
                 "description": "Puissance restituée froid/chaud +7°c = 2,3kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 303*998*212 mm - Poids = 12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          43,
@@ -630,7 +674,9 @@
                 "pu":          1158.08,
                 "defaultPu":   1158.08,
                 "description": "Puissance restituée froid/chaud +7°c = 2,5kw/3,4kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 303*998*212 mm - Poids = 12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          44,
@@ -640,7 +686,9 @@
                 "pu":          1477.08,
                 "defaultPu":   1477.08,
                 "description": "Puissance restituée froid/chaud +7°c = 3,5kw/ 4kw\r\nPuissance sonore 20 dBa\r\nDimension HxLxP = 303*998*212 - Poids = 12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          45,
@@ -650,7 +698,9 @@
                 "pu":          1574.08,
                 "defaultPu":   1574.08,
                 "description": "Puissance restituée froid/chaud +7°c = 4,8kw/ 5,8kw\r\nPuissance sonore 32 dBa\r\nDimension HxLxP= 303*998*212mm - Poids=12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          46,
@@ -660,7 +710,9 @@
                 "pu":          1162.08,
                 "defaultPu":   1162.08,
                 "description": "Puissance restituée froid/chaud +7°c = 2,3kw/2,5kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 303*998*212 mm - Poids = 12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          47,
@@ -670,7 +722,9 @@
                 "pu":          1224.08,
                 "defaultPu":   1224.08,
                 "description": "Puissance restituée froid/chaud +7°c = 2,5kw/3,4kw\r\nPuissance sonore 19 dBa\r\nDimension HxLxP = 303*998*212 mm - Poids = 12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          48,
@@ -680,7 +734,9 @@
                 "pu":          1559.08,
                 "defaultPu":   1559.08,
                 "description": "Puissance restituée froid/chaud +7°c = 3,5kw/ 4kw\r\nPuissance sonore 20 dBa\r\nDimension HxLxP = 303*998*212 - Poids = 12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          49,
@@ -690,7 +746,9 @@
                 "pu":          1663.08,
                 "defaultPu":   1663.08,
                 "description": "Puissance restituée froid/chaud +7°c = 4,8kw/ 5,8kw\r\nPuissance sonore 32 dBa\r\nDimension HxLxP= 303*998*212mm - Poids=12 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          50,
@@ -700,7 +758,9 @@
                 "pu":          1228.67,
                 "defaultPu":   1228.67,
                 "description": "Puissance absorbée froid/chaud = 0,44kw/ 0,5kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
-                "scop":        5.15
+                "scop":        5.15,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          51,
@@ -710,7 +770,9 @@
                 "pu":          1370.67,
                 "defaultPu":   1370.67,
                 "description": "Puissance absorbée froid/chaud = 0,56kw/ 0,56kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
-                "scop":        5.15
+                "scop":        5.15,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          52,
@@ -720,7 +782,9 @@
                 "pu":          1587.67,
                 "defaultPu":   1587.67,
                 "description": "Puissance absorbée froid/chaud = 0,91kw/ 0,99kw\r\nPuissance sonore 61dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
-                "scop":        5.15
+                "scop":        5.15,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          53,
@@ -730,7 +794,9 @@
                 "pu":          1988.67,
                 "defaultPu":   1988.67,
                 "description": "Puissance absorbée froid/chaud = 1,12kw/ 1,31kw\r\nPuissance sonore 62dBa\r\nDimension HxLxP = 734*870*320mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,6\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.6
+                "scop":        4.6,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          54,
@@ -740,7 +806,9 @@
                 "pu":          2449.67,
                 "defaultPu":   2449.67,
                 "description": "Puissance absorbée froid/chaud = 1,36kw/ 1,45kw\r\nPuissance sonore 62dBa\r\nDimension HxLxP = 734*870*320 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,6\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.6
+                "scop":        4.6,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          55,
@@ -750,7 +818,9 @@
                 "pu":          1377.67,
                 "defaultPu":   1377.67,
                 "description": "Puissance absorbée froid/chaud = 0,44kw/ 0,5kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
-                "scop":        5.15
+                "scop":        5.15,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          56,
@@ -760,7 +830,9 @@
                 "pu":          1450.67,
                 "defaultPu":   1450.67,
                 "description": "Puissance absorbée froid/chaud = 0,56kw/ 0,56kw\r\nPuissance sonore 59dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
-                "scop":        5.15
+                "scop":        5.15,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          57,
@@ -770,7 +842,9 @@
                 "pu":          1595.67,
                 "defaultPu":   1595.67,
                 "description": "Puissance absorbée froid/chaud = 0,91kw/ 0,99kw\r\nPuissance sonore 61dBa\r\nDimension HxLxP = 550*765*285 mm - Poids = 32 kg\r\nFluide = R32\r\nSCOP = 5,15\r\nDont éco-participation 6,67 € HT",
-                "scop":        5.15
+                "scop":        5.15,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          58,
@@ -780,7 +854,9 @@
                 "pu":          2552.67,
                 "defaultPu":   2552.67,
                 "description": "Puissance absorbée froid/chaud = 1,36kw/ 1,45kw\r\nPuissance sonore 62dBa\r\nDimension HxLxP = 734*870*320 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,6\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.6
+                "scop":        4.6,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          59,
@@ -790,7 +866,9 @@
                 "pu":          422.04,
                 "defaultPu":   422.04,
                 "description": "Puissance restituée froid/chaud +7°c = 2kw/2,5kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 286*770*225 mm - Poids = 9 kg\r\nFluide = R32\r\nDont éco-participation 1,04 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          60,
@@ -800,7 +878,9 @@
                 "pu":          442.04,
                 "defaultPu":   442.04,
                 "description": "Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 286*770*225 mm - Poids = 9 kg\r\nFluide = R32\r\nDont éco-participation 1,04 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          61,
@@ -810,7 +890,9 @@
                 "pu":          558.04,
                 "defaultPu":   558.04,
                 "description": "Puissance restituée froid/chaud +7°c = 3,3kw/ 3,5kw\r\nPuissance sonore 21 dBa\r\nDimension HxLxP = 286*770*225 mm - Poids = 9 kg\r\nFluide = R32\r\nDont éco-participation 1,04 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          62,
@@ -820,7 +902,9 @@
                 "pu":          679.08,
                 "defaultPu":   679.08,
                 "description": "Puissance restituée froid/chaud +7°c = 5kw/ 6kw\r\nPuissance sonore 30 dBa\r\nDimension HxLxP= 295*990*263mm - Poids=13,5 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          63,
@@ -830,7 +914,9 @@
                 "pu":          739.08,
                 "defaultPu":   739.08,
                 "description": "Puissance restituée froid/chaud +7°c = 6kw/ 6,4kw\r\nPuissance sonore 32 dBa\r\nDimension HxLxP= 295*990*263mm - Poids=13,5 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          64,
@@ -840,7 +926,9 @@
                 "pu":          886.08,
                 "defaultPu":   886.08,
                 "description": "Puissance restituée froid/chaud +7°c = 7,1kw/ 8,2kw\r\nPuissance sonore 33 dBa\r\nDimension HxLxP= 295*990*263mm - Poids=13,5 kg\r\nFluide = R32\r\nDont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          65,
@@ -850,7 +938,9 @@
                 "pu":          708.67,
                 "defaultPu":   708.67,
                 "description": "Puissance absorbée froid/chaud = 0,51kw/ 0,6kw\r\nPuissance sonore 60dBa\r\nDimension HxLxP = 550*658*275 mm - Poids = 26 kg\r\nFluide = R32\r\nSCOP = 4,1\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.1
+                "scop":        4.1,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          66,
@@ -860,7 +950,9 @@
                 "pu":          745.67,
                 "defaultPu":   745.67,
                 "description": "Puissance absorbée froid/chaud = 0,76kw/ 0,70kw\r\nPuissance sonore 60dBa\r\nDimension HxLxP = 550*658*275 mm - Poids = 26 kg\r\nFluide = R32\r\nSCOP = 4,06\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.06
+                "scop":        4.06,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          67,
@@ -870,7 +962,9 @@
                 "pu":          819.67,
                 "defaultPu":   819.67,
                 "description": "Puissance absorbée froid/chaud = 1kw/ 0,94kw\r\nPuissance sonore 62dBa\r\nDimension HxLxP = 550*658*275 mm - Poids = 28 kg\r\nFluide = R32\r\nSCOP = 4,06\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.06
+                "scop":        4.06,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          68,
@@ -880,7 +974,9 @@
                 "pu":          1461.67,
                 "defaultPu":   1461.67,
                 "description": "Puissance absorbée froid/chaud = 1,5kw/ 1,62kw\r\nPuissance sonore 61dBa\r\nDimension HxLxP = 734*870*373 mm - Poids = 46 kg\r\nFluide = R32\r\nSCOP = 4,06\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.06
+                "scop":        4.06,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          69,
@@ -890,7 +986,9 @@
                 "pu":          1725.67,
                 "defaultPu":   1725.67,
                 "description": "Puissance absorbée froid/chaud = 1,85kw/ 1,63kw\r\nPuissance sonore 63dBa\r\nDimension HxLxP = 734*870*373 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 4,06\r\nDont éco-participation 6,67 € HT",
-                "scop":        4.06
+                "scop":        4.06,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          70,
@@ -900,7 +998,9 @@
                 "pu":          2264.67,
                 "defaultPu":   2264.67,
                 "description": "Puissance absorbée froid/chaud = 2,77kw/ 2,60kw\r\nPuissance sonore 66dBa\r\nDimension HxLxP = 734*870*373 mm - Poids = 50 kg\r\nFluide = R32\r\nSCOP = 3,9\r\nDont éco-participation 6,67 € HT",
-                "scop":        3.9
+                "scop":        3.9,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          71,
@@ -910,7 +1010,9 @@
                 "pu":          2216.67,
                 "defaultPu":   2216.67,
                 "description": "- Puissance calorifique +7°c/-7°c : 4,90/4,37 kW\r\n- COP +7°c/-7°c : 2,65/1,6\r\n- ETAs : 127 %\r\n- Classe énergétique : A++\r\n- Dimension : 740*884*388 mm Poids : 58,5kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 36 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 6,67 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        127
             },
             {
                 "id":          72,
@@ -920,7 +1022,9 @@
                 "pu":          2345.67,
                 "defaultPu":   2345.67,
                 "description": "- Puissance calorifique +7°c/-7°c : 5,81/5,72 kW\r\n- COP +7°c/-7°c : 2,7/1,74\r\n- ETAs : 127 %\r\n- Classe énergétique : A++\r\n- Dimension : 740*884*388 mm Poids : 58,5kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 38 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 6,67 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        127
             },
             {
                 "id":          73,
@@ -930,7 +1034,9 @@
                 "pu":          3681.67,
                 "defaultPu":   3681.67,
                 "description": "- Puissance calorifique +7°c/-7°c : 7,51/7,43 kW\r\n- COP +7°c/-7°c : 2,70/1,83\r\n- ETAs : 130 %\r\n- Classe énergétique : A++\r\n- Dimension : 740*884*388 mm Poids : 58,5kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 40 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 6,67 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        130
             },
             {
                 "id":          74,
@@ -940,7 +1046,9 @@
                 "pu":          3697.33,
                 "defaultPu":   3697.33,
                 "description": "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 42kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          75,
@@ -950,7 +1058,9 @@
                 "pu":          5015.33,
                 "defaultPu":   5015.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 131kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          76,
@@ -960,7 +1070,9 @@
                 "pu":          5254.33,
                 "defaultPu":   5254.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 139kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          77,
@@ -970,7 +1082,9 @@
                 "pu":          3618.33,
                 "defaultPu":   3618.33,
                 "description": "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 42kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          78,
@@ -980,7 +1094,9 @@
                 "pu":          5233.33,
                 "defaultPu":   5233.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 131kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          79,
@@ -990,7 +1106,9 @@
                 "pu":          5482.33,
                 "defaultPu":   5482.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 139kg\r\n- Plage de fonctionnement : -25°c/+25°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 28 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          80,
@@ -1000,7 +1118,9 @@
                 "pu":          5150.17,
                 "defaultPu":   5150.17,
                 "description": "- Puissance calorifique +7°c/-7°c : 15,19/10,12 kW\r\n- COP +7°c/-7°c : 2,89/2,28\r\n- ETAs : 129 %\r\n- Classe énergétique : A++\r\n- Dimension : 1440*1160*380 mm Poids : 143kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 42 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 19,17 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        129
             },
             {
                 "id":          81,
@@ -1010,7 +1130,9 @@
                 "pu":          5665.17,
                 "defaultPu":   5665.17,
                 "description": "- Puissance calorifique +7°c/-7°c : 17,09/12,38 kW\r\n- COP +7°c/-7°c : 3/2,31\r\n- ETAs : 130 %\r\n- Classe énergétique : A++\r\n- Dimension : 1440*1160*380 mm Poids : 143kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 42 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 19,17 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        130
             },
             {
                 "id":          82,
@@ -1020,7 +1142,9 @@
                 "pu":          6270.17,
                 "defaultPu":   6270.17,
                 "description": "- Puissance calorifique +7°c/-7°c : 18,99/12,65 kW\r\n- COP +7°c/-7°c : 2,99/2,09\r\n- ETAs : 133 %\r\n- Classe énergétique : A++\r\n- Dimension : 1440*1160*380 mm Poids : 143kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 44 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 19,17 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        133
             },
             {
                 "id":          83,
@@ -1030,7 +1154,9 @@
                 "pu":          4711.33,
                 "defaultPu":   4711.33,
                 "description": "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 38kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 36 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          84,
@@ -1040,7 +1166,9 @@
                 "pu":          6670.33,
                 "defaultPu":   6670.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 109kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 36 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          85,
@@ -1050,7 +1178,9 @@
                 "pu":          6902.33,
                 "defaultPu":   6902.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 118kg\r\n- Plage de fonctionnement : -25°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 1m) : 36 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          86,
@@ -1060,7 +1190,9 @@
                 "pu":          6830.17,
                 "defaultPu":   6830.17,
                 "description": "- Puissance calorifique à 60°C +7°c/-7°c : 10,16/10,06 kW\r\n- COP +7°c/-7°c : 2,61/2,01\r\n- ETAs : 140 %\r\n- Classe énergétique : A++\r\n- Dimension : 1003*1270*533 mm Poids : 146kg\r\n- Plage de fonctionnement : -28°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 32 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 19,17 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        140
             },
             {
                 "id":          87,
@@ -1070,7 +1202,9 @@
                 "pu":          7434.17,
                 "defaultPu":   7434.17,
                 "description": "- Puissance calorifique à 60°C +7°c/-7°c : 11,13/11,44 kW\r\n- COP +7°c/-7°c : 2,61/2,01\r\n- ETAs : 140 %\r\n- Classe énergétique : A++\r\n- Dimension : 1003*1270*533 mm Poids : 146kg\r\n- Plage de fonctionnement : -28°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 32 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 19,17 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        140
             },
             {
                 "id":          88,
@@ -1080,7 +1214,9 @@
                 "pu":          8597.17,
                 "defaultPu":   8597.17,
                 "description": "- Puissance calorifique à 60°C +7°c/-7°c : 12,10/11,97 kW\r\n- COP +7°c/-7°c : 2,61/2,01\r\n- ETAs : 140 %\r\n- Classe énergétique : A++\r\n- Dimension : 1003*1270*533 mm Poids : 146kg\r\n- Plage de fonctionnement : -28°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 32 dB(a)\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 19,17 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        140
             },
             {
                 "id":          89,
@@ -1090,7 +1226,9 @@
                 "pu":          6830.17,
                 "defaultPu":   6830.17,
                 "description": "- Puissance calorifique à 60°C +7°c/-7°c : 10,18/10,47 kW\r\n- COP +7°c/-7°c : 2,62/2,05\r\n- ETAs : 140 %\r\n- Classe énergétique : A++\r\n- Dimension : 1003*1270*533 mm Poids : 151kg\r\n- Plage de fonctionnement : -28°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 32 dB(a)\r\n- Alimentation électrique : TRIPHASÉE\r\n- Dont éco-participation 19,17 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        140
             },
             {
                 "id":          90,
@@ -1100,7 +1238,9 @@
                 "pu":          7434.17,
                 "defaultPu":   7434.17,
                 "description": "- Puissance calorifique à 60°C +7°c/-7°c : 11,15/11,91 kW\r\n- COP +7°c/-7°c : 2,61/2,03\r\n- ETAs : 140 %\r\n- Classe énergétique : A++\r\n- Dimension : 1003*1270*533 mm Poids : 151kg\r\n- Plage de fonctionnement : -28°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 32 dB(a)\r\n- Alimentation électrique : TRIPHASÉE\r\n- Dont éco-participation 19,17 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        140
             },
             {
                 "id":          91,
@@ -1110,7 +1250,9 @@
                 "pu":          8597.17,
                 "defaultPu":   8597.17,
                 "description": "- Puissance calorifique à 60°C +7°c/-7°c : 12,11/12,47 kW\r\n- COP +7°c/-7°c : 2,62/2,03\r\n- ETAs : 140 %\r\n- Classe énergétique : A++\r\n- Dimension : 1003*1270*533 mm Poids : 146kg\r\n- Plage de fonctionnement : -28°c/+35°c\r\n- Réfrigérant : R32\r\n- Pression sonore (à 5m) : 32 dB(a)\r\n- Alimentation électrique : triphasée\r\n- Dont éco-participation 19,17 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        140
             },
             {
                 "id":          92,
@@ -1120,7 +1262,9 @@
                 "pu":          4902.33,
                 "defaultPu":   4902.33,
                 "description": "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 38kg\r\n- Pression sonore (à 1m) : 30 dB(a)\r\n- Appoint électrique : 6 Kw\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          93,
@@ -1130,7 +1274,9 @@
                 "pu":          4902.33,
                 "defaultPu":   4902.33,
                 "description": "- Chauffage seul\r\n- Dimension : 840*440*390 mm Poids : 38kg\r\n- Pression sonore (à 1m) : 30 dB(a)\r\n- Appoint électrique : 9 Kw\r\n- Alimentation électrique : TRIPHASEE\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          94,
@@ -1140,7 +1286,9 @@
                 "pu":          7145.33,
                 "defaultPu":   7145.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 109kg\r\n- Pression sonore (à 1m) : 30 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          95,
@@ -1150,7 +1298,9 @@
                 "pu":          7145.33,
                 "defaultPu":   7145.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 180 L\r\n- Dimension : 1650*595*600 mm Poids : 109kg\r\n- Pression sonore (à 1m) : 30 dB(a)\r\n- Appoint électrique : 9 kW\r\n- Alimentation électrique : TRIPHASÉE\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          96,
@@ -1160,7 +1310,9 @@
                 "pu":          7411.33,
                 "defaultPu":   7411.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 118kg\r\n- Pression sonore (à 1m) : 30 dB(a)\r\n- Appoint électrique : 6 kW\r\n- Alimentation électrique : Monophasée\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          97,
@@ -1170,7 +1322,9 @@
                 "pu":          7411.33,
                 "defaultPu":   7411.33,
                 "description": "- Chauffage + ECS\r\n- Volume ECS : 230 L\r\n- Dimension : 1850*595*600 mm Poids : 118kg\r\n- Pression sonore (à 1m) : 30 dB(a)\r\n- Appoint électrique : 9 kW\r\n- Alimentation électrique : TRIPHASÉE\r\n- Dont éco-participation 8,33 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          98,
@@ -1180,7 +1334,9 @@
                 "pu":          649.08,
                 "defaultPu":   649.08,
                 "description": "- Puissance restituée froid/chaud +7°c = 1,5kw/1,8kw\r\n- Puissance sonore 21 dBa\r\n- Dimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\n- Fluide = R32\r\n- Dont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          99,
@@ -1190,7 +1346,9 @@
                 "pu":          670.08,
                 "defaultPu":   670.08,
                 "description": "- Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\n- Puissance sonore 19 dBa\r\n- Dimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\n- Fluide = R32\r\n- Dont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          100,
@@ -1200,7 +1358,9 @@
                 "pu":          692.08,
                 "defaultPu":   692.08,
                 "description": "- Puissance restituée froid/chaud +7°c = 2,5kw/2,8kw\r\n- Puissance sonore 19 dBa\r\n- Dimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\n- Fluide = R32\r\n- Dont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          101,
@@ -1210,7 +1370,9 @@
                 "pu":          909.08,
                 "defaultPu":   909.08,
                 "description": "- Puissance restituée froid/chaud +7°c = 3,5kw/ 3,8kw\r\n- Puissance sonore 19 dBa\r\n- Dimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\n- Fluide = R32\r\n- Dont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          102,
@@ -1220,7 +1382,9 @@
                 "pu":          1176.08,
                 "defaultPu":   1176.08,
                 "description": "- Puissance restituée froid/chaud +7°c = 4,2kw/ 5,4kw\r\n- Puissance sonore 21 dBa\r\n- Dimension HxLxP = 295*798*189 mm - Poids = 13 kg \r\n- Fluide = R32\r\n- Dont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
             },
             {
                 "id":          103,
@@ -1230,14 +1394,80 @@
                 "pu":          1232.08,
                 "defaultPu":   1232.08,
                 "description": "- Puissance restituée froid/chaud +7°c = 5kw/ 5,8kw\r\n- Puissance sonore 24 dBa\r\n- Dimension HxLxP= 295*798*189 mm - Poids=13 kg \r\n- Fluide = R32\r\n- Dont éco-participation 2,08 € HT",
-                "scop":        null
+                "scop":        null,
+                "quantity":    1,
+                "etas":        0
+            },
+            {
+                "id":          500,
+                "productType": "ecs",
+                "label":       "Ballon ECS Inox 150L pour Daikin Altherna",
+                "reference":   "EKHWS150D3V3",
+                "pu":          1595,
+                "defaultPu":   1595,
+                "description": "Livré avec une vanne 3 voies et une sonde de température",
+                "quantity":    1,
+                "volume":      150
+            },
+            {
+                "id":          501,
+                "productType": "ecs",
+                "label":       "Ballon ECS Inox 200L pour Daikin Altherna",
+                "reference":   "EKHWS200D3V3",
+                "pu":          1808,
+                "defaultPu":   1808,
+                "description": "Livré avec une vanne 3 voies et une sonde de température",
+                "quantity":    1,
+                "volume":      200
+            },
+            {
+                "id":          502,
+                "productType": "ecs",
+                "label":       "Ballon ECS Inox 300L pour Daikin Altherna",
+                "reference":   "EKHWS300D3V3",
+                "pu":          2071,
+                "defaultPu":   2071,
+                "description": "Livré avec une vanne 3 voies et une sonde de température",
+                "quantity":    1,
+                "volume":      300
+            },
+            {
+                "id":          600,
+                "productType": "kit_bi_zone",
+                "label":       "Kit bi-Zone",
+                "reference":   "BZKA7V3",
+                "pu":          2015,
+                "defaultPu":   2015,
+                "description": "empty",
+                "quantity":    1
+            },
+            {
+                "id":          700,
+                "productType": "kit_cascade",
+                "label":       "BALLON ECS INOX ADDITIONNEL DAIKIN",
+                "reference":   "DAIEKHWS200D3",
+                "pu":          1808,
+                "defaultPu":   1808,
+                "description": "Volume : 200 litres\nDimension H : 1264 diam :595",
+                "quantity":    1
+            },
+            {
+                "id":          701,
+                "productType": "kit_cascade",
+                "label":       "KIT MODULE DE GESTION POUR SYSTEME CASCADE",
+                "reference":   "EKCC-W",
+                "pu":          2600,
+                "defaultPu":   2600,
+                "description": "(Module gestion + 2 cartes de communications)",
+                "quantity":    1
             }
         ],
         "totalHt":            0,
         "totalTva":           0,
         "totalTtc":           0,
         "remainderToPay":     0,
-        "tva":                5.5
+        "tva":                5.5,
+        "cascadeSystem":      false
     },
     "scales":                    [
         {

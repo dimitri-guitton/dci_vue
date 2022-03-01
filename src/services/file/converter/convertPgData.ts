@@ -11,6 +11,7 @@ import {
     convertOldTotalHt,
     convertOldTotalTva,
     getBoolData,
+    getNullableNumberData,
     getNumberData,
     getObjectData,
     getStringData,
@@ -47,6 +48,7 @@ const convertOldPgProduct = ( oldData ): Product[] => {
                              type:        product[ 'type' ],
                              power:       product[ 'puissance' ],
                              color:       product[ 'couleurProfile' ],
+                             quantity:    1,
                          } );
     } );
 
@@ -73,6 +75,7 @@ const convertOldPgProduct = ( oldData ): Product[] => {
                              description: product[ 'descr' ],
                              type:        product[ 'type' ],
                              air:         product[ 'air' ],
+                             quantity:    1,
                          } );
     } );
 
@@ -121,6 +124,7 @@ const convertSelectedPgProduct = ( oldData ): Product[] => {
                                          type:        product[ 'type' ],
                                          power:       product[ 'puissance' ],
                                          color:       product[ 'couleurProfile' ],
+                                         quantity:    1,
                                      } );
 
         }
@@ -137,6 +141,7 @@ const convertSelectedPgProduct = ( oldData ): Product[] => {
                                          defaultPu:   product[ 'defaultPU' ],
                                          description: product[ 'descr' ],
                                          type:        product[ 'type' ],
+                                         quantity:    1,
                                      } );
 
         }
@@ -263,7 +268,7 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             dataGeoportail:    convertOldDataGeoportail( oldData ),
             location:          getObjectData( oldData, [ 'logement', 'location' ] ),
             insulationQuality: getObjectData( oldData, [ 'logement', 'qualiteIsolation' ] ),
-            constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
+            constructionYear:  getNullableNumberData( oldData [ 'logement' ][ 'anneeConstruction' ] ),
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  '',
         },

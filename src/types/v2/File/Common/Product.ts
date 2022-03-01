@@ -9,10 +9,13 @@ export interface Product {
     description: string;
     defaultPu: number;
     pu: number;
+    quantity: number;
     size?: string;
+    volume?: number;
     model?: string;
     type?: string;
     scop?: string;
+    etas?: number;
     power?: number;
     color?: string;
     air?: boolean;

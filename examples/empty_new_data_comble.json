@@ -43,7 +43,7 @@
         "dataGeoportail":    {},
         "location":          "",
         "insulationQuality": "",
-        "constructionYear":  "",
+        "constructionYear":  null,
         "lessThan2Years":    false,
         "availableVoltage":  ""
     },
@@ -222,7 +222,8 @@
                 "reference":   "Laine minérale de Verre SUPAFIL Thermo Loft. R = 7m².K/W, ép.320mm",
                 "pu":          12.2,
                 "defaultPu":   12.2,
-                "description": "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 7 m².k/w   Épaisseur mini (mm) : 320 mm\r\n- Pouvoir couvrant (kg/m²) : 3,8 - Classement au feu : A1 (incombustible)"
+                "description": "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 7 m².k/w   Épaisseur mini (mm) : 320 mm\r\n- Pouvoir couvrant (kg/m²) : 3,8 - Classement au feu : A1 (incombustible)",
+                "quantity":    1
             }
         ],
         "products":           [
@@ -233,7 +234,8 @@
                 "reference":   "Laine minérale de Verre SUPAFIL Thermo Loft. R = 7m².K/W, ép.320mm",
                 "pu":          12.2,
                 "defaultPu":   12.2,
-                "description": "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 7 m².k/w   Épaisseur mini (mm) : 320 mm\r\n- Pouvoir couvrant (kg/m²) : 3,8 - Classement au feu : A1 (incombustible)"
+                "description": "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 7 m².k/w   Épaisseur mini (mm) : 320 mm\r\n- Pouvoir couvrant (kg/m²) : 3,8 - Classement au feu : A1 (incombustible)",
+                "quantity":    1
             },
             {
                 "id":          4,
@@ -242,7 +244,8 @@
                 "reference":   "Laine minérale de Verre SUPAFIL Thermo Loft. R = 8m².K/W, ép.365mm",
                 "pu":          13.7,
                 "defaultPu":   13.7,
-                "description": "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 8 m².k/w   Épaisseur mini (mm) : 365 mm\r\n- Pouvoir couvrant (kg/m²) : 4.4 - Classement au feu : A1 (incombustible)"
+                "description": "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 8 m².k/w   Épaisseur mini (mm) : 365 mm\r\n- Pouvoir couvrant (kg/m²) : 4.4 - Classement au feu : A1 (incombustible)",
+                "quantity":    1
             },
             {
                 "id":          5,
@@ -251,7 +254,8 @@
                 "reference":   "Laine minérale de Verre SUPAFIL Thermo Loft. R = 9m².K/W, ép.410mm",
                 "pu":          15.2,
                 "defaultPu":   15.2,
-                "description": "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 9 m².k/w    Épaisseur mini (mm) : 410 mm\r\n- Pouvoir couvrant (kg/m²) : 4.9 - Classement au feu : A1 (incombustible)"
+                "description": "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 9 m².k/w    Épaisseur mini (mm) : 410 mm\r\n- Pouvoir couvrant (kg/m²) : 4.9 - Classement au feu : A1 (incombustible)",
+                "quantity":    1
             }
         ],
         "discount":           0,

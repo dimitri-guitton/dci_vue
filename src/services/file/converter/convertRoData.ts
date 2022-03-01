@@ -12,17 +12,37 @@ import {
     convertOldTotalTva,
     getArrayData,
     getBoolData,
+    getNullableNumberData,
     getNumberData,
     getObjectData,
     getStringData,
 } from '@/services/file/converter/convertData';
 import { Product } from '@/types/v2/File/Common/Product';
-import RoKitBiZone from '@/types/v2/File/Ro/RoKitBiZone';
-import RoEcsDeporte from '@/types/v2/File/Ro/RoEcsDeporte';
 import RoList from '@/types/v2/File/Ro/RoList';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { FILE_PAC_RO } from '@/services/constantService';
+
+const getEtas = ( description: string ): number => {
+    const regex = /etas.*(\d{3}).*%/gmi;
+    let m;
+    let etas    = 0;
+
+    while ( ( m = regex.exec( description ) ) !== null ) {
+        if ( m.index === regex.lastIndex ) {
+            regex.lastIndex++;
+        }
+
+        // The result can be accessed through the `m`-variable.
+        m.forEach( ( match, groupIndex ) => {
+            console.log( `Found match, group ${ groupIndex }: ${ match }` );
+        } );
+
+        etas = m[ 1 ];
+    }
+
+    return +etas;
+};
 
 const convertOldRoProduct = ( oldData ): Product[] => {
     const roProducts: Product[] = [];
@@ -48,8 +68,92 @@ const convertOldRoProduct = ( oldData ): Product[] => {
                              defaultPu:   product[ 'defaultPU' ],
                              description: product[ 'descr' ],
                              scop:        product[ 'scop' ],
+                             quantity:    1,
+                             etas:        getEtas( product[ 'descr' ] ),
                          } );
     } );
+
+    const oldEcs: [] = getObjectData( oldData,
+                                      [
+                                          'lists',
+                                          'EcsDeporte',
+                                      ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                 [
+                                                                                     'lists',
+                                                                                     'EcsDeporte',
+                                                                                 ] );
+
+    let index = 500;
+    oldEcs.forEach( product => {
+        let volume = 150;
+        if ( index === 501 ) {
+            volume = 200;
+        } else if ( index === 502 ) {
+            volume = 300;
+        }
+
+        roProducts.push( {
+                             id:          index,
+                             productType: 'ecs',
+                             label:       product[ 'label' ],
+                             reference:   product[ 'ref' ],
+                             pu:          product[ 'pu' ],
+                             defaultPu:   product[ 'pu' ],
+                             description: product[ 'descr' ],
+                             quantity:    1,
+                             volume,
+                         } );
+
+        index++;
+    } );
+
+    const oldKitBiZone: [] = getObjectData( oldData,
+                                            [
+                                                'lists',
+                                                'kitBiZone',
+                                            ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                       [
+                                                                                           'lists',
+                                                                                           'kitBiZone',
+                                                                                       ] );
+
+    index = 600;
+    oldKitBiZone.forEach( product => {
+        roProducts.push( {
+                             id:          index,
+                             productType: 'kit_bi_zone',
+                             label:       product[ 'label' ],
+                             reference:   product[ 'ref' ],
+                             pu:          product[ 'pu' ],
+                             defaultPu:   product[ 'pu' ],
+                             description: 'empty',
+                             quantity:    1,
+                         } );
+
+        index++;
+    } );
+
+    roProducts.push( {
+                         id:          700,
+                         productType: 'kit_cascade',
+                         label:       'BALLON ECS INOX ADDITIONNEL DAIKIN',
+                         reference:   'DAIEKHWS200D3',
+                         pu:          1808,
+                         defaultPu:   1808,
+                         description: 'Volume : 200 litres\nDimension H : 1264 diam :595',
+                         quantity:    1,
+                     } );
+
+    roProducts.push( {
+                         id:          701,
+                         productType: 'kit_cascade',
+                         label:       'KIT MODULE DE GESTION POUR SYSTEME CASCADE',
+                         reference:   'EKCC-W',
+                         pu:          2600,
+                         defaultPu:   2600,
+                         description: '(Module gestion + 2 cartes de communications)',
+                         quantity:    1,
+                     } );
 
     return roProducts;
 };
@@ -68,41 +172,12 @@ const convertSelectedRoProduct = ( oldData ): Product[] => {
                                      defaultPu:   product[ 'defaultPU' ],
                                      description: product[ 'descr' ],
                                      scop:        product[ 'scop' ],
+                                     quantity:    1,
                                  } );
     } );
 
     return selectedRoProducts;
 };
-
-const convertOldSelectedKitBiZone = ( oldData ): RoKitBiZone | undefined => {
-    let selectedKitBiZone: RoKitBiZone | undefined;
-    if ( getObjectData( oldData, [ 'devis', 'ro', 'isKitBiZone' ] ) === true ) {
-        selectedKitBiZone = {
-            label: getObjectData( oldData, [ 'devis', 'ro', 'selectedKitBiZone', 'label' ] ),
-            ref:   getObjectData( oldData, [ 'devis', 'ro', 'selectedKitBiZone', 'ref' ] ),
-            pu:    getObjectData( oldData, [ 'devis', 'ro', 'selectedKitBiZone', 'volume' ] ),
-        };
-    }
-
-    return selectedKitBiZone;
-};
-
-const convertOldSelectedEscDeporte = ( oldData ): RoEcsDeporte | undefined => {
-    let selectedEcsDeporte: RoEcsDeporte | undefined;
-
-    if ( getObjectData( oldData, [ 'devis', 'ro', 'isEcsDeporte' ] ) === true ) {
-        selectedEcsDeporte = {
-            volume:      getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'volume' ] ),
-            label:       getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'label' ] ),
-            ref:         getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'ref' ] ),
-            pu:          getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'pu' ] ),
-            description: getObjectData( oldData, [ 'devis', 'ro', 'selectedEcsDeporte', 'descr' ] ),
-        };
-    }
-
-    return selectedEcsDeporte;
-};
-
 
 const convertOldRoItemList = ( oldData ): RoList => {
     const lists: RoList = {
@@ -207,7 +282,7 @@ export const convertOldRoFile = ( oldData ): RoFile => {
         beneficiary:               convertOldBeneficiary( oldData ),
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
-        housing:                   {
+        housing:   {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
             heatingType:       getObjectData( oldData, [ 'logement', 'chauffageType' ] ),
@@ -222,7 +297,7 @@ export const convertOldRoFile = ( oldData ): RoFile => {
             dataGeoportail:    convertOldDataGeoportail( oldData ),
             location:          getObjectData( oldData, [ 'logement', 'location' ] ),
             insulationQuality: getNumberData( oldData [ 'logement' ][ 'qualiteIsolation' ] ),
-            constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
+            constructionYear:  getNullableNumberData( oldData [ 'logement' ][ 'anneeConstruction' ] ),
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },
@@ -258,7 +333,7 @@ export const convertOldRoFile = ( oldData ): RoFile => {
             tensionDisponible:         getObjectData( oldData, [ 'fiche', 'tensionDisponible' ] ),
             infosSup:                  getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
-        quotation:                 {
+        quotation: {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
@@ -273,11 +348,11 @@ export const convertOldRoFile = ( oldData ): RoFile => {
             selectedProducts:   convertSelectedRoProduct( oldData ),
             assortment:         getObjectData( oldData, [ 'devis', 'gamme' ] ),
             volumeECS:          getNumberData( oldData [ 'devis' ][ 'ro' ][ 'volumeECS' ] ),
-            volumeECSDeporte:   getNumberData( oldData [ 'devis' ][ 'ro' ][ 'volumeECSDeporte' ] ),
+            volumeECSDeporte:   getNumberData( oldData [ 'devis' ][ 'ro' ][ 'volumeECSDeporte' ] ) === 0
+                                ? 150
+                                : getNumberData( oldData [ 'devis' ][ 'ro' ][ 'volumeECSDeporte' ] ),
             isEcsDeporte:       getBoolData( oldData [ 'devis' ][ 'ro' ][ 'isEcsDeporte' ] ),
-            selectedEcsDeporte: convertOldSelectedEscDeporte( oldData ),
             isKitBiZone:        getBoolData( oldData [ 'devis' ][ 'ro' ][ 'isKitBiZone' ] ),
-            selectedKitBiZone:  convertOldSelectedKitBiZone( oldData ),
             ceilingHeight:      getNumberData( oldData [ 'devis' ][ 'ro' ][ 'hauteurSousPlafond' ] ),
             deviceToReplace:    {
                 type:  getObjectData( oldData, [ 'devis', 'ro', 'appareilRemplacer', 'type' ] ),
@@ -290,6 +365,7 @@ export const convertOldRoFile = ( oldData ): RoFile => {
             totalTtc:           0,
             remainderToPay:     0,
             tva:                getNumberData( oldData [ 'devis' ][ 'tva' ] ),
+            cascadeSystem:      false,
         },
         scales:                    convertOldScales( oldData ),
         bonusWithoutCdp:           {

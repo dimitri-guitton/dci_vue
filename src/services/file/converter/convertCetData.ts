@@ -11,6 +11,7 @@ import {
     convertOldTotalHt,
     convertOldTotalTva,
     getBoolData,
+    getNullableNumberData,
     getNumberData,
     getObjectData,
     getStringData,
@@ -46,6 +47,7 @@ const convertOldCetProduct = ( oldData ): Product[] => {
                              description: product[ 'descr' ],
                              size:        product[ 'size' ],
                              type:        product[ 'type' ],
+                             quantity:    1,
                          } );
     } );
 
@@ -79,6 +81,7 @@ const convertSelectedCetProduct = ( oldData ): Product[] => {
                                          description: product[ 'descr' ],
                                          size:        product[ 'size' ],
                                          type:        product[ 'type' ],
+                                         quantity:    1,
                                      } );
         }
     } );
@@ -207,7 +210,7 @@ export const convertOldCetFile = ( oldData ): CetFile => {
             dataGeoportail:    convertOldDataGeoportail( oldData ),
             location:          getObjectData( oldData, [ 'logement', 'location' ] ),
             insulationQuality: getObjectData( oldData, [ 'logement', 'qualiteIsolation' ] ),
-            constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
+            constructionYear:  getNullableNumberData( oldData [ 'logement' ][ 'anneeConstruction' ] ),
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },

@@ -12,6 +12,7 @@ import {
     convertOldTotalTva,
     getArrayData,
     getBoolData,
+    getNullableNumberData,
     getNumberData,
     getObjectData,
     getStringData,
@@ -47,6 +48,7 @@ const convertOldRrProduct = ( oldData ): Product[] => {
                              defaultPu:   product[ 'defaultPU' ],
                              description: product[ 'descr' ],
                              scop:        product[ 'scop' ],
+                             quantity:    1,
                          } );
     } );
 
@@ -67,6 +69,7 @@ const convertSelectedRProduct = ( oldData ): Product[] => {
                                      defaultPu:   product[ 'defaultPU' ],
                                      description: product[ 'descr' ],
                                      scop:        product[ 'scop' ],
+                                     quantity:    1,
                                  } );
     } );
 
@@ -240,7 +243,7 @@ export const convertOldRrFile = ( oldData ): RrFile => {
             dataGeoportail:    convertOldDataGeoportail( oldData ),
             location:          getObjectData( oldData, [ 'logement', 'location' ] ),
             insulationQuality: getNumberData( oldData [ 'logement' ][ 'qualiteIsolation' ] ),
-            constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
+            constructionYear:  getNullableNumberData( oldData [ 'logement' ][ 'anneeConstruction' ] ),
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },

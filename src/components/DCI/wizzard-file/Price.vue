@@ -74,22 +74,8 @@ export default defineComponent( {
                                     },
                                   },
                                   setup() {
-                                    const formatNumber = ( number: string | number ): string => {
-                                      let convertedNumber: number;
-                                      if ( typeof number === 'string' ) {
-                                        convertedNumber = +number;
-                                      } else if ( isNaN( number ) ) {
-                                        convertedNumber = 0;
-                                      } else {
-                                        convertedNumber = number;
-                                      }
-
-                                      return convertedNumber.toFixed( 2 );
-                                    };
-
                                     return {
-                                      formatNumber,
-                                      numberToPrice: numberToPrice,
+                                      numberToPrice,
                                     };
                                   },
                                 } );

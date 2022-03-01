@@ -781,10 +781,14 @@ export class QuotationGenerator extends PdfGenerator {
         const data: TableCell[][] = [];
 
         for ( const product of this._file.quotation.selectedProducts ) {
-            // TODO GÉRER LA QUANTITÉ
-            let price = this.formatPrice( product.pu );
+            let price = this.formatPrice( product.pu * product.quantity );
             if ( this._file.type === FILE_SOL || this._file.type === FILE_COMBLE ) {
                 price = this.formatPrice( product.pu * this._file.housing.area );
+            }
+
+            let quantity = `${ product.quantity }u`;
+            if ( this._file.type === FILE_SOL || this._file.type === FILE_COMBLE ) {
+                quantity = `${ this._file.housing.area }m2`;
             }
             data.push( [
                            {
@@ -794,11 +798,11 @@ export class QuotationGenerator extends PdfGenerator {
                                text: product.description,
                            },
                            {
-                               text:      '1u', // TODO GÉRER LA QUANTITÉ
+                               text:      quantity,
                                alignment: 'right',
                            },
                            {
-                               text:      this.formatPrice( product.pu ),
+                               text:      this.formatPrice( price ),
                                alignment: 'right',
                            },
                            {

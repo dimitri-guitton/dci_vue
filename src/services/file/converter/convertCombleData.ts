@@ -11,6 +11,7 @@ import {
     convertOldTotalHt,
     convertOldTotalTva,
     getBoolData,
+    getNullableNumberData,
     getNumberData,
     getObjectData,
     getStringData,
@@ -47,6 +48,7 @@ const convertOldCombleProduct = ( oldData ): Product[] => {
                                  type:        product[ 'type' ],
                                  power:       product[ 'puissance' ],
                                  color:       product[ 'couleurProfile' ],
+                                 quantity:    1,
                              } );
     } );
     return combleProducts;
@@ -80,6 +82,7 @@ const convertSelectedCombleProduct = ( oldData ): Product[] => {
                                              type:        product[ 'type' ],
                                              power:       product[ 'puissance' ],
                                              color:       product[ 'couleurProfile' ],
+                                             quantity:    1,
                                          } );
 
         }
@@ -208,7 +211,7 @@ export const convertOldCombleFile = ( oldData ): CombleFile => {
             dataGeoportail:    convertOldDataGeoportail( oldData ),
             location:          getObjectData( oldData, [ 'logement', 'location' ] ),
             insulationQuality: getObjectData( oldData, [ 'logement', 'qualiteIsolation' ] ),
-            constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
+            constructionYear:  getNullableNumberData( oldData [ 'logement' ][ 'anneeConstruction' ] ),
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },

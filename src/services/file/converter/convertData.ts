@@ -32,6 +32,13 @@ export const getNumberData = ( data: any ): number => {
     return data === undefined ? 0 : +data;
 };
 
+export const getNullableNumberData = ( data: any ): number | null => {
+    if ( data === undefined || data === '' || data === null ) {
+        return null;
+    }
+    return +data;
+};
+
 export const getBoolData = ( data: any ): boolean => {
     return data === undefined ? false : data;
 };
