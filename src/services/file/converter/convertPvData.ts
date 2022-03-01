@@ -18,87 +18,45 @@ import {
 } from '@/services/file/converter/convertData';
 import { Product } from '@/types/v2/File/Common/Product';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
-import { FILE_PB } from '@/services/constantService';
-import PbList from '@/types/v2/File/Pb/PbList';
-import { PbFile } from '@/types/v2/File/Pb/PbFile';
+import { FILE_PV } from '@/services/constantService';
+import PvList from '@/types/v2/File/Pv/PvList';
+import { PvFile } from '@/types/v2/File/Pv/PvFile';
 
-const convertOldPbProduct = ( oldData ): Product[] => {
-    const pbProducts: Product[] = [];
+const convertOldPvProduct = ( oldData ): Product[] => {
+    const pvProducts: Product[] = [];
     const oldProducts: []       = getObjectData( oldData,
                                                  [
                                                      'devis',
-                                                     'poeles',
+                                                     'pv',
                                                      'products',
                                                  ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
                                                                                             [
                                                                                                 'devis',
-                                                                                                'poeles',
+                                                                                                'pv',
                                                                                                 'products',
                                                                                             ] );
 
-    const regex = /(.*)\s\s/g;
 
     let index = 1;
     oldProducts.forEach( product => {
-        let label = '';
-
-        let m;
-        let found = false;
-        while ( ( m = regex.exec( product[ 'label' ] ) ) !== null ) {
-            // This is necessary to avoid infinite loops with zero-width matches
-            if ( m.index === regex.lastIndex ) {
-                regex.lastIndex++;
-            }
-
-            if ( !found ) {
-                label = m[ 1 ];
-                found = true;
-            }
-        }
-
-        pbProducts.push( {
+        pvProducts.push( {
                              id:          index,
-                             productType: FILE_PB,
-                             label:       label,
-                             reference:   product[ 'ref' ],
-                             pu:          product[ 'pu' ],
-                             defaultPu:   product[ 'pu' ],
-                             description: product[ 'label' ],
-                             quantity:    1,
-                         } );
-
-        index++;
-    } );
-
-    const other: [] = getObjectData( oldData,
-                                     [
-                                         'devis',
-                                         'autres',
-                                     ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
-                                                                                [
-                                                                                    'devis',
-                                                                                    'autres',
-                                                                                ] );
-
-    other.forEach( product => {
-        pbProducts.push( {
-                             id:          index,
-                             productType: 'creation',
+                             productType: FILE_PV,
                              label:       product[ 'label' ],
                              reference:   product[ 'ref' ],
                              pu:          product[ 'pu' ],
                              defaultPu:   product[ 'pu' ],
-                             description: 'empty',
-                             quantity:    1,
+                             description: product[ 'description' ],
+                             quantity:    product[ 'quantity' ],
                          } );
+
         index++;
     } );
-
-    return pbProducts;
+    return pvProducts;
 };
 
-const convertOldPbItemList = ( oldData ): PbList => {
-    const lists: PbList = {
+const convertOldPvItemList = ( oldData ): PvList => {
+    const lists: PvList = {
         localTypeList:         [],
         qualiteIsolationList:  [],
         statutMenageTypeList:  [],
@@ -116,7 +74,7 @@ const convertOldPbItemList = ( oldData ): PbList => {
         typeOrigineList:       [],
     };
 
-    const pbItems = [
+    const pvItems = [
         'localType',
         'qualiteIsolation',
         'statutMenageType',
@@ -155,7 +113,7 @@ const convertOldPbItemList = ( oldData ): PbList => {
 
     // @TODO si l'ancien JSON n'a pas la liste la créer avec les nouvelle valeur par défaut
 
-    for ( const item of pbItems ) {
+    for ( const item of pvItems ) {
         const oldList = getObjectData( oldData[ 'lists' ], [ item ] );
         if ( !oldList ) {
             continue;
@@ -183,10 +141,10 @@ const convertOldPbItemList = ( oldData ): PbList => {
     return lists;
 };
 
-export const convertOldPbFile = ( oldData ): PbFile => {
+export const convertOldPvFile = ( oldData ): PvFile => {
     return {
         version:                   '1',
-        type:                      FILE_PB,
+        type:                      FILE_PV,
         ref:                       getStringData( oldData[ 'ref' ] ),
         folderName:                getStringData( oldData[ 'folderName' ] ),
         createdAt:                 getStringData( oldData[ 'createdAt' ] ),
@@ -236,14 +194,13 @@ export const convertOldPbFile = ( oldData ): PbFile => {
             tva20:              0,
             ceeBonus:           getNumberData( oldData [ 'devis' ][ 'primeCEE' ] ),
             selectedProducts:   [],
-            products:           convertOldPbProduct( oldData ),
+            products:           convertOldPvProduct( oldData ),
             maPrimeRenovBonus:  getNumberData( oldData [ 'devis' ][ 'primeAnah' ] ),
             discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
             totalHt:            convertOldTotalHt( oldData ),
             totalTva:           convertOldTotalTva( oldData ),
             totalTtc:           0,
             remainderToPay:     0,
-            newCreation:        true,
         },
         scales:                    convertOldScales( oldData ),
         statusInDci:               convertOldStatusDci( oldData ),
@@ -254,6 +211,6 @@ export const convertOldPbFile = ( oldData ): PbFile => {
             firstName: getObjectData( oldData, [ 'technicien', 'id' ] ),
             phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
         },
-        lists:                     convertOldPbItemList( oldData ),
+        lists:                     convertOldPvItemList( oldData ),
     };
 };

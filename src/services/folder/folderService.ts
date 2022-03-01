@@ -18,6 +18,7 @@ import { shell } from 'electron';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 import { NewFolderData } from '@/components/DCI/modals/NewFileModal.vue';
 import { convertOldPbFile } from '@/services/file/converter/convertPbData';
+import { convertOldPvFile } from '@/services/file/converter/convertPvData';
 
 const schema = {
     dropboxPath: {
@@ -212,6 +213,10 @@ export const convertAllOldJsonToNewJson = () => {
         console.log( '%c CONVERT OLD PB', 'background: #4CD439; color: #000000' );
         oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_pb.json', 'utf8' ) ) );
     }
+    if ( fs.existsSync( 'examples/old_data_pv.json' ) ) {
+        console.log( '%c CONVERT OLD PV', 'background: #4CD439; color: #000000' );
+        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_pv.json', 'utf8' ) ) );
+    }
 
     for ( const oldData of oldDatas ) {
         let data = '';
@@ -235,6 +240,8 @@ export const convertAllOldJsonToNewJson = () => {
             data = JSON.stringify( convertOldSolFile( oldData ), null, 4 );
         } else if ( type === 'pb' ) {
             data = JSON.stringify( convertOldPbFile( oldData ), null, 4 );
+        } else if ( type === 'pv' ) {
+            data = JSON.stringify( convertOldPvFile( oldData ), null, 4 );
         } else {
             console.log( '%c RETURN FALSE', 'background: #fdd835; color: #000000' );
             return false;

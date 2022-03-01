@@ -49,7 +49,7 @@
           ></ErrorMessage>
         </div>
         <div class="col-md-2 fv-row d-flex justify-content-end align-items-center">
-          <h5 class="mb-3">{{ ( option.pu * option.number ).toFixed( 2 ) }} €</h5>
+          <h5 class="mb-3">{{ numberToPrice( option.pu * option.number ) }}</h5>
         </div>
       </div>
     </template>
@@ -60,6 +60,7 @@
 import { defineComponent, ref } from 'vue';
 import { ErrorMessage, Field } from 'vee-validate';
 import { Option } from '@/types/v2/File/Common/Option';
+import { numberToPrice } from '@/services/commonService';
 
 export default defineComponent( {
                                   name:       'options',
@@ -84,6 +85,7 @@ export default defineComponent( {
                                     return {
                                       optionList,
                                       onChangeOption,
+                                      numberToPrice,
                                     };
                                   },
                                 } );

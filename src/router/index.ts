@@ -59,6 +59,11 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/views/file/pb/FileEdit.vue'),
             },
             {
+                path:      '/file-pv-edit',
+                name:      'file-pv-edit',
+                component: () => import('@/views/file/pv/FileEdit.vue'),
+            },
+            {
                 path:      '/parameters',
                 name:      'parameters',
                 component: () => import('@/views/Parameters.vue'),

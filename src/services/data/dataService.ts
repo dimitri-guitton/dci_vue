@@ -18,6 +18,7 @@ import { PgFile } from '@/types/v2/File/Pg/PgFile';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { PbFile } from '@/types/v2/File/Pb/PbFile';
+import { PvFile } from '@/types/v2/File/Pv/PvFile';
 
 const schema = {
     dropboxPath:          {
@@ -94,6 +95,10 @@ export const getCurrentCetFileData = (): CetFile => {
 };
 
 export const getCurrentPbFileData = (): PbFile => {
+    return getCurrentFileData();
+};
+
+export const getCurrentPvFileData = (): PvFile => {
     return getCurrentFileData();
 };
 

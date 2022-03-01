@@ -10,9 +10,10 @@ import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { toFrenchDate } from '@/services/commonService';
 import { PbFile } from '@/types/v2/File/Pb/PbFile';
+import { PvFile } from '@/types/v2/File/Pv/PvFile';
 
 export class ContributionFrameworkGenerator extends PdfGenerator {
-    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile;
+    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile | PvFile;
 
     private _style: StyleDictionary = {
         header:      {
@@ -26,7 +27,7 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
     };
 
 
-    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile ) {
+    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile | PvFile ) {
         super();
         this._file = file;
         this.type  = PdfType.ContributionFramework;

@@ -33,11 +33,6 @@ const getEtas = ( description: string ): number => {
             regex.lastIndex++;
         }
 
-        // The result can be accessed through the `m`-variable.
-        m.forEach( ( match, groupIndex ) => {
-            console.log( `Found match, group ${ groupIndex }: ${ match }` );
-        } );
-
         etas = m[ 1 ];
     }
 

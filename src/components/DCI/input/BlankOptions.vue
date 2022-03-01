@@ -60,8 +60,8 @@
           ></ErrorMessage>
         </div>
         <div class="col-md-2 fv-row d-flex justify-content-end align-items-center">
-          <template v-if="option.pu && option.number">
-            <h5 class="mb-3">{{ ( option.pu * option.number ).toFixed( 2 ) }} €</h5>
+          <template v-if="option.number && option.label !== ''">
+            <h5 class="mb-3">{{ numberToPrice( option.pu * option.number ) }}</h5>
           </template>
           <template v-else>
             <h5>0 €</h5>
@@ -77,6 +77,7 @@
 import { defineComponent, ref } from 'vue';
 import { ErrorMessage, Field } from 'vee-validate';
 import { Option } from '@/types/v2/File/Common/Option';
+import { numberToPrice } from '@/services/commonService';
 
 export default defineComponent( {
                                   name:       'blank-options',
@@ -102,6 +103,7 @@ export default defineComponent( {
                                     return {
                                       optionList,
                                       onChangeOption,
+                                      numberToPrice,
                                     };
                                   },
                                 } );

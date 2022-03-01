@@ -160,7 +160,7 @@
         "defaultNumber": 1,
         "number":        1
       }
-        ],
+    ],
     "blankOptions":       [
       {
         "id":     "sup1",
@@ -1363,16 +1363,16 @@
           "min": 0,
           "max": 22320
         },
-                {
-                    "nbr": 3,
-                    "min": 0,
-                    "max": 26844
-                },
-                {
-                    "nbr": 4,
-                    "min": 0,
-                    "max": 31359
-                },
+        {
+          "nbr": 3,
+          "min": 0,
+          "max": 26844
+        },
+        {
+          "nbr": 4,
+          "min": 0,
+          "max": 31359
+        },
                 {
                     "nbr": 5,
                     "min": 0,
@@ -1403,16 +1403,16 @@
                     "min": 0,
                     "max": 58524
                 },
-                {
-                    "nbr": 11,
-                    "min": 0,
-                    "max": 63050
-                },
-                {
-                  "nbr": 12,
-                  "min": 0,
-                  "max": 67576
-                },
+        {
+          "nbr": 11,
+          "min": 0,
+          "max": 63050
+        },
+        {
+          "nbr": 12,
+          "min": 0,
+          "max": 67576
+        },
         {
           "nbr": 13,
           "min": 0,
@@ -1426,28 +1426,28 @@
         "h3": 20
       }
     },
+    {
+      "stages":   [
         {
-          "stages":   [
-            {
-              "nbr": 1,
-              "min": 0,
-              "max": 19565
-            },
-            {
-              "nbr": 2,
-              "min": 0,
-              "max": 28614
-            },
-                {
-                    "nbr": 3,
-                    "min": 0,
-                    "max": 34411
-                },
-                {
-                    "nbr": 4,
-                    "min": 0,
-                    "max": 40201
-                },
+          "nbr": 1,
+          "min": 0,
+          "max": 19565
+        },
+        {
+          "nbr": 2,
+          "min": 0,
+          "max": 28614
+        },
+        {
+          "nbr": 3,
+          "min": 0,
+          "max": 34411
+        },
+        {
+          "nbr": 4,
+          "min": 0,
+          "max": 40201
+        },
                 {
                     "nbr": 5,
                     "min": 0,
@@ -1478,179 +1478,179 @@
                     "min": 0,
                     "max": 75000
                 },
-                {
-                    "nbr": 11,
-                    "min": 0,
-                    "max": 80797
-                },
-                {
-                  "nbr": 12,
-                  "min": 0,
-                  "max": 86594
-                },
-            {
-              "nbr": 13,
-              "min": 0,
-              "max": 92391
-            }
-          ],
-          "code":     "P",
-          "ceeBonus": {
-            "h1": 20,
-            "h2": 20,
-            "h3": 20
-          }
+        {
+          "nbr": 11,
+          "min": 0,
+          "max": 80797
         },
         {
-          "stages":   [
-            {
-              "nbr": 1,
-              "min": 0,
-              "max": 29148
-            },
-            {
-              "nbr": 2,
-              "min": 0,
-              "max": 42848
-            },
-                {
-                    "nbr": 3,
-                    "min": 0,
-                    "max": 51592
-                },
-                {
-                    "nbr": 4,
-                    "min": 0,
-                    "max": 60336
-                },
-                {
-                    "nbr": 5,
-                    "min": 0,
-                    "max": 69081
-                },
-                {
-                    "nbr": 6,
-                    "min": 0,
-                    "max": 77825
-                },
-                {
-                    "nbr": 7,
-                    "min": 0,
-                    "max": 86569
-                },
-                {
-                    "nbr": 8,
-                    "min": 0,
-                    "max": 95313
-                },
-                {
-                    "nbr": 9,
-                    "min": 0,
-                    "max": 104057
-                },
-                {
-                    "nbr": 10,
-                    "min": 0,
-                    "max": 112801
-                },
-                {
-                    "nbr": 11,
-                    "min": 0,
-                    "max": 121545
-                },
-                {
-                  "nbr": 12,
-                  "min": 0,
-                  "max": 130289
-                },
-            {
-              "nbr": 13,
-              "min": 0,
-              "max": 139033
-            }
-          ],
-          "code":     "IT",
-          "ceeBonus": {
-            "h1": 13,
-            "h2": 13,
-            "h3": 13
-          }
+          "nbr": 12,
+          "min": 0,
+          "max": 86594
         },
         {
-          "stages":   [
-            {
-              "nbr": 1,
-              "min": 0,
-              "max": 29148
-            },
-            {
-              "nbr": 2,
-              "min": 0,
-              "max": 42848
-            },
-                {
-                    "nbr": 3,
-                    "min": 0,
-                    "max": 51592
-                },
-                {
-                    "nbr": 4,
-                    "min": 0,
-                    "max": 60336
-                },
-                {
-                    "nbr": 5,
-                    "min": 0,
-                    "max": 69081
-                },
-                {
-                    "nbr": 6,
-                    "min": 0,
-                    "max": 77825
-                },
-                {
-                    "nbr": 7,
-                    "min": 0,
-                    "max": 86569
-                },
-                {
-                    "nbr": 8,
-                    "min": 0,
-                    "max": 95313
-                },
-                {
-                    "nbr": 9,
-                    "min": 0,
-                    "max": 104057
-                },
-                {
-                    "nbr": 10,
-                    "min": 0,
-                    "max": 112801
-                },
-                {
-                    "nbr": 11,
-                    "min": 0,
-                    "max": 121545
-                },
-                {
-                  "nbr": 12,
-                  "min": 0,
-                  "max": 130289
-                },
-            {
-              "nbr": 13,
-              "min": 0,
-              "max": 139033
-            }
-          ],
-          "code":     "CL",
-          "ceeBonus": {
-            "h1": 13,
-            "h2": 13,
-            "h3": 13
-          }
+          "nbr": 13,
+          "min": 0,
+          "max": 92391
         }
+      ],
+      "code":     "P",
+      "ceeBonus": {
+        "h1": 20,
+        "h2": 20,
+        "h3": 20
+      }
+    },
+    {
+      "stages":   [
+        {
+          "nbr": 1,
+          "min": 0,
+          "max": 29148
+        },
+        {
+          "nbr": 2,
+          "min": 0,
+          "max": 42848
+        },
+        {
+          "nbr": 3,
+          "min": 0,
+          "max": 51592
+        },
+        {
+          "nbr": 4,
+          "min": 0,
+          "max": 60336
+        },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 69081
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 77825
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 86569
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 95313
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 104057
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 112801
+                },
+        {
+          "nbr": 11,
+          "min": 0,
+          "max": 121545
+        },
+        {
+          "nbr": 12,
+          "min": 0,
+          "max": 130289
+        },
+        {
+          "nbr": 13,
+          "min": 0,
+          "max": 139033
+        }
+      ],
+      "code":     "IT",
+      "ceeBonus": {
+        "h1": 13,
+        "h2": 13,
+        "h3": 13
+      }
+    },
+    {
+      "stages":   [
+        {
+          "nbr": 1,
+          "min": 0,
+          "max": 29148
+        },
+        {
+          "nbr": 2,
+          "min": 0,
+          "max": 42848
+        },
+        {
+          "nbr": 3,
+          "min": 0,
+          "max": 51592
+        },
+        {
+          "nbr": 4,
+          "min": 0,
+          "max": 60336
+        },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 69081
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 77825
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 86569
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 95313
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 104057
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 112801
+                },
+        {
+          "nbr": 11,
+          "min": 0,
+          "max": 121545
+        },
+        {
+          "nbr": 12,
+          "min": 0,
+          "max": 130289
+        },
+        {
+          "nbr": 13,
+          "min": 0,
+          "max": 139033
+        }
+      ],
+      "code":     "CL",
+      "ceeBonus": {
+        "h1": 13,
+        "h2": 13,
+        "h3": 13
+      }
+    }
   ],
   "bonusWithoutCdp":           {
     "amount": {
@@ -1668,7 +1668,7 @@
     "phone":     {}
   },
   "lists":                     {
-    "localTypeList":             [
+    "localTypeList":         [
       {
         "slug":  "maison_individuelle",
         "value": "Maison individuelle"
@@ -1678,7 +1678,7 @@
         "value": "Appartement"
       }
     ],
-    "rrTypeList":                [
+    "rrTypeList":            [
       {
         "slug":  "mono",
         "value": "Mono"
@@ -1688,7 +1688,7 @@
         "value": "Multi"
       }
     ],
-    "typeCouvertureList":        [
+    "typeCouvertureList":    [
       {
         "slug":  "meca",
         "value": "Mecanique"
@@ -1709,8 +1709,8 @@
         "slug":  "tuiles_courbes",
         "value": "Tuiles courbes"
       }
-        ],
-    "typeCharpenteList":         [
+    ],
+    "typeCharpenteList":     [
       {
         "slug":  "trad",
         "value": "Traditionnelle"
@@ -1727,8 +1727,8 @@
         "slug":  "autre",
         "value": "Autre"
       }
-        ],
-    "etatToitureList":           [
+    ],
+    "etatToitureList":       [
       {
         "slug":  "propre",
         "value": "Propre"
@@ -1741,30 +1741,30 @@
         "slug":  "mousse_important",
         "value": "Mousse importante"
       }
-        ],
-        "puissanceCompteurList": [
-          {
-            "slug":  3,
-            "value": 3
-          },
-          {
-            "slug":  6,
-            "value": 6
-          },
-          {
-            "slug":  9,
-            "value": 9
-          },
-          {
-            "slug":  12,
-            "value": 12
-          },
-          {
-            "slug":  18,
-            "value": 18
-          }
-        ],
-    "natureMurExtList":          [
+    ],
+    "puissanceCompteurList": [
+      {
+        "slug":  3,
+        "value": 3
+      },
+      {
+        "slug":  6,
+        "value": 6
+      },
+      {
+        "slug":  9,
+        "value": 9
+      },
+      {
+        "slug":  12,
+        "value": 12
+      },
+      {
+        "slug":  18,
+        "value": 18
+      }
+    ],
+    "natureMurExtList":      [
       {
         "slug":  "parpaing",
         "value": "Parpaing"
@@ -1785,8 +1785,8 @@
         "slug":  "bois",
         "value": "Bois"
       }
-        ],
-    "typeRadiateurList":         [
+    ],
+    "typeRadiateurList":     [
       {
         "slug":  "alu",
         "value": "Alu"
@@ -1799,28 +1799,28 @@
         "slug":  "acier",
         "value": "Acier"
       }
-        ],
-        "tensionDisponibleList": [
-          {
-            "slug":  "monophase",
-            "value": "Monophasé"
-          },
-          {
-            "slug":  "triphase",
-            "value": "Triphasé"
-          }
-        ],
-        "positionEauChaudeList": [
-          {
-            "slug":  "sol",
-            "value": "Au sol"
-          },
-          {
-            "slug":  "mur",
-            "value": "Au mur"
-          }
-        ],
-    "typeChaudiereList":         [
+    ],
+    "tensionDisponibleList": [
+      {
+        "slug":  "monophase",
+        "value": "Monophasé"
+      },
+      {
+        "slug":  "triphase",
+        "value": "Triphasé"
+      }
+    ],
+    "positionEauChaudeList": [
+      {
+        "slug":  "sol",
+        "value": "Au sol"
+      },
+      {
+        "slug":  "mur",
+        "value": "Au mur"
+      }
+    ],
+    "typeChaudiereList":     [
       {
         "slug":  "aucun",
         "value": "Aucun"
@@ -1841,8 +1841,8 @@
         "slug":  "autre",
         "value": "Autre"
       }
-        ],
-    "gammeTypeList":             [
+    ],
+    "gammeTypeList":         [
       {
         "slug":  "sensira",
         "value": "Sensira"
@@ -1875,8 +1875,8 @@
         "slug":  "emura_argent",
         "value": "Emura Argent"
       }
-        ],
-    "qualiteIsolationList":      [
+    ],
+    "qualiteIsolationList":  [
       {
         "slug":  "0.6",
         "value": "0.6"
@@ -1909,8 +1909,8 @@
         "slug":  "1.5",
         "value": "1.5"
       }
-        ],
-    "batimentNatureList":        [
+    ],
+    "batimentNatureList":    [
       {
         "slug":  "",
         "value": "-"
@@ -1927,8 +1927,8 @@
         "slug":  "residence_secondaire",
         "value": "Résidence secondaire"
       }
-        ],
-    "naturePlafondList":         [
+    ],
+    "naturePlafondList":     [
       {
         "slug":  "brique",
         "value": "Brique"
@@ -1945,8 +1945,8 @@
         "slug":  "beton",
         "value": "Béton"
       }
-        ],
-    "EcsDeporteList":            [
+    ],
+    "EcsDeporteList":        [
       {
         "slug":  "volume",
         "value": 150
@@ -1959,8 +1959,8 @@
         "slug":  "volume",
         "value": 300
       }
-        ],
-    "niveauHabitationList":      [
+    ],
+    "niveauHabitationList":  [
       {
         "slug":  "pp",
         "value": "Plein Pied"
@@ -1985,8 +1985,8 @@
         "slug":  "autre",
         "value": "AUTRE"
       }
-        ],
-    "typeChantierList":          [
+    ],
+    "typeChantierList":      [
       {
         "slug":  "neuf",
         "value": "Neuf"
@@ -1996,7 +1996,7 @@
         "value": "Reno"
       }
     ],
-    "typeOrigineList":           [
+    "typeOrigineList":       [
       {
         "slug":  "telephone",
         "value": "Téléphone"
@@ -2025,6 +2025,6 @@
         "slug":  "angelique",
         "value": "Angélique"
       }
-        ]
-    }
+    ]
+  }
 }

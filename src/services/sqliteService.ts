@@ -12,6 +12,7 @@ import {
     FILE_PAC_RR_TYPE,
     FILE_PB_TYPE,
     FILE_PG_TYPE,
+    FILE_PV_TYPE,
     FILE_SOL_TYPE,
     FILE_TO_CORRECT_STATUS,
 } from '@/services/constantService';
@@ -85,6 +86,12 @@ function convertDbFileToFileItem( items: DbFile[] ) {
                     break;
                 case FILE_PB_TYPE.slug:
                     types.push( FILE_PG_TYPE );
+                    break;
+                case FILE_PV_TYPE.slug:
+                    types.push( FILE_PV_TYPE );
+                    break;
+                default:
+                    console.warn( `Le type (${ type }) n'est pas pris en compte pour MYSQL` );
                     break;
             }
         } );

@@ -10,7 +10,7 @@ import {
     TDocumentDefinitions,
 } from 'pdfmake/interfaces';
 import { BLUE, DARK_GREY, GREEN, LOGO_ECO, LOGO_QUALIBOIS, LOGO_QUALIFELEC, LOGO_RGE_CERTIBAT } from '@/services/pdf/pdfVariable';
-import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_SOL } from '@/services/constantService';
+import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_PV, FILE_SOL } from '@/services/constantService';
 import { CetFile } from '@/types/v2/File/Cet/CetFile';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 import { PgFile } from '@/types/v2/File/Pg/PgFile';
@@ -35,6 +35,7 @@ import { ContributionFrameworkGenerator } from '@/services/pdf/contributionFrame
 import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
 import { PbFile } from '@/types/v2/File/Pb/PbFile';
 import PbList from '@/types/v2/File/Pb/PbList';
+import { PvFile } from '@/types/v2/File/Pv/PvFile';
 
 enum PriceQuotation {
     HT            = 'Total HT',
@@ -51,7 +52,7 @@ enum PriceQuotation {
 }
 
 export class QuotationGenerator extends PdfGenerator {
-    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile;
+    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile | PvFile;
 
     private _style: StyleDictionary = {
         header:          {
@@ -70,7 +71,7 @@ export class QuotationGenerator extends PdfGenerator {
         },
     };
 
-    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile ) {
+    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile | PvFile ) {
         super();
         this._file = file;
         this.type  = PdfType.Quotation;
@@ -175,6 +176,7 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PAC_RR:
             case FILE_PAC_RO:
             case FILE_CET:
+            case FILE_PV:
                 body[ 0 ].push( {
                                     image: LOGO_QUALIFELEC,
                                     width: 45,
@@ -204,6 +206,7 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PAC_RR:
             case FILE_PAC_RO:
             case FILE_CET:
+            case FILE_PV:
                 text = 'RGE PAC : 09522 / RGE CET : 09520';
                 break;
             case FILE_COMBLE:
@@ -604,7 +607,24 @@ export class QuotationGenerator extends PdfGenerator {
                         },
                     ],
                 };
-
+            case FILE_PV:
+                list = ( this._file.lists as PbList );
+                return {
+                    left: [
+                        {
+                            label: 'Local',
+                            value: this.getValueInList( list.batimentNatureList, housing.buildingNature ),
+                        },
+                        {
+                            label: 'Surface à chauffer (m2)',
+                            value: housing.area.toString(),
+                        },
+                        {
+                            label: 'Ce logement à moins de 2 ans',
+                            value: this.yesOrNo( housing.lessThan2Years ),
+                        },
+                    ],
+                };
             case FILE_CET:
                 list = ( this._file.lists as CetList );
                 return {
@@ -733,8 +753,6 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PAC_RR:
                 text = 'Installation d\'une pompe à chaleur air/air';
                 break;
-            default:
-                console.warn( 'Le type de dossier n\'est pas pris en compte pour la génération du sous tire du devis' );
         }
 
         if ( text !== '' ) {
@@ -785,8 +803,9 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PAC_RR:
                 text = 'Installation d\'une pompe à chaleur air/air';
                 break;
-            default:
-                console.warn( 'Le type de dossier n\'est pas pris en compte pour la génération des garanties' );
+            case FILE_PV:
+                text = 'Garantie matériel 25 ans';
+                break;
         }
 
         if ( text !== '' ) {
@@ -1000,6 +1019,7 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_CET:
             case FILE_PG:
             case FILE_PB:
+            case FILE_PV:
                 items = [
                     PriceQuotation.HT,
                     PriceQuotation.TVA,

@@ -40,13 +40,18 @@ export const checkInternet = (): boolean => {
 };
 
 export const numberToPrice = ( number: number | string ): string => {
+
     let convertedNumber: number;
     if ( typeof number === 'string' ) {
         convertedNumber = +number;
     } else if ( isNaN( number ) ) {
-        convertedNumber = 0;
+        return 'Erreur de calcul';
     } else {
         convertedNumber = number;
+    }
+
+    if ( convertedNumber === 0 ) {
+        return 'Inclus';
     }
 
     return `${ convertedNumber.toFixed( 2 ) } €`;

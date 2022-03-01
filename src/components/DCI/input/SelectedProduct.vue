@@ -36,7 +36,7 @@
                 class="form-control"
                 name="selectedProductQuantity"
                 placeholder="1"
-                :value="1"
+                v-model.number="currentProduct.quantity"
             />
             <div class="input-group-append">
               <span class="input-group-text">U</span>
@@ -61,10 +61,10 @@
       </div>
       <div class="col-md-2 fv-row d-flex justify-content-end align-items-center">
         <template v-if="refQuantityArea > 0">
-          <h5 class="mb-3">{{ ( currentProduct.pu * quantityArea ).toFixed( 2 ) }} €</h5>
+          <h5 class="mb-3">{{ numberToPrice( currentProduct.pu * quantityArea ) }}</h5>
         </template>
         <template v-else>
-          <h5 class="mb-3">{{ currentProduct.pu.toFixed( 2 ) }} €</h5>
+          <h5 class="mb-3">{{ numberToPrice( currentProduct.pu * currentProduct.quantity ) }}</h5>
         </template>
 
       </div>
@@ -89,6 +89,7 @@
 import { computed, defineComponent, ref, toRef } from 'vue';
 import { Product } from '@/types/v2/File/Common/Product';
 import { ErrorMessage, Field } from 'vee-validate';
+import { numberToPrice } from '@/services/commonService';
 
 export default defineComponent( {
                                   name:       'selected-product',
@@ -171,6 +172,7 @@ export default defineComponent( {
                                       htmlAlert,
                                       selectedId,
                                       currentProduct,
+                                      numberToPrice,
                                     };
                                   },
                                 } );
