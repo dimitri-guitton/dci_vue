@@ -17,6 +17,7 @@ import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { PgFile } from '@/types/v2/File/Pg/PgFile';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
+import { PbFile } from '@/types/v2/File/Pb/PbFile';
 
 const schema = {
     dropboxPath:          {
@@ -89,6 +90,10 @@ export const getCurrentFileData = () => {
 };
 
 export const getCurrentCetFileData = (): CetFile => {
+    return getCurrentFileData();
+};
+
+export const getCurrentPbFileData = (): PbFile => {
     return getCurrentFileData();
 };
 

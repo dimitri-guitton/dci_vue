@@ -13,10 +13,14 @@ import { PacRoStep3 } from '@/types/v2/Wizzard/step3/PacRoStep3';
 import { PacRoStep5 } from '@/types/v2/Wizzard/step5/PacRoStep5';
 import { PacRrStep3 } from '@/types/v2/Wizzard/step3/PacRrStep3';
 import { PacRrStep5 } from '@/types/v2/Wizzard/step5/PacRrStep5';
+import { PbStep3 } from '@/types/v2/Wizzard/step3/PbStep3';
+import { PbStep5 } from '@/types/v2/Wizzard/step5/PbStep5';
 
 export interface CetFileStep extends Step1, Step2, CetStep3, BaseStep4, CetStep5 {}
 
 export interface PgFileStep extends Step1, Step2, PgStep3, BaseStep4, PgStep5 {}
+
+export interface PbFileStep extends Step1, Step2, PbStep3, BaseStep4, PbStep5 {}
 
 export interface PacRoFileStep extends Step1, Step2, PacRoStep3, BaseStep4, PacRoStep5 {}
 

@@ -10,6 +10,7 @@ import {
     FILE_INCOMPLETE_STATUS,
     FILE_PAC_RO_TYPE,
     FILE_PAC_RR_TYPE,
+    FILE_PB_TYPE,
     FILE_PG_TYPE,
     FILE_SOL_TYPE,
     FILE_TO_CORRECT_STATUS,
@@ -80,6 +81,9 @@ function convertDbFileToFileItem( items: DbFile[] ) {
                     types.push( FILE_CET_TYPE );
                     break;
                 case FILE_PG_TYPE.slug:
+                    types.push( FILE_PG_TYPE );
+                    break;
+                case FILE_PB_TYPE.slug:
                     types.push( FILE_PG_TYPE );
                     break;
             }

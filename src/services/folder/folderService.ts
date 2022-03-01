@@ -17,6 +17,7 @@ import { PdfType } from '@/services/pdf/pdfGenerator';
 import { shell } from 'electron';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 import { NewFolderData } from '@/components/DCI/modals/NewFileModal.vue';
+import { convertOldPbFile } from '@/services/file/converter/convertPbData';
 
 const schema = {
     dropboxPath: {
@@ -207,6 +208,10 @@ export const convertAllOldJsonToNewJson = () => {
         console.log( '%c CONVERT OLD PAC RR', 'background: #4CD439; color: #000000' );
         oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_pac_rr.json', 'utf8' ) ) );
     }
+    if ( fs.existsSync( 'examples/old_data_pb.json' ) ) {
+        console.log( '%c CONVERT OLD PB', 'background: #4CD439; color: #000000' );
+        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_pb.json', 'utf8' ) ) );
+    }
 
     for ( const oldData of oldDatas ) {
         let data = '';
@@ -214,20 +219,22 @@ export const convertAllOldJsonToNewJson = () => {
         let type = oldData[ 'type' ].toLowerCase();
 
         if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'ro' ) {
-            data = JSON.stringify( convertOldRoFile( oldData ), null, 2 );
+            data = JSON.stringify( convertOldRoFile( oldData ), null, 4 );
             type += '_ro';
         } else if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'rr' ) {
-            data = JSON.stringify( convertOldRrFile( oldData ), null, 2 );
+            data = JSON.stringify( convertOldRrFile( oldData ), null, 4 );
             type += '_rr';
         } else if ( type === 'cet' ) {
-            data = JSON.stringify( convertOldCetFile( oldData ), null, 2 );
+            data = JSON.stringify( convertOldCetFile( oldData ), null, 4 );
         } else if ( type === 'poele' ) {
-            data = JSON.stringify( convertOldPgFile( oldData ), null, 2 );
+            data = JSON.stringify( convertOldPgFile( oldData ), null, 4 );
             type = 'pg';
         } else if ( type === 'comble' ) {
-            data = JSON.stringify( convertOldCombleFile( oldData ), null, 2 );
+            data = JSON.stringify( convertOldCombleFile( oldData ), null, 4 );
         } else if ( type === 'sol' ) {
-            data = JSON.stringify( convertOldSolFile( oldData ), null, 2 );
+            data = JSON.stringify( convertOldSolFile( oldData ), null, 4 );
+        } else if ( type === 'pb' ) {
+            data = JSON.stringify( convertOldPbFile( oldData ), null, 4 );
         } else {
             console.log( '%c RETURN FALSE', 'background: #fdd835; color: #000000' );
             return false;

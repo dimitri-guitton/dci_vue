@@ -10,7 +10,7 @@ import {
     TDocumentDefinitions,
 } from 'pdfmake/interfaces';
 import { BLUE, DARK_GREY, GREEN, LOGO_ECO, LOGO_QUALIBOIS, LOGO_QUALIFELEC, LOGO_RGE_CERTIBAT } from '@/services/pdf/pdfVariable';
-import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
+import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { CetFile } from '@/types/v2/File/Cet/CetFile';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 import { PgFile } from '@/types/v2/File/Pg/PgFile';
@@ -33,6 +33,8 @@ import { toFrenchDate } from '@/services/commonService';
 import { TvaCertificateGenerator } from '@/services/pdf/tvaCertificateGenerator';
 import { ContributionFrameworkGenerator } from '@/services/pdf/contributionFrameworkGenerator';
 import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
+import { PbFile } from '@/types/v2/File/Pb/PbFile';
+import PbList from '@/types/v2/File/Pb/PbList';
 
 enum PriceQuotation {
     HT            = 'Total HT',
@@ -49,7 +51,7 @@ enum PriceQuotation {
 }
 
 export class QuotationGenerator extends PdfGenerator {
-    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile;
+    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile;
 
     private _style: StyleDictionary = {
         header:          {
@@ -68,7 +70,7 @@ export class QuotationGenerator extends PdfGenerator {
         },
     };
 
-    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile ) {
+    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile ) {
         super();
         this._file = file;
         this.type  = PdfType.Quotation;
@@ -179,11 +181,14 @@ export class QuotationGenerator extends PdfGenerator {
                                 } );
                 break;
             case FILE_PG:
+            case FILE_PB:
                 body[ 0 ].push( {
                                     image: LOGO_QUALIBOIS,
                                     width: 45,
                                 } );
                 break;
+            default:
+                console.warn( 'Le type de dossier n\'est pas pris en compte pour la génération du LOGO' );
         }
 
         return body;
@@ -206,8 +211,11 @@ export class QuotationGenerator extends PdfGenerator {
                 text = 'RGE : RE15061';
                 break;
             case FILE_PG:
+            case FILE_PB:
                 text = 'Qualibois QB/59396';
                 break;
+            default:
+                console.warn( 'Le type de dossier n\'est pas pris en compte pour la génération du certificat' );
         }
 
         return {
@@ -457,7 +465,7 @@ export class QuotationGenerator extends PdfGenerator {
      */
     private _getHousingData(): HousingItem {
         const housing = this._file.housing;
-        let list: CombleList | SolList | RoList | RrList | CetList | PgList;
+        let list: CombleList | SolList | RoList | RrList | CetList | PgList | PbList;
         switch ( this._file.type ) {
             case FILE_COMBLE:
             case FILE_SOL:
@@ -560,9 +568,26 @@ export class QuotationGenerator extends PdfGenerator {
                         },
                     ],
                 };
-
             case FILE_PG:
                 list = ( this._file.lists as PgList );
+                return {
+                    left: [
+                        {
+                            label: 'Local',
+                            value: this.getValueInList( list.batimentNatureList, housing.buildingNature ),
+                        },
+                        {
+                            label: 'Surface à chauffer (m2)',
+                            value: housing.area.toString(),
+                        },
+                        {
+                            label: 'Ce logement à moins de 2 ans',
+                            value: this.yesOrNo( housing.lessThan2Years ),
+                        },
+                    ],
+                };
+            case FILE_PB:
+                list = ( this._file.lists as PbList );
                 return {
                     left: [
                         {
@@ -594,6 +619,8 @@ export class QuotationGenerator extends PdfGenerator {
                         },
                     ],
                 };
+            default:
+                console.warn( 'Le type de dossier n\'est pas pris en compte pour la génération des datas du logement' );
         }
 
         return {
@@ -607,6 +634,7 @@ export class QuotationGenerator extends PdfGenerator {
      */
     private _generateHousingInfo(): Content {
         const data = this._getHousingData();
+        console.log( data );
 
         const tableBody: ContentText[][] = [];
         let rowTable: ContentText[]      = [];
@@ -649,10 +677,12 @@ export class QuotationGenerator extends PdfGenerator {
             }
         }
 
+        console.log( 'Table body ->', tableBody );
+
         return {
             margin: [ 0, 3 ],
             style:  'text',
-            table: {
+            table:  {
                 widths: [ '25%', '25%', '25%', '25%' ],
                 body:   tableBody,
             },
@@ -694,12 +724,17 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PG:
                 text = 'Nature des travaux réalisés (Poêle à granulé ou pellets)';
                 break;
+            case FILE_PB:
+                text = 'Nature des travaux réalisés (Poêle à bois)';
+                break;
             case FILE_PAC_RO:
                 text = 'Remplacement du système de chauffage par une pompe à chaleur air/eau';
                 break;
             case FILE_PAC_RR:
                 text = 'Installation d\'une pompe à chaleur air/air';
                 break;
+            default:
+                console.warn( 'Le type de dossier n\'est pas pris en compte pour la génération du sous tire du devis' );
         }
 
         if ( text !== '' ) {
@@ -732,21 +767,26 @@ export class QuotationGenerator extends PdfGenerator {
         let text = '';
         switch ( this._file.type ) {
             case FILE_PG:
-                text = 'GARANTIE 2ANS PIECES';
+                text = 'GARANTIE 2 ANS PIECES';
+                break;
+            case FILE_PB:
+                text = 'GARANTIE 5 ANS';
                 break;
             case FILE_PAC_RO:
                 const rrQuotation = ( this._file.quotation as RrQuotation );
 
                 // TODO check que rrType est bien égale à 'mono' et a 'multi'
                 if ( rrQuotation.rrType === 'mono' && rrQuotation.assortment === 'sensira' ) {
-                    text = 'GARANTIE DAIKIN 3ANS PIECES ET 5ANS COMPRESSEUR';
+                    text = 'GARANTIE DAIKIN 3 ANS PIECES ET 5ANS COMPRESSEUR';
                 } else {
-                    text = 'GARANTIE DAIKIN 3ANS PIECES ET 5ANS COMPRESSEUR';
+                    text = 'GARANTIE DAIKIN 3 ANS PIECES ET 5ANS COMPRESSEUR';
                 }
                 break;
             case FILE_PAC_RR:
                 text = 'Installation d\'une pompe à chaleur air/air';
                 break;
+            default:
+                console.warn( 'Le type de dossier n\'est pas pris en compte pour la génération des garanties' );
         }
 
         if ( text !== '' ) {
@@ -802,7 +842,7 @@ export class QuotationGenerator extends PdfGenerator {
                                alignment: 'right',
                            },
                            {
-                               text:      this.formatPrice( price ),
+                               text:      this.formatPrice( product.pu ),
                                alignment: 'right',
                            },
                            {
@@ -938,7 +978,8 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_CET:
             case FILE_PAC_RO:
                 const quotation = ( this._file.quotation as PgQuotation | CetQuotation | RoQuotation );
-                text = this.formatPrice( quotation.maPrimeRenovBonus, false );
+                text            = this.formatPrice( quotation.maPrimeRenovBonus, false );
+
         }
 
         return {
@@ -958,6 +999,7 @@ export class QuotationGenerator extends PdfGenerator {
         switch ( this._file.type ) {
             case FILE_CET:
             case FILE_PG:
+            case FILE_PB:
                 items = [
                     PriceQuotation.HT,
                     PriceQuotation.TVA,
@@ -1052,6 +1094,8 @@ export class QuotationGenerator extends PdfGenerator {
                     items.push( PriceQuotation.CEE );
                 }
                 break;
+            default:
+                console.warn( 'Le type de dossier n\'est pas pris en compte pour la génération des prix' );
         }
 
         const leftColumn: ContentText[]                                                                          = [];

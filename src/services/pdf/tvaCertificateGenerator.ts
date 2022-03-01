@@ -8,9 +8,10 @@ import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { FILE_PAC_RO } from '@/services/constantService';
+import { PbFile } from '@/types/v2/File/Pb/PbFile';
 
 export class TvaCertificateGenerator extends PdfGenerator {
-    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile;
+    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile;
 
     private _style: StyleDictionary = {
         title:   {
@@ -26,7 +27,7 @@ export class TvaCertificateGenerator extends PdfGenerator {
     };
 
 
-    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile ) {
+    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile ) {
         super();
         this._file = file;
         this.type  = PdfType.Tva;

@@ -26,9 +26,10 @@ import { SolWorkSheet } from '@/types/v2/File/Sol/SolWorkSheet';
 import { RoWorkSheet } from '@/types/v2/File/Ro/RoWorkSheet';
 import { RrWorkSheet } from '@/types/v2/File/Rr/RrWorkSheet';
 import { PgWorkSheet } from '@/types/v2/File/Pg/PgWorkSheet';
+import { PbFile } from '@/types/v2/File/Pb/PbFile';
 
 export class WorksheetGenerator extends PdfGenerator {
-    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile;
+    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile;
 
     private _style: StyleDictionary = {
         title: {
@@ -40,7 +41,7 @@ export class WorksheetGenerator extends PdfGenerator {
     };
 
 
-    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile ) {
+    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile ) {
         super();
         this._file = file;
         this.type  = PdfType.Worksheet;
