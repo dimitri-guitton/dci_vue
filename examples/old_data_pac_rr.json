@@ -227,7 +227,7 @@
         "pacType":          "rr_mono",
         "selectedProducts": [],
         "gamme":            "sensira",
-        "rrType":           "rr_mono",
+        "rrType":           "mono",
         "rrMulti":          {
             "nombreDePiece": 2,
             "superficieP1":  0,
@@ -1600,10 +1600,10 @@
         ],
         "rrType":           [
             {
-                "rr_mono": "RR Mono"
+                "mono": "Mono"
             },
             {
-                "rr_multi": "RR Multi"
+                "multi": "Multi"
             }
         ],
         "gammeType":        [

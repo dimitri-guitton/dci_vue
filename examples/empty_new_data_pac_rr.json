@@ -199,7 +199,7 @@
         "maPrimeRenovBonus":  0,
         "discount":           0,
         "selectedProducts":   [],
-        "rrType":             "rr_mono",
+        "rrType":             "mono",
         "rrMulti":            {
             "roomNumber": 2,
             "areaP1":     0,
@@ -1668,439 +1668,363 @@
         "phone":     {}
     },
     "lists":                     {
-        "localTypeList":         {
-            "slug":  "localTypeList",
-            "items": [
-                {
-                    "slug":  "maison_individuelle",
-                    "value": "Maison individuelle"
-                },
-                {
-                    "slug":  "appartement",
-                    "value": "Appartement"
-                }
-            ]
-        },
-        "rrTypeList":            {
-            "slug":  "rrTypeList",
-            "items": [
-                {
-                    "slug":  "rr_mono",
-                    "value": "RR Mono"
-                },
-                {
-                    "slug":  "rr_multi",
-                    "value": "RR Multi"
-                }
-            ]
-        },
-        "assortmentList":        [],
-        "ecsDeporteList":        [],
-        "accesCombleList":       {
-            "slug":  "accesCombleList",
-            "items": [
-                {
-                    "slug":  "trappe",
-                    "value": "TRAPPE"
-                },
-                {
-                    "slug":  "toit",
-                    "value": "TOITURE"
-                },
-                {
-                    "slug":  "trappe_et_toit",
-                    "value": "TRAPPE et TOITURE"
-                }
-            ]
-        },
-        "typeCouvertureList":    {
-            "slug":  "typeCouvertureList",
-            "items": [
-                {
-                    "slug":  "meca",
-                    "value": "Mecanique"
-                },
-                {
-                    "slug":  "tige_bottes",
-                    "value": "Tiges de bottes"
-                },
-                {
-                    "slug":  "ardoise",
-                    "value": "Ardoise"
-                },
-                {
-                    "slug":  "tuiles_plates",
-                    "value": "Tuiles plates"
-                },
-                {
-                    "slug":  "tuiles_courbes",
-                    "value": "Tuiles courbes"
-                }
-            ]
-        },
-        "typeCharpenteList":     {
-            "slug":  "typeCharpenteList",
-            "items": [
-                {
-                    "slug":  "trad",
-                    "value": "Traditionnelle"
-                },
-                {
-                    "slug":  "ferm",
-                    "value": "Fermettes"
-                },
-                {
-                    "slug":  "metal",
-                    "value": "Metallique"
-                },
-                {
-                    "slug":  "autre",
-                    "value": "Autre"
-                }
-            ]
-        },
-        "etatToitureList":       {
-            "slug":  "etatToitureList",
-            "items": [
-                {
-                    "slug":  "propre",
-                    "value": "Propre"
-                },
-                {
-                    "slug":  "mousse_faible",
-                    "value": "Mousse en petite quantité"
-                },
-                {
-                    "slug":  "mousse_important",
-                    "value": "Mousse importante"
-                }
-            ]
-        },
-        "puissanceCompteurList": {
-            "slug":  "puissanceCompteurList",
-            "items": [
-                {
-                    "slug":  3,
-                    "value": 3
-                },
-                {
-                    "slug":  6,
-                    "value": 6
-                },
-                {
-                    "slug":  9,
-                    "value": 9
-                },
-                {
-                    "slug":  12,
-                    "value": 12
-                },
-                {
-                    "slug":  18,
-                    "value": 18
-                }
-            ]
-        },
-        "natureMurExtList":      {
-            "slug":  "natureMurExtList",
-            "items": [
-                {
-                    "slug":  "parpaing",
-                    "value": "Parpaing"
-                },
-                {
-                    "slug":  "brique",
-                    "value": "Brique"
-                },
-                {
-                    "slug":  "beton",
-                    "value": "Béton"
-                },
-                {
-                    "slug":  "pierre",
-                    "value": "Pierre"
-                },
-                {
-                    "slug":  "bois",
-                    "value": "Bois"
-                }
-            ]
-        },
-        "typeRadiateurList":     {
-            "slug":  "typeRadiateurList",
-            "items": [
-                {
-                    "slug":  "alu",
-                    "value": "Alu"
-                },
-                {
-                    "slug":  "fonte",
-                    "value": "Fonte"
-                },
-                {
-                    "slug":  "acier",
-                    "value": "Acier"
-                }
-            ]
-        },
-        "tensionDisponibleList": {
-            "slug":  "tensionDisponibleList",
-            "items": [
-                {
-                    "slug":  "monophase",
-                    "value": "Monophasé"
-                },
-                {
-                    "slug":  "triphase",
-                    "value": "Triphasé"
-                }
-            ]
-        },
-        "positionEauChaudeList": {
-            "slug":  "positionEauChaudeList",
-            "items": [
-                {
-                    "slug":  "sol",
-                    "value": "Au sol"
-                },
-                {
-                    "slug":  "mur",
-                    "value": "Au mur"
-                }
-            ]
-        },
-        "typeChaudiereList":     {
-            "slug":  "typeChaudiereList",
-            "items": [
-                {
-                    "slug":  "aucun",
-                    "value": "Aucun"
-                },
-                {
-                    "slug":  "CCHC",
-                    "value": "Chaudière charbon hors condensation"
-                },
-                {
-                    "slug":  "CFHC",
-                    "value": "Chaudière fioul hors condensation"
-                },
-                {
-                    "slug":  "CGHC",
-                    "value": "Chaudière gaz hors condensation"
-                },
-                {
-                    "slug":  "autre",
-                    "value": "Autre"
-                }
-            ]
-        },
-        "gammeTypeList":         {
-            "slug":  "gammeTypeList",
-            "items": [
-                {
-                    "slug":  "sensira",
-                    "value": "Sensira"
-                },
-                {
-                    "slug":  "perfera",
-                    "value": "Perfera"
-                },
-                {
-                    "slug":  "stylish_blanc",
-                    "value": "Stylish Blanc"
-                },
-                {
-                    "slug":  "stylish_noir",
-                    "value": "Stylish Noir"
-                },
-                {
-                    "slug":  "stylish_argent",
-                    "value": "Stylish Argent"
-                },
-                {
-                    "slug":  "stylish_bois",
-                    "value": "Stylish Bois"
-                },
-                {
-                    "slug":  "emura_blanc",
-                    "value": "Emura Blanc"
-                },
-                {
-                    "slug":  "emura_argent",
-                    "value": "Emura Argent"
-                }
-            ]
-        },
-        "qualiteIsolationList":  {
-            "slug":  "qualiteIsolationList",
-            "items": [
-                {
-                    "slug":  "0.6",
-                    "value": "0.6"
-                },
-                {
-                    "slug":  "0.65",
-                    "value": "0.65"
-                },
-                {
-                    "slug":  "0.8",
-                    "value": "0.8"
-                },
-                {
-                    "slug":  "0.9",
-                    "value": "0.9"
-                },
-                {
-                    "slug":  "1",
-                    "value": "1"
-                },
-                {
-                    "slug":  "1.1",
-                    "value": "1.1"
-                },
-                {
-                    "slug":  "1.3",
-                    "value": "1.3"
-                },
-                {
-                    "slug":  "1.5",
-                    "value": "1.5"
-                }
-            ]
-        },
-        "batimentNatureList":    {
-            "slug":  "batimentNatureList",
-            "items": [
-                {
-                    "slug":  "",
-                    "value": "-"
-                },
-                {
-                    "slug":  "nouvelle_residence",
-                    "value": "Nouvelle résidence principale"
-                },
-                {
-                    "slug":  "location",
-                    "value": "Location"
-                },
-                {
-                    "slug":  "residence_secondaire",
-                    "value": "Résidence secondaire"
-                }
-            ]
-        },
-        "naturePlafondList":     {
-            "slug":  "naturePlafondList",
-            "items": [
-                {
-                    "slug":  "brique",
-                    "value": "Brique"
-                },
-                {
-                    "slug":  "placo",
-                    "value": "Placo"
-                },
-                {
-                    "slug":  "bois",
-                    "value": "Bois"
-                },
-                {
-                    "slug":  "beton",
-                    "value": "Béton"
-                }
-            ]
-        },
-        "EcsDeporteList":        {
-            "slug":  "EcsDeporteList",
-            "items": [
-                {
-                    "slug":  "volume",
-                    "value": 150
-                },
-                {
-                    "slug":  "volume",
-                    "value": 200
-                },
-                {
-                    "slug":  "volume",
-                    "value": 300
-                }
-            ]
-        },
-        "niveauHabitationList":  {
-            "slug":  "niveauHabitationList",
-            "items": [
-                {
-                    "slug":  "pp",
-                    "value": "Plein Pied"
-                },
-                {
-                    "slug":  "r1",
-                    "value": "R+1"
-                },
-                {
-                    "slug":  "r2",
-                    "value": "R+2"
-                },
-                {
-                    "slug":  "r3",
-                    "value": "R+3"
-                },
-                {
-                    "slug":  "r4",
-                    "value": "R+4"
-                },
-                {
-                    "slug":  "autre",
-                    "value": "AUTRE"
-                }
-            ]
-        },
-        "typeChantierList":      {
-            "slug":  "typeChantierList",
-            "items": [
-                {
-                    "slug":  "neuf",
-                    "value": "Neuf"
-                },
-                {
-                    "slug":  "reno",
-                    "value": "Reno"
-                }
-            ]
-        },
-        "typeOrigineList":       {
-            "slug":  "typeOrigineList",
-            "items": [
-                {
-                    "slug":  "telephone",
-                    "value": "Téléphone"
-                },
-                {
-                    "slug":  "internet",
-                    "value": "Internet"
-                },
-                {
-                    "slug":  "presse",
-                    "value": "Presse"
-                },
-                {
-                    "slug":  "campagne-google",
-                    "value": "Campagne Google"
-                },
-                {
-                    "slug":  "autre",
-                    "value": "Autre"
-                },
-                {
-                    "slug":  "hello-watt",
-                    "value": "hello watt"
-                },
-                {
-                    "slug":  "angelique",
-                    "value": "Angélique"
-                }
-            ]
-        }
+        "localTypeList":         [
+            {
+                "slug":  "maison_individuelle",
+                "value": "Maison individuelle"
+            },
+            {
+                "slug":  "appartement",
+                "value": "Appartement"
+            }
+        ],
+        "rrTypeList":            [
+            {
+                "slug":  "mono",
+                "value": "Mono"
+            },
+            {
+                "slug":  "multi",
+                "value": "Multi"
+            }
+        ],
+        "typeCouvertureList":    [
+            {
+                "slug":  "meca",
+                "value": "Mecanique"
+            },
+            {
+                "slug":  "tige_bottes",
+                "value": "Tiges de bottes"
+            },
+            {
+                "slug":  "ardoise",
+                "value": "Ardoise"
+            },
+            {
+                "slug":  "tuiles_plates",
+                "value": "Tuiles plates"
+            },
+            {
+                "slug":  "tuiles_courbes",
+                "value": "Tuiles courbes"
+            }
+        ],
+        "typeCharpenteList":     [
+            {
+                "slug":  "trad",
+                "value": "Traditionnelle"
+            },
+            {
+                "slug":  "ferm",
+                "value": "Fermettes"
+            },
+            {
+                "slug":  "metal",
+                "value": "Metallique"
+            },
+            {
+                "slug":  "autre",
+                "value": "Autre"
+            }
+        ],
+        "etatToitureList":       [
+            {
+                "slug":  "propre",
+                "value": "Propre"
+            },
+            {
+                "slug":  "mousse_faible",
+                "value": "Mousse en petite quantité"
+            },
+            {
+                "slug":  "mousse_important",
+                "value": "Mousse importante"
+            }
+        ],
+        "puissanceCompteurList": [
+            {
+                "slug":  3,
+                "value": 3
+            },
+            {
+                "slug":  6,
+                "value": 6
+            },
+            {
+                "slug":  9,
+                "value": 9
+            },
+            {
+                "slug":  12,
+                "value": 12
+            },
+            {
+                "slug":  18,
+                "value": 18
+            }
+        ],
+        "natureMurExtList":      [
+            {
+                "slug":  "parpaing",
+                "value": "Parpaing"
+            },
+            {
+                "slug":  "brique",
+                "value": "Brique"
+            },
+            {
+                "slug":  "beton",
+                "value": "Béton"
+            },
+            {
+                "slug":  "pierre",
+                "value": "Pierre"
+            },
+            {
+                "slug":  "bois",
+                "value": "Bois"
+            }
+        ],
+        "typeRadiateurList":     [
+            {
+                "slug":  "alu",
+                "value": "Alu"
+            },
+            {
+                "slug":  "fonte",
+                "value": "Fonte"
+            },
+            {
+                "slug":  "acier",
+                "value": "Acier"
+            }
+        ],
+        "tensionDisponibleList": [
+            {
+                "slug":  "monophase",
+                "value": "Monophasé"
+            },
+            {
+                "slug":  "triphase",
+                "value": "Triphasé"
+            }
+        ],
+        "positionEauChaudeList": [
+            {
+                "slug":  "sol",
+                "value": "Au sol"
+            },
+            {
+                "slug":  "mur",
+                "value": "Au mur"
+            }
+        ],
+        "typeChaudiereList":     [
+            {
+                "slug":  "aucun",
+                "value": "Aucun"
+            },
+            {
+                "slug":  "CCHC",
+                "value": "Chaudière charbon hors condensation"
+            },
+            {
+                "slug":  "CFHC",
+                "value": "Chaudière fioul hors condensation"
+            },
+            {
+                "slug":  "CGHC",
+                "value": "Chaudière gaz hors condensation"
+            },
+            {
+                "slug":  "autre",
+                "value": "Autre"
+            }
+        ],
+        "gammeTypeList":         [
+            {
+                "slug":  "sensira",
+                "value": "Sensira"
+            },
+            {
+                "slug":  "perfera",
+                "value": "Perfera"
+            },
+            {
+                "slug":  "stylish_blanc",
+                "value": "Stylish Blanc"
+            },
+            {
+                "slug":  "stylish_noir",
+                "value": "Stylish Noir"
+            },
+            {
+                "slug":  "stylish_argent",
+                "value": "Stylish Argent"
+            },
+            {
+                "slug":  "stylish_bois",
+                "value": "Stylish Bois"
+            },
+            {
+                "slug":  "emura_blanc",
+                "value": "Emura Blanc"
+            },
+            {
+                "slug":  "emura_argent",
+                "value": "Emura Argent"
+            }
+        ],
+        "qualiteIsolationList":  [
+            {
+                "slug":  "0.6",
+                "value": "0.6"
+            },
+            {
+                "slug":  "0.65",
+                "value": "0.65"
+            },
+            {
+                "slug":  "0.8",
+                "value": "0.8"
+            },
+            {
+                "slug":  "0.9",
+                "value": "0.9"
+            },
+            {
+                "slug":  "1",
+                "value": "1"
+            },
+            {
+                "slug":  "1.1",
+                "value": "1.1"
+            },
+            {
+                "slug":  "1.3",
+                "value": "1.3"
+            },
+            {
+                "slug":  "1.5",
+                "value": "1.5"
+            }
+        ],
+        "batimentNatureList":    [
+            {
+                "slug":  "",
+                "value": "-"
+            },
+            {
+                "slug":  "nouvelle_residence",
+                "value": "Nouvelle résidence principale"
+            },
+            {
+                "slug":  "location",
+                "value": "Location"
+            },
+            {
+                "slug":  "residence_secondaire",
+                "value": "Résidence secondaire"
+            }
+        ],
+        "naturePlafondList":     [
+            {
+                "slug":  "brique",
+                "value": "Brique"
+            },
+            {
+                "slug":  "placo",
+                "value": "Placo"
+            },
+            {
+                "slug":  "bois",
+                "value": "Bois"
+            },
+            {
+                "slug":  "beton",
+                "value": "Béton"
+            }
+        ],
+        "EcsDeporteList":        [
+            {
+                "slug":  "volume",
+                "value": 150
+            },
+            {
+                "slug":  "volume",
+                "value": 200
+            },
+            {
+                "slug":  "volume",
+                "value": 300
+            }
+        ],
+        "niveauHabitationList":  [
+            {
+                "slug":  "pp",
+                "value": "Plein Pied"
+            },
+            {
+                "slug":  "r1",
+                "value": "R+1"
+            },
+            {
+                "slug":  "r2",
+                "value": "R+2"
+            },
+            {
+                "slug":  "r3",
+                "value": "R+3"
+            },
+            {
+                "slug":  "r4",
+                "value": "R+4"
+            },
+            {
+                "slug":  "autre",
+                "value": "AUTRE"
+            }
+        ],
+        "typeChantierList":      [
+            {
+                "slug":  "neuf",
+                "value": "Neuf"
+            },
+            {
+                "slug":  "reno",
+                "value": "Reno"
+            }
+        ],
+        "typeOrigineList":       [
+            {
+                "slug":  "telephone",
+                "value": "Téléphone"
+            },
+            {
+                "slug":  "internet",
+                "value": "Internet"
+            },
+            {
+                "slug":  "presse",
+                "value": "Presse"
+            },
+            {
+                "slug":  "campagne-google",
+                "value": "Campagne Google"
+            },
+            {
+                "slug":  "autre",
+                "value": "Autre"
+            },
+            {
+                "slug":  "hello-watt",
+                "value": "hello watt"
+            },
+            {
+                "slug":  "angelique",
+                "value": "Angélique"
+            }
+        ]
     }
 }

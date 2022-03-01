@@ -1797,16 +1797,6 @@
                 "value": "Appartement"
             }
         ],
-        "rrTypeList":            [
-            {
-                "slug":  "rr_mono",
-                "value": "RR Mono"
-            },
-            {
-                "slug":  "rr_multi",
-                "value": "RR Multi"
-            }
-        ],
         "assortmentList":        [
             {
                 "slug":  "sensira",

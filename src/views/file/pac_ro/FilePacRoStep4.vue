@@ -292,11 +292,11 @@ export default defineComponent( {
                                           const productInt = getProductByRef( response.productInt );
                                           const productExt = getProductByRef( response.productExt );
 
-                                          // Système cascade  = 2 produits
                                           if ( productInt === undefined || productExt === undefined ) {
                                             return [];
                                           }
 
+                                          // Système cascade  = 2 produits
                                           if ( response.cascadeSystem ) {
                                             productInt.quantity = 2;
                                             productExt.quantity = 2;

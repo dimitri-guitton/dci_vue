@@ -182,7 +182,6 @@ const convertSelectedRoProduct = ( oldData ): Product[] => {
 const convertOldRoItemList = ( oldData ): RoList => {
     const lists: RoList = {
         localTypeList:         [],
-        rrTypeList:            [],
         assortmentList:        [],
         ecsDeporteList:        [],
         accesCombleList:       [],
@@ -203,7 +202,6 @@ const convertOldRoItemList = ( oldData ): RoList => {
 
     const roItems = [
         'localType',
-        'rrType',
         'gammeType',
         'EcsDeporte',
         'accesComble',
@@ -221,7 +219,6 @@ const convertOldRoItemList = ( oldData ): RoList => {
 
     const newName: { [ key: string ]: string } = {
         'localType':         'localTypeList',
-        'rrType':            'rrTypeList',
         'gammeType':         'assortmentList',
         'EcsDeporte':        'ecsDeporteList',
         'accesComble':       'accesCombleList',
