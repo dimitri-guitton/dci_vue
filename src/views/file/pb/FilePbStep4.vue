@@ -5,12 +5,12 @@
 
     <div class="row mt-10">
       <div class="col-md-6 mb-5">
-        <label for="q_isKitBiZone" class="form-check form-switch form-check-custom">
+        <label for="creation" class="form-check form-switch form-check-custom">
           <Field
               type="checkbox"
               class="form-check-input h-30px w-55px"
-              name="q_isKitBiZone"
-              id="q_isKitBiZone"
+              name="creation"
+              id="creation"
               :value="true"
               v-model="isCreation"
           />
@@ -29,6 +29,24 @@
 
     <template v-for="p in productCreation" v-bind:key="p.reference">
       <row-price :product="p"></row-price>
+    </template>
+
+    <!-- Formualire caché afin de binder les values au formaulaire comme la sélection des produits se fait via l'algo-->
+    <template v-for="(p, index) in productCreation" v-bind:key="`val_${p.reference}`">
+      <div class="row d-none">
+        <Field type="text"
+               :name="`selectedProducts[${index+1}].id`"
+               class="form-control"
+               v-model.number="p.id" />
+        <Field type="text"
+               :name="`selectedProducts[${index+1}].quantity`"
+               class="form-control"
+               v-model.number="p.quantity" />
+        <Field type="text"
+               :name="`selectedProducts[${index+1}].pu`"
+               class="form-control"
+               v-model.number="p.pu" />
+      </div>
     </template>
 
     <options @optionsAreUpdated="updateOptions" :options="options"></options>
@@ -119,9 +137,20 @@ export default defineComponent( {
                                     const _options          = ref<Option[]>( ( props.options as Option[] ) );
                                     const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
 
+                                    console.log( '%c SET UP', 'background: #fdd835; color: #000000' );
+                                    console.log( '%c SET UP', 'background: #fdd835; color: #000000' );
+                                    console.log( '%c SET UP', 'background: #fdd835; color: #000000' );
+                                    console.log( '%c SET UP', 'background: #fdd835; color: #000000' );
+                                    console.log( 'PPPPP', props );
                                     const isCreation = ref<boolean>( props.fileData.quotation.newCreation );
 
                                     const filterredProducts = computed<Product[]>( () => {
+                                      console.log( '%c ', 'background: #fdd835; color: #000000' );
+                                      console.log( '%c ', 'background: #fdd835; color: #000000' );
+                                      console.log( '%c ', 'background: #fdd835; color: #000000' );
+                                      console.log( '%c ', 'background: #fdd835; color: #000000' );
+                                      console.log( 'Filterred -->',
+                                                   props.products.filter( p => p.productType === 'pb' ) );
                                       return props.products.filter( p => p.productType === 'pb' );
                                     } );
 
@@ -216,7 +245,8 @@ export default defineComponent( {
 
                                       const price: Price = {
                                         HT:             totalHt,
-                                        TVA:            totalTva,
+                                        TVA:            lessThan2Year ? 0 : totalTva,
+                                        TVA20:          lessThan2Year ? totalTva : 0,
                                         TTC:            totalTtc,
                                         maPrimeRenov:   maPrimeRenov,
                                         remainderToPay: totalTtc - totalPrime,

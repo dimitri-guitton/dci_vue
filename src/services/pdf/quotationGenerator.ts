@@ -1079,10 +1079,12 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PG:
             case FILE_PB:
             case FILE_PV:
+
+                // TODO TVA 20 SI MOINSDE 2 ANS
                 items = [
                     PriceQuotation.HT,
                     PriceQuotation.TVA,
-                    PriceQuotation.TVA20,
+                    // PriceQuotation.TVA20,
                     PriceQuotation.TTC,
                 ];
 

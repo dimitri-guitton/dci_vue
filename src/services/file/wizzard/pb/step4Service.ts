@@ -9,12 +9,13 @@ import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import { PbQuotation } from '@/types/v2/File/Pb/PbQuotation';
 import { updateJsonData } from '@/services/folder/folderService';
 import { Price } from '@/services/file/wizzard/Price';
+import { PbStep4 } from '@/types/v2/Wizzard/step4/PbStep4';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4
  * @param fileData
  */
-export const initPbFormDataStep4 = ( fileData: PbFile ) => {
+export const initPbFormDataStep4 = ( fileData: PbFile ): PbStep4 => {
 
     const options: StepOption[] = [];
     for ( const o of fileData.quotation.options ) {
@@ -39,6 +40,7 @@ export const initPbFormDataStep4 = ( fileData: PbFile ) => {
         blankOptions,
         selectedProducts,
         commentary:         fileData.quotation.commentary,
+        creation:           fileData.quotation.newCreation,
     };
 };
 
@@ -48,6 +50,7 @@ export const yupPbConfigStep4 = () => {
                            dateTechnicalVisit: Yup.string(),
                            executionDelay:     Yup.string(),
                            commentary:         Yup.string(),
+                           creation:           Yup.boolean(),
                            selectedProducts:   Yup.array()
                                                   .of(
                                                       Yup.object().shape( {
@@ -123,6 +126,7 @@ export const validatePbStep4 = async ( data: PbFileStep, price: Price ): Promise
         discount:           price.discount ? price.discount : 0,
         maPrimeRenovBonus:  price.maPrimeRenov !== undefined ? price.maPrimeRenov : 0,
         remainderToPay:     price.remainderToPay,
+        newCreation:        data.creation === undefined ? false : data.creation,
     };
 
     fileData = {

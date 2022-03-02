@@ -85,7 +85,7 @@ function convertDbFileToFileItem( items: DbFile[] ) {
                     types.push( FILE_PG_TYPE );
                     break;
                 case FILE_PB_TYPE.slug:
-                    types.push( FILE_PG_TYPE );
+                    types.push( FILE_PB_TYPE );
                     break;
                 case FILE_PV_TYPE.slug:
                     types.push( FILE_PV_TYPE );

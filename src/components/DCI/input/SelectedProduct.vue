@@ -127,6 +127,7 @@ export default defineComponent( {
                                       ctx.emit( 'selectedProductIsUpdated', currentProduct.value, 'product' );
                                     };
 
+                                    console.log( 'PROPS', props.products );
                                     if ( props.selectedProducts.length > 0 ) {
                                       currentProduct = ref( props.selectedProducts[ 0 ] );
                                     } else {

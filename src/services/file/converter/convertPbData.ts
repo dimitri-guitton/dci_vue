@@ -89,7 +89,7 @@ const convertOldPbProduct = ( oldData ): Product[] => {
                              reference:   product[ 'ref' ],
                              pu:          product[ 'pu' ],
                              defaultPu:   product[ 'pu' ],
-                             description: 'empty',
+                             description: product[ 'description' ],
                              quantity:    1,
                          } );
         index++;

@@ -226,21 +226,21 @@
             {
                 "id":          12,
                 "productType": "creation",
-                "label":       "Création complète intérieur conduit isolé Poujoulat\nTuyau isolé double paroi 500mm\nCoude 45°\nSupport plancher\nMaintien au toit galva\nSolin\nChapeau\nElément départ plafond\nRosace\nTuyau emaillé + kit air",
+                "label":       "Création complète intérieur conduit isolé Poujoulat",
                 "reference":   "creation",
                 "pu":          1890,
                 "defaultPu":   1890,
-                "description": "empty",
+                "description": "Création complète intérieur conduit isolé Poujoulat\nTuyau isolé double paroi 500mm\nCoude 45°\nSupport plancher\nMaintien au toit galva\nSolin\nChapeau\nElément départ plafond\nRosace\nTuyau emaillé + kit air",
                 "quantity":    1
             },
             {
                 "id":          13,
                 "productType": "creation",
-                "label":       "Boisseau existant maçonné départ au plafond\nRaccord tubage\nGaine, collier soutien, plaque étanche, chapeau\nTuyau simple paroi émaillé\nTuyau réglable\nTé fumée\nCoude 45°",
+                "label":       "Boisseau existant maçonné départ au plafond",
                 "reference":   "boisseau_existant",
                 "pu":          1300,
                 "defaultPu":   1300,
-                "description": "empty",
+                "description": "Boisseau existant maçonné départ au plafond\nRaccord tubage\nGaine, collier soutien, plaque étanche, chapeau\nTuyau simple paroi émaillé\nTuyau réglable\nTé fumée\nCoude 45°",
                 "quantity":    1
             }
         ],
