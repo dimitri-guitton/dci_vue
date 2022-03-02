@@ -1,0 +1,858 @@
+{
+    "settings":                 {
+        "ceeCoef": "5.5"
+    },
+    "type":                     "pv",
+    "version":                  "5",
+    "devisTemplate":            "devisPoele-v5.html",
+    "ficheTemplate":            "fichePoele-v5.html",
+    "ficheGenerator":           "poeleV3.xlsx",
+    "disablePrime":             false,
+    "disablePrimeCEE":          false,
+    "disablePrimeMaprimerenov": false,
+    "enabledActionLogement":    false,
+    "avis":                     [],
+    "beneficiaire":             {
+        "civilite":   "m",
+        "nom":        "",
+        "prenom":     "",
+        "adresse":    "",
+        "codepostal": "",
+        "ville":      ""
+    },
+    "email":                    "",
+    "telfixe":                  "",
+    "telportable":              "",
+    "codePrime":                null,
+    "zoneEnergetique":          null,
+    "tauxPrime":                null,
+    "logement":                 {
+        "occupants":         1,
+        "chauffageType":     "electrique",
+        "batimentNature":    "",
+        "typeChaudiere":     "aucun",
+        "isAdresseBenef":    true,
+        "adresse":           "",
+        "codepostal":        "",
+        "ville":             "",
+        "parcelle":          "",
+        "superficie":        0,
+        "dataGeoportail":    {},
+        "location":          "",
+        "moinsDe2Ans":       false,
+        "anneeConstruction": "",
+        "localType":         "maison_individuelle"
+    },
+    "fiche":                    {
+        "periodePose": "",
+        "infosSup":    "RAS"
+    },
+    "devis":                    {
+        "pose":            5.5,
+        "overridePose":    5.5,
+        "tva":             5.5,
+        "noPrimeUseCode":  "CL",
+        "origine":         "",
+        "dateVisiteTech":  "",
+        "delaisExecution": "",
+        "calcul0PU":       0,
+        "options":         [
+            {
+                "id":    1,
+                "label": "Forfait accessoires nécessaires à la pose, au raccordement et au bon fonctionnement de l’installation.",
+                "unit":  "u",
+                "value": 1,
+                "pu":    {
+                    "default": 0,
+                    "value":   0
+                }
+            },
+            {
+                "id":    2,
+                "label": "Pose de l’installation, mise en service et essai.",
+                "unit":  "u",
+                "value": 1,
+                "pu":    {
+                    "default": 800,
+                    "value":   800
+                }
+            }
+        ],
+        "blankOptions":    [
+            {
+                "id":    "sup1",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            },
+            {
+                "id":    "sup2",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            }
+        ],
+        "commentaires":    "",
+        "partner":         "VTE",
+        "texte1": {
+            "title": "TVA",
+            "text":  "La TVA à taux réduit de 10% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.  Réalisation du chantier SAS Allaire du temps and co rcs La Rochelle 85228498300024 QualiPV QPV/58881/58881"
+        },
+        "pv":     {
+            "products": [
+                {
+                    "ref":         "pv_dual_3",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 3 x 375 wc = 1125 kwc",
+                    "quantity":    3,
+                    "pu":          815,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_4",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 4 x 375 wc = 1500 kwc",
+                    "quantity":    4,
+                    "pu":          795,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_5",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 5 x 375 wc = 1875 kwc",
+                    "quantity":    5,
+                    "pu":          775,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_6",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 6 x 375 wc = 2250 kwc",
+                    "quantity":    6,
+                    "pu":          755,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_7",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 7 x 375 wc = 2625 kwc",
+                    "quantity":    7,
+                    "pu":          735,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_8",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 8 x 375 wc = 3000 kwc",
+                    "quantity":    8,
+                    "pu":          715,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_9",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 9 x 375 wc = 3375 kwc",
+                    "quantity":    9,
+                    "pu":          700,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_10",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 10 x 375 wc = 3750 kwc",
+                    "quantity":    10,
+                    "pu":          685,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_11",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 11 x 375 wc = 4125 kwc",
+                    "quantity":    11,
+                    "pu":          670,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_12",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 12 x 375 wc = 4500 kwc",
+                    "quantity":    12,
+                    "pu":          655,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_13",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 13 x 375 wc = 4875 kwc",
+                    "quantity":    13,
+                    "pu":          640,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_14",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 14 x 375 wc = 5250 kwc",
+                    "quantity":    14,
+                    "pu":          625,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_15",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 15 x 375 wc = 5625 kwc",
+                    "quantity":    15,
+                    "pu":          610,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_16",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 16 x 375 wc = 6000 kwc",
+                    "quantity":    16,
+                    "pu":          595,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_17",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 17 x 375 wc = 6375 kwc",
+                    "quantity":    17,
+                    "pu":          585,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_18",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 18 x 375 wc = 6750 kwc",
+                    "quantity":    18,
+                    "pu":          575,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_19",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 19 x 375 wc = 7125 kwc",
+                    "quantity":    19,
+                    "pu":          565,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_20",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 20 x 375 wc = 7500 kwc",
+                    "quantity":    20,
+                    "pu":          555,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_21",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 21 x 375 wc = 7875 kwc",
+                    "quantity":    21,
+                    "pu":          545,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_22",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 22 x 375 wc = 8250 kwc",
+                    "quantity":    22,
+                    "pu":          535,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_23",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 23 x 375 wc = 8625 kwc",
+                    "quantity":    23,
+                    "pu":          525,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                },
+                {
+                    "ref":         "pv_dual_24",
+                    "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 24 x 375 wc = 9000 kwc",
+                    "quantity":    24,
+                    "pu":          520,
+                    "power":       375,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                }
+            ]
+        }
+    },
+    "baremes":                  [
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  15262
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  22320
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  26844
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  31359
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  35894
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  40420
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  44946
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  49472
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  53998
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  58524
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  63050
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  67576
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  72102
+                }
+            ],
+            "code":         "GP",
+            "primeCEE":     {
+                "H1": 38.2,
+                "H2": 31.3,
+                "H3": 20.9
+            }
+        },
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  19565
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  28614
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  34411
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  40201
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  46015
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  51812
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  57609
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  63406
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  69203
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  75000
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  80797
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  86594
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  92391
+                }
+            ],
+            "code":         "P",
+            "primeCEE":     {
+                "H1": 38.2,
+                "H2": 31.3,
+                "H3": 20.9
+            }
+        },
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  29148
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  42848
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  51592
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  60336
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  69081
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  77825
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  86569
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  95313
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  104057
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  112801
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  121545
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  130289
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  139033
+                }
+            ],
+            "code":         "IT",
+            "primeCEE":     {
+                "H1": 38.2,
+                "H2": 31.3,
+                "H3": 20.9
+            }
+        },
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  29148
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  42848
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  51592
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  60336
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  69081
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  77825
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  86569
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  95313
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  104057
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  112801
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  121545
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  130289
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  139033
+                }
+            ],
+            "code":         "CL",
+            "primeCEE":     {
+                "H1": 38.2,
+                "H2": 31.3,
+                "H3": 20.9
+            }
+        }
+    ],
+    "lists":                    {
+        "localType":         [
+            {
+                "maison_individuelle": "Maison individuelle"
+            },
+            {
+                "appartement": "Appartement"
+            }
+        ],
+        "qualiteIsolation":  [
+            {
+                "0.6": "0.6"
+            },
+            {
+                "0.65": "0.65"
+            },
+            {
+                "0.8": "0.8"
+            },
+            {
+                "0.9": "0.9"
+            },
+            {
+                "1": "1"
+            },
+            {
+                "1.1": "1.1"
+            },
+            {
+                "1.3": "1.3"
+            },
+            {
+                "1.5": "1.5"
+            }
+        ],
+        "statutMenageType":  [
+            {
+                "tres_bonifie": "Très bonfié"
+            },
+            {
+                "bonifie": "Bonfié"
+            },
+            {
+                "classique": "Classique"
+            },
+            {
+                "intermediaire": "Intermédiaire"
+            }
+        ],
+        "batimentNature":    [
+            {
+                "": "-"
+            },
+            {
+                "nouvelle_residence": "Nouvelle résidence principale"
+            },
+            {
+                "location": "Location"
+            },
+            {
+                "residence_secondaire": "Résidence secondaire"
+            }
+        ],
+        "niveauHabitation":  [
+            {
+                "pp": "Plein Pied"
+            },
+            {
+                "r1": "R+1"
+            },
+            {
+                "r2": "R+2"
+            },
+            {
+                "r3": "R+3"
+            },
+            {
+                "r4": "R+4"
+            },
+            {
+                "autre": "AUTRE"
+            }
+        ],
+        "typeChantier":      [
+            {
+                "neuf": "Neuf"
+            },
+            {
+                "reno": "Reno"
+            }
+        ],
+        "puissanceCompteur": [
+            3,
+            6,
+            9,
+            12,
+            18
+        ],
+        "generateur":        [
+            {
+                "electrique": "Electrique"
+            },
+            {
+                "fioul": "Fioul"
+            },
+            {
+                "gaz_naturel": "Gaz naturel"
+            },
+            {
+                "bois": "Bois"
+            },
+            {
+                "propane": "Propane"
+            }
+        ],
+        "conduitType":       [
+            {
+                "maconne": "Maconné"
+            },
+            {
+                "metallique": "Métallique"
+            },
+            {
+                "tube": "Tubé"
+            },
+            {
+                "chemise": "Chemisé"
+            }
+        ],
+        "resistance":        [
+            {
+                "dry": "D (dry)"
+            },
+            {
+                "wet": "W (wet)"
+            },
+            {
+                "dont_know": "Ne sais pas"
+            }
+        ],
+        "typeDebouche":      [
+            {
+                "nu": "Nu"
+            },
+            {
+                "mm": "Mitre-Mitron"
+            },
+            {
+                "ec": "Extracteur statique"
+            },
+            {
+                "ecm": "Extracteur stato-mécanique"
+            }
+        ],
+        "toiture":           [
+            {
+                "pente_sup_15": "Pente > 15°"
+            },
+            {
+                "pente_inf_15": "Pente < 15°"
+            },
+            {
+                "terrasse": "Toiture terrasse"
+            }
+        ],
+        "yON":               [
+            {
+                "yes": "Oui"
+            },
+            {
+                "no": "Non"
+            },
+            {
+                "dontKnow": "Ne sais pas"
+            }
+        ],
+        "couleurProfile":    [
+            {
+                "blanc_creme": "Blanc crème"
+            },
+            {
+                "noir": "Noir"
+            },
+            {
+                "tourterelle": "Tourterelle"
+            }
+        ],
+        "couleurFacade":     [
+            {
+                "gres_ivoire": "Gres ivoire"
+            },
+            {
+                "gres_rouille": "Gres rouille"
+            },
+            {
+                "verre_noir_strille": "Verre noir strille"
+            },
+            {
+                "acier_noir": "Acier Noir"
+            },
+            {
+                "pierre_ollaire": "Pierre ollaire"
+            },
+            {
+                "tourterelle": "Tourterelle"
+            }
+        ],
+        "puissancePoele":    [
+            {
+                "6": 6
+            },
+            {
+                "8": 8
+            },
+            {
+                "9": 9
+            },
+            {
+                "10": 10
+            }
+        ],
+        "zoneInstallation":  [
+            {
+                "z1": "Zone 1"
+            },
+            {
+                "z2": "Zone 2"
+            },
+            {
+                "z3": "Zone 3"
+            }
+        ],
+        "outsideSocket":     [
+            {
+                "Non": "Non"
+            },
+            {
+                "Oui": "Oui"
+            }
+        ],
+        "typeOrigine":       [
+            {
+                "telephone": "Téléphone"
+            },
+            {
+                "internet": "Internet"
+            },
+            {
+                "presse": "Presse"
+            },
+            {
+                "campagne-google": "Campagne Google"
+            },
+            {
+                "autre": "Autre"
+            },
+            {
+                "hello-watt": "hello watt"
+            },
+            {
+                "angelique": "Angélique"
+            }
+        ]
+    },
+    "attestationTvaSimplifiee": "attestationTvaSimplifiee.html",
+    "cerfaMandat":              "cerfa-mandat.html",
+    "cadreContribution":        "CC_BAR.html",
+    "zoneMontant":              {
+        "H1": 38.2,
+        "H2": 31.3,
+        "H3": 20.9
+    }
+}

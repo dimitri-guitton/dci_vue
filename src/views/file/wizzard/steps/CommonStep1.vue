@@ -25,7 +25,7 @@
           <Field
               v-model="assent.numFiscal"
               type="text"
-              class="form-control form-control-solid"
+              class="form-control"
               placeholder="0001123456789"
               :name="`assents[${counter}].numFiscal`"
           />
@@ -54,7 +54,7 @@
           <Field
               v-model="assent.refAvis"
               type="text"
-              class="form-control form-control-solid"
+              class="form-control"
               placeholder="0001123456789"
               :name="`assents[${counter}].refAvis`"
           />

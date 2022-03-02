@@ -9,14 +9,8 @@ import {
     TableCell,
     TDocumentDefinitions,
 } from 'pdfmake/interfaces';
-import { BLUE, DARK_GREY, GREEN, LOGO_ECO, LOGO_QUALIBOIS, LOGO_QUALIFELEC, LOGO_RGE_CERTIBAT } from '@/services/pdf/pdfVariable';
-import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
-import { CetFile } from '@/types/v2/File/Cet/CetFile';
-import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
-import { PgFile } from '@/types/v2/File/Pg/PgFile';
-import { RoFile } from '@/types/v2/File/Ro/RoFile';
-import { RrFile } from '@/types/v2/File/Rr/RrFile';
-import { SolFile } from '@/types/v2/File/Sol/SolFile';
+import { BLUE, DARK_GREY, GREEN, LOGO_ECO, LOGO_QUALIBOIS, LOGO_QUALIFELEC } from '@/services/pdf/pdfVariable';
+import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_PV, FILE_SOL } from '@/services/constantService';
 import CombleList from '@/types/v2/File/Comble/CombleList';
 import SolList from '@/types/v2/File/Sol/SolList';
 import RoList from '@/types/v2/File/Ro/RoList';
@@ -33,11 +27,14 @@ import { toFrenchDate } from '@/services/commonService';
 import { TvaCertificateGenerator } from '@/services/pdf/tvaCertificateGenerator';
 import { ContributionFrameworkGenerator } from '@/services/pdf/contributionFrameworkGenerator';
 import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
+import PbList from '@/types/v2/File/Pb/PbList';
+import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
+import { AllFile, AllQuotation } from '@/types/v2/File/All';
 
 enum PriceQuotation {
     HT            = 'Total HT',
     TTC           = 'Total TTC',
-    TVA           = 'TVA ${tva}',
+    TVA           = 'TVA 5.5%',
     TVA10         = 'TVA 10%',
     TVA20         = 'TVA 20%',
     CEE           = 'PRIME CEE EDF SIREN 552 081 317',
@@ -49,11 +46,11 @@ enum PriceQuotation {
 }
 
 export class QuotationGenerator extends PdfGenerator {
-    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile;
+    private _file: AllFile;
 
     private _style: StyleDictionary = {
-        header:          {
-            fontSize: 12,
+        header: {
+            fontSize: 10,
             bold:     true,
         },
         tableHeader:     {
@@ -68,7 +65,7 @@ export class QuotationGenerator extends PdfGenerator {
         },
     };
 
-    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile ) {
+    constructor( file: AllFile ) {
         super();
         this._file = file;
         this.type  = PdfType.Quotation;
@@ -89,7 +86,7 @@ export class QuotationGenerator extends PdfGenerator {
 
         // Génération du cadre de contribution
         // Pour les pompes à chaleur RO et RR quand la prime CEE est > à 0
-        if ( ( this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR ) && this._file.quotation.ceeBonus > 0 ) {
+        if ( this._file.quotation.ceeBonus > 0 ) {
             const contributionFrameworkGenerator = new ContributionFrameworkGenerator( this._file );
             contributionFrameworkGenerator.generatePdf();
         }
@@ -159,10 +156,6 @@ export class QuotationGenerator extends PdfGenerator {
         const body: TableCell[][] = [
             [
                 {
-                    image: LOGO_RGE_CERTIBAT,
-                    width: 45,
-                },
-                {
                     image: LOGO_ECO,
                     width: 220,
                 },
@@ -170,20 +163,18 @@ export class QuotationGenerator extends PdfGenerator {
         ];
 
         switch ( this._file.type ) {
-            case FILE_PAC_RR:
-            case FILE_PAC_RO:
-            case FILE_CET:
-                body[ 0 ].push( {
-                                    image: LOGO_QUALIFELEC,
-                                    width: 45,
-                                } );
-                break;
             case FILE_PG:
+            case FILE_PB:
                 body[ 0 ].push( {
                                     image: LOGO_QUALIBOIS,
                                     width: 45,
                                 } );
                 break;
+            default:
+                body[ 0 ].push( {
+                                    image: LOGO_QUALIFELEC,
+                                    width: 45,
+                                } );
         }
 
         return body;
@@ -203,11 +194,15 @@ export class QuotationGenerator extends PdfGenerator {
                 break;
             case FILE_COMBLE:
             case FILE_SOL:
-                text = 'RGE : RE15061';
+            case FILE_PV:
+                text = 'RGE : 09522';
                 break;
             case FILE_PG:
+            case FILE_PB:
                 text = 'Qualibois QB/59396';
                 break;
+            default:
+                console.warn( 'Le type de dossier n\'est pas pris en compte pour la génération du certificat' );
         }
 
         return {
@@ -274,20 +269,13 @@ export class QuotationGenerator extends PdfGenerator {
      * @private
      */
     private _generateCommercialHeader(): Content {
-        let technician = this._file.technician;
-        if ( technician === undefined ) {
-            technician = {
-                id:        0,
-                firstName: ' ',
-                lastName:  ' ',
-                phone:     ' ',
-            };
-        }
+        const technician = this._file.technician;
+        console.log( 'technician', technician );
         return {
             margin: [ 0, 3 ],
             style:  [ 'table', 'commercialTable' ],
             table:  {
-                body:   [
+                body: [
                     [
                         {
                             text:  'Technicien conseil',
@@ -457,7 +445,7 @@ export class QuotationGenerator extends PdfGenerator {
      */
     private _getHousingData(): HousingItem {
         const housing = this._file.housing;
-        let list: CombleList | SolList | RoList | RrList | CetList | PgList;
+        let list: CombleList | SolList | RoList | RrList | CetList | PgList | PbList;
         switch ( this._file.type ) {
             case FILE_COMBLE:
             case FILE_SOL:
@@ -560,7 +548,6 @@ export class QuotationGenerator extends PdfGenerator {
                         },
                     ],
                 };
-
             case FILE_PG:
                 list = ( this._file.lists as PgList );
                 return {
@@ -579,7 +566,42 @@ export class QuotationGenerator extends PdfGenerator {
                         },
                     ],
                 };
-
+            case FILE_PB:
+                list = ( this._file.lists as PbList );
+                return {
+                    left: [
+                        {
+                            label: 'Local',
+                            value: this.getValueInList( list.batimentNatureList, housing.buildingNature ),
+                        },
+                        {
+                            label: 'Surface à chauffer (m2)',
+                            value: housing.area.toString(),
+                        },
+                        {
+                            label: 'Ce logement à moins de 2 ans',
+                            value: this.yesOrNo( housing.lessThan2Years ),
+                        },
+                    ],
+                };
+            case FILE_PV:
+                list = ( this._file.lists as PbList );
+                return {
+                    left: [
+                        {
+                            label: 'Local',
+                            value: this.getValueInList( list.batimentNatureList, housing.buildingNature ),
+                        },
+                        {
+                            label: 'Surface à chauffer (m2)',
+                            value: housing.area.toString(),
+                        },
+                        {
+                            label: 'Ce logement à moins de 2 ans',
+                            value: this.yesOrNo( housing.lessThan2Years ),
+                        },
+                    ],
+                };
             case FILE_CET:
                 list = ( this._file.lists as CetList );
                 return {
@@ -594,6 +616,8 @@ export class QuotationGenerator extends PdfGenerator {
                         },
                     ],
                 };
+            default:
+                console.warn( 'Le type de dossier n\'est pas pris en compte pour la génération des datas du logement' );
         }
 
         return {
@@ -607,6 +631,7 @@ export class QuotationGenerator extends PdfGenerator {
      */
     private _generateHousingInfo(): Content {
         const data = this._getHousingData();
+        console.log( data );
 
         const tableBody: ContentText[][] = [];
         let rowTable: ContentText[]      = [];
@@ -649,10 +674,12 @@ export class QuotationGenerator extends PdfGenerator {
             }
         }
 
+        console.log( 'Table body ->', tableBody );
+
         return {
             margin: [ 0, 3 ],
             style:  'text',
-            table: {
+            table:  {
                 widths: [ '25%', '25%', '25%', '25%' ],
                 body:   tableBody,
             },
@@ -688,11 +715,11 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_SOL:
                 text = 'Isolation d\'un plancher bas';
                 break;
-            case FILE_COMBLE:
-                text = 'Isolation des combles perdues';
-                break;
             case FILE_PG:
                 text = 'Nature des travaux réalisés (Poêle à granulé ou pellets)';
+                break;
+            case FILE_PB:
+                text = 'Nature des travaux réalisés (Poêle à bois)';
                 break;
             case FILE_PAC_RO:
                 text = 'Remplacement du système de chauffage par une pompe à chaleur air/eau';
@@ -724,6 +751,40 @@ export class QuotationGenerator extends PdfGenerator {
         ];
     }
 
+    private _getQuotationFooter(): TableCell[] {
+        let text = '';
+        switch ( this._file.type ) {
+            case FILE_SOL:
+            case FILE_COMBLE:
+                text = 'Pas de mise en place de par-vapeur';
+                break;
+            case FILE_PV:
+                text = 'Démarches administratives incluses (déclaration préalable de travaux, demande de raccordement et CONSUEL)';
+        }
+
+        if ( text !== '' ) {
+            return [
+                {
+                    text,
+                    colSpan: 5,
+                },
+                {},
+                {},
+                {},
+                {},
+            ];
+        }
+
+        return [
+            {},
+            {},
+            {},
+            {},
+            {},
+        ];
+    }
+
+
     /**
      * Retourne les garanties selon le type de projet
      * @private
@@ -732,20 +793,21 @@ export class QuotationGenerator extends PdfGenerator {
         let text = '';
         switch ( this._file.type ) {
             case FILE_PG:
-                text = 'GARANTIE 2ANS PIECES';
+                text = 'GARANTIE 2 ANS PIECES';
                 break;
-            case FILE_PAC_RO:
-                const rrQuotation = ( this._file.quotation as RrQuotation );
-
-                // TODO check que rrType est bien égale à 'mono' et a 'multi'
-                if ( rrQuotation.rrType === 'mono' && rrQuotation.assortment === 'sensira' ) {
-                    text = 'GARANTIE DAIKIN 3ANS PIECES ET 5ANS COMPRESSEUR';
-                } else {
-                    text = 'GARANTIE DAIKIN 3ANS PIECES ET 5ANS COMPRESSEUR';
-                }
+            case FILE_PB:
+                text = 'GARANTIE 5 ANS';
                 break;
             case FILE_PAC_RR:
-                text = 'Installation d\'une pompe à chaleur air/air';
+                const rrQuotation = ( this._file.quotation as RrQuotation );
+                if ( rrQuotation.rrType === 'mono' && rrQuotation.assortment === 'sensira' ) {
+                    text = 'GARANTIE DAIKIN 3 ANS PIECES ET 5ANS COMPRESSEUR';
+                } else {
+                    text = 'GARANTIE DAIKIN 3 ANS PIECES ET 5ANS COMPRESSEUR';
+                }
+                break;
+            case FILE_PAC_RO:
+                text = 'GARANTIE DAIKIN 3ANS PIECES ET 5ANS COMPRESSEUR';
                 break;
         }
 
@@ -780,33 +842,73 @@ export class QuotationGenerator extends PdfGenerator {
     private _getSelectedProducts(): TableCell[][] {
         const data: TableCell[][] = [];
 
-        for ( const product of this._file.quotation.selectedProducts ) {
-            // TODO GÉRER LA QUANTITÉ
-            let price = this.formatPrice( product.pu );
-            if ( this._file.type === FILE_SOL || this._file.type === FILE_COMBLE ) {
-                price = this.formatPrice( product.pu * this._file.housing.area );
-            }
-            data.push( [
-                           {
-                               text: product.label,
-                           },
-                           {
-                               text: product.description,
-                           },
-                           {
-                               text:      '1u', // TODO GÉRER LA QUANTITÉ
-                               alignment: 'right',
-                           },
-                           {
-                               text:      this.formatPrice( product.pu ),
-                               alignment: 'right',
-                           },
-                           {
-                               text:      price,
-                               alignment: 'right',
-                           },
-                       ] );
+        switch ( this._file.type ) {
+            case FILE_COMBLE:
+            case FILE_SOL:
+                for ( const product of this._file.quotation.selectedProducts ) {
+                    const totalPrice = this.formatPrice( product.pu, this._file.housing.area );
+                    const quantity   = `${ this._file.housing.area }m2`;
+
+                    data.push( [
+                                   {
+                                       text:    product.label,
+                                       colSpan: 2,
+                                   },
+                                   {},
+                                   {
+                                       text:      quantity,
+                                       alignment: 'right',
+                                   },
+                                   {
+                                       text:      this.formatPrice( product.pu ),
+                                       alignment: 'right',
+                                   },
+                                   {
+                                       text:      totalPrice,
+                                       alignment: 'right',
+                                   },
+                               ],
+                               [
+                                   {
+                                       text:    product.description,
+                                       colSpan: 2,
+                                   },
+                                   {},
+                                   {},
+                                   {},
+                                   {},
+                               ] );
+                }
+
+                break;
+            default:
+                for ( const product of this._file.quotation.selectedProducts ) {
+                    const totalPrice = this.formatPrice( product.pu, product.quantity );
+                    const quantity   = `${ product.quantity }u`;
+
+                    data.push( [
+                                   {
+                                       text: product.reference,
+                                   },
+                                   {
+                                       text: product.description,
+                                   },
+                                   {
+                                       text:      quantity,
+                                       alignment: 'right',
+                                   },
+                                   {
+                                       text:      this.formatPrice( product.pu ),
+                                       alignment: 'right',
+                                   },
+                                   {
+                                       text:      totalPrice,
+                                       alignment: 'right',
+                                   },
+                               ] );
+                }
         }
+
 
         return data;
     }
@@ -834,7 +936,7 @@ export class QuotationGenerator extends PdfGenerator {
                                alignment: 'right',
                            },
                            {
-                               text:      this.formatPrice( option.pu * option.number ),
+                               text:      this.formatPrice( option.pu, option.number ),
                                alignment: 'right',
                            },
                        ] );
@@ -870,7 +972,7 @@ export class QuotationGenerator extends PdfGenerator {
                                alignment: 'right',
                            },
                            {
-                               text:      this.formatPrice( blankOption.pu * blankOption.number ),
+                               text:      this.formatPrice( blankOption.pu, blankOption.number ),
                                alignment: 'right',
                            },
                        ] );
@@ -916,10 +1018,24 @@ export class QuotationGenerator extends PdfGenerator {
                     this._getQuotationGuarantee(),
                     ...this._getOptions(),
                     ...this._getBlankOptions(),
+                    this._getQuotationFooter(),
                 ],
             },
-            layout: this._getTableLayout(),
-
+            layout: {
+                ...this._getTableLayout(),
+                paddingTop:    function ( i ) {
+                    if ( i === 0 ) {
+                        return 5;
+                    }
+                    return 3;
+                },
+                paddingBottom: function ( i ) {
+                    if ( i === 0 ) {
+                        return 5;
+                    }
+                    return 3;
+                },
+            },
         };
     }
 
@@ -934,7 +1050,8 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_CET:
             case FILE_PAC_RO:
                 const quotation = ( this._file.quotation as PgQuotation | CetQuotation | RoQuotation );
-                text = this.formatPrice( quotation.maPrimeRenovBonus, false );
+                text = this.formatPrice( quotation.maPrimeRenovBonus, 1, false );
+
         }
 
         return {
@@ -954,9 +1071,12 @@ export class QuotationGenerator extends PdfGenerator {
         switch ( this._file.type ) {
             case FILE_CET:
             case FILE_PG:
+            case FILE_PB:
+                // TODO TVA 20 SI MOINS DE 2 ANS
                 items = [
                     PriceQuotation.HT,
                     PriceQuotation.TVA,
+                    // PriceQuotation.TVA20,
                     PriceQuotation.TTC,
                 ];
 
@@ -1033,6 +1153,22 @@ export class QuotationGenerator extends PdfGenerator {
                     items.push( PriceQuotation.discount );
                 }
                 break;
+            case FILE_PV:
+                const pvQuotation = ( this._file.quotation as PvQuotation );
+
+                items = [
+                    PriceQuotation.HT,
+                    PriceQuotation.TTC,
+                ];
+
+                if ( pvQuotation.tva10 > 0 ) {
+                    items.push( PriceQuotation.TVA10 );
+                }
+
+                if ( pvQuotation.tva20 > 0 ) {
+                    items.push( PriceQuotation.TVA20 );
+                }
+                break;
             case FILE_COMBLE:
             case FILE_SOL:
                 items = [
@@ -1047,11 +1183,13 @@ export class QuotationGenerator extends PdfGenerator {
                     items.push( PriceQuotation.CEE );
                 }
                 break;
+            default:
+                console.warn( 'Le type de dossier n\'est pas pris en compte pour la génération des prix' );
         }
 
-        const leftColumn: ContentText[]                                                                          = [];
-        const rightColumn: ContentText[]                                                                         = [];
-        const quotation: CombleQuotation | SolQuotation | RoQuotation | RrQuotation | CetQuotation | PgQuotation = this._file.quotation;
+        const leftColumn: ContentText[]  = [];
+        const rightColumn: ContentText[] = [];
+        const quotation: AllQuotation    = this._file.quotation;
         for ( const item of items ) {
             if ( item === PriceQuotation.TVA ) {
                 leftColumn.push( {
@@ -1104,14 +1242,14 @@ export class QuotationGenerator extends PdfGenerator {
                     break;
                 case PriceQuotation.CEE:
                     rightColumn.push( {
-                                          text:       this.formatPrice( quotation.ceeBonus, false ),
+                                          text:       this.formatPrice( quotation.ceeBonus, 1, false ),
                                           alignment:  'right',
                                           lineHeight: 2,
                                       } );
                     break;
                 case PriceQuotation.CEE_CPC:
                     rightColumn.push( {
-                                          text:       this.formatPrice( quotation.ceeBonus, false ),
+                                          text:       this.formatPrice( quotation.ceeBonus, 1, false ),
                                           alignment:  'right',
                                           lineHeight: 2,
                                       } );
@@ -1121,14 +1259,15 @@ export class QuotationGenerator extends PdfGenerator {
                     break;
                 case PriceQuotation.discount:
                     rightColumn.push( {
-                                          text:       this.formatPrice( quotation.discount, false ),
+                                          text:       this.formatPrice( quotation.discount, 1, false ),
                                           alignment:  'right',
                                           lineHeight: 2,
                                       } );
                     break;
                 case PriceQuotation.laying:
                     rightColumn.push( {
-                                          text:       this.formatPrice( ( quotation as CombleQuotation | SolQuotation ).overrideLaying * this._file.housing.area ),
+                                          text:       this.formatPrice( ( quotation as CombleQuotation | SolQuotation ).overrideLaying,
+                                                                        this._file.housing.area ),
                                           alignment:  'right',
                                           lineHeight: 2,
                                       } );
@@ -1136,7 +1275,7 @@ export class QuotationGenerator extends PdfGenerator {
                 case PriceQuotation.housingAction:
                     if ( this._file.enabledHousingAction ) {
                         rightColumn.push( {
-                                              text:       this.formatPrice( quotation.totalTtc, false ),
+                                              text:       this.formatPrice( quotation.totalTtc, 1, false ),
                                               alignment:  'right',
                                               lineHeight: 2,
                                           } );
@@ -1170,7 +1309,17 @@ export class QuotationGenerator extends PdfGenerator {
      * @private
      */
     private _generateQuotationPrice(): Content {
-        const quotation: CombleQuotation | SolQuotation | RoQuotation | RrQuotation | CetQuotation | PgQuotation = this._file.quotation;
+        const quotation: AllQuotation = this._file.quotation;
+
+        let addedCommentary = '';
+        switch ( this._file.type ) {
+            case FILE_PV:
+                const selfConsumptionBonus = ( quotation as PvQuotation ).selfConsumptionBonus;
+                const year                 = 5;
+                addedCommentary            = `Prime à l’autoconsommation versée pendant ${ year } ans :
+                ${ this.formatPrice( selfConsumptionBonus / 5 ) } / an soit ${ this.formatPrice( selfConsumptionBonus ) }`;
+                break;
+        }
 
         return {
             margin: [ 0, 0 ],
@@ -1188,6 +1337,12 @@ export class QuotationGenerator extends PdfGenerator {
                                 {
                                     text:      quotation.commentary,
                                     alignment: 'center',
+                                },
+                                {
+                                    margin:    [ 0, 5, 0, 0 ],
+                                    text:      addedCommentary,
+                                    alignment: 'center',
+                                    bold:      true,
                                 },
                             ],
                         },
@@ -1360,13 +1515,13 @@ export class QuotationGenerator extends PdfGenerator {
                                                     width: '*',
                                                     stack: [
                                                         {
-                                                            text:      this.formatPrice( this._file.quotation.remainderToPay * 0.3 ),
+                                                            text:      this.formatPrice( this._file.quotation.remainderToPay, 0.3 ),
                                                             alignment: 'right',
                                                             bold:      true,
 
                                                         },
                                                         {
-                                                            text:      this.formatPrice( this._file.quotation.remainderToPay * 0.7 ),
+                                                            text:      this.formatPrice( this._file.quotation.remainderToPay, 0.7 ),
                                                             alignment: 'right',
                                                             bold:      true,
 

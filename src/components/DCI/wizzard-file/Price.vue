@@ -11,8 +11,16 @@
           {{ numberToPrice( price.HT ) }}
         </el-descriptions-item>
 
-        <el-descriptions-item align="right" label="TVA 5.5%">
+        <el-descriptions-item v-if="price.TVA > 0" align="right" label="TVA 5.5%">
           {{ numberToPrice( price.TVA ) }}
+        </el-descriptions-item>
+
+        <el-descriptions-item v-if="price.TVA10 > 0" align="right" label="TVA 10%">
+          {{ numberToPrice( price.TVA10 ) }}
+        </el-descriptions-item>
+
+        <el-descriptions-item v-if="price.TVA20 > 0" align="right" label="TVA 20%">
+          {{ numberToPrice( price.TVA20 ) }}
         </el-descriptions-item>
 
         <el-descriptions-item align="right" label="Total TTC">
@@ -66,22 +74,8 @@ export default defineComponent( {
                                     },
                                   },
                                   setup() {
-                                    const formatNumber = ( number: string | number ): string => {
-                                      let convertedNumber: number;
-                                      if ( typeof number === 'string' ) {
-                                        convertedNumber = +number;
-                                      } else if ( isNaN( number ) ) {
-                                        convertedNumber = 0;
-                                      } else {
-                                        convertedNumber = number;
-                                      }
-
-                                      return convertedNumber.toFixed( 2 );
-                                    };
-
                                     return {
-                                      formatNumber,
-                                      numberToPrice: numberToPrice,
+                                      numberToPrice,
                                     };
                                   },
                                 } );

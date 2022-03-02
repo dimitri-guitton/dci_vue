@@ -27,7 +27,7 @@ export const yupCombleConfigStep3 = () => {
     return Yup.object( {
                            nbOccupant:              Yup.number().required(),
                            housingType:             Yup.string().required(),
-                           housingConstructionYear: Yup.number().required(),
+                           housingConstructionYear: Yup.number().positive().nullable( true ),
                            area:                    Yup.number().required().min( 1, 'La superficie doit être supérieur à 0' ),
                        } );
 };

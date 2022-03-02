@@ -143,6 +143,9 @@ export default defineComponent( {
                                       // TODO UPDATE THE OVERRIDE POSE
                                       const laying = props.quantityArea * ( props.fileData as SolFile ).quotation.overrideLaying;
 
+                                      totalHt += laying;
+                                      console.log( 'Prix apres la poses', totalHt );
+
 
                                       for ( const option of _options.value ) {
                                         if ( option.number > 0 ) {
@@ -164,7 +167,7 @@ export default defineComponent( {
                                       console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
                                       let ceeBonus = getCetCeeBonus( ( props.fileData as BaseFile ) );
-                                      ceeBonus = ceeBonus * props.quantityArea;
+                                      ceeBonus            = ceeBonus * props.quantityArea;
 
 
                                       const tva      = getTva();

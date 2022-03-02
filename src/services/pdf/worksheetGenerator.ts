@@ -4,12 +4,6 @@ import { CombleWorkSheet } from '@/types/v2/File/Comble/CombleWorkSheet';
 import { BROWN, DARK } from '@/services/pdf/pdfVariable';
 import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
 import CombleList from '@/types/v2/File/Comble/CombleList';
-import { CetFile } from '@/types/v2/File/Cet/CetFile';
-import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
-import { PgFile } from '@/types/v2/File/Pg/PgFile';
-import { RoFile } from '@/types/v2/File/Ro/RoFile';
-import { RrFile } from '@/types/v2/File/Rr/RrFile';
-import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { CombleQuotation } from '@/types/v2/File/Comble/CombleQuotation';
 import { CetWorkSheet } from '@/types/v2/File/Cet/CetWorkSheet';
 import { CetList } from '@/types/v2/File/Cet/CetList';
@@ -26,9 +20,10 @@ import { SolWorkSheet } from '@/types/v2/File/Sol/SolWorkSheet';
 import { RoWorkSheet } from '@/types/v2/File/Ro/RoWorkSheet';
 import { RrWorkSheet } from '@/types/v2/File/Rr/RrWorkSheet';
 import { PgWorkSheet } from '@/types/v2/File/Pg/PgWorkSheet';
+import { AllFile } from '@/types/v2/File/All';
 
 export class WorksheetGenerator extends PdfGenerator {
-    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile;
+    private _file: AllFile;
 
     private _style: StyleDictionary = {
         title: {
@@ -40,7 +35,7 @@ export class WorksheetGenerator extends PdfGenerator {
     };
 
 
-    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile ) {
+    constructor( file: AllFile ) {
         super();
         this._file = file;
         this.type  = PdfType.Worksheet;
@@ -290,6 +285,8 @@ export class WorksheetGenerator extends PdfGenerator {
                 list      = ( this._file.lists as CombleList );
                 quotation = ( this._file.quotation as CombleQuotation );
 
+                console.log( 'Options -->', quotation.options );
+
                 if ( quotation.selectedProducts.length > 0 ) {
                     selectedProduct = quotation.selectedProducts[ 0 ].label;
                 }
@@ -456,7 +453,7 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'ARRÊTOIRAS EN POLYRO',
-                                value: quotation.options[ 12 ].number,
+                                value: quotation.options[ 11 ].number,
                             },
                         ],
                     },
@@ -566,6 +563,71 @@ export class WorksheetGenerator extends PdfGenerator {
             case FILE_PAC_RO:
                 break;
             case FILE_PAC_RR:
+                worksheet = ( this._file.worksheet as RrWorkSheet );
+                list      = ( this._file.lists as RrList );
+                quotation = ( this._file.quotation as RrQuotation );
+
+                if ( quotation.selectedProducts.length > 0 ) {
+                    selectedProduct = quotation.selectedProducts[ 0 ].label;
+                }
+
+                // TODO TERMINER FICHE
+                data = [
+                    {
+                        title: 'CARACTERISTIQUES DU CHANTIER',
+                        items: [
+                            {
+                                label: 'Type de batiment',
+                                value: this.getValueInList( list.batimentNatureList, housing.buildingNature ),
+                            },
+                            {
+                                label: 'Type de chantier',
+                                value: this.getValueInList( list.typeChantierList, worksheet.typeChantier ),
+                            },
+                            {
+                                label: 'Vsite des comble',
+                                value: this.yesOrNo( worksheet.visiteComble ),
+                            },
+                            {
+                                label: 'Chantier Habité',
+                                value: this.yesOrNo( worksheet.chantierHabite ),
+                            },
+                            {
+                                label: 'DEMANDE DE VOIRIE / ACCES PL',
+                                value: this.yesOrNo( worksheet.demandeVoirie ),
+                            },
+                            // {
+                            //     label: 'ACCES COMBLES',
+                            //     value: this.getValueInList(list.com),
+                            // },
+                            {
+                                label: 'TYPE COUVERTURE',
+                                value: this.getValueInList( list.typeCouvertureList, worksheet.typeCouverture ),
+                            },
+                            {
+                                label: 'TYPE CHARPENTE',
+                                value: this.getValueInList( list.typeCharpenteList, worksheet.typeCharpente ),
+                            },
+                            {
+                                label: 'PRESENCE VOLIGE',
+                                value: this.yesOrNo( worksheet.presenceVolige ),
+                            },
+                            {
+                                label: 'NATURE DES MURS EXTERIEURS',
+                                value: this.getValueInList( list.natureMurExtList, worksheet.natureMurExt ),
+                            },
+                            {
+                                label: 'TENSION DISPONIBLE',
+                                value: this.getValueInList( list.tensionDisponibleList,
+                                                            housing.availableVoltage === undefined ? '' : housing.availableVoltage ),
+                            },
+                            {
+                                label: 'PUISSANCE COMPTEUR',
+                                value: this.getValueInList( list.puissanceCompteurList, worksheet.puissanceCompteur ),
+                            },
+                        ],
+                    },
+                ];
                 break;
             case FILE_CET:
                 worksheet = ( this._file.worksheet as CetWorkSheet );
@@ -586,7 +648,7 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'ANNÉE DE CONSTRUCTION',
-                                value: housing.constructionYear,
+                                value: housing.constructionYear === null ? 'Non renseigné' : housing.constructionYear.toString(),
                             },
                             {
                                 label: 'TYPE CHANTIER',

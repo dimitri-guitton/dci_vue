@@ -42,13 +42,13 @@
         "location":       "",
         "moinsDe2Ans":    false
     },
-    "fiche":                    {
+    "fiche": {
         "epaisseurProduit":        "115 mm",
         "accesCamion":             "facile",
         "distCamion":              0,
-        "hautPlafond":             "",
+        "hautPlafond":             0,
         "support":                 "bois",
-        "distPointEau":            "",
+        "distPointEau":            0,
         "resistTherm":             "",
         "dimensionsPieces":        [
             "",
@@ -74,7 +74,7 @@
             ""
         ],
         "porteGarage":             "",
-        "nbrPorteGarage":          "",
+        "nbrPorteGarage":          0,
         "infosSup":                "RAS"
     },
     "devis":                    {
@@ -128,7 +128,7 @@
                     "pu":        32.5,
                     "plusValue": 0,
                     "defaultPU": 32.5,
-                    "descr":     "- Certification ACERMI : 15/016/1050/1\r\n\r\n            - Résistance thermique : 3,05 m².k/w\r\n\r\n            - Épaisseur mini (mm) : 110\r\n\r\n            - Masse volumique : 52 kg / m3\r\n\r\n            - Classement au feu : A1 Euroclasse\r\n\r\n            - Qualité de l'air intérieur : A+ Médaille d'or eurofins\r\n\r\n\r\n            - Nivellement de la surface",
+                    "descr":     "- Certification ACERMI : 15/016/1050/1\r\n- Résistance thermique : 3,05 m².k/w\r\n- Épaisseur mini (mm) : 110\r\n- Masse volumique : 52 kg / m3\r\n- Classement au feu : A1 Euroclasse\r\n- Qualité de l'air intérieur : A+ Médaille d'or eurofins\r\n- Nivellement de la surface",
                     "calcul0":   false
                 },
                 {

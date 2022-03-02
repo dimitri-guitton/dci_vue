@@ -11,7 +11,6 @@ interface PgList extends BaseList {
     resistanceList: ItemList[];
     toitureList: ItemList[];
     couleurProfileList: ItemList[];
-    couleurFacadeList: ItemList[];
     puissancePoeleList: ItemList[];
     zoneInstallationList: ItemList[];
 }

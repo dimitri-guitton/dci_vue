@@ -4,7 +4,7 @@
       <label class="form-label mb-3">Date visite technique</label>
       <Field
           type="date"
-          class="form-control form-control-lg form-control-solid"
+          class="form-control form-control-lg"
           name="dateTechnicalVisit"
           placeholder="01/01/1970"
           value=""
@@ -18,7 +18,7 @@
       <label class="form-label mb-3">Délais d'éxécution</label>
       <Field
           type="date"
-          class="form-control form-control-lg form-control-solid"
+          class="form-control form-control-lg"
           name="executionDelay"
           placeholder="01/01/1970"
           value=""
@@ -33,7 +33,7 @@
       <label class="form-label mb-3">Origine</label>
       <Field
           type="text"
-          class="form-control form-control-lg form-control-solid"
+          class="form-control form-control-lg"
           name="origin"
           placeholder="Origine"
           value=""

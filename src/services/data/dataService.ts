@@ -9,11 +9,16 @@ import { Beneficiary } from '@/types/v2/File/Common/Beneficiary';
 import { Product } from '@/types/v2/File/Common/Product';
 import { Option } from '@/types/v2/File/Common/Option';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
-import { FILE_PAC_RO, FILE_PAC_RR } from '@/services/constantService';
+import { FILE_PAC_RR, FILE_PV } from '@/services/constantService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 import { getEnergyZone } from '@/services/file/fileCommonService';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
+import { PgFile } from '@/types/v2/File/Pg/PgFile';
+import { RoFile } from '@/types/v2/File/Ro/RoFile';
+import { RrFile } from '@/types/v2/File/Rr/RrFile';
+import { PbFile } from '@/types/v2/File/Pb/PbFile';
+import { PvFile } from '@/types/v2/File/Pv/PvFile';
 
 const schema = {
     dropboxPath:          {
@@ -86,6 +91,26 @@ export const getCurrentFileData = () => {
 };
 
 export const getCurrentCetFileData = (): CetFile => {
+    return getCurrentFileData();
+};
+
+export const getCurrentPbFileData = (): PbFile => {
+    return getCurrentFileData();
+};
+
+export const getCurrentPvFileData = (): PvFile => {
+    return getCurrentFileData();
+};
+
+export const getCurrentPgFileData = (): PgFile => {
+    return getCurrentFileData();
+};
+
+export const getCurrentRoFileData = (): RoFile => {
+    return getCurrentFileData();
+};
+
+export const getCurrentRrFileData = (): RrFile => {
     return getCurrentFileData();
 };
 
@@ -242,6 +267,12 @@ export const getProductById = ( id: number ): Product => {
     return fileData.quotation.products.find( ( p: Product ) => p.id === id );
 };
 
+export const getProductByRef = ( ref: string ): Product | undefined => {
+    const fileData = getCurrentFileData();
+
+    return fileData.quotation.products.find( ( p: Product ) => p.reference === ref );
+};
+
 export const getOptionById = ( id: number ): Option => {
     const fileData = getCurrentFileData();
     console.log( 'file data', fileData );
@@ -259,7 +290,7 @@ export const getBlankOptionById = ( id: number ): BlankOption => {
 export const getTva = (): number => {
     const fileData = getCurrentFileData();
 
-    if ( fileData.type === FILE_PAC_RO || fileData.type === FILE_PAC_RR ) {
+    if ( fileData.type === FILE_PAC_RR || fileData.type === FILE_PV ) {
         return 0;
     } else {
         return +fileData.quotation.tva;

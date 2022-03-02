@@ -1,5 +1,5 @@
 import { ceil10 } from '@/services/MathService';
-import { FILE_CET, FILE_COMBLE, FILE_SOL } from '@/services/constantService';
+import { FILE_CET, FILE_COMBLE, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 
 export const getEnergyZone = ( zipCode: number ): string => {
@@ -184,9 +184,80 @@ export const getCetCeeBonus = ( data: BaseFile ): number => {
                 }
             }
             break;
+        case FILE_PG:
+            if ( energyZone === 'H1' ) {
+                if ( codeBonus === 'GP' ) {
+                    value = 219.65;
+                } else {
+                    value = 206.28;
+                }
+
+            } else {
+                if ( codeBonus === 'GP' ) {
+                    value = 179.975;
+                } else {
+                    value = 169.02;
+                }
+            }
+            break;
+
 
     }
 
 
     return roundCeeBonus( value );
 };
+
+
+const calcMPR = ( codePrime ): number => {
+    if ( codePrime === 'GP' ) {
+        return 3000;
+    }
+    if ( codePrime === 'P' ) {
+        return 2500;
+    }
+    if ( codePrime === 'IT' ) {
+        return 1500;
+    }
+    return 0;
+};
+
+const getPgMaPrimeRenov = ( totalTtc: number, cee: number, codeBonus: string ): number => {
+    if ( totalTtc - calcMPR( codeBonus ) - cee > totalTtc * 0.1 && codeBonus === 'GP' ) {
+        return 3000;
+    }
+    if ( totalTtc - calcMPR( codeBonus ) - cee < totalTtc * 0.1 && codeBonus === 'GP' ) {
+        return totalTtc - cee - totalTtc * 0.1;
+    }
+
+    if ( totalTtc - calcMPR( codeBonus ) - cee > totalTtc * 0.25 && codeBonus === 'P' ) {
+        return 2500;
+    }
+    if ( totalTtc - calcMPR( codeBonus ) - cee < totalTtc * 0.25 && codeBonus === 'P' ) {
+        return totalTtc - cee - totalTtc * 0.25;
+    }
+
+    if ( totalTtc - calcMPR( codeBonus ) - cee > totalTtc * 0.4 && codeBonus === 'IT' ) {
+        return 1500;
+    }
+    if ( totalTtc - calcMPR( codeBonus ) - cee < totalTtc * 0.4 && codeBonus === 'IT' ) {
+        return totalTtc - cee - totalTtc * 0.4;
+    }
+    return 0;
+};
+
+export const getMaPrimeRenov = ( type: string, totalTtc: number, cee: number, codeBonus: string ): number => {
+    console.log( 'TTC for getMaPrimeRenov -->', totalTtc );
+    console.log( 'CEE for getMaPrimeRenov -->', cee );
+    let value = 0;
+
+    switch ( type ) {
+        case FILE_PG:
+            value = getPgMaPrimeRenov( totalTtc, cee, codeBonus );
+            break;
+
+    }
+
+    return roundCeeBonus( value );
+};
+

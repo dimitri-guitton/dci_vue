@@ -3,7 +3,7 @@
     <div class="row" v-bind:class="{ 'mb-10': !alert, 'mb-2': alert }">
       <div class="col-md-6 fv-row">
         <Field :name="`selectedProducts[${index}].id`"
-               class="form-select form-select-solid"
+               class="form-select"
                as="select"
                v-model="selectedId"
                @change="onChangeProduct(selectedId)">
@@ -19,7 +19,7 @@
                 :disabled="true"
                 type="number"
                 class="form-control"
-                name="selectedProductQuantity"
+                :name="`selectedProducts[${index}].quantity`"
                 placeholder="1"
                 v-model="refQuantityArea"
             />
@@ -33,10 +33,10 @@
             <Field
                 :disabled="true"
                 type="number"
-                class="form-control form-control-lg"
-                name="selectedProductQuantity"
+                class="form-control"
+                :name="`selectedProducts[${index}].quantity`"
                 placeholder="1"
-                :value="1"
+                v-model.number="currentProduct.quantity"
             />
             <div class="input-group-append">
               <span class="input-group-text">U</span>
@@ -49,7 +49,7 @@
         <Field
             v-model.number="currentProduct.pu"
             type="number"
-            class="form-control form-control-lg form-control-solid"
+            class="form-control"
             :name="`selectedProducts[${index}].pu`"
             placeholder="100"
             @change="onChangeProduct(selectedId)"
@@ -61,10 +61,10 @@
       </div>
       <div class="col-md-2 fv-row d-flex justify-content-end align-items-center">
         <template v-if="refQuantityArea > 0">
-          <h5 class="mb-3">{{ ( currentProduct.pu * quantityArea ).toFixed( 2 ) }} €</h5>
+          <h5 class="mb-3">{{ numberToPrice( currentProduct.pu, quantityArea ) }}</h5>
         </template>
         <template v-else>
-          <h5 class="mb-3">{{ currentProduct.pu.toFixed( 2 ) }} €</h5>
+          <h5 class="mb-3">{{ numberToPrice( currentProduct.pu, currentProduct.quantity ) }}</h5>
         </template>
 
       </div>
@@ -89,6 +89,7 @@
 import { computed, defineComponent, ref, toRef } from 'vue';
 import { Product } from '@/types/v2/File/Common/Product';
 import { ErrorMessage, Field } from 'vee-validate';
+import { numberToPrice } from '@/services/commonService';
 
 export default defineComponent( {
                                   name:       'selected-product',
@@ -119,18 +120,21 @@ export default defineComponent( {
                                   emits:      [ 'selectedProductIsUpdated' ],
                                   setup( props, ctx ) {
                                     let currentProduct = ref<Product>();
+                                    const selectedId   = ref<number>();
 
                                     const onChangeProduct = ( value ) => {
                                       currentProduct.value = props.products.find( p => p.id === value );
                                       ctx.emit( 'selectedProductIsUpdated', currentProduct.value, 'product' );
                                     };
 
+                                    console.log( 'PROPS', props.products );
                                     if ( props.selectedProducts.length > 0 ) {
                                       currentProduct = ref( props.selectedProducts[ 0 ] );
                                     } else {
                                       currentProduct = ref( props.products[ 0 ] );
                                       onChangeProduct( props.products[ 0 ].id );
                                     }
+
 
                                     const refQuantityArea = toRef( props, 'quantityArea' );
 
@@ -153,12 +157,23 @@ export default defineComponent( {
                                       return value;
                                     } );
 
+
+                                    const resetSelectedValue = ( products: Product[] ) => {
+                                      currentProduct.value = products[ 0 ];
+                                      selectedId.value     = currentProduct.value?.id;
+                                      return currentProduct.value;
+                                    };
+
+                                    selectedId.value = currentProduct.value?.id;
+
                                     return {
                                       onChangeProduct,
+                                      resetSelectedValue,
                                       refQuantityArea,
                                       htmlAlert,
-                                      selectedId: currentProduct.value?.id,
+                                      selectedId,
                                       currentProduct,
+                                      numberToPrice,
                                     };
                                   },
                                 } );

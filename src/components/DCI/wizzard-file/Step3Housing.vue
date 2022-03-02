@@ -4,7 +4,7 @@
       <label class="form-label mb-3">Nombre d'occupant</label>
       <Field
           type="number"
-          class="form-control form-control-lg form-control-solid"
+          class="form-control"
           name="nbOccupant"
           placeholder="1"
           value=""
@@ -19,7 +19,7 @@
       <Field
           name="housingType"
           as="select"
-          class="form-control form-control-lg form-control-solid"
+          class="form-control"
       >
         <item-list :lists="lists.localTypeList"></item-list>
       </Field>
@@ -32,7 +32,7 @@
       <label class="form-label mb-3">Année de construction</label>
       <Field
           type="number"
-          class="form-control form-control-lg form-control-solid"
+          class="form-control"
           name="housingConstructionYear"
           placeholder="1850"
           value=""
@@ -46,7 +46,7 @@
 
   <div class="row mb-15">
     <div class="col-md-4">
-      <label class="form-check form-switch form-check-custom form-check-solid">
+      <label class="form-check form-switch form-check-custom">
         <Field
             type="checkbox"
             class="form-check-input"

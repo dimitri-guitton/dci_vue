@@ -6,6 +6,7 @@ import { Scale } from '@/types/v2/File/Common/Scale';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import { Option } from '@/types/v2/File/Common/Option';
 import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
+import { Technician } from '@/types/v2/File/Common/Technician';
 
 export const getObjectData = ( data: any, keys: any[] ): any => {
     // Si l'élément n'existe pas on retourne un objet vide ou un string
@@ -30,6 +31,13 @@ export const getStringData = ( data: any ): string => {
 
 export const getNumberData = ( data: any ): number => {
     return data === undefined ? 0 : +data;
+};
+
+export const getNullableNumberData = ( data: any ): number | null => {
+    if ( data === undefined || data === '' || data === null ) {
+        return null;
+    }
+    return +data;
 };
 
 export const getBoolData = ( data: any ): boolean => {
@@ -203,8 +211,7 @@ export const convertOldOptions = ( oldData ): Option[] => {
     const newOptions: Option[] = [];
     const oldOption: []        = getArrayData( oldData[ 'devis' ][ 'options' ] );
 
-    const type = oldData[ 'type' ].toLowerCase();
-    console.log( 'Type des options -->', type );
+    const type   = oldData[ 'type' ].toLowerCase();
     let fileType = 'default';
 
     if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'ro' ) {
@@ -253,4 +260,23 @@ export const convertOldStatusDci = ( oldData ): number => {
 
 export const convertOldErrorStatusDci = ( oldData ): number[] => {
     return oldData[ 'statutInDCIErrors' ] !== undefined ? oldData[ 'statutInDCIErrors' ] : [];
+};
+
+export const convertTechnician = ( oldData ): Technician => {
+    if ( oldData [ 'technicien' ] === undefined ) {
+        return {
+            id:        0,
+            lastName:  ' ',
+            firstName: ' ',
+            phone:     ' ',
+        };
+    }
+
+    return {
+        id:        getNumberData( oldData [ 'technicien' ][ 'id' ] ),
+        lastName:  getStringData( oldData [ 'technicien' ][ 'nom' ] ),
+        firstName: getStringData( oldData [ 'technicien' ][ 'prenom' ] ),
+        phone:     getStringData( oldData [ 'technicien' ][ 'tel' ] ),
+    };
+
 };

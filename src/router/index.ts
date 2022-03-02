@@ -39,6 +39,31 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/views/file/cet/FileEdit.vue'),
             },
             {
+                path:      '/file-pg-edit',
+                name:      'file-pg-edit',
+                component: () => import('@/views/file/pg/FileEdit.vue'),
+            },
+            {
+                path:      '/file-pac_ro-edit',
+                name:      'file-pac_ro-edit',
+                component: () => import('@/views/file/pac_ro/FileEdit.vue'),
+            },
+            {
+                path:      '/file-pac_rr-edit',
+                name:      'file-pac_rr-edit',
+                component: () => import('@/views/file/pac_rr/FileEdit.vue'),
+            },
+            {
+                path:      '/file-pb-edit',
+                name:      'file-pb-edit',
+                component: () => import('@/views/file/pb/FileEdit.vue'),
+            },
+            {
+                path:      '/file-pv-edit',
+                name:      'file-pv-edit',
+                component: () => import('@/views/file/pv/FileEdit.vue'),
+            },
+            {
                 path:      '/parameters',
                 name:      'parameters',
                 component: () => import('@/views/Parameters.vue'),

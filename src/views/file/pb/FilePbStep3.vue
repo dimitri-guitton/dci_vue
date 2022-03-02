@@ -6,23 +6,6 @@
 
     <step3-housing :lists="lists"></step3-housing>
 
-    <div class="row mb-15">
-      <div class="col-md-4 fv-row">
-        <label class="form-label mb-3">Type de chauffage</label>
-        <Field
-            name="housingInsulationQuality"
-            as="select"
-            class="form-control form-control-lg form-control-solid"
-        >
-          <item-list :lists="lists.qualiteIsolationList"></item-list>
-        </Field>
-        <ErrorMessage
-            name="housingInsulationQuality"
-            class="fv-plugins-message-container invalid-feedback"
-        ></ErrorMessage>
-      </div>
-    </div>
-
     <div class="pb-10 pb-lg-15">
       <h2 class="fw-bolder text-dark">Géolocalisation & superficie</h2>
     </div>
@@ -43,6 +26,40 @@
       </label>
     </div>
 
+    <div class="row mb-15">
+      <div class="col-md-4 fv-row">
+        <label class="form-label mb-3">Nature du batiment</label>
+        <Field
+            name="housingBuildingNature"
+            as="select"
+            class="form-control form-control-lg form-control-solid"
+        >
+          <item-list :lists="lists.batimentNatureList"></item-list>
+        </Field>
+        <ErrorMessage
+            name="housingBuildingNature"
+            class="fv-plugins-message-container invalid-feedback"
+        ></ErrorMessage>
+      </div>
+    </div>
+
+    <div class="row mb-15">
+      <div class="col-md-4 fv-row">
+        <label class="form-label mb-3">Superficie <sup><var>m2</var></sup></label>
+        <Field
+            type="number"
+            class="form-control"
+            name="area"
+            placeholder="0"
+            value=""
+        />
+        <ErrorMessage
+            name="area"
+            class="fv-plugins-message-container invalid-feedback"
+        ></ErrorMessage>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -53,7 +70,7 @@ import ItemList from '@/components/DCI/input/ItemList.vue';
 import Step3Housing from '@/components/DCI/wizzard-file/Step3Housing.vue';
 
 export default defineComponent( {
-                                  name:       'common-step-3',
+                                  name:       'file-pb-step-3',
                                   components: {
                                     ItemList,
                                     Step3Housing,

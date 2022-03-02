@@ -42,7 +42,7 @@
         "dataGeoportail":    {},
         "location":          "",
         "insulationQuality": "",
-        "constructionYear":  "",
+        "constructionYear":  null,
         "lessThan2Years":    false,
         "availableVoltage":  ""
     },
@@ -186,6 +186,7 @@
             }
         ],
         "tva":                5.5,
+        "tva20":              0,
         "ceeBonus":           0,
         "selectedProducts":   [
             {
@@ -198,7 +199,8 @@
                 "description": "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 24 litres\n- Autonomie min : 11h\n- Autonomie max : 26h\n- Volume à chauffer : 155/35m3\n- Poids : 90 kg\n- Dimensions en cm : P= 48,8  L = 46,3  H = 90",
                 "type":        "red",
                 "power":       6,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          1,
@@ -208,7 +210,8 @@
                 "pu":          1890,
                 "defaultPu":   1890,
                 "description": "Création complète interieur conduit isolé Poujoulat\r\nTuyau isolé double paroi 500mm\r\nCoude 45°\r\nSupport plancher\r\nMaintien au toît galva\r\nSolin\r\nChapeau\r\nElément de depart plafond\r\nRosace\r\nTuyau emaillé + kit air",
-                "type":        null
+                "type":        null,
+                "quantity":    1
             }
         ],
         "products":           [
@@ -222,7 +225,8 @@
                 "description": "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 24 litres\n- Autonomie min : 11h\n- Autonomie max : 26h\n- Volume à chauffer : 155/35m3\n- Poids : 90 kg\n- Dimensions en cm : P= 48,8  L = 46,3  H = 90",
                 "type":        "red",
                 "power":       6,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          2,
@@ -234,7 +238,8 @@
                 "description": "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 24 litres\n- Autonomie min : 11h\n- Autonomie max : 26h\n- Volume à chauffer : 155/35m3\n- Poids : 90 kg\n- Dimensions en cm : P= 48,8  L = 46,3  H = 90",
                 "type":        "red",
                 "power":       6,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          3,
@@ -246,7 +251,8 @@
                 "description": "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 24 litres\n- Autonomie min : 11h\n- Autonomie max : 26h\n- Volume à chauffer : 155/35m3\n- Poids : 90 kg\n- Dimensions en cm : P= 48,8  L = 46,3  H = 90",
                 "type":        "red",
                 "power":       6,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          4,
@@ -258,7 +264,8 @@
                 "description": "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 24 litres\n- Autonomie min : 11h\n- Autonomie max : 26h\n- Volume à chauffer : 155/35m3\n- Poids : 90 kg\n- Dimensions en cm : P= 48,8  L = 46,3  H = 90",
                 "type":        "red",
                 "power":       6,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          5,
@@ -270,7 +277,8 @@
                 "description": "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Système Easy connect (commande à distance depuis un smartphone)\r\n- structure acier et panneau frontal en acier (couleur au choix).\r\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\r\n- Brasier en fonte.\r\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\r\n- Ventilation désactivable\r\n- Capacité du réservoir : 24 litres\r\n- Autonomie min : 26h\r\n- Autonomie max : 11h\r\n- Volume à chauffer : 155/35m3\r\n- Poids : 90 kg\r\n- Dimensions en cm : P= 48  L = 50  H = 90",
                 "type":        "red",
                 "power":       6,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          6,
@@ -282,7 +290,8 @@
                 "description": "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Système Easy connect (commande à distance depuis un smartphone)\r\n- structure acier et panneau frontal en acier (couleur au choix).\r\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\r\n- Brasier en fonte.\r\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\r\n- Ventilation désactivable\r\n- Capacité du réservoir : 24 litres\r\n- Autonomie min : 26h\r\n- Autonomie max : 11h\r\n- Volume à chauffer : 155/35m3\r\n- Poids : 90 kg\r\n- Dimensions en cm : P= 48  L = 50  H = 90",
                 "type":        "red",
                 "power":       6,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          7,
@@ -294,7 +303,8 @@
                 "description": "Puissance nominale 6,3 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,007 %, émission de particules 17mg/nm3, émission d’oxyde d’azote : 139mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Système Easy connect (commande à distance depuis un smartphone)\r\n- structure acier et panneau frontal en acier (couleur au choix).\r\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\r\n- Brasier en fonte.\r\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\r\n- Ventilation désactivable\r\n- Capacité du réservoir : 24 litres\r\n- Autonomie min : 26h\r\n- Autonomie max : 11h\r\n- Volume à chauffer : 155/35m3\r\n- Poids : 90 kg\r\n- Dimensions en cm : P= 48  L = 50  H = 90",
                 "type":        "red",
                 "power":       6,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          8,
@@ -306,7 +316,8 @@
                 "description": "Puissance nominale 8 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,003 %, émission de particules 16mg/nm3, émission d’oxyde d’azote : 137mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 26 litres\n- Autonomie min : 28h\n- Autonomie max : 9h\n- Volume à chauffer : 197 m3\n- Poids : 130 kg\n- Dimensions en cm : P= 48 L = 50,4  H = 98,5",
                 "type":        "red",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          9,
@@ -318,7 +329,8 @@
                 "description": "Puissance nominale 8 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,003 %, émission de particules 16mg/nm3, émission d’oxyde d’azote : 137mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 26 litres\n- Autonomie min : 28h\n- Autonomie max : 9h\n- Volume à chauffer : 197 m3\n- Poids : 130 kg\n- Dimensions en cm : P= 48 L = 50,4  H = 98,5",
                 "type":        "red",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          10,
@@ -330,7 +342,8 @@
                 "description": "Puissance nominale 8 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,003 %, émission de particules 16mg/nm3, émission d’oxyde d’azote : 137mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 26 litres\n- Autonomie min : 28h\n- Autonomie max : 9h\n- Volume à chauffer : 197 m3\n- Poids : 130 kg\n- Dimensions en cm : P= 48 L = 50,4  H = 98,5",
                 "type":        "red",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          11,
@@ -342,7 +355,8 @@
                 "description": "Puissance nominale 8 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,055 soit 0,003 %, émission de particules 16mg/nm3, émission d’oxyde d’azote : 137mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 26 litres\n- Autonomie min : 28h\n- Autonomie max : 9h\n- Volume à chauffer : 197 m3\n- Poids : 130 kg\n- Dimensions en cm : P= 48 L = 50,4  H = 98,5",
                 "type":        "red",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          12,
@@ -354,7 +368,8 @@
                 "description": "Puissance nominale 8,8 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,057 soit 0,006 %, émission de particules 20mg/nm3, émission d’oxyde d’azote : 117mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 28 litres\n- Autonomie min : 30h\n- Autonomie max : 10h\n- Volume à chauffer : 216 m3\n- Poids : 139 kg\n- Dimensions en cm : P= 29,1 L = 89,5  H = 115,5",
                 "type":        "red",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          13,
@@ -366,7 +381,8 @@
                 "description": "Puissance nominale 8,8 kW , Rendement nominal 92 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 0,057 soit 0,006 %, émission de particules 20mg/nm3, émission d’oxyde d’azote : 117mg/nm3, conforme à la norme NF 14785.\n\n- Système Easy connect (commande à distance depuis un smartphone)\n- structure acier et panneau frontal en acier (couleur au choix).\n- Nouveau foyer plus large et profond pour une meilleur vision du feu\n- Brasier en fonte.\n- bougie de préchauffage en céramique (réduction de 40 % des temps d’allumage).\n- Ventilation désactivable\n- Capacité du réservoir : 28 litres\n- Autonomie min : 30h\n- Autonomie max : 10h\n- Volume à chauffer : 216 m3\n- Poids : 139 kg\n- Dimensions en cm : P= 29,1 L = 89,5  H = 115,5",
                 "type":        "red",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          14,
@@ -378,7 +394,8 @@
                 "description": "Puissance nominale 6,3 kW , Rendement nominal 93,55 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 80,61 mg/m3 soit 0,006 %, émission de particules 17,22 mg/nm3, émission d’oxyde d’azote : 146,1mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 12h\n- Autonomie max : 29h\n- Volume à chauffer : 130m3 à 172m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       6,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          15,
@@ -390,7 +407,8 @@
                 "description": "Puissance nominale 6,3 kW , Rendement nominal 93,55 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 80,61 mg/m3 soit 0,006 %, émission de particules 17,22 mg/nm3, émission d’oxyde d’azote : 146,1mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 12h\n- Autonomie max : 29h\n- Volume à chauffer : 130m3 à 172m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       6,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          16,
@@ -402,7 +420,8 @@
                 "description": "Puissance nominale 6,3 kW , Rendement nominal 93,55 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 80,61 mg/m3 soit 0,006 %, émission de particules 17,22 mg/nm3, émission d’oxyde d’azote : 146,1mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 12h\n- Autonomie max : 29h\n- Volume à chauffer : 130m3 à 172m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       6,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          17,
@@ -414,7 +433,8 @@
                 "description": "Puissance nominale 6,3 kW , Rendement nominal 93,55 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 80,61 mg/m3 soit 0,006 %, émission de particules 17,22 mg/nm3, émission d’oxyde d’azote : 146,1mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 12h\n- Autonomie max : 29h\n- Volume à chauffer : 130m3 à 172m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       6,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          18,
@@ -426,7 +446,8 @@
                 "description": "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          19,
@@ -438,7 +459,8 @@
                 "description": "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          20,
@@ -450,7 +472,8 @@
                 "description": "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          21,
@@ -462,7 +485,8 @@
                 "description": "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          22,
@@ -474,7 +498,8 @@
                 "description": "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       10,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          23,
@@ -486,7 +511,8 @@
                 "description": "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       10,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          24,
@@ -498,7 +524,8 @@
                 "description": "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       10,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          25,
@@ -510,7 +537,8 @@
                 "description": "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- Système WIFI intégré (commande à distance depuis un smartphone)\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       10,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          26,
@@ -522,7 +550,8 @@
                 "description": "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 116 kg\n- Dimensions en cm : P= 53,5  L = 52,6  H = 1162",
                 "type":        "jm",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          27,
@@ -534,7 +563,8 @@
                 "description": "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 116 kg\n- Dimensions en cm : P= 53,5  L = 52,6  H = 1162",
                 "type":        "jm",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          28,
@@ -546,7 +576,8 @@
                 "description": "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 116 kg\n- Dimensions en cm : P= 53,5  L = 52,6  H = 1162",
                 "type":        "jm",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          29,
@@ -558,7 +589,8 @@
                 "description": "Puissance nominale 8,2 kW , Rendement nominal 91,1 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 136,6 mg/m3 soit 0,011 %, émission de particules 14,26 mg/nm3, émission d’oxyde d’azote : 145,4 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 10h\n- Autonomie max : 29h\n- Volume à chauffer : 174m3 à 230 m3\n- Poids : 116 kg\n- Dimensions en cm : P= 53,5  L = 52,6  H = 1162",
                 "type":        "jm",
                 "power":       8,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          30,
@@ -570,7 +602,8 @@
                 "description": "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       10,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          31,
@@ -582,7 +615,8 @@
                 "description": "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       10,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          32,
@@ -594,7 +628,8 @@
                 "description": "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       10,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          33,
@@ -606,7 +641,8 @@
                 "description": "Puissance nominale 10 kW , Rendement nominal 91,17 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 165,4 mg/m3 soit 0,010 %, émission de particules 10,83 mg/nm3, émission d’oxyde d’azote : 131,5 mg/nm3, conforme à la norme NF 14785.\n\n- Sortie de fumée arrière ou supérieure.\n- 5 niveau de fonctionnement + fonction SILENT.\n- Humidificateur intégré (améliore la qualité de l’air).\n- Brasier en fonte\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\n- Capacité du réservoir : 18 litres\n- Autonomie min : 8h\n- Autonomie max : 29h\n- Volume à chauffer : 217m3 à 287m3\n- Poids : 115 kg\n- Dimensions en cm : P= 54  L = 54  H = 1164",
                 "type":        "jm",
                 "power":       10,
-                "color":       null
+                "color":       null,
+                "quantity":    1
             },
             {
                 "id":          34,
@@ -618,7 +654,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "blanc_creme"
+                "color":       "blanc_creme",
+                "quantity":    1
             },
             {
                 "id":          35,
@@ -630,7 +667,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "blanc_creme"
+                "color":       "blanc_creme",
+                "quantity":    1
             },
             {
                 "id":          36,
@@ -642,7 +680,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "blanc_creme"
+                "color":       "blanc_creme",
+                "quantity":    1
             },
             {
                 "id":          37,
@@ -654,7 +693,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "blanc_creme"
+                "color":       "blanc_creme",
+                "quantity":    1
             },
             {
                 "id":          38,
@@ -666,7 +706,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "noir"
+                "color":       "noir",
+                "quantity":    1
             },
             {
                 "id":          39,
@@ -678,7 +719,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "noir"
+                "color":       "noir",
+                "quantity":    1
             },
             {
                 "id":          40,
@@ -690,7 +732,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "noir"
+                "color":       "noir",
+                "quantity":    1
             },
             {
                 "id":          41,
@@ -702,7 +745,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "noir"
+                "color":       "noir",
+                "quantity":    1
             },
             {
                 "id":          42,
@@ -714,7 +758,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "noir"
+                "color":       "noir",
+                "quantity":    1
             },
             {
                 "id":          43,
@@ -726,7 +771,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "tourterelle"
+                "color":       "tourterelle",
+                "quantity":    1
             },
             {
                 "id":          44,
@@ -738,7 +784,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "tourterelle"
+                "color":       "tourterelle",
+                "quantity":    1
             },
             {
                 "id":          45,
@@ -750,7 +797,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "tourterelle"
+                "color":       "tourterelle",
+                "quantity":    1
             },
             {
                 "id":          46,
@@ -762,7 +810,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "tourterelle"
+                "color":       "tourterelle",
+                "quantity":    1
             },
             {
                 "id":          47,
@@ -774,7 +823,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "tourterelle"
+                "color":       "tourterelle",
+                "quantity":    1
             },
             {
                 "id":          48,
@@ -786,7 +836,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "blanc_creme"
+                "color":       "blanc_creme",
+                "quantity":    1
             },
             {
                 "id":          49,
@@ -798,7 +849,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "blanc_creme"
+                "color":       "blanc_creme",
+                "quantity":    1
             },
             {
                 "id":          50,
@@ -810,7 +862,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "blanc_creme"
+                "color":       "blanc_creme",
+                "quantity":    1
             },
             {
                 "id":          51,
@@ -822,7 +875,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "blanc_creme"
+                "color":       "blanc_creme",
+                "quantity":    1
             },
             {
                 "id":          52,
@@ -834,7 +888,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "noir"
+                "color":       "noir",
+                "quantity":    1
             },
             {
                 "id":          53,
@@ -846,7 +901,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "noir"
+                "color":       "noir",
+                "quantity":    1
             },
             {
                 "id":          54,
@@ -858,7 +914,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "noir"
+                "color":       "noir",
+                "quantity":    1
             },
             {
                 "id":          55,
@@ -870,7 +927,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "noir"
+                "color":       "noir",
+                "quantity":    1
             },
             {
                 "id":          56,
@@ -882,7 +940,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "noir"
+                "color":       "noir",
+                "quantity":    1
             },
             {
                 "id":          57,
@@ -894,7 +953,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "tourterelle"
+                "color":       "tourterelle",
+                "quantity":    1
             },
             {
                 "id":          58,
@@ -906,7 +966,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "tourterelle"
+                "color":       "tourterelle",
+                "quantity":    1
             },
             {
                 "id":          59,
@@ -918,7 +979,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "tourterelle"
+                "color":       "tourterelle",
+                "quantity":    1
             },
             {
                 "id":          60,
@@ -930,7 +992,8 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "tourterelle"
+                "color":       "tourterelle",
+                "quantity":    1
             },
             {
                 "id":          61,
@@ -942,99 +1005,119 @@
                 "description": "Puissance nominale 9,3 kW , Rendement nominal 90,3 %, Label Flamme verte 7 étoiles, Classe énergétique A+, émission de CO: 181 mg/m3 soit 0,014 %, émission de particules 17 mg/nm3, émission d’oxyde d’azote : 137 mg/nm3, conforme à la norme NF 14785.\r\n\r\n- Sortie de fumée supérieure.\r\n- Système WIFI intégré (commande à distance depuis un smartphone)\r\n- 5 niveau de fonctionnement + fonction SILENT.\r\n- Humidificateur intégré (améliore la qualité de l’air).\r\n- Brasier en fonte\r\n- Chambre de combustion Fireflector haute densité. Optimise le processus de combustion et réduit les émissions\r\n- Résistance en céramique (réduction de 40 % des temps d’allumage).\r\n- Capacité du réservoir : 21 litres\r\n- Autonomie min : 10h\r\n- Autonomie max : 29h\r\n- Volume à chauffer : 195m3 à 258 m3\r\n- Poids : 116 kg\r\n- Dimensions en cm : P= 27,5  L = 84,6  H = 1212",
                 "type":        "jm",
                 "power":       9,
-                "color":       "tourterelle"
+                "color":       "tourterelle",
+                "quantity":    1
             },
             {
-                "id":          1,
+                "id":          101,
                 "productType": "fumisterie",
                 "label":       "Création complète interieur conduit isolé Poujoulat",
                 "reference":   "POUJOULAT-1",
                 "pu":          1890,
                 "defaultPu":   1890,
                 "description": "Création complète interieur conduit isolé Poujoulat\r\nTuyau isolé double paroi 500mm\r\nCoude 45°\r\nSupport plancher\r\nMaintien au toît galva\r\nSolin\r\nChapeau\r\nElément de depart plafond\r\nRosace\r\nTuyau emaillé + kit air",
-                "type":        null
+                "type":        null,
+                "air":         true,
+                "quantity":    1
             },
             {
-                "id":          2,
+                "id":          102,
                 "productType": "fumisterie",
                 "label":       "Boisseau intérieur maçonné",
                 "reference":   "POUJOULAT-2",
                 "pu":          1100,
                 "defaultPu":   1100,
                 "description": "Raccord pour tubage\r\nRaccord pour tubage\r\nGaine\r\nCollier soutien\r\nPlaque étanche\r\nChapeau\r\nTube concentrique 1000mm\r\nTuyau simple paroi émaillé 500\r\nTuyau simple paroi émaillé 250\r\nTuyau réglable\r\nTé fumée\r\nCoude 45°\r\nKit air",
-                "type":        null
+                "type":        null,
+                "air":         true,
+                "quantity":    1
             },
             {
-                "id":          3,
+                "id":          103,
                 "productType": "fumisterie",
                 "label":       "Ventouse Poujoulat",
                 "reference":   "POUJOULAT-3",
                 "pu":          800,
                 "defaultPu":   800,
                 "description": "Tuyau concentrique\r\nTé à 90°\r\nElement prise d’air 90°\r\nAdaptateur poêle universel\r\nGalva flexible air\r\nAdaptateur air etanche\r\nPlaque de propreté\r\nElément réglable\r\nCoude à 90°\r\nTherminal horizontal\r\n",
-                "type":        null
+                "type":        null,
+                "air":         true,
+                "quantity":    1
             },
             {
-                "id":          4,
+                "id":          104,
                 "productType": "fumisterie",
                 "label":       "Création complète exterieur conduit isolé Poujoulat",
                 "reference":   "POUJOULAT-4",
                 "pu":          1640,
                 "defaultPu":   1640,
                 "description": "Création complète exterieur conduit isolé Poujoulat\r\nTuyau isolé simple paroi 500mm\r\nTuyau isolé simple paroi 250mm\r\nCoude 45°\r\nElement de départ plafond\r\nRosace noir\r\nRosace inox\r\nChapeau\r\nChaise\r\nBride murale\r\nRallonge\r\nTuyau isolé émaillé 500mm\r\nManchon F.F\r\nTé\r\nKit air",
-                "type":        null
+                "type":        null,
+                "air":         true,
+                "quantity":    1
             },
             {
-                "id":          5,
+                "id":          105,
                 "productType": "fumisterie",
                 "label":       "Création complète intérieur tuyaux concentrique Poujoulat",
                 "reference":   "POUJOULAT-5",
                 "pu":          1790,
                 "defaultPu":   1790,
                 "description": "Tube concentrique 1000mm\nTube concentrique 500mm\nTuyau réglable\nCoude 45°\nSupport plancher\nMaintien au toît\nRosace\nTé fumée\nTé air\nAdaptateur poêle\nSolin et collerette\nChapeau",
-                "type":        null
+                "type":        null,
+                "air":         false,
+                "quantity":    1
             },
             {
-                "id":          6,
+                "id":          106,
                 "productType": "fumisterie",
                 "label":       "Boisseau existant maçonné départ au sol",
                 "reference":   "POUJOULAT-6",
                 "pu":          1200,
                 "defaultPu":   1200,
                 "description": "Kit KFRL\nGaine\nChapeau CTIV\nCollier CTF\nEmaillé 500\nManchon F.F",
-                "type":        null
+                "type":        null,
+                "air":         false,
+                "quantity":    1
             },
             {
-                "id":          7,
+                "id":          107,
                 "productType": "fumisterie",
                 "label":       "Boisseau existant maçonné départ au plafond",
                 "reference":   "POUJOULAT-7",
                 "pu":          1000,
                 "defaultPu":   1000,
                 "description": "KIT KRFLCTé fumée\r\nTé air\r\nAdaptateur poêle\r\nTuyau réglable\r\nTube concentrique 1000mm\r\nTube concentrique 500mm\r\nChapeau CTIVCollier de maintien\r\nGaine",
-                "type":        null
+                "type":        null,
+                "air":         false,
+                "quantity":    1
             },
             {
-                "id":          8,
+                "id":          108,
                 "productType": "fumisterie",
                 "label":       "Boisseau existant maçonné extérieur",
                 "reference":   "POUJOULAT-8",
                 "pu":          1200,
                 "defaultPu":   1200,
                 "description": "Kit KFRL\r\nGaine\r\nChapeau CTIV\r\nCollier CTF\r\nEmaillé 500\r\nManchon F.F",
-                "type":        null
+                "type":        null,
+                "air":         true,
+                "quantity":    1
             },
             {
-                "id":          9,
+                "id":          109,
                 "productType": "fumisterie",
                 "label":       "Création complète extérieure conduit isolé Poujoulat R+1",
                 "reference":   "POUJOULAT-9",
                 "pu":          2200,
                 "defaultPu":   2200,
                 "description": "Création complète exterieur conduit isolé Poujoulat\r\nTuyau isolé simple paroi 500mm\r\nTuyau isolé simple paroi 250mm\r\nCoude 45°\r\nElement de départ plafond\r\nRosace noir\r\nRosace inox\r\nChapeau\r\nChaise\r\nBride murale\r\nRallonge\r\nTuyau isolé émaillé 500mm\r\nManchon F.F\r\nTé\r\nKit air",
-                "type":        null
+                "type":        null,
+                "air":         true,
+                "quantity":    1
             }
         ],
+        "outsideSocket":      false,
         "maPrimeRenovBonus":  0,
         "discount":           0,
         "totalHt":            0,
@@ -1347,10 +1430,10 @@
     "statusInDci":               1,
     "errorsStatusInDci":         [],
     "technician":                {
-        "id":        {},
-        "lastName":  {},
-        "firstName": {},
-        "phone":     {}
+        "id":        0,
+        "lastName":  " ",
+        "firstName": " ",
+        "phone":     " "
     },
     "lists":                     {
         "localTypeList":         [
@@ -1550,32 +1633,6 @@
             {
                 "slug":  "noir",
                 "value": "Noir"
-            },
-            {
-                "slug":  "tourterelle",
-                "value": "Tourterelle"
-            }
-        ],
-        "couleurFacadeList":     [
-            {
-                "slug":  "gres_ivoire",
-                "value": "Gres ivoire"
-            },
-            {
-                "slug":  "gres_rouille",
-                "value": "Gres rouille"
-            },
-            {
-                "slug":  "verre_noir_strille",
-                "value": "Verre noir strille"
-            },
-            {
-                "slug":  "acier_noir",
-                "value": "Acier Noir"
-            },
-            {
-                "slug":  "pierre_ollaire",
-                "value": "Pierre ollaire"
             },
             {
                 "slug":  "tourterelle",

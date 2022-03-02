@@ -10,8 +10,10 @@ import {
     convertOldText,
     convertOldTotalHt,
     convertOldTotalTva,
+    convertTechnician,
     getArrayData,
     getBoolData,
+    getNullableNumberData,
     getNumberData,
     getObjectData,
     getStringData,
@@ -47,6 +49,7 @@ const convertOldRrProduct = ( oldData ): Product[] => {
                              defaultPu:   product[ 'defaultPU' ],
                              description: product[ 'descr' ],
                              scop:        product[ 'scop' ],
+                             quantity:    1,
                          } );
     } );
 
@@ -67,6 +70,7 @@ const convertSelectedRProduct = ( oldData ): Product[] => {
                                      defaultPu:   product[ 'defaultPU' ],
                                      description: product[ 'descr' ],
                                      scop:        product[ 'scop' ],
+                                     quantity:    1,
                                  } );
     } );
 
@@ -103,9 +107,6 @@ const convertOldRrItemList = ( oldData ): RrList => {
     const lists: RrList = {
         localTypeList:         [],
         rrTypeList:            [],
-        assortmentList:        [],
-        ecsDeporteList:        [],
-        accesCombleList:       [],
         typeCouvertureList:    [],
         typeCharpenteList:     [],
         etatToitureList:       [],
@@ -128,9 +129,6 @@ const convertOldRrItemList = ( oldData ): RrList => {
     const rrItems = [
         'localType',
         'rrType',
-        'assortment',
-        'ecsDeporte',
-        'accesComble',
         'typeCouverture',
         'typeCharpente',
         'etatToiture',
@@ -153,8 +151,6 @@ const convertOldRrItemList = ( oldData ): RrList => {
     const newName: { [ key: string ]: string } = {
         'localType':         'localTypeList',
         'rrType':            'rrTypeList',
-        'assortment':        'assortmentList',
-        'ecsDeporte':        'ecsDeporteList',
         'accesComble':       'accesCombleList',
         'typeCouverture':    'typeCouvertureList',
         'typeCharpente':     'typeCharpenteList',
@@ -181,27 +177,22 @@ const convertOldRrItemList = ( oldData ): RrList => {
         const oldList              = getObjectData( oldData[ 'lists' ], [ item ] );
         const newItems: ItemList[] = [];
 
-        if ( oldList !== {} && oldList !== '' ) {
-            oldList.forEach( ( data ) => {
-                if ( typeof data === 'object' ) {
-                    newItems.push( {
-                                       slug:  Object.keys( data )[ 0 ],
-                                       value: data[ Object.keys( data )[ 0 ] ],
-                                   } );
-                } else {
-                    newItems.push( {
-                                       slug:  data,
-                                       value: data,
-                                   } );
-                }
-            } );
+        oldList.forEach( ( data ) => {
+            if ( typeof data === 'object' ) {
+                newItems.push( {
+                                   slug:  Object.keys( data )[ 0 ],
+                                   value: data[ Object.keys( data )[ 0 ] ],
+                               } );
+            } else {
+                newItems.push( {
+                                   slug:  data,
+                                   value: data,
+                               } );
+            }
+        } );
 
 
-            lists[ newName[ item ] ] = {
-                slug:  newName[ item ],
-                items: newItems,
-            };
-        }
+        lists[ newName[ item ] ] = newItems;
     } );
 
     return lists;
@@ -240,11 +231,11 @@ export const convertOldRrFile = ( oldData ): RrFile => {
             dataGeoportail:    convertOldDataGeoportail( oldData ),
             location:          getObjectData( oldData, [ 'logement', 'location' ] ),
             insulationQuality: getNumberData( oldData [ 'logement' ][ 'qualiteIsolation' ] ),
-            constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
+            constructionYear:  getNullableNumberData( oldData [ 'logement' ][ 'anneeConstruction' ] ),
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },
-        worksheet: {
+        worksheet:         {
             period:               getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
             niveauHabitation:     getObjectData( oldData, [ 'fiche', 'niveauHabitation' ] ),
             typeChantier:         getObjectData( oldData, [ 'fiche', 'typeChantier' ] ),
@@ -283,47 +274,42 @@ export const convertOldRrFile = ( oldData ): RrFile => {
             hauteurDuSol:         getObjectData( oldData, [ 'fiche', 'hauteurDuSol' ] ),
             infosSup:             getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
-        quotation: {
+        quotation:         {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
-            executionDelay:    getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
-            options:           convertOldOptions( oldData ),
-            blankOptions:      convertOldBlankOptions( oldData ),
-            commentary:        getObjectData( oldData, [ 'devis', 'commentaires' ] ),
-            partner:           getObjectData( oldData, [ 'devis', 'partner' ] ),
-            texts:             convertOldText( oldData ),
-            tva10:             getNumberData( oldData [ 'devis' ][ 'tva10' ] ),
-            tva20:             getNumberData( oldData [ 'devis' ][ 'tva20' ] ),
-            ceeBonus:          getNumberData( oldData [ 'devis' ][ 'primeCEE' ] ),
-            maPrimeRenovBonus: getNumberData( oldData [ 'devis' ][ 'primeAnah' ] ),
-            discount:          getNumberData( oldData [ 'devis' ][ 'remise' ] ),
-            selectedProducts:  convertSelectedRProduct( oldData ),
-            rrType:            getObjectData( oldData, [ 'devis', 'rrType' ] ),
-            rrMulti:           convertOldRrMulti( oldData ),
-            assortment:        getObjectData( oldData, [ 'devis', 'gamme' ] ),
-            products:          convertOldRrProduct( oldData ),
-            totalHt:           convertOldTotalHt( oldData ),
-            totalTva:          convertOldTotalTva( oldData ),
-            totalTtc:          0,
-            remainderToPay:    0,
-            tva:               getNumberData( oldData [ 'devis' ][ 'tva' ] ),
+            executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
+            options:            convertOldOptions( oldData ),
+            blankOptions:       convertOldBlankOptions( oldData ),
+            commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
+            partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),
+            texts:              convertOldText( oldData ),
+            tva10:              getNumberData( oldData [ 'devis' ][ 'tva10' ] ),
+            tva20:              getNumberData( oldData [ 'devis' ][ 'tva20' ] ),
+            ceeBonus:           getNumberData( oldData [ 'devis' ][ 'primeCEE' ] ),
+            maPrimeRenovBonus:  getNumberData( oldData [ 'devis' ][ 'primeAnah' ] ),
+            discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
+            selectedProducts:   convertSelectedRProduct( oldData ),
+            rrType:             getObjectData( oldData, [ 'devis', 'rrType' ] ),
+            rrMulti:            convertOldRrMulti( oldData ),
+            assortment:         getObjectData( oldData, [ 'devis', 'gamme' ] ),
+            products:           convertOldRrProduct( oldData ),
+            totalHt:            convertOldTotalHt( oldData ),
+            totalTva:           convertOldTotalTva( oldData ),
+            totalTtc:           0,
+            remainderToPay:     0,
+            tva:                getNumberData( oldData [ 'devis' ][ 'tva' ] ),
         },
-        scales:                    convertOldScales( oldData ),
-        bonusWithoutCdp:           {
+        scales:            convertOldScales( oldData ),
+        bonusWithoutCdp:   {
             amount: {
                 h1: getObjectData( oldData, [ 'horsCdp', 'montantUnitaire', 'H1' ] ),
                 h2: getObjectData( oldData, [ 'horsCdp', 'montantUnitaire', 'H2' ] ),
                 h3: getObjectData( oldData, [ 'horsCdp', 'montantUnitaire', 'H3' ] ),
             },
         },
-        statusInDci:               convertOldStatusDci( oldData ),
-        errorsStatusInDci:         convertOldErrorStatusDci( oldData ),
-        technician:                {
-            id:        getObjectData( oldData, [ 'technicien', 'id' ] ),
-            lastName:  getObjectData( oldData, [ 'technicien', 'nom' ] ),
-            firstName: getObjectData( oldData, [ 'technicien', 'prenom' ] ),
-            phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
-        },
-        lists:                     convertOldRrItemList( oldData ),
+        statusInDci:       convertOldStatusDci( oldData ),
+        errorsStatusInDci: convertOldErrorStatusDci( oldData ),
+        technician:        convertTechnician( oldData ),
+        lists:             convertOldRrItemList( oldData ),
     };
 };

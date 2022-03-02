@@ -29,6 +29,12 @@
 - **isRentedHouse** &#8594; estUneLocation
 - **buildingNature** &#8594; Nature du batiment (ig : Nouvelle résidence principale, Location, Résidence secondaire...)
 
+## Quotation (Devis)
+
+### PAC RO
+
+**cascadeSystem** &#8594; Installation en cascade (Quand la superficie est trop grande et qu'il y a besoin de 2 PAC)
+
 # V1 &#8594; V2
 
 ## Housing (Logement)

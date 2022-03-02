@@ -29,7 +29,7 @@
             <Field
                 :name="`assentsDatas[${index}].civility`"
                 as="select"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control"
             >
               <option value="m">Monsieur</option>
               <option value="f">Madame</option>
@@ -44,7 +44,7 @@
             <label class="form-label mb-3">Nom</label>
             <Field
                 type="text"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control"
                 :name="`assentsDatas[${index}].lastName`"
                 placeholder="Nom"
                 value=""
@@ -59,7 +59,7 @@
             <label class="form-label mb-3">Prénom</label>
             <Field
                 type="text"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control"
                 :name="`assentsDatas[${index}].firstName`"
                 placeholder="Prénom"
                 value=""
@@ -75,7 +75,7 @@
             <label class="form-label mb-3">Adresse</label>
             <Field
                 type="text"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control"
                 :name="`assentsDatas[${index}].address`"
                 placeholder="Adresse"
                 value=""
@@ -89,7 +89,7 @@
             <label class="form-label mb-3">Code Postal</label>
             <Field
                 type="text"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control"
                 :name="`assentsDatas[${index}].zipCode`"
                 placeholder="Code Postal"
                 value=""
@@ -105,7 +105,7 @@
             <label class="form-label mb-3">Ville</label>
             <Field
                 type="text"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control"
                 :name="`assentsDatas[${index}].city`"
                 placeholder="Ville"
                 value=""
@@ -120,7 +120,7 @@
             <label class="form-label mb-3">Revenu</label>
             <Field
                 type="number"
-                class="form-control form-control-lg form-control-solid"
+                class="form-control"
                 :name="`assentsDatas[${index}].income`"
                 placeholder="0"
                 value=""
@@ -156,7 +156,7 @@
           <Field
               :name="`assentsDatas[0].civility`"
               as="select"
-              class="form-control form-control-lg form-control-solid"
+              class="form-control"
           >
             <option value="m">Monsieur</option>
             <option value="f">Madame</option>
@@ -171,7 +171,7 @@
           <label class="form-label mb-3">Nom</label>
           <Field
               type="text"
-              class="form-control form-control-lg form-control-solid"
+              class="form-control"
               :name="`assentsDatas[0].lastName`"
               placeholder="Nom"
               value=""
@@ -186,7 +186,7 @@
           <label class="form-label mb-3">Prénom</label>
           <Field
               type="text"
-              class="form-control form-control-lg form-control-solid"
+              class="form-control"
               :name="`assentsDatas[0].firstName`"
               placeholder="Prénom"
               value=""
@@ -202,7 +202,7 @@
           <label class="form-label mb-3">Adresse</label>
           <Field
               type="text"
-              class="form-control form-control-lg form-control-solid"
+              class="form-control"
               :name="`assentsDatas[0].address`"
               placeholder="Adresse"
               value=""
@@ -216,7 +216,7 @@
           <label class="form-label mb-3">Code Postal</label>
           <Field
               type="text"
-              class="form-control form-control-lg form-control-solid"
+              class="form-control"
               :name="`assentsDatas[0].zipCode`"
               placeholder="Code Postal"
               value=""
@@ -232,7 +232,7 @@
           <label class="form-label mb-3">Ville</label>
           <Field
               type="text"
-              class="form-control form-control-lg form-control-solid"
+              class="form-control"
               :name="`assentsDatas[0].city`"
               placeholder="Ville"
               value=""
@@ -247,7 +247,7 @@
           <label class="form-label mb-3">Revenu</label>
           <Field
               type="number"
-              class="form-control form-control-lg form-control-solid"
+              class="form-control"
               :name="`assentsDatas[0].income`"
               placeholder="0"
               value=""
@@ -276,7 +276,7 @@
         <label class="form-label mb-3">E-mail</label>
         <Field
             type="text"
-            class="form-control form-control-lg form-control-solid"
+            class="form-control"
             name="email"
             placeholder="E-mail"
             value=""
@@ -293,7 +293,7 @@
         <label class="form-label mb-3">Téléphone</label>
         <Field
             type="text"
-            class="form-control form-control-lg form-control-solid"
+            class="form-control"
             name="phone"
             placeholder="0200000000"
             value=""
@@ -308,7 +308,7 @@
         <label class="form-label mb-3">Potable</label>
         <Field
             type="text"
-            class="form-control form-control-lg form-control-solid"
+            class="form-control"
             name="mobile"
             placeholder="0600000000"
             value=""

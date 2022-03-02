@@ -10,7 +10,9 @@ import {
     convertOldText,
     convertOldTotalHt,
     convertOldTotalTva,
+    convertTechnician,
     getBoolData,
+    getNullableNumberData,
     getNumberData,
     getObjectData,
     getStringData,
@@ -47,6 +49,7 @@ const convertOldSolProduct = ( oldData ): Product[] => {
                               type:        product[ 'type' ],
                               power:       product[ 'puissance' ],
                               color:       product[ 'couleurProfile' ],
+                              quantity:    1,
                           } );
     } );
     return solProducts;
@@ -80,6 +83,7 @@ const convertSelectedSolProduct = ( oldData ): Product[] => {
                                           type:        product[ 'type' ],
                                           power:       product[ 'puissance' ],
                                           color:       product[ 'couleurProfile' ],
+                                          quantity:    1,
                                       } );
 
         }
@@ -170,7 +174,7 @@ export const convertOldSolFile = ( oldData ): SolFile => {
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
         bonusRate:                 getNumberData( oldData[ 'tauxPrime' ] ),
-        housing: {
+        housing:           {
             nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
             type:              getObjectData( oldData, [ 'logement', 'batimentType' ] ),
             heatingType:       getObjectData( oldData, [ 'logement', 'chauffageType' ] ),
@@ -185,17 +189,17 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             dataGeoportail:    convertOldDataGeoportail( oldData ),
             location:          getObjectData( oldData, [ 'logement', 'location' ] ),
             insulationQuality: getObjectData( oldData, [ 'logement', 'qualiteIsolation' ] ),
-            constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
+            constructionYear:  getNullableNumberData( oldData [ 'logement' ][ 'anneeConstruction' ] ),
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  '',
         },
-        worksheet:                 {
+        worksheet:         {
             epaisseurProduit:        getObjectData( oldData, [ 'fiche', 'epaisseurProduit' ] ),
             accesCamion:             getObjectData( oldData, [ 'fiche', 'accesCamion' ] ),
-            distCamion:              getObjectData( oldData, [ 'fiche', 'distCamion' ] ),
-            hautPlafond:             getObjectData( oldData, [ 'fiche', 'hautPlafond' ] ),
+            distCamion:              getNumberData( oldData [ 'fiche' ][ 'distCamion' ] ),
+            hautPlafond:             getNumberData( oldData [ 'fiche' ][ 'hautPlafond' ] ),
             support:                 getObjectData( oldData, [ 'fiche', 'support' ] ),
-            distPointEau:            getObjectData( oldData, [ 'fiche', 'distPointEau' ] ),
+            distPointEau:            getNumberData( oldData [ 'fiche' ][ 'distPointEau' ] ),
             resistTherm:             getObjectData( oldData, [ 'fiche', 'resistTherm' ] ),
             dimensionsPieces:        getObjectData( oldData, [ 'fiche', 'dimensionsPieces' ] ),
             isolationExistante:      getObjectData( oldData, [ 'fiche', 'isolationExistante' ] ),
@@ -207,11 +211,11 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             luminairesPlafond:       getObjectData( oldData, [ 'fiche', 'luminairesPlafond' ] ),
             distancePortesPalfond:   getObjectData( oldData, [ 'fiche', 'distancePortesPalfond' ] ),
             porteGarage:             getObjectData( oldData, [ 'fiche', 'porteGarage' ] ),
-            nbrPorteGarage:          getObjectData( oldData, [ 'fiche', 'nbrPorteGarage' ] ),
+            nbrPorteGarage:          getNumberData( oldData [ 'fiche' ][ 'nbrPorteGarage' ] ),
             infosSup:                getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
             period:                  getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
         },
-        quotation: {
+        quotation:         {
             laying:             getObjectData( oldData, [ 'devis', 'pose' ] ),
             overrideLaying:     getObjectData( oldData, [ 'devis', 'overridePose' ] ),
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
@@ -232,15 +236,10 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             remainderToPay:     0,
             ceeBonus:           0,
         },
-        scales:                    convertOldScales( oldData ),
-        statusInDci:               convertOldStatusDci( oldData ),
-        errorsStatusInDci:         convertOldErrorStatusDci( oldData ),
-        technician:                {
-            id:        getObjectData( oldData, [ 'technicien', 'id' ] ),
-            lastName:  getObjectData( oldData, [ 'technicien', 'nom' ] ),
-            firstName: getObjectData( oldData, [ 'technicien', 'prenom' ] ),
-            phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
-        },
-        lists:                     convertOldSolItemList( oldData ),
+        scales:            convertOldScales( oldData ),
+        statusInDci:       convertOldStatusDci( oldData ),
+        errorsStatusInDci: convertOldErrorStatusDci( oldData ),
+        technician:        convertTechnician( oldData ),
+        lists:             convertOldSolItemList( oldData ),
     };
 };

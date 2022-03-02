@@ -142,6 +142,7 @@ export default defineComponent( {
                                       // TODO UPDATE THE OVERRIDE POSE
                                       const laying = props.quantityArea * ( props.fileData as SolFile ).quotation.overrideLaying;
 
+                                      totalHt += laying;
 
                                       for ( const option of _options.value ) {
                                         if ( option.number > 0 ) {

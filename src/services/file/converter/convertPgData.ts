@@ -10,7 +10,9 @@ import {
     convertOldText,
     convertOldTotalHt,
     convertOldTotalTva,
+    convertTechnician,
     getBoolData,
+    getNullableNumberData,
     getNumberData,
     getObjectData,
     getStringData,
@@ -47,20 +49,25 @@ const convertOldPgProduct = ( oldData ): Product[] => {
                              type:        product[ 'type' ],
                              power:       product[ 'puissance' ],
                              color:       product[ 'couleurProfile' ],
+                             quantity:    1,
                          } );
     } );
 
     const oldFumisteries: [] = getObjectData( oldData,
-                                              [ 'devis',
-                                                'fumisteries',
-                                                'products' ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
-                                                                                                      [ 'devis',
-                                                                                                        'fumisteries',
-                                                                                                        'products' ] );
+                                              [
+                                                  'devis',
+                                                  'fumisteries',
+                                                  'products',
+                                              ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                         [
+                                                                                             'devis',
+                                                                                             'fumisteries',
+                                                                                             'products',
+                                                                                         ] );
 
     oldFumisteries.forEach( product => {
         pgProducts.push( {
-                             id:          product[ 'id' ],
+                             id:          product[ 'id' ] + 100,
                              productType: 'fumisterie',
                              label:       product[ 'label' ],
                              reference:   product[ 'ref' ],
@@ -68,6 +75,8 @@ const convertOldPgProduct = ( oldData ): Product[] => {
                              defaultPu:   product[ 'defaultPU' ],
                              description: product[ 'descr' ],
                              type:        product[ 'type' ],
+                             air:         product[ 'air' ],
+                             quantity:    1,
                          } );
     } );
 
@@ -79,21 +88,29 @@ const convertSelectedPgProduct = ( oldData ): Product[] => {
     const idSelectedProduct             = getNumberData( oldData[ 'devis' ][ 'poeles' ][ 'selectedId' ] );
     const idSelectedFumisterie          = getNumberData( oldData[ 'devis' ][ 'fumisteries' ][ 'selectedId' ] );
     const oldProducts: []               = getObjectData( oldData,
-                                                         [ 'devis',
-                                                           'poeles',
-                                                           'products' ] ) === ( {} || '' ) ? [] : getObjectData(
+                                                         [
+                                                             'devis',
+                                                             'poeles',
+                                                             'products',
+                                                         ] ) === ( {} || '' ) ? [] : getObjectData(
         oldData,
-        [ 'devis',
-          'poeles',
-          'products' ] );
+        [
+            'devis',
+            'poeles',
+            'products',
+        ] );
     const oldFumisteries: []            = getObjectData( oldData,
-                                                         [ 'devis',
-                                                           'fumisteries',
-                                                           'products' ] ) === ( {} || '' ) ? [] : getObjectData(
+                                                         [
+                                                             'devis',
+                                                             'fumisteries',
+                                                             'products',
+                                                         ] ) === ( {} || '' ) ? [] : getObjectData(
         oldData,
-        [ 'devis',
-          'fumisteries',
-          'products' ] );
+        [
+            'devis',
+            'fumisteries',
+            'products',
+        ] );
 
     oldProducts.forEach( product => {
         if ( product[ 'id' ] === idSelectedProduct ) {
@@ -108,6 +125,7 @@ const convertSelectedPgProduct = ( oldData ): Product[] => {
                                          type:        product[ 'type' ],
                                          power:       product[ 'puissance' ],
                                          color:       product[ 'couleurProfile' ],
+                                         quantity:    1,
                                      } );
 
         }
@@ -124,6 +142,7 @@ const convertSelectedPgProduct = ( oldData ): Product[] => {
                                          defaultPu:   product[ 'defaultPU' ],
                                          description: product[ 'descr' ],
                                          type:        product[ 'type' ],
+                                         quantity:    1,
                                      } );
 
         }
@@ -146,7 +165,6 @@ const convertOldPgItemList = ( oldData ): PgList => {
         resistanceList:        [],
         toitureList:           [],
         couleurProfileList:    [],
-        couleurFacadeList:     [],
         puissancePoeleList:    [],
         zoneInstallationList:  [],
         typeOrigineList:       [],
@@ -165,7 +183,6 @@ const convertOldPgItemList = ( oldData ): PgList => {
         'resistance',
         'toiture',
         'couleurProfile',
-        'couleurFacade',
         'puissancePoele',
         'zoneInstallation',
         'typeOrigine',
@@ -184,7 +201,6 @@ const convertOldPgItemList = ( oldData ): PgList => {
         'resistance':        'resistanceList',
         'toiture':           'toitureList',
         'couleurProfile':    'couleurProfileList',
-        'couleurFacade':     'couleurFacadeList',
         'puissancePoele':    'puissancePoeleList',
         'zoneInstallation':  'zoneInstallationList',
         'typeOrigine':       'typeOrigineList',
@@ -253,7 +269,7 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             dataGeoportail:    convertOldDataGeoportail( oldData ),
             location:          getObjectData( oldData, [ 'logement', 'location' ] ),
             insulationQuality: getObjectData( oldData, [ 'logement', 'qualiteIsolation' ] ),
-            constructionYear:  getObjectData( oldData, [ 'logement', 'anneeConstruction' ] ),
+            constructionYear:  getNullableNumberData( oldData [ 'logement' ][ 'anneeConstruction' ] ),
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  '',
         },
@@ -318,35 +334,32 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             zoneInstallation:            getObjectData( oldData, [ 'fiche', 'zoneInstallation' ] ),
             creation:                    getObjectData( oldData, [ 'fiche', 'creation' ] ),
         },
-        quotation:                 {
+        quotation: {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
             options:            convertOldOptions( oldData ),
-            blankOptions:       convertOldBlankOptions( oldData ),
-            commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
-            partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),
-            texts:              convertOldText( oldData ),
-            tva:                getNumberData( oldData [ 'devis' ][ 'tva' ] ),
-            ceeBonus:           getNumberData( oldData [ 'devis' ][ 'primeCEE' ] ),
-            selectedProducts:   convertSelectedPgProduct( oldData ),
-            products:           convertOldPgProduct( oldData ),
-            maPrimeRenovBonus:  getNumberData( oldData [ 'devis' ][ 'primeAnah' ] ),
-            discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
-            totalHt:            convertOldTotalHt( oldData ),
-            totalTva:           convertOldTotalTva( oldData ),
-            totalTtc:           0,
-            remainderToPay:     0,
+            blankOptions:      convertOldBlankOptions( oldData ),
+            commentary:        getObjectData( oldData, [ 'devis', 'commentaires' ] ),
+            partner:           getObjectData( oldData, [ 'devis', 'partner' ] ),
+            texts:             convertOldText( oldData ),
+            tva:               getNumberData( oldData [ 'devis' ][ 'tva' ] ),
+            tva20:             0,
+            ceeBonus:          getNumberData( oldData [ 'devis' ][ 'primeCEE' ] ),
+            selectedProducts:  convertSelectedPgProduct( oldData ),
+            products:          convertOldPgProduct( oldData ),
+            outsideSocket:     getBoolData( oldData[ 'outsideSocket' ] ),
+            maPrimeRenovBonus: getNumberData( oldData [ 'devis' ][ 'primeAnah' ] ),
+            discount:          getNumberData( oldData [ 'devis' ][ 'remise' ] ),
+            totalHt:           convertOldTotalHt( oldData ),
+            totalTva:          convertOldTotalTva( oldData ),
+            totalTtc:          0,
+            remainderToPay:    0,
         },
-        scales:                    convertOldScales( oldData ),
-        statusInDci:               convertOldStatusDci( oldData ),
-        errorsStatusInDci:         convertOldErrorStatusDci( oldData ),
-        technician:                {
-            id:        getObjectData( oldData, [ 'technicien', 'nom' ] ),
-            lastName:  getObjectData( oldData, [ 'technicien', 'prenom' ] ),
-            firstName: getObjectData( oldData, [ 'technicien', 'id' ] ),
-            phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
-        },
-        lists:                     convertOldPgItemList( oldData ),
+        scales:    convertOldScales( oldData ),
+        statusInDci: convertOldStatusDci( oldData ),
+        errorsStatusInDci: convertOldErrorStatusDci( oldData ),
+        technician: convertTechnician( oldData ),
+        lists: convertOldPgItemList( oldData ),
     };
 };

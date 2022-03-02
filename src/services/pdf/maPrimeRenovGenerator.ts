@@ -10,15 +10,10 @@ import {
     LOGO_REP_FRANCE_VERTICAL,
     MA_PRIME_RENOV_PAGE_2,
 } from '@/services/pdf/pdfVariable';
-import { CetFile } from '@/types/v2/File/Cet/CetFile';
-import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
-import { PgFile } from '@/types/v2/File/Pg/PgFile';
-import { RoFile } from '@/types/v2/File/Ro/RoFile';
-import { RrFile } from '@/types/v2/File/Rr/RrFile';
-import { SolFile } from '@/types/v2/File/Sol/SolFile';
+import { AllFile } from '@/types/v2/File/All';
 
 export class MaPrimeRenovGenerator extends PdfGenerator {
-    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile;
+    private _file: AllFile;
     private _style: StyleDictionary = {
         green:   {
             color: LIGHT_GREEN,
@@ -42,7 +37,7 @@ export class MaPrimeRenovGenerator extends PdfGenerator {
     };
 
 
-    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile ) {
+    constructor( file: AllFile ) {
         super();
         this._file = file;
         this.type  = PdfType.MaPrimeRenov;

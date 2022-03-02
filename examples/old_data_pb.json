@@ -1,0 +1,760 @@
+{
+    "settings":                 {
+        "ceeCoef": "5.5"
+    },
+    "type":                     "pb",
+    "version":                  "5",
+    "devisTemplate":            "devisPoele-v5.html",
+    "ficheTemplate":            "fichePoele-v5.html",
+    "ficheGenerator":           "poeleV3.xlsx",
+    "disablePrime":             false,
+    "disablePrimeCEE":          false,
+    "disablePrimeMaprimerenov": false,
+    "enabledActionLogement":    false,
+    "avis":                     [],
+    "beneficiaire":             {
+        "civilite":   "m",
+        "nom":        "",
+        "prenom":     "",
+        "adresse":    "",
+        "codepostal": "",
+        "ville":      ""
+    },
+    "email":                    "",
+    "telfixe":                  "",
+    "telportable":              "",
+    "codePrime":                null,
+    "zoneEnergetique":          null,
+    "tauxPrime":                null,
+    "logement":                 {
+        "occupants":         1,
+        "chauffageType":     "electrique",
+        "batimentNature":    "",
+        "typeChaudiere":     "aucun",
+        "isAdresseBenef":    true,
+        "adresse":           "",
+        "codepostal":        "",
+        "ville":             "",
+        "parcelle":          "",
+        "superficie":        0,
+        "dataGeoportail":    {},
+        "location":          "",
+        "moinsDe2Ans":       false,
+        "anneeConstruction": "",
+        "localType":         "maison_individuelle"
+    },
+    "fiche":                    {
+        "periodePose": "",
+        "infosSup":    "RAS"
+    },
+    "devis":                    {
+        "pose":            5.5,
+        "overridePose":    5.5,
+        "tva":             5.5,
+        "noPrimeUseCode":  "CL",
+        "origine":         "",
+        "dateVisiteTech":  "",
+        "delaisExecution": "",
+        "calcul0PU":       0,
+        "options":         [
+            {
+                "id":    1,
+                "label": "Forfait pose (livraison,pose et mise en service de l’appareil)",
+                "unit":  "u",
+                "value": 1,
+                "pu":    {
+                    "default": 700,
+                    "value":   700
+                }
+            },
+            {
+                "id":    2,
+                "label": "Forfait fournitures",
+                "unit":  "u",
+                "value": 1,
+                "pu":    {
+                    "default": 50,
+                    "value":   50
+                }
+            }
+        ],
+        "blankOptions":    [
+            {
+                "id":    "sup1",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            },
+            {
+                "id":    "sup2",
+                "label": "",
+                "unit":  "u",
+                "pu":    0,
+                "value": 0
+            }
+        ],
+        "commentaires":    "",
+        "partner":         "VTE",
+        "texte1":          {
+            "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
+            "text":  "Les travaux relatifs à ce document sont éligibles au dispositif des certificats d’économies d’énergie. Dans ce cadre, l’obligé « Vos Travaux Eco », grâce à son partenaire Eco Atlantique, me fait bénéficier d’une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique.\r\nLa TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans. Réalisation du chantier par Allaire du temps and co Siren 852284983 Qualibois Module Air QB/58881"
+        },
+        "texte2":          {
+            "title": "MaPrimeRénov'",
+            "text":  "«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif.L’aide MaPrimeRénov’ est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire. En cas de fausse déclaration, de manœuvre frauduleuse ou de changement du projet de travaux subventionnés, le bénéficiaire s’expose au retrait et reversement de tout ou partie de l’aide. Les services de l’Anah pourront faire procéder à tout contrôle des engagements et sanctionner le bénéficiaire et son mandataire éventuel des manquements constatés »."
+        },
+        "texte3":          {
+            "title": "AIDE A LA RENOVATION ÉNERGÉTIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
+            "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
+        },
+        "poeles":          {
+            "selectedId": 1,
+            "products":   [
+                {
+                    "ref":   "1431",
+                    "label": "Poêle à bois EMBER KAMIN E-BASIC\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 119 kg\n- Dimensions en cm : P= 41,2  L = 55,6  H = 108,5\n- Garantie 5 ans",
+                    "pu":    1563
+                },
+                {
+                    "ref":   "7305",
+                    "label": "Poêle à bois EMBER KAMIN E11\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 130 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 137,5\n- Garantie 5 ans",
+                    "pu":    1943
+                },
+                {
+                    "ref":   "8080",
+                    "label": "Poêle à bois EMBER KAMIN E11 Pierre Ollaire\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 130 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 137,5\n- Garantie 5 ans",
+                    "pu":    2321
+                },
+                {
+                    "ref":   "8848",
+                    "label": "Poêle à bois EMBER KAMIN E11 Pierre de calcaire naturelle\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 130 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 137,5\n- Garantie 5 ans",
+                    "pu":    2321
+                },
+                {
+                    "ref":   "7147",
+                    "label": "Poêle à bois EMBER KAMIN E14\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 119 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 108,4\n- Garantie 5 ans",
+                    "pu":    1859
+                },
+                {
+                    "ref":   "8849",
+                    "label": "Poêle à bois EMBER KAMIN E14 Pierre Ollaire\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 119 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 108,4\n- Garantie 5 ans",
+                    "pu":    2221
+                },
+                {
+                    "ref":   "8081",
+                    "label": "Poêle à bois EMBER KAMIN E14 Pierre de calcaire naturelle\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 119 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 108,4\n- Garantie 5 ans",
+                    "pu":    2221
+                },
+                {
+                    "ref":   "7307",
+                    "label": "Poêle à bois EMBER KAMIN E16\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 112 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 92,6\n- Garantie 5 ans",
+                    "pu":    1822
+                },
+                {
+                    "ref":   "8849",
+                    "label": "Poêle à bois EMBER KAMIN E16 Pierre Ollaire\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 112 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 92,6\n- Garantie 5 ans",
+                    "pu":    2126
+                },
+                {
+                    "ref":   "8081",
+                    "label": "Poêle à bois EMBER KAMIN E16 Pierre de calcaire naturelle\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 112 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 92,6\n- Garantie 5 ans",
+                    "pu":    2126
+                },
+                {
+                    "ref":   "2381",
+                    "label": "Poêle à bois EMBER KAMIN M3 VS Steel\n\nPuissance nominale 8,1 kW , Rendement nominal 80 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 19 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 181 kg\n- Dimensions en cm : P= 42  L = 77,3  H = 98,5\n- Garantie 5 ans",
+                    "pu":    2507
+                }
+            ]
+        },
+        "autres":          [
+            {
+                "ref":         "creation",
+                "label":       "Création complète intérieur conduit isolé Poujoulat",
+                "description": "Création complète intérieur conduit isolé Poujoulat\nTuyau isolé double paroi 500mm\nCoude 45°\nSupport plancher\nMaintien au toit galva\nSolin\nChapeau\nElément départ plafond\nRosace\nTuyau emaillé + kit air",
+                "pu":          1890
+            },
+            {
+                "ref":         "boisseau_existant",
+                "label":       "Boisseau existant maçonné départ au plafond",
+                "description": "Boisseau existant maçonné départ au plafond\nRaccord tubage\nGaine, collier soutien, plaque étanche, chapeau\nTuyau simple paroi émaillé\nTuyau réglable\nTé fumée\nCoude 45°",
+                "pu":          1300
+            }
+        ]
+    },
+    "baremes":                  [
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  15262
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  22320
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  26844
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  31359
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  35894
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  40420
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  44946
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  49472
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  53998
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  58524
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  63050
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  67576
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  72102
+                }
+            ],
+            "code":         "GP",
+            "primeCEE":     {
+                "H1": 38.2,
+                "H2": 31.3,
+                "H3": 20.9
+            }
+        },
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  19565
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  28614
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  34411
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  40201
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  46015
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  51812
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  57609
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  63406
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  69203
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  75000
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  80797
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  86594
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  92391
+                }
+            ],
+            "code":         "P",
+            "primeCEE":     {
+                "H1": 38.2,
+                "H2": 31.3,
+                "H3": 20.9
+            }
+        },
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  29148
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  42848
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  51592
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  60336
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  69081
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  77825
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  86569
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  95313
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  104057
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  112801
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  121545
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  130289
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  139033
+                }
+            ],
+            "code":         "IT",
+            "primeCEE":     {
+                "H1": 38.2,
+                "H2": 31.3,
+                "H3": 20.9
+            }
+        },
+        {
+            "palierRevenu": [
+                {
+                    "nbre": 1,
+                    "min":  0,
+                    "max":  29148
+                },
+                {
+                    "nbre": 2,
+                    "min":  0,
+                    "max":  42848
+                },
+                {
+                    "nbre": 3,
+                    "min":  0,
+                    "max":  51592
+                },
+                {
+                    "nbre": 4,
+                    "min":  0,
+                    "max":  60336
+                },
+                {
+                    "nbre": 5,
+                    "min":  0,
+                    "max":  69081
+                },
+                {
+                    "nbre": 6,
+                    "min":  0,
+                    "max":  77825
+                },
+                {
+                    "nbre": 7,
+                    "min":  0,
+                    "max":  86569
+                },
+                {
+                    "nbre": 8,
+                    "min":  0,
+                    "max":  95313
+                },
+                {
+                    "nbre": 9,
+                    "min":  0,
+                    "max":  104057
+                },
+                {
+                    "nbre": 10,
+                    "min":  0,
+                    "max":  112801
+                },
+                {
+                    "nbre": 11,
+                    "min":  0,
+                    "max":  121545
+                },
+                {
+                    "nbre": 12,
+                    "min":  0,
+                    "max":  130289
+                },
+                {
+                    "nbre": 13,
+                    "min":  0,
+                    "max":  139033
+                }
+            ],
+            "code":         "CL",
+            "primeCEE":     {
+                "H1": 38.2,
+                "H2": 31.3,
+                "H3": 20.9
+            }
+        }
+    ],
+    "lists":                    {
+        "localType":         [
+            {
+                "maison_individuelle": "Maison individuelle"
+            },
+            {
+                "appartement": "Appartement"
+            }
+        ],
+        "qualiteIsolation":  [
+            {
+                "0.6": "0.6"
+            },
+            {
+                "0.65": "0.65"
+            },
+            {
+                "0.8": "0.8"
+            },
+            {
+                "0.9": "0.9"
+            },
+            {
+                "1": "1"
+            },
+            {
+                "1.1": "1.1"
+            },
+            {
+                "1.3": "1.3"
+            },
+            {
+                "1.5": "1.5"
+            }
+        ],
+        "statutMenageType":  [
+            {
+                "tres_bonifie": "Très bonfié"
+            },
+            {
+                "bonifie": "Bonfié"
+            },
+            {
+                "classique": "Classique"
+            },
+            {
+                "intermediaire": "Intermédiaire"
+            }
+        ],
+        "batimentNature":    [
+            {
+                "": "-"
+            },
+            {
+                "nouvelle_residence": "Nouvelle résidence principale"
+            },
+            {
+                "location": "Location"
+            },
+            {
+                "residence_secondaire": "Résidence secondaire"
+            }
+        ],
+        "niveauHabitation":  [
+            {
+                "pp": "Plein Pied"
+            },
+            {
+                "r1": "R+1"
+            },
+            {
+                "r2": "R+2"
+            },
+            {
+                "r3": "R+3"
+            },
+            {
+                "r4": "R+4"
+            },
+            {
+                "autre": "AUTRE"
+            }
+        ],
+        "typeChantier":      [
+            {
+                "neuf": "Neuf"
+            },
+            {
+                "reno": "Reno"
+            }
+        ],
+        "puissanceCompteur": [
+            3,
+            6,
+            9,
+            12,
+            18
+        ],
+        "generateur":        [
+            {
+                "electrique": "Electrique"
+            },
+            {
+                "fioul": "Fioul"
+            },
+            {
+                "gaz_naturel": "Gaz naturel"
+            },
+            {
+                "bois": "Bois"
+            },
+            {
+                "propane": "Propane"
+            }
+        ],
+        "conduitType":       [
+            {
+                "maconne": "Maconné"
+            },
+            {
+                "metallique": "Métallique"
+            },
+            {
+                "tube": "Tubé"
+            },
+            {
+                "chemise": "Chemisé"
+            }
+        ],
+        "resistance":        [
+            {
+                "dry": "D (dry)"
+            },
+            {
+                "wet": "W (wet)"
+            },
+            {
+                "dont_know": "Ne sais pas"
+            }
+        ],
+        "typeDebouche":      [
+            {
+                "nu": "Nu"
+            },
+            {
+                "mm": "Mitre-Mitron"
+            },
+            {
+                "ec": "Extracteur statique"
+            },
+            {
+                "ecm": "Extracteur stato-mécanique"
+            }
+        ],
+        "toiture":           [
+            {
+                "pente_sup_15": "Pente > 15°"
+            },
+            {
+                "pente_inf_15": "Pente < 15°"
+            },
+            {
+                "terrasse": "Toiture terrasse"
+            }
+        ],
+        "yON":               [
+            {
+                "yes": "Oui"
+            },
+            {
+                "no": "Non"
+            },
+            {
+                "dontKnow": "Ne sais pas"
+            }
+        ],
+        "couleurProfile":    [
+            {
+                "blanc_creme": "Blanc crème"
+            },
+            {
+                "noir": "Noir"
+            },
+            {
+                "tourterelle": "Tourterelle"
+            }
+        ],
+        "couleurFacade":     [
+            {
+                "gres_ivoire": "Gres ivoire"
+            },
+            {
+                "gres_rouille": "Gres rouille"
+            },
+            {
+                "verre_noir_strille": "Verre noir strille"
+            },
+            {
+                "acier_noir": "Acier Noir"
+            },
+            {
+                "pierre_ollaire": "Pierre ollaire"
+            },
+            {
+                "tourterelle": "Tourterelle"
+            }
+        ],
+        "puissancePoele":    [
+            {
+                "6": 6
+            },
+            {
+                "8": 8
+            },
+            {
+                "9": 9
+            },
+            {
+                "10": 10
+            }
+        ],
+        "zoneInstallation":  [
+            {
+                "z1": "Zone 1"
+            },
+            {
+                "z2": "Zone 2"
+            },
+            {
+                "z3": "Zone 3"
+            }
+        ],
+        "outsideSocket":     [
+            {
+                "Non": "Non"
+            },
+            {
+                "Oui": "Oui"
+            }
+        ],
+        "typeOrigine":       [
+            {
+                "telephone": "Téléphone"
+            },
+            {
+                "internet": "Internet"
+            },
+            {
+                "presse": "Presse"
+            },
+            {
+                "campagne-google": "Campagne Google"
+            },
+            {
+                "autre": "Autre"
+            },
+            {
+                "hello-watt": "hello watt"
+            },
+            {
+                "angelique": "Angélique"
+            }
+        ]
+    },
+    "attestationTvaSimplifiee": "attestationTvaSimplifiee.html",
+    "cerfaMandat":              "cerfa-mandat.html",
+    "cadreContribution":        "CC_BAR.html",
+    "zoneMontant":              {
+        "H1": 38.2,
+        "H2": 31.3,
+        "H3": 20.9
+    }
+}

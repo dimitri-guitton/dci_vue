@@ -167,6 +167,7 @@ export default defineComponent( {
                                     // Fonction appelé quand un filtre est modifié ou la pagination
                                     const filterData = computed<DatatableFile[]>( () => {
                                       let tempData: DatatableFile[] = tableData.value;
+                                      console.log( tableData.value );
 
                                       // Filtre sur la barre de recherche
                                       if ( filterSearch.value !== '' ) {
