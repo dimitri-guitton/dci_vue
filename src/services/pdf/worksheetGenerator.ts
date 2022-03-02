@@ -292,6 +292,8 @@ export class WorksheetGenerator extends PdfGenerator {
                 list      = ( this._file.lists as CombleList );
                 quotation = ( this._file.quotation as CombleQuotation );
 
+                console.log( 'Options -->', quotation.options );
+
                 if ( quotation.selectedProducts.length > 0 ) {
                     selectedProduct = quotation.selectedProducts[ 0 ].label;
                 }
@@ -458,7 +460,7 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'ARRÊTOIRAS EN POLYRO',
-                                value: quotation.options[ 12 ].number,
+                                value: quotation.options[ 11 ].number,
                             },
                         ],
                     },

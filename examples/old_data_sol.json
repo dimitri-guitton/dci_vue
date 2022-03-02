@@ -42,13 +42,13 @@
         "location":       "",
         "moinsDe2Ans":    false
     },
-    "fiche":                    {
+    "fiche": {
         "epaisseurProduit":        "115 mm",
         "accesCamion":             "facile",
         "distCamion":              0,
-        "hautPlafond":             "",
+        "hautPlafond":             0,
         "support":                 "bois",
-        "distPointEau":            "",
+        "distPointEau":            0,
         "resistTherm":             "",
         "dimensionsPieces":        [
             "",
@@ -74,7 +74,7 @@
             ""
         ],
         "porteGarage":             "",
-        "nbrPorteGarage":          "",
+        "nbrPorteGarage":          0,
         "infosSup":                "RAS"
     },
     "devis":                    {
