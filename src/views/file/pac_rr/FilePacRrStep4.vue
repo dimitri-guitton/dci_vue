@@ -5,9 +5,9 @@
 
     <div class="row mt-10">
       <div class="col-md-6 mb-5">
-        <label for="q_pac_type" class="form-label">Type de pompe à chaleur</label>
-        <Field name="q_pac_type"
-               id="q_pac_type"
+        <label for="pacType" class="form-label">Type de pompe à chaleur</label>
+        <Field name="pacType"
+               id="pacType"
                class="form-select"
                as="select"
                v-model="rrType"
@@ -16,9 +16,9 @@
         </Field>
       </div>
       <div class="col-md-6 mb-5">
-        <label for="q_assortment" class="form-label">Gamme de produit</label>
-        <Field name="q_assortment"
-               id="q_assortment"
+        <label for="assortment" class="form-label">Gamme de produit</label>
+        <Field name="assortment"
+               id="assortment"
                class="form-select"
                as="select"
                v-model="assortment"
@@ -53,7 +53,7 @@
                 class="form-control"
                 :name="`housingAreaP${index}`"
                 placeholder="1"
-                v-model="rrMulti[`areaP${index}`]"
+                v-model.number="rrMulti[`areaP${index}`]"
             />
           </div>
         </template>
@@ -69,7 +69,25 @@
       <row-price :product="p"></row-price>
     </template>
     <template v-if="!products.length">
-      <p>Aucun produit de trouvé</p>
+      <h6>Aucun produit de trouvé</h6>
+    </template>
+
+    <!-- Formualire caché afin de binder les values au formaulaire comme la sélection des produits se fait via l'algo-->
+    <template v-for="(p, index) in products" v-bind:key="`val_${p.reference}`">
+      <div class="row d-none">
+        <Field type="text"
+               :name="`selectedProducts[${index}].id`"
+               class="form-control"
+               v-model.number="p.id" />
+        <Field type="text"
+               :name="`selectedProducts[${index}].quantity`"
+               class="form-control"
+               v-model.number="p.quantity" />
+        <Field type="text"
+               :name="`selectedProducts[${index}].pu`"
+               class="form-control"
+               v-model.number="p.pu" />
+      </div>
     </template>
 
     <options @optionsAreUpdated="updateOptions" :options="options"></options>
@@ -122,7 +140,7 @@ import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/services/file/wizzard/Price';
-import { getCodeBonus, getLessThan2Year, getProductByRef, getTva } from '@/services/data/dataService';
+import { getCodeBonus, getLessThan2Year, getProductByRef } from '@/services/data/dataService';
 import TemplateItemList from '@/components/DCI/input/ItemList.vue';
 import RowPrice from '@/components/DCI/wizzard-file/rowPrice.vue';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
@@ -191,6 +209,7 @@ export default defineComponent( {
                                       return lists.value.gammeTypeList;
                                     } );
 
+                                    // TODO au changement d'isolation en multi on garde de vieux PAC
                                     const products = computed<Product[]>(
                                         () => {
                                           console.log( '%c COMPUTED PRODUCTS RR',
@@ -279,8 +298,11 @@ export default defineComponent( {
                                       const lessThan2Year = getLessThan2Year();
                                       console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
-                                      const tva      = getTva();
-                                      const totalTva = tva * totalHt / 100;
+                                      // TODO CHECK AVEC L4ANCINNE LOGIQUE SI C4EST BON
+                                      // const tva      = getTva();
+                                      const tva10    = totalHt * 10 / 100;
+                                      const tva20    = ( totalHt - tva10 ) * 20 / 100;
+                                      const totalTva = tva10 + tva20;
                                       const totalTtc = totalHt + totalTva;
 
                                       // TODO PRIMCE CEEE MAPRIME RENOV
@@ -304,8 +326,9 @@ export default defineComponent( {
 
                                       const price: Price = {
                                         HT:             totalHt,
-                                        TVA:            lessThan2Year ? 0 : totalTva,
-                                        TVA20:          lessThan2Year ? totalTva : 0,
+                                        TVA:            0,
+                                        TVA10:          tva10,
+                                        TVA20:          tva20,
                                         TTC:            totalTtc,
                                         maPrimeRenov:   maPrimeRenov,
                                         remainderToPay: totalTtc - totalPrime,

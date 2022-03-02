@@ -570,6 +570,71 @@ export class WorksheetGenerator extends PdfGenerator {
             case FILE_PAC_RO:
                 break;
             case FILE_PAC_RR:
+                worksheet = ( this._file.worksheet as RrWorkSheet );
+                list      = ( this._file.lists as RrList );
+                quotation = ( this._file.quotation as RrQuotation );
+
+                if ( quotation.selectedProducts.length > 0 ) {
+                    selectedProduct = quotation.selectedProducts[ 0 ].label;
+                }
+
+                // TODO TERMINER FICHE
+                data = [
+                    {
+                        title: 'CARACTERISTIQUES DU CHANTIER',
+                        items: [
+                            {
+                                label: 'Type de batiment',
+                                value: this.getValueInList( list.batimentNatureList, housing.buildingNature ),
+                            },
+                            {
+                                label: 'Type de chantier',
+                                value: this.getValueInList( list.typeChantierList, worksheet.typeChantier ),
+                            },
+                            {
+                                label: 'Vsite des comble',
+                                value: this.yesOrNo( worksheet.visiteComble ),
+                            },
+                            {
+                                label: 'Chantier Habité',
+                                value: this.yesOrNo( worksheet.chantierHabite ),
+                            },
+                            {
+                                label: 'DEMANDE DE VOIRIE / ACCES PL',
+                                value: this.yesOrNo( worksheet.demandeVoirie ),
+                            },
+                            // {
+                            //     label: 'ACCES COMBLES',
+                            //     value: this.getValueInList(list.com),
+                            // },
+                            {
+                                label: 'TYPE COUVERTURE',
+                                value: this.getValueInList( list.typeCouvertureList, worksheet.typeCouverture ),
+                            },
+                            {
+                                label: 'TYPE CHARPENTE',
+                                value: this.getValueInList( list.typeCharpenteList, worksheet.typeCharpente ),
+                            },
+                            {
+                                label: 'PRESENCE VOLIGE',
+                                value: this.yesOrNo( worksheet.presenceVolige ),
+                            },
+                            {
+                                label: 'NATURE DES MURS EXTERIEURS',
+                                value: this.getValueInList( list.natureMurExtList, worksheet.natureMurExt ),
+                            },
+                            {
+                                label: 'TENSION DISPONIBLE',
+                                value: this.getValueInList( list.tensionDisponibleList,
+                                                            housing.availableVoltage === undefined ? '' : housing.availableVoltage ),
+                            },
+                            {
+                                label: 'PUISSANCE COMPTEUR',
+                                value: this.getValueInList( list.puissanceCompteurList, worksheet.puissanceCompteur ),
+                            },
+                        ],
+                    },
+                ];
                 break;
             case FILE_CET:
                 worksheet = ( this._file.worksheet as CetWorkSheet );

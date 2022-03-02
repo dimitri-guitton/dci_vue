@@ -39,6 +39,15 @@ export const initPacRrFormDataStep4 = ( fileData: RrFile ) => {
         blankOptions,
         selectedProducts,
         commentary:         fileData.quotation.commentary,
+        pacType:            fileData.quotation.rrType,
+        assortment:         fileData.quotation.assortment,
+        housingRoomNumber:  fileData.quotation.rrMulti.roomNumber,
+        housingAreaP1:      fileData.quotation.rrMulti.areaP1,
+        housingAreaP2:      fileData.quotation.rrMulti.areaP2,
+        housingAreaP3:      fileData.quotation.rrMulti.areaP3,
+        housingAreaP4:      fileData.quotation.rrMulti.areaP4,
+        housingAreaP5:      fileData.quotation.rrMulti.areaP5,
+
     };
 };
 
@@ -48,9 +57,16 @@ export const yupPacRrConfigStep4 = () => {
                            dateTechnicalVisit: Yup.string(),
                            executionDelay:     Yup.string(),
                            commentary:         Yup.string(),
+                           pacType:            Yup.string(),
+                           assortment:         Yup.string(),
                            housingRoomNumber:  Yup.number()
                                                   .min( 2, 'Il doit y avoir au moins 2 pièces' )
                                                   .max( 5, 'Il doit y avoir au maximum 5 pièces' ),
+                           housingAreaP1:      Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ).nullable( true ),
+                           housingAreaP2:      Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ).nullable( true ),
+                           housingAreaP3:      Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ).nullable( true ),
+                           housingAreaP4:      Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ).nullable( true ),
+                           housingAreaP5:      Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ).nullable( true ),
                            selectedProducts:   Yup.array()
                                                   .of(
                                                       Yup.object().shape( {
@@ -121,11 +137,25 @@ export const validatePacRrStep4 = async ( data: PacRrFileStep, price: Price ): P
         origin:             data.origin,
         totalHt:            price.HT,
         totalTva:           price.TVA,
+        tva10:              price.TVA10 ? price.TVA10 : 0,
+        tva20:              price.TVA20 ? price.TVA20 : 0,
         totalTtc:           price.TTC,
         ceeBonus:           price.CEE ? price.CEE : 0,
         discount:           price.discount ? price.discount : 0,
         maPrimeRenovBonus:  price.maPrimeRenov !== undefined ? price.maPrimeRenov : 0,
         remainderToPay:     price.remainderToPay,
+        rrType:             data.pacType,
+        assortment:         data.assortment,
+        rrMulti:            {
+            roomNumber: +data.housingRoomNumber,
+            areaP1:     +data.housingAreaP1,
+            areaP2:     +data.housingAreaP2,
+            areaP3:     +data.housingAreaP3,
+            areaP4:     +data.housingAreaP4,
+            areaP5:     +data.housingAreaP5,
+        },
+
+
     };
 
     fileData = {

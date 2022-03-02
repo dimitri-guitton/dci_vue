@@ -801,18 +801,16 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PB:
                 text = 'GARANTIE 5 ANS';
                 break;
-            case FILE_PAC_RO:
+            case FILE_PAC_RR:
                 const rrQuotation = ( this._file.quotation as RrQuotation );
-
-                // TODO check que rrType est bien égale à 'mono' et a 'multi'
                 if ( rrQuotation.rrType === 'mono' && rrQuotation.assortment === 'sensira' ) {
                     text = 'GARANTIE DAIKIN 3 ANS PIECES ET 5ANS COMPRESSEUR';
                 } else {
                     text = 'GARANTIE DAIKIN 3 ANS PIECES ET 5ANS COMPRESSEUR';
                 }
                 break;
-            case FILE_PAC_RR:
-                text = 'Installation d\'une pompe à chaleur air/air';
+            case FILE_PAC_RO:
+                text = 'GARANTIE DAIKIN 3ANS PIECES ET 5ANS COMPRESSEUR';
                 break;
             case FILE_PV:
                 text = 'Garantie matériel 25 ans';

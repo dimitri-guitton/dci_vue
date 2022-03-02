@@ -19,7 +19,7 @@
                 :disabled="true"
                 type="number"
                 class="form-control"
-                name="selectedProductQuantity"
+                :name="`selectedProducts[${index}].quantity`"
                 placeholder="1"
                 v-model="refQuantityArea"
             />
@@ -34,7 +34,7 @@
                 :disabled="true"
                 type="number"
                 class="form-control"
-                name="selectedProductQuantity"
+                :name="`selectedProducts[${index}].quantity`"
                 placeholder="1"
                 v-model.number="currentProduct.quantity"
             />
