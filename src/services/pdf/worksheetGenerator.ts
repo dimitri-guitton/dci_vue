@@ -4,12 +4,6 @@ import { CombleWorkSheet } from '@/types/v2/File/Comble/CombleWorkSheet';
 import { BROWN, DARK } from '@/services/pdf/pdfVariable';
 import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
 import CombleList from '@/types/v2/File/Comble/CombleList';
-import { CetFile } from '@/types/v2/File/Cet/CetFile';
-import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
-import { PgFile } from '@/types/v2/File/Pg/PgFile';
-import { RoFile } from '@/types/v2/File/Ro/RoFile';
-import { RrFile } from '@/types/v2/File/Rr/RrFile';
-import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { CombleQuotation } from '@/types/v2/File/Comble/CombleQuotation';
 import { CetWorkSheet } from '@/types/v2/File/Cet/CetWorkSheet';
 import { CetList } from '@/types/v2/File/Cet/CetList';
@@ -26,11 +20,10 @@ import { SolWorkSheet } from '@/types/v2/File/Sol/SolWorkSheet';
 import { RoWorkSheet } from '@/types/v2/File/Ro/RoWorkSheet';
 import { RrWorkSheet } from '@/types/v2/File/Rr/RrWorkSheet';
 import { PgWorkSheet } from '@/types/v2/File/Pg/PgWorkSheet';
-import { PbFile } from '@/types/v2/File/Pb/PbFile';
-import { PvFile } from '@/types/v2/File/Pv/PvFile';
+import { AllFile } from '@/types/v2/File/All';
 
 export class WorksheetGenerator extends PdfGenerator {
-    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile | PvFile;
+    private _file: AllFile;
 
     private _style: StyleDictionary = {
         title: {
@@ -42,7 +35,7 @@ export class WorksheetGenerator extends PdfGenerator {
     };
 
 
-    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile | PvFile ) {
+    constructor( file: AllFile ) {
         super();
         this._file = file;
         this.type  = PdfType.Worksheet;

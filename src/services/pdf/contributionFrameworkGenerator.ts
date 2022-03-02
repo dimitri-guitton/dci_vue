@@ -1,18 +1,11 @@
 import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
 import { CADRE_CONTRIBUTION_CHECKBOX, DARK, EA_SIGNATURE, LOGO_CEE, LOGO_EDF, ORANGE, TEL_FRANCE_RENOV } from '@/services/pdf/pdfVariable';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
-import { CetFile } from '@/types/v2/File/Cet/CetFile';
-import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
-import { PgFile } from '@/types/v2/File/Pg/PgFile';
-import { RoFile } from '@/types/v2/File/Ro/RoFile';
-import { RrFile } from '@/types/v2/File/Rr/RrFile';
-import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
-import { PbFile } from '@/types/v2/File/Pb/PbFile';
-import { PvFile } from '@/types/v2/File/Pv/PvFile';
+import { AllFile } from '@/types/v2/File/All';
 
 export class ContributionFrameworkGenerator extends PdfGenerator {
-    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile | PvFile;
+    private _file: AllFile;
 
     private _style: StyleDictionary = {
         header:      {
@@ -26,7 +19,7 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
     };
 
 
-    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile | PvFile ) {
+    constructor( file: AllFile ) {
         super();
         this._file = file;
         this.type  = PdfType.ContributionFramework;

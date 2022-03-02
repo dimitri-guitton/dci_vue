@@ -10,4 +10,5 @@ export interface Price {
     housingAction?: number;
     remainderToPay: number;
     discount?: number;
+    selfConsumptionBonus?: number;
 }

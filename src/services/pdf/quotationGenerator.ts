@@ -11,12 +11,6 @@ import {
 } from 'pdfmake/interfaces';
 import { BLUE, DARK_GREY, GREEN, LOGO_ECO, LOGO_QUALIBOIS, LOGO_QUALIFELEC } from '@/services/pdf/pdfVariable';
 import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_PV, FILE_SOL } from '@/services/constantService';
-import { CetFile } from '@/types/v2/File/Cet/CetFile';
-import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
-import { PgFile } from '@/types/v2/File/Pg/PgFile';
-import { RoFile } from '@/types/v2/File/Ro/RoFile';
-import { RrFile } from '@/types/v2/File/Rr/RrFile';
-import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import CombleList from '@/types/v2/File/Comble/CombleList';
 import SolList from '@/types/v2/File/Sol/SolList';
 import RoList from '@/types/v2/File/Ro/RoList';
@@ -33,9 +27,9 @@ import { toFrenchDate } from '@/services/commonService';
 import { TvaCertificateGenerator } from '@/services/pdf/tvaCertificateGenerator';
 import { ContributionFrameworkGenerator } from '@/services/pdf/contributionFrameworkGenerator';
 import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
-import { PbFile } from '@/types/v2/File/Pb/PbFile';
 import PbList from '@/types/v2/File/Pb/PbList';
-import { PvFile } from '@/types/v2/File/Pv/PvFile';
+import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
+import { AllFile, AllQuotation } from '@/types/v2/File/All';
 
 enum PriceQuotation {
     HT            = 'Total HT',
@@ -52,7 +46,7 @@ enum PriceQuotation {
 }
 
 export class QuotationGenerator extends PdfGenerator {
-    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile | PvFile;
+    private _file: AllFile;
 
     private _style: StyleDictionary = {
         header: {
@@ -71,7 +65,7 @@ export class QuotationGenerator extends PdfGenerator {
         },
     };
 
-    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile | PvFile ) {
+    constructor( file: AllFile ) {
         super();
         this._file = file;
         this.type  = PdfType.Quotation;
@@ -763,6 +757,9 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_SOL:
             case FILE_COMBLE:
                 text = 'Pas de mise en place de par-vapeur';
+                break;
+            case FILE_PV:
+                text = 'Démarches administratives incluses (déclaration préalable de travaux, demande de raccordement et CONSUEL)';
         }
 
         if ( text !== '' ) {
@@ -811,9 +808,6 @@ export class QuotationGenerator extends PdfGenerator {
                 break;
             case FILE_PAC_RO:
                 text = 'GARANTIE DAIKIN 3ANS PIECES ET 5ANS COMPRESSEUR';
-                break;
-            case FILE_PV:
-                text = 'Garantie matériel 25 ans';
                 break;
         }
 
@@ -1078,9 +1072,7 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_CET:
             case FILE_PG:
             case FILE_PB:
-            case FILE_PV:
-
-                // TODO TVA 20 SI MOINSDE 2 ANS
+                // TODO TVA 20 SI MOINS DE 2 ANS
                 items = [
                     PriceQuotation.HT,
                     PriceQuotation.TVA,
@@ -1161,6 +1153,22 @@ export class QuotationGenerator extends PdfGenerator {
                     items.push( PriceQuotation.discount );
                 }
                 break;
+            case FILE_PV:
+                const pvQuotation = ( this._file.quotation as PvQuotation );
+
+                items = [
+                    PriceQuotation.HT,
+                    PriceQuotation.TTC,
+                ];
+
+                if ( pvQuotation.tva10 > 0 ) {
+                    items.push( PriceQuotation.TVA10 );
+                }
+
+                if ( pvQuotation.tva20 > 0 ) {
+                    items.push( PriceQuotation.TVA20 );
+                }
+                break;
             case FILE_COMBLE:
             case FILE_SOL:
                 items = [
@@ -1179,9 +1187,9 @@ export class QuotationGenerator extends PdfGenerator {
                 console.warn( 'Le type de dossier n\'est pas pris en compte pour la génération des prix' );
         }
 
-        const leftColumn: ContentText[]                                                                          = [];
-        const rightColumn: ContentText[]                                                                         = [];
-        const quotation: CombleQuotation | SolQuotation | RoQuotation | RrQuotation | CetQuotation | PgQuotation = this._file.quotation;
+        const leftColumn: ContentText[]  = [];
+        const rightColumn: ContentText[] = [];
+        const quotation: AllQuotation    = this._file.quotation;
         for ( const item of items ) {
             if ( item === PriceQuotation.TVA ) {
                 leftColumn.push( {
@@ -1301,13 +1309,23 @@ export class QuotationGenerator extends PdfGenerator {
      * @private
      */
     private _generateQuotationPrice(): Content {
-        const quotation: CombleQuotation | SolQuotation | RoQuotation | RrQuotation | CetQuotation | PgQuotation = this._file.quotation;
+        const quotation: AllQuotation = this._file.quotation;
+
+        let addedCommentary = '';
+        switch ( this._file.type ) {
+            case FILE_PV:
+                const selfConsumptionBonus = ( quotation as PvQuotation ).selfConsumptionBonus;
+                const year                 = 5;
+                addedCommentary            = `Prime à l’autoconsommation versée pendant ${ year } ans :
+                ${ this.formatPrice( selfConsumptionBonus / 5 ) } / an soit ${ this.formatPrice( selfConsumptionBonus ) }`;
+                break;
+        }
 
         return {
             margin: [ 0, 0 ],
             style:  [ 'table' ],
             table:  {
-                body:   [
+                body: [
                     [
                         {
                             stack: [
@@ -1319,6 +1337,12 @@ export class QuotationGenerator extends PdfGenerator {
                                 {
                                     text:      quotation.commentary,
                                     alignment: 'center',
+                                },
+                                {
+                                    margin:    [ 0, 5, 0, 0 ],
+                                    text:      addedCommentary,
+                                    alignment: 'center',
+                                    bold:      true,
                                 },
                             ],
                         },

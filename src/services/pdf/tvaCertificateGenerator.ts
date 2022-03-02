@@ -1,18 +1,11 @@
 import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
 import { DARK, LOGO_CERFA_TVA, LOGO_MINISTERE_ECONOMIE, LOGO_REP_FRANCE, TVA_PAGE_2, TVA_PAGE_3 } from '@/services/pdf/pdfVariable';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
-import { CetFile } from '@/types/v2/File/Cet/CetFile';
-import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
-import { PgFile } from '@/types/v2/File/Pg/PgFile';
-import { RoFile } from '@/types/v2/File/Ro/RoFile';
-import { RrFile } from '@/types/v2/File/Rr/RrFile';
-import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { FILE_PAC_RO } from '@/services/constantService';
-import { PbFile } from '@/types/v2/File/Pb/PbFile';
-import { PvFile } from '@/types/v2/File/Pv/PvFile';
+import { AllFile } from '@/types/v2/File/All';
 
 export class TvaCertificateGenerator extends PdfGenerator {
-    private _file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile | PvFile;
+    private _file: AllFile;
 
     private _style: StyleDictionary = {
         title:   {
@@ -28,7 +21,7 @@ export class TvaCertificateGenerator extends PdfGenerator {
     };
 
 
-    constructor( file: CetFile | CombleFile | PgFile | RoFile | RrFile | SolFile | PbFile | PvFile ) {
+    constructor( file: AllFile ) {
         super();
         this._file = file;
         this.type  = PdfType.Tva;

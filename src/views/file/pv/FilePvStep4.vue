@@ -60,7 +60,7 @@ import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/services/file/wizzard/Price';
-import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
+import { getCodeBonus, getLessThan2Year } from '@/services/data/dataService';
 
 export default defineComponent( {
                                   name:       'file-pv-step-4',
@@ -117,12 +117,14 @@ export default defineComponent( {
                                         console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
                                       }
                                       console.log( '%c IN COMPUTED', 'background: #007C83; color: #FFFFFF' );
-                                      let totalHt      = 0;
-                                      let maPrimeRenov = 0;
+                                      let totalHt    = 0;
+                                      let totalPower = 0;
 
                                       console.log( 'Prix par defaut -->', totalHt );
                                       for ( const selectedProduct of _selectedProducts.value ) {
-                                        totalHt += selectedProduct.pu;
+                                        totalHt += ( selectedProduct.pu * selectedProduct.quantity );
+                                        const power = selectedProduct.power !== undefined ? selectedProduct.power : 0;
+                                        totalPower += selectedProduct.quantity * power;
                                       }
                                       console.log( 'Prix avec les produits -->', totalHt );
 
@@ -145,36 +147,27 @@ export default defineComponent( {
                                       const lessThan2Year = getLessThan2Year();
                                       console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
-                                      if ( !lessThan2Year ) {
-                                        if ( codeBonus === 'GP' ) {
-                                          maPrimeRenov = 1200;
-                                        }
-                                        if ( codeBonus === 'P' ) {
-                                          maPrimeRenov = 800;
-                                        }
-                                        if ( codeBonus === 'IT' ) {
-                                          maPrimeRenov = 400;
-                                        }
+
+                                      let selfConsumptionBonus;
+                                      let tva10 = 0;
+                                      let tva20 = 0;
+                                      if ( totalPower > 3000 ) {
+                                        tva20                = 20 * totalHt / 100;
+                                        selfConsumptionBonus = ( totalPower / 1000 ) * 280;
+                                      } else {
+                                        tva10                = 10 * totalHt / 100;
+                                        selfConsumptionBonus = ( totalPower / 1000 ) * 380;
                                       }
-
-                                      // const ceeBonus = getPvCeeBonus( ( props.fileData as BaseFile ) );
-                                      const ceeBonus = 0;
-
-
-                                      console.log( 'maPrimeRenov --> ', maPrimeRenov );
-
-                                      const tva        = getTva();
-                                      const totalTva   = tva * totalHt / 100;
-                                      const totalTtc   = totalHt + totalTva;
-                                      const totalPrime = maPrimeRenov + ceeBonus;
+                                      const totalTtc = totalHt + tva10;
 
                                       const price: Price = {
                                         HT:             totalHt,
-                                        TVA:            totalTva,
+                                        TVA:            0,
+                                        TVA10:          tva10,
+                                        TVA20:          tva20,
                                         TTC:            totalTtc,
-                                        maPrimeRenov:   maPrimeRenov,
-                                        remainderToPay: totalTtc - totalPrime,
-                                        CEE:            ceeBonus,
+                                        remainderToPay: totalTtc,
+                                        selfConsumptionBonus,
                                       };
 
                                       ctx.emit( 'calculedPrice', price );
