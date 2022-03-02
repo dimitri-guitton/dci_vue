@@ -10,6 +10,7 @@ import {
     convertOldText,
     convertOldTotalHt,
     convertOldTotalTva,
+    convertTechnician,
     getArrayData,
     getBoolData,
     getNullableNumberData,
@@ -234,7 +235,7 @@ export const convertOldRrFile = ( oldData ): RrFile => {
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
         },
-        worksheet: {
+        worksheet:         {
             period:               getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
             niveauHabitation:     getObjectData( oldData, [ 'fiche', 'niveauHabitation' ] ),
             typeChantier:         getObjectData( oldData, [ 'fiche', 'typeChantier' ] ),
@@ -273,7 +274,7 @@ export const convertOldRrFile = ( oldData ): RrFile => {
             hauteurDuSol:         getObjectData( oldData, [ 'fiche', 'hauteurDuSol' ] ),
             infosSup:             getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
-        quotation: {
+        quotation:         {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
@@ -298,22 +299,17 @@ export const convertOldRrFile = ( oldData ): RrFile => {
             remainderToPay:     0,
             tva:                getNumberData( oldData [ 'devis' ][ 'tva' ] ),
         },
-        scales:                    convertOldScales( oldData ),
-        bonusWithoutCdp:           {
+        scales:            convertOldScales( oldData ),
+        bonusWithoutCdp:   {
             amount: {
                 h1: getObjectData( oldData, [ 'horsCdp', 'montantUnitaire', 'H1' ] ),
                 h2: getObjectData( oldData, [ 'horsCdp', 'montantUnitaire', 'H2' ] ),
                 h3: getObjectData( oldData, [ 'horsCdp', 'montantUnitaire', 'H3' ] ),
             },
         },
-        statusInDci:               convertOldStatusDci( oldData ),
-        errorsStatusInDci:         convertOldErrorStatusDci( oldData ),
-        technician:                {
-            id:        getObjectData( oldData, [ 'technicien', 'id' ] ),
-            lastName:  getObjectData( oldData, [ 'technicien', 'nom' ] ),
-            firstName: getObjectData( oldData, [ 'technicien', 'prenom' ] ),
-            phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
-        },
-        lists:                     convertOldRrItemList( oldData ),
+        statusInDci:       convertOldStatusDci( oldData ),
+        errorsStatusInDci: convertOldErrorStatusDci( oldData ),
+        technician:        convertTechnician( oldData ),
+        lists:             convertOldRrItemList( oldData ),
     };
 };

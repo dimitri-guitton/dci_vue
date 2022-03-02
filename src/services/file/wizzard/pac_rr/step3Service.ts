@@ -29,6 +29,7 @@ export const yupPacRrConfigStep3 = () => {
                            nbOccupant:              Yup.number().required(),
                            housingType:             Yup.string().required(),
                            housingConstructionYear: Yup.number().positive().nullable( true ),
+                           area:                    Yup.number().required().min( 1, 'La superficie doit être supérieur à 0' ),
                        } );
 };
 

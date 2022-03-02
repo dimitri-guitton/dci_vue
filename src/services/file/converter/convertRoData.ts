@@ -10,6 +10,7 @@ import {
     convertOldText,
     convertOldTotalHt,
     convertOldTotalTva,
+    convertTechnician,
     getArrayData,
     getBoolData,
     getNullableNumberData,
@@ -325,7 +326,7 @@ export const convertOldRoFile = ( oldData ): RoFile => {
             tensionDisponible:         getObjectData( oldData, [ 'fiche', 'tensionDisponible' ] ),
             infosSup:                  getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
         },
-        quotation: {
+        quotation:         {
             origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
             dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
             executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
@@ -359,22 +360,17 @@ export const convertOldRoFile = ( oldData ): RoFile => {
             tva:                getNumberData( oldData [ 'devis' ][ 'tva' ] ),
             cascadeSystem:      false,
         },
-        scales:                    convertOldScales( oldData ),
-        bonusWithoutCdp:           {
+        scales:            convertOldScales( oldData ),
+        bonusWithoutCdp:   {
             amount: {
                 h1: getObjectData( oldData, [ 'horsCdp', 'montantUnitaire', 'H1' ] ),
                 h2: getObjectData( oldData, [ 'horsCdp', 'montantUnitaire', 'H2' ] ),
                 h3: getObjectData( oldData, [ 'horsCdp', 'montantUnitaire', 'H3' ] ),
             },
         },
-        statusInDci:               convertOldStatusDci( oldData ),
-        errorsStatusInDci:         convertOldErrorStatusDci( oldData ),
-        technician:                {
-            id:        getObjectData( oldData, [ 'technicien', 'id' ] ),
-            lastName:  getObjectData( oldData, [ 'technicien', 'nom' ] ),
-            firstName: getObjectData( oldData, [ 'technicien', 'prenom' ] ),
-            phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
-        },
-        lists:                     convertOldRoItemList( oldData ),
+        statusInDci:       convertOldStatusDci( oldData ),
+        errorsStatusInDci: convertOldErrorStatusDci( oldData ),
+        technician:        convertTechnician( oldData ),
+        lists:             convertOldRoItemList( oldData ),
     };
 };

@@ -10,6 +10,7 @@ import {
     convertOldText,
     convertOldTotalHt,
     convertOldTotalTva,
+    convertTechnician,
     getBoolData,
     getNullableNumberData,
     getNumberData,
@@ -235,15 +236,10 @@ export const convertOldSolFile = ( oldData ): SolFile => {
             remainderToPay:     0,
             ceeBonus:           0,
         },
-        scales:                    convertOldScales( oldData ),
-        statusInDci:               convertOldStatusDci( oldData ),
-        errorsStatusInDci:         convertOldErrorStatusDci( oldData ),
-        technician:                {
-            id:        getObjectData( oldData, [ 'technicien', 'id' ] ),
-            lastName:  getObjectData( oldData, [ 'technicien', 'nom' ] ),
-            firstName: getObjectData( oldData, [ 'technicien', 'prenom' ] ),
-            phone:     getObjectData( oldData, [ 'technicien', 'tel' ] ),
-        },
-        lists:                     convertOldSolItemList( oldData ),
+        scales:    convertOldScales( oldData ),
+        statusInDci: convertOldStatusDci( oldData ),
+        errorsStatusInDci: convertOldErrorStatusDci( oldData ),
+        technician: convertTechnician( oldData ),
+        lists: convertOldSolItemList( oldData ),
     };
 };

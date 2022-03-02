@@ -61,7 +61,7 @@
         </div>
         <div class="col-md-2 fv-row d-flex justify-content-end align-items-center">
           <template v-if="option.number && option.label !== ''">
-            <h5 class="mb-3">{{ numberToPrice( option.pu * option.number ) }}</h5>
+            <h5 class="mb-3">{{ numberToPrice( option.pu, option.number ) }}</h5>
           </template>
           <template v-else>
             <h5>0.00 €</h5>

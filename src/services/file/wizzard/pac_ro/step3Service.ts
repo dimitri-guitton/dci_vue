@@ -32,6 +32,7 @@ export const yupPacRoConfigStep3 = () => {
                            housingType:             Yup.string().required(),
                            housingConstructionYear: Yup.number().positive().nullable( true ),
                            housingCeilingHeight:    Yup.number().positive().required(),
+                           area:                    Yup.number().required().min( 1, 'La superficie doit être supérieur à 0' ),
                        } );
 };
 

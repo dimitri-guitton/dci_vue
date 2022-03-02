@@ -14,7 +14,8 @@ export const minTwoDigits = ( n: number ): string => {
  */
 export const toFrenchDate = ( stringDate: string | number ): string => {
 
-    if ( stringDate === null ) {
+    console.log( 'Date -->', stringDate );
+    if ( stringDate === '' || stringDate === null || stringDate === undefined ) {
         return '';
     }
 
@@ -39,7 +40,12 @@ export const checkInternet = (): boolean => {
     return false;
 };
 
-export const numberToPrice = ( number: number | string ): string => {
+/**
+ * Retourne un nombre en prix
+ * @param number
+ * @param quantity
+ */
+export const numberToPrice = ( number: number | string, quantity = 1 ): string => {
 
     let convertedNumber: number;
     if ( typeof number === 'string' ) {
@@ -50,9 +56,11 @@ export const numberToPrice = ( number: number | string ): string => {
         convertedNumber = number;
     }
 
-    if ( convertedNumber === 0 ) {
+    if ( quantity > 0 && convertedNumber === 0 ) {
         return 'Inclus';
     }
+
+    convertedNumber = convertedNumber * quantity;
 
     return `${ convertedNumber.toFixed( 2 ) } €`;
 };

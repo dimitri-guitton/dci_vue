@@ -61,10 +61,10 @@
       </div>
       <div class="col-md-2 fv-row d-flex justify-content-end align-items-center">
         <template v-if="refQuantityArea > 0">
-          <h5 class="mb-3">{{ numberToPrice( currentProduct.pu * quantityArea ) }}</h5>
+          <h5 class="mb-3">{{ numberToPrice( currentProduct.pu, quantityArea ) }}</h5>
         </template>
         <template v-else>
-          <h5 class="mb-3">{{ numberToPrice( currentProduct.pu * currentProduct.quantity ) }}</h5>
+          <h5 class="mb-3">{{ numberToPrice( currentProduct.pu, currentProduct.quantity ) }}</h5>
         </template>
 
       </div>

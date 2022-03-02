@@ -18,7 +18,7 @@
     </div>
 
     <div class="col-md-2 fv-row d-flex justify-content-end align-items-center">
-      <h5 class="mb-3">{{ numberToPrice( product.pu * product.quantity ) }}</h5>
+      <h5 class="mb-3">{{ numberToPrice( product.pu, product.quantity ) }}</h5>
     </div>
   </div>
 </template>

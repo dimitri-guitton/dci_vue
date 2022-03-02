@@ -1430,10 +1430,10 @@
     "statusInDci":               1,
     "errorsStatusInDci":         [],
     "technician":                {
-        "id":        {},
-        "lastName":  {},
-        "firstName": {},
-        "phone":     {}
+        "id":        0,
+        "lastName":  " ",
+        "firstName": " ",
+        "phone":     " "
     },
     "lists":                     {
         "localTypeList":         [

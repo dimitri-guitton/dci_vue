@@ -49,7 +49,7 @@
           ></ErrorMessage>
         </div>
         <div class="col-md-2 fv-row d-flex justify-content-end align-items-center">
-          <h5 class="mb-3">{{ numberToPrice( option.pu * option.number ) }}</h5>
+          <h5 class="mb-3">{{ numberToPrice( option.pu, option.number ) }}</h5>
         </div>
       </div>
     </template>

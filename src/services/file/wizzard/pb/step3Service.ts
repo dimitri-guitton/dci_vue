@@ -27,7 +27,7 @@ export const yupPbConfigStep3 = () => {
     return Yup.object( {
                            nbOccupant:              Yup.number().required(),
                            housingType:             Yup.string().required(),
-                           housingConstructionYear: Yup.number().required(),
+                           housingConstructionYear: Yup.number().positive().nullable( true ),
                        } );
 };
 

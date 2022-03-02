@@ -171,6 +171,26 @@
                 "number":        0
             },
             {
+                "id":            8,
+                "fileType":      "comble",
+                "label":         "Pose de la signalétique des boîtiers électriques",
+                "unit":          "u",
+                "defaultPu":     0,
+                "pu":            0,
+                "defaultNumber": 1,
+                "number":        1
+            },
+            {
+                "id":            9,
+                "fileType":      "comble",
+                "label":         "Pose des piges de graduation de coefficient",
+                "unit":          "u",
+                "defaultPu":     0,
+                "pu":            0,
+                "defaultNumber": 1,
+                "number":        1
+            },
+            {
                 "id":            13,
                 "fileType":      "comble",
                 "label":         "Arrêtoires en Polypro",
@@ -680,10 +700,10 @@
     "statusInDci":               1,
     "errorsStatusInDci":         [],
     "technician":                {
-        "id":        {},
-        "lastName":  {},
-        "firstName": {},
-        "phone":     {}
+        "id":        0,
+        "lastName":  " ",
+        "firstName": " ",
+        "phone":     " "
     },
     "lists":                     {
         "localTypeList":              [
