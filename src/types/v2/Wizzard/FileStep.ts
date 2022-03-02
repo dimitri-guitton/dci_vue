@@ -18,6 +18,7 @@ import { PbStep5 } from '@/types/v2/Wizzard/step5/PbStep5';
 import { PvStep3 } from '@/types/v2/Wizzard/step3/PvStep3';
 import { PvStep5 } from '@/types/v2/Wizzard/step5/PvStep5';
 import { PacRrStep4 } from '@/types/v2/Wizzard/step4/PacRrStep4';
+import { PacRoStep4 } from '@/types/v2/Wizzard/step4/PacRoStep4';
 
 export interface CetFileStep extends Step1, Step2, CetStep3, BaseStep4, CetStep5 {}
 
@@ -27,7 +28,7 @@ export interface PbFileStep extends Step1, Step2, PbStep3, BaseStep4, PbStep5 {}
 
 export interface PvFileStep extends Step1, Step2, PvStep3, BaseStep4, PvStep5 {}
 
-export interface PacRoFileStep extends Step1, Step2, PacRoStep3, BaseStep4, PacRoStep5 {}
+export interface PacRoFileStep extends Step1, Step2, PacRoStep3, PacRoStep4, PacRoStep5 {}
 
 export interface PacRrFileStep extends Step1, Step2, PacRrStep3, PacRrStep4, PacRrStep5 {}
 

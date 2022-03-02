@@ -9,12 +9,13 @@ import { Price } from '@/services/file/wizzard/Price';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { PacRoFileStep } from '@/types/v2/Wizzard/FileStep';
 import { RoQuotation } from '@/types/v2/File/Ro/RoQuotation';
+import { PacRoStep4 } from '@/types/v2/Wizzard/step4/PacRoStep4';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4
  * @param fileData
  */
-export const initPacRoFormDataStep4 = ( fileData: RoFile ) => {
+export const initPacRoFormDataStep4 = ( fileData: RoFile ): PacRoStep4 => {
 
     const options: StepOption[] = [];
     for ( const o of fileData.quotation.options ) {
@@ -32,44 +33,60 @@ export const initPacRoFormDataStep4 = ( fileData: RoFile ) => {
     }
 
     return {
-        origin:             fileData.quotation.origin,
-        dateTechnicalVisit: fileData.quotation.dateTechnicalVisit,
-        executionDelay:     fileData.quotation.executionDelay,
+        origin:               fileData.quotation.origin,
+        dateTechnicalVisit:   fileData.quotation.dateTechnicalVisit,
+        executionDelay:       fileData.quotation.executionDelay,
         options,
         blankOptions,
         selectedProducts,
-        commentary:         fileData.quotation.commentary,
+        commentary:           fileData.quotation.commentary,
+        deviceToReplaceType:  fileData.quotation.deviceToReplace.type === undefined ? '' : fileData.quotation.deviceToReplace.type,
+        deviceToReplaceBrand: fileData.quotation.deviceToReplace.brand === undefined ? '' : fileData.quotation.deviceToReplace.brand,
+        deviceToReplaceModel: fileData.quotation.deviceToReplace.model === undefined ? '' : fileData.quotation.deviceToReplace.model,
+        isEcsDeporte:         fileData.quotation.isEcsDeporte,
+        volumeECSDeporte:     fileData.quotation.volumeECSDeporte,
+        volumeECS:            fileData.quotation.volumeECS,
+        isKitBiZone:          fileData.quotation.isKitBiZone,
+        cascadeSystem:        fileData.quotation.cascadeSystem,
     };
 };
 
 export const yupPacRoConfigStep4 = () => {
     return Yup.object( {
-                           origin:             Yup.string(),
-                           dateTechnicalVisit: Yup.string(),
-                           executionDelay:     Yup.string(),
-                           commentary:         Yup.string(),
-                           selectedProducts:   Yup.array()
-                                                  .of(
-                                                      Yup.object().shape( {
-                                                                              pu: Yup.number()
-                                                                                     .required()
-                                                                                     .min( 0,
-                                                                                           'Le montant doit être supérieur ou égal à 0' ),
-                                                                          } ),
-                                                  ),
-                           options:            Yup.array()
-                                                  .of(
-                                                      Yup.object().shape( {
-                                                                              pu:     Yup.number()
-                                                                                         .required()
-                                                                                         .min( 0,
-                                                                                               'Le montant doit être supérieur ou égal à 0' ),
-                                                                              number: Yup.number()
-                                                                                         .required()
-                                                                                         .min( 0,
-                                                                                               'Le nombre doit être supérieur ou égal à 0' ),
-                                                                          } ),
-                                                  ),
+                           origin:               Yup.string(),
+                           dateTechnicalVisit:   Yup.string(),
+                           executionDelay:       Yup.string(),
+                           commentary:           Yup.string(),
+                           deviceToReplaceType:  Yup.string(),
+                           deviceToReplaceBrand: Yup.string(),
+                           deviceToReplaceModel: Yup.string(),
+                           isEcsDeporte:         Yup.boolean(),
+                           volumeECSDeporte:     Yup.number(),
+                           volumeECS:            Yup.number(),
+                           isKitBiZone:          Yup.boolean(),
+                           cascadeSystem:        Yup.boolean(),
+                           selectedProducts:     Yup.array()
+                                                    .of(
+                                                        Yup.object().shape( {
+                                                                                pu: Yup.number()
+                                                                                       .required()
+                                                                                       .min( 0,
+                                                                                             'Le montant doit être supérieur ou égal à 0' ),
+                                                                            } ),
+                                                    ),
+                           options:              Yup.array()
+                                                    .of(
+                                                        Yup.object().shape( {
+                                                                                pu:     Yup.number()
+                                                                                           .required()
+                                                                                           .min( 0,
+                                                                                                 'Le montant doit être supérieur ou égal à 0' ),
+                                                                                number: Yup.number()
+                                                                                           .required()
+                                                                                           .min( 0,
+                                                                                                 'Le nombre doit être supérieur ou égal à 0' ),
+                                                                            } ),
+                                                    ),
                        } );
 };
 
@@ -105,6 +122,11 @@ export const validatePacRoStep4 = async ( data: PacRoFileStep, price: Price ): P
         }
     }
 
+    console.log( '%c ', 'background: #7950FF; color: #000000' );
+    console.log( '%c ', 'background: #7950FF; color: #000000' );
+    console.log( '%c ', 'background: #7950FF; color: #000000' );
+    console.log( 'BEFORE SAVE', data.selectedProducts );
+
 
     let quotation: RoQuotation = fileData.quotation;
 
@@ -123,6 +145,16 @@ export const validatePacRoStep4 = async ( data: PacRoFileStep, price: Price ): P
         discount:           price.discount ? price.discount : 0,
         maPrimeRenovBonus:  price.maPrimeRenov !== undefined ? price.maPrimeRenov : 0,
         remainderToPay:     price.remainderToPay,
+        deviceToReplace:    {
+            type:  data.deviceToReplaceType,
+            brand: data.deviceToReplaceBrand,
+            model: data.deviceToReplaceModel,
+        },
+        volumeECS:          data.volumeECS,
+        volumeECSDeporte:   data.volumeECSDeporte,
+        isEcsDeporte:       data.isEcsDeporte,
+        isKitBiZone:        data.isKitBiZone,
+        cascadeSystem:      data.cascadeSystem,
     };
 
     fileData = {

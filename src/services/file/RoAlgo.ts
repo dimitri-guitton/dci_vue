@@ -54,6 +54,8 @@ const calcModel = ( power: number ): number => {
  * @param volumeECS
  */
 const getMonoCodeInt = ( model: number, volumeECS: number ): string => {
+    console.log( 'Model -->', model );
+    console.log( 'VolumeECS', volumeECS );
     if ( model === 4 && volumeECS < 180 ) {
         return 'DAIEBH04D6V';
     }

@@ -1405,7 +1405,7 @@
                 "reference":   "EKHWS150D3V3",
                 "pu":          1595,
                 "defaultPu":   1595,
-                "description": "Livré avec une vanne 3 voies et une sonde de température",
+                "description": "Ballon ECS Inox 150L pour Daikin Altherna\nLivré avec une vanne 3 voies et une sonde de température",
                 "quantity":    1,
                 "volume":      150
             },
@@ -1416,7 +1416,7 @@
                 "reference":   "EKHWS200D3V3",
                 "pu":          1808,
                 "defaultPu":   1808,
-                "description": "Livré avec une vanne 3 voies et une sonde de température",
+                "description": "Ballon ECS Inox 200L pour Daikin Altherna\nLivré avec une vanne 3 voies et une sonde de température",
                 "quantity":    1,
                 "volume":      200
             },
@@ -1427,7 +1427,7 @@
                 "reference":   "EKHWS300D3V3",
                 "pu":          2071,
                 "defaultPu":   2071,
-                "description": "Livré avec une vanne 3 voies et une sonde de température",
+                "description": "Ballon ECS Inox 300L pour Daikin Altherna\nLivré avec une vanne 3 voies et une sonde de température",
                 "quantity":    1,
                 "volume":      300
             },
@@ -1438,7 +1438,7 @@
                 "reference":   "BZKA7V3",
                 "pu":          2015,
                 "defaultPu":   2015,
-                "description": "empty",
+                "description": "Kit bi-Zone",
                 "quantity":    1
             },
             {

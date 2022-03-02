@@ -894,7 +894,7 @@ export class QuotationGenerator extends PdfGenerator {
 
                     data.push( [
                                    {
-                                       text: product.label,
+                                       text: product.reference,
                                    },
                                    {
                                        text: product.description,

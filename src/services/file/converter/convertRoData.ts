@@ -122,7 +122,7 @@ const convertOldRoProduct = ( oldData ): Product[] => {
                              reference:   product[ 'ref' ],
                              pu:          product[ 'pu' ],
                              defaultPu:   product[ 'pu' ],
-                             description: 'empty',
+                             description: product[ 'label' ],
                              quantity:    1,
                          } );
 

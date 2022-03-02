@@ -1644,21 +1644,21 @@
                 "label":  "Ballon ECS Inox 150L pour Daikin Altherna",
                 "ref":    "EKHWS150D3V3",
                 "pu":     1595,
-                "descr":  "Livré avec une vanne 3 voies et une sonde de température"
+                "descr": "Ballon ECS Inox 150L pour Daikin Altherna\nLivré avec une vanne 3 voies et une sonde de température"
             },
             {
                 "volume": 200,
                 "label":  "Ballon ECS Inox 200L pour Daikin Altherna",
                 "ref":    "EKHWS200D3V3",
                 "pu":     1808,
-                "descr":  "Livré avec une vanne 3 voies et une sonde de température"
+                "descr": "Ballon ECS Inox 200L pour Daikin Altherna\nLivré avec une vanne 3 voies et une sonde de température"
             },
             {
                 "volume": 300,
                 "label":  "Ballon ECS Inox 300L pour Daikin Altherna",
                 "ref":    "EKHWS300D3V3",
                 "pu":     2071,
-                "descr":  "Livré avec une vanne 3 voies et une sonde de température"
+                "descr": "Ballon ECS Inox 300L pour Daikin Altherna\nLivré avec une vanne 3 voies et une sonde de température"
             }
         ],
         "kitBiZone":         [

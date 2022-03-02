@@ -343,11 +343,6 @@ export default defineComponent( {
 
 
                                     return {
-                                      deviceToReplace: {
-                                        type:  'CCHC',
-                                        brand: 'my_marque',
-                                        model: 'my_model',
-                                      },
                                       lists,
                                       price,
                                       products,

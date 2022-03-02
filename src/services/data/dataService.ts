@@ -9,7 +9,7 @@ import { Beneficiary } from '@/types/v2/File/Common/Beneficiary';
 import { Product } from '@/types/v2/File/Common/Product';
 import { Option } from '@/types/v2/File/Common/Option';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
-import { FILE_PAC_RO, FILE_PAC_RR } from '@/services/constantService';
+import { FILE_PAC_RR } from '@/services/constantService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 import { getEnergyZone } from '@/services/file/fileCommonService';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
@@ -290,7 +290,7 @@ export const getBlankOptionById = ( id: number ): BlankOption => {
 export const getTva = (): number => {
     const fileData = getCurrentFileData();
 
-    if ( fileData.type === FILE_PAC_RO || fileData.type === FILE_PAC_RR ) {
+    if ( fileData.type === FILE_PAC_RR ) {
         return 0;
     } else {
         return +fileData.quotation.tva;

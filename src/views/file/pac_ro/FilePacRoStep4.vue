@@ -16,9 +16,9 @@
 
     <div class="row mt-10">
       <div class="col-md-6 mb-5">
-        <label for="q_deviceToReplaceType" class="form-label">Appareil à remplacer</label>
-        <Field name="q_deviceToReplaceType"
-               id="q_deviceToReplaceType"
+        <label for="deviceToReplaceType" class="form-label">Appareil à remplacer</label>
+        <Field name="deviceToReplaceType"
+               id="deviceToReplaceType"
                class="form-select"
                as="select"
                v-model="deviceToReplace.type"
@@ -28,11 +28,11 @@
       </div>
       <template v-if="deviceToReplace.type !== 'aucun'">
         <div class="col-md-3 mb-5">
-          <label for="q_deviceToReplaceBrand" class="form-label mb-3">Marque</label>
+          <label for="deviceToReplaceBrand" class="form-label mb-3">Marque</label>
           <Field
               type="text"
-              name="q_deviceToReplaceBrand"
-              id="q_deviceToReplaceBrand"
+              name="deviceToReplaceBrand"
+              id="deviceToReplaceBrand"
               class="form-control"
               v-model="deviceToReplace.brand"
 
@@ -40,11 +40,11 @@
           </Field>
         </div>
         <div class="col-md-3 mb-5">
-          <label for="q_deviceToReplaceModel" class="form-label mb-3">Modèle</label>
+          <label for="deviceToReplaceModel" class="form-label mb-3">Modèle</label>
           <Field
               type="text"
-              name="q_deviceToReplaceModel"
-              id="q_deviceToReplaceModel"
+              name="deviceToReplaceModel"
+              id="deviceToReplaceModel"
               class="form-control"
               v-model="deviceToReplace.model"
           >
@@ -54,12 +54,12 @@
     </div>
     <div class="row mt-10 d-flex align-items-end">
       <div class="col-md-6 mb-5">
-        <label for="test4" class="form-check form-switch form-check-custom">
+        <label for="isEcsDeporte" class="form-check form-switch form-check-custom">
           <Field
               type="checkbox"
               class="form-check-input h-30px w-55px"
-              name="test4"
-              id="test4"
+              name="isEcsDeporte"
+              id="isEcsDeporte"
               :value="true"
               v-model="isEcsDeporte"
           />
@@ -68,10 +68,10 @@
       </div>
       <template v-if="isEcsDeporte">
         <div class="col-md-6 mb-5">
-          <label for="q_volumeECSDeporte" class="form-label">Volume ECS déporté</label>
+          <label for="volumeECSDeporte" class="form-label">Volume ECS déporté</label>
 
-          <Field name="q_volumeECSDeporte"
-                 id="q_volumeECSDeporte"
+          <Field name="volumeECSDeporte"
+                 id="volumeECSDeporte"
                  class="form-select"
                  as="select"
                  v-model.number="volumeECSDeporte"
@@ -85,10 +85,10 @@
       </template>
       <template v-else>
         <div class="col-md-6 mb-5">
-          <label for="q_volumeECS" class="form-label">Volume ECS</label>
+          <label for="volumeECS" class="form-label">Volume ECS</label>
 
-          <Field name="q_volumeECS"
-                 id="q_volumeECS"
+          <Field name="volumeECS"
+                 id="volumeECS"
                  class="form-select"
                  as="select"
                  v-model.number="volumeECS"
@@ -103,12 +103,12 @@
     </div>
     <div class="row mt-10">
       <div class="col-md-6 mb-5">
-        <label for="q_isKitBiZone" class="form-check form-switch form-check-custom">
+        <label for="isKitBiZone" class="form-check form-switch form-check-custom">
           <Field
               type="checkbox"
               class="form-check-input h-30px w-55px"
-              name="q_isKitBiZone"
-              id="q_isKitBiZone"
+              name="isKitBiZone"
+              id="isKitBiZone"
               :value="true"
               v-model="isKitBiZone"
           />
@@ -135,6 +135,38 @@
 
     <template v-for="kit in selectedKitBiZones" v-bind:key="kit.reference">
       <row-price :product="kit"></row-price>
+    </template>
+
+    <!-- Formualaire caché afin de binder les values au formaulaire comme la sélection des produits se fait via l'algo-->
+    <div class="row d-none">
+      <label for="cascadeSystem" class="form-check form-switch form-check-custom">
+        <Field
+            type="checkbox"
+            class="form-check-input h-30px w-55px"
+            name="cascadeSystem"
+            id="cascadeSystem"
+            :value="true"
+            v-model="cascadeSystem"
+        />
+      </label>
+    </div>
+
+    <!-- Formualaire caché afin de binder les values au formaulaire comme la sélection des produits se fait via l'algo-->
+    <template v-for="(p, index) in allProducts" v-bind:key="`val_${p.reference}`">
+      <div class="row d-none">
+        <Field type="text"
+               :name="`selectedProducts[${index}].id`"
+               class="form-control"
+               v-model.number="p.id" />
+        <Field type="text"
+               :name="`selectedProducts[${index}].quantity`"
+               class="form-control"
+               v-model.number="p.quantity" />
+        <Field type="text"
+               :name="`selectedProducts[${index}].pu`"
+               class="form-control"
+               v-model.number="p.pu" />
+      </div>
     </template>
 
     <options @optionsAreUpdated="updateOptions" :options="options"></options>
@@ -222,6 +254,7 @@ export default defineComponent( {
                                     const _blankOptions = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                     const lists         = ref<RoList>( ( props.fileData.lists as RoList ) );
 
+                                    const deviceToReplace  = ref( props.fileData.quotation.deviceToReplace );
                                     const isKitBiZone      = ref<boolean>( props.fileData.quotation.isKitBiZone );
                                     const isEcsDeporte     = ref<boolean>( props.fileData.quotation.isEcsDeporte );
                                     const volumeECS        = ref<number>( props.fileData.quotation.volumeECS );
@@ -247,12 +280,22 @@ export default defineComponent( {
                                     const updateCascadeSystem = ( value: boolean ) => {
                                       cascadeSystem.value = value;
                                     };
+                                    const resetVolumeECS      = ( isEcsDeporte: boolean ) => {
+                                      if ( isEcsDeporte ) {
+                                        volumeECS.value = 0;
+                                      } else {
+                                        volumeECSDeporte.value = 150;
+                                      }
+                                    };
 
                                     const kitBiZones = props.fileData.quotation.products.filter( p => p.productType === 'kit_bi_zone' );
                                     const ecsDeporte = props.fileData.quotation.products.filter( p => p.productType === 'ecs' );
                                     const kitCascade = props.fileData.quotation.products.filter( p => p.productType === 'kit_cascade' );
 
                                     const selectedEcsDeportes = computed<Product[]>( () => {
+                                      // Reset le volume si jaais on switch en ECS et ECSDeporté
+                                      resetVolumeECS( isEcsDeporte.value );
+
                                       if ( !isEcsDeporte.value ) {
                                         return [];
                                       }
@@ -281,6 +324,7 @@ export default defineComponent( {
                                           console.log( '%c COMPUTED PRODUCTS RO',
                                                        'background: #252FD4; color: #FFFFFF' );
 
+                                          console.log( 'VOLUME ECS BEFORE', volumeECS.value );
                                           const response = getPacRo( props.fileData.quotation.ceilingHeight,
                                                                      props.fileData.housing.area,
                                                                      props.fileData.energyZone,
@@ -292,7 +336,13 @@ export default defineComponent( {
                                           const productInt = getProductByRef( response.productInt );
                                           const productExt = getProductByRef( response.productExt );
 
+                                          console.log( response );
+                                          console.log( response.productInt );
+                                          console.log( response.productExt );
+                                          console.log( productInt );
+                                          console.log( productExt );
                                           if ( productInt === undefined || productExt === undefined ) {
+                                            console.log( '%c NOT FOUD', 'background: #FF0017; color: #000000' );
                                             return [];
                                           }
 
@@ -312,6 +362,22 @@ export default defineComponent( {
 
                                           return [ productInt, productExt ];
                                         } );
+
+                                    const allProducts = computed<Product[]>( () => {
+                                      console.log( '%c COMPUTED ALLPRoducts', 'background: #fdd835; color: #000000' );
+                                      console.log( [
+                                                     ...selectedEcsDeportes.value,
+                                                     ...selectedKitCascade.value,
+                                                     ...selectedKitBiZones.value,
+                                                     ...products.value,
+                                                   ] );
+                                      return [
+                                        ...selectedEcsDeportes.value,
+                                        ...selectedKitCascade.value,
+                                        ...selectedKitBiZones.value,
+                                        ...products.value,
+                                      ];
+                                    } );
 
                                     const price = computed<Price>( () => {
                                       let totalHt      = 0;
@@ -380,6 +446,7 @@ export default defineComponent( {
 
                                       const totalPrime = maPrimeRenov + ceeBonus;
 
+                                      console.log( 'tva', totalTva );
                                       const price: Price = {
                                         HT:             totalHt,
                                         TVA:            lessThan2Year ? 0 : totalTva,
@@ -404,11 +471,8 @@ export default defineComponent( {
                                     console.log( '%c END SET UP', 'background: #fdd835; color: #000000' );
 
                                     return {
-                                      deviceToReplace: {
-                                        type:  'CCHC',
-                                        brand: 'my_marque',
-                                        model: 'my_model',
-                                      },
+                                      allProducts,
+                                      deviceToReplace,
                                       selectedEcsDeportes,
                                       selectedKitCascade,
                                       selectedKitBiZones,
