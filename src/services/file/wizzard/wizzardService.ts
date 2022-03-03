@@ -61,7 +61,7 @@ const initDefaultAssents = ( assents: Assent[], beneficiary: Beneficiary ): {
 };
 
 /**
- * Retourne les valeurs du formualire pour les étapes 1 et 2
+ * Retourne les valeurs du formulaire pour les étapes 1 et 2
  * @param assents
  * @param beneficiary
  */
