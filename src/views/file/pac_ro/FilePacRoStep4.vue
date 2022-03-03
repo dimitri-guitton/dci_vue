@@ -219,12 +219,12 @@ import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/services/file/wizzard/Price';
-import { getCodeBonus, getLessThan2Year, getProductByRef, getTva } from '@/services/data/dataService';
+import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import RoList from '@/types/v2/File/Ro/RoList';
 import ItemList from '@/components/DCI/input/ItemList.vue';
-import { getPacRo } from '@/services/file/RoAlgo';
 import RowPrice from '@/components/DCI/wizzard-file/rowPrice.vue';
+import { calcRequiredPower } from '@/services/file/RoAlgo2';
 
 export default defineComponent( {
                                   name:       'file-pac-ro-step-4',
@@ -321,46 +321,38 @@ export default defineComponent( {
 
                                     const products = computed<Product[]>(
                                         () => {
-                                          console.log( '%c COMPUTED PRODUCTS RO',
-                                                       'background: #252FD4; color: #FFFFFF' );
 
-                                          console.log( 'VOLUME ECS BEFORE', volumeECS.value );
-                                          const response = getPacRo( props.fileData.quotation.ceilingHeight,
-                                                                     props.fileData.housing.area,
-                                                                     props.fileData.energyZone,
-                                                                     ( props.fileData.housing.insulationQuality as number ),
-                                                                     ( props.fileData.housing.availableVoltage as string ),
-                                                                     volumeECS.value );
-
-
-                                          const productInt = getProductByRef( response.productInt );
-                                          const productExt = getProductByRef( response.productExt );
-
-                                          console.log( response );
-                                          console.log( response.productInt );
-                                          console.log( response.productExt );
-                                          console.log( productInt );
-                                          console.log( productExt );
-                                          if ( productInt === undefined || productExt === undefined ) {
-                                            console.log( '%c NOT FOUD', 'background: #FF0017; color: #000000' );
-                                            return [];
-                                          }
-
-                                          // Système cascade  = 2 produits
-                                          if ( response.cascadeSystem ) {
-                                            productInt.quantity = 2;
-                                            productExt.quantity = 2;
-                                          } else {
-                                            productInt.quantity = 1;
-                                            productExt.quantity = 1;
-                                          }
-
-                                          updateCascadeSystem( response.cascadeSystem );
-
-                                          console.log( productInt );
-                                          console.log( productExt );
-
-                                          return [ productInt, productExt ];
+                                          const response = calcRequiredPower( props.fileData.housing );
+                                          console.log( 'Response', response );
+                                          return [];
+                                          // const response = getPacRo( props.fileData.quotation.ceilingHeight,
+                                          //                            props.fileData.housing.area,
+                                          //                            props.fileData.energyZone,
+                                          //                            props.fileData.housing.buildingCoefficient,
+                                          //                            ( props.fileData.housing.availableVoltage as string ),
+                                          //                            volumeECS.value );
+                                          //
+                                          //
+                                          // const productInt = getProductByRef( response.productInt );
+                                          // const productExt = getProductByRef( response.productExt );
+                                          //
+                                          // if ( productInt === undefined || productExt === undefined ) {
+                                          //   console.log( '%c NOT FOUD', 'background: #FF0017; color: #000000' );
+                                          //   return [];
+                                          // }
+                                          //
+                                          // // Système cascade  = 2 produits
+                                          // if ( response.cascadeSystem ) {
+                                          //   productInt.quantity = 2;
+                                          //   productExt.quantity = 2;
+                                          // } else {
+                                          //   productInt.quantity = 1;
+                                          //   productExt.quantity = 1;
+                                          // }
+                                          //
+                                          // updateCascadeSystem( response.cascadeSystem );
+                                          //
+                                          // return [ productInt, productExt ];
                                         } );
 
                                     const allProducts = computed<Product[]>( () => {

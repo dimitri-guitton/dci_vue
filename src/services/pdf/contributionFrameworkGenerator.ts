@@ -1,5 +1,14 @@
 import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
-import { CADRE_CONTRIBUTION_CHECKBOX, DARK, EA_SIGNATURE, LOGO_CEE, LOGO_EDF, ORANGE, TEL_FRANCE_RENOV } from '@/services/pdf/pdfVariable';
+import {
+    CADRE_CONTRIBUTION_CHECKBOX,
+    DARK,
+    EA_SIGNATURE,
+    LOGO_CEE,
+    LOGO_EDF,
+    ORANGE,
+    TAMPON_ECO,
+    TEL_FRANCE_RENOV,
+} from '@/services/pdf/pdfVariable';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { AllFile } from '@/types/v2/File/All';
@@ -79,7 +88,7 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
                         margin: [ 30, 5 ],
                         stack:  [
                             {
-                                image:  'data:image/png;base64,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',
+                                image:  TAMPON_ECO,
                                 width:  120,
                                 height: 65,
                             },

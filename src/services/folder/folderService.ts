@@ -125,22 +125,22 @@ export const addJsonData = ( type: string, parent: string, reference: string, fo
     let fileData: CombleFile = JSON.parse( rawdata );
     fileData                 = {
         ...fileData,
-        ref:                              reference,
-        folderName:                       folderName,
-        createdAt:                        toFrenchDate( new Date().toString() ),
-        updatedAt:                        toFrenchDate( new Date().toString() ),
-        disabledBonus:                    newFolder.disabledBonus,
-        disabledCeeBonus:                 newFolder.disabledCeeBonus,
-               enabledHousingAction:      newFolder.enabledHousingAction,
-               disabledMaPrimeRenovBonus: newFolder.disabledMaPrimeRenovBonus,
-               statusInDci:               2,
-               errorsStatusInDci:         [],
-           };
+        ref:                       reference,
+        folderName:                folderName,
+        createdAt:                 toFrenchDate( new Date().toString() ),
+        updatedAt:                 toFrenchDate( new Date().toString() ),
+        disabledBonus:             newFolder.disabledBonus,
+        disabledCeeBonus:          newFolder.disabledCeeBonus,
+        enabledHousingAction:      newFolder.enabledHousingAction,
+        disabledMaPrimeRenovBonus: newFolder.disabledMaPrimeRenovBonus,
+        statusInDci:               2,
+        errorsStatusInDci:         [],
+    };
 
-           console.log( `${ parent }/data.json` );
-           console.log( fileData );
-           fs.writeFileSync( `${ parent }/data.json`, JSON.stringify( fileData ) );
-           setCurrentFileData( JSON.stringify( fileData ) );
+    console.log( `${ parent }/data.json` );
+    console.log( fileData );
+    fs.writeFileSync( `${ parent }/data.json`, JSON.stringify( fileData ) );
+    setCurrentFileData( JSON.stringify( fileData ) );
 
        }
 ;
@@ -190,38 +190,41 @@ export const convertAllOldJsonToNewJson = () => {
     console.log( '%c CONVERT', 'background: #fdd835; color: #000000' );
     // const dropboxPath        = store.get( 'dropboxPath' );
     const oldDatas: object[] = [];
+    const jsonFolder         = path.join( __static, 'examples' );
+    console.log( 'JSON FOLDER', jsonFolder );
+    console.log( `${ jsonFolder }/old_data_cet.json` );
 
-    if ( fs.existsSync( 'examples/old_data_cet.json' ) ) {
+    if ( fs.existsSync( `${ jsonFolder }/old_data_cet.json` ) ) {
         console.log( '%c CONVERT OLD CET', 'background: #4CD439; color: #000000' );
-        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_cet.json', 'utf8' ) ) );
+        oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_cet.json`, 'utf8' ) ) );
     }
-    if ( fs.existsSync( 'examples/old_data_pg.json' ) ) {
+    if ( fs.existsSync( `${ jsonFolder }/old_data_pg.json` ) ) {
         console.log( '%c CONVERT OLD PG', 'background: #4CD439; color: #000000' );
-        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_pg.json', 'utf8' ) ) );
+        oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_pg.json`, 'utf8' ) ) );
     }
-    if ( fs.existsSync( 'examples/old_data_sol.json' ) ) {
+    if ( fs.existsSync( `${ jsonFolder }/old_data_sol.json` ) ) {
         console.log( '%c CONVERT OLD SOL', 'background: #4CD439; color: #000000' );
-        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_sol.json', 'utf8' ) ) );
+        oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_sol.json`, 'utf8' ) ) );
     }
-    if ( fs.existsSync( 'examples/old_data_comble.json' ) ) {
+    if ( fs.existsSync( `${ jsonFolder }/old_data_comble.json` ) ) {
         console.log( '%c CONVERT OLD COMBLE', 'background: #4CD439; color: #000000' );
-        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_comble.json', 'utf8' ) ) );
+        oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_comble.json`, 'utf8' ) ) );
     }
-    if ( fs.existsSync( 'examples/old_data_pac_ro.json' ) ) {
+    if ( fs.existsSync( `${ jsonFolder }/old_data_pac_ro.json` ) ) {
         console.log( '%c CONVERT OLD PAC RO', 'background: #4CD439; color: #000000' );
-        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_pac_ro.json', 'utf8' ) ) );
+        oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_pac_ro.json`, 'utf8' ) ) );
     }
-    if ( fs.existsSync( 'examples/old_data_pac_rr.json' ) ) {
+    if ( fs.existsSync( `${ jsonFolder }/old_data_pac_rr.json` ) ) {
         console.log( '%c CONVERT OLD PAC RR', 'background: #4CD439; color: #000000' );
-        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_pac_rr.json', 'utf8' ) ) );
+        oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_pac_rr.json`, 'utf8' ) ) );
     }
-    if ( fs.existsSync( 'examples/old_data_pb.json' ) ) {
+    if ( fs.existsSync( `${ jsonFolder }/old_data_pb.json` ) ) {
         console.log( '%c CONVERT OLD PB', 'background: #4CD439; color: #000000' );
-        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_pb.json', 'utf8' ) ) );
+        oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_pb.json`, 'utf8' ) ) );
     }
-    if ( fs.existsSync( 'examples/old_data_pv.json' ) ) {
+    if ( fs.existsSync( `${ jsonFolder }/old_data_pv.json` ) ) {
         console.log( '%c CONVERT OLD PV', 'background: #4CD439; color: #000000' );
-        oldDatas.push( JSON.parse( fs.readFileSync( 'examples/old_data_pv.json', 'utf8' ) ) );
+        oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_pv.json`, 'utf8' ) ) );
     }
 
     for ( const oldData of oldDatas ) {
@@ -253,15 +256,8 @@ export const convertAllOldJsonToNewJson = () => {
             return false;
         }
 
-        // console.log( '%c NEW DATA', 'background: #fdd835; color: #000000' );
-        // console.log( data );
-
-        // const path = `${ dropboxPath }/DCI/empty_new_data_${ type }.json`;
-        const path = `examples/empty_new_data_${ type }.json`;
-        console.log( path );
-        // if ( dropboxPath !== '' && !fs.existsSync( path ) ) {
+        const path = `${ jsonFolder }/empty_new_data_${ type }.json`;
         fs.writeFileSync( path, data );
-        // }
     }
 
     return true;

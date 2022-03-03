@@ -15,6 +15,11 @@ interface RoList extends BaseList {
     positionEauChaudeList: ItemList[];
     typeChaudiereList: ItemList[];
     qualiteIsolationList: ItemList[];
+    buildingCoefficientList: ItemList[];
+    climaticZoneList: ItemList[];
+    altitudeList: ItemList[];
+    heatersList: ItemList[];
+    setPointTemperatureList: ItemList[];
 }
 
 export default RoList;

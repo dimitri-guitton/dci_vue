@@ -7,22 +7,36 @@
     <step3-housing :lists="lists"></step3-housing>
 
     <div class="row mb-10">
-      <div class="col-md-4 fv-row">
-        <label class="form-label mb-3">Qualité d'isolation</label>
+      <div class="col-md-4 fv-row mb-10">
+        <label class="form-label mb-3">Hauteur sous plafond</label>
         <Field
-            name="housingInsulationQuality"
+            type="number"
+            class="form-control"
+            name="housingCeilingHeight"
+            placeholder="2.5"
+            value=""
+        />
+        <ErrorMessage
+            name="housingCeilingHeight"
+            class="fv-plugins-message-container invalid-feedback"
+        ></ErrorMessage>
+      </div>
+      <div class="col-md-4 fv-row mb-10">
+        <label class="form-label mb-3">Coefficient de construction</label>
+        <Field
+            name="housingBuildingCoefficient"
             as="select"
             class="form-control"
         >
-          <item-list :lists="lists.qualiteIsolationList"></item-list>
+          <item-list :lists="lists.buildingCoefficientList"></item-list>
         </Field>
         <ErrorMessage
-            name="housingInsulationQuality"
+            name="housingBuildingCoefficient"
             class="fv-plugins-message-container invalid-feedback"
         ></ErrorMessage>
       </div>
 
-      <div class="col-md-4 fv-row">
+      <div class="col-md-4 fv-row mb-10">
         <label class="form-label mb-3">Tension disponible</label>
         <Field
             name="housingAvailableVoltage"
@@ -37,20 +51,66 @@
         ></ErrorMessage>
       </div>
 
-      <div class="col-md-4 fv-row">
-        <label class="form-label mb-3">Hauteur sous plafond</label>
+      <div class="col-md-4 fv-row mb-10">
+        <label class="form-label mb-3">Température de consigne</label>
         <Field
-            type="number"
+            name="housingSetPointTemperature"
+            as="select"
             class="form-control"
-            name="housingCeilingHeight"
-            placeholder="2.5"
-            value=""
-        />
+        >
+          <item-list :lists="lists.setPointTemperatureList"></item-list>
+        </Field>
         <ErrorMessage
-            name="housingCeilingHeight"
+            name="housingSetPointTemperature"
             class="fv-plugins-message-container invalid-feedback"
         ></ErrorMessage>
       </div>
+
+      <div class="col-md-4 fv-row mb-10">
+        <label class="form-label mb-3">Zone climatique</label>
+        <Field
+            name="housingClimaticZone"
+            as="select"
+            class="form-control"
+        >
+          <item-list :lists="lists.climaticZoneList"></item-list>
+        </Field>
+        <ErrorMessage
+            name="housingClimaticZone"
+            class="fv-plugins-message-container invalid-feedback"
+        ></ErrorMessage>
+      </div>
+
+      <div class="col-md-4 fv-row mb-10">
+        <label class="form-label mb-3">Altitude</label>
+        <Field
+            name="housingAltitude"
+            as="select"
+            class="form-control"
+        >
+          <item-list :lists="lists.altitudeList"></item-list>
+        </Field>
+        <ErrorMessage
+            name="housingAltitude"
+            class="fv-plugins-message-container invalid-feedback"
+        ></ErrorMessage>
+      </div>
+
+      <div class="col-md-4 fv-row">
+        <label class="form-label mb-3">Radiateurs</label>
+        <Field
+            name="housingHeaters"
+            as="select"
+            class="form-control"
+        >
+          <item-list :lists="lists.heatersList"></item-list>
+        </Field>
+        <ErrorMessage
+            name="housingHeaters"
+            class="fv-plugins-message-container invalid-feedback"
+        ></ErrorMessage>
+      </div>
+
     </div>
 
     <input-area></input-area>

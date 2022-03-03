@@ -1239,7 +1239,7 @@
         },
         "remise":           0
     },
-    "baremes":                  [
+    "baremes":  [
         {
             "palierRevenu": [
                 {
@@ -1541,7 +1541,7 @@
             }
         }
     ],
-    "lists":                    {
+    "lists":    {
         "localType":         [
             {
                 "maison_individuelle": "Maison individuelle"

@@ -42,7 +42,7 @@
         "location":       "",
         "moinsDe2Ans":    false
     },
-    "fiche": {
+    "fiche":   {
         "epaisseurProduit":        "115 mm",
         "accesCamion":             "facile",
         "distCamion":              0,
@@ -77,7 +77,7 @@
         "nbrPorteGarage":          0,
         "infosSup":                "RAS"
     },
-    "devis":                    {
+    "devis":   {
         "pose":            2.5,
         "overridePose":    2.5,
         "tva":             5.5,
@@ -174,7 +174,7 @@
             "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
         }
     },
-    "baremes":                  [
+    "baremes": [
         {
             "code":         "CL",
             "palierRevenu": [
@@ -640,7 +640,7 @@
             }
         }
     ],
-    "lists":                    {
+    "lists":   {
         "batimentType":   [
             {
                 "residentiel": "Résidentiel"
