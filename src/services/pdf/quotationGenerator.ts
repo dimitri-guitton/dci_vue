@@ -30,6 +30,10 @@ import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
 import PbList from '@/types/v2/File/Pb/PbList';
 import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
 import { AllFile, AllQuotation } from '@/types/v2/File/All';
+import path from 'path';
+import { copyFileFromAssetToDropbox, FoldersNames } from '@/services/folder/folderService';
+
+declare const __static: string;
 
 enum PriceQuotation {
     HT            = 'Total HT',
@@ -95,6 +99,11 @@ export class QuotationGenerator extends PdfGenerator {
         if ( ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO ) && ( this._file.quotation as CetQuotation | PgQuotation | RoQuotation ).maPrimeRenovBonus > 0 ) {
             const maPrimeRenovGenerator = new MaPrimeRenovGenerator( this._file );
             maPrimeRenovGenerator.generatePdf();
+        }
+
+        if ( this._file.type === FILE_PAC_RO || FILE_PAC_RR ) {
+            const pathToAsset = path.join( __static, '/pdf/dimensionnement_pac.pdf' );
+            copyFileFromAssetToDropbox( pathToAsset, FoldersNames.DIMENSIONNEMENT_PAC, 'dimensionnement_pac.pdf' );
         }
     }
 

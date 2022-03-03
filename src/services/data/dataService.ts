@@ -50,8 +50,8 @@ export const setCurrentFileReference = ( reference: string ) => {
     store.set( 'currentFileReference', reference );
 };
 
-export const getcurrentFolderName = () => {
-    return store.get( 'currentFolderName' );
+export const getcurrentFolderName = (): string => {
+    return ( store.get( 'currentFolderName' ) as string );
 };
 
 export const setcurrentFolderName = ( folderName: string ) => {
