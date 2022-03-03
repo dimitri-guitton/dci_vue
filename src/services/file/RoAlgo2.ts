@@ -52,6 +52,18 @@ interface PacList {
     triphase: PacItem[];
 }
 
+interface UnitIntList {
+    monophase: UnitInt[];
+    triphase: UnitInt[];
+}
+
+interface UnitInt {
+    ref: string;
+    size: number;
+    hotWaterTank: number;
+    bizone: boolean;
+}
+
 /**
  * Retourne le niveau de tempéature que peut gérer le type de radiateur
  * @param heater
@@ -525,5 +537,234 @@ export const getUnitExtRo = ( requiredPower: number, housing: PacHousing ) => {
     } );
 
     console.log( 'RES', res );
+
+
+    const unitIntList: UnitIntList = {
+        monophase: [
+            {
+                ref:          'ETBH16E6V',
+                size:         16,
+                hotWaterTank: 0,
+                bizone:       false,
+            },
+            {
+                ref:          'ETVH16S18E6V',
+                size:         16,
+                hotWaterTank: 180,
+                bizone:       false,
+            },
+            {
+                ref:          'ETVH16S23E6V',
+                size:         16,
+                hotWaterTank: 230,
+                bizone:       false,
+            },
+            {
+                ref:          'ETVZ16S18E6V',
+                size:         16,
+                hotWaterTank: 180,
+                bizone:       true,
+            },
+            {
+                ref:          'ETVZ16S23E6V',
+                size:         16,
+                hotWaterTank: 230,
+                bizone:       true,
+            },
+            {
+                ref:          'EHBH04E6V',
+                size:         4,
+                hotWaterTank: 0,
+                bizone:       false,
+            },
+            {
+                ref:          'EHBH08E6V',
+                size:         8,
+                hotWaterTank: 0,
+                bizone:       false,
+            },
+            {
+                ref:          'EHVH04S18E6V',
+                size:         4,
+                hotWaterTank: 180,
+                bizone:       false,
+            },
+            {
+                ref:          'EHVH08S18E6V',
+                size:         8,
+                hotWaterTank: 180,
+                bizone:       false,
+            },
+            {
+                ref:          'EHVH04S23E6V',
+                size:         4,
+                hotWaterTank: 230,
+                bizone:       false,
+            },
+            {
+                ref:          'EHVH08S23E6V',
+                size:         8,
+                hotWaterTank: 230,
+                bizone:       false,
+            },
+            {
+                ref:          'EHVZ04S18E6V',
+                size:         4,
+                hotWaterTank: 180,
+                bizone:       true,
+            },
+            {
+                ref:          'EHVZ08S18E6V',
+                size:         8,
+                hotWaterTank: 180,
+                bizone:       true,
+            },
+            {
+                ref:          'EHVZ08S23E6V',
+                size:         8,
+                hotWaterTank: 230,
+                bizone:       true,
+            },
+            {
+                ref:          'EABH16D6V',
+                size:         16,
+                hotWaterTank: 0,
+                bizone:       false,
+            },
+            {
+                ref:          'EAVH16S18D6V',
+                size:         16,
+                hotWaterTank: 180,
+                bizone:       false,
+            },
+            {
+                ref:          'EAVH16S23D6V',
+                size:         16,
+                hotWaterTank: 230,
+                bizone:       false,
+            },
+            {
+                ref:          'EAVZ16S18D6V',
+                size:         16,
+                hotWaterTank: 180,
+                bizone:       true,
+            },
+            {
+                ref:          'EAVZ16S23D6V',
+                size:         16,
+                hotWaterTank: 230,
+                bizone:       true,
+            },
+            {
+                ref:          'ETBH12E6V',
+                size:         12,
+                hotWaterTank: 0,
+                bizone:       false,
+            },
+            {
+                ref:          'ETVH12S18E6V',
+                size:         12,
+                hotWaterTank: 180,
+                bizone:       false,
+            },
+            {
+                ref:          'ETVH12S23E6V',
+                size:         12,
+                hotWaterTank: 230,
+                bizone:       false,
+            },
+            {
+                ref:          'ETVZ12S18E6V',
+                size:         12,
+                hotWaterTank: 180,
+                bizone:       true,
+            },
+            {
+                ref:          'ETVZ12S23E6V',
+                size:         12,
+                hotWaterTank: 230,
+                bizone:       true,
+            },
+        ],
+        triphase:  [
+            {
+                ref:          'ETBH16E9W',
+                size:         16,
+                hotWaterTank: 0,
+                bizone:       false,
+            },
+            {
+                ref:          'ETVH16S18E9W',
+                size:         16,
+                hotWaterTank: 180,
+                bizone:       false,
+            },
+            {
+                ref:          'ETVH16S23E9W',
+                size:         16,
+                hotWaterTank: 230,
+                bizone:       false,
+            },
+            {
+                ref:          'ETVZ16S18E9W',
+                size:         16,
+                hotWaterTank: 180,
+                bizone:       true,
+            },
+            {
+                ref:          'ETVZ16S23E9W',
+                size:         16,
+                hotWaterTank: 230,
+                bizone:       true,
+            },
+
+
+            {
+                ref:          'ETBH12E9W',
+                size:         12,
+                hotWaterTank: 0,
+                bizone:       false,
+            },
+            {
+                ref:          'ETVH12S18E9W',
+                size:         12,
+                hotWaterTank: 180,
+                bizone:       false,
+            },
+            {
+                ref:          'ETVH12S23E9W',
+                size:         12,
+                hotWaterTank: 230,
+                bizone:       false,
+            },
+            {
+                ref:          'ETVZ12S18E9W',
+                size:         12,
+                hotWaterTank: 180,
+                bizone:       true,
+            },
+            {
+                ref:          'ETVZ12S23E9W',
+                size:         12,
+                hotWaterTank: 230,
+                bizone:       true,
+            },
+        ],
+    };
+
+    // Si on ne trouve pas dans la liste la tension souhaité on retourne null
+    if ( unitIntList[ housing.availableVoltage ] === undefined ) {
+        return null;
+    }
+
+    const hotWater = 230;
+    const bizone   = true;
+    const size     = res[ 0 ].size;
+
+    const res2 = unitIntList[ housing.availableVoltage ].filter( ( unit: UnitInt ) => {
+        return unit.hotWaterTank === hotWater && unit.bizone === bizone && unit.size === size;
+    } );
+
+    console.log( 'RES2 -->', res2 );
 };
 
