@@ -6,10 +6,9 @@
 
     <step3-housing :lists="lists"></step3-housing>
 
-    <step3-address :lists="lists" address="11 Rue Françoise Giroud, 17000 La Rochelle"></step3-address>
-
     <input-area></input-area>
 
+    <step3-address :lists="lists" address="11 Rue Françoise Giroud, 17000 La Rochelle"></step3-address>
   </div>
 </template>
 

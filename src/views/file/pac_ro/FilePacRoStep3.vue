@@ -6,7 +6,7 @@
 
     <step3-housing :lists="lists"></step3-housing>
 
-    <div class="row mb-15">
+    <div class="row mb-10">
       <div class="col-md-4 fv-row">
         <label class="form-label mb-3">Qualité d'isolation</label>
         <Field
@@ -53,9 +53,9 @@
       </div>
     </div>
 
-    <step3-address :lists="lists" address="11 Rue Françoise Giroud, 17000 La Rochelle"></step3-address>
-
     <input-area></input-area>
+
+    <step3-address :lists="lists" address="11 Rue Françoise Giroud, 17000 La Rochelle"></step3-address>
 
   </div>
 </template>
