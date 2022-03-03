@@ -149,8 +149,8 @@ import { initPvFormDataStep4, validatePvStep4, yupPvConfigStep4 } from '@/servic
 import { PvFileStep } from '@/types/v2/Wizzard/FileStep';
 import { initPvFormDataStep5, savePvWorksheet, yupPvConfigStep5 } from '@/services/file/wizzard/pv/step5Service';
 import { PvFile } from '@/types/v2/File/Pv/PvFile';
-import { PvStep3 } from '@/types/v2/Wizzard/step3/PvStep3';
 import { PvStep5 } from '@/types/v2/Wizzard/step5/PvStep5';
+import { BaseStep3 } from '@/types/v2/Wizzard/step3/BaseStep3';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -233,7 +233,7 @@ export default defineComponent( {
                                     const {
                                             resetForm,
                                             handleSubmit,
-                                          }               = useForm<Step1 | Step2 | PvStep3 | BaseStep4 | PvStep5>(
+                                          } = useForm<Step1 | Step2 | BaseStep3 | BaseStep4 | PvStep5>(
                                         {
                                           validationSchema: currentSchema,
                                         } );

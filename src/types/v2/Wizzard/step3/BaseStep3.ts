@@ -1,4 +1,5 @@
 export interface BaseStep3 {
+    housingBuildingNature: string;
     nbOccupant: number;
     housingType: string;
     housingConstructionYear: number | null;

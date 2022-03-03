@@ -11,6 +11,7 @@ export const defaultInitFormDataStep3 = ( data: BaseFile ) => {
         housingConstructionYear: data.housing.constructionYear,
         housingLessThan2Years:   data.housing.lessThan2Years,
         housingIsAddressBenef:   data.housing.isAddressBenef,
+        housingBuildingNature:   data.housing.buildingNature,
         address:                 {
             plot:    data.housing.plot,
             address: data.housing.address,
@@ -25,6 +26,9 @@ export const defaultYupConfigStep3 = () => {
     return {
         nbOccupant:              Yup.number().required(),
         housingType:             Yup.string().required(),
+        housingBuildingNature:   Yup.string(),
+        housingLessThan2Years:   Yup.boolean(),
+        housingIsAddressBenef:   Yup.boolean(),
         housingConstructionYear: Yup.number().positive().nullable( true ),
         address:                 Yup.object().shape( {
                                                          plot:    Yup.string(),
@@ -69,6 +73,8 @@ export const defaultGetHoussingValueStep3 = ( fileData: BaseFile, stepData: Base
         constructionYear: stepData.housingConstructionYear === null ? null : +stepData.housingConstructionYear,
         lessThan2Years:   stepData.housingLessThan2Years === undefined ? false : stepData.housingLessThan2Years,
         isAddressBenef:   stepData.housingIsAddressBenef === undefined ? false : stepData.housingIsAddressBenef,
+        buildingNature:   stepData.housingBuildingNature,
+        isRentedHouse:    stepData.housingBuildingNature === 'location',
         area:             +stepData.area,
         ...address,
     };

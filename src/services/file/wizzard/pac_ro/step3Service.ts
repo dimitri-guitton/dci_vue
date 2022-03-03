@@ -11,15 +11,15 @@ import {
     defaultInitFormDataStep3,
     defaultYupConfigStep3,
 } from '@/services/file/wizzard/step3Service';
+import { PacRoStep3 } from '@/types/v2/Wizzard/step3/PacRoStep3';
 
 /**
- * Retourne les valeurs du formualire pour l'etape 3 selon le type de dossiser
+ *  Retourne les valeurs à l'initialisation du formulaire pour l'etape 3
  * @param fileData
  */
-export const initPacRoFormDataStep3 = ( fileData: RoFile ) => {
+export const initPacRoFormDataStep3 = ( fileData: RoFile ): PacRoStep3 => {
     return {
         ...defaultInitFormDataStep3( fileData ),
-        housingBuildingNature:    fileData.housing.buildingNature !== undefined ? fileData.housing.buildingNature : 'maison_individuelle',
         housingInsulationQuality: fileData.housing.insulationQuality !== undefined ? fileData.housing.insulationQuality : 1,
         housingAvailableVoltage:  fileData.housing.availableVoltage !== undefined ? fileData.housing.availableVoltage : 'monophase',
         housingCeilingHeight:     fileData.quotation.ceilingHeight !== undefined ? fileData.quotation.ceilingHeight : 2.5,
@@ -40,8 +40,6 @@ export const validatePacRoStep3 = async ( data: PacRoFileStep ): Promise<RoFile>
     const housing: Housing = {
         ...fileData.housing,
         ...defaultGetHoussingValueStep3( fileData, data ),
-        isRentedHouse:     data.housingBuildingNature === 'location',
-        buildingNature:    data.housingBuildingNature,
         insulationQuality: data.housingInsulationQuality,
         availableVoltage:  data.housingAvailableVoltage,
     };

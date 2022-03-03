@@ -10,16 +10,16 @@ import {
     defaultInitFormDataStep3,
     defaultYupConfigStep3,
 } from '@/services/file/wizzard/step3Service';
+import { CombleStep3 } from '@/types/v2/Wizzard/step3/CombleStep3';
 
 /**
- * Retourne les valeurs du formualire pour l'etape 3 selon le type de dossiser
+ *  Retourne les valeurs à l'initialisation du formulaire pour l'etape 3
  * @param fileData
  */
-export const initCombleFormDataStep3 = ( fileData: CombleFile ) => {
+export const initCombleFormDataStep3 = ( fileData: CombleFile ): CombleStep3 => {
     return {
         ...defaultInitFormDataStep3( fileData ),
-        housingHeatingType:    fileData.housing.heatingType !== undefined ? fileData.housing.heatingType : '',
-        housingBuildingNature: fileData.housing.buildingNature !== undefined ? fileData.housing.buildingNature : '',
+        housingHeatingType: fileData.housing.heatingType !== undefined ? fileData.housing.heatingType : '',
     };
 };
 
@@ -36,9 +36,7 @@ export const validateCombleStep3 = async ( data: CombleFileStep ) => {
     const housing: Housing = {
         ...fileData.housing,
         ...defaultGetHoussingValueStep3( fileData, data ),
-        heatingType:    data.housingHeatingType,
-        isRentedHouse:  data.housingBuildingNature === 'location',
-        buildingNature: data.housingBuildingNature,
+        heatingType: data.housingHeatingType,
     };
 
     fileData = {

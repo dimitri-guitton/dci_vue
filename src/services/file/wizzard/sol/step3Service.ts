@@ -10,16 +10,16 @@ import {
     defaultInitFormDataStep3,
     defaultYupConfigStep3,
 } from '@/services/file/wizzard/step3Service';
+import { SolStep3 } from '@/types/v2/Wizzard/step3/SolStep3';
 
 /**
- * Retourne les valeurs du formualire pour l'etape 3 selon le type de dossiser
+ * Retourne les valeurs à l'initialisation du formulaire pour l'etape 3
  * @param fileData
  */
-export const initSolFormDataStep3 = ( fileData: SolFile ) => {
+export const initSolFormDataStep3 = ( fileData: SolFile ): SolStep3 => {
     return {
         ...defaultInitFormDataStep3( fileData ),
-        housingHeatingType:    fileData.housing.heatingType !== undefined ? fileData.housing.heatingType : '',
-        housingBuildingNature: fileData.housing.buildingNature !== undefined ? fileData.housing.buildingNature : '',
+        housingHeatingType: fileData.housing.heatingType !== undefined ? fileData.housing.heatingType : '',
     };
 };
 
@@ -37,9 +37,7 @@ export const validateSolStep3 = async ( data: SolFileStep ) => {
     const housing: Housing = {
         ...fileData.housing,
         ...defaultGetHoussingValueStep3( fileData, data ),
-        heatingType:    data.housingHeatingType,
-        isRentedHouse:  data.housingBuildingNature === 'location',
-        buildingNature: data.housingBuildingNature,
+        heatingType: data.housingHeatingType,
     };
 
     fileData = {

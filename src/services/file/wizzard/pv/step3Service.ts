@@ -10,15 +10,15 @@ import {
     defaultInitFormDataStep3,
     defaultYupConfigStep3,
 } from '@/services/file/wizzard/step3Service';
+import { BaseStep3 } from '@/types/v2/Wizzard/step3/BaseStep3';
 
 /**
- * Retourne les valeurs du formualire pour l'etape 3 selon le type de dossiser
+ *  Retourne les valeurs à l'initialisation du formulaire pour l'etape 3
  * @param fileData
  */
-export const initPvFormDataStep3 = ( fileData: PvFile ) => {
+export const initPvFormDataStep3 = ( fileData: PvFile ): BaseStep3 => {
     return {
         ...defaultInitFormDataStep3( fileData ),
-        housingBuildingNature: fileData.housing.buildingNature !== undefined ? fileData.housing.buildingNature : '',
     };
 };
 
@@ -34,8 +34,6 @@ export const validatePvStep3 = async ( data: PvFileStep ) => {
     const housing: Housing = {
         ...fileData.housing,
         ...defaultGetHoussingValueStep3( fileData, data ),
-        isRentedHouse:  data.housingBuildingNature === 'location',
-        buildingNature: data.housingBuildingNature,
     };
 
     fileData = {

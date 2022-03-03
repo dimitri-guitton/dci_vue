@@ -149,8 +149,8 @@ import { initPbFormDataStep3, validatePbStep3, yupPbConfigStep3 } from '@/servic
 import { initPbFormDataStep4, validatePbStep4, yupPbConfigStep4 } from '@/services/file/wizzard/pb/step4Service';
 import { initPbFormDataStep5, savePbWorksheet, yupPbConfigStep5 } from '@/services/file/wizzard/pb/step5Service';
 import { PbFile } from '@/types/v2/File/Pb/PbFile';
-import { PbStep3 } from '@/types/v2/Wizzard/step3/PbStep3';
 import { PbStep5 } from '@/types/v2/Wizzard/step5/PbStep5';
+import { BaseStep3 } from '@/types/v2/Wizzard/step3/BaseStep3';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -233,7 +233,7 @@ export default defineComponent( {
                                     const {
                                             resetForm,
                                             handleSubmit,
-                                          }               = useForm<Step1 | Step2 | PbStep3 | BaseStep4 | PbStep5>(
+                                          } = useForm<Step1 | Step2 | BaseStep3 | BaseStep4 | PbStep5>(
                                         {
                                           validationSchema: currentSchema,
                                         } );
