@@ -82,21 +82,31 @@ const convertOldRrMulti = ( oldData ): RrMulti => {
 
     if ( getObjectData( oldData, [ 'devis', 'rrMulti' ] ) !== '' ) {
         dataRrMulti = {
-            roomNumber: oldData[ 'devis' ][ 'rrMulti' ][ 'nombreDePiece' ],
-            areaP1:     oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP1' ],
-            areaP2:     oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP2' ],
-            areaP3:     oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP3' ],
-            areaP4:     oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP4' ],
-            areaP5:     oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP5' ],
+            roomNumber:   oldData[ 'devis' ][ 'rrMulti' ][ 'nombreDePiece' ],
+            areaP1:       oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP1' ],
+            areaP2:       oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP2' ],
+            areaP3:       oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP3' ],
+            areaP4:       oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP4' ],
+            areaP5:       oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP5' ],
+            assortmentP1: oldData[ 'devis' ][ 'gamme' ],
+            assortmentP2: oldData[ 'devis' ][ 'gamme' ],
+            assortmentP3: oldData[ 'devis' ][ 'gamme' ],
+            assortmentP4: oldData[ 'devis' ][ 'gamme' ],
+            assortmentP5: oldData[ 'devis' ][ 'gamme' ],
         };
     } else {
         dataRrMulti = {
-            roomNumber: 1,
-            areaP1:     0,
-            areaP2:     0,
-            areaP3:     0,
-            areaP4:     0,
-            areaP5:     0,
+            roomNumber:   1,
+            areaP1:       0,
+            areaP2:       0,
+            areaP3:       0,
+            areaP4:       0,
+            areaP5:       0,
+            assortmentP1: 'perfera',
+            assortmentP2: 'perfera',
+            assortmentP3: 'perfera',
+            assortmentP4: 'perfera',
+            assortmentP5: 'perfera',
         };
     }
 

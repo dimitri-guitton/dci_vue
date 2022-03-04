@@ -15,7 +15,7 @@
           <template-item-list :lists="lists.rrTypeList"></template-item-list>
         </Field>
       </div>
-      <div class="col-md-6 mb-5">
+      <div class="col-md-6 mb-5" v-if="rrType === 'mono'">
         <label for="assortment" class="form-label">Gamme de produit</label>
         <Field name="assortment"
                id="assortment"
@@ -46,15 +46,28 @@
 
       <div class="row mt-10">
         <template v-for="index in rrMulti.roomNumber" v-bind:key="`area${index}`">
-          <div class="col-md-2 fv-row">
-            <label class="form-label mb-3">Pièce n°{{ index }} <sup><var>m2</var></sup></label>
-            <Field
-                type="number"
-                class="form-control"
-                :name="`housingAreaP${index}`"
-                placeholder="1"
-                v-model.number="rrMulti[`areaP${index}`]"
-            />
+          <div class="row d-flex align-items-end">
+            <div class="col-md-2">
+              <label class="form-label mb-3">Pièce n°{{ index }} <sup><var>m2</var></sup></label>
+              <Field
+                  type="number"
+                  class="form-control"
+                  :name="`housingAreaP${index}`"
+                  placeholder="1"
+                  v-model.number="rrMulti[`areaP${index}`]"
+              />
+            </div>
+            <div class="col-md-4">
+              <label :for="`housingAssortmentP${index}`" class="form-label">Gamme de produit</label>
+              <Field :name="`housingAssortmentP${index}`"
+                     :id="`housingAssortmentP${index}`"
+                     class="form-select"
+                     as="select"
+                     v-model.number="rrMulti[`assortmentP${index}`]"
+              >
+                <template-item-list :lists="assortmentLists"></template-item-list>
+              </Field>
+            </div>
           </div>
         </template>
       </div>
@@ -202,10 +215,6 @@ export default defineComponent( {
 
                                     const assortmentLists = computed<ItemList[]>( () => {
                                       if ( rrType.value === 'multi' ) {
-                                        if ( assortment.value === 'sensira' ) {
-                                          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-                                          assortment.value = 'perfera';
-                                        }
                                         return lists.value.gammeTypeList.filter( g => g.slug !== 'sensira' );
                                       }
                                       return lists.value.gammeTypeList;
@@ -219,6 +228,7 @@ export default defineComponent( {
 
                                           rrAlgo.updateHousing( props.fileData.housing );
 
+                                          console.log( 'GAMME -->', assortment.value );
                                           if ( rrType.value === 'mono' ) {
                                             const response = rrAlgo.getUnitsMono( assortment.value );
 
@@ -235,7 +245,7 @@ export default defineComponent( {
 
                                             return [ productInt, productExt ];
                                           } else {
-                                            const response = rrAlgo.getPacRrMulti( rrMulti.value, assortment.value );
+                                            const response = rrAlgo.getPacRrMulti( rrMulti.value );
 
                                             if ( response === null ) {
                                               return [];

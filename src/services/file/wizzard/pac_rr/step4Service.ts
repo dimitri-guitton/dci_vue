@@ -32,63 +32,73 @@ export const initPacRrFormDataStep4 = ( fileData: RrFile ) => {
     }
 
     return {
-        origin:             fileData.quotation.origin,
-        dateTechnicalVisit: fileData.quotation.dateTechnicalVisit,
-        executionDelay:     fileData.quotation.executionDelay,
+        origin:              fileData.quotation.origin,
+        dateTechnicalVisit:  fileData.quotation.dateTechnicalVisit,
+        executionDelay:      fileData.quotation.executionDelay,
         options,
         blankOptions,
         selectedProducts,
-        commentary:         fileData.quotation.commentary,
-        pacType:            fileData.quotation.rrType,
-        assortment:         fileData.quotation.assortment,
-        housingRoomNumber:  fileData.quotation.rrMulti.roomNumber,
-        housingAreaP1:      fileData.quotation.rrMulti.areaP1,
-        housingAreaP2:      fileData.quotation.rrMulti.areaP2,
-        housingAreaP3:      fileData.quotation.rrMulti.areaP3,
-        housingAreaP4:      fileData.quotation.rrMulti.areaP4,
-        housingAreaP5:      fileData.quotation.rrMulti.areaP5,
+        commentary:          fileData.quotation.commentary,
+        pacType:             fileData.quotation.rrType,
+        assortment:          fileData.quotation.assortment,
+        housingRoomNumber:   fileData.quotation.rrMulti.roomNumber,
+        housingAreaP1:       fileData.quotation.rrMulti.areaP1,
+        housingAreaP2:       fileData.quotation.rrMulti.areaP2,
+        housingAreaP3:       fileData.quotation.rrMulti.areaP3,
+        housingAreaP4:       fileData.quotation.rrMulti.areaP4,
+        housingAreaP5:       fileData.quotation.rrMulti.areaP5,
+        housingAssortmentP1: fileData.quotation.rrMulti.assortmentP1,
+        housingAssortmentP2: fileData.quotation.rrMulti.assortmentP2,
+        housingAssortmentP3: fileData.quotation.rrMulti.assortmentP3,
+        housingAssortmentP4: fileData.quotation.rrMulti.assortmentP4,
+        housingAssortmentP5: fileData.quotation.rrMulti.assortmentP5,
 
     };
 };
 
 export const yupPacRrConfigStep4 = () => {
     return Yup.object( {
-                           origin:             Yup.string(),
-                           dateTechnicalVisit: Yup.string(),
-                           executionDelay:     Yup.string(),
-                           commentary:         Yup.string(),
-                           pacType:            Yup.string(),
-                           assortment:         Yup.string(),
-                           housingRoomNumber:  Yup.number()
-                                                  .min( 2, 'Il doit y avoir au moins 2 pièces' )
-                                                  .max( 5, 'Il doit y avoir au maximum 5 pièces' ),
-                           housingAreaP1:      Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ).nullable( true ),
-                           housingAreaP2:      Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ).nullable( true ),
-                           housingAreaP3:      Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ).nullable( true ),
-                           housingAreaP4:      Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ).nullable( true ),
-                           housingAreaP5:      Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ).nullable( true ),
-                           selectedProducts:   Yup.array()
-                                                  .of(
-                                                      Yup.object().shape( {
-                                                                              pu: Yup.number()
-                                                                                     .required()
-                                                                                     .min( 0,
-                                                                                           'Le montant doit être supérieur ou égal à 0' ),
-                                                                          } ),
-                                                  ),
-                           options:            Yup.array()
-                                                  .of(
-                                                      Yup.object().shape( {
-                                                                              pu:     Yup.number()
-                                                                                         .required()
-                                                                                         .min( 0,
-                                                                                               'Le montant doit être supérieur ou égal à 0' ),
-                                                                              number: Yup.number()
-                                                                                         .required()
-                                                                                         .min( 0,
-                                                                                               'Le nombre doit être supérieur ou égal à 0' ),
-                                                                          } ),
-                                                  ),
+                           origin:              Yup.string(),
+                           dateTechnicalVisit:  Yup.string(),
+                           executionDelay:      Yup.string(),
+                           commentary:          Yup.string(),
+                           pacType:             Yup.string(),
+                           assortment:          Yup.string(),
+                           housingRoomNumber:   Yup.number()
+                                                   .min( 2, 'Il doit y avoir au moins 2 pièces' )
+                                                   .max( 5, 'Il doit y avoir au maximum 5 pièces' ),
+                           housingAreaP1:       Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ),
+                           housingAreaP2:       Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ),
+                           housingAreaP3:       Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ),
+                           housingAreaP4:       Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ),
+                           housingAreaP5:       Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ),
+                           housingAssortmentP1: Yup.string(),
+                           housingAssortmentP2: Yup.string(),
+                           housingAssortmentP3: Yup.string(),
+                           housingAssortmentP4: Yup.string(),
+                           housingAssortmentP5: Yup.string(),
+                           selectedProducts:    Yup.array()
+                                                   .of(
+                                                       Yup.object().shape( {
+                                                                               pu: Yup.number()
+                                                                                      .required()
+                                                                                      .min( 0,
+                                                                                            'Le montant doit être supérieur ou égal à 0' ),
+                                                                           } ),
+                                                   ),
+                           options:             Yup.array()
+                                                   .of(
+                                                       Yup.object().shape( {
+                                                                               pu:     Yup.number()
+                                                                                          .required()
+                                                                                          .min( 0,
+                                                                                                'Le montant doit être supérieur ou égal à 0' ),
+                                                                               number: Yup.number()
+                                                                                          .required()
+                                                                                          .min( 0,
+                                                                                                'Le nombre doit être supérieur ou égal à 0' ),
+                                                                           } ),
+                                                   ),
                        } );
 };
 
@@ -145,17 +155,20 @@ export const validatePacRrStep4 = async ( data: PacRrFileStep, price: Price ): P
         maPrimeRenovBonus:  price.maPrimeRenov !== undefined ? price.maPrimeRenov : 0,
         remainderToPay:     price.remainderToPay,
         rrType:             data.pacType,
-        assortment:         data.assortment,
+        assortment:         data.assortment !== undefined ? data.assortment : 'sensira',
         rrMulti:            {
-            roomNumber: +data.housingRoomNumber,
-            areaP1:     +data.housingAreaP1,
-            areaP2:     +data.housingAreaP2,
-            areaP3:     +data.housingAreaP3,
-            areaP4:     +data.housingAreaP4,
-            areaP5:     +data.housingAreaP5,
+            roomNumber:   +data.housingRoomNumber,
+            areaP1:       +data.housingAreaP1,
+            areaP2:       +data.housingAreaP2,
+            areaP3:       +data.housingAreaP3,
+            areaP4:       +data.housingAreaP4,
+            areaP5:       +data.housingAreaP5,
+            assortmentP1: data.housingAssortmentP1,
+            assortmentP2: data.housingAssortmentP2,
+            assortmentP3: data.housingAssortmentP3,
+            assortmentP4: data.housingAssortmentP4,
+            assortmentP5: data.housingAssortmentP5,
         },
-
-
     };
 
     fileData = {

@@ -9,4 +9,9 @@ export interface PacRrStep4 extends BaseStep4 {
     housingAreaP3: number;
     housingAreaP4: number;
     housingAreaP5: number;
+    housingAssortmentP1: string;
+    housingAssortmentP2: string;
+    housingAssortmentP3: string;
+    housingAssortmentP4: string;
+    housingAssortmentP5: string;
 }

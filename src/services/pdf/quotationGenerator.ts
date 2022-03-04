@@ -900,7 +900,7 @@ export class QuotationGenerator extends PdfGenerator {
                                        text: product.reference,
                                    },
                                    {
-                                       text: product.description,
+                                       text: `${ product.label }\n${ product.description }`,
                                    },
                                    {
                                        text:      quantity,

@@ -490,30 +490,36 @@ export class RrAlgo extends PacAlgo {
         };
     };
 
-    public getPacRrMulti = ( rrMulti: RrMulti, assortment: string ): { unitExt: string; unitsInt: string[] } | null => {
+    public getPacRrMulti = ( rrMulti: RrMulti ): { unitExt: string; unitsInt: string[] } | null => {
         console.log( '%c GET UNITS RR MULTI', 'background: #D45480; color: #000000' );
         let totalRequiredPower          = 0;
         const productsPerRoom: string[] = [];
         let anItemWasNotFound           = false;
+        let assortment                  = 'PERFERA';
 
         // Calcul l'unité intérieur par pièces
         for ( let i = 1; i <= rrMulti.roomNumber; i++ ) {
             let power = 0;
             switch ( i ) {
                 case 1:
-                    power = calcRequiredPower( rrMulti.areaP1, this.housing.buildingCoefficient );
+                    power      = calcRequiredPower( rrMulti.areaP1, this.housing.buildingCoefficient );
+                    assortment = rrMulti.assortmentP1;
                     break;
                 case 2:
-                    power = calcRequiredPower( rrMulti.areaP2, this.housing.buildingCoefficient );
+                    power      = calcRequiredPower( rrMulti.areaP2, this.housing.buildingCoefficient );
+                    assortment = rrMulti.assortmentP2;
                     break;
                 case 3:
-                    power = calcRequiredPower( rrMulti.areaP3, this.housing.buildingCoefficient );
+                    power      = calcRequiredPower( rrMulti.areaP3, this.housing.buildingCoefficient );
+                    assortment = rrMulti.assortmentP3;
                     break;
                 case 4:
-                    power = calcRequiredPower( rrMulti.areaP4, this.housing.buildingCoefficient );
+                    power      = calcRequiredPower( rrMulti.areaP4, this.housing.buildingCoefficient );
+                    assortment = rrMulti.assortmentP4;
                     break;
                 case 5:
-                    power = calcRequiredPower( rrMulti.areaP5, this.housing.buildingCoefficient );
+                    power      = calcRequiredPower( rrMulti.areaP5, this.housing.buildingCoefficient );
+                    assortment = rrMulti.assortmentP5;
                     break;
                 default:
                     break;
