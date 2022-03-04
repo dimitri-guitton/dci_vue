@@ -16,7 +16,6 @@ export interface BaseFile {
     };
     disabledBonus: boolean;
     disabledCeeBonus: boolean;
-    enabledHousingAction: boolean;
     disabledMaPrimeRenovBonus: boolean;
     assents: Assent[]; // anciennement "avis"
     beneficiary: Beneficiary;

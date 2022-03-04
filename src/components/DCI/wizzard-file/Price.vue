@@ -35,10 +35,6 @@
           - {{ numberToPrice( price.maPrimeRenov ) }}
         </el-descriptions-item>
 
-        <el-descriptions-item v-if="price.housingAction > 0" align="right" label="Action logement">
-          - {{ numberToPrice( price.housingAction ) }}
-        </el-descriptions-item>
-
         <el-descriptions-item align="right" label="Reste à Payer">
           {{ numberToPrice( price.remainderToPay ) }}
         </el-descriptions-item>
@@ -67,7 +63,6 @@ export default defineComponent( {
                                           TVA:            0,
                                           CEE:            0,
                                           maPrimeRenov:   0,
-                                          housingAction:  0,
                                           remainderToPay: 0,
                                         };
                                       },

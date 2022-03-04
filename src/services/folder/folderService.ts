@@ -131,7 +131,6 @@ export const addJsonData = ( type: string, parent: string, reference: string, fo
         updatedAt:                 toFrenchDate( new Date().toString() ),
         disabledBonus:             newFolder.disabledBonus,
         disabledCeeBonus:          newFolder.disabledCeeBonus,
-        enabledHousingAction:      newFolder.enabledHousingAction,
         disabledMaPrimeRenovBonus: newFolder.disabledMaPrimeRenovBonus,
         statusInDci:               2,
         errorsStatusInDci:         [],

@@ -10,7 +10,6 @@
     },
     "disabledBonus":             false,
     "disabledCeeBonus":          false,
-    "enabledHousingAction":      false,
     "disabledMaPrimeRenovBonus": false,
     "assents":                   [],
     "beneficiary":               {

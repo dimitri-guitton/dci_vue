@@ -7,7 +7,6 @@ export interface Price {
     TVA20?: number;
     CEE?: number;
     maPrimeRenov?: number;
-    housingAction?: number;
     remainderToPay: number;
     discount?: number;
     selfConsumptionBonus?: number;

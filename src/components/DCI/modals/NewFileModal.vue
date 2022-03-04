@@ -81,7 +81,7 @@
                         type="checkbox"
                         :value="true"
                     />
-                    <span class="form-check-label">Désactiver la prime</span>
+                    <span class="form-check-label">Désactiver les primes</span>
                   </label>
                   <div class="fv-plugins-message-container">
                     <div class="fv-help-block">
@@ -103,23 +103,6 @@
                   <div class="fv-plugins-message-container">
                     <div class="fv-help-block">
                       <ErrorMessage name="ceeBonus" />
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 fv-row mb-5">
-                  <label class="form-check form-check-custom form-check-solid">
-                    <Field
-                        name="housingAction"
-                        class="form-check-input"
-                        v-model="newFolderData.enabledHousingAction"
-                        type="checkbox"
-                        :value="true"
-                    />
-                    <span class="form-check-label">Activer action logement</span>
-                  </label>
-                  <div class="fv-plugins-message-container">
-                    <div class="fv-help-block">
-                      <ErrorMessage name="housingAction" />
                     </div>
                   </div>
                 </div>
@@ -178,7 +161,6 @@ export interface NewFolderData {
   customer: string;
   disabledBonus: boolean;
   disabledCeeBonus: boolean;
-  enabledHousingAction: boolean;
   disabledMaPrimeRenovBonus: boolean;
 }
 
@@ -200,7 +182,6 @@ export default defineComponent( {
                                                                                 customer:                  '',
                                                                                 disabledBonus:             false,
                                                                                 disabledCeeBonus:          false,
-                                                                                enabledHousingAction:      false,
                                                                                 disabledMaPrimeRenovBonus: false,
                                                                               } );
 

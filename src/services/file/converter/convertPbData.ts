@@ -195,7 +195,6 @@ export const convertOldPbFile = ( oldData ): PbFile => {
         settings:                  oldData[ 'settings' ],
         disabledBonus:             getBoolData( oldData[ 'disablePrime' ] ),
         disabledCeeBonus:          getBoolData( oldData[ 'disablePrimeCEE' ] ),
-        enabledHousingAction:      getBoolData( oldData[ 'enabledActionLogement' ] ),
         disabledMaPrimeRenovBonus: getBoolData( oldData[ 'disablePrimeMaprimerenov' ] ),
         assents:                   convertOldAssent( oldData ),
         beneficiary:               convertOldBeneficiary( oldData ),

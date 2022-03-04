@@ -46,7 +46,6 @@ enum PriceQuotation {
     maPrimeRenov  = 'Estimation MaPrimeRenov',
     discount      = 'Remise',
     laying        = 'Pose',
-    housingAction = 'Action logement'
 }
 
 export class QuotationGenerator extends PdfGenerator {
@@ -1186,9 +1185,7 @@ export class QuotationGenerator extends PdfGenerator {
                     PriceQuotation.TVA,
                     PriceQuotation.TTC,
                 ];
-                if ( this._file.enabledHousingAction ) {
-                    items.push( PriceQuotation.housingAction );
-                } else if ( !this._file.housing.lessThan2Years && !this._file.disabledBonus && this._file.quotation.ceeBonus > 0 ) {
+                if ( !this._file.housing.lessThan2Years && !this._file.disabledBonus && this._file.quotation.ceeBonus > 0 ) {
                     items.push( PriceQuotation.CEE );
                 }
                 break;
@@ -1280,16 +1277,6 @@ export class QuotationGenerator extends PdfGenerator {
                                           alignment:  'right',
                                           lineHeight: 2,
                                       } );
-                    break;
-                case PriceQuotation.housingAction:
-                    if ( this._file.enabledHousingAction ) {
-                        rightColumn.push( {
-                                              text:       this.formatPrice( quotation.totalTtc, 1, false ),
-                                              alignment:  'right',
-                                              lineHeight: 2,
-                                          } );
-                    }
-
                     break;
             }
         }

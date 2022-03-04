@@ -171,23 +171,13 @@ export default defineComponent( {
                                       const totalTva = tva * totalHt / 100;
                                       const totalTtc = totalHt + totalTva;
 
-                                      let remainderToPay = totalTtc - ceeBonus;
-                                      let housingAction  = 0;
-
-                                      if ( ( props.fileData as SolFile ).enabledHousingAction ) {
-                                        console.log( '%c ACTION LOGEMENT', 'background: #FF0000; color: #000000' );
-                                        remainderToPay = 0;
-                                        housingAction  = totalTtc;
-                                        // Pas de prime CEE quand il y a action logement
-                                        ceeBonus       = 0;
-                                      }
+                                      const remainderToPay = totalTtc - ceeBonus;
 
                                       const price: Price = {
                                         laying,
                                         HT:  totalHt,
                                         TVA: totalTva,
                                         TTC: totalTtc,
-                                        housingAction,
                                         remainderToPay,
                                         CEE: ceeBonus,
                                       };

@@ -65,7 +65,6 @@ import { Price } from '@/services/file/wizzard/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
 import { getCetCeeBonus } from '@/services/file/fileCommonService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
-import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
 
 export default defineComponent( {
@@ -174,23 +173,13 @@ export default defineComponent( {
                                       const totalTva = tva * totalHt / 100;
                                       const totalTtc = totalHt + totalTva;
 
-                                      let remainderToPay = totalTtc - ceeBonus;
-                                      let housingAction  = 0;
-
-                                      if ( ( props.fileData as CombleFile ).enabledHousingAction ) {
-                                        console.log( '%c ACTION LOGEMENT', 'background: #FF0000; color: #000000' );
-                                        remainderToPay = 0;
-                                        housingAction  = totalTtc;
-                                        // Pas de prime CEE quand il y a action logement
-                                        ceeBonus       = 0;
-                                      }
+                                      const remainderToPay = totalTtc - ceeBonus;
 
                                       const price: Price = {
                                         laying,
                                         HT:  totalHt,
                                         TVA: totalTva,
                                         TTC: totalTtc,
-                                        housingAction,
                                         remainderToPay,
                                         CEE: ceeBonus,
                                       };
