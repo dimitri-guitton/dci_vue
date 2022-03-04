@@ -22,7 +22,7 @@
         <label class="form-label mb-3">Commentaire</label>
         <Field
             as="textarea"
-            class="form-control form-control-lg form-control-solid"
+            class="form-control form-control-lg"
             name="commentary"
             placeholder="RAS"
             value=""

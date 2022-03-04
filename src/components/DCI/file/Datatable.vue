@@ -47,7 +47,7 @@
         <tbody>
         <tr v-for="data in filterData" v-bind:key="data.reference">
           <td>{{ data.reference }}</td>
-          <td class="form-check form-check-custom form-check-solid form-check-sm justify-content-center">
+          <td class="form-check form-check-custom form-check-sm justify-content-center">
             <input class="form-check-input"
                    type="checkbox"
                    value=""

@@ -9,7 +9,7 @@
 
         <Field name="q_outsideSocket"
                id="q_outsideSocket"
-               class="form-select form-select-solid"
+               class="form-select"
                as="select"
                v-model="outsideSocket">
           <option :value="true">OUI</option>
@@ -21,7 +21,7 @@
 
         <Field name="q_type"
                id="q_type"
-               class="form-select form-select-solid"
+               class="form-select"
                as="select"
                v-model="type">
           <option value="red">Red</option>
@@ -33,7 +33,7 @@
 
         <Field name="q_power"
                id="q_power"
-               class="form-select form-select-solid"
+               class="form-selectsolid"
                as="select"
                v-model.number="power">
           <item-list :lists="lists.puissancePoeleList"></item-list>
@@ -45,7 +45,7 @@
 
           <Field name="q_color"
                  id="q_color"
-                 class="form-select form-select-solid"
+                 class="form-select"
                  as="select"
                  v-model="color">
             <item-list :lists="lists.couleurProfileList"></item-list>
@@ -80,7 +80,7 @@
         <label class="form-label mb-3">Commentaire</label>
         <Field
             as="textarea"
-            class="form-control form-control-lg form-control-solid"
+            class="form-control form-control-lg"
             name="commentary"
             placeholder="RAS"
             value=""

@@ -5,7 +5,7 @@
         <label class="form-label mb-3">Période de pose souhaité</label>
         <Field
             type="date"
-            class="form-control form-control-lg form-control-solid"
+            class="form-control"
             name="worksheet.period"
             placeholder="01/01/1970"
             value=""
@@ -22,7 +22,7 @@
               <Field
                   :name="`worksheet.${item.name}`"
                   as="select"
-                  class="form-control form-control-lg form-control-solid"
+                  class="form-control"
               >
                 <item-list :lists="lists[item.selectList]"></item-list>
               </Field>
@@ -32,7 +32,7 @@
               <Field
                   type="number"
                   :name="`worksheet.${item.name}`"
-                  class="form-control form-control-lg form-control-solid"
+                  class="form-control"
               >
               </Field>
             </template>
@@ -41,12 +41,12 @@
               <Field
                   type="text"
                   :name="`worksheet.${item.name}`"
-                  class="form-control form-control-lg form-control-solid"
+                  class="form-control"
               >
               </Field>
             </template>
             <template v-else-if="item.type === checkboxInput">
-              <label class="form-check form-switch form-check-custom form-check-solid">
+              <label class="form-check form-switch form-check-custom">
                 <span class="form-check-label fw-bold text-gray-600 me-5">{{ item.label }}</span>
                 <Field
                     type="checkbox"
@@ -72,7 +72,7 @@
         <label class="form-label mb-3">Complément d'information</label>
         <Field
             as="textarea"
-            class="form-control form-control-lg form-control-solid"
+            class="form-control"
             name="worksheet.infosSup"
             placeholder="RAS"
             value=""

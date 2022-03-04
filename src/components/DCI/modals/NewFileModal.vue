@@ -40,7 +40,7 @@
 
                   <Field
                       name="type"
-                      class="form-select form-select-solid"
+                      class="form-select"
                       as="select"
                       v-model="newFolderData.type"
                   >
@@ -59,7 +59,7 @@
                   <label class="required fs-5 fw-bold mb-2">Client</label>
                   <Field
                       type="text"
-                      class="form-control form-control-solid"
+                      class="form-control"
                       placeholder="Nom Prénom"
                       name="customer"
                       v-model="newFolderData.customer"
@@ -73,7 +73,7 @@
               </div>
               <div class="row mb-5">
                 <div class="col-md-6 fv-row mb-5">
-                  <label class="form-check form-check-custom form-check-solid">
+                  <label class="form-check form-check-custom">
                     <Field
                         name="bonus"
                         class="form-check-input"
@@ -90,7 +90,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 fv-row mb-5">
-                  <label class="form-check form-check-custom form-check-solid">
+                  <label class="form-check form-check-custom">
                     <Field
                         name="ceeBonus"
                         class="form-check-input"
@@ -107,7 +107,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 fv-row mb-5">
-                  <label class="form-check form-check-custom form-check-solid">
+                  <label class="form-check form-check-custom">
                     <Field
                         name="maPrimeRenovBonus"
                         class="form-check-input"

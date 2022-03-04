@@ -7,7 +7,7 @@
 
   <div class="row mb-10">
     <div class="col-md-6">
-      <label class="form-check form-switch form-check-custom form-check-solid">
+      <label class="form-check form-switch form-check-custom">
         <Field
             type="checkbox"
             class="form-check-input"

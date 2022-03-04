@@ -12,7 +12,7 @@
         <Field
             name="housingHeatingType"
             as="select"
-            class="form-control form-control-lg form-control-solid"
+            class="form-control"
         >
           <item-list :lists="lists.chauffageTypeList"></item-list>
         </Field>
