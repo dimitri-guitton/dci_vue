@@ -1,7 +1,7 @@
 import fs from 'fs';
 import Store from 'electron-store';
 import * as commonService from '../commonService';
-import { toFrenchDate } from '../commonService';
+import { toEnglishDate } from '../commonService';
 import { convertOldRoFile } from '@/services/file/converter/convertRoData';
 import { convertOldRrFile } from '@/services/file/converter/convertRrData';
 import { convertOldCetFile } from '@/services/file/converter/convertCetData';
@@ -15,7 +15,6 @@ import { convertOldSolFile } from '@/services/file/converter/convertSolData';
 import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 import { PdfType } from '@/services/pdf/pdfGenerator';
 import { shell } from 'electron';
-import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 import { NewFolderData } from '@/components/DCI/modals/NewFileModal.vue';
 import { convertOldPbFile } from '@/services/file/converter/convertPbData';
 import { convertOldPvFile } from '@/services/file/converter/convertPvData';
@@ -118,28 +117,36 @@ const createSubFolders   = ( type: string, parent: string ) => {
 // TODO argument inutile comme type qui est déja dans NewFolderData
 export const addJsonData = ( type: string, parent: string, reference: string, folderName: string, newFolder: NewFolderData ) => {
 
-    const jsonPath = path.join( __static, `examples/empty_new_data_${ type }.json` );
+           const jsonPath = path.join( __static, `examples/empty_new_data_${ type }.json` );
 
-    const rawdata = fs.readFileSync( jsonPath ).toString( 'utf8' );
+           const rawdata = fs.readFileSync( jsonPath ).toString( 'utf8' );
 
-    let fileData: CombleFile = JSON.parse( rawdata );
-    fileData                 = {
-        ...fileData,
-        ref:                       reference,
-        folderName:                folderName,
-        createdAt:                 toFrenchDate( new Date().toString() ),
-        updatedAt:                 toFrenchDate( new Date().toString() ),
-        disabledBonus:             newFolder.disabledBonus,
-        disabledCeeBonus:          newFolder.disabledCeeBonus,
-        disabledMaPrimeRenovBonus: newFolder.disabledMaPrimeRenovBonus,
-        statusInDci:               2,
-        errorsStatusInDci:         [],
-    };
+           let fileData = JSON.parse( rawdata );
 
-    console.log( `${ parent }/data.json` );
-    console.log( fileData );
-    fs.writeFileSync( `${ parent }/data.json`, JSON.stringify( fileData ) );
-    setCurrentFileData( JSON.stringify( fileData ) );
+           const today = new Date();
+           // console.log( '+5 MONTH', new Date( today.setMonth( today.getMonth() + 5 ) ) );
+
+           fileData = {
+               ...fileData,
+               ref:                       reference,
+               folderName:                folderName,
+               createdAt:                 toEnglishDate( today.toString() ),
+               updatedAt:                 toEnglishDate( today.toString() ),
+               disabledBonus:             newFolder.disabledBonus,
+               disabledCeeBonus:          newFolder.disabledCeeBonus,
+               disabledMaPrimeRenovBonus: newFolder.disabledMaPrimeRenovBonus,
+               statusInDci:               2,
+               errorsStatusInDci:         [],
+               quotation:                 {
+                   ...fileData.quotation,
+                   executionDelay: toEnglishDate( new Date( today.setMonth( today.getMonth() + 5 ) ).toString() ),
+               },
+           };
+
+           console.log( `${ parent }/data.json` );
+           console.log( fileData );
+           fs.writeFileSync( `${ parent }/data.json`, JSON.stringify( fileData ) );
+           setCurrentFileData( JSON.stringify( fileData ) );
 
        }
 ;

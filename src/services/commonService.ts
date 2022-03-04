@@ -9,11 +9,10 @@ export const minTwoDigits = ( n: number ): string => {
 };
 
 /**
- * Retourne la date au format français
+ * Retourne la date au format Français
  * @param stringDate
  */
 export const toFrenchDate = ( stringDate: string | number ): string => {
-
     if ( stringDate === '' || stringDate === null || stringDate === undefined ) {
         return '';
     }
@@ -21,6 +20,20 @@ export const toFrenchDate = ( stringDate: string | number ): string => {
     const date = new Date( stringDate );
 
     return `${ minTwoDigits( date.getDate() ) }/${ minTwoDigits( date.getMonth() + 1 ) }/${ date.getFullYear() }`;
+};
+
+/**
+ * Retourne la date au format Anglais
+ * @param stringDate
+ */
+export const toEnglishDate = ( stringDate: string | number ): string => {
+    if ( stringDate === '' || stringDate === null || stringDate === undefined ) {
+        return '';
+    }
+
+    const date = new Date( stringDate );
+
+    return `${ date.getFullYear() }-${ minTwoDigits( date.getMonth() + 1 ) }-${ minTwoDigits( date.getDate() ) }`;
 };
 
 /**

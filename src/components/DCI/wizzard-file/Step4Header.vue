@@ -6,7 +6,6 @@
           type="date"
           class="form-control form-control-lg"
           name="dateTechnicalVisit"
-          placeholder="01/01/1970"
           value=""
       />
       <ErrorMessage
@@ -20,7 +19,6 @@
           type="date"
           class="form-control form-control-lg"
           name="executionDelay"
-          placeholder="01/01/1970"
           value=""
       />
       <ErrorMessage
