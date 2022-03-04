@@ -66,7 +66,7 @@
     <step4-quotation-header></step4-quotation-header>
 
     <template v-for="p in products" v-bind:key="p.reference">
-      <row-price :product="p"></row-price>
+      <row-price :product="p" :display-ref="true"></row-price>
     </template>
     <template v-if="!products.length">
       <h6>Aucun produit de trouvé</h6>
@@ -146,8 +146,8 @@ import RowPrice from '@/components/DCI/wizzard-file/rowPrice.vue';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import RrList from '@/types/v2/File/Rr/RrList';
 import RrMulti from '@/types/v2/File/Rr/RrMulti';
-import { getPacRrMono, getPacRrMulti } from '@/services/file/RrAlgo';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
+import { RrAlgo } from '@/services/algorithm/RrAlgo';
 
 export default defineComponent( {
                                   name:       'file-pac-rr-step-4',
@@ -182,6 +182,8 @@ export default defineComponent( {
                                     const assortment = ref<string>( ( props.fileData.quotation.assortment ) );
                                     const rrMulti    = ref<RrMulti>( ( props.fileData.quotation.rrMulti ) );
 
+                                    const rrAlgo = new RrAlgo( props.fileData.housing );
+
                                     const generateQuotation = () => {
                                       ctx.emit( 'generateQuotation' );
                                     };
@@ -215,41 +217,36 @@ export default defineComponent( {
                                           console.log( '%c COMPUTED PRODUCTS RR',
                                                        'background: #252FD4; color: #FFFFFF' );
 
+                                          rrAlgo.updateHousing( props.fileData.housing );
+
                                           if ( rrType.value === 'mono' ) {
-                                            const response = getPacRrMono( props.fileData.housing.area,
-                                                                           ( props.fileData.housing.insulationQuality as number ),
-                                                                           assortment.value );
+                                            const response = rrAlgo.getUnitsMono( assortment.value );
 
-                                            const productInt = getProductByRef( response.productInt );
-                                            const productExt = getProductByRef( response.productExt );
+                                            if ( response === null ) {
+                                              return [];
+                                            }
 
-                                            console.log( productInt );
-                                            console.log( productExt );
+                                            const productExt = getProductByRef( response.unitExt );
+                                            const productInt = getProductByRef( response.unitInt );
 
-                                            if ( productInt === undefined || productExt === undefined ) {
+                                            if ( productExt === undefined || productInt === undefined ) {
                                               return [];
                                             }
 
                                             return [ productInt, productExt ];
-
                                           } else {
-                                            const response = getPacRrMulti( rrMulti.value,
-                                                                            ( props.fileData.housing.insulationQuality as number ),
-                                                                            assortment.value );
+                                            const response = rrAlgo.getPacRrMulti( rrMulti.value, assortment.value );
 
+                                            if ( response === null ) {
+                                              return [];
+                                            }
 
-                                            const productGroup = getProductByRef( response.productGroup );
-                                            console.log( 'P group', response.productGroup );
-                                            console.log( 'P group', productGroup );
-
+                                            const productGroup              = getProductByRef( response.unitExt );
                                             const productPerRoom: Product[] = [];
 
                                             let hasAnUnavailableProduct = false;
-                                            for ( const p of response.productsPerRoom ) {
+                                            for ( const p of response.unitsInt ) {
                                               const product = getProductByRef( p );
-                                              console.log( 'p room', p );
-                                              console.log( 'p room', product );
-
                                               if ( product === undefined ) {
                                                 hasAnUnavailableProduct = true;
                                                 continue;

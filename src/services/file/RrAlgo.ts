@@ -5,7 +5,7 @@
  */
 import RrMulti from '@/types/v2/File/Rr/RrMulti';
 
-const calcRequiredPower = ( area: number, insulationQuality: number ): number => {
+export const calcRequiredPower = ( area: number, insulationQuality: number ): number => {
     const value = ( area * insulationQuality * 81 ) / 1000;
     return Math.round( value * 1e3 ) / 1e3;
 };

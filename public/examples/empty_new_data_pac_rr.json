@@ -28,23 +28,28 @@
     "codeBonus":                 null,
     "energyZone":                null,
     "housing":                   {
-        "nbOccupant":        1,
-        "type":              "maison_individuelle",
-        "heatingType":       "",
-        "buildingNature":    "",
-        "isRentedHouse":     false,
-        "isAddressBenef":    true,
-        "address":           "",
-        "zipCode":           "",
-        "city":              "",
-        "plot":              "",
-        "area":              0,
-        "dataGeoportail":    {},
-        "location":          "",
-        "insulationQuality": 0.8,
-        "constructionYear":  null,
-        "lessThan2Years":    false,
-        "availableVoltage":  "monophase"
+        "nbOccupant":          1,
+        "type":                "maison_individuelle",
+        "heatingType":         "",
+        "buildingNature":      "",
+        "isRentedHouse":       false,
+        "isAddressBenef":      true,
+        "address":             "",
+        "zipCode":             "",
+        "city":                "",
+        "plot":                "",
+        "area":                0,
+        "dataGeoportail":      {},
+        "location":            "",
+        "constructionYear":    null,
+        "lessThan2Years":      false,
+        "availableVoltage":    "monophase",
+        "buildingCoefficient": 0.8,
+        "climaticZone":        "B",
+        "altitude":            0,
+        "heaters":             "r_fonte",
+        "ceilingHeight":       2.5,
+        "setPointTemperature": 19
     },
     "worksheet":                 {
         "period":               "",
@@ -1668,7 +1673,7 @@
         "phone":     " "
     },
     "lists":                     {
-        "localTypeList":         [
+        "localTypeList":           [
             {
                 "slug":  "maison_individuelle",
                 "value": "Maison individuelle"
@@ -1678,7 +1683,7 @@
                 "value": "Appartement"
             }
         ],
-        "rrTypeList":            [
+        "rrTypeList":              [
             {
                 "slug":  "mono",
                 "value": "Mono"
@@ -1688,7 +1693,7 @@
                 "value": "Multi"
             }
         ],
-        "typeCouvertureList":    [
+        "typeCouvertureList":      [
             {
                 "slug":  "meca",
                 "value": "Mecanique"
@@ -1710,7 +1715,7 @@
                 "value": "Tuiles courbes"
             }
         ],
-        "typeCharpenteList":     [
+        "typeCharpenteList":       [
             {
                 "slug":  "trad",
                 "value": "Traditionnelle"
@@ -1728,7 +1733,7 @@
                 "value": "Autre"
             }
         ],
-        "etatToitureList":       [
+        "etatToitureList":         [
             {
                 "slug":  "propre",
                 "value": "Propre"
@@ -1742,7 +1747,7 @@
                 "value": "Mousse importante"
             }
         ],
-        "puissanceCompteurList": [
+        "puissanceCompteurList":   [
             {
                 "slug":  3,
                 "value": 3
@@ -1764,7 +1769,7 @@
                 "value": 18
             }
         ],
-        "natureMurExtList":      [
+        "natureMurExtList":        [
             {
                 "slug":  "parpaing",
                 "value": "Parpaing"
@@ -1786,7 +1791,7 @@
                 "value": "Bois"
             }
         ],
-        "typeRadiateurList":     [
+        "typeRadiateurList":       [
             {
                 "slug":  "alu",
                 "value": "Alu"
@@ -1800,7 +1805,7 @@
                 "value": "Acier"
             }
         ],
-        "tensionDisponibleList": [
+        "tensionDisponibleList":   [
             {
                 "slug":  "monophase",
                 "value": "Monophasé"
@@ -1810,7 +1815,7 @@
                 "value": "Triphasé"
             }
         ],
-        "positionEauChaudeList": [
+        "positionEauChaudeList":   [
             {
                 "slug":  "sol",
                 "value": "Au sol"
@@ -1820,7 +1825,7 @@
                 "value": "Au mur"
             }
         ],
-        "typeChaudiereList":     [
+        "typeChaudiereList":       [
             {
                 "slug":  "aucun",
                 "value": "Aucun"
@@ -1842,7 +1847,7 @@
                 "value": "Autre"
             }
         ],
-        "gammeTypeList":         [
+        "gammeTypeList":           [
             {
                 "slug":  "sensira",
                 "value": "Sensira"
@@ -1876,7 +1881,7 @@
                 "value": "Emura Argent"
             }
         ],
-        "qualiteIsolationList":  [
+        "qualiteIsolationList":    [
             {
                 "slug":  "0.6",
                 "value": "0.6"
@@ -1910,7 +1915,7 @@
                 "value": "1.5"
             }
         ],
-        "batimentNatureList":    [
+        "batimentNatureList":      [
             {
                 "slug":  "",
                 "value": "-"
@@ -1928,7 +1933,7 @@
                 "value": "Résidence secondaire"
             }
         ],
-        "naturePlafondList":     [
+        "naturePlafondList":       [
             {
                 "slug":  "brique",
                 "value": "Brique"
@@ -1946,7 +1951,7 @@
                 "value": "Béton"
             }
         ],
-        "EcsDeporteList":        [
+        "EcsDeporteList":          [
             {
                 "slug":  "volume",
                 "value": 150
@@ -1960,7 +1965,7 @@
                 "value": 300
             }
         ],
-        "niveauHabitationList":  [
+        "niveauHabitationList":    [
             {
                 "slug":  "pp",
                 "value": "Plein Pied"
@@ -1986,7 +1991,7 @@
                 "value": "AUTRE"
             }
         ],
-        "typeChantierList":      [
+        "typeChantierList":        [
             {
                 "slug":  "neuf",
                 "value": "Neuf"
@@ -1996,7 +2001,7 @@
                 "value": "Reno"
             }
         ],
-        "typeOrigineList":       [
+        "typeOrigineList":         [
             {
                 "slug":  "telephone",
                 "value": "Téléphone"
@@ -2024,6 +2029,108 @@
             {
                 "slug":  "angelique",
                 "value": "Angélique"
+            }
+        ],
+        "buildingCoefficientList": [
+            {
+                "value": "0.6 - Entre 2013 et 2019",
+                "slug":  "0.6"
+            },
+            {
+                "value": "0.75 - Entre 2007 et 2012",
+                "slug":  "0.75"
+            },
+            {
+                "value": "0.8 - Entre 2001 et 2006",
+                "slug":  "0.8"
+            },
+            {
+                "value": "0.95 - Entre 1990 et 2000",
+                "slug":  "0.95"
+            },
+            {
+                "value": "1.15 - Entre 1983 et 1989",
+                "slug":  "1.15"
+            },
+            {
+                "value": "1.4 - Entre 1974 et 1982",
+                "slug":  "1.4"
+            },
+            {
+                "value": "1.7 -  Mal isolés et en simple vitrage",
+                "slug":  "1.7"
+            }
+        ],
+        "climaticZoneList":        [
+            {
+                "value": "Zone B",
+                "slug":  "B"
+            },
+            {
+                "value": "Zone C",
+                "slug":  "C"
+            },
+            {
+                "value": "Zone D",
+                "slug":  "D"
+            },
+            {
+                "value": "Zone E",
+                "slug":  "E"
+            }
+        ],
+        "altitudeList":            [
+            {
+                "value": "0 à 200m",
+                "slug":  "0"
+            },
+            {
+                "value": "201 à 400m",
+                "slug":  "201"
+            },
+            {
+                "value": "401 à 600m",
+                "slug":  "401"
+            },
+            {
+                "value": "601 à 800m",
+                "slug":  "601"
+            },
+            {
+                "value": "801 à 1000m",
+                "slug":  "801"
+            }
+        ],
+        "heatersList":             [
+            {
+                "value": "Radiateurs en fonte",
+                "slug":  "r_fonte"
+            },
+            {
+                "value": "Autre Radiateurs",
+                "slug":  "r_autre"
+            },
+            {
+                "value": "Plancher chauffant",
+                "slug":  "p_chauffant"
+            },
+            {
+                "value": "Radiateurs en fontes + Plancher Chauffant",
+                "slug":  "r_fonte_p_chauffant"
+            },
+            {
+                "value": "Autre Radiateurs + Plancher Chauffant",
+                "slug":  "r_autre_p_chauffant"
+            }
+        ],
+        "setPointTemperatureList": [
+            {
+                "value": "19°C",
+                "slug":  "19"
+            },
+            {
+                "value": "20°C",
+                "slug":  "20"
             }
         ]
     }

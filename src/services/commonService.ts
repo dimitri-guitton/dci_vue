@@ -14,7 +14,6 @@ export const minTwoDigits = ( n: number ): string => {
  */
 export const toFrenchDate = ( stringDate: string | number ): string => {
 
-    console.log( 'Date -->', stringDate );
     if ( stringDate === '' || stringDate === null || stringDate === undefined ) {
         return '';
     }

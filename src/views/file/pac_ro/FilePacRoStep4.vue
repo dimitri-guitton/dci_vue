@@ -204,7 +204,7 @@ import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import RoList from '@/types/v2/File/Ro/RoList';
 import ItemList from '@/components/DCI/input/ItemList.vue';
 import RowPrice from '@/components/DCI/wizzard-file/rowPrice.vue';
-import { getUnitsRo } from '@/services/file/RoAlgo2';
+import { RoAlgo } from '@/services/algorithm/RoAlgo';
 
 export default defineComponent( {
                                   name:       'file-pac-ro-step-4',
@@ -238,6 +238,8 @@ export default defineComponent( {
                                     const isEcsDeporte     = ref<boolean>( props.fileData.quotation.isEcsDeporte );
                                     const volumeECS        = ref<number>( props.fileData.quotation.volumeECS );
                                     const volumeECSDeporte = ref<number>( props.fileData.quotation.volumeECSDeporte );
+
+                                    const roAlgo = new RoAlgo( props.fileData.housing );
 
                                     // TODO REVOIR LE SYSTEME DE CASCADE
                                     const cascadeSystem = ref<boolean>( props.fileData.quotation.cascadeSystem );
@@ -294,7 +296,7 @@ export default defineComponent( {
 
                                     const products = computed<Product[]>(
                                         () => {
-                                          const response = getUnitsRo( props.fileData.housing, volumeECS.value );
+                                          const response = roAlgo.getUnitsRo( volumeECS.value );
                                           console.log( 'Response', response );
 
                                           if ( response === null ) {
@@ -304,8 +306,6 @@ export default defineComponent( {
                                           const productExt: Product | undefined = getProductByRef( response.unitExt.ref );
                                           const productInt: Product | undefined = getProductByRef( response.unitInt.ref );
 
-                                          console.log( 'productExt -->', productExt );
-                                          console.log( 'productInt -->', productInt );
                                           if ( productExt === undefined || productInt === undefined ) {
                                             return [];
                                           }

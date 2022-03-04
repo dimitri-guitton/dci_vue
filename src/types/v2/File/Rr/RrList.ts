@@ -17,6 +17,11 @@ interface RrList extends BaseList {
     naturePlafondList: ItemList[];
     EcsDeporteList: ItemList[];
     typeChantierList: ItemList[];
+    buildingCoefficientList: ItemList[];
+    climaticZoneList: ItemList[];
+    altitudeList: ItemList[];
+    heatersList: ItemList[];
+    setPointTemperatureList: ItemList[];
 }
 
 export default RrList;

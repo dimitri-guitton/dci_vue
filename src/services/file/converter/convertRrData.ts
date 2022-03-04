@@ -105,25 +105,30 @@ const convertOldRrMulti = ( oldData ): RrMulti => {
 
 const convertOldRrItemList = ( oldData ): RrList => {
     const lists: RrList = {
-        localTypeList:         [],
-        rrTypeList:            [],
-        typeCouvertureList:    [],
-        typeCharpenteList:     [],
-        etatToitureList:       [],
-        puissanceCompteurList: [],
-        natureMurExtList:      [],
-        typeRadiateurList:     [],
-        tensionDisponibleList: [],
-        positionEauChaudeList: [],
-        typeChaudiereList:     [],
-        gammeTypeList:         [],
-        qualiteIsolationList:  [],
-        batimentNatureList:    [],
-        naturePlafondList:     [],
-        EcsDeporteList:        [],
-        niveauHabitationList:  [],
-        typeChantierList:      [],
-        typeOrigineList:       [],
+        localTypeList:           [],
+        rrTypeList:              [],
+        typeCouvertureList:      [],
+        typeCharpenteList:       [],
+        etatToitureList:         [],
+        puissanceCompteurList:   [],
+        natureMurExtList:        [],
+        typeRadiateurList:       [],
+        tensionDisponibleList:   [],
+        positionEauChaudeList:   [],
+        typeChaudiereList:       [],
+        gammeTypeList:           [],
+        qualiteIsolationList:    [],
+        batimentNatureList:      [],
+        naturePlafondList:       [],
+        EcsDeporteList:          [],
+        niveauHabitationList:    [],
+        typeChantierList:        [],
+        typeOrigineList:         [],
+        buildingCoefficientList: [],
+        climaticZoneList:        [],
+        altitudeList:            [],
+        heatersList:             [],
+        setPointTemperatureList: [],
     };
 
     const rrItems = [
@@ -195,6 +200,114 @@ const convertOldRrItemList = ( oldData ): RrList => {
         lists[ newName[ item ] ] = newItems;
     } );
 
+    // Coef de construction
+    lists[ 'buildingCoefficientList' ] = [
+        {
+            value: '0.6 - Entre 2013 et 2019',
+            slug:  '0.6',
+        },
+        {
+            value: '0.75 - Entre 2007 et 2012',
+            slug:  '0.75',
+        },
+        {
+            value: '0.8 - Entre 2001 et 2006',
+            slug:  '0.8',
+        },
+        {
+            value: '0.95 - Entre 1990 et 2000',
+            slug:  '0.95',
+        },
+        {
+            value: '1.15 - Entre 1983 et 1989',
+            slug:  '1.15',
+        },
+        {
+            value: '1.4 - Entre 1974 et 1982',
+            slug:  '1.4',
+        },
+        {
+            value: '1.7 -  Mal isolés et en simple vitrage',
+            slug:  '1.7',
+        },
+    ];
+    // Zone climatique
+    lists[ 'climaticZoneList' ]        = [
+        {
+            value: 'Zone B',
+            slug:  'B',
+        },
+        {
+            value: 'Zone C',
+            slug:  'C',
+        },
+        {
+            value: 'Zone D',
+            slug:  'D',
+        },
+        {
+            value: 'Zone E',
+            slug:  'E',
+        },
+    ];
+    // Altitude
+    lists[ 'altitudeList' ]            = [
+        {
+            value: '0 à 200m',
+            slug:  '0',
+        },
+        {
+            value: '201 à 400m',
+            slug:  '201',
+        },
+        {
+            value: '401 à 600m',
+            slug:  '401',
+        },
+        {
+            value: '601 à 800m',
+            slug:  '601',
+        },
+        {
+            value: '801 à 1000m',
+            slug:  '801',
+        },
+    ];
+    // Radiateurs
+    lists[ 'heatersList' ]             = [
+        {
+            value: 'Radiateurs en fonte',
+            slug:  'r_fonte',
+        },
+        {
+            value: 'Autre Radiateurs',
+            slug:  'r_autre',
+        },
+        {
+            value: 'Plancher chauffant',
+            slug:  'p_chauffant',
+        },
+        {
+            value: 'Radiateurs en fontes + Plancher Chauffant',
+            slug:  'r_fonte_p_chauffant',
+        },
+        {
+            value: 'Autre Radiateurs + Plancher Chauffant',
+            slug:  'r_autre_p_chauffant',
+        },
+    ];
+    // Température de consigne
+    lists[ 'setPointTemperatureList' ] = [
+        {
+            value: '19°C',
+            slug:  '19',
+        },
+        {
+            value: '20°C',
+            slug:  '20',
+        },
+    ];
+
     return lists;
 };
 
@@ -216,24 +329,29 @@ export const convertOldRrFile = ( oldData ): RrFile => {
         beneficiary:               convertOldBeneficiary( oldData ),
         codeBonus:                 getStringData( oldData[ 'codePrime' ] ),
         energyZone:                getStringData( oldData[ 'zoneEnergetique' ] ),
-        housing:                   {
-            nbOccupant:        getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
-            type:              getObjectData( oldData, [ 'logement', 'localType' ] ),
-            heatingType:       getObjectData( oldData, [ 'logement', 'chauffageType' ] ),
-            buildingNature:    getObjectData( oldData, [ 'logement', 'batimentNature' ] ),
-            isRentedHouse:     getObjectData( oldData, [ 'logement', 'batimentNature' ] ) === 'location',
-            isAddressBenef:    getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
-            address:           getObjectData( oldData, [ 'logement', 'adresse' ] ),
-            zipCode:           getObjectData( oldData, [ 'logement', 'codepostal' ] ),
-            city:              getObjectData( oldData, [ 'logement', 'ville' ] ),
-            plot:              getObjectData( oldData, [ 'logement', 'parcelle' ] ),
-            area:              getObjectData( oldData, [ 'logement', 'superficie' ] ),
-            dataGeoportail:    convertOldDataGeoportail( oldData ),
-            location:          getObjectData( oldData, [ 'logement', 'location' ] ),
-            insulationQuality: getNumberData( oldData [ 'logement' ][ 'qualiteIsolation' ] ),
-            constructionYear:  getNullableNumberData( oldData [ 'logement' ][ 'anneeConstruction' ] ),
-            lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
-            availableVoltage:  getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
+        housing:           {
+            nbOccupant:          getNumberData( oldData [ 'logement' ][ 'occupants' ] ),
+            type:                getObjectData( oldData, [ 'logement', 'localType' ] ),
+            heatingType:         getObjectData( oldData, [ 'logement', 'chauffageType' ] ),
+            buildingNature:      getObjectData( oldData, [ 'logement', 'batimentNature' ] ),
+            isRentedHouse:       getObjectData( oldData, [ 'logement', 'batimentNature' ] ) === 'location',
+            isAddressBenef:      getObjectData( oldData, [ 'logement', 'isAdresseBenef' ] ),
+            address:             getObjectData( oldData, [ 'logement', 'adresse' ] ),
+            zipCode:             getObjectData( oldData, [ 'logement', 'codepostal' ] ),
+            city:                getObjectData( oldData, [ 'logement', 'ville' ] ),
+            plot:                getObjectData( oldData, [ 'logement', 'parcelle' ] ),
+            area:                getObjectData( oldData, [ 'logement', 'superficie' ] ),
+            dataGeoportail:      convertOldDataGeoportail( oldData ),
+            location:            getObjectData( oldData, [ 'logement', 'location' ] ),
+            constructionYear:    getNullableNumberData( oldData [ 'logement' ][ 'anneeConstruction' ] ),
+            lessThan2Years:      getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
+            availableVoltage:    getObjectData( oldData, [ 'logement', 'tensionDisponible' ] ),
+            buildingCoefficient: 0.8,           // Anciennment Isolation
+            climaticZone:        'B',           // Zone climatique
+            altitude:            0,
+            heaters:             'r_fonte',     // Radiateurs
+            ceilingHeight:       2.5,           // Hauteur sous plafond
+            setPointTemperature: 19,            // Température de consigne
         },
         worksheet:         {
             period:               getObjectData( oldData, [ 'fiche', 'periodePose' ] ),

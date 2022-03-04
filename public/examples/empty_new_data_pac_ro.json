@@ -1393,31 +1393,31 @@
         "buildingCoefficientList": [
             {
                 "value": "0.6 - Entre 2013 et 2019",
-                "slug":  "0.6"
+                "slug": "0.6"
             },
             {
                 "value": "0.75 - Entre 2007 et 2012",
-                "slug":  "0.75"
+                "slug": "0.75"
             },
             {
                 "value": "0.8 - Entre 2001 et 2006",
-                "slug":  "0.8"
+                "slug": "0.8"
             },
             {
                 "value": "0.95 - Entre 1990 et 2000",
-                "slug":  "0.95"
+                "slug": "0.95"
             },
             {
                 "value": "1.15 - Entre 1983 et 1989",
-                "slug":  "1.15"
+                "slug": "1.15"
             },
             {
                 "value": "1.4 - Entre 1974 et 1982",
-                "slug":  "1.4"
+                "slug": "1.4"
             },
             {
                 "value": "1.7 -  Mal isolés et en simple vitrage",
-                "slug":  "1.7"
+                "slug": "1.7"
             }
         ],
         "climaticZoneList":        [
