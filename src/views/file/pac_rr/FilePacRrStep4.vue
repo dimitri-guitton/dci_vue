@@ -103,7 +103,7 @@
       </div>
     </template>
 
-    <options @optionsAreUpdated="updateOptions" :options="options"></options>
+    <options @optionsAreUpdated="updateOptions" :options="filteredOptions"></options>
 
     <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
 
@@ -189,6 +189,7 @@ export default defineComponent( {
                                     const _options      = ref<Option[]>( ( props.options as Option[] ) );
                                     const _blankOptions = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                     const lists         = ref<RrList>( ( props.fileData.lists as RrList ) );
+                                    console.log( 'OPTION -->', _options );
 
 
                                     const rrType     = ref<string>( ( props.fileData.quotation.rrType ) );
@@ -209,9 +210,42 @@ export default defineComponent( {
                                       _options.value = options;
                                     };
 
+                                    /**
+                                     * Ajoute ou enlève l'option Wifi selon les PAC
+                                     */
+                                    const enabledWifiOption = ( enabled: boolean ) => {
+                                      const wifiOption = _options.value.find( o => o.label === 'Wifi' );
+                                      if ( wifiOption === undefined ) {
+                                        return;
+                                      }
+
+                                      // Change le nombre de l'option WIFI pour l'activer ou non
+                                      _options.value = _options.value.map( o => {
+                                        if ( enabled && o.label === 'Wifi' ) {
+                                          return { ...o, number: 1 };
+                                        } else if ( !enabled && o.label === 'Wifi' ) {
+                                          return { ...o, number: 0 };
+                                        }
+                                        return o;
+                                      } );
+                                    };
+
                                     const updateBlankOtions = ( blankOptions ) => {
                                       _blankOptions.value = blankOptions;
                                     };
+
+                                    const filteredOptions = computed<Option[]>( () => {
+                                      console.log( '%c FILTERED OPTION', 'background: #FF0007; color: #000000' );
+                                      console.log( _options.value );
+
+                                      if ( rrType.value === 'multi' || assortment.value !== 'sensira' ) {
+                                        enabledWifiOption( false );
+                                        return _options.value.filter( o => o.label !== 'Wifi' );
+                                      }
+
+                                      enabledWifiOption( true );
+                                      return _options.value;
+                                    } );
 
                                     const assortmentLists = computed<ItemList[]>( () => {
                                       if ( rrType.value === 'multi' ) {
@@ -352,6 +386,7 @@ export default defineComponent( {
                                     return {
                                       lists,
                                       price,
+                                      filteredOptions,
                                       products,
                                       assortment,
                                       rrType,

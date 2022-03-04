@@ -1,6 +1,6 @@
 <template>
   <template v-if="options !== undefined && options.length > 0">
-    <template v-for="(option, index) in optionList" :key="option.id">
+    <template v-for="(option, index) in options" :key="option.id">
 
       <!-- Pour avoir l'id dans les datas-->
       <Field
@@ -57,7 +57,7 @@
 
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { ErrorMessage, Field } from 'vee-validate';
 import { Option } from '@/types/v2/File/Common/Option';
 import { numberToPrice } from '@/services/commonService';
@@ -70,20 +70,17 @@ export default defineComponent( {
                                   },
                                   props:      {
                                     options: {
-                                      type:    Array as () => Option[],
-                                      default: () => [],
+                                      type:     Array as () => Option[],
+                                      required: true,
                                     },
                                   },
                                   emits:      [ 'optionsAreUpdated' ],
                                   setup( props, ctx ) {
-                                    const optionList = ref( props.options );
-
                                     const onChangeOption = () => {
                                       ctx.emit( 'optionsAreUpdated', props.options );
                                     };
 
                                     return {
-                                      optionList,
                                       onChangeOption,
                                       numberToPrice,
                                     };
