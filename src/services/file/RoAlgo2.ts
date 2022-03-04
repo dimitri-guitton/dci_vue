@@ -1,8 +1,8 @@
+import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
+
 /**
  * Altitude suivi de la température de base
  */
-import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
-
 interface CoefTemperatureItem {
     0: number;
     201: number;
@@ -23,7 +23,7 @@ interface CoefTemperature {
  * -7 -> A -7°C
  * -15 -> A -15°C
  */
-interface PacOutput {
+interface UnitExtOutput {
     '-7': number;
     '-15': number;
 }
@@ -34,22 +34,22 @@ interface PacOutput {
  * 55 -> 55°C
  * 40 -> 40°C
  */
-interface PacItem {
+interface UnitExt {
     ref: string;
     size: number;
     output: {
-        65: PacOutput;
-        55: PacOutput;
-        40: PacOutput;
+        65: UnitExtOutput;
+        55: UnitExtOutput;
+        40: UnitExtOutput;
     };
 }
 
 /**
  * List des PAC par tension
  */
-interface PacList {
-    monophase: PacItem[];
-    triphase: PacItem[];
+interface UnitExtList {
+    monophase: UnitExt[];
+    triphase: UnitExt[];
 }
 
 interface UnitIntList {
@@ -157,7 +157,7 @@ const calcDeltaT = ( setPointTemperature: number, climaticZone: string, altitude
 /**
  * Calcul la puissance (KW) minimal requise de la PAC
  */
-export const calcRequiredPower = ( housing: PacHousing ): number => {
+const calcRequiredPower = ( housing: PacHousing ): number => {
     // Volume à chauffer
     const volume = housing.area * housing.ceilingHeight;
     console.log( 'Volume -->', volume );
@@ -178,9 +178,28 @@ export const calcRequiredPower = ( housing: PacHousing ): number => {
     return power / 1000;
 };
 
-export const getUnitExtRo = ( requiredPower: number, housing: PacHousing ) => {
+export const getUnitsRo = ( housing: PacHousing, volumeECS: number ): { unitExt: UnitExt; unitInt: UnitInt } | null => {
     console.log( '%c GET PAC RO', 'background: #1EFF6C; color: #000000' );
-    const pacList: PacList = {
+
+    const requiredPower    = calcRequiredPower( housing );
+    const baseTemp: number = getBaseTemperature( housing.climaticZone, housing.altitude );
+    const heaterValue      = heaterToValue( housing.heaters );
+    let formatedBaseTemp;
+    if ( baseTemp > -7 ) {
+        console.log( '%c IN', 'background: #fdd835; color: #000000' );
+        formatedBaseTemp = '-7';
+    } else {
+        console.log( '%c ELSE', 'background: #fdd835; color: #000000' );
+        formatedBaseTemp = '-15';
+    }
+
+    console.log( 'Required power', requiredPower );
+    console.log( 'baseTemp', baseTemp );
+    console.log( 'formatedBaseTemp', formatedBaseTemp );
+    console.log( 'housing.heaters', housing.heaters );
+    console.log( 'heaterValue', heaterValue );
+
+    const pacList: UnitExtList = {
         monophase: [
             {
                 ref:    'EPRA08EV3', // 70°C
@@ -516,27 +535,43 @@ export const getUnitExtRo = ( requiredPower: number, housing: PacHousing ) => {
         return null;
     }
 
-    // On filtre la liste pour trouver la PAC souhaiter
-    const res = pacList[ housing.availableVoltage ].filter( ( pac: PacItem ) => {
+    // On filtre la liste pour trouver la PAC souhaité
+    const filterredUnitExt: UnitExt[] = pacList[ housing.availableVoltage ].filter( ( pac: UnitExt ) => {
         // Si valeur de chauffage n'est pas défini
-        if ( pac.output[ heaterToValue( housing.heaters ) ] === undefined ) {
+        if ( pac.output[ heaterValue ] === undefined ) {
             return false;
         }
 
-        const baseTemp: number = getBaseTemperature( housing.climaticZone, housing.altitude );
-
-        let formatedBaseTemp;
-        if ( baseTemp < -7 ) {
-            formatedBaseTemp = '-7';
-        } else {
-            formatedBaseTemp = '-15';
-        }
-
         // On retourne la PAC que si sont output est supérieur à la puissance requise
-        return pac.output[ heaterToValue( housing.heaters ) ][ formatedBaseTemp ] > requiredPower;
+        return pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower;
     } );
 
-    console.log( 'RES', res );
+    let selectedUnitExt: UnitExt | null = null;
+
+    if ( filterredUnitExt.length === 1 ) {
+        selectedUnitExt = filterredUnitExt[ 0 ];
+    } else {
+        // Si il y a plus de 1 PAC on parcours les pacs et on récupère celle à la plus faible puissance (la plus proche de la puissance requise)
+        for ( const unitExt of filterredUnitExt ) {
+            console.log( unitExt );
+            if ( selectedUnitExt === null ) {
+                selectedUnitExt = unitExt;
+            } else {
+                if ( selectedUnitExt.output[ heaterValue ][ formatedBaseTemp ] > unitExt.output[ heaterValue ][ formatedBaseTemp ] ) {
+                    console.log( '%c IN IF ELSE', 'background: #00FF55; color: #000000' );
+                    selectedUnitExt = unitExt;
+                }
+            }
+        }
+    }
+
+    console.log( filterredUnitExt );
+    console.log( selectedUnitExt );
+    if ( selectedUnitExt === null ) {
+        return null;
+    }
+
+    console.log( 'selectedUnitExt -->', selectedUnitExt );
 
 
     const unitIntList: UnitIntList = {
@@ -717,8 +752,6 @@ export const getUnitExtRo = ( requiredPower: number, housing: PacHousing ) => {
                 hotWaterTank: 230,
                 bizone:       true,
             },
-
-
             {
                 ref:          'ETBH12E9W',
                 size:         12,
@@ -757,14 +790,28 @@ export const getUnitExtRo = ( requiredPower: number, housing: PacHousing ) => {
         return null;
     }
 
-    const hotWater = 230;
-    const bizone   = true;
-    const size     = res[ 0 ].size;
+    const hotWater = volumeECS;
+    const bizone   = isBiZone( housing.heaters );
+    const size     = selectedUnitExt.size;
 
-    const res2 = unitIntList[ housing.availableVoltage ].filter( ( unit: UnitInt ) => {
+    // ON récupère le model intérieur selon les infos renseigné
+    const filteredUnitInt = unitIntList[ housing.availableVoltage ].filter( ( unit: UnitInt ) => {
         return unit.hotWaterTank === hotWater && unit.bizone === bizone && unit.size === size;
     } );
 
-    console.log( 'RES2 -->', res2 );
+    console.log( filteredUnitInt );
+    let selectedUnitInt: UnitInt;
+    if ( filteredUnitInt.length === 0 ) {
+        return null;
+    } else {
+        selectedUnitInt = filteredUnitInt[ 0 ];
+    }
+
+    console.log( 'selectedUnitInt -->', selectedUnitInt );
+
+    return {
+        unitExt: selectedUnitExt,
+        unitInt: selectedUnitInt,
+    };
 };
 

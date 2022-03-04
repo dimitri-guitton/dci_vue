@@ -23,6 +23,11 @@ import RoList from '@/types/v2/File/Ro/RoList';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { FILE_PAC_RO } from '@/services/constantService';
+import path from 'path';
+import fs from 'fs';
+
+declare const __static: string;
+
 
 const getEtas = ( description: string ): number => {
     const regex = /etas.*(\d{3}).*%/gmi;
@@ -42,17 +47,21 @@ const getEtas = ( description: string ): number => {
 
 const convertOldRoProduct = ( oldData ): Product[] => {
     const roProducts: Product[] = [];
-    const oldProducts: []       = getObjectData( oldData,
-                                                 [
-                                                     'devis',
-                                                     'pompeAChaleur',
-                                                     'products',
-                                                 ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
-                                                                                            [
-                                                                                                'devis',
-                                                                                                'pompeAChaleur',
-                                                                                                'products',
-                                                                                            ] );
+    // const oldProducts: []       = getObjectData( oldData,
+    //                                              [
+    //                                                  'devis',
+    //                                                  'pompeAChaleur',
+    //                                                  'products',
+    //                                              ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+    //                                                                                         [
+    //                                                                                             'devis',
+    //                                                                                             'pompeAChaleur',
+    //                                                                                             'products',
+    //                                                                                         ] );
+
+
+    const pathToNewPac           = path.join( __static, '/data/new_pac_ro.json' );
+    const oldProducts: Product[] = JSON.parse( fs.readFileSync( pathToNewPac, 'utf8' ) );
 
     oldProducts.forEach( product => {
         roProducts.push( {
@@ -462,7 +471,6 @@ export const convertOldRoFile = ( oldData ): RoFile => {
                                 ? 150
                                 : getNumberData( oldData [ 'devis' ][ 'ro' ][ 'volumeECSDeporte' ] ),
             isEcsDeporte:       getBoolData( oldData [ 'devis' ][ 'ro' ][ 'isEcsDeporte' ] ),
-            isKitBiZone:        getBoolData( oldData [ 'devis' ][ 'ro' ][ 'isKitBiZone' ] ),
             ceilingHeight:      getNumberData( oldData [ 'devis' ][ 'ro' ][ 'hauteurSousPlafond' ] ),
             deviceToReplace:    {
                 type:  getObjectData( oldData, [ 'devis', 'ro', 'appareilRemplacer', 'type' ] ),

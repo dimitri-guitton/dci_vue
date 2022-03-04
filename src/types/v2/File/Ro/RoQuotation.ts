@@ -6,7 +6,6 @@ export interface RoQuotation extends BaseQuotation {
     volumeECS: number;
     volumeECSDeporte: number;
     isEcsDeporte: boolean;
-    isKitBiZone: boolean;
     ceilingHeight: number;  // Hauteur sous plafond
     deviceToReplace: {
         type?: string;

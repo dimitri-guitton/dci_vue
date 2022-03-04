@@ -1,7 +1,12 @@
 <template>
   <div class="row mb-10">
     <div class="col-md-6 fv-row">
-      <p>{{ product.label }}</p>
+      <template v-if="displayRef">
+        <p>{{ product.reference }} - {{ product.label }}</p>
+      </template>
+      <template v-else>
+        <p>{{ product.label }}</p>
+      </template>
     </div>
 
     <div class="col-md-2 fv-row">
@@ -30,9 +35,13 @@ import { numberToPrice } from '@/services/commonService';
 export default defineComponent( {
                                   name:  'row-price',
                                   props: {
-                                    product: {
+                                    product:    {
                                       type:     Object as () => Product,
                                       required: true,
+                                    },
+                                    displayRef: {
+                                      type:     Boolean,
+                                      required: false,
                                     },
                                   },
                                   setup() {

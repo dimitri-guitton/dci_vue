@@ -7,6 +7,5 @@ export interface PacRoStep4 extends BaseStep4 {
     isEcsDeporte: boolean;
     volumeECSDeporte: number;
     volumeECS: number;
-    isKitBiZone: boolean;
     cascadeSystem: boolean;
 }

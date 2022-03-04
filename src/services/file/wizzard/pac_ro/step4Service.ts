@@ -46,7 +46,6 @@ export const initPacRoFormDataStep4 = ( fileData: RoFile ): PacRoStep4 => {
         isEcsDeporte:         fileData.quotation.isEcsDeporte,
         volumeECSDeporte:     fileData.quotation.volumeECSDeporte,
         volumeECS:            fileData.quotation.volumeECS,
-        isKitBiZone:          fileData.quotation.isKitBiZone,
         cascadeSystem:        fileData.quotation.cascadeSystem,
     };
 };
@@ -63,7 +62,6 @@ export const yupPacRoConfigStep4 = () => {
                            isEcsDeporte:         Yup.boolean(),
                            volumeECSDeporte:     Yup.number(),
                            volumeECS:            Yup.number(),
-                           isKitBiZone:          Yup.boolean(),
                            cascadeSystem:        Yup.boolean(),
                            selectedProducts:     Yup.array()
                                                     .of(
@@ -153,7 +151,6 @@ export const validatePacRoStep4 = async ( data: PacRoFileStep, price: Price ): P
         volumeECS:          data.volumeECS,
         volumeECSDeporte:   data.volumeECSDeporte,
         isEcsDeporte:       data.isEcsDeporte,
-        isKitBiZone:        data.isKitBiZone,
         cascadeSystem:      data.cascadeSystem,
     };
 

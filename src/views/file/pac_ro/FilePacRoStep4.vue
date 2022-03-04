@@ -6,7 +6,6 @@
     <!--    <div class="row mt-10">-->
     <!--      <h1>Values</h1>-->
     <!--      <ul>-->
-    <!--        <li>isKitBiZone : {{ isKitBiZone }}</li>-->
     <!--        <li>isEcsDeporte : {{ isEcsDeporte }}</li>-->
     <!--        <li>volumeECS : {{ volumeECS }}</li>-->
     <!--        <li>volumeECSDeporte : {{ volumeECSDeporte }}</li>-->
@@ -101,28 +100,13 @@
       </template>
 
     </div>
-    <div class="row mt-10">
-      <div class="col-md-6 mb-5">
-        <label for="isKitBiZone" class="form-check form-switch form-check-custom">
-          <Field
-              type="checkbox"
-              class="form-check-input h-30px w-55px"
-              name="isKitBiZone"
-              id="isKitBiZone"
-              :value="true"
-              v-model="isKitBiZone"
-          />
-          <span class="form-check-label fw-bold text-gray-600 me-5">Kit Bi-zone</span>
-        </label>
-      </div>
-    </div>
 
     <el-divider class="mb-10"></el-divider>
 
     <step4-quotation-header></step4-quotation-header>
 
     <template v-for="p in products" v-bind:key="p.reference">
-      <row-price :product="p"></row-price>
+      <row-price :product="p" :display-ref="true"></row-price>
     </template>
 
     <template v-for="kit in selectedKitCascade" v-bind:key="kit.reference">
@@ -131,10 +115,6 @@
 
     <template v-for="ecs in selectedEcsDeportes" v-bind:key="ecs.reference">
       <row-price :product="ecs"></row-price>
-    </template>
-
-    <template v-for="kit in selectedKitBiZones" v-bind:key="kit.reference">
-      <row-price :product="kit"></row-price>
     </template>
 
     <!-- Formualaire caché afin de binder les values au formaulaire comme la sélection des produits se fait via l'algo-->
@@ -219,12 +199,12 @@ import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/services/file/wizzard/Price';
-import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
+import { getCodeBonus, getLessThan2Year, getProductByRef, getTva } from '@/services/data/dataService';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import RoList from '@/types/v2/File/Ro/RoList';
 import ItemList from '@/components/DCI/input/ItemList.vue';
 import RowPrice from '@/components/DCI/wizzard-file/rowPrice.vue';
-import { calcRequiredPower } from '@/services/file/RoAlgo2';
+import { getUnitsRo } from '@/services/file/RoAlgo2';
 
 export default defineComponent( {
                                   name:       'file-pac-ro-step-4',
@@ -255,11 +235,12 @@ export default defineComponent( {
                                     const lists         = ref<RoList>( ( props.fileData.lists as RoList ) );
 
                                     const deviceToReplace  = ref( props.fileData.quotation.deviceToReplace );
-                                    const isKitBiZone      = ref<boolean>( props.fileData.quotation.isKitBiZone );
                                     const isEcsDeporte     = ref<boolean>( props.fileData.quotation.isEcsDeporte );
                                     const volumeECS        = ref<number>( props.fileData.quotation.volumeECS );
                                     const volumeECSDeporte = ref<number>( props.fileData.quotation.volumeECSDeporte );
-                                    const cascadeSystem    = ref<boolean>( props.fileData.quotation.cascadeSystem );
+
+                                    // TODO REVOIR LE SYSTEME DE CASCADE
+                                    const cascadeSystem = ref<boolean>( props.fileData.quotation.cascadeSystem );
 
                                     const generateQuotation = () => {
                                       ctx.emit( 'generateQuotation' );
@@ -280,7 +261,8 @@ export default defineComponent( {
                                     const updateCascadeSystem = ( value: boolean ) => {
                                       cascadeSystem.value = value;
                                     };
-                                    const resetVolumeECS      = ( isEcsDeporte: boolean ) => {
+
+                                    const resetVolumeECS = ( isEcsDeporte: boolean ) => {
                                       if ( isEcsDeporte ) {
                                         volumeECS.value = 0;
                                       } else {
@@ -288,7 +270,6 @@ export default defineComponent( {
                                       }
                                     };
 
-                                    const kitBiZones = props.fileData.quotation.products.filter( p => p.productType === 'kit_bi_zone' );
                                     const ecsDeporte = props.fileData.quotation.products.filter( p => p.productType === 'ecs' );
                                     const kitCascade = props.fileData.quotation.products.filter( p => p.productType === 'kit_cascade' );
 
@@ -311,20 +292,24 @@ export default defineComponent( {
                                       return kitCascade;
                                     } );
 
-                                    const selectedKitBiZones = computed<Product[]>( () => {
-                                      if ( !isKitBiZone.value ) {
-                                        return [];
-                                      }
-                                      return kitBiZones;
-                                    } );
-
-
                                     const products = computed<Product[]>(
                                         () => {
-
-                                          const response = calcRequiredPower( props.fileData.housing );
+                                          const response = getUnitsRo( props.fileData.housing, volumeECS.value );
                                           console.log( 'Response', response );
-                                          return [];
+
+                                          if ( response === null ) {
+                                            return [];
+                                          }
+
+                                          const productExt: Product | undefined = getProductByRef( response.unitExt.ref );
+                                          const productInt: Product | undefined = getProductByRef( response.unitInt.ref );
+
+                                          console.log( 'productExt -->', productExt );
+                                          console.log( 'productInt -->', productInt );
+                                          if ( productExt === undefined || productInt === undefined ) {
+                                            return [];
+                                          }
+                                          return [ productExt, productInt ];
                                           // const response = getPacRo( props.fileData.quotation.ceilingHeight,
                                           //                            props.fileData.housing.area,
                                           //                            props.fileData.energyZone,
@@ -360,13 +345,11 @@ export default defineComponent( {
                                       console.log( [
                                                      ...selectedEcsDeportes.value,
                                                      ...selectedKitCascade.value,
-                                                     ...selectedKitBiZones.value,
                                                      ...products.value,
                                                    ] );
                                       return [
                                         ...selectedEcsDeportes.value,
                                         ...selectedKitCascade.value,
-                                        ...selectedKitBiZones.value,
                                         ...products.value,
                                       ];
                                     } );
@@ -388,10 +371,6 @@ export default defineComponent( {
                                       }
 
                                       for ( const product of selectedKitCascade.value ) {
-                                        totalHt += product.pu * product.quantity;
-                                      }
-
-                                      for ( const product of selectedKitBiZones.value ) {
                                         totalHt += product.pu * product.quantity;
                                       }
 
@@ -457,7 +436,6 @@ export default defineComponent( {
 
                                     console.log( '%c END SET UP', 'background: #fdd835; color: #000000' );
                                     console.log( ecsDeporte );
-                                    console.log( kitBiZones );
                                     console.log( kitCascade );
                                     console.log( products );
                                     console.log( '%c END SET UP', 'background: #fdd835; color: #000000' );
@@ -467,8 +445,6 @@ export default defineComponent( {
                                       deviceToReplace,
                                       selectedEcsDeportes,
                                       selectedKitCascade,
-                                      selectedKitBiZones,
-                                      isKitBiZone,
                                       isEcsDeporte,
                                       volumeECS,
                                       volumeECSDeporte,

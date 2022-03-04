@@ -268,6 +268,7 @@ export const getProductById = ( id: number ): Product => {
 };
 
 export const getProductByRef = ( ref: string ): Product | undefined => {
+    console.log( 'Get product by ref -->', ref );
     const fileData = getCurrentFileData();
 
     return fileData.quotation.products.find( ( p: Product ) => p.reference === ref );
