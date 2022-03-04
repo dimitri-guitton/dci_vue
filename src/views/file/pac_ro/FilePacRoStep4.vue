@@ -106,7 +106,7 @@
     <step4-quotation-header></step4-quotation-header>
 
     <template v-for="p in products" v-bind:key="p.reference">
-      <row-price :product="p" :display-ref="true"></row-price>
+      <row-price :product="p"></row-price>
     </template>
 
     <template v-for="kit in selectedKitCascade" v-bind:key="kit.reference">
@@ -296,6 +296,8 @@ export default defineComponent( {
 
                                     const products = computed<Product[]>(
                                         () => {
+
+                                          roAlgo.updateHousing( props.fileData.housing );
                                           const response = roAlgo.getUnitsRo( volumeECS.value );
                                           console.log( 'Response', response );
 

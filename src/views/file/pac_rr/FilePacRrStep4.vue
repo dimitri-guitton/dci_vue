@@ -66,7 +66,7 @@
     <step4-quotation-header></step4-quotation-header>
 
     <template v-for="p in products" v-bind:key="p.reference">
-      <row-price :product="p" :display-ref="true"></row-price>
+      <row-price :product="p"></row-price>
     </template>
     <template v-if="!products.length">
       <h6>Aucun produit de trouvé</h6>

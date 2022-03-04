@@ -118,7 +118,7 @@ export class RoAlgo extends PacAlgo {
                     },
                 },
                 {
-                    ref:    'EPRA14EV3', // 70°C
+                    ref:    'EPRA14DV3', // 70°C
                     size:   14,
                     output: {
                         65: {
@@ -136,7 +136,7 @@ export class RoAlgo extends PacAlgo {
                     },
                 },
                 {
-                    ref:    'EPRA16EV3', // 70°C
+                    ref:    'EPRA16DV3', // 70°C
                     size:   16,
                     output: {
                         65: {
@@ -154,7 +154,7 @@ export class RoAlgo extends PacAlgo {
                     },
                 },
                 {
-                    ref:    'EPRA18EV3', // 70°C
+                    ref:    'EPRA18DV3', // 70°C
                     size:   18,
                     output: {
                         65: {
@@ -226,7 +226,7 @@ export class RoAlgo extends PacAlgo {
                     },
                 },
                 {
-                    ref:    'EPGA11EV',
+                    ref:    'EPGA11DV',
                     size:   11,
                     output: {
                         65: {
@@ -244,7 +244,7 @@ export class RoAlgo extends PacAlgo {
                     },
                 },
                 {
-                    ref:    'EPGA14EV',
+                    ref:    'EPGA14DV',
                     size:   14,
                     output: {
                         65: {
@@ -262,7 +262,7 @@ export class RoAlgo extends PacAlgo {
                     },
                 },
                 {
-                    ref:    'EPGA16EV',
+                    ref:    'EPGA16DV',
                     size:   16,
                     output: {
                         65: {
@@ -336,7 +336,7 @@ export class RoAlgo extends PacAlgo {
                     },
                 },
                 {
-                    ref:    'EPRA14EW1', // 70°C
+                    ref:    'EPRA14DW1', // 70°C
                     size:   14,
                     output: {
                         65: {
@@ -354,7 +354,7 @@ export class RoAlgo extends PacAlgo {
                     },
                 },
                 {
-                    ref:    'EPRA16EW1', // 70°C
+                    ref:    'EPRA16DW1', // 70°C
                     size:   16,
                     output: {
                         65: {
@@ -372,7 +372,7 @@ export class RoAlgo extends PacAlgo {
                     },
                 },
                 {
-                    ref:    'EPRA18EW1', // 70°C
+                    ref:    'EPRA18DW1', // 70°C
                     size:   18,
                     output: {
                         65: {
@@ -691,6 +691,7 @@ export class RoAlgo extends PacAlgo {
         }
 
         if ( selectedUnitExt === null ) {
+            console.warn( 'Impossible de trouvé une unité extérieur' );
             return null;
         }
 
@@ -703,6 +704,12 @@ export class RoAlgo extends PacAlgo {
         const bizone   = this.isBiZone( this.housing.heaters );
         const size     = selectedUnitExt.size;
 
+        console.log( {
+                         'volume_ECS': hotWater,
+                         'bizone':     bizone,
+                         'size':       size,
+                     } );
+
         // ON récupère le model intérieur selon les infos renseigné
         const filteredUnitInt = this.unitIntList[ this.housing.availableVoltage ].filter( ( unit: UnitInt ) => {
             return unit.hotWaterTank === hotWater && unit.bizone === bizone && unit.size === size;
@@ -710,6 +717,7 @@ export class RoAlgo extends PacAlgo {
 
         let selectedUnitInt: UnitInt;
         if ( filteredUnitInt.length === 0 ) {
+            console.warn( 'Impossible de trouvé une unité intérieur' );
             return null;
         } else {
             selectedUnitInt = filteredUnitInt[ 0 ];

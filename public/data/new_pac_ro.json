@@ -1,470 +1,470 @@
 [
-  {
-    "id":        1,
-    "ref":       "EPRA08EV3",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 5539,
-    "pu":        5539,
-    "quantity":  1
-  },
-  {
-    "id":        2,
-    "ref":       "EPRA08EW1",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 5539,
-    "pu":        5539,
-    "quantity":  1
-  },
-  {
-    "id":        3,
-    "ref":       "EPRA10EV3",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 5903,
-    "pu":        5903,
-    "quantity":  1
-  },
-  {
-    "id":        4,
-    "ref":       "EPRA10EW1",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 5903,
-    "pu":        5903,
-    "quantity":  1
-  },
-  {
-    "id":        5,
-    "ref":       "EPRA12EV3",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 6267,
-    "pu":        6267,
-    "quantity":  1
-  },
-  {
-    "id":        6,
-    "ref":       "EPRA12EW1",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 6267,
-    "pu":        6267,
-    "quantity":  1
-  },
-  {
-    "id":        7,
-    "ref":       "EPRA14DV3",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 6811,
-    "pu":        6811,
-    "quantity":  1
-  },
-  {
-    "id":        8,
-    "ref":       "EPRA16EV3",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 7415,
-    "pu":        7415,
-    "quantity":  1
-  },
-  {
-    "id":        9,
-    "ref":       "EPRA18EV3",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 8578,
-    "pu":        8578,
-    "quantity":  1
-  },
-  {
-    "id":        10,
-    "ref":       "EPRA14EW1",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 6811,
-    "pu":        6811,
-    "quantity":  1
-  },
-  {
-    "id":        11,
-    "ref":       "EPRA16EW1",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 7415,
-    "pu":        7415,
-    "quantity":  1
-  },
-  {
-    "id":        12,
-    "ref":       "EPRA18EW1",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 8578,
-    "pu":        8578,
-    "quantity":  1
-  },
-  {
-    "id":        13,
-    "ref":       "ERGA04EV",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 2210,
-    "pu":        2210,
-    "quantity":  1
-  },
-  {
-    "id":        14,
-    "ref":       "ERGA06EV",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 2339,
-    "pu":        2339,
-    "quantity":  1
-  },
-  {
-    "id":        15,
-    "ref":       "ERGA08EV",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 3675,
-    "pu":        3675,
-    "quantity":  1
-  },
-  {
-    "id":        16,
-    "ref":       "EPGA11EV",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 5131,
-    "pu":        5131,
-    "quantity":  1
-  },
-  {
-    "id":        17,
-    "ref":       "EPGA14EV",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 5646,
-    "pu":        5646,
-    "quantity":  1
-  },
-  {
-    "id":        18,
-    "ref":       "EPGA16EV",
-    "label":     "GROUPE EXTERIEURE DAIKIN",
-    "descr":     "GROUPE EXTERIEURE DAIKIN",
-    "defaultPU": 6251,
-    "pu":        6251,
-    "quantity":  1
-  },
-  {
-    "id":        19,
-    "ref":       "ETBH12E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 4609,
-    "pu":        4609,
-    "quantity":  1
-  },
-  {
-    "id":        20,
-    "ref":       "ETBH12E9W",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 4609,
-    "pu":        4609,
-    "quantity":  1
-  },
-  {
-    "id":        21,
-    "ref":       "ETVH12S18E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 6891,
-    "pu":        6891,
-    "quantity":  1
-  },
-  {
-    "id":        22,
-    "ref":       "ETVH12S18E9W",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 6891,
-    "pu":        6891,
-    "quantity":  1
-  },
-  {
-    "id":        23,
-    "ref":       "ETVZ12S18E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 8524,
-    "pu":        8524,
-    "quantity":  1
-  },
-  {
-    "id":        24,
-    "ref":       "ETVZ12S18E9W",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 8524,
-    "pu":        8524,
-    "quantity":  1
-  },
-  {
-    "id":        25,
-    "ref":       "ETVH12S23E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 7160,
-    "pu":        7160,
-    "quantity":  1
-  },
-  {
-    "id":        26,
-    "ref":       "ETVH12S23E9W",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 7160,
-    "pu":        7160,
-    "quantity":  1
-  },
-  {
-    "id":        27,
-    "ref":       "ETVZ12S23E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 8796,
-    "pu":        8796,
-    "quantity":  1
-  },
-  {
-    "id":        28,
-    "ref":       "ETVZ12S23E9W",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 8796,
-    "pu":        8796,
-    "quantity":  1
-  },
-  {
-    "id":        29,
-    "ref":       "ETBH16E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 4894,
-    "pu":        4894,
-    "quantity":  1
-  },
-  {
-    "id":        30,
-    "ref":       "ETBH16E9W",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 4894,
-    "pu":        4894,
-    "quantity":  1
-  },
-  {
-    "id":        31,
-    "ref":       "ETVH16S18E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 7137,
-    "pu":        7137,
-    "quantity":  1
-  },
-  {
-    "id":        32,
-    "ref":       "ETVH16S23E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 7403,
-    "pu":        7403,
-    "quantity":  1
-  },
-  {
-    "id":        33,
-    "ref":       "ETVH16S18E9W",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 7137,
-    "pu":        7137,
-    "quantity":  1
-  },
-  {
-    "id":        34,
-    "ref":       "ETVH16S23E9W",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 7403,
-    "pu":        7403,
-    "quantity":  1
-  },
-  {
-    "id":        35,
-    "ref":       "ETVZ16S18E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 8745,
-    "pu":        8745,
-    "quantity":  1
-  },
-  {
-    "id":        36,
-    "ref":       "ETVZ16S23E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 9013,
-    "pu":        9013,
-    "quantity":  1
-  },
-  {
-    "id":        37,
-    "ref":       "ETVZ16S18E9W",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 8745,
-    "pu":        8745,
-    "quantity":  1
-  },
-  {
-    "id":        38,
-    "ref":       "ETVZ16S23E9W",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 9013,
-    "pu":        9013,
-    "quantity":  1
-  },
-  {
-    "id":        39,
-    "ref":       "EHBH04E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 3689,
-    "pu":        3689,
-    "quantity":  1
-  },
-  {
-    "id":        40,
-    "ref":       "EHBH08E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 3885,
-    "pu":        3885,
-    "quantity":  1
-  },
-  {
-    "id":        41,
-    "ref":       "EHVH04S18E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 5583,
-    "pu":        5583,
-    "quantity":  1
-  },
-  {
-    "id":        42,
-    "ref":       "EHVH04S23E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 5861,
-    "pu":        5861,
-    "quantity":  1
-  },
-  {
-    "id":        43,
-    "ref":       "EHVH08S18E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 5771,
-    "pu":        5771,
-    "quantity":  1
-  },
-  {
-    "id":        44,
-    "ref":       "EHVH08S23E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 6061,
-    "pu":        6061,
-    "quantity":  1
-  },
-  {
-    "id":        45,
-    "ref":       "EHVZ04S18E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 7038,
-    "pu":        7038,
-    "quantity":  1
-  },
-  {
-    "id":        46,
-    "ref":       "EHVZ08S18E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 7221,
-    "pu":        7221,
-    "quantity":  1
-  },
-  {
-    "id":        47,
-    "ref":       "EHVZ08S23E6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 7585,
-    "pu":        7585,
-    "quantity":  1
-  },
-  {
-    "id":        48,
-    "ref":       "EABH16D6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 4989,
-    "pu":        4989,
-    "quantity":  1
-  },
-  {
-    "id":        49,
-    "ref":       "EAVH16S18D6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 7275,
-    "pu":        7275,
-    "quantity":  1
-  },
-  {
-    "id":        50,
-    "ref":       "EAVH16S23D6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 7546,
-    "pu":        7546,
-    "quantity":  1
-  },
-  {
-    "id":        51,
-    "ref":       "EAVZ16S18D6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 8915,
-    "pu":        8915,
-    "quantity":  1
-  },
-  {
-    "id":        52,
-    "ref":       "EAVZ16S23D6V",
-    "label":     "UNITÉ INTÉRIEUR DAIKIN",
-    "descr":     "UNITÉ INTÉRIEUR DAIKIN",
-    "defaultPU": 9188,
-    "pu":        9188,
-    "quantity":  1
-  }
+    {
+        "id":        1,
+        "ref":       "EPRA08EV3",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA08EV3",
+        "descr":     "GROUPE EXTERIEURE DAIKIN",
+        "defaultPU": 5539,
+        "pu":        5539,
+        "quantity":  1
+    },
+    {
+        "id":        2,
+        "ref":       "EPRA08EW1",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA08EW1",
+        "descr":     "GROUPE EXTERIEURE DAIKIN",
+        "defaultPU": 5539,
+        "pu":        5539,
+        "quantity":  1
+    },
+    {
+        "id":        3,
+        "ref":       "EPRA10EV3",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA10EV3",
+        "descr":     "GROUPE EXTERIEURE DAIKIN",
+        "defaultPU": 5903,
+        "pu":        5903,
+        "quantity":  1
+    },
+    {
+        "id":        4,
+        "ref":       "EPRA10EW1",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA10EW1",
+        "descr":     "GROUPE EXTERIEURE DAIKIN",
+        "defaultPU": 5903,
+        "pu":        5903,
+        "quantity":  1
+    },
+    {
+        "id":        5,
+        "ref":       "EPRA12EV3",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA12EV3",
+        "descr":     "GROUPE EXTERIEURE DAIKIN",
+        "defaultPU": 6267,
+        "pu":        6267,
+        "quantity":  1
+    },
+    {
+        "id":        6,
+        "ref":       "EPRA12EW1",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA12EW1",
+        "descr":     "GROUPE EXTERIEURE DAIKIN",
+        "defaultPU": 6267,
+        "pu":        6267,
+        "quantity":  1
+    },
+    {
+        "id":        7,
+        "ref":       "EPRA14DV3",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA14DV3",
+        "descr":     "- Puissance calorifique à 60°C +7°c/-7°c : 10,16/10,06 kW\n- COP +7°c/-7°c : 2,61/2,01\n- ETAs : 140 %\n- Classe énergétique : A++\n- Dimension : 1003*1270*533 mm Poids : 146kg\n- Plage de fonctionnement : -28°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 32 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 19,17 € HT",
+        "defaultPU": 6830.17,
+        "pu":        6830.17,
+        "quantity":  1
+    },
+    {
+        "id":        8,
+        "ref":       "EPRA16DV3",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA16DV3",
+        "descr":     "- Puissance calorifique à 60°C +7°c/-7°c : 11,13/11,44 kW\n- COP +7°c/-7°c : 2,61/2,01\n- ETAs : 140 %\n- Classe énergétique : A++\n- Dimension : 1003*1270*533 mm Poids : 146kg\n- Plage de fonctionnement : -28°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 32 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 19,17 € HT",
+        "defaultPU": 7434.17,
+        "pu":        7434.17,
+        "quantity":  1
+    },
+    {
+        "id":        9,
+        "ref":       "EPRA18DV3",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA18DV3",
+        "descr":     "- Puissance calorifique à 60°C +7°c/-7°c : 12,10/11,97 kW\n- COP +7°c/-7°c : 2,61/2,01\n- ETAs : 140 %\n- Classe énergétique : A++\n- Dimension : 1003*1270*533 mm Poids : 146kg\n- Plage de fonctionnement : -28°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 32 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 19,17 € HT",
+        "defaultPU": 8597.17,
+        "pu":        8597.17,
+        "quantity":  1
+    },
+    {
+        "id":        10,
+        "ref":       "EPRA14DW1",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA14DW1",
+        "descr":     "- Puissance calorifique à 60°C +7°c/-7°c : 10,18/10,47 kW\n- COP +7°c/-7°c : 2,62/2,05\n- ETAs : 140 %\n- Classe énergétique : A++\n- Dimension : 1003*1270*533 mm Poids : 151kg\n- Plage de fonctionnement : -28°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 32 dB(a)\n- Alimentation électrique : TRIPHASÉE\n- Dont éco-participation 19,17 € HT",
+        "defaultPU": 6830.17,
+        "pu":        6830.17,
+        "quantity":  1
+    },
+    {
+        "id":        11,
+        "ref":       "EPRA16DW1",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA16DW1",
+        "descr":     "- Puissance calorifique à 60°C +7°c/-7°c : 11,15/11,91 kW\n- COP +7°c/-7°c : 2,61/2,03\n- ETAs : 140 %\n- Classe énergétique : A++\n- Dimension : 1003*1270*533 mm Poids : 151kg\n- Plage de fonctionnement : -28°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 32 dB(a)\n- Alimentation électrique : TRIPHASÉE\n- Dont éco-participation 19,17 € HT",
+        "defaultPU": 7434.17,
+        "pu":        7434.17,
+        "quantity":  1
+    },
+    {
+        "id":        12,
+        "ref":       "EPRA18DW1",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA18DW1",
+        "descr":     "- Puissance calorifique à 60°C +7°c/-7°c : 12,11/12,47 kW\n- COP +7°c/-7°c : 2,62/2,03\n- ETAs : 140 %\n- Classe énergétique : A++\n- Dimension : 1003*1270*533 mm Poids : 146kg\n- Plage de fonctionnement : -28°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 32 dB(a)\n- Alimentation électrique : triphasée\n- Dont éco-participation 19,17 € HT",
+        "defaultPU": 8597.17,
+        "pu":        8597.17,
+        "quantity":  1
+    },
+    {
+        "id":        13,
+        "ref":       "ERGA04EV",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE ERGA04EV",
+        "descr":     "- Puissance calorifique +7°c/-7°c : 4,90/4,37 kW\n- COP +7°c/-7°c : 2,65/1,6\n- ETAs : 127 %\n- Classe énergétique : A++\n- Dimension : 740*884*388 mm Poids : 58,5kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 36 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 6,67 € HT",
+        "defaultPU": 2216.67,
+        "pu":        2216.67,
+        "quantity":  1
+    },
+    {
+        "id":        14,
+        "ref":       "ERGA06EV",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE ERGA06EV",
+        "descr":     "- Puissance calorifique +7°c/-7°c : 5,81/5,72 kW\n- COP +7°c/-7°c : 2,7/1,74\n- ETAs : 127 %\n- Classe énergétique : A++\n- Dimension : 740*884*388 mm Poids : 58,5kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 38 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 6,67 € HT",
+        "defaultPU": 2345.67,
+        "pu":        2345.67,
+        "quantity":  1
+    },
+    {
+        "id":        15,
+        "ref":       "ERGA08EV",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE ERGA08EV",
+        "descr":     "- Puissance calorifique +7°c/-7°c : 7,51/7,43 kW\n- COP +7°c/-7°c : 2,70/1,83\n- ETAs : 130 %\n- Classe énergétique : A++\n- Dimension : 740*884*388 mm Poids : 58,5kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 40 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 6,67 € HT",
+        "defaultPU": 3681.67,
+        "pu":        3681.67,
+        "quantity":  1
+    },
+    {
+        "id":        16,
+        "ref":       "EPGA11DV",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE EPGA11DV",
+        "descr":     "- Puissance calorifique +7°c/-7°c : 15,19/10,12 kW\n- COP +7°c/-7°c : 2,89/2,28\n- ETAs : 129 %\n- Classe énergétique : A++\n- Dimension : 1440*1160*380 mm Poids : 143kg\n- Plage de fonctionnement : -25°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 42 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 19,17 € HT",
+        "defaultPU": 5150.17,
+        "pu":        5150.17,
+        "quantity":  1
+    },
+    {
+        "id":        17,
+        "ref":       "EPGA14DV",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE EPGA14DV",
+        "descr":     "- Puissance calorifique +7°c/-7°c : 17,09/12,38 kW\n- COP +7°c/-7°c : 3/2,31\n- ETAs : 130 %\n- Classe énergétique : A++\n- Dimension : 1440*1160*380 mm Poids : 143kg\n- Plage de fonctionnement : -25°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 42 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 19,17 € HT",
+        "defaultPU": 5665.17,
+        "pu":        5665.17,
+        "quantity":  1
+    },
+    {
+        "id":        18,
+        "ref":       "EPGA16DV",
+        "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE EPGA16DV",
+        "descr":     "- Puissance calorifique +7°c/-7°c : 18,99/12,65 kW\n- COP +7°c/-7°c : 2,99/2,09\n- ETAs : 133 %\n- Classe énergétique : A++\n- Dimension : 1440*1160*380 mm Poids : 143kg\n- Plage de fonctionnement : -25°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 44 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 19,17 € HT",
+        "defaultPU": 6270.17,
+        "pu":        6270.17,
+        "quantity":  1
+    },
+    {
+        "id":        19,
+        "ref":       "ETBH12E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETBH12E6V",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 4609,
+        "pu":        4609,
+        "quantity":  1
+    },
+    {
+        "id":        20,
+        "ref":       "ETBH12E9W",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETBH12E9W",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 4609,
+        "pu":        4609,
+        "quantity":  1
+    },
+    {
+        "id":        21,
+        "ref":       "ETVH12S18E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVH12S18E6V",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 6891,
+        "pu":        6891,
+        "quantity":  1
+    },
+    {
+        "id":        22,
+        "ref":       "ETVH12S18E9W",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVH12S18E9W",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 6891,
+        "pu":        6891,
+        "quantity":  1
+    },
+    {
+        "id":        23,
+        "ref":       "ETVZ12S18E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ12S18E6V",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 8524,
+        "pu":        8524,
+        "quantity":  1
+    },
+    {
+        "id":        24,
+        "ref":       "ETVZ12S18E9W",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ12S18E9W",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 8524,
+        "pu":        8524,
+        "quantity":  1
+    },
+    {
+        "id":        25,
+        "ref":       "ETVH12S23E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVH12S23E6V",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 7160,
+        "pu":        7160,
+        "quantity":  1
+    },
+    {
+        "id":        26,
+        "ref":       "ETVH12S23E9W",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVH12S23E9W",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 7160,
+        "pu":        7160,
+        "quantity":  1
+    },
+    {
+        "id":        27,
+        "ref":       "ETVZ12S23E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ12S23E6V",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 8796,
+        "pu":        8796,
+        "quantity":  1
+    },
+    {
+        "id":        28,
+        "ref":       "ETVZ12S23E9W",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ12S23E9W",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 8796,
+        "pu":        8796,
+        "quantity":  1
+    },
+    {
+        "id":        29,
+        "ref":       "ETBH16E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETBH16E6V",
+        "descr":     "- Chauffage seul\n- Dimension : 840*440*390 mm Poids : 38kg\n- Pression sonore (à 1m) : 30 dB(a)\n- Appoint électrique : 6 Kw\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 4902.33,
+        "pu":        4902.33,
+        "quantity":  1
+    },
+    {
+        "id":        30,
+        "ref":       "ETBH16E9W",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETBH16E9W",
+        "descr":     "- Chauffage seul\n- Dimension : 840*440*390 mm Poids : 38kg\n- Pression sonore (à 1m) : 30 dB(a)\n- Appoint électrique : 9 Kw\n- Alimentation électrique : TRIPHASEE\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 4902.33,
+        "pu":        4902.33,
+        "quantity":  1
+    },
+    {
+        "id":        31,
+        "ref":       "ETVH16S18E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S18E6V",
+        "descr":     "- Chauffage + ECS\n- Volume ECS : 180 L\n- Dimension : 1650*595*600 mm Poids : 109kg\n- Pression sonore (à 1m) : 30 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 7145.33,
+        "pu":        7145.33,
+        "quantity":  1
+    },
+    {
+        "id":        32,
+        "ref":       "ETVH16S23E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S18E6V",
+        "descr":     "- Chauffage + ECS\n- Volume ECS : 230 L\n- Dimension : 1850*595*600 mm Poids : 118kg\n- Pression sonore (à 1m) : 30 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 7411.33,
+        "pu":        7411.33,
+        "quantity":  1
+    },
+    {
+        "id":        33,
+        "ref":       "ETVH16S18E9W",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S18E9W",
+        "descr":     "- Chauffage + ECS\n- Volume ECS : 180 L\n- Dimension : 1650*595*600 mm Poids : 109kg\n- Pression sonore (à 1m) : 30 dB(a)\n- Appoint électrique : 9 kW\n- Alimentation électrique : TRIPHASÉE\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 7145.33,
+        "pu":        7145.33,
+        "quantity":  1
+    },
+    {
+        "id":        34,
+        "ref":       "ETVH16S23E9W",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S23E9W",
+        "descr":     "- Chauffage + ECS\n- Volume ECS : 230 L\n- Dimension : 1850*595*600 mm Poids : 118kg\n- Pression sonore (à 1m) : 30 dB(a)\n- Appoint électrique : 9 kW\n- Alimentation électrique : TRIPHASÉE\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 7411.33,
+        "pu":        7411.33,
+        "quantity":  1
+    },
+    {
+        "id":        35,
+        "ref":       "ETVZ16S18E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ16S18E6V",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 8745,
+        "pu":        8745,
+        "quantity":  1
+    },
+    {
+        "id":        36,
+        "ref":       "ETVZ16S23E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ16S23E6V",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 9013,
+        "pu":        9013,
+        "quantity":  1
+    },
+    {
+        "id":        37,
+        "ref":       "ETVZ16S18E9W",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ16S18E9W",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 8745,
+        "pu":        8745,
+        "quantity":  1
+    },
+    {
+        "id":        38,
+        "ref":       "ETVZ16S23E9W",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ16S23E9W",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 9013,
+        "pu":        9013,
+        "quantity":  1
+    },
+    {
+        "id":        39,
+        "ref":       "EHBH04E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EHBH04E6V",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 3689,
+        "pu":        3689,
+        "quantity":  1
+    },
+    {
+        "id":        40,
+        "ref":       "EHBH08E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EBH08D6V",
+        "descr":     "- Chauffage seul\n- Dimension : 840*440*390 mm Poids : 42kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 28 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 3618.33,
+        "pu":        3618.33,
+        "quantity":  1
+    },
+    {
+        "id":        41,
+        "ref":       "EHVH04S18E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EHVH04S18E6V",
+        "descr":     "- Chauffage + ECS\n- Volume ECS : 180 L\n- Dimension : 1650*595*600 mm Poids : 131kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 28 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 5583,
+        "pu":        5583,
+        "quantity":  1
+    },
+    {
+        "id":        42,
+        "ref":       "EHVH04S23E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EHVH04S23E6V",
+        "descr":     "- Chauffage + ECS\n- Volume ECS : 230 L\n- Dimension : 1850*595*600 mm Poids : 139kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 28 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 5861,
+        "pu":        5861,
+        "quantity":  1
+    },
+    {
+        "id":        43,
+        "ref":       "EHVH08S18E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S18E6V",
+        "descr":     "- Chauffage + ECS\n- Volume ECS : 180 L\n- Dimension : 1650*595*600 mm Poids : 131kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 28 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 5771,
+        "pu":        5771,
+        "quantity":  1
+    },
+    {
+        "id":        44,
+        "ref":       "EHVH08S23E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S23E6V",
+        "descr":     "- Chauffage + ECS\n- Volume ECS : 230 L\n- Dimension : 1850*595*600 mm Poids : 139kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 28 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 6061,
+        "pu":        6061,
+        "quantity":  1
+    },
+    {
+        "id":        45,
+        "ref":       "EHVZ04S18E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EHVZ04S18E6V",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 7038,
+        "pu":        7038,
+        "quantity":  1
+    },
+    {
+        "id":        46,
+        "ref":       "EHVZ08S18E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EHVZ08S18E6V",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 7221,
+        "pu":        7221,
+        "quantity":  1
+    },
+    {
+        "id":        47,
+        "ref":       "EHVZ08S23E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EHVZ08S23E6V",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 7585,
+        "pu":        7585,
+        "quantity":  1
+    },
+    {
+        "id":        48,
+        "ref":       "EABH16D6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EABH16D6V",
+        "descr":     "- Chauffage seul\n- Dimension : 840*440*390 mm Poids : 38kg\n- Plage de fonctionnement : -25°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 36 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 4989,
+        "pu":        4989,
+        "quantity":  1
+    },
+    {
+        "id":        49,
+        "ref":       "EAVH16S18D6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EAVH16S18D6V",
+        "descr":     "- Chauffage + ECS\n- Volume ECS : 180 L\n- Dimension : 1650*595*600 mm Poids : 109kg\n- Plage de fonctionnement : -25°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 36 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 7275,
+        "pu":        7275,
+        "quantity":  1
+    },
+    {
+        "id":        50,
+        "ref":       "EAVH16S23D6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EAVH16S23D6V",
+        "descr":     "- Chauffage + ECS\n- Volume ECS : 230 L\n- Dimension : 1850*595*600 mm Poids : 118kg\n- Plage de fonctionnement : -25°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 36 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
+        "defaultPU": 7546,
+        "pu":        7546,
+        "quantity":  1
+    },
+    {
+        "id":        51,
+        "ref":       "EAVZ16S18E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EAVZ16S18E6V",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 8915,
+        "pu":        8915,
+        "quantity":  1
+    },
+    {
+        "id":        52,
+        "ref":       "EAVZ16S23E6V",
+        "label":     "UNITE INTERIEURE DAIKIN ALTHERMA EAVZ16S23E6V",
+        "descr":     "UNITÉ INTÉRIEUR DAIKIN",
+        "defaultPU": 9188,
+        "pu":        9188,
+        "quantity":  1
+    }
 ]
