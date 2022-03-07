@@ -115,8 +115,8 @@ export class TvaCertificateGenerator extends PdfGenerator {
                         `Prénom : ${ this._file.beneficiary.firstName }`,
                     ],
                     [
-                        `Adresse : ${ this._file.housing.address }`,
-                        `Code postal : ${ this._file.housing.zipCode } Commune : ${ this._file.housing.city }`,
+                        `Adresse : ${ this._file.beneficiary.address }`,
+                        `Code postal : ${ this._file.beneficiary.zipCode } Commune : ${ this._file.beneficiary.city }`,
                     ],
                 ],
                 widths: [ '50%', '*' ],

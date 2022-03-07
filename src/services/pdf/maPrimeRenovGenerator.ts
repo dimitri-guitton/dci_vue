@@ -11,6 +11,7 @@ import {
     MA_PRIME_RENOV_PAGE_2,
 } from '@/services/pdf/pdfVariable';
 import { AllFile } from '@/types/v2/File/All';
+import { getAddress } from '@/services/data/dataService';
 
 export class MaPrimeRenovGenerator extends PdfGenerator {
     private _file: AllFile;
@@ -200,15 +201,8 @@ export class MaPrimeRenovGenerator extends PdfGenerator {
     }
 
     private _generateForm(): Content {
-        let address = this._file.beneficiary.address;
-        let city    = this._file.beneficiary.city;
-        let zipCode = this._file.beneficiary.zipCode;
-
-        if ( !this._file.housing.isAddressBenef ) {
-            address = this._file.housing.address;
-            city    = this._file.housing.city;
-            zipCode = this._file.housing.zipCode;
-        }
+        // On récup l'adresse
+        const { address, zipCode, city } = getAddress( this._file );
 
         return {
             margin:     [ 0, 5 ],

@@ -12,6 +12,7 @@ import {
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { AllFile } from '@/types/v2/File/All';
+import { getAddress } from '@/services/data/dataService';
 
 export class ContributionFrameworkGenerator extends PdfGenerator {
     private _file: AllFile;
@@ -160,15 +161,8 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
 
     private _generateTable(): Content {
 
-        let address = this._file.housing.address;
-        let zipCode = this._file.housing.zipCode;
-        let city    = this._file.housing.city;
-
-        if ( this._file.housing.isAddressBenef ) {
-            address = this._file.beneficiary.address;
-            zipCode = this._file.beneficiary.zipCode;
-            city    = this._file.beneficiary.city;
-        }
+        // On récup l'adresse
+        const { address, zipCode, city } = getAddress( this._file );
 
         const formatedInfo = `${ this._file.beneficiary.lastName } ${ this._file.beneficiary.firstName }, ${ address }, ${ city } ${ zipCode }`;
 

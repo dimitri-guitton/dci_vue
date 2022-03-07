@@ -21,6 +21,7 @@ import { RoWorkSheet } from '@/types/v2/File/Ro/RoWorkSheet';
 import { RrWorkSheet } from '@/types/v2/File/Rr/RrWorkSheet';
 import { PgWorkSheet } from '@/types/v2/File/Pg/PgWorkSheet';
 import { AllFile } from '@/types/v2/File/All';
+import { getAddress } from '@/services/data/dataService';
 
 export class WorksheetGenerator extends PdfGenerator {
     private _file: AllFile;
@@ -130,6 +131,9 @@ export class WorksheetGenerator extends PdfGenerator {
         const beneficiary = this._file.beneficiary;
         const housing     = this._file.housing;
 
+        // On récup l'adresse
+        const { address, zipCode, city } = getAddress( this._file );
+
         return {
             style:      [ 'xsText' ],
             margin:     [ 0, 10 ],
@@ -157,21 +161,21 @@ export class WorksheetGenerator extends PdfGenerator {
                     ],
                     [
                         {
-                            text:    `ADRESSE CHANTIER : ${ beneficiary.address }`,
+                            text:    `ADRESSE CHANTIER : ${ address }`,
                             colSpan: 2,
                         },
                         {},
                     ],
                     [
                         {
-                            text:    `CP : ${ beneficiary.zipCode }`,
+                            text:    `CP : ${ zipCode }`,
                             colSpan: 2,
                         },
                         {},
                     ],
                     [
                         `SITUATION : ${ housing.buildingNature }`,
-                        `VILLE : ${ beneficiary.city }`,
+                        `VILLE : ${ city }`,
                     ],
                 ],
             },

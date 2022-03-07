@@ -339,3 +339,25 @@ export const getLessThan2Year = () => {
     const fileData: BaseFile = getCurrentFileData();
     return fileData.housing.lessThan2Years;
 };
+
+/**
+ * Retourne l'adresse selon si c'est l'adresse du bénéficiare ou du logement qui est pris en compte
+ * @param data
+ */
+export const getAddress = ( data: BaseFile ): { address: string; zipCode: string; city: string } => {
+    let address = data.housing.address;
+    let zipCode = data.housing.zipCode;
+    let city    = data.housing.city;
+
+    if ( data.housing.isAddressBenef ) {
+        address = data.beneficiary.address;
+        zipCode = data.beneficiary.zipCode;
+        city    = data.beneficiary.city;
+    }
+
+    return {
+        address,
+        zipCode,
+        city,
+    };
+};
