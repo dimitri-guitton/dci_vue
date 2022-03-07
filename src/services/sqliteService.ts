@@ -245,3 +245,34 @@ export async function deleteFile( fileId: number ): Promise<RunResult> {
 
     return await db.run( query );
 }
+
+async function getFileIdByReference( reference: string ) {
+    console.log( 'IN' );
+    console.log( 'IN' );
+    console.log( 'IN' );
+    const query = `SELECT id
+                   FROM file
+                   WHERE reference = '${ reference }'
+                   ORDER BY createdAt DESC;`;
+
+    if ( db === undefined ) {
+        await openDb();
+    }
+    return await db.all( query );
+}
+
+export async function updateTotalTtc( referene: string, value: number ) {
+    console.log( '%c UPDATE TOTAL TTC BDD', 'background: #CEFF00; color: #000000' );
+    const res = await getFileIdByReference( referene );
+    console.log( 'RES -->', res );
+    let fileId = 0;
+    if ( res.length > 0 ) {
+        fileId = res[ 0 ];
+    }
+
+    const query = `UPDATE file
+                   SET totalTTC = ${ value }
+                   WHERE id = ${ fileId }`;
+
+    await db.run( query );
+}

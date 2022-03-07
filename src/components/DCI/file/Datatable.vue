@@ -57,7 +57,8 @@
           </td>
           <td>{{ folderTypesToString( data.types ) }}</td>
           <td>{{ data.customer }}</td>
-          <td>{{ data.totalTTC }}</td>
+          <td v-if="data.totalTTC > 0">{{ numberToPrice( data.totalTTC ) }}</td>
+          <td v-if="data.totalTTC <= 0">0.00 €</td>
           <td>{{ data.createdAt }}</td>
           <td><span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span></td>
           <td>{{ data.sendAt }}</td>
@@ -133,6 +134,7 @@ import router from '@/router';
 import { setCurrentFileReference, setcurrentFolderName } from '@/services/data/dataService';
 import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 import { DatatableFileType } from '@/types/v2/DatatableFile/DatatableFileType';
+import { numberToPrice } from '@/services/commonService';
 
 
 export default defineComponent( {
@@ -299,6 +301,7 @@ export default defineComponent( {
                                       edit,
                                       folderTypesToString: datatableFileTypesToString,
                                       listFolderType,
+                                      numberToPrice,
                                     };
                                   },
                                 } );

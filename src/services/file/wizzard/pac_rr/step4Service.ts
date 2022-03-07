@@ -9,6 +9,7 @@ import { Price } from '@/types/v2/File/Price';
 import { PacRrFileStep } from '@/types/v2/Wizzard/FileStep';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { RrQuotation } from '@/types/v2/File/Rr/RrQuotation';
+import { updateTotalTtc } from '@/services/sqliteService';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4
@@ -177,6 +178,7 @@ export const validatePacRrStep4 = async ( data: PacRrFileStep, price: Price ): P
     };
 
     updateJsonData( fileData );
+    updateTotalTtc( fileData.ref, fileData.quotation.totalTtc );
 
     return fileData;
 };
