@@ -1084,7 +1084,6 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PB:
                 items = [
                     PriceQuotation.HT,
-                    PriceQuotation.TTC,
                 ];
 
                 if ( housing.lessThan2Years ) {
@@ -1092,6 +1091,8 @@ export class QuotationGenerator extends PdfGenerator {
                 } else {
                     items.push( PriceQuotation.TVA );
                 }
+
+                items.push( PriceQuotation.TTC );
 
                 if ( this._file.quotation.ceeBonus > 0 ) {
                     items.push( PriceQuotation.CEE );
@@ -1104,31 +1105,28 @@ export class QuotationGenerator extends PdfGenerator {
                 break;
             case FILE_PAC_RO:
                 const roQuotation = ( this._file.quotation as RoQuotation );
-                if ( roQuotation.deviceToReplace.type === 'aucun' || roQuotation.deviceToReplace.type === 'autre' ) {
-                    items = [
-                        PriceQuotation.HT,
-                        PriceQuotation.TTC,
-                    ];
 
-                    if ( this._file.quotation.ceeBonus > 0 ) {
-                        items.push( PriceQuotation.CEE );
-                    }
-
-                } else {
-                    items = [
-                        PriceQuotation.HT,
-                        PriceQuotation.TTC,
-                    ];
-
-                    if ( this._file.quotation.ceeBonus > 0 ) {
-                        items.push( PriceQuotation.CEE_CPC );
-                    }
-                }
+                items = [
+                    PriceQuotation.HT,
+                ];
 
                 if ( housing.lessThan2Years ) {
                     items.push( PriceQuotation.TVA20 );
                 } else {
                     items.push( PriceQuotation.TVA );
+                }
+
+                items.push( PriceQuotation.TTC );
+
+                if ( roQuotation.deviceToReplace.type === 'aucun' || roQuotation.deviceToReplace.type === 'autre' ) {
+                    if ( this._file.quotation.ceeBonus > 0 ) {
+                        items.push( PriceQuotation.CEE );
+                    }
+
+                } else {
+                    if ( this._file.quotation.ceeBonus > 0 ) {
+                        items.push( PriceQuotation.CEE_CPC );
+                    }
                 }
 
                 if ( roQuotation.maPrimeRenovBonus > 0 ) {
@@ -1145,7 +1143,6 @@ export class QuotationGenerator extends PdfGenerator {
                 if ( this._file.housing.lessThan2Years ) {
                     items = [
                         PriceQuotation.HT,
-                        PriceQuotation.TTC,
                     ];
 
                     if ( housing.lessThan2Years ) {
@@ -1157,7 +1154,6 @@ export class QuotationGenerator extends PdfGenerator {
                 } else {
                     items = [
                         PriceQuotation.HT,
-                        PriceQuotation.TTC,
                     ];
 
                     if ( housing.lessThan2Years ) {
@@ -1167,6 +1163,9 @@ export class QuotationGenerator extends PdfGenerator {
                         items.push( PriceQuotation.TVA20 );
                     }
                 }
+
+                items.push( PriceQuotation.TTC );
+
 
                 if ( this._file.quotation.ceeBonus > 0 ) {
                     items.push( PriceQuotation.CEE );
@@ -1185,7 +1184,6 @@ export class QuotationGenerator extends PdfGenerator {
 
                 items = [
                     PriceQuotation.HT,
-                    PriceQuotation.TTC,
                 ];
 
                 if ( pvQuotation.tva10 > 0 ) {
@@ -1195,13 +1193,15 @@ export class QuotationGenerator extends PdfGenerator {
                 if ( pvQuotation.tva20 > 0 ) {
                     items.push( PriceQuotation.TVA20 );
                 }
+
+                items.push( PriceQuotation.TTC );
+
                 break;
             case FILE_COMBLE:
             case FILE_SOL:
                 items = [
                     PriceQuotation.laying,
                     PriceQuotation.HT,
-                    PriceQuotation.TTC,
                 ];
 
                 if ( housing.lessThan2Years ) {
@@ -1209,6 +1209,8 @@ export class QuotationGenerator extends PdfGenerator {
                 } else {
                     items.push( PriceQuotation.TVA );
                 }
+
+                items.push( PriceQuotation.TTC );
 
                 if ( !this._file.housing.lessThan2Years && !this._file.disabledBonus && this._file.quotation.ceeBonus > 0 ) {
                     items.push( PriceQuotation.CEE );
