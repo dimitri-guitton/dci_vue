@@ -205,6 +205,7 @@ import RoList from '@/types/v2/File/Ro/RoList';
 import ItemList from '@/components/DCI/input/ItemList.vue';
 import RowPrice from '@/components/DCI/wizzard-file/rowPrice.vue';
 import { RoAlgo } from '@/services/algorithm/RoAlgo';
+import { getCeeBonus } from '@/services/file/fileCommonService';
 
 export default defineComponent( {
                                   name:       'file-pac-ro-step-4',
@@ -410,7 +411,17 @@ export default defineComponent( {
 
                                         // Si la prime CEE est active
                                         if ( !props.fileData.disabledCeeBonus ) {
-                                          ceeBonus = 100;
+                                          // ceeBonus = 100;
+
+                                          // Afin d'avoir les derniers produits pour le calcul de la prime
+                                          const updatedFileData: RoFile = {
+                                            ...props.fileData,
+                                            quotation: {
+                                              ...props.fileData.quotation,
+                                              selectedProducts: products.value,
+                                            },
+                                          };
+                                          ceeBonus                      = getCeeBonus( updatedFileData );
                                         }
 
                                         // Si MaprimeRenov est actif

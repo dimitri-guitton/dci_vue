@@ -1,6 +1,8 @@
 import { ceil10 } from '@/services/MathService';
-import { FILE_CET, FILE_COMBLE, FILE_PB, FILE_PG, FILE_SOL } from '@/services/constantService';
+import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PB, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
+import { Product } from '@/types/v2/File/Common/Product';
+import { RoFile } from '@/types/v2/File/Ro/RoFile';
 
 export const getEnergyZone = ( zipCode: number ): string => {
     const formatedZipCode = parseFloat( zipCode.toString().substr( 0, 2 ) );
@@ -120,6 +122,306 @@ const roundCeeBonus = ( ceeBonus: number | string ): number => {
     return ceil10( ceeBonus, -2 );
 };
 
+const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: string, codeBonus: string ): number => {
+    let formatedEtas = 0;
+    let formatedArea;
+    let formatedCodeBonus;
+
+    let etas = 0;
+    for ( const pac of pacs ) {
+        console.log( 'PAC -->', pac );
+        if ( pac.etas !== undefined && pac.etas > 0 ) {
+            etas = pac.etas;
+        }
+    }
+
+    if ( etas >= 110 && etas < 120 ) {
+        formatedEtas = 110;
+    } else if ( etas >= 120 ) {
+        formatedEtas = 120;
+    }
+
+    if ( area > 0 && area < 35 ) {
+        formatedArea = 0;
+    }
+    if ( area >= 35 && area < 60 ) {
+        if ( localType === 'appartement' ) {
+            formatedArea = 35;
+        } else {
+            formatedArea = 0;
+        }
+    }
+    if ( area >= 60 && area < 70 ) {
+        if ( localType === 'appartement' ) {
+            formatedArea = 60;
+        } else {
+            formatedArea = 0;
+        }
+    }
+    if ( area >= 70 && area < 90 ) {
+        formatedArea = 70;
+    }
+    if ( area >= 90 && area < 110 ) {
+        formatedArea = 90;
+    }
+    if ( area >= 110 && area <= 130 ) {
+        formatedArea = 110;
+    }
+    if ( area > 130 ) {
+        formatedArea = 130;
+    }
+
+    if ( codeBonus !== null && codeBonus.toUpperCase() === 'GP' ) {
+        formatedCodeBonus = 'GP';
+    } else {
+        formatedCodeBonus = 'other';
+    }
+
+
+    const listBonus: CeePac = {
+        H1: {
+            appartement:           {
+                110: {
+                    0:   {
+                        other: 86.94,
+                        GP:    92.575,
+                    },
+                    35:  {
+                        other: 121.72,
+                        GP:    129.605,
+                    },
+                    60:  {
+                        other: 173.88,
+                        GP:    185.15,
+                    },
+                    70:  {
+                        other: 208.66,
+                        GP:    222.18,
+                    },
+                    90:  {
+                        other: 260.82,
+                        GP:    277.725,
+                    },
+                    110: {
+                        other: 330.37,
+                        GP:    351.785,
+                    },
+                    130: {
+                        other: 434.70,
+                        GP:    462.875,
+                    },
+                },
+                120: {
+                    0:   {
+                        other: 107.19,
+                        GP:    114.1375,
+                    },
+                    35:  {
+                        other: 150.07,
+                        GP:    159.7925,
+                    },
+                    60:  {
+                        other: 214.38,
+                        GP:    228.275,
+                    },
+                    70:  {
+                        other: 257.26,
+                        GP:    273.93,
+                    },
+                    90:  {
+                        other: 321.57,
+                        GP:    342.4125,
+                    },
+                    110: {
+                        other: 407.32,
+                        GP:    433.7225,
+                    },
+                    130: {
+                        other: 535.95,
+                        GP:    570.6875,
+                    },
+                },
+            },
+            'maison_individuelle': {
+                110: {
+                    0:   {
+                        other: 179.28,
+                        GP:    190.9,
+                    },
+                    70:  {
+                        other: 250.99,
+                        GP:    267.26,
+                    },
+                    90:  {
+                        other: 358.56,
+                        GP:    381.8,
+                    },
+                    110: {
+                        other: 394.42,
+                        GP:    419.98,
+                    },
+                    130: {
+                        other: 573.70,
+                        GP:    610.88,
+                    },
+                },
+                120: {
+                    0:   {
+                        other: 215.73,
+                        GP:    229.7125,
+                    },
+                    70:  {
+                        other: 302.02,
+                        GP:    321.5975,
+                    },
+                    90:  {
+                        other: 431.46,
+                        GP:    459.425,
+                    },
+                    110: {
+                        other: 474.61,
+                        GP:    505.3675,
+                    },
+                    130: {
+                        other: 690.34,
+                        GP:    735.08,
+                    },
+                },
+            },
+        },
+        H2: {
+            appartement:           {
+                110: {
+                    0:   {
+                        other: 71.28,
+                        GP:    75.9,
+                    },
+                    35:  {
+                        other: 99.79,
+                        GP:    106.26,
+                    },
+                    60:  {
+                        other: 142.56,
+                        GP:    151.8,
+                    },
+                    70:  {
+                        other: 171.07,
+                        GP:    182.16,
+                    },
+                    90:  {
+                        other: 213.84,
+                        GP:    227.7,
+                    },
+                    110: {
+                        other: 270.86,
+                        GP:    288.42,
+                    },
+                    130: {
+                        other: 356.40,
+                        GP:    379.5,
+                    },
+                },
+                120: {
+                    0:   {
+                        other: 87.75,
+                        GP:    93.4375,
+                    },
+                    35:  {
+                        other: 122.85,
+                        GP:    130.8125,
+                    },
+                    60:  {
+                        other: 175.50,
+                        GP:    186.875,
+                    },
+                    70:  {
+                        other: 210.60,
+                        GP:    224.25,
+                    },
+                    90:  {
+                        other: 263.25,
+                        GP:    280.3125,
+                    },
+                    110: {
+                        other: 333.45,
+                        GP:    355.0625,
+                    },
+                    130: {
+                        other: 438.75,
+                        GP:    467.1875,
+                    },
+                },
+            },
+            'maison_individuelle': {
+                110: {
+                    0:   {
+                        other: 146.88,
+                        GP:    156.4,
+                    },
+                    70:  {
+                        other: 205.63,
+                        GP:    218.96,
+                    },
+                    90:  {
+                        other: 293.76,
+                        GP:    312.8,
+                    },
+                    110: {
+                        other: 323.14,
+                        GP:    344.08,
+                    },
+                    130: {
+                        other: 470.02,
+                        GP:    500.48,
+                    },
+                },
+                120: {
+                    0:   {
+                        other: 176.58,
+                        GP:    188.025,
+                    },
+                    70:  {
+                        other: 247.21,
+                        GP:    263.235,
+                    },
+                    90:  {
+                        other: 353.16,
+                        GP:    376.05,
+                    },
+                    110: {
+                        other: 388.48,
+                        GP:    413.655,
+                    },
+                    130: {
+                        other: 565.06,
+                        GP:    601.68,
+                    },
+                },
+            },
+        },
+    };
+
+    console.log( '%c OK', 'background: #fdd835; color: #000000' );
+    console.log( '%c OK', 'background: #fdd835; color: #000000' );
+    console.log( '%c OK', 'background: #fdd835; color: #000000' );
+    console.log( listBonus[ 'ok' ] );
+
+    try {
+        console.log( listBonus );
+        console.log( listBonus[ zone ] );
+        console.log( listBonus[ zone ][ localType ] );
+        console.log( listBonus[ zone ][ localType ][ formatedEtas ] );
+        console.log( formatedEtas );
+        return listBonus[ zone ][ localType ][ formatedEtas ][ formatedArea ][ formatedCodeBonus ];
+    } catch ( e ) {
+        console.warn( 'Prime CEE non trouvé ', e );
+        return 0;
+    }
+
+
+};
+
+
 export const getCeeBonus = ( data: BaseFile ): number => {
     const type        = data.type;
     const codeBonus   = data.codeBonus;
@@ -201,6 +503,13 @@ export const getCeeBonus = ( data: BaseFile ): number => {
                 }
             }
             break;
+        case FILE_PAC_RO:
+            const roData = data as RoFile;
+            return getCeeRo( roData.quotation.selectedProducts,
+                             roData.housing.type,
+                             roData.housing.area,
+                             roData.energyZone,
+                             roData.codeBonus );
     }
     return roundCeeBonus( value );
 };
@@ -268,4 +577,45 @@ export const getMaPrimeRenov = ( type: string, codeBonus: string ): number => {
 
     return roundCeeBonus( value );
 };
+
+
+interface CeePacItem {
+    other: number;
+    GP: number;
+}
+
+interface CeePacArea1 {
+    0: CeePacItem;
+    35: CeePacItem;
+    60: CeePacItem;
+    70: CeePacItem;
+    90: CeePacItem;
+    110: CeePacItem;
+    130: CeePacItem;
+}
+
+interface CeePacArea2 {
+    0: CeePacItem;
+    70: CeePacItem;
+    90: CeePacItem;
+    110: CeePacItem;
+    130: CeePacItem;
+}
+
+interface CeePacZone {
+    appartement: {
+        110: CeePacArea1;
+        120: CeePacArea1;
+    };
+    maison_individuelle: {
+        110: CeePacArea2;
+        120: CeePacArea2;
+    };
+}
+
+
+interface CeePac {
+    H1: CeePacZone;
+    H2: CeePacZone;
+}
 
