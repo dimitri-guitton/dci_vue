@@ -161,7 +161,7 @@ export default defineComponent( {
 
                                           // Si MaprimeRenov est actif
                                           if ( !props.fileData.disabledMaPrimeRenovBonus ) {
-                                            maPrimeRenov = getMaPrimeRenov( props.fileData.type, codeBonus );
+                                            maPrimeRenov = getMaPrimeRenov( props.fileData.type );
                                           }
                                         }
                                       }

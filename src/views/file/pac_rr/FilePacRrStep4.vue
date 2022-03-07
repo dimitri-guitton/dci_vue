@@ -161,6 +161,7 @@ import RrList from '@/types/v2/File/Rr/RrList';
 import RrMulti from '@/types/v2/File/Rr/RrMulti';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
 import { RrAlgo } from '@/services/algorithm/RrAlgo';
+import { getCeeBonus } from '@/services/file/fileCommonService';
 
 export default defineComponent( {
                                   name:       'file-pac-rr-step-4',
@@ -308,11 +309,10 @@ export default defineComponent( {
                                         } );
 
                                     const price = computed<Price>( () => {
-                                      let totalHt      = 0;
-                                      let maPrimeRenov = 0;
-                                      let ceeBonus     = 0;
-                                      let tva10        = 0;
-                                      let tva20        = 0;
+                                      let totalHt  = 0;
+                                      let ceeBonus = 0;
+                                      let tva10    = 0;
+                                      let tva20;
 
                                       console.log( 'Prix par defaut -->', totalHt );
 
@@ -359,22 +359,22 @@ export default defineComponent( {
                                       const totalTva = tva10 + tva20;
                                       const totalTtc = totalHt + totalTva;
 
-                                      // TODO PRIMCE CEEE MAPRIME RENOV
-
                                       if ( !props.fileData.disabledBonus ) {
-
                                         // Si la prime CEE est active
                                         if ( !props.fileData.disabledCeeBonus ) {
-                                          ceeBonus = 100;
-                                        }
-
-                                        // Si MaprimeRenov est actif
-                                        if ( !props.fileData.disabledMaPrimeRenovBonus ) {
-                                          maPrimeRenov = 100;
+                                          // Afin d'avoir les derniers produits pour le calcul de la prime
+                                          const updatedFileData: RrFile = {
+                                            ...props.fileData,
+                                            quotation: {
+                                              ...props.fileData.quotation,
+                                              selectedProducts: products.value,
+                                            },
+                                          };
+                                          ceeBonus                      = getCeeBonus( updatedFileData );
                                         }
                                       }
 
-                                      const totalPrime = maPrimeRenov + ceeBonus;
+                                      const totalPrime = ceeBonus;
 
                                       // TODO CHECK TVA 20% quand mons de 2ans
                                       const price: Price = {
@@ -383,7 +383,6 @@ export default defineComponent( {
                                         TVA10:          tva10,
                                         TVA20:          tva20,
                                         TTC:            totalTtc,
-                                        maPrimeRenov:   maPrimeRenov,
                                         remainderToPay: totalTtc - totalPrime,
                                         CEE:            ceeBonus,
                                       };

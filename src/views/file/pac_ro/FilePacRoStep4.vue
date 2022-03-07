@@ -405,7 +405,6 @@ export default defineComponent( {
                                       const totalTtc = totalHt + totalTva;
 
 
-                                      // TODO PRIMCE CEEE + MAPRIME RENOV
                                       // Si les primes sont actives
                                       if ( !props.fileData.disabledBonus ) {
 
@@ -425,7 +424,6 @@ export default defineComponent( {
                                         // Si MaprimeRenov est actif
                                         if ( !props.fileData.disabledMaPrimeRenovBonus ) {
                                           maPrimeRenov = getMaPrimeRenov( props.fileData.type,
-                                                                          codeBonus,
                                                                           totalTtc,
                                                                           ceeBonus );
 

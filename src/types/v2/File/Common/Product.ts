@@ -14,7 +14,7 @@ export interface Product {
     volume?: number;
     model?: string;
     type?: string;
-    scop?: string;
+    scop?: number;
     etas?: number;
     power?: number;
     color?: string;
