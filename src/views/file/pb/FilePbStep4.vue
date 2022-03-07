@@ -233,15 +233,18 @@ export default defineComponent( {
 
                                       if ( !lessThan2Year ) {
 
-                                        ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) );
+                                        // Si les primes sont actives
+                                        if ( !props.fileData.disabledBonus ) {
 
-                                        if ( !props.fileData.disabledMaPrimeRenovBonus ) {
-                                          maPrimeRenov = getMaPrimeRenov( props.fileData.type,
-                                                                          totalTtc,
-                                                                          ceeBonus,
-                                                                          codeBonus );
+                                          // Si la prime CEE est active
+                                          if ( !props.fileData.disabledCeeBonus ) {
+                                            ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) );
+                                          }
 
-                                          console.log( 'maPrimeRenov --> ', maPrimeRenov );
+                                          // Si MaprimeRenov est actif
+                                          if ( !props.fileData.disabledMaPrimeRenovBonus ) {
+                                            maPrimeRenov = getMaPrimeRenov( props.fileData.type, codeBonus );
+                                          }
                                         }
                                       }
 

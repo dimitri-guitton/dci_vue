@@ -360,21 +360,19 @@ export default defineComponent( {
                                       const totalTtc = totalHt + totalTva;
 
                                       // TODO PRIMCE CEEE MAPRIME RENOV
-                                      ceeBonus     = 100;
-                                      maPrimeRenov = 100;
-                                      // if ( !lessThan2Year ) {
-                                      //   if ( !props.fileData.disabledCeeBonus ) {
-                                      //     ceeBonus = getCetCeeBonus( ( props.fileData as BaseFile ) );
-                                      //   }
-                                      //
-                                      //   if ( !props.fileData.disabledMaPrimeRenovBonus ) {
-                                      //     maPrimeRenov = getMaPrimeRenov( props.fileData.type,
-                                      //                                     totalTtc,
-                                      //                                     ceeBonus,
-                                      //                                     codeBonus );
-                                      //   }
-                                      // }
 
+                                      if ( !props.fileData.disabledBonus ) {
+
+                                        // Si la prime CEE est active
+                                        if ( !props.fileData.disabledCeeBonus ) {
+                                          ceeBonus = 100;
+                                        }
+
+                                        // Si MaprimeRenov est actif
+                                        if ( !props.fileData.disabledMaPrimeRenovBonus ) {
+                                          maPrimeRenov = 100;
+                                        }
+                                      }
 
                                       const totalPrime = maPrimeRenov + ceeBonus;
 

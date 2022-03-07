@@ -206,67 +206,63 @@ export const getCeeBonus = ( data: BaseFile ): number => {
 };
 
 
-const getPgMaPrimeRenov = ( totalTtc: number, cee: number, codeBonus: string ): number => {
-    if ( totalTtc - 3000 - cee > totalTtc * 0.1 && codeBonus === 'GP' ) {
+const getPgMaPrimeRenov = ( codeBonus: string ): number => {
+    if ( codeBonus === 'GP' ) {
         return 3000;
     }
-    if ( totalTtc - 3000 - cee < totalTtc * 0.1 && codeBonus === 'GP' ) {
-        return totalTtc - cee - totalTtc * 0.1;
-    }
-
-    if ( totalTtc - 2500 - cee > totalTtc * 0.25 && codeBonus === 'P' ) {
+    if ( codeBonus === 'P' ) {
         return 2500;
     }
-    if ( totalTtc - 2500 - cee < totalTtc * 0.25 && codeBonus === 'P' ) {
-        return totalTtc - cee - totalTtc * 0.25;
-    }
 
-    if ( totalTtc - 1500 - cee > totalTtc * 0.4 && codeBonus === 'IT' ) {
+    if ( codeBonus === 'IT' ) {
         return 1500;
     }
-    if ( totalTtc - 1500 - cee < totalTtc * 0.4 && codeBonus === 'IT' ) {
-        return totalTtc - cee - totalTtc * 0.4;
-    }
+
     return 0;
 };
 
-const getPbMaPrimeRenov = ( totalTtc: number, cee: number, codeBonus: string ): number => {
-    const amountGp = 2500;
-    const amountP  = 2000;
-    const amountIt = 1000;
-
-    if ( totalTtc - amountGp - cee > totalTtc * 0.1 && codeBonus === 'GP' ) {
-        return amountGp;
+const getPbMaPrimeRenov = ( codeBonus: string ): number => {
+    if ( codeBonus === 'GP' ) {
+        return 2500;
     }
-    if ( totalTtc - amountGp - cee < totalTtc * 0.1 && codeBonus === 'GP' ) {
-        return totalTtc - cee - totalTtc * 0.1;
+    if ( codeBonus === 'P' ) {
+        return 2000;
     }
 
-    if ( totalTtc - amountP - cee > totalTtc * 0.25 && codeBonus === 'P' ) {
-        return amountP;
-    }
-    if ( totalTtc - amountP - cee < totalTtc * 0.25 && codeBonus === 'P' ) {
-        return totalTtc - cee - totalTtc * 0.25;
+    if ( codeBonus === 'IT' ) {
+        return 1000;
     }
 
-    if ( totalTtc - amountIt - cee > totalTtc * 0.4 && codeBonus === 'IT' ) {
-        return amountIt;
-    }
-    if ( totalTtc - amountIt - cee < totalTtc * 0.4 && codeBonus === 'IT' ) {
-        return totalTtc - cee - totalTtc * 0.4;
-    }
     return 0;
 };
 
-export const getMaPrimeRenov = ( type: string, totalTtc: number, cee: number, codeBonus: string ): number => {
+const getCetMaPrimeRenov = ( codeBonus: string ): number => {
+    if ( codeBonus === 'GP' ) {
+        return 1200;
+    }
+    if ( codeBonus === 'P' ) {
+        return 800;
+    }
+
+    if ( codeBonus === 'IT' ) {
+        return 400;
+    }
+
+    return 0;
+};
+
+export const getMaPrimeRenov = ( type: string, codeBonus: string ): number => {
     let value = 0;
 
     switch ( type ) {
         case FILE_PG:
-            value = getPgMaPrimeRenov( totalTtc, cee, codeBonus );
+            value = getPgMaPrimeRenov( codeBonus );
             break;
         case FILE_PB:
-            value = getPbMaPrimeRenov( totalTtc, cee, codeBonus );
+            value = getPbMaPrimeRenov( codeBonus );
+            break;
+        case FILE_CET:
+            value = getCetMaPrimeRenov( codeBonus );
             break;
     }
 

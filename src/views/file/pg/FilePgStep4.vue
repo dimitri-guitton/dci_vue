@@ -301,15 +301,18 @@ export default defineComponent( {
                                       const totalTtc = totalHt + totalTva;
 
                                       if ( !lessThan2Year ) {
-                                        if ( !props.fileData.disabledCeeBonus ) {
-                                          ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) );
-                                        }
+                                        // Si les primes sont actives
+                                        if ( !props.fileData.disabledBonus ) {
 
-                                        if ( !props.fileData.disabledMaPrimeRenovBonus ) {
-                                          maPrimeRenov = getMaPrimeRenov( props.fileData.type,
-                                                                          totalTtc,
-                                                                          ceeBonus,
-                                                                          codeBonus );
+                                          // Si la prime CEE est active
+                                          if ( !props.fileData.disabledCeeBonus ) {
+                                            ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) );
+                                          }
+
+                                          // Si MaprimeRenov est actif
+                                          if ( !props.fileData.disabledMaPrimeRenovBonus ) {
+                                            maPrimeRenov = getMaPrimeRenov( props.fileData.type, codeBonus );
+                                          }
                                         }
                                       }
 

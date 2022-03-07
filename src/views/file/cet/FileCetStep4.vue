@@ -62,7 +62,7 @@ import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
-import { getCeeBonus } from '@/services/file/fileCommonService';
+import { getCeeBonus, getMaPrimeRenov } from '@/services/file/fileCommonService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 
 export default defineComponent( {
@@ -122,6 +122,7 @@ export default defineComponent( {
                                       console.log( '%c IN COMPUTED', 'background: #007C83; color: #FFFFFF' );
                                       let totalHt      = 0;
                                       let maPrimeRenov = 0;
+                                      let ceeBonus     = 0;
 
                                       console.log( 'Prix par defaut -->', totalHt );
                                       for ( const selectedProduct of _selectedProducts.value ) {
@@ -148,19 +149,22 @@ export default defineComponent( {
                                       const lessThan2Year = getLessThan2Year();
                                       console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
+
                                       if ( !lessThan2Year ) {
-                                        if ( codeBonus === 'GP' ) {
-                                          maPrimeRenov = 1200;
-                                        }
-                                        if ( codeBonus === 'P' ) {
-                                          maPrimeRenov = 800;
-                                        }
-                                        if ( codeBonus === 'IT' ) {
-                                          maPrimeRenov = 400;
+                                        // Si les primes sont actives
+                                        if ( !props.fileData.disabledBonus ) {
+
+                                          // Si la prime CEE est active
+                                          if ( !props.fileData.disabledCeeBonus ) {
+                                            ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) );
+                                          }
+
+                                          // Si MaprimeRenov est actif
+                                          if ( !props.fileData.disabledMaPrimeRenovBonus ) {
+                                            maPrimeRenov = getMaPrimeRenov( props.fileData.type, codeBonus );
+                                          }
                                         }
                                       }
-
-                                      const ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) );
 
 
                                       console.log( 'maPrimeRenov --> ', maPrimeRenov );

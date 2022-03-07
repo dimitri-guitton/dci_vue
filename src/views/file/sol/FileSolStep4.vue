@@ -63,8 +63,6 @@ import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
-import { getCeeBonus } from '@/services/file/fileCommonService';
-import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
 
 export default defineComponent( {
@@ -126,7 +124,8 @@ export default defineComponent( {
                                         console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
                                       }
                                       console.log( '%c IN COMPUTED', 'background: #007C83; color: #FFFFFF' );
-                                      let totalHt = 0;
+                                      let totalHt  = 0;
+                                      let ceeBonus = 0;
 
                                       console.log( '%c AREA', 'background: #61C60B; color: #000000' );
                                       console.log( 'area', props.quantityArea );
@@ -163,13 +162,18 @@ export default defineComponent( {
                                       const lessThan2Year = getLessThan2Year();
                                       console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
-                                      let ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) );
-                                      ceeBonus     = ceeBonus * props.quantityArea;
-
-
                                       let tva = getTva();
                                       if ( lessThan2Year ) {
                                         tva = 20;
+                                      } else {
+                                        // Si les primes sont actives
+                                        if ( !props.fileData.disabledBonus ) {
+
+                                          // Si la prime CEE est active
+                                          if ( !props.fileData.disabledCeeBonus ) {
+                                            ceeBonus = ceeBonus * props.quantityArea;
+                                          }
+                                        }
                                       }
                                       const totalTva = tva * totalHt / 100;
                                       const totalTtc = totalHt + totalTva;
