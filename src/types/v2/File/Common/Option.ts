@@ -10,5 +10,5 @@ export interface Option {
     pu: number;
     defaultNumber: number;
     number: number;
-    // TODO CHECK SI ON DOIT TOUJOURS METTRE LA CLÉ calcTva10 DES OPTIONS RO
+    calcTva10?: boolean;
 }

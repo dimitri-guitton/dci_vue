@@ -105,7 +105,7 @@ import { validateStepOne, yupConfigStep1 } from '@/services/file/wizzard/step1Se
 import { initFormDataStep1And2 } from '@/services/file/wizzard/wizzardService';
 import { validateStepTwo, yupConfigStep2 } from '@/services/file/wizzard/step2Service';
 import { NewAddressGenerator } from '@/services/pdf/newAddressGenerator';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 import FileCombleStep4 from '@/views/file/comble/FileCombleStep4.vue';
 import FileCombleStep5 from '@/views/file/comble/FileCombleStep5.vue';
 import FileCombleStep3 from '@/views/file/comble/FileCombleStep3.vue';

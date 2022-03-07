@@ -8,7 +8,7 @@ import { Option } from '@/types/v2/File/Common/Option';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import { CetQuotation } from '@/types/v2/File/Cet/CetQuotation';
 import { updateJsonData } from '@/services/folder/folderService';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4

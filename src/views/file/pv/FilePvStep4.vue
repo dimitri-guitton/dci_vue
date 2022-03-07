@@ -59,7 +59,7 @@ import BlankOptions from '@/components/DCI/input/BlankOptions.vue';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year } from '@/services/data/dataService';
 
 export default defineComponent( {
@@ -160,6 +160,7 @@ export default defineComponent( {
                                       }
                                       const totalTtc = totalHt + tva10;
 
+                                      // TODO CHECK TVA PV
                                       const price: Price = {
                                         HT:             totalHt,
                                         TVA:            0,

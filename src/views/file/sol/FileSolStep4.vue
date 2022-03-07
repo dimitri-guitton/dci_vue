@@ -61,9 +61,9 @@ import BlankOptions from '@/components/DCI/input/BlankOptions.vue';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
-import { getCetCeeBonus } from '@/services/file/fileCommonService';
+import { getCeeBonus } from '@/services/file/fileCommonService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
 
@@ -163,11 +163,14 @@ export default defineComponent( {
                                       const lessThan2Year = getLessThan2Year();
                                       console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
-                                      let ceeBonus = getCetCeeBonus( ( props.fileData as BaseFile ) );
+                                      let ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) );
                                       ceeBonus     = ceeBonus * props.quantityArea;
 
 
-                                      const tva      = getTva();
+                                      let tva = getTva();
+                                      if ( lessThan2Year ) {
+                                        tva = 20;
+                                      }
                                       const totalTva = tva * totalHt / 100;
                                       const totalTtc = totalHt + totalTva;
 
@@ -175,11 +178,12 @@ export default defineComponent( {
 
                                       const price: Price = {
                                         laying,
-                                        HT:  totalHt,
-                                        TVA: totalTva,
-                                        TTC: totalTtc,
+                                        HT:    totalHt,
+                                        TVA:   lessThan2Year ? 0 : totalTva,
+                                        TVA20: lessThan2Year ? totalTva : 0,
+                                        TTC:   totalTtc,
                                         remainderToPay,
-                                        CEE: ceeBonus,
+                                        CEE:   ceeBonus,
                                       };
 
                                       console.log( 'PRICE -->', price );

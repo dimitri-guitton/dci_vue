@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { StepOption, StepProduct } from '@/types/v2/Wizzard/step4/BaseStep4';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 import { getBlankOptionById, getCurrentSolFileData, getOptionById, getProductById } from '@/services/data/dataService';
 import { Product } from '@/types/v2/File/Common/Product';
 import { Option } from '@/types/v2/File/Common/Option';

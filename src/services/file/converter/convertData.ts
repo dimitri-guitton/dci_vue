@@ -238,6 +238,7 @@ export const convertOldOptions = ( oldData ): Option[] => {
                              pu:            option[ 'pu' ][ 'value' ],
                              defaultNumber: option[ 'value' ],
                              number:        option[ 'value' ],
+                             calcTva10:     option[ 'calcTva10' ],
                          } );
 
     } );

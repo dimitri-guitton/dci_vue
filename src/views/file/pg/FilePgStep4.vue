@@ -119,13 +119,13 @@ import BlankOptions from '@/components/DCI/input/BlankOptions.vue';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
 import ItemList from '@/components/DCI/input/ItemList.vue';
 import PgList from '@/types/v2/File/Pg/PgList';
 import { PgQuotation } from '@/types/v2/File/Pg/PgQuotation';
 import { PgFile } from '@/types/v2/File/Pg/PgFile';
-import { getCetCeeBonus, getMaPrimeRenov } from '@/services/file/fileCommonService';
+import { getCeeBonus, getMaPrimeRenov } from '@/services/file/fileCommonService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 
 export default defineComponent( {
@@ -302,7 +302,7 @@ export default defineComponent( {
 
                                       if ( !lessThan2Year ) {
                                         if ( !props.fileData.disabledCeeBonus ) {
-                                          ceeBonus = getCetCeeBonus( ( props.fileData as BaseFile ) );
+                                          ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) );
                                         }
 
                                         if ( !props.fileData.disabledMaPrimeRenovBonus ) {

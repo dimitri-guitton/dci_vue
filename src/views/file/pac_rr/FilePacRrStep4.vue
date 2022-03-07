@@ -152,7 +152,7 @@ import BlankOptions from '@/components/DCI/input/BlankOptions.vue';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year, getProductByRef } from '@/services/data/dataService';
 import TemplateItemList from '@/components/DCI/input/ItemList.vue';
 import RowPrice from '@/components/DCI/wizzard-file/rowPrice.vue';
@@ -311,6 +311,8 @@ export default defineComponent( {
                                       let totalHt      = 0;
                                       let maPrimeRenov = 0;
                                       let ceeBonus     = 0;
+                                      let tva10        = 0;
+                                      let tva20        = 0;
 
                                       console.log( 'Prix par defaut -->', totalHt );
 
@@ -322,6 +324,10 @@ export default defineComponent( {
                                       for ( const option of _options.value ) {
                                         if ( option.number > 0 ) {
                                           totalHt += option.pu * option.number;
+
+                                          if ( option.calcTva10 === true ) {
+                                            tva10 += option.pu * option.number;
+                                          }
                                         }
                                       }
 
@@ -339,10 +345,17 @@ export default defineComponent( {
                                       const lessThan2Year = getLessThan2Year();
                                       console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
-                                      // TODO CHECK AVEC L4ANCINNE LOGIQUE SI C4EST BON
-                                      // const tva      = getTva();
-                                      const tva10    = totalHt * 10 / 100;
-                                      const tva20    = ( totalHt - tva10 ) * 20 / 100;
+
+                                      // SI plus de 2 ans
+                                      if ( !lessThan2Year ) {
+                                        tva10 = tva10 * 0.1;
+                                        tva20 = ( totalHt - tva10 ) * 0.2;
+                                      } else {
+                                        console.log( '%c TVA 10 = 0', 'background: #fdd835; color: #000000' );
+                                        tva10 = 0;
+                                        tva20 = totalHt * 0.2;
+                                      }
+
                                       const totalTva = tva10 + tva20;
                                       const totalTtc = totalHt + totalTva;
 
@@ -365,6 +378,7 @@ export default defineComponent( {
 
                                       const totalPrime = maPrimeRenov + ceeBonus;
 
+                                      // TODO CHECK TVA 20% quand mons de 2ans
                                       const price: Price = {
                                         HT:             totalHt,
                                         TVA:            0,

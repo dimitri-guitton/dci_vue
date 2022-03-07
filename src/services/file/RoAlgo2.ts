@@ -1,3 +1,5 @@
+// TODO DEPRECATED
+
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 
 /**

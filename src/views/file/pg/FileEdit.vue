@@ -138,7 +138,7 @@ import { initFormDataStep1And2 } from '@/services/file/wizzard/wizzardService';
 import { validateStepTwo, yupConfigStep2 } from '@/services/file/wizzard/step2Service';
 import { NewAddressGenerator } from '@/services/pdf/newAddressGenerator';
 import { WorksheetGenerator } from '@/services/pdf/worksheetGenerator';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 import { QuotationGenerator } from '@/services/pdf/quotationGenerator';
 import { ElLoading } from 'element-plus';
 import FilePgStep3 from '@/views/file/pg/FilePgStep3.vue';

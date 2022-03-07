@@ -99,10 +99,12 @@ import BlankOptions from '@/components/DCI/input/BlankOptions.vue';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
 import { PbFile } from '@/types/v2/File/Pb/PbFile';
 import RowPrice from '@/components/DCI/wizzard-file/rowPrice.vue';
+import { getCeeBonus, getMaPrimeRenov } from '@/services/file/fileCommonService';
+import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 
 export default defineComponent( {
                                   name:       'file-pb-step-4',
@@ -189,6 +191,7 @@ export default defineComponent( {
                                       console.log( '%c IN COMPUTED', 'background: #007C83; color: #FFFFFF' );
                                       let totalHt      = 0;
                                       let maPrimeRenov = 0;
+                                      let ceeBonus     = 0;
 
                                       console.log( 'Prix par defaut -->', totalHt );
                                       for ( const selectedProduct of _selectedProducts.value ) {
@@ -219,28 +222,29 @@ export default defineComponent( {
                                       const lessThan2Year = getLessThan2Year();
                                       console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
-                                      // TOOD FAIRE PRIME
+
+                                      let tva = getTva();
+                                      if ( lessThan2Year ) {
+                                        tva = 20;
+                                      }
+                                      const totalTva = tva * totalHt / 100;
+                                      const totalTtc = totalHt + totalTva;
+
+
                                       if ( !lessThan2Year ) {
-                                        if ( codeBonus === 'GP' ) {
-                                          maPrimeRenov = 1200;
-                                        }
-                                        if ( codeBonus === 'P' ) {
-                                          maPrimeRenov = 800;
-                                        }
-                                        if ( codeBonus === 'IT' ) {
-                                          maPrimeRenov = 400;
+
+                                        ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) );
+
+                                        if ( !props.fileData.disabledMaPrimeRenovBonus ) {
+                                          maPrimeRenov = getMaPrimeRenov( props.fileData.type,
+                                                                          totalTtc,
+                                                                          ceeBonus,
+                                                                          codeBonus );
+
+                                          console.log( 'maPrimeRenov --> ', maPrimeRenov );
                                         }
                                       }
 
-                                      // const ceeBonus = getCetCeeBonus( ( props.fileData as BaseFile ) );
-                                      const ceeBonus = 0;
-
-
-                                      console.log( 'maPrimeRenov --> ', maPrimeRenov );
-
-                                      const tva        = getTva();
-                                      const totalTva   = tva * totalHt / 100;
-                                      const totalTtc   = totalHt + totalTva;
                                       const totalPrime = maPrimeRenov + ceeBonus;
 
                                       const price: Price = {

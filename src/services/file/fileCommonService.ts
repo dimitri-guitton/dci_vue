@@ -1,5 +1,5 @@
 import { ceil10 } from '@/services/MathService';
-import { FILE_CET, FILE_COMBLE, FILE_PG, FILE_SOL } from '@/services/constantService';
+import { FILE_CET, FILE_COMBLE, FILE_PB, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 
 export const getEnergyZone = ( zipCode: number ): string => {
@@ -120,7 +120,7 @@ const roundCeeBonus = ( ceeBonus: number | string ): number => {
     return ceil10( ceeBonus, -2 );
 };
 
-export const getCetCeeBonus = ( data: BaseFile ): number => {
+export const getCeeBonus = ( data: BaseFile ): number => {
     const type        = data.type;
     const codeBonus   = data.codeBonus;
     const housingType = data.housing.type;
@@ -185,6 +185,7 @@ export const getCetCeeBonus = ( data: BaseFile ): number => {
             }
             break;
         case FILE_PG:
+        case FILE_PB:
             if ( energyZone === 'H1' ) {
                 if ( codeBonus === 'GP' ) {
                     value = 219.65;
@@ -200,62 +201,73 @@ export const getCetCeeBonus = ( data: BaseFile ): number => {
                 }
             }
             break;
-
-
     }
-
-
     return roundCeeBonus( value );
 };
 
 
-const calcMPR = ( codePrime ): number => {
-    if ( codePrime === 'GP' ) {
+const getPgMaPrimeRenov = ( totalTtc: number, cee: number, codeBonus: string ): number => {
+    if ( totalTtc - 3000 - cee > totalTtc * 0.1 && codeBonus === 'GP' ) {
         return 3000;
     }
-    if ( codePrime === 'P' ) {
+    if ( totalTtc - 3000 - cee < totalTtc * 0.1 && codeBonus === 'GP' ) {
+        return totalTtc - cee - totalTtc * 0.1;
+    }
+
+    if ( totalTtc - 2500 - cee > totalTtc * 0.25 && codeBonus === 'P' ) {
         return 2500;
     }
-    if ( codePrime === 'IT' ) {
+    if ( totalTtc - 2500 - cee < totalTtc * 0.25 && codeBonus === 'P' ) {
+        return totalTtc - cee - totalTtc * 0.25;
+    }
+
+    if ( totalTtc - 1500 - cee > totalTtc * 0.4 && codeBonus === 'IT' ) {
         return 1500;
+    }
+    if ( totalTtc - 1500 - cee < totalTtc * 0.4 && codeBonus === 'IT' ) {
+        return totalTtc - cee - totalTtc * 0.4;
     }
     return 0;
 };
 
-const getPgMaPrimeRenov = ( totalTtc: number, cee: number, codeBonus: string ): number => {
-    if ( totalTtc - calcMPR( codeBonus ) - cee > totalTtc * 0.1 && codeBonus === 'GP' ) {
-        return 3000;
+const getPbMaPrimeRenov = ( totalTtc: number, cee: number, codeBonus: string ): number => {
+    const amountGp = 2500;
+    const amountP  = 2000;
+    const amountIt = 1000;
+
+    if ( totalTtc - amountGp - cee > totalTtc * 0.1 && codeBonus === 'GP' ) {
+        return amountGp;
     }
-    if ( totalTtc - calcMPR( codeBonus ) - cee < totalTtc * 0.1 && codeBonus === 'GP' ) {
+    if ( totalTtc - amountGp - cee < totalTtc * 0.1 && codeBonus === 'GP' ) {
         return totalTtc - cee - totalTtc * 0.1;
     }
 
-    if ( totalTtc - calcMPR( codeBonus ) - cee > totalTtc * 0.25 && codeBonus === 'P' ) {
-        return 2500;
+    if ( totalTtc - amountP - cee > totalTtc * 0.25 && codeBonus === 'P' ) {
+        return amountP;
     }
-    if ( totalTtc - calcMPR( codeBonus ) - cee < totalTtc * 0.25 && codeBonus === 'P' ) {
+    if ( totalTtc - amountP - cee < totalTtc * 0.25 && codeBonus === 'P' ) {
         return totalTtc - cee - totalTtc * 0.25;
     }
 
-    if ( totalTtc - calcMPR( codeBonus ) - cee > totalTtc * 0.4 && codeBonus === 'IT' ) {
-        return 1500;
+    if ( totalTtc - amountIt - cee > totalTtc * 0.4 && codeBonus === 'IT' ) {
+        return amountIt;
     }
-    if ( totalTtc - calcMPR( codeBonus ) - cee < totalTtc * 0.4 && codeBonus === 'IT' ) {
+    if ( totalTtc - amountIt - cee < totalTtc * 0.4 && codeBonus === 'IT' ) {
         return totalTtc - cee - totalTtc * 0.4;
     }
     return 0;
 };
 
 export const getMaPrimeRenov = ( type: string, totalTtc: number, cee: number, codeBonus: string ): number => {
-    console.log( 'TTC for getMaPrimeRenov -->', totalTtc );
-    console.log( 'CEE for getMaPrimeRenov -->', cee );
     let value = 0;
 
     switch ( type ) {
         case FILE_PG:
             value = getPgMaPrimeRenov( totalTtc, cee, codeBonus );
             break;
-
+        case FILE_PB:
+            value = getPbMaPrimeRenov( totalTtc, cee, codeBonus );
+            break;
     }
 
     return roundCeeBonus( value );

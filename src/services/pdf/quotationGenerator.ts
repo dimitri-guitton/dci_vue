@@ -36,16 +36,16 @@ import { copyFileFromAssetToDropbox, FoldersNames } from '@/services/folder/fold
 declare const __static: string;
 
 enum PriceQuotation {
-    HT            = 'Total HT',
-    TTC           = 'Total TTC',
-    TVA           = 'TVA 5.5%',
-    TVA10         = 'TVA 10%',
-    TVA20         = 'TVA 20%',
-    CEE           = 'PRIME CEE EDF SIREN 552 081 317',
-    CEE_CPC       = 'Prime CEE « coup de pouce chauffage »',
-    maPrimeRenov  = 'Estimation MaPrimeRenov',
-    discount      = 'Remise',
-    laying        = 'Pose',
+    HT           = 'Total HT',
+    TTC          = 'Total TTC',
+    TVA          = 'TVA 5.5%',
+    TVA10        = 'TVA 10%',
+    TVA20        = 'TVA 20%',
+    CEE          = 'PRIME CEE EDF SIREN 552 081 317',
+    CEE_CPC      = 'Prime CEE « coup de pouce chauffage »',
+    maPrimeRenov = 'Estimation MaPrimeRenov',
+    discount     = 'Remise',
+    laying       = 'Pose',
 }
 
 export class QuotationGenerator extends PdfGenerator {
@@ -1076,17 +1076,22 @@ export class QuotationGenerator extends PdfGenerator {
     private _getPriceColumn(): ContentStack {
         let items: string[] = [];
 
+        const housing = this._file.housing;
+
         switch ( this._file.type ) {
             case FILE_CET:
             case FILE_PG:
             case FILE_PB:
-                // TODO TVA 20 SI MOINS DE 2 ANS
                 items = [
                     PriceQuotation.HT,
-                    PriceQuotation.TVA,
-                    // PriceQuotation.TVA20,
                     PriceQuotation.TTC,
                 ];
+
+                if ( housing.lessThan2Years ) {
+                    items.push( PriceQuotation.TVA20 );
+                } else {
+                    items.push( PriceQuotation.TVA );
+                }
 
                 if ( this._file.quotation.ceeBonus > 0 ) {
                     items.push( PriceQuotation.CEE );
@@ -1102,7 +1107,6 @@ export class QuotationGenerator extends PdfGenerator {
                 if ( roQuotation.deviceToReplace.type === 'aucun' || roQuotation.deviceToReplace.type === 'autre' ) {
                     items = [
                         PriceQuotation.HT,
-                        PriceQuotation.TVA,
                         PriceQuotation.TTC,
                     ];
 
@@ -1113,13 +1117,18 @@ export class QuotationGenerator extends PdfGenerator {
                 } else {
                     items = [
                         PriceQuotation.HT,
-                        PriceQuotation.TVA,
                         PriceQuotation.TTC,
                     ];
 
                     if ( this._file.quotation.ceeBonus > 0 ) {
                         items.push( PriceQuotation.CEE_CPC );
                     }
+                }
+
+                if ( housing.lessThan2Years ) {
+                    items.push( PriceQuotation.TVA20 );
+                } else {
+                    items.push( PriceQuotation.TVA );
                 }
 
                 if ( roQuotation.maPrimeRenovBonus > 0 ) {
@@ -1136,17 +1145,27 @@ export class QuotationGenerator extends PdfGenerator {
                 if ( this._file.housing.lessThan2Years ) {
                     items = [
                         PriceQuotation.HT,
-                        PriceQuotation.TVA,
                         PriceQuotation.TTC,
                     ];
+
+                    if ( housing.lessThan2Years ) {
+                        items.push( PriceQuotation.TVA20 );
+                    } else {
+                        items.push( PriceQuotation.TVA );
+                    }
 
                 } else {
                     items = [
                         PriceQuotation.HT,
-                        PriceQuotation.TVA10,
-                        PriceQuotation.TVA20,
                         PriceQuotation.TTC,
                     ];
+
+                    if ( housing.lessThan2Years ) {
+                        items.push( PriceQuotation.TVA20 );
+                    } else {
+                        items.push( PriceQuotation.TVA10 );
+                        items.push( PriceQuotation.TVA20 );
+                    }
                 }
 
                 if ( this._file.quotation.ceeBonus > 0 ) {
@@ -1182,9 +1201,15 @@ export class QuotationGenerator extends PdfGenerator {
                 items = [
                     PriceQuotation.laying,
                     PriceQuotation.HT,
-                    PriceQuotation.TVA,
                     PriceQuotation.TTC,
                 ];
+
+                if ( housing.lessThan2Years ) {
+                    items.push( PriceQuotation.TVA20 );
+                } else {
+                    items.push( PriceQuotation.TVA );
+                }
+
                 if ( !this._file.housing.lessThan2Years && !this._file.disabledBonus && this._file.quotation.ceeBonus > 0 ) {
                     items.push( PriceQuotation.CEE );
                 }
@@ -1320,80 +1345,85 @@ export class QuotationGenerator extends PdfGenerator {
         return {
             margin: [ 0, 0 ],
             style:  [ 'table' ],
-            table:  {
-                body: [
-                    [
-                        {
-                            stack: [
+            stack:  [
+                {
+                    unbreakable: true,
+                    table:       {
+                        body:   [
+                            [
                                 {
-                                    text:      'Commentaires',
-                                    alignment: 'center',
-                                    bold:      true,
-                                },
-                                {
-                                    text:      quotation.commentary,
-                                    alignment: 'center',
-                                },
-                                {
-                                    margin:    [ 0, 5, 0, 0 ],
-                                    text:      addedCommentary,
-                                    alignment: 'center',
-                                    bold:      true,
-                                },
-                            ],
-                        },
-                        this._getPriceColumn(),
-                    ],
-                    [
-                        {
-                            text: 'Assurance décennale SMA BTP C30911H',
-                            bold: true,
-                        },
-                        {
-                            stack: [
-                                {
-                                    columns: [
+                                    stack: [
                                         {
-                                            width:      '50%',
-                                            text:       'A Payer',
-                                            bold:       true,
-                                            lineHeight: 2,
-                                            fontSize:   10,
+                                            text:      'Commentaires',
+                                            alignment: 'center',
+                                            bold:      true,
                                         },
                                         {
-                                            width:      '*',
-                                            text:       this.formatPrice( quotation.remainderToPay ),
-                                            alignment:  'right',
-                                            bold:       true,
-                                            lineHeight: 2,
-                                            fontSize:   10,
+                                            text:      quotation.commentary,
+                                            alignment: 'center',
+                                        },
+                                        {
+                                            margin:    [ 0, 5, 0, 0 ],
+                                            text:      addedCommentary,
+                                            alignment: 'center',
+                                            bold:      true,
+                                        },
+                                    ],
+                                },
+                                this._getPriceColumn(),
+                            ],
+                            [
+                                {
+                                    text: 'Assurance décennale SMA BTP C30911H',
+                                    bold: true,
+                                },
+                                {
+                                    stack: [
+                                        {
+                                            columns: [
+                                                {
+                                                    width:      '50%',
+                                                    text:       'A Payer',
+                                                    bold:       true,
+                                                    lineHeight: 2,
+                                                    fontSize:   10,
+                                                },
+                                                {
+                                                    width:      '*',
+                                                    text:       this.formatPrice( quotation.remainderToPay ),
+                                                    alignment:  'right',
+                                                    bold:       true,
+                                                    lineHeight: 2,
+                                                    fontSize:   10,
+                                                },
+                                            ],
                                         },
                                     ],
                                 },
                             ],
+                        ],
+                        widths: [ '50%', '*' ],
+                    },
+                    layout:      {
+                        ...this._getBorderLayout(),
+                        hLineWidth:    function ( i, node ) {
+                            return ( i === node.table.body.length ) ? 1 : 0;
                         },
-                    ],
-                ],
-                widths: [ '50%', '*' ],
-            },
-            layout: {
-                ...this._getBorderLayout(),
-                hLineWidth:    function ( i, node ) {
-                    return ( i === node.table.body.length ) ? 1 : 0;
+                        vLineWidth:    function () {
+                            return 1;
+                        },
+                        vLineColor:    function () {
+                            return GREEN;
+                        },
+                        paddingTop:    function () {
+                            return 5;
+                        },
+                        paddingBottom: function () {
+                            return 5;
+                        },
+                    },
                 },
-                vLineWidth:    function () {
-                    return 1;
-                },
-                vLineColor:    function () {
-                    return GREEN;
-                },
-                paddingTop:    function () {
-                    return 5;
-                },
-                paddingBottom: function () {
-                    return 5;
-                },
-            },
+            ],
         };
     }
 

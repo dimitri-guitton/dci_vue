@@ -1,3 +1,5 @@
+// TODO DEPRECATED
+
 /**
  * Calcule la puissance requise pour une PAC RO
  * @param ceilingHeight Hauteur sous plafond

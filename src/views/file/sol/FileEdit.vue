@@ -105,7 +105,7 @@ import { validateStepOne, yupConfigStep1 } from '@/services/file/wizzard/step1Se
 import { initFormDataStep1And2 } from '@/services/file/wizzard/wizzardService';
 import { validateStepTwo, yupConfigStep2 } from '@/services/file/wizzard/step2Service';
 import { NewAddressGenerator } from '@/services/pdf/newAddressGenerator';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 import { ElLoading } from 'element-plus';
 import { QuotationGenerator } from '@/services/pdf/quotationGenerator';
 import { WorksheetGenerator } from '@/services/pdf/worksheetGenerator';

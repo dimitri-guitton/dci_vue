@@ -148,7 +148,7 @@ import { CetStep5 } from '@/types/v2/Wizzard/step5/CetStep5';
 import { NewAddressGenerator } from '@/services/pdf/newAddressGenerator';
 import { WorksheetGenerator } from '@/services/pdf/worksheetGenerator';
 import { CetFile } from '@/types/v2/File/Cet/CetFile';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 import { QuotationGenerator } from '@/services/pdf/quotationGenerator';
 import { ElLoading } from 'element-plus';
 

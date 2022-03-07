@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 import { StepOption, StepProduct } from '@/types/v2/Wizzard/step4/BaseStep4';
 import { CombleFileStep } from '@/types/v2/Wizzard/FileStep';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 import { getBlankOptionById, getCurrentCombleFileData, getOptionById, getProductById } from '@/services/data/dataService';
 import { Product } from '@/types/v2/File/Common/Product';
 import { Option } from '@/types/v2/File/Common/Option';

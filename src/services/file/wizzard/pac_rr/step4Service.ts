@@ -5,7 +5,7 @@ import { getBlankOptionById, getCurrentRrFileData, getOptionById, getProductById
 import { Option } from '@/types/v2/File/Common/Option';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import { updateJsonData } from '@/services/folder/folderService';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 import { PacRrFileStep } from '@/types/v2/Wizzard/FileStep';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { RrQuotation } from '@/types/v2/File/Rr/RrQuotation';

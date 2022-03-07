@@ -1,3 +1,5 @@
+// TODO DEPRECATED
+
 /**
  * Retourne la puissance requise selon la surface et l'isolation du local
  * @param area

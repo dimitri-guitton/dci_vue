@@ -60,9 +60,9 @@ import BlankOptions from '@/components/DCI/input/BlankOptions.vue';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
-import { Price } from '@/services/file/wizzard/Price';
+import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
-import { getCetCeeBonus } from '@/services/file/fileCommonService';
+import { getCeeBonus } from '@/services/file/fileCommonService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 
 export default defineComponent( {
@@ -160,19 +160,24 @@ export default defineComponent( {
                                         }
                                       }
 
-                                      const ceeBonus = getCetCeeBonus( ( props.fileData as BaseFile ) );
+                                      const ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) );
 
 
                                       console.log( 'maPrimeRenov --> ', maPrimeRenov );
 
-                                      const tva        = getTva();
+                                      let tva = getTva();
+                                      if ( lessThan2Year ) {
+                                        tva = 20;
+                                      }
+
                                       const totalTva   = tva * totalHt / 100;
                                       const totalTtc   = totalHt + totalTva;
                                       const totalPrime = maPrimeRenov + ceeBonus;
 
                                       const price: Price = {
                                         HT:             totalHt,
-                                        TVA:            totalTva,
+                                        TVA:            lessThan2Year ? 0 : totalTva,
+                                        TVA20:          lessThan2Year ? totalTva : 0,
                                         TTC:            totalTtc,
                                         maPrimeRenov:   maPrimeRenov,
                                         remainderToPay: totalTtc - totalPrime,
