@@ -514,6 +514,34 @@ export const getCeeBonus = ( data: BaseFile ): number => {
     return roundCeeBonus( value );
 };
 
+const getRoMaPrimeRenov = ( totalTTC: number, cee: number, codeBonus: string ): number => {
+    const amountGp = 4000;
+    const amountP  = 3000;
+    const amountIt = 2000;
+
+    if ( totalTTC - amountGp - cee > totalTTC * 0.1 && codeBonus === 'GP' ) {
+        return 4000;
+    }
+    if ( totalTTC - amountGp - cee < totalTTC * 0.1 && codeBonus === 'GP' ) {
+        return totalTTC - cee - totalTTC * 0.1;
+    }
+
+    if ( totalTTC - amountP - cee > totalTTC * 0.25 && codeBonus === 'P' ) {
+        return 3000;
+    }
+    if ( totalTTC - amountP - cee < totalTTC * 0.25 && codeBonus === 'P' ) {
+        return totalTTC - cee - totalTTC * 0.25;
+    }
+
+    if ( totalTTC - amountIt - cee > totalTTC * 0.4 && codeBonus === 'IT' ) {
+        return 2000;
+    }
+    if ( totalTTC - amountIt - cee < totalTTC * 0.4 && codeBonus === 'IT' ) {
+        return totalTTC - cee - totalTTC * 0.4;
+    }
+    return 0;
+};
+
 
 const getPgMaPrimeRenov = ( codeBonus: string ): number => {
     if ( codeBonus === 'GP' ) {
@@ -560,7 +588,7 @@ const getCetMaPrimeRenov = ( codeBonus: string ): number => {
     return 0;
 };
 
-export const getMaPrimeRenov = ( type: string, codeBonus: string ): number => {
+export const getMaPrimeRenov = ( type: string, codeBonus: string, totalTtc = 0, cee = 0 ): number => {
     let value = 0;
 
     switch ( type ) {
@@ -572,6 +600,9 @@ export const getMaPrimeRenov = ( type: string, codeBonus: string ): number => {
             break;
         case FILE_CET:
             value = getCetMaPrimeRenov( codeBonus );
+            break;
+        case FILE_PAC_RO:
+            value = getRoMaPrimeRenov( totalTtc, cee, codeBonus );
             break;
     }
 
