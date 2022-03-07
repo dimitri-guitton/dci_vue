@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { getCurrentCetFileData } from '@/services/data/dataService';
+import { getCodeBonus, getCurrentCetFileData } from '@/services/data/dataService';
 import { CetFileStep } from '@/types/v2/Wizzard/FileStep';
 import { Housing } from '@/types/v2/File/Common/Housing';
 import { updateJsonData } from '@/services/folder/folderService';
@@ -42,6 +42,13 @@ export const validateCetStep3 = async ( data: CetFileStep ) => {
         ...fileData,
         ...defaultGetEnergyZoneStep3( fileData, housing ),
         housing: housing,
+    };
+
+
+    const codeBonus = getCodeBonus( fileData );
+    fileData        = {
+        ...fileData,
+        codeBonus,
     };
 
     updateJsonData( fileData );

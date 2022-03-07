@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { updateJsonData } from '@/services/folder/folderService';
 import { PacRrFileStep } from '@/types/v2/Wizzard/FileStep';
-import { getCurrentRrFileData } from '@/services/data/dataService';
+import { getCodeBonus, getCurrentRrFileData } from '@/services/data/dataService';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import {
     defaultGetEnergyZoneStep3,
@@ -59,6 +59,12 @@ export const validatePacRrStep3 = async ( data: PacRrFileStep ): Promise<RrFile>
         ...fileData,
         ...defaultGetEnergyZoneStep3( fileData, housing ),
         housing: housing,
+    };
+
+    const codeBonus = getCodeBonus( fileData );
+    fileData        = {
+        ...fileData,
+        codeBonus,
     };
 
     updateJsonData( fileData );

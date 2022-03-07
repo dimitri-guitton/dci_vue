@@ -19,6 +19,7 @@ import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { PbFile } from '@/types/v2/File/Pb/PbFile';
 import { PvFile } from '@/types/v2/File/Pv/PvFile';
+import { AllFile } from '@/types/v2/File/All';
 
 const schema = {
     dropboxPath:          {
@@ -67,7 +68,7 @@ export const setCurrentFileData = ( fileData: string ) => {
     store.set( 'currentFileData', fileData );
 };
 
-export const getCurrentFileData = () => {
+export const getCurrentFileData = (): AllFile => {
     const currentFile = store.get( 'currentFileData' ) as string;
     if ( currentFile !== '' ) {
         console.log( '%c CURRENT FILE NOT EMPTY', 'background: #fdd835; color: #000000' );
@@ -91,35 +92,35 @@ export const getCurrentFileData = () => {
 };
 
 export const getCurrentCetFileData = (): CetFile => {
-    return getCurrentFileData();
+    return ( getCurrentFileData() as CetFile );
 };
 
 export const getCurrentPbFileData = (): PbFile => {
-    return getCurrentFileData();
+    return ( getCurrentFileData() as PbFile );
 };
 
 export const getCurrentPvFileData = (): PvFile => {
-    return getCurrentFileData();
+    return ( getCurrentFileData() as PvFile );
 };
 
 export const getCurrentPgFileData = (): PgFile => {
-    return getCurrentFileData();
+    return ( getCurrentFileData() as PgFile );
 };
 
 export const getCurrentRoFileData = (): RoFile => {
-    return getCurrentFileData();
+    return ( getCurrentFileData() as RoFile );
 };
 
 export const getCurrentRrFileData = (): RrFile => {
-    return getCurrentFileData();
+    return ( getCurrentFileData() as RrFile );
 };
 
 export const getCurrentCombleFileData = (): CombleFile => {
-    return getCurrentFileData();
+    return ( getCurrentFileData() as CombleFile );
 };
 
 export const getCurrentSolFileData = (): SolFile => {
-    return getCurrentFileData();
+    return ( getCurrentFileData() as SolFile );
 };
 
 export const resetCurrentFileData = () => {
@@ -190,6 +191,43 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficia
     return assent;
 };
 
+/**
+ * Retourne le palier selon les revenues et lenombre d'occupant d'un logement
+ * @param stages
+ * @param occupant
+ * @param revenu
+ */
+const filterScale = ( stages, occupant, revenu ) => {
+    return stages.filter( ( stage ) =>
+                              Object.prototype.hasOwnProperty.call( stage, 'max' )
+                              ? stage.nbr === parseFloat( occupant ) && revenu >= stage.min && revenu < stage.max
+                              : stage.nbr === parseFloat( occupant ) && revenu >= stage.min,
+    );
+};
+
+
+/**
+ * Retourne le code pour le devis en cours (ig: GP, P, ...)
+ */
+export const getCodeBonus = ( fileData: BaseFile | null = null ) => {
+    if ( fileData === null ) {
+        fileData = getCurrentFileData();
+    }
+
+    const totalRevenu = fileData.assents.reduce( ( a, b ) => ( b.revenu && !Number.isNaN( b.revenu ) ? a + b.revenu : a ), 0 );
+
+    // Quand la prime est désactivé retourne 'CL'
+    if ( fileData.disabledBonus ) {
+        return 'CL';
+    }
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    const scales = fileData.scales.filter( ( scale ) => filterScale( scale.stages, fileData.housing.nbOccupant, totalRevenu ).length > 0 );
+    return ( scales.length > 0 ? scales[ 0 ].code : 'CL' ).toUpperCase();
+};
+
+
 export const updateAssent = ( data ) => {
     let fileData = getCurrentFileData();
 
@@ -253,6 +291,7 @@ export const updateBeneficiary = ( data ) => {
 
     fileData = {
         ...fileData,
+        codeBonus:   getCodeBonus(),
         beneficiary: beneficiary,
         energyZone:  getEnergyZone( +zipCode ),
     };
@@ -260,7 +299,7 @@ export const updateBeneficiary = ( data ) => {
     updateJsonData( fileData );
 };
 
-export const getProductById = ( id: number ): Product => {
+export const getProductById = ( id: number ): Product | undefined => {
     const fileData = getCurrentFileData();
     console.log( 'file data', fileData );
 
@@ -274,14 +313,14 @@ export const getProductByRef = ( ref: string ): Product | undefined => {
     return fileData.quotation.products.find( ( p: Product ) => p.reference === ref );
 };
 
-export const getOptionById = ( id: number ): Option => {
+export const getOptionById = ( id: number ): Option | undefined => {
     const fileData = getCurrentFileData();
     console.log( 'file data', fileData );
 
     return fileData.quotation.options.find( ( o: Option ) => o.id === id );
 };
 
-export const getBlankOptionById = ( id: number ): BlankOption => {
+export const getBlankOptionById = ( id: number ): BlankOption | undefined => {
     const fileData = getCurrentFileData();
     console.log( 'file data', fileData );
 
@@ -296,37 +335,6 @@ export const getTva = (): number => {
     } else {
         return +fileData.quotation.tva;
     }
-};
-
-/**
- * Retourne le palier selon les revenues et lenombre d'occupant d'un logement
- * @param stages
- * @param occupant
- * @param revenu
- */
-const filterScale = ( stages, occupant, revenu ) => {
-    return stages.filter( ( stage ) =>
-                              Object.prototype.hasOwnProperty.call( stage, 'max' )
-                              ? stage.nbr === parseFloat( occupant ) && revenu >= stage.min && revenu < stage.max
-                              : stage.nbr === parseFloat( occupant ) && revenu >= stage.min,
-    );
-};
-
-/**
- * Retourne le code pour le devis en cours (ig: GP, P, ...)
- */
-export const getCodeBonus = () => {
-    const fileData: BaseFile = getCurrentFileData();
-
-    const totalRevenu = fileData.assents.reduce( ( a, b ) => ( b.revenu && !Number.isNaN( b.revenu ) ? a + b.revenu : a ), 0 );
-
-    // Quand la prime est désactivé retourne 'CL'
-    if ( fileData.disabledBonus ) {
-        return 'CL';
-    }
-
-    const scales = fileData.scales.filter( ( scale ) => filterScale( scale.stages, fileData.housing.nbOccupant, totalRevenu ).length > 0 );
-    return ( scales.length > 0 ? scales[ 0 ].code : 'CL' ).toUpperCase();
 };
 
 export const getHousingType = (): string => {

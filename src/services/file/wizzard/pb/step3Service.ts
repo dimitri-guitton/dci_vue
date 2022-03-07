@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { getCurrentPbFileData } from '@/services/data/dataService';
+import { getCodeBonus, getCurrentPbFileData } from '@/services/data/dataService';
 import { PbFileStep } from '@/types/v2/Wizzard/FileStep';
 import { Housing } from '@/types/v2/File/Common/Housing';
 import { updateJsonData } from '@/services/folder/folderService';
@@ -40,6 +40,12 @@ export const validatePbStep3 = async ( data: PbFileStep ) => {
         ...fileData,
         ...defaultGetEnergyZoneStep3( fileData, housing ),
         housing: housing,
+    };
+
+    const codeBonus = getCodeBonus( fileData );
+    fileData        = {
+        ...fileData,
+        codeBonus,
     };
 
     updateJsonData( fileData );

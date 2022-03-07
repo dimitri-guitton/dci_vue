@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import { PgFileStep } from '@/types/v2/Wizzard/FileStep';
 import { Housing } from '@/types/v2/File/Common/Housing';
 import { updateJsonData } from '@/services/folder/folderService';
-import { getCurrentPgFileData } from '@/services/data/dataService';
+import { getCodeBonus, getCurrentPgFileData } from '@/services/data/dataService';
 import {
     defaultGetEnergyZoneStep3,
     defaultGetHoussingValueStep3,
@@ -40,6 +40,12 @@ export const validatePgStep3 = async ( data: PgFileStep ) => {
         ...fileData,
         ...defaultGetEnergyZoneStep3( fileData, housing ),
         housing: housing,
+    };
+
+    const codeBonus = getCodeBonus( fileData );
+    fileData        = {
+        ...fileData,
+        codeBonus,
     };
 
     updateJsonData( fileData );

@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { updateJsonData } from '@/services/folder/folderService';
 import { PacRoFileStep } from '@/types/v2/Wizzard/FileStep';
-import { getCurrentRoFileData } from '@/services/data/dataService';
+import { getCodeBonus, getCurrentRoFileData } from '@/services/data/dataService';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import {
     defaultGetEnergyZoneStep3,
@@ -62,6 +62,12 @@ export const validatePacRoStep3 = async ( data: PacRoFileStep ): Promise<RoFile>
         ...fileData,
         ...defaultGetEnergyZoneStep3( fileData, housing ),
         housing: housing,
+    };
+
+    const codeBonus = getCodeBonus( fileData );
+    fileData        = {
+        ...fileData,
+        codeBonus,
     };
 
     updateJsonData( fileData );

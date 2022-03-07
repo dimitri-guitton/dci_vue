@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { SolFileStep } from '@/types/v2/Wizzard/FileStep';
-import { getCurrentSolFileData } from '@/services/data/dataService';
+import { getCodeBonus, getCurrentSolFileData } from '@/services/data/dataService';
 import { Housing } from '@/types/v2/File/Common/Housing';
 import { updateJsonData } from '@/services/folder/folderService';
 import {
@@ -44,6 +44,12 @@ export const validateSolStep3 = async ( data: SolFileStep ) => {
         ...fileData,
         ...defaultGetEnergyZoneStep3( fileData, housing ),
         housing: housing,
+    };
+
+    const codeBonus = getCodeBonus( fileData );
+    fileData        = {
+        ...fileData,
+        codeBonus,
     };
 
     updateJsonData( fileData );

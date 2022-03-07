@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { CombleFileStep } from '@/types/v2/Wizzard/FileStep';
-import { getCurrentCombleFileData } from '@/services/data/dataService';
+import { getCodeBonus, getCurrentCombleFileData } from '@/services/data/dataService';
 import { Housing } from '@/types/v2/File/Common/Housing';
 import { updateJsonData } from '@/services/folder/folderService';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
@@ -45,6 +45,11 @@ export const validateCombleStep3 = async ( data: CombleFileStep ) => {
         housing: housing,
     };
 
+    const codeBonus = getCodeBonus( fileData );
+    fileData        = {
+        ...fileData,
+        codeBonus,
+    };
     updateJsonData( fileData );
 };
 
