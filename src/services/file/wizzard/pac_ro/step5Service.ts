@@ -5,6 +5,7 @@ import { RoWorkSheet } from '@/types/v2/File/Ro/RoWorkSheet';
 import { PacRoFileStep } from '@/types/v2/Wizzard/FileStep';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { getCurrentRoFileData } from '@/services/data/dataService';
+import { updateReference } from '@/services/sqliteService';
 
 /**
  * Création du formualaire pour la fiche d'info
@@ -253,6 +254,12 @@ export const savePacRoWorksheet = ( data: PacRoFileStep ): RoFile => {
 
     let worksheet: RoWorkSheet = fileData.worksheet;
 
+
+    let updateFileReference = false;
+    if ( worksheet.technicalVisit !== data.worksheet.technicalVisit ) {
+        updateFileReference = true;
+    }
+
     worksheet = {
         ...worksheet,
         ...data.worksheet,
@@ -262,6 +269,25 @@ export const savePacRoWorksheet = ( data: PacRoFileStep ): RoFile => {
         ...fileData,
         worksheet,
     };
+
+    if ( updateFileReference ) {
+        let newRef: string;
+        const oldRef = fileData.ref;
+        if ( data.worksheet.technicalVisit ) {
+            // AJOUT DE VT
+            newRef = `VT-${ fileData.ref }`;
+        } else {
+            newRef = fileData.ref.substring( 3 );
+        }
+
+        fileData = {
+            ...fileData,
+            ref: newRef,
+        };
+
+        updateReference( oldRef, newRef );
+    }
+
 
     updateJsonData( fileData );
 

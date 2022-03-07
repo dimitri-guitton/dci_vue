@@ -246,11 +246,8 @@ export async function deleteFile( fileId: number ): Promise<RunResult> {
     return await db.run( query );
 }
 
-async function getFileIdByReference( reference: string ) {
-    console.log( 'IN' );
-    console.log( 'IN' );
-    console.log( 'IN' );
-    const query = `SELECT id
+async function getFileByReference( reference: string ) {
+    const query = `SELECT *
                    FROM file
                    WHERE reference = '${ reference }'
                    ORDER BY createdAt DESC;`;
@@ -263,16 +260,28 @@ async function getFileIdByReference( reference: string ) {
 
 export async function updateTotalTtc( referene: string, value: number ) {
     console.log( '%c UPDATE TOTAL TTC BDD', 'background: #CEFF00; color: #000000' );
-    const res = await getFileIdByReference( referene );
+    const res = await getFileByReference( referene );
     console.log( 'RES -->', res );
     let fileId = 0;
     if ( res.length > 0 ) {
-        fileId = res[ 0 ];
+        fileId = res[ 0 ].id;
     }
 
     const query = `UPDATE file
                    SET totalTTC = ${ value }
                    WHERE id = ${ fileId }`;
+
+    await db.run( query );
+}
+
+export async function updateReference( oldReferene: string, newReference: string ) {
+    console.log( '%c UPD REF', 'background: #fdd835; color: #000000' );
+    console.log( oldReferene );
+    console.log( newReference );
+
+    const query = `UPDATE file
+                   SET reference = '${ newReference }'
+                   WHERE reference = '${ oldReferene }'`;
 
     await db.run( query );
 }

@@ -65,6 +65,7 @@ export const FoldersNames = {
     PHOTO_COMBLE_EMPLACEMENT_TUYAUX:    'photo_comble_emplacement_tuyaux',
     PHOTO_TOITURE:                      'photo_toiture_et_tuile',
     DIMENSIONNEMENT_PAC:                'dimensionnement_pac',
+    VIDEO:                              'video',
 };
 
 const Folders = [
@@ -92,6 +93,7 @@ const Folders = [
     { name: FoldersNames.PHOTO_COMBLE_EMPLACEMENT_TUYAUX, dossierType: [ FILE_PG ] },
     { name: FoldersNames.PHOTO_TOITURE, dossierType: [ FILE_PG ] },
     { name: FoldersNames.DIMENSIONNEMENT_PAC, dossierType: [ FILE_PAC_RR, FILE_PAC_RO ] },
+    { name: FoldersNames.VIDEO, dossierType: [ 'all' ] },
 ];
 
 /**

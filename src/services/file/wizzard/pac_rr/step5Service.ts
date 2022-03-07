@@ -5,6 +5,7 @@ import { PacRrFileStep } from '@/types/v2/Wizzard/FileStep';
 import { getCurrentRrFileData } from '@/services/data/dataService';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { RrWorkSheet } from '@/types/v2/File/Rr/RrWorkSheet';
+import { updateReference } from '@/services/sqliteService';
 
 /**
  * Création du formualaire pour la fiche d'info
@@ -221,6 +222,8 @@ export const yupPacRrConfigStep5 = () => {
                            worksheet: Yup.object().shape( {
                                                               period:               Yup.string(),
                                                               infosSup:             Yup.string(),
+                                                              technicalVisit:       Yup.boolean(),
+                                                              technicalVisitReason: Yup.string(),
                                                               niveauHabitation:     Yup.string(),
                                                               typeChantier:         Yup.string(),
                                                               disjoncteur:          Yup.boolean(),
@@ -269,6 +272,8 @@ export const initPacRrFormDataStep5 = ( worksheet: RrWorkSheet ) => {
         worksheet: {
             period:               worksheet.period,
             infosSup:             worksheet.infosSup,
+            technicalVisit:       worksheet.technicalVisit,
+            technicalVisitReason: worksheet.technicalVisitReason,
             niveauHabitation:     worksheet.niveauHabitation,
             typeChantier:         worksheet.typeChantier,
             disjoncteur:          worksheet.disjoncteur,
@@ -315,6 +320,11 @@ export const savePacRrWorksheet = ( data: PacRrFileStep ): RrFile => {
 
     let worksheet: RrWorkSheet = fileData.worksheet;
 
+    let updateFileReference = false;
+    if ( worksheet.technicalVisit !== data.worksheet.technicalVisit ) {
+        updateFileReference = true;
+    }
+
     worksheet = {
         ...worksheet,
         ...data.worksheet,
@@ -324,6 +334,24 @@ export const savePacRrWorksheet = ( data: PacRrFileStep ): RrFile => {
         ...fileData,
         worksheet,
     };
+
+    if ( updateFileReference ) {
+        let newRef: string;
+        const oldRef = fileData.ref;
+        if ( data.worksheet.technicalVisit ) {
+            // AJOUT DE VT
+            newRef = `VT-${ fileData.ref }`;
+        } else {
+            newRef = fileData.ref.substring( 3 );
+        }
+
+        fileData = {
+            ...fileData,
+            ref: newRef,
+        };
+
+        updateReference( oldRef, newRef );
+    }
 
     updateJsonData( fileData );
 
