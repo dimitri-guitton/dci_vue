@@ -327,6 +327,7 @@ export const checkFolder = () => {
 
 
 export const openPdf = async ( filePath: string ) => {
+    fs.unlinkSync( filePath );
     await shell.openPath( filePath );
 };
 
