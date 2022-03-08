@@ -281,3 +281,32 @@ export const convertTechnician = ( oldData ): Technician => {
     };
 
 };
+
+export const convertBaseQuotation = ( oldData ) => {
+    return {
+        origin:             getObjectData( oldData, [ 'devis', 'origine' ] ),
+        dateTechnicalVisit: getObjectData( oldData, [ 'devis', 'dateVisiteTech' ] ),
+        executionDelay:     getObjectData( oldData, [ 'devis', 'delaisExecution' ] ),
+        options:            convertOldOptions( oldData ),
+        blankOptions:       convertOldBlankOptions( oldData ),
+        commentary:         getObjectData( oldData, [ 'devis', 'commentaires' ] ),
+        partner:            getObjectData( oldData, [ 'devis', 'partner' ] ),
+        texts:              convertOldText( oldData ),
+        discount:           getNumberData( oldData [ 'devis' ][ 'remise' ] ),
+        totalHt:            convertOldTotalHt( oldData ),
+        totalTtc:           0,
+        totalTva:           convertOldTotalTva( oldData ),
+        remainderToPay:     0,
+        ceeBonus:           getNumberData( oldData [ 'devis' ][ 'primeCEE' ] ),
+        tva:                getNumberData( oldData [ 'devis' ][ 'tva' ] ),
+        paymentOnCredit:    {
+            active:           false,
+            amount:           0,
+            withoutInsurance: 0,
+            withInsurance:    0,
+            duration:         0,
+            TAEG:             0,
+            total:            0,
+        },
+    };
+};

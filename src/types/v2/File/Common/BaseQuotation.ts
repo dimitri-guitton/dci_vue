@@ -21,4 +21,14 @@ export interface BaseQuotation {
     remainderToPay: number;
     ceeBonus: number;
     tva: number;
+    paymentOnCredit: {
+        active: boolean;
+        amount: number;
+        withoutInsurance: number;
+        withInsurance: number;
+        duration: number;
+        TAEG: number;
+        total: number;
+    };
 }
+

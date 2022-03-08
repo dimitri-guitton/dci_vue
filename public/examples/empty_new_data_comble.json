@@ -73,8 +73,6 @@
         "infosSup":                  "RAS"
     },
     "quotation":                 {
-        "laying":             2.5,
-        "overrideLaying":     2.5,
         "origin":             "",
         "dateTechnicalVisit": "",
         "executionDelay":     "",
@@ -232,7 +230,24 @@
                 "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
             }
         ],
+        "discount":           0,
+        "totalHt":            0,
+        "totalTtc":           0,
+        "totalTva":           0,
+        "remainderToPay":     0,
+        "ceeBonus":           0,
         "tva":                5.5,
+        "paymentOnCredit":    {
+            "active":           false,
+            "amount":           0,
+            "withoutInsurance": 0,
+            "withInsurance":    0,
+            "duration":         0,
+            "TAEG":             0,
+            "total":            0
+        },
+        "laying":             2.5,
+        "overrideLaying":     2.5,
         "selectedProducts":   [
             {
                 "id":          1,
@@ -276,13 +291,7 @@
                 "description": "- Certification ACERMI : 04/D/16/378 \r\n- Résistance thermique : 9 m².k/w    Épaisseur mini (mm) : 410 mm\r\n- Pouvoir couvrant (kg/m²) : 4.9 - Classement au feu : A1 (incombustible)",
                 "quantity":    1
             }
-        ],
-        "discount":           0,
-        "totalHt":            0,
-        "totalTva":           0,
-        "totalTtc":           0,
-        "remainderToPay":     0,
-        "ceeBonus":           0
+        ]
     },
     "scales":                    [
         {

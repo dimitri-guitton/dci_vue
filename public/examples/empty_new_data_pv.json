@@ -50,10 +50,10 @@
         "infosSup": "RAS"
     },
     "quotation":                 {
-        "origin":               "",
-        "dateTechnicalVisit":   "",
-        "executionDelay":       "",
-        "options":              [
+        "origin":             "",
+        "dateTechnicalVisit": "",
+        "executionDelay":     "",
+        "options":            [
             {
                 "id":            1,
                 "fileType":      "default",
@@ -75,7 +75,7 @@
                 "number":        1
             }
         ],
-        "blankOptions":         [
+        "blankOptions":       [
             {
                 "id":     "sup1",
                 "label":  "",
@@ -91,20 +91,34 @@
                 "number": 0
             }
         ],
-        "commentary":           "",
-        "partner":              "VTE",
-        "texts":                [
+        "commentary":         "",
+        "partner":            "VTE",
+        "texts":              [
             {
                 "title": "TVA",
                 "text":  "La TVA à taux réduit de 10% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.  Réalisation du chantier SAS Allaire du temps and co rcs La Rochelle 85228498300024 QualiPV QPV/58881/58881"
             }
         ],
-        "tva":                  5.5,
-        "tva10":                0,
-        "tva20":                0,
-        "ceeBonus":             0,
-        "selectedProducts":     [],
-        "products":             [
+        "discount":           0,
+        "totalHt":            0,
+        "totalTtc":           0,
+        "totalTva":           0,
+        "remainderToPay":     0,
+        "ceeBonus":           0,
+        "tva":                5.5,
+        "paymentOnCredit":    {
+            "active":           false,
+            "amount":           0,
+            "withoutInsurance": 0,
+            "withInsurance":    0,
+            "duration":         0,
+            "TAEG":             0,
+            "total":            0
+        },
+        "tva10":              0,
+        "tva20":              0,
+        "selectedProducts":   [],
+        "products":           [
             {
                 "id":          1,
                 "productType": "pv",
@@ -348,11 +362,6 @@
                 "power":       375
             }
         ],
-        "discount":             0,
-        "totalHt":              0,
-        "totalTva":             0,
-        "totalTtc":             0,
-        "remainderToPay":       0,
         "selfConsumptionBonus": 0
     },
     "scales":                    [

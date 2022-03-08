@@ -83,8 +83,6 @@
         "period":                  ""
     },
     "quotation":                 {
-        "laying":             2.5,
-        "overrideLaying":     2.5,
         "origin":             "",
         "dateTechnicalVisit": "",
         "executionDelay":     "",
@@ -152,7 +150,24 @@
                 "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
             }
         ],
+        "discount":           0,
+        "totalHt":            0,
+        "totalTtc":           0,
+        "totalTva":           0,
+        "remainderToPay":     0,
+        "ceeBonus":           0,
         "tva":                5.5,
+        "paymentOnCredit":    {
+            "active":           false,
+            "amount":           0,
+            "withoutInsurance": 0,
+            "withInsurance":    0,
+            "duration":         0,
+            "TAEG":             0,
+            "total":            0
+        },
+        "laying":             2.5,
+        "overrideLaying":     2.5,
         "selectedProducts":   [
             {
                 "id":          2,
@@ -186,13 +201,7 @@
                 "description": "- Panneaux polystyrène expansé 1\r\n            - conductivité thermique 0,038 mW/m.k\r\n            - Certifié ACERMI 10/081/617\r\n            - Produit 100% Recyclable\r\n            - Resistance thermique :3 m².k/w\r\n            - Epaisseur mini 'mm) : 115\r\n            Pose collée ou chevillée",
                 "quantity":    1
             }
-        ],
-        "discount":           0,
-        "totalHt":            0,
-        "totalTva":           0,
-        "totalTtc":           0,
-        "remainderToPay":     0,
-        "ceeBonus":           0
+        ]
     },
     "scales":                    [
         {

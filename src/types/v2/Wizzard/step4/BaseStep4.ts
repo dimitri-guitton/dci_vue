@@ -6,6 +6,15 @@ export interface BaseStep4 {
     blankOptions: StepOption[];
     selectedProducts: StepProduct[];
     commentary: string;
+    paymentOnCredit: {
+        active: boolean;
+        amount: number;
+        withoutInsurance: number;
+        withInsurance: number;
+        duration: number;
+        TAEG: number;
+        total: number;
+    };
 }
 
 export interface StepOption {

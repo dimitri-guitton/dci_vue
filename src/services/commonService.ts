@@ -56,8 +56,9 @@ export const checkInternet = (): boolean => {
  * Retourne un nombre en prix
  * @param number
  * @param quantity
+ * @param canBeFree
  */
-export const numberToPrice = ( number: number | string, quantity = 1 ): string => {
+export const numberToPrice = ( number: number | string, quantity = 1, canBeFree = true ): string => {
 
     let convertedNumber: number;
     if ( typeof number === 'string' ) {
@@ -68,7 +69,7 @@ export const numberToPrice = ( number: number | string, quantity = 1 ): string =
         convertedNumber = number;
     }
 
-    if ( quantity > 0 && convertedNumber === 0 ) {
+    if ( quantity > 0 && convertedNumber === 0 && canBeFree ) {
         return 'Inclus';
     }
 

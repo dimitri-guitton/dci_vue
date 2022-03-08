@@ -47,17 +47,6 @@ export const defaultYupConfigStep3 = () => {
 };
 
 export const defaultGetHoussingValueStep3 = ( fileData: BaseFile, stepData: BaseStep3 ) => {
-    // let address;
-
-    // if ( stepData.housingIsAddressBenef ) {
-    //     address = {
-    //         address:  fileData.beneficiary.address,
-    //         zipCode:  fileData.beneficiary.zipCode,
-    //         city:     fileData.beneficiary.city,
-    //         plot:     '',
-    //         location: '',
-    //     };
-    // } else {
     const address = {
         address:  stepData.address.address,
         zipCode:  stepData.address.zipCode,
@@ -65,7 +54,6 @@ export const defaultGetHoussingValueStep3 = ( fileData: BaseFile, stepData: Base
         plot:     stepData.address.plot,
         location: '',
     };
-    // }
 
     return {
         nbOccupant:       +stepData.nbOccupant,

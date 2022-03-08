@@ -100,7 +100,9 @@ export class QuotationGenerator extends PdfGenerator {
             maPrimeRenovGenerator.generatePdf();
         }
 
-        if ( this._file.type === FILE_PAC_RO || FILE_PAC_RR ) {
+        console.log( 'FILE TYPE', this._file.type );
+        if ( this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR ) {
+            console.log( '%c IS RO OR RR', 'background: #FF0017; color: #000000' );
             const pathToAsset = path.join( __static, '/pdf/dimensionnement_pac.pdf' );
             copyFileFromAssetToDropbox( pathToAsset, FoldersNames.DIMENSIONNEMENT_PAC, 'dimensionnement_pac.pdf' );
         }
@@ -1501,25 +1503,65 @@ export class QuotationGenerator extends PdfGenerator {
      * @private
      */
     private _generateFinalePrice(): Content {
+        let paymentText;
+        const paymentOnCredit = this._file.quotation.paymentOnCredit;
+
+        let advancePaymentText: string;
+        let advancePayment: number;
+        let advancePayment2: number;
+
+        if ( paymentOnCredit.active ) {
+            advancePaymentText = 'Acompte à la signature';
+
+            advancePayment  = this._file.quotation.remainderToPay - paymentOnCredit.amount;
+            advancePayment2 = paymentOnCredit.amount;
+
+            paymentText = [
+                {
+                    text:      'À crédit',
+                    alignment: 'center',
+                    bold:      true,
+                    fontSize:  12,
+                },
+                {
+                    text: [
+                        'Etablissement financier : Franfinance\n',
+                        `Montant du crédit : ${ this.formatPrice( paymentOnCredit.amount, 1, true, false ) }\n`,
+                        `Mensualité sans assurance : ${ this.formatPrice( paymentOnCredit.withoutInsurance, 1, true, false ) }\n`,
+                        `Mensualité avec assurance : ${ this.formatPrice( paymentOnCredit.withInsurance, 1, true, false ) }\n`,
+                        `Durée : ${ paymentOnCredit.duration } mois\n`,
+                        `TAEG : ${ this.formatPrice( paymentOnCredit.TAEG, 1, true, false ) }\n`,
+                        `Coût total du crédit : ${ this.formatPrice( paymentOnCredit.total, 1, true, false ) }\n`,
+                    ],
+                },
+            ];
+        } else {
+            advancePaymentText = 'Acompte à la signature de 30% du net à payer';
+
+            advancePayment  = this._file.quotation.remainderToPay * 0.3;
+            advancePayment2 = this._file.quotation.remainderToPay * 0.7;
+
+            paymentText = [
+                {
+                    text:      'Au comptant',
+                    alignment: 'center',
+                    bold:      true,
+                    fontSize:  12,
+                },
+            ];
+        }
         return {
             margin:     [ 0, 15, 0, 0 ],
             style:      [ 'table' ],
             lineHeight: 1.5,
             table:      {
-                body:   [
+                body: [
                     [
                         {
                             columns: [
                                 {
-                                    width: '30%',
-                                    stack: [
-                                        {
-                                            text:      'Au comptant',
-                                            alignment: 'center',
-                                            bold:      true,
-                                            fontSize:  12,
-                                        },
-                                    ],
+                                    width: '50%',
+                                    stack: paymentText,
                                 },
                                 {
                                     width: '*',
@@ -1530,7 +1572,7 @@ export class QuotationGenerator extends PdfGenerator {
                                                     width: '80%',
                                                     stack: [
                                                         {
-                                                            text:      'Acompte à la signature de 30% du net à payer',
+                                                            text:      advancePaymentText,
                                                             alignment: 'right',
                                                         },
                                                         {
@@ -1543,13 +1585,13 @@ export class QuotationGenerator extends PdfGenerator {
                                                     width: '*',
                                                     stack: [
                                                         {
-                                                            text:      this.formatPrice( this._file.quotation.remainderToPay, 0.3 ),
+                                                            text:      this.formatPrice( advancePayment ),
                                                             alignment: 'right',
                                                             bold:      true,
 
                                                         },
                                                         {
-                                                            text:      this.formatPrice( this._file.quotation.remainderToPay, 0.7 ),
+                                                            text:      this.formatPrice( advancePayment2 ),
                                                             alignment: 'right',
                                                             bold:      true,
 

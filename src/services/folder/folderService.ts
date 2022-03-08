@@ -327,7 +327,8 @@ export const checkFolder = () => {
 
 
 export const openPdf = async ( filePath: string ) => {
-    fs.unlinkSync( filePath );
+    console.log( '%c OPEN PDF', 'background: #FF0007; color: #000000' );
+    // fs.unlinkSync( filePath );
     await shell.openPath( filePath );
 };
 
@@ -379,6 +380,7 @@ export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) =
 };
 
 export const copyFileFromAssetToDropbox = ( assetPath: string, destinationFolder: string, fileName: string ) => {
+    console.log( '%c IN copyFileFromAssetToDropbox', 'background: #fdd835; color: #000000' );
     fs.copyFile( assetPath, `${ getFolderPath( getcurrentFolderName() ) }/${ destinationFolder }/${ fileName }`, ( err ) => {
         if ( err ) {
             throw err;

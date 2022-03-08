@@ -169,10 +169,11 @@ export class PdfGenerator {
      * @param value
      * @param quantity
      * @param positiveNumber
+     * @param canBeFree
      * @protected
      */
-    protected formatPrice( value: number | string, quantity = 1, positiveNumber = true ): string {
-        return positiveNumber ? numberToPrice( value, quantity ) : `- ${ numberToPrice( value, quantity ) }`;
+    protected formatPrice( value: number | string, quantity = 1, positiveNumber = true, canBeFree = true ): string {
+        return positiveNumber ? numberToPrice( value, quantity, canBeFree ) : `- ${ numberToPrice( value, quantity, canBeFree ) }`;
     }
 
     /**

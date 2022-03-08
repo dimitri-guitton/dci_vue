@@ -149,59 +149,64 @@ export default defineComponent( {
 
                                     const formattedAddress = computed( () => {
                                       if ( props.fileData.beneficiary !== undefined ) {
-                                        return `${ props.fileData.beneficiary.address }, ${ props.fileData.beneficiary.zipCode } ${ props.fileData.beneficiary.city }`;
+                                        if ( props.fileData.beneficiary.address !== '' && props.fileData.beneficiary.zipCode !== '' && props.fileData.beneficiary.city !== '' ) {
+                                          return `${ props.fileData.beneficiary.address }, ${ props.fileData.beneficiary.zipCode } ${ props.fileData.beneficiary.city }`;
+                                        }
                                       }
 
                                       return '';
                                     } );
 
 
-                                    watchEffect( async () => {
-                                      console.log( '%c__c ON WATHC MAP', 'background: #fdd835; color: #000000' );
-                                      if ( map.value !== undefined ) {
-                                        console.log( '%c__c ON WATHC MAP NOT NULL',
-                                                     'background: #0094BE; color: #000000' );
-                                        isLoading.value = true;
-                                        let coordinate;
-                                        if ( formattedAddress.value !== '' ) {
-                                          coordinate = await geocodingAddress( formattedAddress.value );
-                                          if ( coordinate === null ) {
+                                    if ( process.env.NODE_ENV !== 'development' ) {
+                                      watchEffect( async () => {
+                                        console.log( '%c__c ON WATHC MAP', 'background: #fdd835; color: #000000' );
+                                        if ( map.value !== undefined ) {
+                                          console.log( '%c__c ON WATHC MAP NOT NULL',
+                                                       'background: #0094BE; color: #000000' );
+                                          isLoading.value = true;
+                                          let coordinate;
+                                          if ( formattedAddress.value !== '' ) {
+                                            coordinate = await geocodingAddress( formattedAddress.value );
+                                            if ( coordinate === null ) {
+                                              coordinate = [ -1.1220979, 46.1703322 ];
+                                            }
+                                          } else {
                                             coordinate = [ -1.1220979, 46.1703322 ];
                                           }
-                                        } else {
-                                          coordinate = [ -1.1220979, 46.1703322 ];
-                                        }
 
-                                        map.value.setCenter( {
-                                                               x:          coordinate[ 0 ],
-                                                               y:          coordinate[ 1 ],
-                                                               projection: 'CRS:84',
-                                                             } );
-                                        console.log( '__c coordinate', coordinate );
-                                        // const icon = path.join( __static, `/map/home.png` );
-                                        // console.log( '__c ICON PATH', icon );
+                                          map.value.setCenter( {
+                                                                 x:          coordinate[ 0 ],
+                                                                 y:          coordinate[ 1 ],
+                                                                 projection: 'CRS:84',
+                                                               } );
+                                          console.log( '__c coordinate', coordinate );
+                                          // const icon = path.join( __static, `/map/home.png` );
+                                          // console.log( '__c ICON PATH', icon );
 
-                                        map.value.setMarkersOptions( [
-                                                                       {
-                                                                         position: {
-                                                                           x:          coordinate[ 0 ],
-                                                                           y:          coordinate[ 1 ],
-                                                                           projection: 'CRS:84',
+                                          map.value.setMarkersOptions( [
+                                                                         {
+                                                                           position: {
+                                                                             x:          coordinate[ 0 ],
+                                                                             y:          coordinate[ 1 ],
+                                                                             projection: 'CRS:84',
+                                                                           },
                                                                          },
-                                                                       },
-                                                                     ] );
+                                                                       ] );
 
 
-                                        isLoading.value = false;
-                                      }
-                                    } );
+                                          isLoading.value = false;
+                                        }
+                                      } );
+                                    }
 
                                     onMounted( async () => {
                                       // On charge la map que lorsque l'on est en prod
-                                      // if ( process.env.NODE_ENV !== 'development' ) {
-                                      if ( process.env.NODE_ENV === 'development' ) {
+                                      if ( process.env.NODE_ENV !== 'development' ) {
+                                        // if ( process.env.NODE_ENV === 'development' ) {
                                         // On récupère les coordonnées de l'adresse
                                         let coordinate;
+                                        console.log( 'FORMATTED ADDRESS', formattedAddress.value );
                                         if ( formattedAddress.value !== '' ) {
                                           coordinate = await geocodingAddress( formattedAddress.value );
                                           if ( coordinate === null ) {
