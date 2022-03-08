@@ -100,7 +100,8 @@
 
     <input-area></input-area>
 
-    <step3-address :lists="lists" address="11 Rue Françoise Giroud, 17000 La Rochelle"></step3-address>
+    <
+    <step3-address :lists="lists" :file-data="fileData"></step3-address>
 
   </div>
 </template>
@@ -113,6 +114,7 @@ import Step3Housing from '@/components/DCI/wizzard-file/Step3Housing.vue';
 import RrList from '@/types/v2/File/Rr/RrList';
 import Step3Address from '@/components/DCI/wizzard-file/Step3Address.vue';
 import InputArea from '@/components/DCI/input/Area.vue';
+import { RrFile } from '@/types/v2/File/Rr/RrFile';
 
 export default defineComponent( {
                                   name:       'file-pac-rr-step-3',
@@ -125,7 +127,11 @@ export default defineComponent( {
                                     ErrorMessage,
                                   },
                                   props:      {
-                                    lists: Object as () => RrList,
+                                    lists:    Object as () => RrList,
+                                    fileData: {
+                                      type:     Object as () => RrFile,
+                                      required: true,
+                                    },
                                   },
                                 } );
 </script>

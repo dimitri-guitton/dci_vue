@@ -123,41 +123,95 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { computed, defineComponent, onMounted, ref, watchEffect } from 'vue';
 import { ErrorMessage, Field } from 'vee-validate';
 import * as Gp from '@ignf-geoportal/sdk-2d';
 import { geocodingAddress } from '@/services/geocodingService';
 import ItemList from '@/components/DCI/input/ItemList.vue';
+import { RrFile } from '@/types/v2/File/Rr/RrFile';
+
+declare const __static: string;
+
 
 export default defineComponent( {
                                   name:       'step3-address',
                                   components: { ItemList, Field, ErrorMessage },
                                   props:      {
-                                    lists:   Object,
-                                    address: {
-                                      type: String,
+                                    lists:    Object,
+                                    fileData: {
+                                      type:     Object as () => RrFile,
+                                      required: true,
                                     },
                                   },
                                   setup( props ) {
                                     const isLoading = ref<boolean>( true );
-                                    onMounted( async () => {
-                                      console.log( '%c On Mounted', 'background: #35D452; color: #000000' );
+                                    const map       = ref();
 
-                                      // On charge la map que lorsque l'on est en prod
-                                      if ( process.env.NODE_ENV !== 'development' ) {
-                                        // On récupère les coordonnées de l'adresse
+                                    const formattedAddress = computed( () => {
+                                      if ( props.fileData.beneficiary !== undefined ) {
+                                        return `${ props.fileData.beneficiary.address }, ${ props.fileData.beneficiary.zipCode } ${ props.fileData.beneficiary.city }`;
+                                      }
+
+                                      return '';
+                                    } );
+
+
+                                    watchEffect( async () => {
+                                      console.log( '%c__c ON WATHC MAP', 'background: #fdd835; color: #000000' );
+                                      if ( map.value !== undefined ) {
+                                        console.log( '%c__c ON WATHC MAP NOT NULL',
+                                                     'background: #0094BE; color: #000000' );
+                                        isLoading.value = true;
                                         let coordinate;
-                                        if ( props.address !== undefined ) {
-                                          coordinate = await geocodingAddress( props.address );
+                                        if ( formattedAddress.value !== '' ) {
+                                          coordinate = await geocodingAddress( formattedAddress.value );
                                           if ( coordinate === null ) {
                                             coordinate = [ -1.1220979, 46.1703322 ];
                                           }
                                         } else {
                                           coordinate = [ -1.1220979, 46.1703322 ];
                                         }
-                                        console.log( 'Coordinate', coordinate );
 
-                                        Gp.Map.load(
+                                        map.value.setCenter( {
+                                                               x:          coordinate[ 0 ],
+                                                               y:          coordinate[ 1 ],
+                                                               projection: 'CRS:84',
+                                                             } );
+                                        console.log( '__c coordinate', coordinate );
+                                        // const icon = path.join( __static, `/map/home.png` );
+                                        // console.log( '__c ICON PATH', icon );
+
+                                        map.value.setMarkersOptions( [
+                                                                       {
+                                                                         position: {
+                                                                           x:          coordinate[ 0 ],
+                                                                           y:          coordinate[ 1 ],
+                                                                           projection: 'CRS:84',
+                                                                         },
+                                                                       },
+                                                                     ] );
+
+
+                                        isLoading.value = false;
+                                      }
+                                    } );
+
+                                    onMounted( async () => {
+                                      // On charge la map que lorsque l'on est en prod
+                                      // if ( process.env.NODE_ENV !== 'development' ) {
+                                      if ( process.env.NODE_ENV === 'development' ) {
+                                        // On récupère les coordonnées de l'adresse
+                                        let coordinate;
+                                        if ( formattedAddress.value !== '' ) {
+                                          coordinate = await geocodingAddress( formattedAddress.value );
+                                          if ( coordinate === null ) {
+                                            coordinate = [ -1.1220979, 46.1703322 ];
+                                          }
+                                        } else {
+                                          coordinate = [ -1.1220979, 46.1703322 ];
+                                        }
+
+                                        map.value = Gp.Map.load(
                                             'map', // html div
                                             {
                                               apiKey:  'essentiels,cartes,parcellaire',

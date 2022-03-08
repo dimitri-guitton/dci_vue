@@ -30,7 +30,7 @@
 
           <!--begin::Step 3-->
           <div data-kt-stepper-element="content">
-            <FilePacRrStep3 :lists="lists"></FilePacRrStep3>
+            <FilePacRrStep3 :file-data="fileData" :lists="lists"></FilePacRrStep3>
           </div>
           <!--end::Step 3-->
 
@@ -302,9 +302,11 @@ export default defineComponent( {
                                         // Force le refersh des data du formulaire
                                         refreshFormData();
                                       } else if ( currentStepIndex.value === 1 ) {
-                                        console.log( '%c Validation de l\'étape 1',
+                                        console.log( '%c Validation de l\'étape 2',
                                                      'background: #FF7CA7; color: #000000' );
-                                        await validateStepTwo( formData.value );
+                                        console.log( '_cc validation step 2' );
+                                        fileData.value = ( await validateStepTwo( formData.value ) as RrFile );
+                                        console.log( '_cc after file data updated', fileData.value );
                                       } else if ( currentStepIndex.value === 2 ) {
                                         console.log( '%c Validation step 3', 'background: #fdd835; color: #000000' );
                                         fileData.value          = await validatePacRrStep3( formData.value );

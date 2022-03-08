@@ -267,9 +267,9 @@ export const updateAssent = ( data ) => {
     updateJsonData( fileData );
 };
 
-export const updateBeneficiary = ( data ) => {
+export const updateBeneficiary = ( data ): AllFile => {
     updateAssent( data );
-    let fileData: BaseFile = getCurrentFileData();
+    let fileData: AllFile = getCurrentFileData();
 
     const beneficiary: Beneficiary = {
         civility:  data.assentsDatas[ data.indexBeneficiary ].civility,
@@ -297,6 +297,8 @@ export const updateBeneficiary = ( data ) => {
     };
 
     updateJsonData( fileData );
+
+    return fileData;
 };
 
 export const getProductById = ( id: number ): Product | undefined => {

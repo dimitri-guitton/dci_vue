@@ -30,7 +30,7 @@
 
           <!--begin::Step 3-->
           <div data-kt-stepper-element="content">
-            <FilePacRoStep3 :lists="lists"></FilePacRoStep3>
+            <FilePacRoStep3 :file-data="fileData" :lists="lists"></FilePacRoStep3>
           </div>
           <!--end::Step 3-->
 
@@ -304,7 +304,7 @@ export default defineComponent( {
                                       } else if ( currentStepIndex.value === 1 ) {
                                         console.log( '%c Validation de l\'étape 1',
                                                      'background: #FF7CA7; color: #000000' );
-                                        await validateStepTwo( formData.value );
+                                        fileData.value = ( await validateStepTwo( formData.value ) as RoFile );
                                       } else if ( currentStepIndex.value === 2 ) {
                                         console.log( '%c Validation step 3', 'background: #fdd835; color: #000000' );
                                         fileData.value          = await validatePacRoStep3( formData.value );

@@ -6,7 +6,7 @@
 
     <step3-housing :lists="lists"></step3-housing>
 
-    <step3-address :lists="lists" address="11 Rue Françoise Giroud, 17000 La Rochelle"></step3-address>
+    <step3-address :lists="lists" :file-data="fileData"></step3-address>
   </div>
 </template>
 
@@ -14,6 +14,8 @@
 import { defineComponent } from 'vue';
 import Step3Housing from '@/components/DCI/wizzard-file/Step3Housing.vue';
 import Step3Address from '@/components/DCI/wizzard-file/Step3Address.vue';
+import PvList from '@/types/v2/File/Pv/PvList';
+import { PvFile } from '@/types/v2/File/Pv/PvFile';
 
 export default defineComponent( {
                                   name:       'file-pv-step-3',
@@ -22,7 +24,11 @@ export default defineComponent( {
                                     Step3Housing,
                                   },
                                   props:      {
-                                    lists: Object,
+                                    lists:    Object as () => PvList,
+                                    fileData: {
+                                      type:     Object as () => PvFile,
+                                      required: true,
+                                    },
                                   },
                                 } );
 </script>

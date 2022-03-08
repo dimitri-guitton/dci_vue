@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <step3-address :lists="lists" address="11 Rue Françoise Giroud, 17000 La Rochelle"></step3-address>
+    <step3-address :lists="lists" :file-data="fileData"></step3-address>
   </div>
 </template>
 
@@ -33,6 +33,8 @@ import { ErrorMessage, Field } from 'vee-validate';
 import ItemList from '@/components/DCI/input/ItemList.vue';
 import Step3Housing from '@/components/DCI/wizzard-file/Step3Housing.vue';
 import Step3Address from '@/components/DCI/wizzard-file/Step3Address.vue';
+import { CetList } from '@/types/v2/File/Cet/CetList';
+import { CetFile } from '@/types/v2/File/Cet/CetFile';
 
 export default defineComponent( {
                                   name:       'file-cet-step-3',
@@ -44,7 +46,11 @@ export default defineComponent( {
                                     ErrorMessage,
                                   },
                                   props:      {
-                                    lists: Object,
+                                    lists:    Object as () => CetList,
+                                    fileData: {
+                                      type:     Object as () => CetFile,
+                                      required: true,
+                                    },
                                   },
                                 } );
 </script>

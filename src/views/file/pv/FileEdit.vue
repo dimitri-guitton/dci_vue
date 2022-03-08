@@ -30,7 +30,7 @@
 
           <!--begin::Step 3-->
           <div data-kt-stepper-element="content">
-            <FilePbStep3 :lists="lists"></FilePbStep3>
+            <FilePbStep3 :file-data="fileData" :lists="lists"></FilePbStep3>
           </div>
           <!--end::Step 3-->
 
@@ -201,19 +201,19 @@ export default defineComponent( {
                                     const stepForm            = ref();
                                     const currentStepIndex    = ref( 0 );
                                     // Récupération des données du fichier JSON
-                                    const fileData            = getCurrentPvFileData();
-                                    const lists               = fileData.lists;
-                                    const products            = fileData.quotation.products;
-                                    const selectedProducts    = fileData.quotation.selectedProducts;
-                                    const options             = fileData.quotation.options;
-                                    const blankOptions        = fileData.quotation.blankOptions;
+                                    const fileData            = ref<PvFile>( getCurrentPvFileData() );
+                                    const lists               = fileData.value.lists;
+                                    const products            = fileData.value.quotation.products;
+                                    const selectedProducts    = fileData.value.quotation.selectedProducts;
+                                    const options             = fileData.value.quotation.options;
+                                    const blankOptions        = fileData.value.quotation.blankOptions;
                                     const assents             = ref<Assent[]>( [] );
                                     const formData            = ref<PvFileStep>( {
-                                                                                   ...initFormDataStep1And2( fileData.assents,
-                                                                                                             fileData.beneficiary ),
-                                                                                   ...initPvFormDataStep3( fileData ),
-                                                                                   ...initPvFormDataStep4( fileData ),
-                                                                                   ...initPvFormDataStep5( fileData.worksheet ),
+                                                                                   ...initFormDataStep1And2( fileData.value.assents,
+                                                                                                             fileData.value.beneficiary ),
+                                                                                   ...initPvFormDataStep3( fileData.value ),
+                                                                                   ...initPvFormDataStep4( fileData.value ),
+                                                                                   ...initPvFormDataStep5( fileData.value.worksheet ),
                                                                                  } );
                                     const nbAssent            = formData.value?.assents.length;
                                     // Configuration de la validation du formulaire
@@ -280,7 +280,8 @@ export default defineComponent( {
                                                      'background: #FF7CA7; color: #000000' );
 
 
-                                        const response = await validateStepOne( formData.value, fileData.assents );
+                                        const response = await validateStepOne( formData.value,
+                                                                                fileData.value.assents );
                                         assents.value  = response.assents;
                                         formData.value = response.formData;
                                         // Force le refersh des data du formulaire
@@ -288,7 +289,7 @@ export default defineComponent( {
                                       } else if ( currentStepIndex.value === 1 ) {
                                         console.log( '%c Validation de l\'étape 1',
                                                      'background: #FF7CA7; color: #000000' );
-                                        await validateStepTwo( formData.value );
+                                        fileData.value = ( await validateStepTwo( formData.value ) as PvFile );
                                       } else if ( currentStepIndex.value === 2 ) {
                                         console.log( '%c Validation step 3', 'background: #fdd835; color: #000000' );
                                         await validatePvStep3( formData.value );
@@ -342,8 +343,8 @@ export default defineComponent( {
                                                    'background: #00FFCD; color: #000000' );
                                       console.log( values );
 
-                                      const addressGenerator = new NewAddressGenerator( fileData.housing,
-                                                                                        fileData.beneficiary );
+                                      const addressGenerator = new NewAddressGenerator( fileData.value.housing,
+                                                                                        fileData.value.beneficiary );
                                       addressGenerator.generatePdf();
                                     } );
 
@@ -365,9 +366,9 @@ export default defineComponent( {
                                     };
 
                                     // TEST
-                                    // const t  = new NewAddressGenerator( fileData.housing, fileData.beneficiary );
+                                    // const t  = new NewAddressGenerator( fileData.value.housing, fileData.value.beneficiary );
                                     // // t.generatePdf();
-                                    // const tt = new WorksheetGenerator( fileData );
+                                    // const tt = new WorksheetGenerator( fileData.value );
                                     // tt.generatePdf();
 
 

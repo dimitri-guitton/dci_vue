@@ -25,7 +25,7 @@
 
     <input-area></input-area>
 
-    <step3-address :lists="lists" address="11 Rue Françoise Giroud, 17000 La Rochelle"></step3-address>
+    <step3-address :lists="lists" :file-data="fileData"></step3-address>
   </div>
 </template>
 
@@ -36,6 +36,8 @@ import ItemList from '@/components/DCI/input/ItemList.vue';
 import Step3Housing from '@/components/DCI/wizzard-file/Step3Housing.vue';
 import Step3Address from '@/components/DCI/wizzard-file/Step3Address.vue';
 import InputArea from '@/components/DCI/input/Area.vue';
+import SolList from '@/types/v2/File/Sol/SolList';
+import { SolFile } from '@/types/v2/File/Sol/SolFile';
 
 export default defineComponent( {
                                   name:       'file-sol-step-3',
@@ -48,7 +50,11 @@ export default defineComponent( {
                                     ErrorMessage,
                                   },
                                   props:      {
-                                    lists: Object,
+                                    lists:    Object as () => SolList,
+                                    fileData: {
+                                      type:     Object as () => SolFile,
+                                      required: true,
+                                    },
                                   },
                                 } );
 </script>

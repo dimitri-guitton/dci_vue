@@ -1,8 +1,9 @@
 import * as Yup from 'yup';
 import { updateBeneficiary } from '@/services/data/dataService';
+import { AllFile } from '@/types/v2/File/All';
 
-export const validateStepTwo = ( data ) => {
-    updateBeneficiary( data );
+export const validateStepTwo = ( data ): AllFile => {
+    return updateBeneficiary( data );
 };
 export const yupConfigStep2  = () => {
     return Yup.object( {
@@ -13,11 +14,11 @@ export const yupConfigStep2  = () => {
                                                                                           .required(),
                                                                         lastName:      Yup.string()
                                                                                           .required(),
-                                                                            firstName: Yup.string()
+                                                                        firstName:     Yup.string()
                                                                                           .required(),
-                                                                            address:   Yup.string()
+                                                                        address:       Yup.string()
                                                                                           .required(),
-                                                                            zipCode:   Yup.string()
+                                                                        zipCode:       Yup.string()
                                                                                           .matches(
                                                                                               /^([0-8][0-9]|9[0-5])[0-9]{3}/,
                                                                                               {

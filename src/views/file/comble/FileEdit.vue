@@ -30,7 +30,7 @@
 
           <!--begin::Step 3-->
           <div data-kt-stepper-element="content">
-            <FileCombleStep3 :lists="lists"></FileCombleStep3>
+            <FileCombleStep3 :file-data="fileData" :lists="lists"></FileCombleStep3>
           </div>
           <!--end::Step 3-->
 
@@ -177,27 +177,27 @@ export default defineComponent( {
 
 
                                     // Initialisation des variables
-                                    const stepForm         = ref();
-                                    const currentStepIndex = ref( 0 );
+                                    const stepForm            = ref();
+                                    const currentStepIndex    = ref( 0 );
                                     // Récupération des données du fichier JSON
-                                    const fileData         = getCurrentCombleFileData();
-                                    const lists            = fileData.lists;
-                                    const products         = fileData.quotation.products;
-                                    const selectedProducts = fileData.quotation.selectedProducts;
-                                    const options          = fileData.quotation.options;
-                                    const blankOptions     = fileData.quotation.blankOptions;
-                                    const area             = ref<number>( fileData.housing.area );
-                                    const assents          = ref<Assent[]>( [] );
-                                    const formData         = ref<CombleFileStep>( {
+                                    const fileData            = ref<CombleFile>( getCurrentCombleFileData() );
+                                    const lists               = fileData.value.lists;
+                                    const products            = fileData.value.quotation.products;
+                                    const selectedProducts    = fileData.value.quotation.selectedProducts;
+                                    const options             = fileData.value.quotation.options;
+                                    const blankOptions        = fileData.value.quotation.blankOptions;
+                                    const area                = ref<number>( fileData.value.housing.area );
+                                    const assents             = ref<Assent[]>( [] );
+                                    const formData            = ref<CombleFileStep>( {
                                                                                        ...initFormDataStep1And2(
-                                                                                           fileData.assents,
-                                                                                           fileData.beneficiary ),
+                                                                                           fileData.value.assents,
+                                                                                           fileData.value.beneficiary ),
                                                                                        ...initCombleFormDataStep3(
-                                                                                           fileData ),
+                                                                                           fileData.value ),
                                                                                        ...initCombleFormDataStep4(
-                                                                                           fileData ),
+                                                                                           fileData.value ),
                                                                                        ...initCombleFormDataStep5(
-                                                                                           fileData.worksheet ),
+                                                                                           fileData.value.worksheet ),
                                                                                      } );
                                     const nbAssent            = formData.value?.assents.length;
                                     // Configuration de la validation du formulaire
@@ -264,7 +264,8 @@ export default defineComponent( {
                                                      'background: #FF7CA7; color: #000000' );
 
 
-                                        const response = await validateStepOne( formData.value, fileData.assents );
+                                        const response = await validateStepOne( formData.value,
+                                                                                fileData.value.assents );
                                         assents.value  = response.assents;
                                         formData.value = response.formData;
                                         // Force le refersh des data du formulaire
@@ -273,7 +274,7 @@ export default defineComponent( {
                                         console.log( '%c Validation de l\'étape 1',
                                                      'background: #FF7CA7; color: #000000' );
                                         console.log( formData.value );
-                                        await validateStepTwo( formData.value );
+                                        fileData.value = ( await validateStepTwo( formData.value ) as CombleFile );
                                       } else if ( currentStepIndex.value === 2 ) {
                                         console.log( '%c Validation step 3', 'background: #fdd835; color: #000000' );
                                         await validateCombleStep3( formData.value );
@@ -328,8 +329,8 @@ export default defineComponent( {
                                                    'background: #00FFCD; color: #000000' );
                                       console.log( values );
 
-                                      const addressGenerator = new NewAddressGenerator( fileData.housing,
-                                                                                        fileData.beneficiary );
+                                      const addressGenerator = new NewAddressGenerator( fileData.value.housing,
+                                                                                        fileData.value.beneficiary );
                                       addressGenerator.generatePdf();
                                     } );
 
