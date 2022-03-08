@@ -100,7 +100,6 @@
 
     <input-area></input-area>
 
-    <
     <step3-address :lists="lists" :file-data="fileData"></step3-address>
 
   </div>

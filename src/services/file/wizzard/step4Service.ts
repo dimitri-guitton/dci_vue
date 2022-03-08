@@ -77,16 +77,17 @@ export const defaultYupConfigStep4 = () => {
     };
 };
 
-const getPriceValue = ( price: Price ): Price => {
+const getPriceValue = ( price: Price ) => {
+    console.log( '%c IN PRICE VALUE', 'background: #35D452; color: #000000' );
     return {
-        HT:                   price.HT,
-        TTC:                  price.TTC,
-        TVA:                  price.TVA,
+        totalHt:              price.HT,
+        totalTtc:             price.TTC,
+        totalTva:             price.TVA,
         laying:               price.laying ? price.laying : 0,
-        TVA10:                price.TVA10 ? price.TVA10 : 0,
-        TVA20:                price.TVA20 ? price.TVA20 : 0,
-        CEE:                  price.CEE ? price.CEE : 0,
-        maPrimeRenov:         price.maPrimeRenov ? price.maPrimeRenov : 0,
+        tva10:                price.TVA10 ? price.TVA10 : 0,
+        tva20:                price.TVA20 ? price.TVA20 : 0,
+        ceeBonus:             price.CEE ? price.CEE : 0,
+        maPrimeRenovBonus:    price.maPrimeRenov ? price.maPrimeRenov : 0,
         remainderToPay:       price.remainderToPay ? price.remainderToPay : 0,
         discount:             price.discount ? price.discount : 0,
         selfConsumptionBonus: price.selfConsumptionBonus ? price.selfConsumptionBonus : 0,

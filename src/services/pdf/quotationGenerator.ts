@@ -32,6 +32,7 @@ import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
 import { AllFile, AllQuotation } from '@/types/v2/File/All';
 import path from 'path';
 import { copyFileFromAssetToDropbox, FoldersNames } from '@/services/folder/folderService';
+import { PbQuotation } from '@/types/v2/File/Pb/PbQuotation';
 
 declare const __static: string;
 
@@ -1459,7 +1460,7 @@ export class QuotationGenerator extends PdfGenerator {
                                                        ] );
             }
 
-            if ( text.type === 'maPrimeRenovBonus' && ( this._file.quotation as RoQuotation | RrQuotation | PgQuotation | CetQuotation ).maPrimeRenovBonus <= 0 ) {
+            if ( text.type === 'maPrimeRenovBonus' && ( this._file.quotation as RoQuotation | RrQuotation | PgQuotation | PbQuotation | CetQuotation ).maPrimeRenovBonus <= 0 ) {
                 continue;
             }
 
