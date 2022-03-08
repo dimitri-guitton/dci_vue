@@ -326,10 +326,10 @@ export const checkFolder = () => {
 };
 
 
-export const openPdf = async ( filePath: string ) => {
+export const openPdf = ( filePath: string ) => {
     console.log( '%c OPEN PDF', 'background: #FF0007; color: #000000' );
-    // fs.unlinkSync( filePath );
-    await shell.openPath( filePath );
+    console.log( filePath );
+    shell.openPath( filePath ).then( response => console.log( 'After open', response ) );
 };
 
 
@@ -373,9 +373,10 @@ export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) =
     fs.createWriteStream( filePath ).write( buffer );
 
     if ( openAfterSave ) {
+        console.log( '%c IN OPEN', 'background: #fdd835; color: #000000' );
         setTimeout( () => {
             openPdf( filePath );
-        }, 500 );
+        }, 1500 );
     }
 };
 
