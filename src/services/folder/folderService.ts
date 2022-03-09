@@ -7,7 +7,7 @@ import { convertOldRrFile } from '@/services/file/converter/convertRrData';
 import { convertOldCetFile } from '@/services/file/converter/convertCetData';
 import path from 'path';
 import { addFile, deleteFile } from '@/services/sqliteService';
-import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
+import { FILE_CET, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG } from '@/services/constantService';
 import { getcurrentFolderName, setCurrentFileData } from '@/services/data/dataService';
 import { convertOldPgFile } from '@/services/file/converter/convertPgData';
 import { convertOldCombleFile } from '@/services/file/converter/convertCombleData';
@@ -48,24 +48,14 @@ export const FoldersNames = {
     FICHE_FOLDER:                       'fiche',
     FICHE_SIGNE_FOLDER:                 'fiche_signe',
     ATTEST_ADRESSE_SIGNE_FOLDER:        'attest_adresse_signe',
-    PHOTOS_FACADE_FOLDER:               'photos_facade',
-    PHOTOS_MAISON_FOLDER:               'photos_maison',
-    PHOTOS_CHANTIER_FOLDER:             'photos_chantier',
     ATTESTATION_HONNEUR_FOLDER:         'attestation_sur_honneur',
     MANDAT_MA_PRIME_RENOV:              'mandat_maprimerenov',
-    PHOTOS_TABLEAU_ELECTRIQUE:          'photos_tableau_electrique',
-    PHOTOS_ANCIENNE_CHAUDIERE:          'photos_ancienne_chaudiere',
-    PHOTOS_RADIATEUR:                   'photos_radiateur',
-    PHOTOS_EMPLACEMENT_UNITE_EXT:       'photos_emplacement_unite_ext',
-    PHOTOS_EMPLACEMENT_SPLITS:          'photos_emplacement_splits',
     ATTEST_TVA_SIMPLIFIEE_FOLDER:       'attest_tva_simp',
     ATTEST_TVA_SIMPLIFIEE_SIGNE_FOLDER: 'attest_tva_simp_signe',
     CADRE_CONTRIBUTION_CEE:             'cadre_contribution_cee',
-    PHOTO_EMPLACEMENT_POELE:            'photo_emplacement_poele',
-    PHOTO_COMBLE_EMPLACEMENT_TUYAUX:    'photo_comble_emplacement_tuyaux',
-    PHOTO_TOITURE:                      'photo_toiture_et_tuile',
     DIMENSIONNEMENT_PAC:                'dimensionnement_pac',
     VIDEO:                              'video',
+    PHOTO:                              'photos',
 };
 
 const Folders = [
@@ -76,24 +66,14 @@ const Folders = [
     { name: FoldersNames.FICHE_FOLDER, dossierType: [ 'all' ] },
     { name: FoldersNames.FICHE_SIGNE_FOLDER, dossierType: [ 'all' ] },
     { name: FoldersNames.ATTEST_ADRESSE_SIGNE_FOLDER, dossierType: [ 'all' ] },
-    { name: FoldersNames.PHOTOS_FACADE_FOLDER, dossierType: [ FILE_SOL, FILE_COMBLE, FILE_PG ] },
-    { name: FoldersNames.PHOTOS_MAISON_FOLDER, dossierType: [ FILE_SOL, FILE_COMBLE ] },
-    { name: FoldersNames.PHOTOS_CHANTIER_FOLDER, dossierType: [ FILE_SOL ] },
     { name: FoldersNames.ATTESTATION_HONNEUR_FOLDER, dossierType: [ 'all' ] },
-    { name: FoldersNames.PHOTOS_TABLEAU_ELECTRIQUE, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_PG ] },
-    { name: FoldersNames.MANDAT_MA_PRIME_RENOV, dossierType: [ FILE_PAC_RO, FILE_CET, FILE_PG ] },
-    { name: FoldersNames.PHOTOS_ANCIENNE_CHAUDIERE, dossierType: [ FILE_PAC_RO ] },
-    { name: FoldersNames.PHOTOS_RADIATEUR, dossierType: [ FILE_PAC_RO ] },
-    { name: FoldersNames.PHOTOS_EMPLACEMENT_UNITE_EXT, dossierType: [ FILE_PAC_RR, FILE_PAC_RO ] },
-    { name: FoldersNames.PHOTOS_EMPLACEMENT_SPLITS, dossierType: [ FILE_PAC_RR ] },
-    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_FOLDER, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_CET, FILE_PG ] },
-    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_SIGNE_FOLDER, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_CET, FILE_PG ] },
+    { name: FoldersNames.MANDAT_MA_PRIME_RENOV, dossierType: [ FILE_PAC_RO, FILE_CET, FILE_PG, FILE_PB ] },
+    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_FOLDER, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_CET, FILE_PG, FILE_PB ] },
+    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_SIGNE_FOLDER, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_CET, FILE_PG, FILE_PB ] },
     { name: FoldersNames.CADRE_CONTRIBUTION_CEE, dossierType: [ 'all' ] },
-    { name: FoldersNames.PHOTO_EMPLACEMENT_POELE, dossierType: [ FILE_PG ] },
-    { name: FoldersNames.PHOTO_COMBLE_EMPLACEMENT_TUYAUX, dossierType: [ FILE_PG ] },
-    { name: FoldersNames.PHOTO_TOITURE, dossierType: [ FILE_PG ] },
     { name: FoldersNames.DIMENSIONNEMENT_PAC, dossierType: [ FILE_PAC_RR, FILE_PAC_RO ] },
     { name: FoldersNames.VIDEO, dossierType: [ 'all' ] },
+    { name: FoldersNames.PHOTO, dossierType: [ 'all' ] },
 ];
 
 /**
