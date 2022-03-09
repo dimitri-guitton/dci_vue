@@ -47,13 +47,13 @@
             </template>
             <template v-else-if="item.type === checkboxInput">
               <label class="form-check form-switch form-check-custom">
-                <span class="form-check-label fw-bold text-gray-600 me-5">{{ item.label }}</span>
                 <Field
                     type="checkbox"
-                    class="form-check-input h-30px w-55px"
+                    class="form-check-input"
                     :name="`worksheet.${item.name}`"
                     :value="true"
                 />
+                <span class="form-check-label fw-bold text-gray-600 me-5">{{ item.label }}</span>
               </label>
             </template>
 

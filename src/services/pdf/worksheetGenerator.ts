@@ -501,8 +501,32 @@ export class WorksheetGenerator extends PdfGenerator {
                                 value: worksheet.resistTherm,
                             },
                             {
-                                label: 'Dimensions des pièces',
-                                value: worksheet.epaisseurProduit,// TODO FAIRE la dimension des pieces
+                                label: 'Dimensions pièce 1',
+                                value: worksheet.epaisseurProduit,
+                            },
+                            {
+                                label: 'Dimensions pièce 1',
+                                value: worksheet.dimensionsPieces[ 0 ],
+                            },
+                            {
+                                label: 'Dimensions pièce 2',
+                                value: worksheet.dimensionsPieces[ 1 ],
+                            },
+                            {
+                                label: 'Dimensions pièce 3',
+                                value: worksheet.dimensionsPieces[ 2 ],
+                            },
+                            {
+                                label: 'Dimensions pièce 4',
+                                value: worksheet.dimensionsPieces[ 3 ],
+                            },
+                            {
+                                label: 'Dimensions pièce 5',
+                                value: worksheet.dimensionsPieces[ 4 ],
+                            },
+                            {
+                                label: 'Dimensions pièce 6',
+                                value: worksheet.dimensionsPieces[ 5 ],
                             },
                             {
                                 label: 'ISOLATION EXISTANTE',
@@ -551,7 +575,34 @@ export class WorksheetGenerator extends PdfGenerator {
                                 label: 'Quelle distance y\'a-t-il entre le haut des portes et le plafond',
                                 value: ' ',
                             },
-                            // TODO faire distancePortesPalfond < 3 et > 3
+                            {
+                                label: 'Dimensions pièce 1',
+                                value: worksheet.epaisseurProduit,
+                            },
+                            {
+                                label: 'Dimensions pièce 1',
+                                value: worksheet.distancePortesPalfond[ 0 ],
+                            },
+                            {
+                                label: 'Dimensions pièce 2',
+                                value: worksheet.distancePortesPalfond[ 1 ],
+                            },
+                            {
+                                label: 'Dimensions pièce 3',
+                                value: worksheet.distancePortesPalfond[ 2 ],
+                            },
+                            {
+                                label: 'Dimensions pièce 4',
+                                value: worksheet.distancePortesPalfond[ 3 ],
+                            },
+                            {
+                                label: 'Dimensions pièce 5',
+                                value: worksheet.distancePortesPalfond[ 4 ],
+                            },
+                            {
+                                label: 'Dimensions pièce 6',
+                                value: worksheet.distancePortesPalfond[ 5 ],
+                            },
                             {
                                 label: 'Porte de garage',
                                 value: this.getValueInList( list.porteGarageList, worksheet.porteGarage ),

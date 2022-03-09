@@ -53,7 +53,36 @@ export const solWorksheetBuilder = (): WorksheetBuilder => {
                         name:  'resistTherm',
                         label: 'Resistance thermique',
                     },
-                    // TODO DIMENSION PIECES
+                    {
+                        type:  WorksheetBuilderItemType.Number,
+                        name:  'dimensionsPieces.0',
+                        label: 'Dimensions pièce 1',
+                    },
+                    {
+                        type:  WorksheetBuilderItemType.Number,
+                        name:  'dimensionsPieces.1',
+                        label: 'Dimensions pièce 2',
+                    },
+                    {
+                        type:  WorksheetBuilderItemType.Number,
+                        name:  'dimensionsPieces.2',
+                        label: 'Dimensions pièce 3',
+                    },
+                    {
+                        type:  WorksheetBuilderItemType.Number,
+                        name:  'dimensionsPieces.3',
+                        label: 'Dimensions pièce 5',
+                    },
+                    {
+                        type:  WorksheetBuilderItemType.Number,
+                        name:  'dimensionsPieces.4',
+                        label: 'Dimensions pièce 5',
+                    },
+                    {
+                        type:  WorksheetBuilderItemType.Number,
+                        name:  'dimensionsPieces.5',
+                        label: 'Dimensions pièce 6',
+                    },
                     {
                         type:       WorksheetBuilderItemType.Select,
                         name:       'niveauHabitation',
@@ -90,7 +119,36 @@ export const solWorksheetBuilder = (): WorksheetBuilder => {
                         name:  'luminairesPlafond',
                         label: 'Luminaires au plafond ?',
                     },
-                    // TODO DISTANCE PORTE PALFOND
+                    {
+                        type:  WorksheetBuilderItemType.Number,
+                        name:  'distancePortesPalfond.0',
+                        label: 'Distance entre plafond et porte 1',
+                    },
+                    {
+                        type:  WorksheetBuilderItemType.Number,
+                        name:  'distancePortesPalfond.1',
+                        label: 'Distance entre plafond et porte 2',
+                    },
+                    {
+                        type:  WorksheetBuilderItemType.Number,
+                        name:  'distancePortesPalfond.2',
+                        label: 'Distance entre plafond et porte 3',
+                    },
+                    {
+                        type:  WorksheetBuilderItemType.Number,
+                        name:  'distancePortesPalfond.3',
+                        label: 'Distance entre plafond et porte 5',
+                    },
+                    {
+                        type:  WorksheetBuilderItemType.Number,
+                        name:  'distancePortesPalfond.4',
+                        label: 'Distance entre plafond et porte 5',
+                    },
+                    {
+                        type:  WorksheetBuilderItemType.Number,
+                        name:  'distancePortesPalfond.5',
+                        label: 'Distance entre plafond et porte 6',
+                    },
                     {
                         type:       WorksheetBuilderItemType.Select,
                         name:       'porteGarage',
@@ -142,17 +200,16 @@ export const yupSolConfigStep5 = () => {
 export const initSolFormDataStep5 = ( worksheet: SolWorkSheet ) => {
     const data: SolStep5 = {
         worksheet: {
-            period:           worksheet.period,
-            infosSup:         worksheet.infosSup,
-            epaisseurProduit: worksheet.epaisseurProduit,
-            accesCamion:      worksheet.accesCamion,
-            distCamion:       worksheet.distCamion,
-            hautPlafond:      worksheet.hautPlafond,
-            support:          worksheet.support,
-            distPointEau:     worksheet.distPointEau,
-            resistTherm:      worksheet.resistTherm,
-            // dimensionsPieces:        worksheet.dimensionsPieces,
-            dimensionsPieces:        [],
+            period:                  worksheet.period,
+            infosSup:                worksheet.infosSup,
+            epaisseurProduit:        worksheet.epaisseurProduit,
+            accesCamion:             worksheet.accesCamion,
+            distCamion:              worksheet.distCamion,
+            hautPlafond:             worksheet.hautPlafond,
+            support:                 worksheet.support,
+            distPointEau:            worksheet.distPointEau,
+            resistTherm:             worksheet.resistTherm,
+            dimensionsPieces:        worksheet.dimensionsPieces,
             isolationExistante:      worksheet.isolationExistante,
             niveauHabitation:        worksheet.niveauHabitation,
             habitationSurLocalFroid: worksheet.habitationSurLocalFroid,
@@ -160,10 +217,9 @@ export const initSolFormDataStep5 = ( worksheet: SolWorkSheet ) => {
             terrePlein:              worksheet.terrePlein,
             reseauPlafond:           worksheet.reseauPlafond,
             luminairesPlafond:       worksheet.luminairesPlafond,
-            // distancePortesPalfond:   worksheet.distancePortesPalfond,
-            distancePortesPalfond: [],
-            porteGarage:           worksheet.porteGarage,
-            nbrPorteGarage:        worksheet.nbrPorteGarage,
+            distancePortesPalfond:   worksheet.distancePortesPalfond,
+            porteGarage:             worksheet.porteGarage,
+            nbrPorteGarage:          worksheet.nbrPorteGarage,
         },
     };
 
