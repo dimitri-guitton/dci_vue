@@ -60,7 +60,35 @@
           <td v-if="data.totalTTC > 0">{{ numberToPrice( data.totalTTC ) }}</td>
           <td v-if="data.totalTTC <= 0">0.00 €</td>
           <td>{{ data.createdAt }}</td>
-          <td><span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span></td>
+          <!--          <td><span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span></td>-->
+          <td>
+            <template v-if="data.errors.length > 0">
+              <el-popover
+                  placement="bottom-end"
+                  :width="300"
+                  trigger="hover"
+              >
+                <template #reference>
+                  <span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span>
+                </template>
+                <template #default>
+                  <template v-if="data.errors.length > 0">
+                    <h6>Éléments manquants</h6>
+                  </template>
+                  <template v-for="error in data.errors" :key="`e_${error}`">
+                    <div class="d-flex flex-column">
+                      <li class="d-flex align-items-center py-2">
+                        <span class="bullet bg-warning me-2"></span> {{ codeErrorToString( error ) }}
+                      </li>
+                    </div>
+                  </template>
+                </template>
+              </el-popover>
+            </template>
+            <template v-else>
+              <span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span>
+            </template>
+          </td>
           <td>{{ data.sendAt }}</td>
           <td>
             <!--            <router-link :to="{ name: 'folder_show', query: { slug: data.reference } }"-->
@@ -168,6 +196,10 @@ export default defineComponent( {
 
                                     // Fonction appelé quand un filtre est modifié ou la pagination
                                     const filterData = computed<DatatableFile[]>( () => {
+                                      console.log( '%c IN FILTER DATA COMPUTED',
+                                                   'background: #5ADFFF; color: #000000' );
+                                      console.log( '%c IN FILTER DATA COMPUTED',
+                                                   'background: #5ADFFF; color: #000000' );
                                       let tempData: DatatableFile[] = tableData.value;
                                       console.log( tableData.value );
 
@@ -215,6 +247,8 @@ export default defineComponent( {
                                       const trimEnd   = trimStart + numberPerPage;
                                       tempData        = tempData.slice( trimStart, trimEnd );
 
+
+                                      console.log( 'FILTER DATA -->', tempData );
                                       return tempData;
                                     } );
 
@@ -225,7 +259,8 @@ export default defineComponent( {
                                     const handleAction = async ( command: { type: string; folder: DatatableFile } ) => {
                                       switch ( command.type ) {
                                         case 'check_element':
-                                          checkFolder();
+                                          await checkFolder( command.folder.folderName );
+                                          tableData.value = ( await sqliteService.getAllFiles() );
                                           break;
                                         case 'open':
                                           const path = getFolderPath( command.folder.folderName );
@@ -282,8 +317,27 @@ export default defineComponent( {
                                                    type: DatatableFileType[] ) => {
                                       setCurrentFileReference( reference );
                                       setcurrentFolderName( folderName );
-                                      // @TODO rendre dynamique
+
                                       router.push( { name: `file-${ type[ 0 ].slug }-edit` } );
+                                    };
+
+                                    const codeErrorToString = ( code: number ) => {
+                                      switch ( code ) {
+                                        case 1:
+                                          return 'Manque le devis';
+                                        case 2:
+                                          return 'Manque le devis signé';
+                                        case 3:
+                                          return 'Manque l\'avis d\'impositions';
+                                        case 4:
+                                          return 'Manque la fiche de visite';
+                                        case 5:
+                                          return 'Manque des photos';
+                                        case 6:
+                                          return 'Manque l\'attestation sur honneur';
+                                        default:
+                                          return 'Erreur inconue';
+                                      }
                                     };
 
                                     return {
@@ -302,6 +356,7 @@ export default defineComponent( {
                                       folderTypesToString: datatableFileTypesToString,
                                       listFolderType,
                                       numberToPrice,
+                                      codeErrorToString,
                                     };
                                   },
                                 } );

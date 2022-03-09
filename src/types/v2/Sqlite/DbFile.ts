@@ -8,6 +8,7 @@ export interface DbFile {
     isProspect: boolean;
     isClosed: boolean;
     statusInDCI: string;
+    errorsStatusInDci: string | null;
     todos: string;
     createdAt: string;
     updatedAt: string;

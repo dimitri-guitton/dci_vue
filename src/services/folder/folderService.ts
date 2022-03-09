@@ -8,7 +8,7 @@ import { convertOldCetFile } from '@/services/file/converter/convertCetData';
 import path from 'path';
 import { addFile, deleteFile } from '@/services/sqliteService';
 import { FILE_CET, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG } from '@/services/constantService';
-import { getcurrentFolderName, setCurrentFileData } from '@/services/data/dataService';
+import { getcurrentFolderName, setCurrentFileData, setErrorsStatusInDci } from '@/services/data/dataService';
 import { convertOldPgFile } from '@/services/file/converter/convertPgData';
 import { convertOldCombleFile } from '@/services/file/converter/convertCombleData';
 import { convertOldSolFile } from '@/services/file/converter/convertSolData';
@@ -41,35 +41,35 @@ export const createDciFolderIfNotExist = () => {
 };
 
 export const FoldersNames = {
-    AVIS_FOLDER:                        'avis',
-    MAP_FOLDER:                         'carte',
-    DEVIS_FOLDER:                       'devis',
-    DEVIS_SIGNE_FOLDER:                 'devis_signe',
-    FICHE_FOLDER:                       'fiche',
-    FICHE_SIGNE_FOLDER:                 'fiche_signe',
-    ATTEST_ADRESSE_SIGNE_FOLDER:        'attest_adresse_signe',
-    ATTESTATION_HONNEUR_FOLDER:         'attestation_sur_honneur',
-    MANDAT_MA_PRIME_RENOV:              'mandat_maprimerenov',
-    ATTEST_TVA_SIMPLIFIEE_FOLDER:       'attest_tva_simp',
-    ATTEST_TVA_SIMPLIFIEE_SIGNE_FOLDER: 'attest_tva_simp_signe',
-    CADRE_CONTRIBUTION_CEE:             'cadre_contribution_cee',
-    DIMENSIONNEMENT_PAC:                'dimensionnement_pac',
-    VIDEO:                              'video',
-    PHOTO:                              'photos',
+    AVIS:                        'avis',
+    MAP:                         'carte',
+    DEVIS:                       'devis',
+    DEVIS_SIGNE:                 'devis_signe',
+    FICHE:                       'fiche',
+    FICHE_SIGNE:                 'fiche_signe',
+    ATTEST_ADRESSE_SIGNE:        'attest_adresse_signe',
+    ATTESTATION_HONNEUR:         'attestation_sur_honneur',
+    MANDAT_MA_PRIME_RENOV:       'mandat_maprimerenov',
+    ATTEST_TVA_SIMPLIFIEE:       'attest_tva_simp',
+    ATTEST_TVA_SIMPLIFIEE_SIGNE: 'attest_tva_simp_signe',
+    CADRE_CONTRIBUTION_CEE:      'cadre_contribution_cee',
+    DIMENSIONNEMENT_PAC:         'dimensionnement_pac',
+    VIDEO:                       'video',
+    PHOTO:                       'photos',
 };
 
 const Folders = [
-    { name: FoldersNames.AVIS_FOLDER, dossierType: [ 'all' ] },
-    { name: FoldersNames.MAP_FOLDER, dossierType: [ 'all' ] },
-    { name: FoldersNames.DEVIS_FOLDER, dossierType: [ 'all' ] },
-    { name: FoldersNames.DEVIS_SIGNE_FOLDER, dossierType: [ 'all' ] },
-    { name: FoldersNames.FICHE_FOLDER, dossierType: [ 'all' ] },
-    { name: FoldersNames.FICHE_SIGNE_FOLDER, dossierType: [ 'all' ] },
-    { name: FoldersNames.ATTEST_ADRESSE_SIGNE_FOLDER, dossierType: [ 'all' ] },
-    { name: FoldersNames.ATTESTATION_HONNEUR_FOLDER, dossierType: [ 'all' ] },
+    { name: FoldersNames.AVIS, dossierType: [ 'all' ] },
+    { name: FoldersNames.MAP, dossierType: [ 'all' ] },
+    { name: FoldersNames.DEVIS, dossierType: [ 'all' ] },
+    { name: FoldersNames.DEVIS_SIGNE, dossierType: [ 'all' ] },
+    { name: FoldersNames.FICHE, dossierType: [ 'all' ] },
+    { name: FoldersNames.FICHE_SIGNE, dossierType: [ 'all' ] },
+    { name: FoldersNames.ATTEST_ADRESSE_SIGNE, dossierType: [ 'all' ] },
+    { name: FoldersNames.ATTESTATION_HONNEUR, dossierType: [ 'all' ] },
     { name: FoldersNames.MANDAT_MA_PRIME_RENOV, dossierType: [ FILE_PAC_RO, FILE_CET, FILE_PG, FILE_PB ] },
-    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_FOLDER, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_CET, FILE_PG, FILE_PB ] },
-    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_SIGNE_FOLDER, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_CET, FILE_PG, FILE_PB ] },
+    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_CET, FILE_PG, FILE_PB ] },
+    { name: FoldersNames.ATTEST_TVA_SIMPLIFIEE_SIGNE, dossierType: [ FILE_PAC_RR, FILE_PAC_RO, FILE_CET, FILE_PG, FILE_PB ] },
     { name: FoldersNames.CADRE_CONTRIBUTION_CEE, dossierType: [ 'all' ] },
     { name: FoldersNames.DIMENSIONNEMENT_PAC, dossierType: [ FILE_PAC_RR, FILE_PAC_RO ] },
     { name: FoldersNames.VIDEO, dossierType: [ 'all' ] },
@@ -162,7 +162,7 @@ export const createAFolder = async ( newFolder: NewFolderData ): Promise<{ refer
 
         createSubFolders( type, path );
         addJsonData( type, path, reference, folderName, newFolder );
-        await addFile( reference, folderName, type, customer, 0, false, false, '2', null, today, today, null );
+        await addFile( reference, folderName, type, customer, 0, false, false, '2', null, null, today, today, null );
     }
 
     return {
@@ -299,10 +299,83 @@ export const updateJsonData = ( fileData ) => {
 };
 
 /**
+ * Check si un dossier est vide
+ * @param folderPath
+ */
+const isFolderEmpty = ( folderPath ): boolean => {
+    try {
+        fs.accessSync( folderPath );
+
+        const files = fs.readdirSync( folderPath );
+
+        // Suppression du .DS_Store sous MAC
+        if ( files[ 0 ] == '.DS_Store' ) {
+            files.splice( 0, 1 );
+        }
+
+        console.log( files );
+        if ( files.length > 0 ) {
+            return false;
+        }
+    } catch ( e ) {
+        console.warn( e );
+    }
+
+    console.log( `${ folderPath } IS EMPTY` );
+    return true;
+};
+
+/**
  * TODO A FAIRE
  */
-export const checkFolder = () => {
-    return true;
+export const checkFolder = async ( folderName: string ) => {
+    console.log( '%c IN CHECK FOLDER', 'background: #BCBE9D; color: #000000' );
+    const folderPath       = getFolderPath( folderName );
+    const errors: number[] = [];
+
+    // Fichier dans le dossier "DEVIS"
+    const quotationEmpty: boolean       = isFolderEmpty( path.join( folderPath, FoldersNames.DEVIS ) );
+    // Fichier dans le dossier "DEVIS SIGNE"
+    const signedQuotationEmpty: boolean = isFolderEmpty( path.join( folderPath, FoldersNames.DEVIS_SIGNE ) );
+    // Fichier dans le dossier "AVIS"
+    const assentEmpty: boolean          = isFolderEmpty( path.join( folderPath, FoldersNames.AVIS ) );
+    // Fichier dans le dossier "FICHE"
+    const worksheetEmpty: boolean       = isFolderEmpty( path.join( folderPath, FoldersNames.FICHE ) );
+    // Fichier dans le dossier "PHOTO"
+    const photoEmpty: boolean           = isFolderEmpty( path.join( folderPath, FoldersNames.PHOTO ) );
+    // Fichier dans le dossier "ATTESTATION_HONNEUR"
+    const attestEmpty: boolean          = isFolderEmpty( path.join( folderPath, FoldersNames.ATTESTATION_HONNEUR ) );
+
+    console.log( '%c ', 'background: #fdd835; color: #000000' );
+    console.log( quotationEmpty );
+    console.log( signedQuotationEmpty );
+    console.log( assentEmpty );
+    console.log( worksheetEmpty );
+    console.log( photoEmpty );
+    console.log( attestEmpty );
+    console.log( '%c ', 'background: #fdd835; color: #000000' );
+
+    if ( quotationEmpty ) {
+        errors.push( 1 );
+    }
+    if ( signedQuotationEmpty ) {
+        errors.push( 2 );
+    }
+    if ( assentEmpty ) {
+        errors.push( 3 );
+    }
+    if ( worksheetEmpty ) {
+        errors.push( 4 );
+    }
+    if ( photoEmpty ) {
+        errors.push( 5 );
+    }
+    if ( attestEmpty ) {
+        errors.push( 6 );
+    }
+
+    console.log( 'ERRRORS', errors );
+    await setErrorsStatusInDci( errors );
 };
 
 
@@ -322,19 +395,19 @@ export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) =
     let name   = '';
     switch ( type ) {
         case PdfType.Address:
-            folder = FoldersNames.ATTEST_ADRESSE_SIGNE_FOLDER;
+            folder = FoldersNames.ATTEST_ADRESSE_SIGNE;
             name   = 'attestation_adresse.pdf';
             break;
         case PdfType.Quotation:
-            folder = FoldersNames.DEVIS_FOLDER;
+            folder = FoldersNames.DEVIS;
             name   = 'devis.pdf';
             break;
         case PdfType.Worksheet:
-            folder = FoldersNames.FICHE_FOLDER;
+            folder = FoldersNames.FICHE;
             name   = 'fiche.pdf';
             break;
         case PdfType.Tva:
-            folder = FoldersNames.ATTEST_TVA_SIMPLIFIEE_FOLDER;
+            folder = FoldersNames.ATTEST_TVA_SIMPLIFIEE;
             name   = 'attestation_tva_simplifiee.pdf';
             break;
         case PdfType.ContributionFramework:

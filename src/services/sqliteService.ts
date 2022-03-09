@@ -96,6 +96,10 @@ function convertDbFileToFileItem( items: DbFile[] ) {
             }
         } );
 
+        let errorsStatusInDci: number[] = [];
+        if ( item.errorsStatusInDci !== null && item.errorsStatusInDci.length > 0 ) {
+            errorsStatusInDci = item.errorsStatusInDci.split( ';' ).map( i => parseInt( i ) );
+        }
 
         data.push( {
                        id:         item.id,
@@ -108,6 +112,7 @@ function convertDbFileToFileItem( items: DbFile[] ) {
                        isClosed:   item.isClosed,
                        status:     status,
                        todos:      item.todos,
+                       errors:     errorsStatusInDci,
                        createdAt:  toFrenchDate( item.createdAt ),
                        updatedAt:  toFrenchDate( item.updatedAt ),
                        sendAt:     toFrenchDate( item.sendAt ),
@@ -158,11 +163,19 @@ export async function openDb() {
  * Création des tables pour la DB
  */
 export async function initDb() {
-    const fileTable     = 'CREATE TABLE IF NOT EXISTS file ( id INTEGER PRIMARY KEY AUTOINCREMENT, reference VARCHAR(255) NOT NULL, folderName VARCHAR(255) NOT NULL,fileTypes VARCHAR(255) NOT NULL, customer VARCHAR(255) NOT NULL, totalTTC FLOAT, isProspect SMALLINT NOT NULL, isClosed SMALLINT NOT NULL, statusInDCI INTEGER NOT NULL,todos VARCHAR(255), createdAt DATETIME NOT NULL, updatedAt DATETIME NOT NULL, sendAt DATETIME )';
+    const fileTable     = 'CREATE TABLE IF NOT EXISTS file ( id INTEGER PRIMARY KEY AUTOINCREMENT, reference VARCHAR(255) NOT NULL, folderName VARCHAR(255) NOT NULL,fileTypes VARCHAR(255) NOT NULL, customer VARCHAR(255), totalTTC FLOAT, isProspect SMALLINT NOT NULL, isClosed SMALLINT NOT NULL, statusInDCI INTEGER NOT NULL, errorsStatusInDci VARCHAR(255) NOT NULL,todos VARCHAR(255), createdAt DATETIME NOT NULL, updatedAt DATETIME NOT NULL, sendAt DATETIME )';
     const fileTodoTable = 'CREATE TABLE IF NOT EXISTS fileTodo ( serverId INTEGER PRIMARY KEY, label VARCHAR(255) NOT NULL, isDone BOOLEAN NOT NULL, receivedAt DATETIME NOT NULL, donedAt DATETIME )';
 
     await db.exec( fileTable );
     await db.exec( fileTodoTable );
+
+    // Update DB
+    const addErrorsColumn = 'ALTER TABLE file ADD COLUMN errorsStatusInDci VARCHAR(255)';
+    try {
+        await db.exec( addErrorsColumn );
+    } catch ( e ) {
+        console.warn( e );
+    }
 }
 
 /**
@@ -175,6 +188,7 @@ export async function initDb() {
  * @param isProspect
  * @param isClosed
  * @param statusInDCI
+ * @param errorsStatusInDci
  * @param todos
  * @param createdAt
  * @param updatedAt
@@ -188,6 +202,7 @@ export async function addFile( reference: string,
                                isProspect: boolean,
                                isClosed: boolean,
                                statusInDCI: string,
+                               errorsStatusInDci: string | null,
                                todos: string | null,
                                createdAt: Date,
                                updatedAt: Date,
@@ -199,7 +214,7 @@ export async function addFile( reference: string,
     const strSendAt    = dateToString( sendAt );
 
     const query = `INSERT INTO file (reference, folderName, fileTypes, customer, totalTTC, isProspect, isClosed,
-                                     statusInDCI, todos, createdAt, updatedAt, sendAt)
+                                     statusInDCI, errorsStatusInDci, todos, createdAt, updatedAt, sendAt)
                    VALUES ('${ reference }',
                            '${ folderName }',
                            '${ fileTypes }',
@@ -208,6 +223,7 @@ export async function addFile( reference: string,
                            ${ isProspect },
                            ${ isClosed },
                            '${ statusInDCI }',
+                           '${ errorsStatusInDci }',
                            ${ strTodos },
                            ${ strCreatedAt },
                            ${ strUpdatedAt },
@@ -284,4 +300,33 @@ export async function updateReference( oldReferene: string, newReference: string
                    WHERE reference = '${ oldReferene }'`;
 
     await db.run( query );
+}
+
+export async function updateErrorsStatusInDci( referene: string, errors: number[] ) {
+    console.log( '%C SET ERRROR', 'background: #CEFF00; color: #000000' );
+    const res = await getFileByReference( referene );
+
+    let fileId = 0;
+    if ( res.length > 0 ) {
+        fileId = res[ 0 ].id;
+    }
+
+    const query = `UPDATE file
+                   SET errorsStatusInDci = '${ errors.join( ';' ) }'
+                   WHERE id = ${ fileId }`;
+
+
+    let query2: string;
+    if ( errors.length === 0 ) {
+        query2 = `UPDATE file
+                  SET statusInDCI = ${ FILE_COMPLETE_STATUS.code }
+                  WHERE id = ${ fileId }`;
+    } else {
+        query2 = `UPDATE file
+                  SET statusInDCI = ${ FILE_INCOMPLETE_STATUS.code }
+                  WHERE id = ${ fileId }`;
+    }
+
+    await db.run( query );
+    await db.run( query2 );
 }

@@ -12,6 +12,7 @@ export interface DatatableFile {
     isClosed: boolean;
     status: DatatableFileStatus;
     todos: string;
+    errors: number[];
     createdAt: string;
     updatedAt: string;
     sendAt: string;

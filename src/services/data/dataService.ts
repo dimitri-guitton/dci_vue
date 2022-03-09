@@ -9,7 +9,7 @@ import { Beneficiary } from '@/types/v2/File/Common/Beneficiary';
 import { Product } from '@/types/v2/File/Common/Product';
 import { Option } from '@/types/v2/File/Common/Option';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
-import { FILE_PAC_RR, FILE_PV } from '@/services/constantService';
+import { FILE_COMPLETE_STATUS, FILE_INCOMPLETE_STATUS, FILE_PAC_RR, FILE_PV } from '@/services/constantService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 import { getEnergyZone } from '@/services/file/fileCommonService';
 import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
@@ -20,6 +20,7 @@ import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { PbFile } from '@/types/v2/File/Pb/PbFile';
 import { PvFile } from '@/types/v2/File/Pv/PvFile';
 import { AllFile } from '@/types/v2/File/All';
+import { updateErrorsStatusInDci } from '@/services/sqliteService';
 
 const schema = {
     dropboxPath:          {
@@ -370,4 +371,20 @@ export const getAddress = ( data: BaseFile ): { address: string; zipCode: string
         zipCode,
         city,
     };
+};
+
+export const setErrorsStatusInDci = async ( errors: number[] ) => {
+    const fileData: BaseFile = getCurrentFileData();
+
+    const newFileData: BaseFile = {
+        ...fileData,
+        errorsStatusInDci: errors,
+        statusInDci:       errors.length === 0 ? FILE_COMPLETE_STATUS.code : FILE_INCOMPLETE_STATUS.code,
+    };
+
+    updateJsonData( newFileData );
+
+    await updateErrorsStatusInDci( fileData.ref, errors );
+
+    return fileData;
 };
