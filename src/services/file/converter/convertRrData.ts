@@ -135,6 +135,7 @@ const convertOldRrItemList = ( oldData ): RrList => {
         altitudeList:            [],
         heatersList:             [],
         setPointTemperatureList: [],
+        accesCombleList:         [],
     };
 
     const rrItems = [
@@ -157,6 +158,7 @@ const convertOldRrItemList = ( oldData ): RrList => {
         'niveauHabitation',
         'typeChantier',
         'typeOrigine',
+        'accesComble',
     ];
 
     const newName: { [ key: string ]: string } = {

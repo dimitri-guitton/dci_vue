@@ -41,11 +41,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import Step5Form from '@/components/DCI/wizzard-file/Step5Form.vue';
 import { pacRrWorksheetBuilder } from '@/services/file/wizzard/pac_rr/step5Service';
 import RrList from '@/types/v2/File/Rr/RrList';
 import { Field } from 'vee-validate';
+import { RrFile } from '@/types/v2/File/Rr/RrFile';
 
 
 export default defineComponent( {
@@ -55,15 +56,24 @@ export default defineComponent( {
                                     Field,
                                   },
                                   props:      {
-                                    lists: Object as () => RrList,
+                                    lists:    Object as () => RrList,
+                                    fileData: {
+                                      type:     Object as () => RrFile,
+                                      required: true,
+                                    },
                                   },
                                   emits:      [ 'generateWorksheet' ],
                                   setup( props, ctx ) {
                                     const generateWorksheet = () => {
                                       ctx.emit( 'generateWorksheet' );
                                     };
+
+                                    const worksheetBuilder = computed( () => {
+                                      return pacRrWorksheetBuilder( props.fileData );
+                                    } );
+
                                     return {
-                                      worksheetBuilder: pacRrWorksheetBuilder(),
+                                      worksheetBuilder,
                                       generateWorksheet,
                                     };
                                   },

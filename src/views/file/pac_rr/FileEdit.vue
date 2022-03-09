@@ -50,7 +50,9 @@
 
           <!--begin::Step 5-->
           <div data-kt-stepper-element="content">
-            <FilePacRrStep5 @generateWorksheet="onGenerateWorksheet" :lists="lists"></FilePacRrStep5>
+            <FilePacRrStep5 :file-data="fileData"
+                            @generateWorksheet="onGenerateWorksheet"
+                            :lists="lists"></FilePacRrStep5>
           </div>
           <!--end::Step 5-->
 
@@ -313,7 +315,7 @@ export default defineComponent( {
                                         forceRefreshStep4.value = !forceRefreshStep4.value;
                                       } else if ( currentStepIndex.value === 3 ) {
                                         console.log( '%c Validation step 4', 'background: #fdd835; color: #000000' );
-                                        await validatePacRrStep4( formData.value, price );
+                                        fileData.value = await validatePacRrStep4( formData.value, price );
                                       }
 
                                       currentStepIndex.value++;

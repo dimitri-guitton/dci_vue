@@ -13,14 +13,12 @@ import RoList from '@/types/v2/File/Ro/RoList';
 import RrList from '@/types/v2/File/Rr/RrList';
 import PgList from '@/types/v2/File/Pg/PgList';
 import { SolQuotation } from '@/types/v2/File/Sol/SolQuotation';
-import { RoQuotation } from '@/types/v2/File/Ro/RoQuotation';
 import { RrQuotation } from '@/types/v2/File/Rr/RrQuotation';
-import { PgQuotation } from '@/types/v2/File/Pg/PgQuotation';
 import { SolWorkSheet } from '@/types/v2/File/Sol/SolWorkSheet';
 import { RoWorkSheet } from '@/types/v2/File/Ro/RoWorkSheet';
 import { RrWorkSheet } from '@/types/v2/File/Rr/RrWorkSheet';
 import { PgWorkSheet } from '@/types/v2/File/Pg/PgWorkSheet';
-import { AllFile } from '@/types/v2/File/All';
+import { AllFile, AllQuotation } from '@/types/v2/File/All';
 import { getAddress } from '@/services/data/dataService';
 
 export class WorksheetGenerator extends PdfGenerator {
@@ -280,7 +278,7 @@ export class WorksheetGenerator extends PdfGenerator {
         const housing               = this._file.housing;
         let worksheet: CombleWorkSheet | SolWorkSheet | RoWorkSheet | RrWorkSheet | CetWorkSheet | PgWorkSheet;
         let list: CombleList | SolList | RoList | RrList | CetList | PgList;
-        let quotation: CombleQuotation | SolQuotation | RoQuotation | RrQuotation | CetQuotation | PgQuotation;
+        let quotation: AllQuotation;
         let selectedProduct         = '';
 
         switch ( type ) {
@@ -618,13 +616,68 @@ export class WorksheetGenerator extends PdfGenerator {
             case FILE_PAC_RO:
                 break;
             case FILE_PAC_RR:
-                worksheet = ( this._file.worksheet as RrWorkSheet );
-                list      = ( this._file.lists as RrList );
-                quotation = ( this._file.quotation as RrQuotation );
+                worksheet          = ( this._file.worksheet as RrWorkSheet );
+                list               = ( this._file.lists as RrList );
+                const rrQquotation = ( this._file.quotation as RrQuotation );
 
-                if ( quotation.selectedProducts.length > 0 ) {
-                    selectedProduct = quotation.selectedProducts[ 0 ].label;
+                if ( rrQquotation.selectedProducts.length > 0 ) {
+                    selectedProduct = rrQquotation.selectedProducts[ 0 ].label;
                 }
+
+                const pacMono  = [
+                    {
+                        label: 'Distance entre le split et groupe extérieur',
+                        value: worksheet.distanceGpExtUnitInt,
+                    },
+                    {
+                        label: 'Emplacement du split',
+                        value: worksheet.emplacementSplitMono,
+                    },
+                ];
+                const pacMulti = [
+                    {
+                        label: 'Distance entre le split 1 et le groupe extérieur',
+                        value: worksheet.distanceGpExtSplit1,
+                    },
+                    {
+                        label: 'Distance entre le split 2 et le groupe extérieur',
+                        value: worksheet.distanceGpExtSplit2,
+                    },
+                    {
+                        label: 'Distance entre le split 3 et le groupe extérieur',
+                        value: worksheet.distanceGpExtSplit3,
+                    },
+                    {
+                        label: 'Distance entre le split 4 et le groupe extérieur',
+                        value: worksheet.distanceGpExtSplit4,
+                    },
+                    {
+                        label: 'Distance entre le split 5 et le groupe extérieur',
+                        value: worksheet.distanceGpExtSplit5,
+                    },
+                    {
+                        label: 'Emplacement du split 1',
+                        value: worksheet.emplacementSplit1,
+                    },
+                    {
+                        label: 'Emplacement du split 2',
+                        value: worksheet.emplacementSplit2,
+                    },
+                    {
+                        label: 'Emplacement du split 3',
+                        value: worksheet.emplacementSplit3,
+                    },
+                    {
+                        label: 'Emplacement du split 4',
+                        value: worksheet.emplacementSplit4,
+                    },
+                    {
+                        label: 'Emplacement du split 5',
+                        value: worksheet.emplacementSplit5,
+                    },
+                ];
+
+                const pacOtherInfo = rrQquotation.rrType === 'multi' ? pacMulti : pacMono;
 
                 // TODO TERMINER FICHE
                 data = [
@@ -632,29 +685,41 @@ export class WorksheetGenerator extends PdfGenerator {
                         title: 'CARACTERISTIQUES DU CHANTIER',
                         items: [
                             {
-                                label: 'Type de batiment',
-                                value: this.getValueInList( list.batimentNatureList, housing.buildingNature ),
-                            },
-                            {
-                                label: 'Type de chantier',
-                                value: this.getValueInList( list.typeChantierList, worksheet.typeChantier ),
-                            },
-                            {
                                 label: 'Vsite des comble',
                                 value: this.yesOrNo( worksheet.visiteComble ),
+                            },
+                            {
+                                label: 'NIVEAUX HABITATION',
+                                value: this.getValueInList( list.niveauHabitationList, worksheet.niveauHabitation ),
                             },
                             {
                                 label: 'Chantier Habité',
                                 value: this.yesOrNo( worksheet.chantierHabite ),
                             },
                             {
-                                label: 'DEMANDE DE VOIRIE / ACCES PL',
-                                value: this.yesOrNo( worksheet.demandeVoirie ),
+                                label: 'Type de chantier',
+                                value: this.getValueInList( list.typeChantierList, worksheet.typeChantier ),
                             },
-                            // {
-                            //     label: 'ACCES COMBLES',
-                            //     value: this.getValueInList(list.com),
-                            // },
+                            {
+                                label: 'GRANDE ECHELLE NECESSAIRE',
+                                value: this.yesOrNo( worksheet.grandeEchelle ),
+                            },
+                            {
+                                label: 'Accès des combles',
+                                value: this.getValueInList( list.accesCombleList, worksheet.accesComble ),
+                            },
+                            {
+                                label: 'NOMBRE COMPARTIMENTS COMBLES',
+                                value: worksheet.nbCompartimentComble,
+                            },
+                            {
+                                label: 'NOMBRE ACCES AUX COMBLES',
+                                value: worksheet.nbAccesComble,
+                            },
+                            {
+                                label: 'Distance entre le compteur électrique et la PAC',
+                                value: worksheet.distanceCompteurPac,
+                            },
                             {
                                 label: 'TYPE COUVERTURE',
                                 value: this.getValueInList( list.typeCouvertureList, worksheet.typeCouverture ),
@@ -662,6 +727,14 @@ export class WorksheetGenerator extends PdfGenerator {
                             {
                                 label: 'TYPE CHARPENTE',
                                 value: this.getValueInList( list.typeCharpenteList, worksheet.typeCharpente ),
+                            },
+                            {
+                                label: 'RUE ETROITE / sens unique',
+                                value: this.yesOrNo( worksheet.rueEtroite ),
+                            },
+                            {
+                                label: 'ETAT TOITURE',
+                                value: this.getValueInList( list.etatToitureList, worksheet.etatToiture ),
                             },
                             {
                                 label: 'PRESENCE VOLIGE',
@@ -672,6 +745,10 @@ export class WorksheetGenerator extends PdfGenerator {
                                 value: this.getValueInList( list.natureMurExtList, worksheet.natureMurExt ),
                             },
                             {
+                                label: 'NATURE DU PLAFOND',
+                                value: this.getValueInList( list.naturePlafondList, worksheet.naturePlafond ),
+                            },
+                            {
                                 label: 'TENSION DISPONIBLE',
                                 value: this.getValueInList( list.tensionDisponibleList,
                                                             housing.availableVoltage === undefined ? '' : housing.availableVoltage ),
@@ -680,6 +757,25 @@ export class WorksheetGenerator extends PdfGenerator {
                                 label: 'PUISSANCE COMPTEUR',
                                 value: this.getValueInList( list.puissanceCompteurList, worksheet.puissanceCompteur ),
                             },
+
+                            {
+                                label: 'Nombre de pompe de relevage',
+                                value: worksheet.nbPompeRelevage,
+                            },
+                            {
+                                label: 'Emplacement du groupe extérieur',
+                                value: worksheet.emplacementGrpExt,
+                            },
+                            {
+                                label: 'Position groupe exterieur',
+                                value: this.getValueInList( list.positionEauChaudeList, worksheet.positionEauChaude ),
+                            },
+                            {
+                                label: 'À quelle hauteur du sol',
+                                value: worksheet.hauteurDuSol,
+                            },
+                            ...pacOtherInfo,
+
                         ],
                     },
                 ];

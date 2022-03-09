@@ -22,6 +22,7 @@ interface RrList extends BaseList {
     altitudeList: ItemList[];
     heatersList: ItemList[];
     setPointTemperatureList: ItemList[];
+    accesCombleList: ItemList[];
 }
 
 export default RrList;

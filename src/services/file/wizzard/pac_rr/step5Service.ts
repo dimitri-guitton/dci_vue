@@ -10,7 +10,75 @@ import { updateReference } from '@/services/sqliteService';
 /**
  * Création du formualaire pour la fiche d'info
  */
-export const pacRrWorksheetBuilder = (): WorksheetBuilder => {
+export const pacRrWorksheetBuilder = ( fileData: RrFile ): WorksheetBuilder => {
+
+    const pacMono  = [
+        {
+            type:  WorksheetBuilderItemType.Text,
+            name:  'distanceGpExtUnitInt',
+            label: 'Distance entre le split et groupe extérieur',
+        },
+        {
+            type:  WorksheetBuilderItemType.Text,
+            name:  'emplacementSplitMono',
+            label: 'Emplacement du split',
+        },
+    ];
+    const pacMulti = [
+        {
+            type:  WorksheetBuilderItemType.Text,
+            name:  'distanceGpExtSplit1',
+            label: ' Distance entre le split 1 et le groupe extérieur',
+        },
+        {
+            type:  WorksheetBuilderItemType.Text,
+            name:  'distanceGpExtSplit2',
+            label: ' Distance entre le split 2 et le groupe extérieur',
+        },
+        {
+            type:  WorksheetBuilderItemType.Text,
+            name:  'distanceGpExtSplit3',
+            label: ' Distance entre le split 3 et le groupe extérieur',
+        },
+        {
+            type:  WorksheetBuilderItemType.Text,
+            name:  'distanceGpExtSplit4',
+            label: ' Distance entre le split 4 et le groupe extérieur',
+        },
+        {
+            type:  WorksheetBuilderItemType.Text,
+            name:  'distanceGpExtSplit5',
+            label: ' Distance entre le split 5 et le groupe extérieur',
+        },
+        {
+            type:  WorksheetBuilderItemType.Text,
+            name:  'emplacementSplit1',
+            label: 'Emplacement du split 1',
+        },
+        {
+            type:  WorksheetBuilderItemType.Text,
+            name:  'emplacementSplit2',
+            label: 'Emplacement du split 2',
+        },
+        {
+            type:  WorksheetBuilderItemType.Text,
+            name:  'emplacementSplit3',
+            label: 'Emplacement du split 3',
+        },
+        {
+            type:  WorksheetBuilderItemType.Text,
+            name:  'emplacementSplit4',
+            label: 'Emplacement du split 4',
+        },
+        {
+            type:  WorksheetBuilderItemType.Text,
+            name:  'emplacementSplit5',
+            label: 'Emplacement du split 5',
+        },
+    ];
+
+    const pacOtherInfo = fileData.quotation.rrType === 'multi' ? pacMulti : pacMono;
+
     return {
         steps: [
             {
@@ -147,70 +215,7 @@ export const pacRrWorksheetBuilder = (): WorksheetBuilder => {
                         name:  'positionEauChaude',
                         label: ' À quelle hauteur du sol',
                     },
-
-                    // TODO SI RR MONO
-                    {
-                        type:  WorksheetBuilderItemType.Text,
-                        name:  'distanceGpExtUnitInt',
-                        label: 'Distance entre le split et groupe extérieur',
-                    },
-                    {
-                        type:  WorksheetBuilderItemType.Text,
-                        name:  'emplacementSplitMono',
-                        label: 'Emplacement du split',
-                    },
-
-                    // TODO SI RR MULTI
-                    {
-                        type:  WorksheetBuilderItemType.Text,
-                        name:  'distanceGpExtSplit1',
-                        label: ' Distance entre le split 1 et le groupe extérieur',
-                    },
-                    {
-                        type:  WorksheetBuilderItemType.Text,
-                        name:  'distanceGpExtSplit2',
-                        label: ' Distance entre le split 2 et le groupe extérieur',
-                    },
-                    {
-                        type:  WorksheetBuilderItemType.Text,
-                        name:  'distanceGpExtSplit3',
-                        label: ' Distance entre le split 3 et le groupe extérieur',
-                    },
-                    {
-                        type:  WorksheetBuilderItemType.Text,
-                        name:  'distanceGpExtSplit4',
-                        label: ' Distance entre le split 4 et le groupe extérieur',
-                    },
-                    {
-                        type:  WorksheetBuilderItemType.Text,
-                        name:  'distanceGpExtSplit5',
-                        label: ' Distance entre le split 5 et le groupe extérieur',
-                    },
-                    {
-                        type:  WorksheetBuilderItemType.Text,
-                        name:  'emplacementSplit1',
-                        label: 'Emplacement du split 1',
-                    },
-                    {
-                        type:  WorksheetBuilderItemType.Text,
-                        name:  'emplacementSplit2',
-                        label: 'Emplacement du split 2',
-                    },
-                    {
-                        type:  WorksheetBuilderItemType.Text,
-                        name:  'emplacementSplit3',
-                        label: 'Emplacement du split 3',
-                    },
-                    {
-                        type:  WorksheetBuilderItemType.Text,
-                        name:  'emplacementSplit4',
-                        label: 'Emplacement du split 4',
-                    },
-                    {
-                        type:  WorksheetBuilderItemType.Text,
-                        name:  'emplacementSplit5',
-                        label: 'Emplacement du split 5',
-                    },
+                    ...pacOtherInfo,
                 ],
             },
         ],

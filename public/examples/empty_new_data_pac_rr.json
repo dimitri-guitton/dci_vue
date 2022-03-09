@@ -2144,11 +2144,25 @@
         "setPointTemperatureList": [
             {
                 "value": "19°C",
-                "slug": "19"
+                "slug":  "19"
             },
             {
                 "value": "20°C",
-                "slug": "20"
+                "slug":  "20"
+            }
+        ],
+        "accesCombleList": [
+            {
+                "value": "TRAPPE",
+                "slug":  "trappe"
+            },
+            {
+                "value": "TOITURE",
+                "slug":  "toit"
+            },
+            {
+                "value": "TRAPPE ET TOITURE",
+                "slug":  "trappe_et_toit"
             }
         ]
     }
