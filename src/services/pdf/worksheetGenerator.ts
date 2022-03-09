@@ -20,6 +20,8 @@ import { RrWorkSheet } from '@/types/v2/File/Rr/RrWorkSheet';
 import { PgWorkSheet } from '@/types/v2/File/Pg/PgWorkSheet';
 import { AllFile, AllQuotation } from '@/types/v2/File/All';
 import { getAddress } from '@/services/data/dataService';
+import { RoQuotation } from '@/types/v2/File/Ro/RoQuotation';
+import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 
 export class WorksheetGenerator extends PdfGenerator {
     private _file: AllFile;
@@ -614,14 +616,143 @@ export class WorksheetGenerator extends PdfGenerator {
                 ];
                 break;
             case FILE_PAC_RO:
+                worksheet         = ( this._file.worksheet as RoWorkSheet );
+                list              = ( this._file.lists as RoList );
+                const roQuotation = ( this._file.quotation as RoQuotation );
+                const pacHousing  = housing as PacHousing;
+
+                if ( roQuotation.selectedProducts.length > 0 ) {
+                    selectedProduct = roQuotation.selectedProducts[ 0 ].label;
+                }
+
+                data = [
+                    {
+                        title: 'CARACTERISTIQUES DU CHANTIER',
+                        items: [
+                            {
+                                label: 'APPAREIL À REMPLACER',
+                                value: roQuotation.deviceToReplace.type !== undefined ? roQuotation.deviceToReplace.type : '',
+                            },
+                            {
+                                label: 'Marque',
+                                value: roQuotation.deviceToReplace.brand !== undefined ? roQuotation.deviceToReplace.brand : '',
+                            },
+                            {
+                                label: 'Modèle',
+                                value: roQuotation.deviceToReplace.model !== undefined ? roQuotation.deviceToReplace.model : '',
+                            },
+                            {
+                                label: 'TYPE CHANTIER',
+                                value: this.getValueInList( list.typeChantierList, worksheet.typeChantier ),
+                            },
+                            {
+                                label: 'TYPE DE BATIMENT',
+                                value: this.getValueInList( list.localTypeList, pacHousing.type ),
+                            },
+                            {
+                                label: 'ANNÉE DE CONSTRUCTION',
+                                value: pacHousing.constructionYear === null ? 'Non renseigné' : pacHousing.constructionYear.toString(),
+                            },
+                            {
+                                label: 'Modèle',
+                                value: roQuotation.ceilingHeight,
+                            },
+                            {
+                                label: 'QUALITÉ ISOLATION',
+                                value: this.getValueInList( list.qualiteIsolationList, pacHousing.buildingCoefficient ),
+                            },
+                            {
+                                label: 'ZONE GEOGRAPHIQUE',
+                                value: this._file.energyZone,
+                            },
+                            {
+                                label: 'VISITE DES COMBLES',
+                                value: this.yesOrNo( worksheet.visiteComble ),
+                            },
+                            {
+                                label: 'NIVEAUX HABITATION',
+                                value: this.getValueInList( list.niveauHabitationList, worksheet.niveauHabitation ),
+                            },
+                            {
+                                label: 'CHANTIER HABITE',
+                                value: this.yesOrNo( worksheet.chantierHabite ),
+                            },
+                            {
+                                label: 'GRANDE ECHELLE NECESSAIRE',
+                                value: this.yesOrNo( worksheet.grandeEchelle ),
+                            },
+                            {
+                                label: 'DEMANDE DE VOIRIE / ACCES PL',
+                                value: this.yesOrNo( worksheet.demandeVoirie ),
+                            },
+                            {
+                                label: 'DISTANCE COMPTEUR ELECTRIQUE - PAC',
+                                value: worksheet.distanceCompteurPac,
+                            },
+                            {
+                                label: 'Accès des combles',
+                                value: this.getValueInList( list.accesCombleList, worksheet.accesComble ),
+                            },
+                            {
+                                label: 'RUE ETROITE / sens unique',
+                                value: this.yesOrNo( worksheet.rueEtroite ),
+                            },
+                            {
+                                label: 'TYPE COUVERTURE',
+                                value: this.getValueInList( list.typeCouvertureList, worksheet.typeCouverture ),
+                            },
+                            {
+                                label: 'ETAT TOITURE',
+                                value: this.getValueInList( list.etatToitureList, worksheet.etatToiture ),
+                            },
+                            {
+                                label: 'TYPE CHARPENTE',
+                                value: this.getValueInList( list.typeCharpenteList, worksheet.typeCharpente ),
+                            },
+                            {
+                                label: 'NOMBRE COMPARTIMENTS COMBLES',
+                                value: worksheet.nbCompartimentComble,
+                            },
+                            {
+                                label: 'PRESENCE VOLIGE',
+                                value: this.yesOrNo( worksheet.presenceVolige ),
+                            },
+                            {
+                                label: 'NOMBRE ACCES AUX COMBLES',
+                                value: worksheet.nbAccesComble,
+                            },
+                            {
+                                label: 'NATURE DES MURS EXTERIEURS',
+                                value: this.getValueInList( list.natureMurExtList, worksheet.natureMurExt ),
+                            },
+                            {
+                                label: 'NATURE DU PLAFOND',
+                                value: this.getValueInList( list.naturePlafondList, worksheet.naturePlafond ),
+                            },
+                            {
+                                label: 'TENSION DISPONIBLE',
+                                value: this.getValueInList( list.tensionDisponibleList,
+                                                            housing.availableVoltage === undefined ? '' : housing.availableVoltage ),
+                            },
+                            {
+                                label: 'DISJONCTEUR 30mA',
+                                value: this.yesOrNo( worksheet.disjoncteur ),
+                            },
+                            {
+                                label: 'PUISSANCE COMPTEUR',
+                                value: this.getValueInList( list.puissanceCompteurList, worksheet.puissanceCompteur ),
+                            },
+                        ],
+                    },
+                ];
                 break;
             case FILE_PAC_RR:
-                worksheet          = ( this._file.worksheet as RrWorkSheet );
-                list               = ( this._file.lists as RrList );
-                const rrQquotation = ( this._file.quotation as RrQuotation );
+                worksheet         = ( this._file.worksheet as RrWorkSheet );
+                list              = ( this._file.lists as RrList );
+                const rrQuotation = ( this._file.quotation as RrQuotation );
 
-                if ( rrQquotation.selectedProducts.length > 0 ) {
-                    selectedProduct = rrQquotation.selectedProducts[ 0 ].label;
+                if ( rrQuotation.selectedProducts.length > 0 ) {
+                    selectedProduct = rrQuotation.selectedProducts[ 0 ].label;
                 }
 
                 const pacMono  = [
@@ -677,9 +808,8 @@ export class WorksheetGenerator extends PdfGenerator {
                     },
                 ];
 
-                const pacOtherInfo = rrQquotation.rrType === 'multi' ? pacMulti : pacMono;
+                const pacOtherInfo = rrQuotation.rrType === 'multi' ? pacMulti : pacMono;
 
-                // TODO TERMINER FICHE
                 data = [
                     {
                         title: 'CARACTERISTIQUES DU CHANTIER',

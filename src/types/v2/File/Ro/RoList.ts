@@ -20,6 +20,8 @@ interface RoList extends BaseList {
     altitudeList: ItemList[];
     heatersList: ItemList[];
     setPointTemperatureList: ItemList[];
+    naturePlafondList: ItemList[];
+    typeChantierList: ItemList[];
 }
 
 export default RoList;
