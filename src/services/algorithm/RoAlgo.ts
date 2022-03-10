@@ -396,7 +396,7 @@ export class RoAlgo extends PacAlgo {
                 {
                     ref:          'ETBH16E6V',
                     size:         16,
-                    hotWaterTank: 0,
+                    hotWaterTank: 180,
                     bizone:       false,
                 },
                 {
@@ -542,7 +542,7 @@ export class RoAlgo extends PacAlgo {
                 {
                     ref:          'ETBH16E9W',
                     size:         16,
-                    hotWaterTank: 0,
+                    hotWaterTank: 230,
                     bizone:       false,
                 },
                 {
@@ -677,9 +677,11 @@ export class RoAlgo extends PacAlgo {
         if ( filterredUnitExt.length === 1 ) {
             selectedUnitExt = filterredUnitExt[ 0 ];
         } else {
+            console.log( 'filterredUnitExt -->', filterredUnitExt );
             // Si il y a plus de 1 PAC on parcours les pacs et on récupère celle à la plus faible puissance (la plus proche de la puissance requise)
             for ( const unitExt of filterredUnitExt ) {
                 console.log( unitExt );
+                console.log( 's1 ->', selectedUnitExt );
                 if ( selectedUnitExt === null ) {
                     selectedUnitExt = unitExt;
                 } else {
@@ -687,9 +689,11 @@ export class RoAlgo extends PacAlgo {
                         selectedUnitExt = unitExt;
                     }
                 }
+                console.log( 's2 ->', selectedUnitExt );
             }
         }
 
+        console.log( 's finale -->', selectedUnitExt );
         if ( selectedUnitExt === null ) {
             console.warn( 'Impossible de trouvé une unité extérieur' );
             return null;
@@ -712,16 +716,35 @@ export class RoAlgo extends PacAlgo {
 
         // ON récupère le model intérieur selon les infos renseigné
         const filteredUnitInt = this.unitIntList[ this.housing.availableVoltage ].filter( ( unit: UnitInt ) => {
-            return unit.hotWaterTank === hotWater && unit.bizone === bizone && unit.size === size;
+            return unit.hotWaterTank === hotWater && unit.bizone === bizone && unit.size >= size;
         } );
+        console.log( 'filteredUnitInt', filteredUnitInt );
 
-        let selectedUnitInt: UnitInt;
-        if ( filteredUnitInt.length === 0 ) {
+        let selectedUnitInt: UnitInt | null = null;
+        for ( const unitInt of filteredUnitInt ) {
+            if ( selectedUnitInt === null ) {
+                selectedUnitInt = unitInt;
+            } else {
+                if ( selectedUnitInt.size > unitInt.size ) {
+                    selectedUnitInt = unitInt;
+                }
+            }
+        }
+
+        console.log( 'selectedUnitInt -->', selectedUnitInt );
+        if ( selectedUnitInt === null ) {
             console.warn( 'Impossible de trouvé une unité intérieur' );
             return null;
-        } else {
-            selectedUnitInt = filteredUnitInt[ 0 ];
         }
+
+
+        // let selectedUnitInt: UnitInt;
+        // if ( filteredUnitInt.length === 0 ) {
+        //     console.warn( 'Impossible de trouvé une unité intérieur' );
+        //     return null;
+        // } else {
+        //     selectedUnitInt = filteredUnitInt[ 0 ];
+        // }
 
         console.log( 'PAC RO ->', {
             unitExt: selectedUnitExt,

@@ -21,4 +21,5 @@ export interface Product {
     air?: boolean;
     addedValue?: number;
     automaticPriceCalculation?: boolean;
+    laying?: number;
 }

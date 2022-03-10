@@ -38,8 +38,11 @@ export const yupPvConfigStep5 = () => {
 export const initPvFormDataStep5 = ( worksheet: PvWorkSheet ) => {
     const data = {
         worksheet: {
-            period:   worksheet.period,
-            infosSup: worksheet.infosSup,
+            period:                    worksheet.period,
+            infosSup:                  worksheet.infosSup,
+            montantFactureElectrique:  worksheet.montantFactureElectrique,
+            totalKwhFactureElectrique: worksheet.totalKwhFactureElectrique,
+            orientation:               worksheet.orientation,
         },
     };
 
@@ -48,8 +51,16 @@ export const initPvFormDataStep5 = ( worksheet: PvWorkSheet ) => {
 
 export const savePvWorksheet = ( data: PvFileStep ): PvFile => {
     let fileData = getCurrentPvFileData();
+    console.log( 'File data', fileData );
+    console.log( 'data', data );
 
     let worksheet: PvWorkSheet = fileData.worksheet;
+
+    const productibleParPanneauKwh   = 0;
+    const productibleInstallation    = 0;
+    const prixMoyenKwhPhotovoltaique = 0;
+    const reventeEdf                 = 0;
+    const economieFacture            = 0;
 
     worksheet = {
         ...worksheet,

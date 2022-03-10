@@ -13,6 +13,7 @@ interface PvList extends BaseList {
     couleurProfileList: ItemList[];
     puissancePoeleList: ItemList[];
     zoneInstallationList: ItemList[];
+    orientationList: ItemList[];
 }
 
 export default PvList;

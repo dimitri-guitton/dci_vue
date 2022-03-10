@@ -46,6 +46,7 @@ const convertOldPvProduct = ( oldData ): Product[] => {
                              description: product[ 'description' ],
                              quantity:    product[ 'quantity' ],
                              power:       product[ 'power' ],
+                             laying:      product[ 'laying' ],
                          } );
 
         index++;
@@ -70,6 +71,7 @@ const convertOldPvItemList = ( oldData ): PvList => {
         puissancePoeleList:    [],
         zoneInstallationList:  [],
         typeOrigineList:       [],
+        orientationList:       [],
     };
 
     const pvItems = [
@@ -136,6 +138,22 @@ const convertOldPvItemList = ( oldData ): PvList => {
         lists[ newName[ item ] ] = newItems;
     }
 
+    // Liste orientation
+    lists[ 'orientationList' ] = [
+        {
+            value: 'SUD',
+            slug:  'sud',
+        },
+        {
+            value: 'SUD EST / SUD OUEST',
+            slug:  'sud_est_sud_ouest',
+        },
+        {
+            value: 'EST / OUEST',
+            slug:  'est_ouest',
+        },
+    ];
+
     return lists;
 };
 
@@ -174,9 +192,12 @@ export const convertOldPvFile = ( oldData ): PvFile => {
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  '',
         },
-        worksheet:                 {
-            period:   getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
-            infosSup: getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
+        worksheet: {
+            period:                    getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
+            infosSup:                  getObjectData( oldData, [ 'fiche', 'infosSup' ] ),
+            montantFactureElectrique:  0,
+            totalKwhFactureElectrique: 0,
+            orientation:               'sud',
         },
         quotation: {
             ...convertBaseQuotation( oldData ),

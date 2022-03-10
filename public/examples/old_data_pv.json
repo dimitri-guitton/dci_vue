@@ -103,180 +103,268 @@
         "pv":     {
             "products": [
                 {
-                    "ref":         "pv_dual_3",
+                    "id":          1,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 3 x 375 wc = 1125 kwc",
-                    "quantity":    3,
+                    "reference":   "pv_dual_3",
                     "pu":          815,
+                    "defaultPu":   815,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    3,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      800
                 },
                 {
-                    "ref":         "pv_dual_4",
+                    "id":          2,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 4 x 375 wc = 1500 kwc",
-                    "quantity":    4,
+                    "reference":   "pv_dual_4",
                     "pu":          795,
+                    "defaultPu":   795,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    4,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      800
                 },
                 {
-                    "ref":         "pv_dual_5",
+                    "id":          3,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 5 x 375 wc = 1875 kwc",
-                    "quantity":    5,
+                    "reference":   "pv_dual_5",
                     "pu":          775,
+                    "defaultPu":   775,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    5,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      1000
                 },
                 {
-                    "ref":         "pv_dual_6",
+                    "id":          4,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 6 x 375 wc = 2250 kwc",
-                    "quantity":    6,
+                    "reference":   "pv_dual_6",
                     "pu":          755,
+                    "defaultPu":   755,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    6,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      1100
                 },
                 {
-                    "ref":         "pv_dual_7",
+                    "id":          5,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 7 x 375 wc = 2625 kwc",
-                    "quantity":    7,
+                    "reference":   "pv_dual_7",
                     "pu":          735,
+                    "defaultPu":   735,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    7,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      1100
                 },
                 {
-                    "ref":         "pv_dual_8",
+                    "id":          6,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 8 x 375 wc = 3000 kwc",
-                    "quantity":    8,
+                    "reference":   "pv_dual_8",
                     "pu":          715,
+                    "defaultPu":   715,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    8,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      1500
                 },
                 {
-                    "ref":         "pv_dual_9",
+                    "id":          7,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 9 x 375 wc = 3375 kwc",
-                    "quantity":    9,
+                    "reference":   "pv_dual_9",
                     "pu":          700,
+                    "defaultPu":   700,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    9,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      1500
                 },
                 {
-                    "ref":         "pv_dual_10",
+                    "id":          8,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 10 x 375 wc = 3750 kwc",
-                    "quantity":    10,
+                    "reference":   "pv_dual_10",
                     "pu":          685,
+                    "defaultPu":   685,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    10,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      1500
                 },
                 {
-                    "ref":         "pv_dual_11",
+                    "id":          9,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 11 x 375 wc = 4125 kwc",
-                    "quantity":    11,
+                    "reference":   "pv_dual_11",
                     "pu":          670,
+                    "defaultPu":   670,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    11,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2150
                 },
                 {
-                    "ref":         "pv_dual_12",
+                    "id":          10,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 12 x 375 wc = 4500 kwc",
-                    "quantity":    12,
+                    "reference":   "pv_dual_12",
                     "pu":          655,
+                    "defaultPu":   655,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    12,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2150
                 },
                 {
-                    "ref":         "pv_dual_13",
+                    "id":          11,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 13 x 375 wc = 4875 kwc",
-                    "quantity":    13,
+                    "reference":   "pv_dual_13",
                     "pu":          640,
+                    "defaultPu":   640,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    13,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2150
                 },
                 {
-                    "ref":         "pv_dual_14",
+                    "id":          12,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 14 x 375 wc = 5250 kwc",
-                    "quantity":    14,
+                    "reference":   "pv_dual_14",
                     "pu":          625,
+                    "defaultPu":   625,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    14,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2150
                 },
                 {
-                    "ref":         "pv_dual_15",
+                    "id":          13,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 15 x 375 wc = 5625 kwc",
-                    "quantity":    15,
+                    "reference":   "pv_dual_15",
                     "pu":          610,
+                    "defaultPu":   610,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    15,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2150
                 },
                 {
-                    "ref":         "pv_dual_16",
+                    "id":          14,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 16 x 375 wc = 6000 kwc",
-                    "quantity":    16,
+                    "reference":   "pv_dual_16",
                     "pu":          595,
+                    "defaultPu":   595,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    16,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2500
                 },
                 {
-                    "ref":         "pv_dual_17",
+                    "id":          15,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 17 x 375 wc = 6375 kwc",
-                    "quantity":    17,
+                    "reference":   "pv_dual_17",
                     "pu":          585,
+                    "defaultPu":   585,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    17,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2500
                 },
                 {
-                    "ref":         "pv_dual_18",
+                    "id":          16,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 18 x 375 wc = 6750 kwc",
-                    "quantity":    18,
+                    "reference":   "pv_dual_18",
                     "pu":          575,
+                    "defaultPu":   575,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    18,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2500
                 },
                 {
-                    "ref":         "pv_dual_19",
+                    "id":          17,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 19 x 375 wc = 7125 kwc",
-                    "quantity":    19,
+                    "reference":   "pv_dual_19",
                     "pu":          565,
+                    "defaultPu":   565,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    19,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2500
                 },
                 {
-                    "ref":         "pv_dual_20",
+                    "id":          18,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 20 x 375 wc = 7500 kwc",
-                    "quantity":    20,
+                    "reference":   "pv_dual_20",
                     "pu":          555,
+                    "defaultPu":   555,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    20,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2500
                 },
                 {
-                    "ref":         "pv_dual_21",
+                    "id":          19,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 21 x 375 wc = 7875 kwc",
-                    "quantity":    21,
+                    "reference":   "pv_dual_21",
                     "pu":          545,
+                    "defaultPu":   545,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    21,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2500
                 },
                 {
-                    "ref":         "pv_dual_22",
+                    "id":          20,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 22 x 375 wc = 8250 kwc",
-                    "quantity":    22,
+                    "reference":   "pv_dual_22",
                     "pu":          535,
+                    "defaultPu":   535,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    22,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2500
                 },
                 {
-                    "ref":         "pv_dual_23",
+                    "id":          21,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 23 x 375 wc = 8625 kwc",
-                    "quantity":    23,
+                    "reference":   "pv_dual_23",
                     "pu":          525,
+                    "defaultPu":   525,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    23,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2500
                 },
                 {
-                    "ref":         "pv_dual_24",
+                    "id":          22,
+                    "productType": "pv",
                     "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 24 x 375 wc = 9000 kwc",
-                    "quantity":    24,
+                    "reference":   "pv_dual_24",
                     "pu":          520,
+                    "defaultPu":   520,
+                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                    "quantity":    24,
                     "power":       375,
-                    "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage."
+                    "laying":      2500
                 }
             ]
         }

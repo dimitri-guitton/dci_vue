@@ -3,7 +3,70 @@
     <div class="pb-10 pb-lg-15">
       <h2 class="fw-bolder text-dark">Caractéristique du chantier</h2>
     </div>
-    <step5-form :lists="lists" :worksheet-builder="worksheetBuilder"></step5-form>
+
+    <div class="row">
+      <div class="col-md-4 offset-8 fv-row">
+        <label class="form-label mb-3">Période de pose souhaité</label>
+        <Field
+            type="date"
+            class="form-control"
+            name="worksheet.period"
+            placeholder="01/01/1970"
+            value=""
+        />
+      </div>
+    </div>
+
+    <div class="row mt-10">
+      <div class="col-md-6 mb-5">
+        <label for="montantFactureElectrique" class="form-label mb-3">Montant facture électrique <sup>€</sup></label>
+        <Field
+            type="text"
+            name="worksheet.montantFactureElectrique"
+            id="montantFactureElectrique"
+            class="form-control"
+        >
+        </Field>
+      </div>
+
+      <div class="col-md-6 mb-5">
+        <label for="totalKwhFactureElectrique" class="form-label mb-3">Total kwh sur facture électrique
+          <sup><var>KWh</var></sup></label>
+        <Field
+            type="text"
+            name="worksheet.totalKwhFactureElectrique"
+            id="totalKwhFactureElectrique"
+            class="form-control"
+        >
+        </Field>
+      </div>
+
+      <div class="col-md-6 mb-5">
+        <label for="orientation" class="form-label">Orientation</label>
+        <Field name="worksheet.orientation"
+               id="orientation"
+               class="form-select"
+               as="select"
+        >
+          <item-list :lists="lists.orientationList"></item-list>
+        </Field>
+      </div>
+    </div>
+
+    <el-divider class="mb-20"></el-divider>
+
+    <div class="row mt-10">
+      <div class="col-md-12 fv-row">
+        <label class="form-label mb-3">Complément d'information</label>
+        <Field
+            as="textarea"
+            class="form-control"
+            name="worksheet.infosSup"
+            placeholder="RAS"
+            value=""
+        />
+      </div>
+    </div>
 
     <el-divider class="mb-10"></el-divider>
 
@@ -19,14 +82,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Step5Form from '@/components/DCI/wizzard-file/Step5Form.vue';
-import { cetWorksheetBuilder } from '@/services/file/wizzard/cet/step5Service';
 import PvList from '@/types/v2/File/Pv/PvList';
+import { Field } from 'vee-validate';
+import ItemList from '@/components/DCI/input/ItemList.vue';
 
 export default defineComponent( {
                                   name:       'file-pv-step-5',
                                   components: {
-                                    Step5Form,
+                                    Field,
+                                    ItemList,
                                   },
                                   props:      {
                                     lists: Object as () => PvList,
@@ -36,8 +100,8 @@ export default defineComponent( {
                                     const generateWorksheet = () => {
                                       ctx.emit( 'generateWorksheet' );
                                     };
+
                                     return {
-                                      worksheetBuilder: cetWorksheetBuilder(),
                                       generateWorksheet,
                                     };
                                   },
