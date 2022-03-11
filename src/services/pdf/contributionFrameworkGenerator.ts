@@ -37,7 +37,6 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
         this.docDefinition = this._generateDocDefinition();
     }
 
-
     private _generateDocDefinition(): TDocumentDefinitions {
         return {
             pageMargins: [ 30, 15, 30, 15 ],
