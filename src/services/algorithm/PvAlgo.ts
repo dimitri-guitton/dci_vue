@@ -8,6 +8,12 @@ interface PhotovoltaicBenefits {
     totalGains: number;
 }
 
+interface PriceEvolution {
+    year: number;
+    kwhEdf: number;
+    kwhPhotovoltaic: number;
+}
+
 export class PvAlgo {
     private quotation: PvQuotation;
     private worksheet: PvWorkSheet;
@@ -43,7 +49,7 @@ export class PvAlgo {
     /**
      * Prix TTC posé des panneaux
      */
-    private calclTotalTtcPerPanel(): number {
+    public calclTotalTtcPerPanel(): number {
         if ( this.quotation.selectedProducts.length > 0 ) {
             const selectedProduct    = this.quotation.selectedProducts[ 0 ];
             const power: number      = selectedProduct.power !== undefined ? selectedProduct.power : 0;
@@ -66,7 +72,7 @@ export class PvAlgo {
     /**
      * Calcul le total TTC avec les montant des primes déduites
      */
-    private calcTotalTtcWithBonusDeducted() {
+    public calcTotalTtcWithBonusDeducted() {
         return this.calclTotalTtcPerPanel() - this.quotation.selfConsumptionBonus;
     }
 
@@ -84,7 +90,7 @@ export class PvAlgo {
     /**
      * Prix de vente moyen du KWh phtovoltaîque en €
      */
-    public calcAverageSellingPrice(): number {
+    public calcPhotovoltaicAverageSellingPrice(): number {
         return this.calcTotalTtcWithBonusDeducted() / ( this.calcInstallationProduction() * 25 );
     }
 
@@ -125,6 +131,33 @@ export class PvAlgo {
                                  resaleToEdf,
                                  savingsOnInvoice,
                                  totalGains: resaleToEdf + savingsOnInvoice,
+                             } );
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Evolution du prix de KWh sur 25 ans
+     */
+    public priceEvolutionOver25Years(): PriceEvolution[] {
+        const currentYear: number      = new Date().getFullYear();
+        const result: PriceEvolution[] = [];
+
+        for ( let year = currentYear; year < currentYear + 25; year++ ) {
+            if ( year === currentYear ) {
+                result.push( {
+                                 year,
+                                 kwhEdf:          this.calcAveragePricePerKWhOnElectricBill(),
+                                 kwhPhotovoltaic: this.calcPhotovoltaicAverageSellingPrice(),
+                             } );
+            } else {
+                const kwhEdf = result[ result.length - 1 ].kwhEdf * 1.030925266;
+                result.push( {
+                                 year,
+                                 kwhEdf,
+                                 kwhPhotovoltaic: this.calcPhotovoltaicAverageSellingPrice(),
                              } );
             }
         }

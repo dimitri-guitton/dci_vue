@@ -418,6 +418,10 @@ export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) =
             folder = FoldersNames.MANDAT_MA_PRIME_RENOV;
             name   = 'mandat_ma_prime_renov.pdf';
             break;
+        case PdfType.ProfitabilityStudy:
+            folder = FoldersNames.FICHE;
+            name   = 'etude_rentabilite.pdf';
+            break;
         default:
             console.log( '%c ERROR', 'background: #fdd835; color: #000000' );
     }

@@ -50,7 +50,7 @@
 
           <!--begin::Step 5-->
           <div data-kt-stepper-element="content">
-            <FilePvStep5 @generateWorksheet="onGenerateWorksheet" :lists="lists"></FilePvStep5>
+            <FilePvStep5 :file-data="fileData" @generateWorksheet="onGenerateWorksheet" :lists="lists"></FilePvStep5>
           </div>
           <!--end::Step 5-->
 
@@ -235,7 +235,7 @@ export default defineComponent( {
                                     console.log( 'PRODUCTIBLE DE L’INSTALLATION',
                                                  pvAlgo.calcInstallationProduction() );
                                     console.log( 'PRIX MOYEN DU kWh PHOTOVOLTAÏQUE',
-                                                 pvAlgo.calcAverageSellingPrice() );
+                                                 pvAlgo.calcPhotovoltaicAverageSellingPrice() );
                                     console.log( 'REVENTE AUPRÈS D’EDF', pvAlgo.calcResalePriceToEdf() );
                                     console.log( 'ÉCONOMIE SUR FACTURE', pvAlgo.savingsOnBill() );
                                     console.log( 'GAINS PHOTOVOLTAÏQUES', pvAlgo.benefitsOver25Years() );

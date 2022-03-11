@@ -13,7 +13,8 @@ export enum PdfType {
     Quotation,
     Tva,
     ContributionFramework,
-    MaPrimeRenov
+    MaPrimeRenov,
+    ProfitabilityStudy
 }
 
 export class PdfGenerator {

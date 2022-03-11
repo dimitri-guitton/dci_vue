@@ -1,5 +1,8 @@
 <template>
   <div class="w-100">
+    <!-- Graphique (caché) pour le PDF sur l'étude de rentabilité-->
+    <canvas id="my_chart"></canvas>
+
     <div class="pb-10 pb-lg-15">
       <h2 class="fw-bolder text-dark">Caractéristique du chantier</h2>
     </div>
@@ -81,10 +84,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted } from 'vue';
 import PvList from '@/types/v2/File/Pv/PvList';
 import { Field } from 'vee-validate';
 import ItemList from '@/components/DCI/input/ItemList.vue';
+import { PvFile } from '@/types/v2/File/Pv/PvFile';
+import { ProfitabilityStudyGenerator } from '@/services/pdf/profitabilityStudyGenerator';
 
 export default defineComponent( {
                                   name:       'file-pv-step-5',
@@ -93,7 +98,11 @@ export default defineComponent( {
                                     ItemList,
                                   },
                                   props:      {
-                                    lists: Object as () => PvList,
+                                    lists:    Object as () => PvList,
+                                    fileData: {
+                                      type:     Object as () => PvFile,
+                                      required: true,
+                                    },
                                   },
                                   emits:      [ 'generateWorksheet' ],
                                   setup( props, ctx ) {
@@ -101,6 +110,12 @@ export default defineComponent( {
                                       ctx.emit( 'generateWorksheet' );
                                     };
 
+                                    onMounted( () => {
+
+                                      // TODO rendre dynalqiue quand on change les infos
+                                      const pdfGenerator = new ProfitabilityStudyGenerator( props.fileData );
+                                      pdfGenerator.createChart();
+                                    } );
                                     return {
                                       generateWorksheet,
                                     };

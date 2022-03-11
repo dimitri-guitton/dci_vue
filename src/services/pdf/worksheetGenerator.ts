@@ -2,7 +2,7 @@ import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { CombleWorkSheet } from '@/types/v2/File/Comble/CombleWorkSheet';
 import { BROWN, DARK } from '@/services/pdf/pdfVariable';
-import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
+import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_PV, FILE_SOL } from '@/services/constantService';
 import CombleList from '@/types/v2/File/Comble/CombleList';
 import { CombleQuotation } from '@/types/v2/File/Comble/CombleQuotation';
 import { CetWorkSheet } from '@/types/v2/File/Cet/CetWorkSheet';
@@ -22,6 +22,7 @@ import { AllFile, AllQuotation } from '@/types/v2/File/All';
 import { getAddress } from '@/services/data/dataService';
 import { RoQuotation } from '@/types/v2/File/Ro/RoQuotation';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
+import { ProfitabilityStudyGenerator } from '@/services/pdf/profitabilityStudyGenerator';
 
 export class WorksheetGenerator extends PdfGenerator {
     private _file: AllFile;
@@ -43,6 +44,15 @@ export class WorksheetGenerator extends PdfGenerator {
 
         this.docDefinition = this._generateDocDefinition();
 
+    }
+
+    generatePdf() {
+        super.generatePdf();
+
+        if ( this._file.type === FILE_PV ) {
+            const profitabilityStudyGenerator = new ProfitabilityStudyGenerator( this._file );
+            profitabilityStudyGenerator.generatePdf();
+        }
     }
 
     private _generateDocDefinition(): TDocumentDefinitions {

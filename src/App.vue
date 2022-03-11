@@ -30,6 +30,62 @@ import { defineComponent, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import { Mutations } from '@/store/enums/StoreEnums';
 
+import {
+  ArcElement,
+  BarController,
+  BarElement,
+  BubbleController,
+  CategoryScale,
+  Chart,
+  Decimation,
+  DoughnutController,
+  Filler,
+  Legend,
+  LinearScale,
+  LineController,
+  LineElement,
+  LogarithmicScale,
+  PieController,
+  PointElement,
+  PolarAreaController,
+  RadarController,
+  RadialLinearScale,
+  ScatterController,
+  SubTitle,
+  TimeScale,
+  TimeSeriesScale,
+  Title,
+  Tooltip,
+} from 'chart.js';
+
+Chart.register(
+    ArcElement,
+    LineElement,
+    BarElement,
+    PointElement,
+    BarController,
+    BubbleController,
+    DoughnutController,
+    LineController,
+    PieController,
+    PolarAreaController,
+    RadarController,
+    ScatterController,
+    CategoryScale,
+    LinearScale,
+    LogarithmicScale,
+    RadialLinearScale,
+    TimeScale,
+    TimeSeriesScale,
+    Decimation,
+    Filler,
+    Legend,
+    Title,
+    Tooltip,
+    SubTitle,
+);
+
+
 export default defineComponent( {
                                   name: 'app',
                                   setup() {
