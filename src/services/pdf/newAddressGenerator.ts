@@ -72,6 +72,7 @@ export class NewAddressGenerator extends PdfGenerator {
         }
 
         return {
+            margin:     [ 125, 0, 125, 0 ],
             style:      'text',
             alignment:  'center',
             lineHeight: 1.5,
