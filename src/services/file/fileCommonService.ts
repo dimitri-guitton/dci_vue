@@ -138,6 +138,8 @@ const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: strin
         }
     }
 
+    console.log( 'formatedEtas', formatedEtas );
+
     if ( etas >= 110 && etas < 120 ) {
         formatedEtas = 110;
     } else if ( etas >= 120 ) {
@@ -173,6 +175,9 @@ const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: strin
     if ( area > 130 ) {
         formatedArea = 130;
     }
+
+    console.log( 'formatedArea', formatedArea );
+
 
     if ( codeBonus !== null && codeBonus.toUpperCase() === 'GP' ) {
         formatedCodeBonus = 'GP';

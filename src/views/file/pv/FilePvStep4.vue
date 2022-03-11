@@ -128,7 +128,12 @@ export default defineComponent( {
                                       }
                                       console.log( 'Prix avec les produits -->', totalHt );
 
+
                                       for ( const option of _options.value ) {
+                                        if ( option.label.includes( 'Pose de l’installation' ) ) {
+                                          option.pu = ( _selectedProducts.value[ 0 ].laying as number );
+                                        }
+
                                         if ( option.number > 0 ) {
                                           totalHt += option.pu * option.number;
                                         }

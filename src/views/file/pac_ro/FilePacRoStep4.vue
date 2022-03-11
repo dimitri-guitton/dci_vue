@@ -421,6 +421,9 @@ export default defineComponent( {
                                           ceeBonus                      = getCeeBonus( updatedFileData );
                                         }
 
+                                        console.log( '%c CEE BONUS', 'background: #7950FF; color: #000000' );
+                                        console.log( ceeBonus );
+
                                         // Si MaprimeRenov est actif
                                         if ( !props.fileData.disabledMaPrimeRenovBonus ) {
                                           maPrimeRenov = getMaPrimeRenov( props.fileData.type,
