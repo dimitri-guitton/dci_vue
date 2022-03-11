@@ -7,18 +7,18 @@ export const validateStepTwo = ( data ): AllFile => {
 };
 export const yupConfigStep2  = () => {
     return Yup.object( {
-                           assentsDatas: Yup.array()
-                                            .of(
-                                                Yup.object().shape( {
-                                                                        civility:      Yup.string()
+                           assentsDatas:     Yup.array()
+                                                .of(
+                                                    Yup.object().shape( {
+                                                                            civility:  Yup.string()
                                                                                           .required(),
-                                                                        lastName:      Yup.string()
+                                                                            lastName:  Yup.string()
                                                                                           .required(),
-                                                                        firstName:     Yup.string()
+                                                                            firstName: Yup.string()
                                                                                           .required(),
-                                                                        address:       Yup.string()
+                                                                            address:   Yup.string()
                                                                                           .required(),
-                                                                        zipCode:       Yup.string()
+                                                                            zipCode:   Yup.string()
                                                                                           .matches(
                                                                                               /^([0-8][0-9]|9[0-5])[0-9]{3}/,
                                                                                               {
@@ -34,7 +34,7 @@ export const yupConfigStep2  = () => {
                                                                         } ),
                                                 ),
                            indexBeneficiary: Yup.number().required(),
-                           email:            Yup.string().required().email(),
+                           email:            Yup.string().email(),
                            phone:            Yup.string().matches(
                                /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/gm,
                                {
