@@ -131,7 +131,9 @@ export default defineComponent( {
 
                                       for ( const option of _options.value ) {
                                         if ( option.label.includes( 'Pose de l’installation' ) ) {
-                                          option.pu = ( _selectedProducts.value[ 0 ].laying as number );
+                                          if ( _selectedProducts.value.length > 0 && _selectedProducts.value[ 0 ].laying !== undefined ) {
+                                            option.pu = _selectedProducts.value[ 0 ].laying;
+                                          }
                                         }
 
                                         if ( option.number > 0 ) {

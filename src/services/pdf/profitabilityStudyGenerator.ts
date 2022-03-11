@@ -201,6 +201,11 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
     }
 
     private _benefitsOver25Years(): Content {
+
+        if ( this._quotation.selectedProducts.length === 0 ) {
+            return '';
+        }
+
         const formattedBody: TableCell[][] = [];
         const data                         = this._pvAlgo.benefitsOver25Years();
 
