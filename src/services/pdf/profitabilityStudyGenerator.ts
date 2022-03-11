@@ -467,7 +467,9 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
             config,
         );
 
-
-        // document.getElementById( 'my_chart' ).style.display = 'none';
+        const $chart = document.getElementById( 'my_chart' );
+        if ( $chart !== null ) {
+            $chart.style.display = 'none';
+        }
     }
 }
