@@ -79,7 +79,7 @@ export class PacAlgo {
      * @param climaticZone
      * @param altitude
      */
-    protected calcDeltaT = ( setPointTemperature: number, climaticZone: string, altitude: number ): number => {
+    public calcDeltaT = ( setPointTemperature: number, climaticZone: string, altitude: number ): number => {
         return setPointTemperature - this.getBaseTemperature( climaticZone, altitude );
     };
 
@@ -87,14 +87,14 @@ export class PacAlgo {
      * Calcul la puissance (KW) minimal requise de la PAC
      * @param housing
      */
-    protected calcRequiredPower = ( housing: PacHousing ): number => {
+    public calcRequiredPower = ( housing: PacHousing ): number => {
         // Volume à chauffer
-        const volume = housing.area * housing.ceilingHeight;
+        const volume: number = housing.area * housing.ceilingHeight;
 
-        const deltaT = this.calcDeltaT( housing.setPointTemperature, housing.climaticZone, housing.altitude );
+        const deltaT: number = this.calcDeltaT( housing.setPointTemperature, housing.climaticZone, housing.altitude );
 
         // Puissance en W
-        const power = volume * deltaT * housing.buildingCoefficient * 0.9;
+        const power: number = +( volume * deltaT * housing.buildingCoefficient * 0.9 ).toFixed( 4 );
 
         console.log( {
                          'area':                 housing.area,

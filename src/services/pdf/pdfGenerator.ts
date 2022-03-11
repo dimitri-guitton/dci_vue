@@ -14,7 +14,8 @@ export enum PdfType {
     Tva,
     ContributionFramework,
     MaPrimeRenov,
-    ProfitabilityStudy
+    ProfitabilityStudy,
+    SizingPac,
 }
 
 export class PdfGenerator {

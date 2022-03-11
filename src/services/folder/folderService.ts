@@ -423,6 +423,10 @@ export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) =
             folder = FoldersNames.FICHE;
             name   = 'etude_rentabilite.pdf';
             break;
+        case PdfType.SizingPac:
+            folder = FoldersNames.DIMENSIONNEMENT_PAC;
+            name   = 'dimensionnement_pac.pdf';
+            break;
         default:
             console.log( '%c ERROR', 'background: #fdd835; color: #000000' );
     }

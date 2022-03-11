@@ -30,9 +30,8 @@ import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
 import PbList from '@/types/v2/File/Pb/PbList';
 import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
 import { AllFile, AllQuotation } from '@/types/v2/File/All';
-import path from 'path';
-import { copyFileFromAssetToDropbox, FoldersNames } from '@/services/folder/folderService';
 import { PbQuotation } from '@/types/v2/File/Pb/PbQuotation';
+import { SizingPacGenerator } from '@/services/pdf/sizingPacGenerator';
 
 declare const __static: string;
 
@@ -85,25 +84,27 @@ export class QuotationGenerator extends PdfGenerator {
         // Pour les devis CET, Poele, PAC RR et RO
         if ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR ) {
             const tvaGenerator = new TvaCertificateGenerator( this._file );
-            tvaGenerator.generatePdf( false );
+            tvaGenerator.generatePdf();
         }
 
         // Génération du cadre de contribution
         // Pour les pompes à chaleur RO et RR quand la prime CEE est > à 0
         if ( this._file.quotation.ceeBonus > 0 ) {
             const contributionFrameworkGenerator = new ContributionFrameworkGenerator( this._file );
-            contributionFrameworkGenerator.generatePdf( false );
+            contributionFrameworkGenerator.generatePdf();
         }
 
         // Génération du mandat de maPrimeRenov
         if ( ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO ) && ( this._file.quotation as CetQuotation | PgQuotation | RoQuotation ).maPrimeRenovBonus > 0 ) {
             const maPrimeRenovGenerator = new MaPrimeRenovGenerator( this._file );
-            maPrimeRenovGenerator.generatePdf( false );
+            maPrimeRenovGenerator.generatePdf();
         }
 
         if ( this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR ) {
-            const pathToAsset = path.join( __static, '/pdf/dimensionnement_pac.pdf' );
-            copyFileFromAssetToDropbox( pathToAsset, FoldersNames.DIMENSIONNEMENT_PAC, 'dimensionnement_pac.pdf' );
+            const sizingPacGenerator = new SizingPacGenerator( this._file );
+            sizingPacGenerator.generatePdf();
+            // const pathToAsset = path.join( __static, '/pdf/dimensionnement_pac.pdf' );
+            // copyFileFromAssetToDropbox( pathToAsset, FoldersNames.DIMENSIONNEMENT_PAC, 'dimensionnement_pac.pdf' );
         }
     }
 
