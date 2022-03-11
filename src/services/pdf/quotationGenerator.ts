@@ -168,7 +168,7 @@ export class QuotationGenerator extends PdfGenerator {
             [
                 {
                     image: LOGO_ECO,
-                    width: 220,
+                    width: 190,
                 },
             ],
         ];
@@ -178,13 +178,13 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PB:
                 body[ 0 ].push( {
                                     image: LOGO_QUALIBOIS,
-                                    width: 45,
+                                    width: 40,
                                 } );
                 break;
             default:
                 body[ 0 ].push( {
                                     image: LOGO_QUALIFELEC,
-                                    width: 45,
+                                    width: 40,
                                 } );
         }
 
@@ -249,6 +249,11 @@ export class QuotationGenerator extends PdfGenerator {
                         },
                         {
                             text:      'RCS LA ROCHELLE 79943519300054',
+                            style:     'xsText',
+                            alignment: 'center',
+                        },
+                        {
+                            text:      'Numéro TVA intracommunautaire : FR88799435193',
                             style:     'xsText',
                             alignment: 'center',
                         },
