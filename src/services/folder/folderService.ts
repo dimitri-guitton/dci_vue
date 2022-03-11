@@ -18,6 +18,7 @@ import { shell } from 'electron';
 import { NewFolderData } from '@/components/DCI/modals/NewFileModal.vue';
 import { convertOldPbFile } from '@/services/file/converter/convertPbData';
 import { convertOldPvFile } from '@/services/file/converter/convertPvData';
+import { ElMessage } from 'element-plus';
 
 declare const __static: string;
 
@@ -427,14 +428,29 @@ export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) =
     }
 
     const filePath = `${ folderPath }/${ folder }/${ name }`;
-    fs.createWriteStream( filePath ).write( buffer );
+    // const writer   = fs.createWriteStream( filePath );
 
-    if ( openAfterSave ) {
-        console.log( '%c IN OPEN', 'background: #fdd835; color: #000000' );
-        setTimeout( () => {
+    try {
+        fs.writeFile( filePath, buffer, () => {
+            console.log( '%c AFTER WRITE FILE', 'background: #fdd835; color: #000000' );
             openPdf( filePath );
-        }, 1500 );
+        } );
+    } catch ( err ) {
+        ElMessage( {
+                       message: 'Impossible de générer le PDF',
+                       type:    'error',
+                   } );
+        console.error( err );
     }
+
+    // writer.write( buffer );
+
+    // if ( openAfterSave ) {
+    //     console.log( '%c IN OPEN', 'background: #fdd835; color: #000000' );
+    //     setTimeout( () => {
+    //         openPdf( filePath );
+    //     }, 500 );
+    // }
 };
 
 export const copyFileFromAssetToDropbox = ( assetPath: string, destinationFolder: string, fileName: string ) => {

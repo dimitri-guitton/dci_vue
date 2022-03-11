@@ -85,25 +85,23 @@ export class QuotationGenerator extends PdfGenerator {
         // Pour les devis CET, Poele, PAC RR et RO
         if ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR ) {
             const tvaGenerator = new TvaCertificateGenerator( this._file );
-            tvaGenerator.generatePdf();
+            tvaGenerator.generatePdf( false );
         }
 
         // Génération du cadre de contribution
         // Pour les pompes à chaleur RO et RR quand la prime CEE est > à 0
         if ( this._file.quotation.ceeBonus > 0 ) {
             const contributionFrameworkGenerator = new ContributionFrameworkGenerator( this._file );
-            contributionFrameworkGenerator.generatePdf();
+            contributionFrameworkGenerator.generatePdf( false );
         }
 
         // Génération du mandat de maPrimeRenov
         if ( ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO ) && ( this._file.quotation as CetQuotation | PgQuotation | RoQuotation ).maPrimeRenovBonus > 0 ) {
             const maPrimeRenovGenerator = new MaPrimeRenovGenerator( this._file );
-            maPrimeRenovGenerator.generatePdf();
+            maPrimeRenovGenerator.generatePdf( false );
         }
 
-        console.log( 'FILE TYPE', this._file.type );
         if ( this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR ) {
-            console.log( '%c IS RO OR RR', 'background: #FF0017; color: #000000' );
             const pathToAsset = path.join( __static, '/pdf/dimensionnement_pac.pdf' );
             copyFileFromAssetToDropbox( pathToAsset, FoldersNames.DIMENSIONNEMENT_PAC, 'dimensionnement_pac.pdf' );
         }
