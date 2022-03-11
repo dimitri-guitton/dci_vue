@@ -1,239 +1,239 @@
 {
-    "version":                   "1",
-    "type":                      "cet",
-    "ref":                       "",
-    "folderName":                "",
-    "createdAt":                 "",
-    "updatedAt":                 "",
-    "settings":                  {
+    "version": "1",
+    "type": "cet",
+    "ref": "",
+    "folderName": "",
+    "createdAt": "",
+    "updatedAt": "",
+    "settings": {
         "ceeCoef": "5.5"
     },
-    "disabledBonus":             false,
-    "disabledCeeBonus":          false,
+    "disabledBonus": false,
+    "disabledCeeBonus": false,
     "disabledMaPrimeRenovBonus": false,
-    "assents":                   [],
-    "beneficiary":               {
-        "civility":  "m",
-        "lastName":  "",
+    "assents": [],
+    "beneficiary": {
+        "civility": "m",
+        "lastName": "",
         "firstName": "",
-        "address":   "",
-        "zipCode":   "",
-        "city":      "",
-        "email":     "",
-        "phone":     "",
-        "mobile":    "",
-        "income":    0
+        "address": "",
+        "zipCode": "",
+        "city": "",
+        "email": "",
+        "phone": "",
+        "mobile": "",
+        "income": 0
     },
-    "codeBonus":                 null,
-    "energyZone":                null,
-    "housing":                   {
-        "nbOccupant":        1,
-        "type":              "maison_individuelle",
-        "buildingNature":    "",
-        "heatingType":       "electrique",
-        "isRentedHouse":     false,
-        "isAddressBenef":    true,
-        "address":           "",
-        "zipCode":           "",
-        "city":              "",
-        "plot":              "",
-        "area":              0,
-        "dataGeoportail":    {},
-        "location":          "",
+    "codeBonus": null,
+    "energyZone": null,
+    "housing": {
+        "nbOccupant": 1,
+        "type": "maison_individuelle",
+        "buildingNature": "",
+        "heatingType": "electrique",
+        "isRentedHouse": false,
+        "isAddressBenef": true,
+        "address": "",
+        "zipCode": "",
+        "city": "",
+        "plot": "",
+        "area": 0,
+        "dataGeoportail": {},
+        "location": "",
         "insulationQuality": "",
-        "constructionYear":  null,
-        "lessThan2Years":    false,
-        "availableVoltage":  ""
+        "constructionYear": null,
+        "lessThan2Years": false,
+        "availableVoltage": ""
     },
-    "worksheet":                 {
-        "period":                  "",
-        "niveauHabitation":        "pp",
-        "typeChantier":            "neuf",
-        "disjoncteur":             false,
-        "tensionDisponible":       "monophase",
-        "distanceCompteurCet":     0,
-        "natureMurExt":            "parpaing",
-        "naturePlafond":           "brique",
-        "visiteComble":            false,
-        "chantierHabite":          false,
-        "grandeEchelle":           false,
-        "demandeVoirie":           false,
-        "puissanceCompteur":       6,
-        "accesComble":             "trappe",
-        "rueEtroite":              false,
-        "typeCouverture":          "mecanique",
-        "etatToiture":             "propre",
-        "typeCharpente":           "traditionnelle",
-        "nbCompartimentComble":    1,
-        "presenceVolige":          false,
-        "nbAccesComble":           1,
+    "worksheet": {
+        "period": "",
+        "niveauHabitation": "pp",
+        "typeChantier": "neuf",
+        "disjoncteur": false,
+        "tensionDisponible": "monophase",
+        "distanceCompteurCet": 0,
+        "natureMurExt": "parpaing",
+        "naturePlafond": "brique",
+        "visiteComble": false,
+        "chantierHabite": false,
+        "grandeEchelle": false,
+        "demandeVoirie": false,
+        "puissanceCompteur": 6,
+        "accesComble": "trappe",
+        "rueEtroite": false,
+        "typeCouverture": "mecanique",
+        "etatToiture": "propre",
+        "typeCharpente": "traditionnelle",
+        "nbCompartimentComble": 1,
+        "presenceVolige": false,
+        "nbAccesComble": 1,
         "emplacementCetExistante": "",
-        "emplacementCetNew":       "",
-        "aspirationType":          "none",
-        "ballonFixeMur":           false,
-        "uniteExtFixeMur":         false,
-        "distanceBallonUnitExt":   0,
-        "infosSup":                "RAS"
+        "emplacementCetNew": "",
+        "aspirationType": "none",
+        "ballonFixeMur": false,
+        "uniteExtFixeMur": false,
+        "distanceBallonUnitExt": 0,
+        "infosSup": "RAS"
     },
-    "quotation":                 {
-        "origin":             "",
+    "quotation": {
+        "origin": "",
         "dateTechnicalVisit": "",
-        "executionDelay":     "",
-        "options":            [
+        "executionDelay": "",
+        "options": [
             {
-                "id":            1,
-                "fileType":      "cet",
-                "label":         "Forfait accessoire nécessaire à la pose, au raccordement de l’installation",
-                "unit":          "u",
-                "defaultPu":     100,
-                "pu":            100,
+                "id": 1,
+                "fileType": "cet",
+                "label": "Forfait accessoire nécessaire à la pose, au raccordement de l’installation",
+                "unit": "u",
+                "defaultPu": 100,
+                "pu": 100,
                 "defaultNumber": 1,
-                "number":        1
+                "number": 1
             },
             {
-                "id":            2,
-                "fileType":      "cet",
-                "label":         "Forfait pose ( Pose nouvel appareil, mise en service)",
-                "unit":          "u",
-                "defaultPu":     350,
-                "pu":            350,
+                "id": 2,
+                "fileType": "cet",
+                "label": "Forfait pose ( Pose nouvel appareil, mise en service)",
+                "unit": "u",
+                "defaultPu": 350,
+                "pu": 350,
                 "defaultNumber": 1,
-                "number":        1
+                "number": 1
             },
             {
-                "id":            3,
-                "fileType":      "cet",
-                "label":         "Raccordement extérieur par chapeau de toiture",
-                "unit":          "u",
-                "defaultPu":     100,
-                "pu":            100,
+                "id": 3,
+                "fileType": "cet",
+                "label": "Raccordement extérieur par chapeau de toiture",
+                "unit": "u",
+                "defaultPu": 100,
+                "pu": 100,
                 "defaultNumber": 0,
-                "number":        0
-            },
-            {
-                "id":            4,
-                "fileType":      "cet",
-                "label":         "Raccordement extérieur mural",
-                "unit":          "u",
-                "defaultPu":     100,
-                "pu":            100,
-                "defaultNumber": 0,
-                "number":        0
-            }
-        ],
-        "blankOptions":       [
-            {
-                "id":     "sup1",
-                "label":  "",
-                "unit":   "u",
-                "pu":     0,
                 "number": 0
             },
             {
-                "id":     "sup2",
-                "label":  "",
-                "unit":   "u",
-                "pu":     0,
+                "id": 4,
+                "fileType": "cet",
+                "label": "Raccordement extérieur mural",
+                "unit": "u",
+                "defaultPu": 100,
+                "pu": 100,
+                "defaultNumber": 0,
                 "number": 0
             }
         ],
-        "commentary":         "",
-        "partner":            "VTE",
-        "texts":              [
+        "blankOptions": [
+            {
+                "id": "sup1",
+                "label": "",
+                "unit": "u",
+                "pu": 0,
+                "number": 0
+            },
+            {
+                "id": "sup2",
+                "label": "",
+                "unit": "u",
+                "pu": 0,
+                "number": 0
+            }
+        ],
+        "commentary": "",
+        "partner": "VTE",
+        "texts": [
             {
                 "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
-                "text":  "Les travaux prévus dans ce devis peuvent être conditionnels à un dépôt de déclaration préalable de travaux. Il revient au maître d'ouvrage (le client) d'en faire lui-même la demande.\r\nLa TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.\r\n\r\nLes travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique.\r\n\r\n* « Dans le cas où l'aide notifiée au client est inférieure au montant de l'aide prévisionnelle, l'usager n'est pas lié par le devis et l'entreprise s'engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d'une durée de quatorze jours à partir de la date de présentation du devis rectificatif.L'aide MaPrimeRénov' est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire. En cas de fausse déclaration, de manœuvre frauduleuse ou de changement du projet de travaux subventionnés, le bénéficiaire s'expose au retrait et reversement de tout ou partie de l'aide. Les services de l'Anah pourront faire procéder à tout contrôle des engagements et sanctionner le bénéficiaire et son mandataire éventuel des manquements constatés »."
+                "text": "Les travaux prévus dans ce devis peuvent être conditionnels à un dépôt de déclaration préalable de travaux. Il revient au maître d'ouvrage (le client) d'en faire lui-même la demande.\r\nLa TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.\r\n\r\nLes travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique.\r\n\r\n* « Dans le cas où l'aide notifiée au client est inférieure au montant de l'aide prévisionnelle, l'usager n'est pas lié par le devis et l'entreprise s'engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d'une durée de quatorze jours à partir de la date de présentation du devis rectificatif.L'aide MaPrimeRénov' est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire. En cas de fausse déclaration, de manœuvre frauduleuse ou de changement du projet de travaux subventionnés, le bénéficiaire s'expose au retrait et reversement de tout ou partie de l'aide. Les services de l'Anah pourront faire procéder à tout contrôle des engagements et sanctionner le bénéficiaire et son mandataire éventuel des manquements constatés »."
             },
             {
                 "title": "AIDE A LA RENOVATION ÉNERGÉTIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
-                "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
+                "text": "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
             }
         ],
-        "discount":           0,
-        "totalHt":            0,
-        "totalTtc":           0,
-        "totalTva":           0,
-        "remainderToPay":     0,
-        "ceeBonus":           0,
-        "tva":                5.5,
-        "paymentOnCredit":    {
-            "active":           false,
-            "amount":           0,
+        "discount": 0,
+        "totalHt": 0,
+        "totalTtc": 0,
+        "totalTva": 0,
+        "remainderToPay": 0,
+        "ceeBonus": 0,
+        "tva": 5.5,
+        "paymentOnCredit": {
+            "active": false,
+            "amount": 0,
             "withoutInsurance": 0,
-            "withInsurance":    0,
-            "duration":         0,
-            "TAEG":             0,
-            "total":            0
+            "withInsurance": 0,
+            "duration": 0,
+            "TAEG": 0,
+            "total": 0
         },
-        "selectedProducts":   [
+        "selectedProducts": [
             {
-                "id":          1,
+                "id": 1,
                 "productType": "cet",
-                "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
-                "reference":   "CETACMO200",
-                "pu":          2578,
-                "defaultPu":   2578,
+                "label": "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
+                "reference": "CETACMO200",
+                "pu": 2578,
+                "defaultPu": 2578,
                 "description": "Capacité: 200L MONOBLOC\r\nDimensions HxLxP: 1689*602*691\r\nPuissance acoustique: 50 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c\r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\n\r\nFonctionne sur air ambiant si volume de la pièce> 20M3",
-                "size":        "HxLxP: 1689*602*691",
-                "type":        "mono",
-                "quantity":    1
+                "size": "HxLxP: 1689*602*691",
+                "type": "mono",
+                "quantity": 1
             }
         ],
-        "products":           [
+        "products": [
             {
-                "id":          1,
+                "id": 1,
                 "productType": "cet",
-                "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
-                "reference":   "CETACMO200",
-                "pu":          2578,
-                "defaultPu":   2578,
+                "label": "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
+                "reference": "CETACMO200",
+                "pu": 2578,
+                "defaultPu": 2578,
                 "description": "Capacité: 200L MONOBLOC\r\nDimensions HxLxP: 1689*602*691\r\nPuissance acoustique: 50 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c\r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\n\r\nFonctionne sur air ambiant si volume de la pièce> 20M3",
-                "size":        "HxLxP: 1689*602*691",
-                "type":        "mono",
-                "quantity":    1
+                "size": "HxLxP: 1689*602*691",
+                "type": "mono",
+                "quantity": 1
             },
             {
-                "id":          2,
+                "id": 2,
                 "productType": "cet",
-                "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 250L",
-                "reference":   "CETACMO250",
-                "pu":          2675,
-                "defaultPu":   2675,
+                "label": "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 250L",
+                "reference": "CETACMO250",
+                "pu": 2675,
+                "defaultPu": 2675,
                 "description": "Capacité: 250L MONOBLOC\r\nDimensions HxLxP: 1929*602*691\r\nPuissance acoustique: 50 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c \r\nAppoint électrique: 1800W\r\nCOP: 3,12 – Profil de soutirage : L\r\nClasse energetique: A+\r\n\r\nFonctionne sur air ambiant si volume de la pièce> 20M3",
-                "size":        "HxLxP: 1929*602*691",
-                "type":        "mono",
-                "quantity":    1
+                "size": "HxLxP: 1929*602*691",
+                "type": "mono",
+                "quantity": 1
             },
             {
-                "id":          3,
+                "id": 3,
                 "productType": "cet",
-                "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
-                "reference":   "CETACSP200",
-                "pu":          2456,
-                "defaultPu":   2456,
+                "label": "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
+                "reference": "CETACSP200",
+                "pu": 2456,
+                "defaultPu": 2456,
                 "description": "Capacité: 200L SPLIT\r\nDimensions HxLxP: 1267*588*603mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
-                "size":        "HxLxP: 1267*588*60",
-                "type":        "split",
-                "quantity":    1
+                "size": "HxLxP: 1267*588*60",
+                "type": "split",
+                "quantity": 1
             },
             {
-                "id":          4,
+                "id": 4,
                 "productType": "cet",
-                "label":       "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 270L",
-                "reference":   "CETACSP270",
-                "pu":          2666,
-                "defaultPu":   2666,
+                "label": "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 270L",
+                "reference": "CETACSP270",
+                "pu": 2666,
+                "defaultPu": 2666,
                 "description": "Capacité: 270L SPLIT\r\nDimensions HxLxP: 1600*588*652mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c  \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L pour une efficacité énergétique de 124%\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
-                "size":        "HxLxP: 1600*588*652",
-                "type":        "split",
-                "quantity":    1
+                "size": "HxLxP: 1600*588*652",
+                "type": "split",
+                "quantity": 1
             }
         ],
-        "maPrimeRenovBonus":  0
+        "maPrimeRenovBonus": 0
     },
-    "scales":                    [
+    "scales": [
         {
-            "stages":   [
+            "stages": [
                 {
                     "nbr": 1,
                     "min": 0,
@@ -300,24 +300,24 @@
                     "max": 72102
                 }
             ],
-            "code":     "GP",
+            "code": "GP",
             "ceeBonus": {
                 "h1": {
-                    "appartement":         130.9,
+                    "appartement": 130.9,
                     "maison_individuelle": 171.6
                 },
                 "h2": {
-                    "appartement":         130.9,
+                    "appartement": 130.9,
                     "maison_individuelle": 171.6
                 },
                 "h3": {
-                    "appartement":         130.9,
+                    "appartement": 130.9,
                     "maison_individuelle": 171.6
                 }
             }
         },
         {
-            "stages":   [
+            "stages": [
                 {
                     "nbr": 1,
                     "min": 0,
@@ -384,24 +384,24 @@
                     "max": 92391
                 }
             ],
-            "code":     "P",
+            "code": "P",
             "ceeBonus": {
                 "h1": {
-                    "appartement":         65.45,
+                    "appartement": 65.45,
                     "maison_individuelle": 85.8
                 },
                 "h2": {
-                    "appartement":         65.45,
+                    "appartement": 65.45,
                     "maison_individuelle": 85.8
                 },
                 "h3": {
-                    "appartement":         65.45,
+                    "appartement": 65.45,
                     "maison_individuelle": 85.8
                 }
             }
         },
         {
-            "stages":   [
+            "stages": [
                 {
                     "nbr": 1,
                     "min": 0,
@@ -468,24 +468,24 @@
                     "max": 139033
                 }
             ],
-            "code":     "IT",
+            "code": "IT",
             "ceeBonus": {
                 "h1": {
-                    "appartement":         65.45,
+                    "appartement": 65.45,
                     "maison_individuelle": 85.8
                 },
                 "h2": {
-                    "appartement":         65.45,
+                    "appartement": 65.45,
                     "maison_individuelle": 85.8
                 },
                 "h3": {
-                    "appartement":         65.45,
+                    "appartement": 65.45,
                     "maison_individuelle": 85.8
                 }
             }
         },
         {
-            "stages":   [
+            "stages": [
                 {
                     "nbr": 1,
                     "min": 0,
@@ -552,343 +552,343 @@
                     "max": 139033
                 }
             ],
-            "code":     "CL",
+            "code": "CL",
             "ceeBonus": {
                 "h1": {
-                    "appartement":         65.45,
+                    "appartement": 65.45,
                     "maison_individuelle": 85.8
                 },
                 "h2": {
-                    "appartement":         65.45,
+                    "appartement": 65.45,
                     "maison_individuelle": 85.8
                 },
                 "h3": {
-                    "appartement":         65.45,
+                    "appartement": 65.45,
                     "maison_individuelle": 85.8
                 }
             }
         }
     ],
-    "statusInDci":               1,
-    "errorsStatusInDci":         [],
-    "technician":                {
-        "id":        0,
-        "lastName":  " ",
+    "statusInDci": 1,
+    "errorsStatusInDci": [],
+    "technician": {
+        "id": 0,
+        "lastName": " ",
         "firstName": " ",
-        "phone":     " "
+        "phone": " "
     },
-    "lists":                     {
-        "localTypeList":         [
+    "lists": {
+        "localTypeList": [
             {
-                "slug":  "maison_individuelle",
+                "slug": "maison_individuelle",
                 "value": "Maison individuelle"
             },
             {
-                "slug":  "appartement",
+                "slug": "appartement",
                 "value": "Appartement"
             }
         ],
-        "qualiteIsolationList":  [
+        "qualiteIsolationList": [
             {
-                "slug":  "0.6",
+                "slug": "0.6",
                 "value": "0.6"
             },
             {
-                "slug":  "0.65",
+                "slug": "0.65",
                 "value": "0.65"
             },
             {
-                "slug":  "0.8",
+                "slug": "0.8",
                 "value": "0.8"
             },
             {
-                "slug":  "0.9",
+                "slug": "0.9",
                 "value": "0.9"
             },
             {
-                "slug":  "1",
+                "slug": "1",
                 "value": "1"
             },
             {
-                "slug":  "1.1",
+                "slug": "1.1",
                 "value": "1.1"
             },
             {
-                "slug":  "1.3",
+                "slug": "1.3",
                 "value": "1.3"
             },
             {
-                "slug":  "1.5",
+                "slug": "1.5",
                 "value": "1.5"
             }
         ],
-        "statutMenageTypeList":  [
+        "statutMenageTypeList": [
             {
-                "slug":  "tres_bonifie",
+                "slug": "tres_bonifie",
                 "value": "Très bonfié"
             },
             {
-                "slug":  "bonifie",
+                "slug": "bonifie",
                 "value": "Bonfié"
             },
             {
-                "slug":  "classique",
+                "slug": "classique",
                 "value": "Classique"
             },
             {
-                "slug":  "intermediaire",
+                "slug": "intermediaire",
                 "value": "Intermédiaire"
             }
         ],
-        "batimentNatureList":    [
+        "batimentNatureList": [
             {
-                "slug":  "",
+                "slug": "",
                 "value": "-"
             },
             {
-                "slug":  "nouvelle_residence",
+                "slug": "nouvelle_residence",
                 "value": "Nouvelle résidence principale"
             },
             {
-                "slug":  "location",
+                "slug": "location",
                 "value": "Location"
             },
             {
-                "slug":  "residence_secondaire",
+                "slug": "residence_secondaire",
                 "value": "Résidence secondaire"
             }
         ],
-        "naturePlafondList":     [
+        "naturePlafondList": [
             {
-                "slug":  "brique",
+                "slug": "brique",
                 "value": "Brique"
             },
             {
-                "slug":  "placo",
+                "slug": "placo",
                 "value": "Placo"
             },
             {
-                "slug":  "bois",
+                "slug": "bois",
                 "value": "Bois"
             },
             {
-                "slug":  "beton",
+                "slug": "beton",
                 "value": "Béton"
             }
         ],
-        "niveauHabitationList":  [
+        "niveauHabitationList": [
             {
-                "slug":  "pp",
+                "slug": "pp",
                 "value": "Plein Pied"
             },
             {
-                "slug":  "r1",
+                "slug": "r1",
                 "value": "R+1"
             },
             {
-                "slug":  "r2",
+                "slug": "r2",
                 "value": "R+2"
             },
             {
-                "slug":  "r3",
+                "slug": "r3",
                 "value": "R+3"
             },
             {
-                "slug":  "r4",
+                "slug": "r4",
                 "value": "R+4"
             },
             {
-                "slug":  "autre",
+                "slug": "autre",
                 "value": "AUTRE"
             }
         ],
-        "typeChantierList":      [
+        "typeChantierList": [
             {
-                "slug":  "neuf",
+                "slug": "neuf",
                 "value": "Neuf"
             },
             {
-                "slug":  "reno",
+                "slug": "reno",
                 "value": "Reno"
             }
         ],
-        "accesCombleList":       [
+        "accesCombleList": [
             {
-                "slug":  "trappe",
+                "slug": "trappe",
                 "value": "TRAPPE"
             },
             {
-                "slug":  "toit",
+                "slug": "toit",
                 "value": "TOITURE"
             },
             {
-                "slug":  "trappe_et_toit",
+                "slug": "trappe_et_toit",
                 "value": "TRAPPE et TOITURE"
             }
         ],
-        "typeCouvertureList":    [
+        "typeCouvertureList": [
             {
-                "slug":  "meca",
+                "slug": "meca",
                 "value": "Mecanique"
             },
             {
-                "slug":  "tige_bottes",
+                "slug": "tige_bottes",
                 "value": "Tiges de bottes"
             },
             {
-                "slug":  "ardoise",
+                "slug": "ardoise",
                 "value": "Ardoise"
             },
             {
-                "slug":  "tuiles_plates",
+                "slug": "tuiles_plates",
                 "value": "Tuiles plates"
             },
             {
-                "slug":  "tuiles_courbes",
+                "slug": "tuiles_courbes",
                 "value": "Tuiles courbes"
             }
         ],
-        "typeCharpenteList":     [
+        "typeCharpenteList": [
             {
-                "slug":  "trad",
+                "slug": "trad",
                 "value": "Traditionnelle"
             },
             {
-                "slug":  "ferm",
+                "slug": "ferm",
                 "value": "Fermettes"
             },
             {
-                "slug":  "metal",
+                "slug": "metal",
                 "value": "Metallique"
             },
             {
-                "slug":  "autre",
+                "slug": "autre",
                 "value": "Autre"
             }
         ],
-        "etatToitureList":       [
+        "etatToitureList": [
             {
-                "slug":  "propre",
+                "slug": "propre",
                 "value": "Propre"
             },
             {
-                "slug":  "mousse_faible",
+                "slug": "mousse_faible",
                 "value": "Mousse en petite quantité"
             },
             {
-                "slug":  "mousse_important",
+                "slug": "mousse_important",
                 "value": "Mousse importante"
             }
         ],
         "puissanceCompteurList": [
             {
-                "slug":  3,
+                "slug": 3,
                 "value": 3
             },
             {
-                "slug":  6,
+                "slug": 6,
                 "value": 6
             },
             {
-                "slug":  9,
+                "slug": 9,
                 "value": 9
             },
             {
-                "slug":  12,
+                "slug": 12,
                 "value": 12
             },
             {
-                "slug":  18,
+                "slug": 18,
                 "value": 18
             }
         ],
-        "natureMurExtList":      [
+        "natureMurExtList": [
             {
-                "slug":  "parpaing",
+                "slug": "parpaing",
                 "value": "Parpaing"
             },
             {
-                "slug":  "brique",
+                "slug": "brique",
                 "value": "Brique"
             },
             {
-                "slug":  "beton",
+                "slug": "beton",
                 "value": "Béton"
             },
             {
-                "slug":  "pierre",
+                "slug": "pierre",
                 "value": "Pierre"
             },
             {
-                "slug":  "bois",
+                "slug": "bois",
                 "value": "Bois"
             }
         ],
-        "chauffageTypeList":     [
+        "chauffageTypeList": [
             {
-                "slug":  "electrique",
+                "slug": "electrique",
                 "value": "Electrique"
             },
             {
-                "slug":  "combustible",
+                "slug": "combustible",
                 "value": "Combustible"
             }
         ],
         "tensionDisponibleList": [
             {
-                "slug":  "monophase",
+                "slug": "monophase",
                 "value": "Monophasé"
             },
             {
-                "slug":  "triphase",
+                "slug": "triphase",
                 "value": "Triphasé"
             }
         ],
-        "aspirationTypeList":    [
+        "aspirationTypeList": [
             {
-                "slug":  "none",
+                "slug": "none",
                 "value": "Sélectionnez un type d'installation"
             },
             {
-                "slug":  "aspiration_extraction_gainee",
+                "slug": "aspiration_extraction_gainee",
                 "value": "Aspiration et extraction gainées jusqu'au toit (tuiles à douilles)"
             },
             {
-                "slug":  "aspiration_piece",
+                "slug": "aspiration_piece",
                 "value": "Aspiration dans la pièce (au moins 20m3) et extraction par le toit (tuile à douille)"
             },
             {
-                "slug":  "aspiration_extraction_piece",
+                "slug": "aspiration_extraction_piece",
                 "value": "Aspiration et extraction dans la pièce (au moins 20m3)"
             }
         ],
-        "typeOrigineList":       [
+        "typeOrigineList": [
             {
-                "slug":  "telephone",
+                "slug": "telephone",
                 "value": "Téléphone"
             },
             {
-                "slug":  "internet",
+                "slug": "internet",
                 "value": "Internet"
             },
             {
-                "slug":  "presse",
+                "slug": "presse",
                 "value": "Presse"
             },
             {
-                "slug":  "campagne-google",
+                "slug": "campagne-google",
                 "value": "Campagne Google"
             },
             {
-                "slug":  "autre",
+                "slug": "autre",
                 "value": "Autre"
             },
             {
-                "slug":  "hello-watt",
+                "slug": "hello-watt",
                 "value": "hello watt"
             },
             {
-                "slug":  "angelique",
+                "slug": "angelique",
                 "value": "Angélique"
             }
         ]

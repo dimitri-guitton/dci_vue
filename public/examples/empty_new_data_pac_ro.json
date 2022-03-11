@@ -1,828 +1,828 @@
 {
-    "version":                   "1",
-    "type":                      "pac_ro",
-    "ref":                       "",
-    "folderName":                "",
-    "createdAt":                 "",
-    "updatedAt":                 "",
-    "settings":                  {
+    "version": "1",
+    "type": "pac_ro",
+    "ref": "",
+    "folderName": "",
+    "createdAt": "",
+    "updatedAt": "",
+    "settings": {
         "ceeCoef": "5.5"
     },
-    "disabledBonus":             false,
-    "disabledCeeBonus":          false,
+    "disabledBonus": false,
+    "disabledCeeBonus": false,
     "disabledMaPrimeRenovBonus": false,
-    "assents":                   [],
-    "beneficiary":               {
-        "civility":  "m",
-        "lastName":  "",
+    "assents": [],
+    "beneficiary": {
+        "civility": "m",
+        "lastName": "",
         "firstName": "",
-        "address":   "",
-        "zipCode":   "",
-        "city":      "",
-        "email":     "",
-        "phone":     "",
-        "mobile":    "",
-        "income":    0
+        "address": "",
+        "zipCode": "",
+        "city": "",
+        "email": "",
+        "phone": "",
+        "mobile": "",
+        "income": 0
     },
-    "codeBonus":                 null,
-    "energyZone":                null,
-    "housing":                   {
-        "nbOccupant":          1,
-        "type":                "maison_individuelle",
-        "heatingType":         "",
-        "buildingNature":      "",
-        "isRentedHouse":       false,
-        "isAddressBenef":      true,
-        "address":             "",
-        "zipCode":             "",
-        "city":                "",
-        "plot":                "",
-        "area":                0,
-        "dataGeoportail":      {},
-        "location":            "",
-        "constructionYear":    null,
-        "lessThan2Years":      false,
-        "availableVoltage":    "monophase",
+    "codeBonus": null,
+    "energyZone": null,
+    "housing": {
+        "nbOccupant": 1,
+        "type": "maison_individuelle",
+        "heatingType": "",
+        "buildingNature": "",
+        "isRentedHouse": false,
+        "isAddressBenef": true,
+        "address": "",
+        "zipCode": "",
+        "city": "",
+        "plot": "",
+        "area": 0,
+        "dataGeoportail": {},
+        "location": "",
+        "constructionYear": null,
+        "lessThan2Years": false,
+        "availableVoltage": "monophase",
         "buildingCoefficient": 0.8,
-        "climaticZone":        "B",
-        "altitude":            0,
-        "heaters":             "r_fonte",
-        "ceilingHeight":       2.5,
+        "climaticZone": "B",
+        "altitude": 0,
+        "heaters": "r_fonte",
+        "ceilingHeight": 2.5,
         "setPointTemperature": 19
     },
-    "worksheet":                 {
-        "period":                    "",
-        "niveauHabitation":          "pp",
-        "typeChantier":              "neuf",
-        "disjoncteur":               false,
-        "natureMurExt":              "parpaing",
-        "naturePlafond":             "brique",
-        "visiteComble":              false,
-        "chantierHabite":            false,
-        "grandeEchelle":             false,
-        "demandeVoirie":             false,
-        "puissanceCompteur":         6,
-        "distanceCompteurPac":       0,
-        "accesComble":               "trappe",
-        "rueEtroite":                false,
-        "typeCouverture":            "mecanique",
-        "etatToiture":               "propre",
-        "typeCharpente":             "traditionnelle",
-        "nbCompartimentComble":      1,
-        "presenceVolige":            false,
-        "nbAccesComble":             1,
-        "distanceGpExtUnitInt":      0,
-        "nbTotalRadiateur":          1,
+    "worksheet": {
+        "period": "",
+        "niveauHabitation": "pp",
+        "typeChantier": "neuf",
+        "disjoncteur": false,
+        "natureMurExt": "parpaing",
+        "naturePlafond": "brique",
+        "visiteComble": false,
+        "chantierHabite": false,
+        "grandeEchelle": false,
+        "demandeVoirie": false,
+        "puissanceCompteur": 6,
+        "distanceCompteurPac": 0,
+        "accesComble": "trappe",
+        "rueEtroite": false,
+        "typeCouverture": "mecanique",
+        "etatToiture": "propre",
+        "typeCharpente": "traditionnelle",
+        "nbCompartimentComble": 1,
+        "presenceVolige": false,
+        "nbAccesComble": 1,
+        "distanceGpExtUnitInt": 0,
+        "nbTotalRadiateur": 1,
         "nbRadiateurThermostatique": 1,
-        "typeRadiateur":             "alu",
-        "espaceSolRequisUnitInt":    false,
-        "hauteurRequiseUnitInt":     false,
-        "positionEauChaude":         "sol",
-        "hauteurDuSol":              1,
-        "tensionDisponible":         "monophase",
-        "infosSup":                  "RAS"
+        "typeRadiateur": "alu",
+        "espaceSolRequisUnitInt": false,
+        "hauteurRequiseUnitInt": false,
+        "positionEauChaude": "sol",
+        "hauteurDuSol": 1,
+        "tensionDisponible": "monophase",
+        "infosSup": "RAS"
     },
-    "quotation":                 {
-        "origin":             "",
+    "quotation": {
+        "origin": "",
         "dateTechnicalVisit": "",
-        "executionDelay":     "",
-        "options":            [
+        "executionDelay": "",
+        "options": [
             {
-                "id":            4,
-                "fileType":      "pac_ro",
-                "label":         "Nettoyage et désembouage (si nécessaire) du circuit de chauffage.",
-                "unit":          "u",
-                "defaultPu":     0,
-                "pu":            0,
+                "id": 4,
+                "fileType": "pac_ro",
+                "label": "Nettoyage et désembouage (si nécessaire) du circuit de chauffage.",
+                "unit": "u",
+                "defaultPu": 0,
+                "pu": 0,
                 "defaultNumber": 1,
-                "number":        1,
-                "calcTva10":     false
+                "number": 1,
+                "calcTva10": false
             },
             {
-                "id":            5,
-                "fileType":      "pac_ro",
-                "label":         "Forfait accessoires nécessaires à la pose, au raccordement et au bon fonctionnement de l’installation.",
-                "unit":          "u",
-                "defaultPu":     500,
-                "pu":            500,
+                "id": 5,
+                "fileType": "pac_ro",
+                "label": "Forfait accessoires nécessaires à la pose, au raccordement et au bon fonctionnement de l’installation.",
+                "unit": "u",
+                "defaultPu": 500,
+                "pu": 500,
                 "defaultNumber": 1,
-                "number":        1,
-                "calcTva10":     false
+                "number": 1,
+                "calcTva10": false
             },
             {
-                "id":            6,
-                "fileType":      "pac_ro",
-                "label":         "Forfait pose (dépose ancien appareil, pose nouvel appareil et mise en service).",
-                "unit":          "u",
-                "defaultPu":     2000,
-                "pu":            2000,
+                "id": 6,
+                "fileType": "pac_ro",
+                "label": "Forfait pose (dépose ancien appareil, pose nouvel appareil et mise en service).",
+                "unit": "u",
+                "defaultPu": 2000,
+                "pu": 2000,
                 "defaultNumber": 1,
-                "number":        1,
-                "calcTva10":     false
+                "number": 1,
+                "calcTva10": false
             }
         ],
-        "blankOptions":       [
+        "blankOptions": [
             {
-                "id":     "sup1",
-                "label":  "",
-                "unit":   "u",
-                "pu":     0,
+                "id": "sup1",
+                "label": "",
+                "unit": "u",
+                "pu": 0,
                 "number": 0
             },
             {
-                "id":     "sup2",
-                "label":  "",
-                "unit":   "u",
-                "pu":     0,
+                "id": "sup2",
+                "label": "",
+                "unit": "u",
+                "pu": 0,
                 "number": 0
             }
         ],
-        "commentary":         "",
-        "partner":            "VTE",
-        "texts":              [
+        "commentary": "",
+        "partner": "VTE",
+        "texts": [
             {
                 "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
-                "text":  "Les travaux prévus dans ce devis peuvent être conditionnels à un dépôt de déclaration préalable de travaux. Il revient au maître d'ouvrage (le client) d'en faire lui-même la demande.\r\nLa TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.\r\nLes travaux relatifs à ce devis sont susceptibles d'être réalisés par l'entreprise Allaire du temps rcs La Rochelle 852 284 983 QUALIPAC 58881\r\n\r\nLes travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique.\r\n\r\n* « Dans le cas où l'aide notifiée au client est inférieure au montant de l'aide prévisionnelle, l'usager n'est pas lié par le devis et l'entreprise s'engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d'une durée de quatorze jours à partir de la date de présentation du devis rectificatif.L'aide MaPrimeRénov' est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire. En cas de fausse déclaration, de manœuvre frauduleuse ou de changement du projet de travaux subventionnés, le bénéficiaire s'expose au retrait et reversement de tout ou partie de l'aide. Les services de l'Anah pourront faire procéder à tout contrôle des engagements et sanctionner le bénéficiaire et son mandataire éventuel des manquements constatés »."
+                "text": "Les travaux prévus dans ce devis peuvent être conditionnels à un dépôt de déclaration préalable de travaux. Il revient au maître d'ouvrage (le client) d'en faire lui-même la demande.\r\nLa TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.\r\nLes travaux relatifs à ce devis sont susceptibles d'être réalisés par l'entreprise Allaire du temps rcs La Rochelle 852 284 983 QUALIPAC 58881\r\n\r\nLes travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique.\r\n\r\n* « Dans le cas où l'aide notifiée au client est inférieure au montant de l'aide prévisionnelle, l'usager n'est pas lié par le devis et l'entreprise s'engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d'une durée de quatorze jours à partir de la date de présentation du devis rectificatif.L'aide MaPrimeRénov' est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire. En cas de fausse déclaration, de manœuvre frauduleuse ou de changement du projet de travaux subventionnés, le bénéficiaire s'expose au retrait et reversement de tout ou partie de l'aide. Les services de l'Anah pourront faire procéder à tout contrôle des engagements et sanctionner le bénéficiaire et son mandataire éventuel des manquements constatés »."
             },
             {
                 "title": "Modalité de paiement : Prime CEE  versée directement à Eco Atlantique par Vos Travaux Eco",
-                "text":  "La TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.\r\n\r\nLes travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique."
+                "text": "La TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.\r\n\r\nLes travaux relatifs à ce document sont éligibles au dispositif des certificats d'économies d'énergie. Dans ce cadre, l'obligé \"Vos Travaux Eco\", grâce à son partenaire Eco Atlantique, me fait bénéficier d'une Prime énergie, dont le montant sera avancé par Eco Atlantique et remboursé par Vos Travaux Eco à Eco Atlantique."
             },
             {
                 "title": "AIDE A LA RENOVATION ÉNERGÉTIQUE VERSÉE DIRECTEMENT À ECO ATLANTIQUE PAR ACTION LOGEMENT",
-                "text":  "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
+                "text": "*«Dans le cas où l’aide notifiée au client est inférieure au montant de l’aide prévisionnelle, l’usager n’est pas lié par le devis et l’entreprise s’engage à proposer un devis rectificatif. Le client conserve alors un droit de rétractation d’une durée de quatorze jours à partir de la date de présentation du devis rectificatif. L’aide « Action Logement » est conditionnelle et soumise à la conformité des pièces justificatives et informations déclarées par le bénéficiaire."
             }
         ],
-        "discount":           0,
-        "totalHt":            0,
-        "totalTtc":           0,
-        "totalTva":           0,
-        "remainderToPay":     0,
-        "ceeBonus":           0,
-        "tva":                5.5,
-        "paymentOnCredit":    {
-            "active":           false,
-            "amount":           0,
+        "discount": 0,
+        "totalHt": 0,
+        "totalTtc": 0,
+        "totalTva": 0,
+        "remainderToPay": 0,
+        "ceeBonus": 0,
+        "tva": 5.5,
+        "paymentOnCredit": {
+            "active": false,
+            "amount": 0,
             "withoutInsurance": 0,
-            "withInsurance":    0,
-            "duration":         0,
-            "TAEG":             0,
-            "total":            0
+            "withInsurance": 0,
+            "duration": 0,
+            "TAEG": 0,
+            "total": 0
         },
-        "maPrimeRenovBonus":  0,
-        "selectedProducts":   [],
-        "assortment":         "sensira",
-        "volumeECS":          0,
-        "volumeECSDeporte":   150,
-        "isEcsDeporte":       false,
-        "ceilingHeight":      2.5,
-        "deviceToReplace":    {
-            "type":  "aucun",
+        "maPrimeRenovBonus": 0,
+        "selectedProducts": [],
+        "assortment": "sensira",
+        "volumeECS": 0,
+        "volumeECSDeporte": 150,
+        "isEcsDeporte": false,
+        "ceilingHeight": 2.5,
+        "deviceToReplace": {
+            "type": "aucun",
             "brand": "",
             "model": ""
         },
-        "products":           [
+        "products": [
             {
-                "id":          1,
+                "id": 1,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA08EV3",
-                "reference":   "EPRA08EV3",
-                "pu":          5539,
-                "defaultPu":   5539,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA08EV3",
+                "reference": "EPRA08EV3",
+                "pu": 5539,
+                "defaultPu": 5539,
                 "description": "GROUPE EXTERIEURE DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          2,
+                "id": 2,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA08EW1",
-                "reference":   "EPRA08EW1",
-                "pu":          5539,
-                "defaultPu":   5539,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA08EW1",
+                "reference": "EPRA08EW1",
+                "pu": 5539,
+                "defaultPu": 5539,
                 "description": "GROUPE EXTERIEURE DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          3,
+                "id": 3,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA10EV3",
-                "reference":   "EPRA10EV3",
-                "pu":          5903,
-                "defaultPu":   5903,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA10EV3",
+                "reference": "EPRA10EV3",
+                "pu": 5903,
+                "defaultPu": 5903,
                 "description": "GROUPE EXTERIEURE DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          4,
+                "id": 4,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA10EW1",
-                "reference":   "EPRA10EW1",
-                "pu":          5903,
-                "defaultPu":   5903,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA10EW1",
+                "reference": "EPRA10EW1",
+                "pu": 5903,
+                "defaultPu": 5903,
                 "description": "GROUPE EXTERIEURE DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          5,
+                "id": 5,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA12EV3",
-                "reference":   "EPRA12EV3",
-                "pu":          6267,
-                "defaultPu":   6267,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA12EV3",
+                "reference": "EPRA12EV3",
+                "pu": 6267,
+                "defaultPu": 6267,
                 "description": "GROUPE EXTERIEURE DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          6,
+                "id": 6,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA12EW1",
-                "reference":   "EPRA12EW1",
-                "pu":          6267,
-                "defaultPu":   6267,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA12EW1",
+                "reference": "EPRA12EW1",
+                "pu": 6267,
+                "defaultPu": 6267,
                 "description": "GROUPE EXTERIEURE DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          7,
+                "id": 7,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA14DV3",
-                "reference":   "EPRA14DV3",
-                "pu":          6830.17,
-                "defaultPu":   6830.17,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA14DV3",
+                "reference": "EPRA14DV3",
+                "pu": 6830.17,
+                "defaultPu": 6830.17,
                 "description": "- Puissance calorifique à 60°C +7°c/-7°c : 10,16/10,06 kW\n- COP +7°c/-7°c : 2,61/2,01\n- ETAs : 140 %\n- Classe énergétique : A++\n- Dimension : 1003*1270*533 mm Poids : 146kg\n- Plage de fonctionnement : -28°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 32 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 19,17 € HT",
-                "quantity":    1,
-                "etas":        140
+                "quantity": 1,
+                "etas": 140
             },
             {
-                "id":          8,
+                "id": 8,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA16DV3",
-                "reference":   "EPRA16DV3",
-                "pu":          7434.17,
-                "defaultPu":   7434.17,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA16DV3",
+                "reference": "EPRA16DV3",
+                "pu": 7434.17,
+                "defaultPu": 7434.17,
                 "description": "- Puissance calorifique à 60°C +7°c/-7°c : 11,13/11,44 kW\n- COP +7°c/-7°c : 2,61/2,01\n- ETAs : 140 %\n- Classe énergétique : A++\n- Dimension : 1003*1270*533 mm Poids : 146kg\n- Plage de fonctionnement : -28°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 32 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 19,17 € HT",
-                "quantity":    1,
-                "etas":        140
+                "quantity": 1,
+                "etas": 140
             },
             {
-                "id":          9,
+                "id": 9,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA18DV3",
-                "reference":   "EPRA18DV3",
-                "pu":          8597.17,
-                "defaultPu":   8597.17,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA18DV3",
+                "reference": "EPRA18DV3",
+                "pu": 8597.17,
+                "defaultPu": 8597.17,
                 "description": "- Puissance calorifique à 60°C +7°c/-7°c : 12,10/11,97 kW\n- COP +7°c/-7°c : 2,61/2,01\n- ETAs : 140 %\n- Classe énergétique : A++\n- Dimension : 1003*1270*533 mm Poids : 146kg\n- Plage de fonctionnement : -28°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 32 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 19,17 € HT",
-                "quantity":    1,
-                "etas":        140
+                "quantity": 1,
+                "etas": 140
             },
             {
-                "id":          10,
+                "id": 10,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA14DW1",
-                "reference":   "EPRA14DW1",
-                "pu":          6830.17,
-                "defaultPu":   6830.17,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA14DW1",
+                "reference": "EPRA14DW1",
+                "pu": 6830.17,
+                "defaultPu": 6830.17,
                 "description": "- Puissance calorifique à 60°C +7°c/-7°c : 10,18/10,47 kW\n- COP +7°c/-7°c : 2,62/2,05\n- ETAs : 140 %\n- Classe énergétique : A++\n- Dimension : 1003*1270*533 mm Poids : 151kg\n- Plage de fonctionnement : -28°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 32 dB(a)\n- Alimentation électrique : TRIPHASÉE\n- Dont éco-participation 19,17 € HT",
-                "quantity":    1,
-                "etas":        140
+                "quantity": 1,
+                "etas": 140
             },
             {
-                "id":          11,
+                "id": 11,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA16DW1",
-                "reference":   "EPRA16DW1",
-                "pu":          7434.17,
-                "defaultPu":   7434.17,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA16DW1",
+                "reference": "EPRA16DW1",
+                "pu": 7434.17,
+                "defaultPu": 7434.17,
                 "description": "- Puissance calorifique à 60°C +7°c/-7°c : 11,15/11,91 kW\n- COP +7°c/-7°c : 2,61/2,03\n- ETAs : 140 %\n- Classe énergétique : A++\n- Dimension : 1003*1270*533 mm Poids : 151kg\n- Plage de fonctionnement : -28°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 32 dB(a)\n- Alimentation électrique : TRIPHASÉE\n- Dont éco-participation 19,17 € HT",
-                "quantity":    1,
-                "etas":        140
+                "quantity": 1,
+                "etas": 140
             },
             {
-                "id":          12,
+                "id": 12,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA18DW1",
-                "reference":   "EPRA18DW1",
-                "pu":          8597.17,
-                "defaultPu":   8597.17,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA18DW1",
+                "reference": "EPRA18DW1",
+                "pu": 8597.17,
+                "defaultPu": 8597.17,
                 "description": "- Puissance calorifique à 60°C +7°c/-7°c : 12,11/12,47 kW\n- COP +7°c/-7°c : 2,62/2,03\n- ETAs : 140 %\n- Classe énergétique : A++\n- Dimension : 1003*1270*533 mm Poids : 146kg\n- Plage de fonctionnement : -28°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 32 dB(a)\n- Alimentation électrique : triphasée\n- Dont éco-participation 19,17 € HT",
-                "quantity":    1,
-                "etas":        140
+                "quantity": 1,
+                "etas": 140
             },
             {
-                "id":          13,
+                "id": 13,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE ERGA04EV",
-                "reference":   "ERGA04EV",
-                "pu":          2216.67,
-                "defaultPu":   2216.67,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE ERGA04EV",
+                "reference": "ERGA04EV",
+                "pu": 2216.67,
+                "defaultPu": 2216.67,
                 "description": "- Puissance calorifique +7°c/-7°c : 4,90/4,37 kW\n- COP +7°c/-7°c : 2,65/1,6\n- ETAs : 127 %\n- Classe énergétique : A++\n- Dimension : 740*884*388 mm Poids : 58,5kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 36 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 6,67 € HT",
-                "quantity":    1,
-                "etas":        127
+                "quantity": 1,
+                "etas": 127
             },
             {
-                "id":          14,
+                "id": 14,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE ERGA06EV",
-                "reference":   "ERGA06EV",
-                "pu":          2345.67,
-                "defaultPu":   2345.67,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE ERGA06EV",
+                "reference": "ERGA06EV",
+                "pu": 2345.67,
+                "defaultPu": 2345.67,
                 "description": "- Puissance calorifique +7°c/-7°c : 5,81/5,72 kW\n- COP +7°c/-7°c : 2,7/1,74\n- ETAs : 127 %\n- Classe énergétique : A++\n- Dimension : 740*884*388 mm Poids : 58,5kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 38 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 6,67 € HT",
-                "quantity":    1,
-                "etas":        127
+                "quantity": 1,
+                "etas": 127
             },
             {
-                "id":          15,
+                "id": 15,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE ERGA08EV",
-                "reference":   "ERGA08EV",
-                "pu":          3681.67,
-                "defaultPu":   3681.67,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE ERGA08EV",
+                "reference": "ERGA08EV",
+                "pu": 3681.67,
+                "defaultPu": 3681.67,
                 "description": "- Puissance calorifique +7°c/-7°c : 7,51/7,43 kW\n- COP +7°c/-7°c : 2,70/1,83\n- ETAs : 130 %\n- Classe énergétique : A++\n- Dimension : 740*884*388 mm Poids : 58,5kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 40 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 6,67 € HT",
-                "quantity":    1,
-                "etas":        130
+                "quantity": 1,
+                "etas": 130
             },
             {
-                "id":          16,
+                "id": 16,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE EPGA11DV",
-                "reference":   "EPGA11DV",
-                "pu":          5150.17,
-                "defaultPu":   5150.17,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE EPGA11DV",
+                "reference": "EPGA11DV",
+                "pu": 5150.17,
+                "defaultPu": 5150.17,
                 "description": "- Puissance calorifique +7°c/-7°c : 15,19/10,12 kW\n- COP +7°c/-7°c : 2,89/2,28\n- ETAs : 129 %\n- Classe énergétique : A++\n- Dimension : 1440*1160*380 mm Poids : 143kg\n- Plage de fonctionnement : -25°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 42 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 19,17 € HT",
-                "quantity":    1,
-                "etas":        129
+                "quantity": 1,
+                "etas": 129
             },
             {
-                "id":          17,
+                "id": 17,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE EPGA14DV",
-                "reference":   "EPGA14DV",
-                "pu":          5665.17,
-                "defaultPu":   5665.17,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE EPGA14DV",
+                "reference": "EPGA14DV",
+                "pu": 5665.17,
+                "defaultPu": 5665.17,
                 "description": "- Puissance calorifique +7°c/-7°c : 17,09/12,38 kW\n- COP +7°c/-7°c : 3/2,31\n- ETAs : 130 %\n- Classe énergétique : A++\n- Dimension : 1440*1160*380 mm Poids : 143kg\n- Plage de fonctionnement : -25°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 42 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 19,17 € HT",
-                "quantity":    1,
-                "etas":        130
+                "quantity": 1,
+                "etas": 130
             },
             {
-                "id":          18,
+                "id": 18,
                 "productType": "pac_ro",
-                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE EPGA16DV",
-                "reference":   "EPGA16DV",
-                "pu":          6270.17,
-                "defaultPu":   6270.17,
+                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE EPGA16DV",
+                "reference": "EPGA16DV",
+                "pu": 6270.17,
+                "defaultPu": 6270.17,
                 "description": "- Puissance calorifique +7°c/-7°c : 18,99/12,65 kW\n- COP +7°c/-7°c : 2,99/2,09\n- ETAs : 133 %\n- Classe énergétique : A++\n- Dimension : 1440*1160*380 mm Poids : 143kg\n- Plage de fonctionnement : -25°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 44 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 19,17 € HT",
-                "quantity":    1,
-                "etas":        133
+                "quantity": 1,
+                "etas": 133
             },
             {
-                "id":          19,
+                "id": 19,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETBH12E6V",
-                "reference":   "ETBH12E6V",
-                "pu":          4609,
-                "defaultPu":   4609,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETBH12E6V",
+                "reference": "ETBH12E6V",
+                "pu": 4609,
+                "defaultPu": 4609,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          20,
+                "id": 20,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETBH12E9W",
-                "reference":   "ETBH12E9W",
-                "pu":          4609,
-                "defaultPu":   4609,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETBH12E9W",
+                "reference": "ETBH12E9W",
+                "pu": 4609,
+                "defaultPu": 4609,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          21,
+                "id": 21,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVH12S18E6V",
-                "reference":   "ETVH12S18E6V",
-                "pu":          6891,
-                "defaultPu":   6891,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVH12S18E6V",
+                "reference": "ETVH12S18E6V",
+                "pu": 6891,
+                "defaultPu": 6891,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          22,
+                "id": 22,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVH12S18E9W",
-                "reference":   "ETVH12S18E9W",
-                "pu":          6891,
-                "defaultPu":   6891,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVH12S18E9W",
+                "reference": "ETVH12S18E9W",
+                "pu": 6891,
+                "defaultPu": 6891,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          23,
+                "id": 23,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ12S18E6V",
-                "reference":   "ETVZ12S18E6V",
-                "pu":          8524,
-                "defaultPu":   8524,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ12S18E6V",
+                "reference": "ETVZ12S18E6V",
+                "pu": 8524,
+                "defaultPu": 8524,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          24,
+                "id": 24,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ12S18E9W",
-                "reference":   "ETVZ12S18E9W",
-                "pu":          8524,
-                "defaultPu":   8524,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ12S18E9W",
+                "reference": "ETVZ12S18E9W",
+                "pu": 8524,
+                "defaultPu": 8524,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          25,
+                "id": 25,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVH12S23E6V",
-                "reference":   "ETVH12S23E6V",
-                "pu":          7160,
-                "defaultPu":   7160,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVH12S23E6V",
+                "reference": "ETVH12S23E6V",
+                "pu": 7160,
+                "defaultPu": 7160,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          26,
+                "id": 26,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVH12S23E9W",
-                "reference":   "ETVH12S23E9W",
-                "pu":          7160,
-                "defaultPu":   7160,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVH12S23E9W",
+                "reference": "ETVH12S23E9W",
+                "pu": 7160,
+                "defaultPu": 7160,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          27,
+                "id": 27,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ12S23E6V",
-                "reference":   "ETVZ12S23E6V",
-                "pu":          8796,
-                "defaultPu":   8796,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ12S23E6V",
+                "reference": "ETVZ12S23E6V",
+                "pu": 8796,
+                "defaultPu": 8796,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          28,
+                "id": 28,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ12S23E9W",
-                "reference":   "ETVZ12S23E9W",
-                "pu":          8796,
-                "defaultPu":   8796,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ12S23E9W",
+                "reference": "ETVZ12S23E9W",
+                "pu": 8796,
+                "defaultPu": 8796,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          29,
+                "id": 29,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETBH16E6V",
-                "reference":   "ETBH16E6V",
-                "pu":          4902.33,
-                "defaultPu":   4902.33,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETBH16E6V",
+                "reference": "ETBH16E6V",
+                "pu": 4902.33,
+                "defaultPu": 4902.33,
                 "description": "- Chauffage seul\n- Dimension : 840*440*390 mm Poids : 38kg\n- Pression sonore (à 1m) : 30 dB(a)\n- Appoint électrique : 6 Kw\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          30,
+                "id": 30,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETBH16E9W",
-                "reference":   "ETBH16E9W",
-                "pu":          4902.33,
-                "defaultPu":   4902.33,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETBH16E9W",
+                "reference": "ETBH16E9W",
+                "pu": 4902.33,
+                "defaultPu": 4902.33,
                 "description": "- Chauffage seul\n- Dimension : 840*440*390 mm Poids : 38kg\n- Pression sonore (à 1m) : 30 dB(a)\n- Appoint électrique : 9 Kw\n- Alimentation électrique : TRIPHASEE\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          31,
+                "id": 31,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S18E6V",
-                "reference":   "ETVH16S18E6V",
-                "pu":          7145.33,
-                "defaultPu":   7145.33,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S18E6V",
+                "reference": "ETVH16S18E6V",
+                "pu": 7145.33,
+                "defaultPu": 7145.33,
                 "description": "- Chauffage + ECS\n- Volume ECS : 180 L\n- Dimension : 1650*595*600 mm Poids : 109kg\n- Pression sonore (à 1m) : 30 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          32,
+                "id": 32,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S18E6V",
-                "reference":   "ETVH16S23E6V",
-                "pu":          7411.33,
-                "defaultPu":   7411.33,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S18E6V",
+                "reference": "ETVH16S23E6V",
+                "pu": 7411.33,
+                "defaultPu": 7411.33,
                 "description": "- Chauffage + ECS\n- Volume ECS : 230 L\n- Dimension : 1850*595*600 mm Poids : 118kg\n- Pression sonore (à 1m) : 30 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          33,
+                "id": 33,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S18E9W",
-                "reference":   "ETVH16S18E9W",
-                "pu":          7145.33,
-                "defaultPu":   7145.33,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S18E9W",
+                "reference": "ETVH16S18E9W",
+                "pu": 7145.33,
+                "defaultPu": 7145.33,
                 "description": "- Chauffage + ECS\n- Volume ECS : 180 L\n- Dimension : 1650*595*600 mm Poids : 109kg\n- Pression sonore (à 1m) : 30 dB(a)\n- Appoint électrique : 9 kW\n- Alimentation électrique : TRIPHASÉE\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          34,
+                "id": 34,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S23E9W",
-                "reference":   "ETVH16S23E9W",
-                "pu":          7411.33,
-                "defaultPu":   7411.33,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVH16S23E9W",
+                "reference": "ETVH16S23E9W",
+                "pu": 7411.33,
+                "defaultPu": 7411.33,
                 "description": "- Chauffage + ECS\n- Volume ECS : 230 L\n- Dimension : 1850*595*600 mm Poids : 118kg\n- Pression sonore (à 1m) : 30 dB(a)\n- Appoint électrique : 9 kW\n- Alimentation électrique : TRIPHASÉE\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          35,
+                "id": 35,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ16S18E6V",
-                "reference":   "ETVZ16S18E6V",
-                "pu":          8745,
-                "defaultPu":   8745,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ16S18E6V",
+                "reference": "ETVZ16S18E6V",
+                "pu": 8745,
+                "defaultPu": 8745,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          36,
+                "id": 36,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ16S23E6V",
-                "reference":   "ETVZ16S23E6V",
-                "pu":          9013,
-                "defaultPu":   9013,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ16S23E6V",
+                "reference": "ETVZ16S23E6V",
+                "pu": 9013,
+                "defaultPu": 9013,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          37,
+                "id": 37,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ16S18E9W",
-                "reference":   "ETVZ16S18E9W",
-                "pu":          8745,
-                "defaultPu":   8745,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ16S18E9W",
+                "reference": "ETVZ16S18E9W",
+                "pu": 8745,
+                "defaultPu": 8745,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          38,
+                "id": 38,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ16S23E9W",
-                "reference":   "ETVZ16S23E9W",
-                "pu":          9013,
-                "defaultPu":   9013,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA ETVZ16S23E9W",
+                "reference": "ETVZ16S23E9W",
+                "pu": 9013,
+                "defaultPu": 9013,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          39,
+                "id": 39,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHBH04E6V",
-                "reference":   "EHBH04E6V",
-                "pu":          3689,
-                "defaultPu":   3689,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EHBH04E6V",
+                "reference": "EHBH04E6V",
+                "pu": 3689,
+                "defaultPu": 3689,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          40,
+                "id": 40,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EBH08D6V",
-                "reference":   "EHBH08E6V",
-                "pu":          3618.33,
-                "defaultPu":   3618.33,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EBH08D6V",
+                "reference": "EHBH08E6V",
+                "pu": 3618.33,
+                "defaultPu": 3618.33,
                 "description": "- Chauffage seul\n- Dimension : 840*440*390 mm Poids : 42kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 28 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          41,
+                "id": 41,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVH04S18E6V",
-                "reference":   "EHVH04S18E6V",
-                "pu":          5583,
-                "defaultPu":   5583,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EHVH04S18E6V",
+                "reference": "EHVH04S18E6V",
+                "pu": 5583,
+                "defaultPu": 5583,
                 "description": "- Chauffage + ECS\n- Volume ECS : 180 L\n- Dimension : 1650*595*600 mm Poids : 131kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 28 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          42,
+                "id": 42,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVH04S23E6V",
-                "reference":   "EHVH04S23E6V",
-                "pu":          5861,
-                "defaultPu":   5861,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EHVH04S23E6V",
+                "reference": "EHVH04S23E6V",
+                "pu": 5861,
+                "defaultPu": 5861,
                 "description": "- Chauffage + ECS\n- Volume ECS : 230 L\n- Dimension : 1850*595*600 mm Poids : 139kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 28 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          43,
+                "id": 43,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S18E6V",
-                "reference":   "EHVH08S18E6V",
-                "pu":          5771,
-                "defaultPu":   5771,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S18E6V",
+                "reference": "EHVH08S18E6V",
+                "pu": 5771,
+                "defaultPu": 5771,
                 "description": "- Chauffage + ECS\n- Volume ECS : 180 L\n- Dimension : 1650*595*600 mm Poids : 131kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 28 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          44,
+                "id": 44,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S23E6V",
-                "reference":   "EHVH08S23E6V",
-                "pu":          6061,
-                "defaultPu":   6061,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EHVH08S23E6V",
+                "reference": "EHVH08S23E6V",
+                "pu": 6061,
+                "defaultPu": 6061,
                 "description": "- Chauffage + ECS\n- Volume ECS : 230 L\n- Dimension : 1850*595*600 mm Poids : 139kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 28 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          45,
+                "id": 45,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVZ04S18E6V",
-                "reference":   "EHVZ04S18E6V",
-                "pu":          7038,
-                "defaultPu":   7038,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EHVZ04S18E6V",
+                "reference": "EHVZ04S18E6V",
+                "pu": 7038,
+                "defaultPu": 7038,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          46,
+                "id": 46,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVZ08S18E6V",
-                "reference":   "EHVZ08S18E6V",
-                "pu":          7221,
-                "defaultPu":   7221,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EHVZ08S18E6V",
+                "reference": "EHVZ08S18E6V",
+                "pu": 7221,
+                "defaultPu": 7221,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          47,
+                "id": 47,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EHVZ08S23E6V",
-                "reference":   "EHVZ08S23E6V",
-                "pu":          7585,
-                "defaultPu":   7585,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EHVZ08S23E6V",
+                "reference": "EHVZ08S23E6V",
+                "pu": 7585,
+                "defaultPu": 7585,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          48,
+                "id": 48,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EABH16D6V",
-                "reference":   "EABH16D6V",
-                "pu":          4989,
-                "defaultPu":   4989,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EABH16D6V",
+                "reference": "EABH16D6V",
+                "pu": 4989,
+                "defaultPu": 4989,
                 "description": "- Chauffage seul\n- Dimension : 840*440*390 mm Poids : 38kg\n- Plage de fonctionnement : -25°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 36 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          49,
+                "id": 49,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EAVH16S18D6V",
-                "reference":   "EAVH16S18D6V",
-                "pu":          7275,
-                "defaultPu":   7275,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EAVH16S18D6V",
+                "reference": "EAVH16S18D6V",
+                "pu": 7275,
+                "defaultPu": 7275,
                 "description": "- Chauffage + ECS\n- Volume ECS : 180 L\n- Dimension : 1650*595*600 mm Poids : 109kg\n- Plage de fonctionnement : -25°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 36 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          50,
+                "id": 50,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EAVH16S23D6V",
-                "reference":   "EAVH16S23D6V",
-                "pu":          7546,
-                "defaultPu":   7546,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EAVH16S23D6V",
+                "reference": "EAVH16S23D6V",
+                "pu": 7546,
+                "defaultPu": 7546,
                 "description": "- Chauffage + ECS\n- Volume ECS : 230 L\n- Dimension : 1850*595*600 mm Poids : 118kg\n- Plage de fonctionnement : -25°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 1m) : 36 dB(a)\n- Appoint électrique : 6 kW\n- Alimentation électrique : Monophasée\n- Dont éco-participation 8,33 € HT",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          51,
+                "id": 51,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EAVZ16S18E6V",
-                "reference":   "EAVZ16S18E6V",
-                "pu":          8915,
-                "defaultPu":   8915,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EAVZ16S18E6V",
+                "reference": "EAVZ16S18E6V",
+                "pu": 8915,
+                "defaultPu": 8915,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          52,
+                "id": 52,
                 "productType": "pac_ro",
-                "label":       "UNITE INTERIEURE DAIKIN ALTHERMA EAVZ16S23E6V",
-                "reference":   "EAVZ16S23E6V",
-                "pu":          9188,
-                "defaultPu":   9188,
+                "label": "UNITE INTERIEURE DAIKIN ALTHERMA EAVZ16S23E6V",
+                "reference": "EAVZ16S23E6V",
+                "pu": 9188,
+                "defaultPu": 9188,
                 "description": "UNITÉ INTÉRIEUR DAIKIN",
-                "quantity":    1,
-                "etas":        0
+                "quantity": 1,
+                "etas": 0
             },
             {
-                "id":          500,
+                "id": 500,
                 "productType": "ecs",
-                "label":       "Ballon ECS Inox 150L pour Daikin Altherna",
-                "reference":   "EKHWS150D3V3",
-                "pu":          1595,
-                "defaultPu":   1595,
+                "label": "Ballon ECS Inox 150L pour Daikin Altherna",
+                "reference": "EKHWS150D3V3",
+                "pu": 1595,
+                "defaultPu": 1595,
                 "description": "Ballon ECS Inox 150L pour Daikin Altherna\nLivré avec une vanne 3 voies et une sonde de température",
-                "quantity":    1,
-                "volume":      150
+                "quantity": 1,
+                "volume": 150
             },
             {
-                "id":          501,
+                "id": 501,
                 "productType": "ecs",
-                "label":       "Ballon ECS Inox 200L pour Daikin Altherna",
-                "reference":   "EKHWS200D3V3",
-                "pu":          1808,
-                "defaultPu":   1808,
+                "label": "Ballon ECS Inox 200L pour Daikin Altherna",
+                "reference": "EKHWS200D3V3",
+                "pu": 1808,
+                "defaultPu": 1808,
                 "description": "Ballon ECS Inox 200L pour Daikin Altherna\nLivré avec une vanne 3 voies et une sonde de température",
-                "quantity":    1,
-                "volume":      200
+                "quantity": 1,
+                "volume": 200
             },
             {
-                "id":          502,
+                "id": 502,
                 "productType": "ecs",
-                "label":       "Ballon ECS Inox 300L pour Daikin Altherna",
-                "reference":   "EKHWS300D3V3",
-                "pu":          2071,
-                "defaultPu":   2071,
+                "label": "Ballon ECS Inox 300L pour Daikin Altherna",
+                "reference": "EKHWS300D3V3",
+                "pu": 2071,
+                "defaultPu": 2071,
                 "description": "Ballon ECS Inox 300L pour Daikin Altherna\nLivré avec une vanne 3 voies et une sonde de température",
-                "quantity":    1,
-                "volume":      300
+                "quantity": 1,
+                "volume": 300
             },
             {
-                "id":          600,
+                "id": 600,
                 "productType": "kit_bi_zone",
-                "label":       "Kit bi-Zone",
-                "reference":   "BZKA7V3",
-                "pu":          2015,
-                "defaultPu":   2015,
+                "label": "Kit bi-Zone",
+                "reference": "BZKA7V3",
+                "pu": 2015,
+                "defaultPu": 2015,
                 "description": "Kit bi-Zone",
-                "quantity":    1
+                "quantity": 1
             },
             {
-                "id":          700,
+                "id": 700,
                 "productType": "kit_cascade",
-                "label":       "BALLON ECS INOX ADDITIONNEL DAIKIN",
-                "reference":   "DAIEKHWS200D3",
-                "pu":          1808,
-                "defaultPu":   1808,
+                "label": "BALLON ECS INOX ADDITIONNEL DAIKIN",
+                "reference": "DAIEKHWS200D3",
+                "pu": 1808,
+                "defaultPu": 1808,
                 "description": "Volume : 200 litres\nDimension H : 1264 diam :595",
-                "quantity":    1
+                "quantity": 1
             },
             {
-                "id":          701,
+                "id": 701,
                 "productType": "kit_cascade",
-                "label":       "KIT MODULE DE GESTION POUR SYSTEME CASCADE",
-                "reference":   "EKCC-W",
-                "pu":          2600,
-                "defaultPu":   2600,
+                "label": "KIT MODULE DE GESTION POUR SYSTEME CASCADE",
+                "reference": "EKCC-W",
+                "pu": 2600,
+                "defaultPu": 2600,
                 "description": "(Module gestion + 2 cartes de communications)",
-                "quantity":    1
+                "quantity": 1
             }
         ],
-        "cascadeSystem":      false
+        "cascadeSystem": false
     },
-    "scales":                    [
+    "scales": [
         {
-            "stages":   [
+            "stages": [
                 {
                     "nbr": 1,
                     "min": 0,
@@ -889,7 +889,7 @@
                     "max": 72102
                 }
             ],
-            "code":     "GP",
+            "code": "GP",
             "ceeBonus": {
                 "h1": 20,
                 "h2": 20,
@@ -897,7 +897,7 @@
             }
         },
         {
-            "stages":   [
+            "stages": [
                 {
                     "nbr": 1,
                     "min": 0,
@@ -964,7 +964,7 @@
                     "max": 92391
                 }
             ],
-            "code":     "P",
+            "code": "P",
             "ceeBonus": {
                 "h1": 20,
                 "h2": 20,
@@ -972,7 +972,7 @@
             }
         },
         {
-            "stages":   [
+            "stages": [
                 {
                     "nbr": 1,
                     "min": 0,
@@ -1039,7 +1039,7 @@
                     "max": 139033
                 }
             ],
-            "code":     "IT",
+            "code": "IT",
             "ceeBonus": {
                 "h1": 13,
                 "h2": 13,
@@ -1047,7 +1047,7 @@
             }
         },
         {
-            "stages":   [
+            "stages": [
                 {
                     "nbr": 1,
                     "min": 0,
@@ -1114,7 +1114,7 @@
                     "max": 139033
                 }
             ],
-            "code":     "CL",
+            "code": "CL",
             "ceeBonus": {
                 "h1": 13,
                 "h2": 13,
@@ -1122,282 +1122,282 @@
             }
         }
     ],
-    "bonusWithoutCdp":           {
+    "bonusWithoutCdp": {
         "amount": {
             "h1": 79.9,
             "h2": 65.4,
             "h3": 43.6
         }
     },
-    "statusInDci":               1,
-    "errorsStatusInDci":         [],
-    "technician":                {
-        "id":        0,
-        "lastName":  " ",
+    "statusInDci": 1,
+    "errorsStatusInDci": [],
+    "technician": {
+        "id": 0,
+        "lastName": " ",
         "firstName": " ",
-        "phone":     " "
+        "phone": " "
     },
-    "lists":                     {
-        "localTypeList":         [
+    "lists": {
+        "localTypeList": [
             {
-                "slug":  "maison_individuelle",
+                "slug": "maison_individuelle",
                 "value": "Maison individuelle"
             },
             {
-                "slug":  "appartement",
+                "slug": "appartement",
                 "value": "Appartement"
             }
         ],
-        "assortmentList":        [
+        "assortmentList": [
             {
-                "slug":  "sensira",
+                "slug": "sensira",
                 "value": "Sensira"
             },
             {
-                "slug":  "perfera",
+                "slug": "perfera",
                 "value": "Perfera"
             },
             {
-                "slug":  "stylish_blanc",
+                "slug": "stylish_blanc",
                 "value": "Stylish Blanc"
             },
             {
-                "slug":  "stylish_noir",
+                "slug": "stylish_noir",
                 "value": "Stylish Noir"
             },
             {
-                "slug":  "stylish_argent",
+                "slug": "stylish_argent",
                 "value": "Stylish Argent"
             },
             {
-                "slug":  "stylish_bois",
+                "slug": "stylish_bois",
                 "value": "Stylish Bois"
             },
             {
-                "slug":  "emura_blanc",
+                "slug": "emura_blanc",
                 "value": "Emura Blanc"
             },
             {
-                "slug":  "emura_argent",
+                "slug": "emura_argent",
                 "value": "Emura Argent"
             }
         ],
-        "ecsDeporteList":        [
+        "ecsDeporteList": [
             {
-                "slug":  "volume",
+                "slug": "volume",
                 "value": 150
             },
             {
-                "slug":  "volume",
+                "slug": "volume",
                 "value": 200
             },
             {
-                "slug":  "volume",
+                "slug": "volume",
                 "value": 300
             }
         ],
-        "accesCombleList":       [
+        "accesCombleList": [
             {
-                "slug":  "trappe",
+                "slug": "trappe",
                 "value": "TRAPPE"
             },
             {
-                "slug":  "toit",
+                "slug": "toit",
                 "value": "TOITURE"
             },
             {
-                "slug":  "trappe_et_toit",
+                "slug": "trappe_et_toit",
                 "value": "TRAPPE et TOITURE"
             }
         ],
-        "typeCouvertureList":    [
+        "typeCouvertureList": [
             {
-                "slug":  "meca",
+                "slug": "meca",
                 "value": "Mecanique"
             },
             {
-                "slug":  "tige_bottes",
+                "slug": "tige_bottes",
                 "value": "Tiges de bottes"
             },
             {
-                "slug":  "ardoise",
+                "slug": "ardoise",
                 "value": "Ardoise"
             },
             {
-                "slug":  "tuiles_plates",
+                "slug": "tuiles_plates",
                 "value": "Tuiles plates"
             },
             {
-                "slug":  "tuiles_courbes",
+                "slug": "tuiles_courbes",
                 "value": "Tuiles courbes"
             }
         ],
-        "typeCharpenteList":     [
+        "typeCharpenteList": [
             {
-                "slug":  "trad",
+                "slug": "trad",
                 "value": "Traditionnelle"
             },
             {
-                "slug":  "ferm",
+                "slug": "ferm",
                 "value": "Fermettes"
             },
             {
-                "slug":  "metal",
+                "slug": "metal",
                 "value": "Metallique"
             },
             {
-                "slug":  "autre",
+                "slug": "autre",
                 "value": "Autre"
             }
         ],
-        "etatToitureList":       [
+        "etatToitureList": [
             {
-                "slug":  "propre",
+                "slug": "propre",
                 "value": "Propre"
             },
             {
-                "slug":  "mousse_faible",
+                "slug": "mousse_faible",
                 "value": "Mousse en petite quantité"
             },
             {
-                "slug":  "mousse_important",
+                "slug": "mousse_important",
                 "value": "Mousse importante"
             }
         ],
         "puissanceCompteurList": [
             {
-                "slug":  3,
+                "slug": 3,
                 "value": 3
             },
             {
-                "slug":  6,
+                "slug": 6,
                 "value": 6
             },
             {
-                "slug":  9,
+                "slug": 9,
                 "value": 9
             },
             {
-                "slug":  12,
+                "slug": 12,
                 "value": 12
             },
             {
-                "slug":  18,
+                "slug": 18,
                 "value": 18
             }
         ],
-        "natureMurExtList":      [
+        "natureMurExtList": [
             {
-                "slug":  "parpaing",
+                "slug": "parpaing",
                 "value": "Parpaing"
             },
             {
-                "slug":  "brique",
+                "slug": "brique",
                 "value": "Brique"
             },
             {
-                "slug":  "beton",
+                "slug": "beton",
                 "value": "Béton"
             },
             {
-                "slug":  "pierre",
+                "slug": "pierre",
                 "value": "Pierre"
             },
             {
-                "slug":  "bois",
+                "slug": "bois",
                 "value": "Bois"
             }
         ],
-        "typeRadiateurList":     [
+        "typeRadiateurList": [
             {
-                "slug":  "alu",
+                "slug": "alu",
                 "value": "Alu"
             },
             {
-                "slug":  "fonte",
+                "slug": "fonte",
                 "value": "Fonte"
             },
             {
-                "slug":  "acier",
+                "slug": "acier",
                 "value": "Acier"
             }
         ],
         "tensionDisponibleList": [
             {
-                "slug":  "monophase",
+                "slug": "monophase",
                 "value": "Monophasé"
             },
             {
-                "slug":  "triphase",
+                "slug": "triphase",
                 "value": "Triphasé"
             }
         ],
         "positionEauChaudeList": [
             {
-                "slug":  "sol",
+                "slug": "sol",
                 "value": "Au sol"
             },
             {
-                "slug":  "mur",
+                "slug": "mur",
                 "value": "Au mur"
             }
         ],
-        "typeChaudiereList":     [
+        "typeChaudiereList": [
             {
-                "slug":  "aucun",
+                "slug": "aucun",
                 "value": "Aucun"
             },
             {
-                "slug":  "CCHC",
+                "slug": "CCHC",
                 "value": "Chaudière charbon hors condensation"
             },
             {
-                "slug":  "CFHC",
+                "slug": "CFHC",
                 "value": "Chaudière fioul hors condensation"
             },
             {
-                "slug":  "CGHC",
+                "slug": "CGHC",
                 "value": "Chaudière gaz hors condensation"
             },
             {
-                "slug":  "autre",
+                "slug": "autre",
                 "value": "Autre"
             }
         ],
-        "typeOrigineList":       [],
-        "batimentNatureList":    [],
-        "niveauHabitationList":  [],
-        "qualiteIsolationList":  [
+        "typeOrigineList": [],
+        "batimentNatureList": [],
+        "niveauHabitationList": [],
+        "qualiteIsolationList": [
             {
-                "slug":  "0.6",
+                "slug": "0.6",
                 "value": "0.6"
             },
             {
-                "slug":  "0.65",
+                "slug": "0.65",
                 "value": "0.65"
             },
             {
-                "slug":  "0.8",
+                "slug": "0.8",
                 "value": "0.8"
             },
             {
-                "slug":  "0.9",
+                "slug": "0.9",
                 "value": "0.9"
             },
             {
-                "slug":  "1",
+                "slug": "1",
                 "value": "1"
             },
             {
-                "slug":  "1.1",
+                "slug": "1.1",
                 "value": "1.1"
             },
             {
-                "slug":  "1.3",
+                "slug": "1.3",
                 "value": "1.3"
             },
             {
-                "slug":  "1.5",
+                "slug": "1.5",
                 "value": "1.5"
             }
         ],
@@ -1431,66 +1431,66 @@
                 "slug": "1.7"
             }
         ],
-        "climaticZoneList":      [
+        "climaticZoneList": [
             {
                 "value": "Zone B",
-                "slug":  "B"
+                "slug": "B"
             },
             {
                 "value": "Zone C",
-                "slug":  "C"
+                "slug": "C"
             },
             {
                 "value": "Zone D",
-                "slug":  "D"
+                "slug": "D"
             },
             {
                 "value": "Zone E",
-                "slug":  "E"
+                "slug": "E"
             }
         ],
-        "altitudeList":          [
+        "altitudeList": [
             {
                 "value": "0 à 200m",
-                "slug":  "0"
+                "slug": "0"
             },
             {
                 "value": "201 à 400m",
-                "slug":  "201"
+                "slug": "201"
             },
             {
                 "value": "401 à 600m",
-                "slug":  "401"
+                "slug": "401"
             },
             {
                 "value": "601 à 800m",
-                "slug":  "601"
+                "slug": "601"
             },
             {
                 "value": "801 à 1000m",
-                "slug":  "801"
+                "slug": "801"
             }
         ],
-        "heatersList":           [
+        "heatersList": [
             {
                 "value": "Radiateurs en fonte",
-                "slug":  "r_fonte"
+                "slug": "r_fonte"
             },
             {
                 "value": "Autre Radiateurs",
-                "slug":  "r_autre"
+                "slug": "r_autre"
             },
             {
                 "value": "Plancher chauffant",
-                "slug":  "p_chauffant"
+                "slug": "p_chauffant"
             },
             {
                 "value": "Radiateurs en fontes + Plancher Chauffant",
-                "slug":  "r_fonte_p_chauffant"
+                "slug": "r_fonte_p_chauffant"
             },
             {
                 "value": "Autre Radiateurs + Plancher Chauffant",
-                "slug":  "r_autre_p_chauffant"
+                "slug": "r_autre_p_chauffant"
             }
         ],
         "setPointTemperatureList": [
@@ -1503,31 +1503,31 @@
                 "slug": "20"
             }
         ],
-        "typeChantierList":      [
+        "typeChantierList": [
             {
-                "slug":  "neuf",
+                "slug": "neuf",
                 "value": "Neuf"
             },
             {
-                "slug":  "reno",
+                "slug": "reno",
                 "value": "Reno"
             }
         ],
-        "naturePlafondList":     [
+        "naturePlafondList": [
             {
-                "slug":  "brique",
+                "slug": "brique",
                 "value": "Brique"
             },
             {
-                "slug":  "placo",
+                "slug": "placo",
                 "value": "Placo"
             },
             {
-                "slug":  "bois",
+                "slug": "bois",
                 "value": "Bois"
             },
             {
-                "slug":  "beton",
+                "slug": "beton",
                 "value": "Béton"
             }
         ]
