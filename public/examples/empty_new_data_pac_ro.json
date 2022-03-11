@@ -1138,7 +1138,7 @@
         "phone":     " "
     },
     "lists":                     {
-        "localTypeList":           [
+        "localTypeList":         [
             {
                 "slug":  "maison_individuelle",
                 "value": "Maison individuelle"
@@ -1148,7 +1148,7 @@
                 "value": "Appartement"
             }
         ],
-        "assortmentList":          [
+        "assortmentList":        [
             {
                 "slug":  "sensira",
                 "value": "Sensira"
@@ -1182,7 +1182,7 @@
                 "value": "Emura Argent"
             }
         ],
-        "ecsDeporteList":          [
+        "ecsDeporteList":        [
             {
                 "slug":  "volume",
                 "value": 150
@@ -1196,7 +1196,7 @@
                 "value": 300
             }
         ],
-        "accesCombleList":         [
+        "accesCombleList":       [
             {
                 "slug":  "trappe",
                 "value": "TRAPPE"
@@ -1210,7 +1210,7 @@
                 "value": "TRAPPE et TOITURE"
             }
         ],
-        "typeCouvertureList":      [
+        "typeCouvertureList":    [
             {
                 "slug":  "meca",
                 "value": "Mecanique"
@@ -1232,7 +1232,7 @@
                 "value": "Tuiles courbes"
             }
         ],
-        "typeCharpenteList":       [
+        "typeCharpenteList":     [
             {
                 "slug":  "trad",
                 "value": "Traditionnelle"
@@ -1250,7 +1250,7 @@
                 "value": "Autre"
             }
         ],
-        "etatToitureList":         [
+        "etatToitureList":       [
             {
                 "slug":  "propre",
                 "value": "Propre"
@@ -1264,7 +1264,7 @@
                 "value": "Mousse importante"
             }
         ],
-        "puissanceCompteurList":   [
+        "puissanceCompteurList": [
             {
                 "slug":  3,
                 "value": 3
@@ -1286,7 +1286,7 @@
                 "value": 18
             }
         ],
-        "natureMurExtList":        [
+        "natureMurExtList":      [
             {
                 "slug":  "parpaing",
                 "value": "Parpaing"
@@ -1308,7 +1308,7 @@
                 "value": "Bois"
             }
         ],
-        "typeRadiateurList":       [
+        "typeRadiateurList":     [
             {
                 "slug":  "alu",
                 "value": "Alu"
@@ -1322,7 +1322,7 @@
                 "value": "Acier"
             }
         ],
-        "tensionDisponibleList":   [
+        "tensionDisponibleList": [
             {
                 "slug":  "monophase",
                 "value": "Monophasé"
@@ -1332,7 +1332,7 @@
                 "value": "Triphasé"
             }
         ],
-        "positionEauChaudeList":   [
+        "positionEauChaudeList": [
             {
                 "slug":  "sol",
                 "value": "Au sol"
@@ -1342,7 +1342,7 @@
                 "value": "Au mur"
             }
         ],
-        "typeChaudiereList":       [
+        "typeChaudiereList":     [
             {
                 "slug":  "aucun",
                 "value": "Aucun"
@@ -1364,10 +1364,10 @@
                 "value": "Autre"
             }
         ],
-        "typeOrigineList":         [],
-        "batimentNatureList":      [],
-        "niveauHabitationList":    [],
-        "qualiteIsolationList":    [
+        "typeOrigineList":       [],
+        "batimentNatureList":    [],
+        "niveauHabitationList":  [],
+        "qualiteIsolationList":  [
             {
                 "slug":  "0.6",
                 "value": "0.6"
@@ -1431,7 +1431,7 @@
                 "slug": "1.7"
             }
         ],
-        "climaticZoneList":        [
+        "climaticZoneList":      [
             {
                 "value": "Zone B",
                 "slug":  "B"
@@ -1449,7 +1449,7 @@
                 "slug":  "E"
             }
         ],
-        "altitudeList":            [
+        "altitudeList":          [
             {
                 "value": "0 à 200m",
                 "slug":  "0"
@@ -1471,7 +1471,7 @@
                 "slug":  "801"
             }
         ],
-        "heatersList":             [
+        "heatersList":           [
             {
                 "value": "Radiateurs en fonte",
                 "slug":  "r_fonte"
@@ -1503,7 +1503,7 @@
                 "slug": "20"
             }
         ],
-        "typeChantierList":        [
+        "typeChantierList":      [
             {
                 "slug":  "neuf",
                 "value": "Neuf"
@@ -1513,7 +1513,7 @@
                 "value": "Reno"
             }
         ],
-        "naturePlafondList":       [
+        "naturePlafondList":     [
             {
                 "slug":  "brique",
                 "value": "Brique"

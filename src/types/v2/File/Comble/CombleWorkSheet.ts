@@ -3,7 +3,7 @@ import { BaseWorksheet } from '@/types/v2/File/Common/BaseWorksheet';
 export interface CombleWorkSheet extends BaseWorksheet {
     visiteComble: boolean;
     chantierHabite: boolean;
-    chantierType: string;
+    typeChantier: string;
     niveauHabitation: string;
     gdEchelle: boolean;
     partieAisoler: string;

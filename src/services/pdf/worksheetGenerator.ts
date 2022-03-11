@@ -327,7 +327,7 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'TYPE CHANTIER',
-                                value: this.getValueInList( list.chantierTypeList, worksheet.chantierType ),
+                                value: this.getValueInList( list.chantierTypeList, worksheet.typeChantier ),
                             },
                             {
                                 label: 'PARTIE A ISOLER',

@@ -49,7 +49,7 @@
     "worksheet":                 {
         "visiteComble":              true,
         "chantierHabite":            true,
-        "chantierType":              "reno",
+        "typeChantier":              "reno",
         "niveauHabitation":          "rdc",
         "gdEchelle":                 false,
         "partieAisoler":             "hab_ss_gge",
