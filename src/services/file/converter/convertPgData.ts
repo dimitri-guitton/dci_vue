@@ -164,6 +164,7 @@ const convertOldPgItemList = ( oldData ): PgList => {
         puissancePoeleList:    [],
         zoneInstallationList:  [],
         typeOrigineList:       [],
+        typeDeboucheList:      [],
     };
 
     const pgItems = [
@@ -182,6 +183,7 @@ const convertOldPgItemList = ( oldData ): PgList => {
         'puissancePoele',
         'zoneInstallation',
         'typeOrigine',
+        'typeDebouche',
     ];
 
     const newName: { [ key: string ]: string } = {
@@ -200,6 +202,7 @@ const convertOldPgItemList = ( oldData ): PgList => {
         'puissancePoele':    'puissancePoeleList',
         'zoneInstallation':  'zoneInstallationList',
         'typeOrigine':       'typeOrigineList',
+        'typeDebouche':      'typeDeboucheList',
     };
 
 
@@ -268,7 +271,7 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             lessThan2Years:    getObjectData( oldData, [ 'logement', 'moinsDe2Ans' ] ),
             availableVoltage:  '',
         },
-        worksheet: {
+        worksheet:         {
             period:                      getObjectData( oldData, [ 'fiche', 'periodePose' ] ),
             generateur:                  getObjectData( oldData, [ 'fiche', 'generateur' ] ),
             marque:                      getObjectData( oldData, [ 'fiche', 'marque' ] ),
@@ -290,10 +293,10 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             classeTemperature:           getObjectData( oldData, [ 'fiche', 'classeTemperature' ] ),
             classePression:              getObjectData( oldData, [ 'fiche', 'classePression' ] ),
             resistanceCondansat:         getObjectData( oldData, [ 'fiche', 'resistanceCondansat' ] ),
-            resistanceCorrosion:         getObjectData( oldData, [ 'fiche', 'resistanceCorrosion' ] ),
+            resistanceCorrosion:         getObjectData( oldData, [ 'fiche', 'resistanceCorrosion' ] ) === 'yes',
             resistanceFeu:               getObjectData( oldData, [ 'fiche', 'resistanceFeu' ] ),
             distanceSecuriteCombustible: getObjectData( oldData, [ 'fiche', 'distanceSecuriteCombustible' ] ),
-            presenceTrappe:              getObjectData( oldData, [ 'fiche', 'presenceTrappe' ] ),
+            presenceTrappe:              getObjectData( oldData, [ 'fiche', 'presenceTrappe' ] ) === 'yes',
             hauteurTotal:                getObjectData( oldData, [ 'fiche', 'hauteurTotal' ] ),
             hauteurLocauxChauffe:        getObjectData( oldData, [ 'fiche', 'hauteurLocauxChauffe' ] ),
             hauteurLocauxNonChauffe:     getObjectData( oldData, [ 'fiche', 'hauteurLocauxNonChauffe' ] ),
@@ -304,7 +307,7 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             sectionConduitLargeur:       getObjectData( oldData, [ 'fiche', 'sectionConduitLargeur' ] ),
             sectionConduitLongeur:       getObjectData( oldData, [ 'fiche', 'sectionConduitLongeur' ] ),
             sectionConduitDiametre:      getObjectData( oldData, [ 'fiche', 'sectionConduitDiametre' ] ),
-            deboucheSup40:               getObjectData( oldData, [ 'fiche', 'deboucheSup40' ] ),
+            deboucheSup40:               getObjectData( oldData, [ 'fiche', 'deboucheSup40' ] ) === 'yes',
             obstacleInf8:                getObjectData( oldData, [ 'fiche', 'obstacleInf8' ] ),
             deboucheAccessible:          getObjectData( oldData, [ 'fiche', 'deboucheAccessible' ] ),
             typeDebouche:                getObjectData( oldData, [ 'fiche', 'typeDebouche' ] ),
@@ -329,7 +332,7 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             zoneInstallation:            getObjectData( oldData, [ 'fiche', 'zoneInstallation' ] ),
             creation:                    getObjectData( oldData, [ 'fiche', 'creation' ] ),
         },
-        quotation: {
+        quotation:         {
             ...convertBaseQuotation( oldData ),
             tva20:             0,
             ceeBonus:          getNumberData( oldData [ 'devis' ][ 'primeCEE' ] ),
@@ -338,10 +341,10 @@ export const convertOldPgFile = ( oldData ): PgFile => {
             outsideSocket:     getBoolData( oldData[ 'outsideSocket' ] ),
             maPrimeRenovBonus: getNumberData( oldData [ 'devis' ][ 'primeAnah' ] ),
         },
-        scales:    convertOldScales( oldData ),
-        statusInDci: convertOldStatusDci( oldData ),
+        scales:            convertOldScales( oldData ),
+        statusInDci:       convertOldStatusDci( oldData ),
         errorsStatusInDci: convertOldErrorStatusDci( oldData ),
-        technician: convertTechnician( oldData ),
-        lists: convertOldPgItemList( oldData ),
+        technician:        convertTechnician( oldData ),
+        lists:             convertOldPgItemList( oldData ),
     };
 };

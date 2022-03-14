@@ -21,10 +21,10 @@ export interface PgWorkSheet extends BaseWorksheet {
     classeTemperature: string;
     classePression: string;
     resistanceCondansat: string;
-    resistanceCorrosion: string;
+    resistanceCorrosion: boolean;
     resistanceFeu: string;
     distanceSecuriteCombustible: string;
-    presenceTrappe: string;
+    presenceTrappe: boolean;
     hauteurTotal: string;
     hauteurLocauxChauffe: string;
     hauteurLocauxNonChauffe: string;
@@ -35,7 +35,7 @@ export interface PgWorkSheet extends BaseWorksheet {
     sectionConduitLargeur: string;
     sectionConduitLongeur: string;
     sectionConduitDiametre: string;
-    deboucheSup40: string;
+    deboucheSup40: boolean;
     obstacleInf8: boolean;
     deboucheAccessible: boolean;
     typeDebouche: string;

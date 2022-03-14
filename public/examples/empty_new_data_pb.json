@@ -46,8 +46,65 @@
         "availableVoltage": ""
     },
     "worksheet": {
-        "period": "",
-        "infosSup": "RAS"
+        "period":                      "",
+        "generateur":                  "electrique",
+        "marque":                      "",
+        "modele":                      "",
+        "puissance":                   "",
+        "conduiteMateriau":            "",
+        "conduiteDiametre":            "",
+        "longueurTotal":               "",
+        "longeurProjection":           "",
+        "nbCoude90":                   "",
+        "nbCoude45":                   "",
+        "reductionSection":            false,
+        "etat":                        false,
+        "demontable":                  false,
+        "distanceSecurite":            "",
+        "conduitType":                 "maconne",
+        "conduitMateriauConstitutif":  "",
+        "plaqueSignaletique":          false,
+        "classeTemperature":           "",
+        "classePression":              "",
+        "resistanceCondansat":         "dry",
+        "resistanceCorrosion":         false,
+        "resistanceFeu":               "",
+        "distanceSecuriteCombustible": "",
+        "presenceTrappe":              false,
+        "hauteurTotal":                "",
+        "hauteurLocauxChauffe":        "",
+        "hauteurLocauxNonChauffe":     "",
+        "hauteurExterieur":            "",
+        "devoiement":                  false,
+        "distanceDevoiement":          "",
+        "conduitIsole":                false,
+        "sectionConduitLargeur":       "",
+        "sectionConduitLongeur":       "",
+        "sectionConduitDiametre":      "",
+        "deboucheSup40":               false,
+        "obstacleInf8":                false,
+        "deboucheAccessible":          false,
+        "typeDebouche":                "nu",
+        "toiture":                     "pente_sup_15",
+        "pieceLogement":               "",
+        "pieceLongueur":               "",
+        "pieceLargeur":                "",
+        "pieceHauteur":                "",
+        "pieceSurface":                "",
+        "accesPorteLargeur":           "",
+        "accesPorteHauteur":           "",
+        "natureMur":                   "",
+        "natureSol":                   "",
+        "naturePlafond":               "",
+        "ameneeAir":                   false,
+        "priseElec":                   "",
+        "niveauHabitation":            "pp",
+        "typeChantier":                "neuf",
+        "infosSup":                    "RAS",
+        "escalier":                    false,
+        "escalierLargeur":             "",
+        "zoneInstallation":            "z1",
+        "creation":                    true
     },
     "quotation": {
         "origin": "",
@@ -570,7 +627,7 @@
         "firstName": " ",
         "phone": " "
     },
-    "lists": {
+    "lists":     {
         "localTypeList": [
             {
                 "slug": "maison_individuelle",
@@ -824,16 +881,34 @@
                 "value": "Campagne Google"
             },
             {
-                "slug": "autre",
+                "slug":  "autre",
                 "value": "Autre"
             },
             {
-                "slug": "hello-watt",
+                "slug":  "hello-watt",
                 "value": "hello watt"
             },
             {
-                "slug": "angelique",
+                "slug":  "angelique",
                 "value": "Angélique"
+            }
+        ],
+        "typeDeboucheList": [
+            {
+                "slug":  "nu",
+                "value": "Nu"
+            },
+            {
+                "slug":  "mm",
+                "value": "Mitre-Mitron"
+            },
+            {
+                "slug":  "ec",
+                "value": "Extracteur statique"
+            },
+            {
+                "slug":  "ecm",
+                "value": "Extracteur stato-mécanique"
             }
         ]
     }

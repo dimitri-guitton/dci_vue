@@ -13,6 +13,7 @@ interface PbList extends BaseList {
     couleurProfileList: ItemList[];
     puissancePoeleList: ItemList[];
     zoneInstallationList: ItemList[];
+    typeDeboucheList: ItemList[];
 }
 
 export default PbList;

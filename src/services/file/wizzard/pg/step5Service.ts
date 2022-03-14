@@ -118,10 +118,9 @@ export const pgWorksheetBuilder = (): WorksheetBuilder => {
                         label: 'Distance de sécurité par rapport à des matériaux combustibles (mm)',
                     },
                     {
-                        type:       WorksheetBuilderItemType.Select,
-                        name:       'conduitMateriauConstitutif',
-                        label:      'Matériaux constitutifs',
-                        selectList: 'conduitMateriauConstitutifList',
+                        type:  WorksheetBuilderItemType.Text,
+                        name:  'conduitMateriauConstitutif',
+                        label: 'Matériaux constitutifs',
                     },
                     {
                         type:  WorksheetBuilderItemType.Checkbox,
@@ -140,7 +139,7 @@ export const pgWorksheetBuilder = (): WorksheetBuilder => {
                     },
                     {
                         type:  WorksheetBuilderItemType.Checkbox,
-                        name:  'conduitMateriauConstitutif',
+                        name:  'resistanceCorrosion',
                         label: 'Résistance à la corrosion',
                     },
                     {
@@ -203,9 +202,19 @@ export const pgWorksheetBuilder = (): WorksheetBuilder => {
                         label: 'Section conduit diametre (mm)',
                     },
                     {
+                        type:  WorksheetBuilderItemType.Checkbox,
+                        name:  'devoiement',
+                        label: 'Y\'a-t-il des dévoiements',
+                    },
+                    {
                         type:  WorksheetBuilderItemType.Number,
                         name:  'distanceDevoiement',
                         label: 'Distance entre les 2 dévoiement (m)',
+                    },
+                    {
+                        type:  WorksheetBuilderItemType.Checkbox,
+                        name:  'conduitIsole',
+                        label: 'Le conduit est-il isolé',
                     },
                     {
                         type:  WorksheetBuilderItemType.Checkbox,
@@ -335,10 +344,10 @@ export const yupPgConfigStep5 = () => {
                                                               classeTemperature:           Yup.string(),
                                                               classePression:              Yup.string(),
                                                               resistanceCondansat:         Yup.string(),
-                                                              resistanceCorrosion:         Yup.string(),
+                                                              resistanceCorrosion:         Yup.boolean(),
                                                               resistanceFeu:               Yup.string(),
                                                               distanceSecuriteCombustible: Yup.string(),
-                                                              presenceTrappe:              Yup.string(),
+                                                              presenceTrappe:              Yup.boolean(),
                                                               hauteurTotal:                Yup.string(),
                                                               hauteurLocauxChauffe:        Yup.string(),
                                                               hauteurLocauxNonChauffe:     Yup.string(),
@@ -349,7 +358,7 @@ export const yupPgConfigStep5 = () => {
                                                               sectionConduitLargeur:       Yup.string(),
                                                               sectionConduitLongeur:       Yup.string(),
                                                               sectionConduitDiametre:      Yup.string(),
-                                                              deboucheSup40:               Yup.string(),
+                                                              deboucheSup40:               Yup.boolean(),
                                                               obstacleInf8:                Yup.boolean(),
                                                               deboucheAccessible:          Yup.boolean(),
                                                               typeDebouche:                Yup.string(),

@@ -2,7 +2,7 @@ import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { CombleWorkSheet } from '@/types/v2/File/Comble/CombleWorkSheet';
 import { BROWN, DARK } from '@/services/pdf/pdfVariable';
-import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_PV, FILE_SOL } from '@/services/constantService';
+import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_PV, FILE_SOL } from '@/services/constantService';
 import CombleList from '@/types/v2/File/Comble/CombleList';
 import { CombleQuotation } from '@/types/v2/File/Comble/CombleQuotation';
 import { CetWorkSheet } from '@/types/v2/File/Cet/CetWorkSheet';
@@ -23,6 +23,8 @@ import { getAddress } from '@/services/data/dataService';
 import { RoQuotation } from '@/types/v2/File/Ro/RoQuotation';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 import { ProfitabilityStudyGenerator } from '@/services/pdf/profitabilityStudyGenerator';
+import { PbWorkSheet } from '@/types/v2/File/Pb/PbWorkSheet';
+import PbList from '@/types/v2/File/Pb/PbList';
 
 export class WorksheetGenerator extends PdfGenerator {
     private _file: AllFile;
@@ -1061,7 +1063,274 @@ export class WorksheetGenerator extends PdfGenerator {
                     },
                 ];
                 break;
+            case FILE_PB:
             case FILE_PG:
+                worksheet = ( this._file.worksheet as PgWorkSheet | PbWorkSheet );
+                list      = ( this._file.lists as PgList | PbList );
+
+                const noCreationItems: WorksheetItem[] = [];
+                if ( !worksheet.creation ) {
+                    noCreationItems.push(
+                        {
+                            label: 'matériau',
+                            value: worksheet.conduiteMateriau,
+                        },
+                        {
+                            label: 'diametre',
+                            value: `${ worksheet.conduiteDiametre } mm`,
+                        },
+                        {
+                            label: 'Longueur total',
+                            value: `${ worksheet.longueurTotal } m`,
+                        },
+                        {
+                            label: 'longeur de projection horizontal',
+                            value: worksheet.longeurProjection,
+                        },
+                        {
+                            label: 'Nombre de coude à 90°',
+                            value: worksheet.nbCoude90,
+                        },
+                        {
+                            label: 'Nombre de coude à 45°',
+                            value: worksheet.nbCoude45,
+                        },
+                        {
+                            label: 'Réduction de section',
+                            value: this.yesOrNo( worksheet.reductionSection ),
+                        },
+                        {
+                            label: 'Le conduit est-il en bon état et bien fixé',
+                            value: this.yesOrNo( worksheet.etat ),
+                        },
+                        {
+                            label: 'Le conduit est-il démontable',
+                            value: this.yesOrNo( worksheet.demontable ),
+                        },
+                        {
+                            label: 'Distance de sécurité par rapport à des matériaux combustibles (mm)',
+                            value: `${ worksheet.distanceSecuriteCombustible } mm`,
+                        },
+                        {
+                            label: 'Type',
+                            value: this.getValueInList( list.conduitList, worksheet.conduitType ),
+                        },
+                        {
+                            label: 'Matériaux constitutifs',
+                            value: worksheet.conduitMateriauConstitutif,
+                        },
+                        {
+                            label: 'Présence d\'une plaque signalétique de conduit',
+                            value: this.yesOrNo( worksheet.plaqueSignaletique ),
+                        },
+                        {
+                            label: 'Classe température (ex T 450°)',
+                            value: worksheet.classeTemperature,
+                        },
+                        {
+                            label: 'Classe de pression (N)',
+                            value: `${ worksheet.classePression } N`,
+                        },
+                        {
+                            label: 'Résistance à la corrosion',
+                            value: this.yesOrNo( worksheet.resistanceCorrosion ),
+                        },
+                        {
+                            label: 'Résistance aux condensats',
+                            value: this.getValueInList( list.resistanceList, worksheet.resistanceCondansat ),
+                        },
+                        {
+                            label: 'Présence d\'un trappe de ramonage',
+                            value: this.yesOrNo( worksheet.presenceTrappe ),
+                        },
+                        {
+                            label: 'Résistance aux feu de cheminée',
+                            value: `${ worksheet.resistanceFeu } G`,
+                        },
+                        {
+                            label: 'Distance de sécurité par rapport aux matériaux combustibles',
+                            value: `${ worksheet.distanceSecuriteCombustible } mm`,
+                        },
+                    );
+                }
+
+                data = [
+                    {
+                        title: 'CARACTERISTIQUES DU CHANTIER',
+                        items: [
+                            {
+                                label: 'Le chantier est unecréation complète',
+                                value: this.yesOrNo( worksheet.creation ),
+                            },
+                            {
+                                label: 'TYPE DE BATIMENT',
+                                value: this.getValueInList( list.localTypeList, housing.type ),
+                            },
+                            {
+                                label: 'ANNÉE DE CONSTRUCTION',
+                                value: housing.constructionYear === null ? 'Non renseigné' : housing.constructionYear.toString(),
+                            },
+                            {
+                                label: 'NIVEAUX HABITATION',
+                                value: this.getValueInList( list.niveauHabitationList, worksheet.niveauHabitation ),
+                            },
+                        ],
+                    },
+                    {
+                        title: 'production de chaleur',
+                        items: [
+                            {
+                                label: 'générateur',
+                                value: this.getValueInList( list.generateurList, worksheet.generateur ),
+                            },
+                            {
+                                label: 'Puissance',
+                                value: `${ this._file.energyZone } KW`,
+                            },
+                            {
+                                label: 'Marque',
+                                value: worksheet.marque,
+                            },
+                            {
+                                label: 'modèle',
+                                value: worksheet.modele,
+                            },
+                            ...noCreationItems,
+                        ],
+                    },
+                    {
+                        title: 'production de chaleur',
+                        items: [
+                            {
+                                label: 'Hauteur total',
+                                value: `${ worksheet.hauteurTotal } m`,
+                            },
+                            {
+                                label: 'Hauteur dans locaux chauffés',
+                                value: `${ worksheet.hauteurLocauxChauffe } m`,
+                            },
+                            {
+                                label: 'Hauteur dans locaux non chauffés',
+                                value: `${ worksheet.hauteurLocauxNonChauffe } m`,
+                            },
+                            {
+                                label: 'Hauteur extérieure',
+                                value: `${ worksheet.hauteurExterieur } m`,
+                            },
+                            {
+                                label: 'Section conduit largeur',
+                                value: `${ worksheet.sectionConduitLargeur } mm`,
+                            },
+                            {
+                                label: 'Section conduit longeur',
+                                value: `${ worksheet.sectionConduitLongeur } mm`,
+                            },
+                            {
+                                label: 'Section conduit diametre',
+                                value: `${ worksheet.sectionConduitDiametre } mm`,
+                            },
+                            {
+                                label: 'Y\'a-t-il des dévoiements',
+                                value: this.yesOrNo( worksheet.devoiement ),
+                            },
+                            {
+                                label: 'Distance entre les 2 dévoiement',
+                                value: `${ worksheet.distanceDevoiement } m`,
+                            },
+                            {
+                                label: 'Le conduit est-il isolé',
+                                value: this.yesOrNo( worksheet.conduitIsole ),
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Débouché en toiture',
+                        items: [
+                            {
+                                label: 'Le débouché dépasse t\'il d\'au moins 40cm au dessus du fraîtage',
+                                value: this.yesOrNo( worksheet.deboucheSup40 ),
+                            },
+                            {
+                                label: 'Présende d\'un obstacle à moins de 8m',
+                                value: this.yesOrNo( worksheet.obstacleInf8 ),
+                            },
+                            {
+                                label: 'Le débouché est-il accessible',
+                                value: this.yesOrNo( worksheet.deboucheAccessible ),
+                            },
+                            {
+                                label: 'Type de débouché',
+                                value: this.getValueInList( list.typeDeboucheList, worksheet.typeDebouche ),
+                            },
+                            {
+                                label: 'Toiture',
+                                value: this.getValueInList( list.toitureList, worksheet.toiture ),
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Débouché en toiture',
+                        items: [
+                            {
+                                label: 'Dans quel pièce du logement',
+                                value: `${ worksheet.pieceLogement } m`,
+                            },
+                            {
+                                label: 'Longeur',
+                                value: `${ worksheet.pieceLongueur } m`,
+                            },
+                            {
+                                label: 'Largeur',
+                                value: `${ worksheet.pieceLargeur } m`,
+                            },
+                            {
+                                label: 'Hauteur',
+                                value: `${ worksheet.pieceHauteur } m`,
+                            },
+                            {
+                                label: 'Surface',
+                                value: `${ worksheet.pieceSurface } m2`,
+                            },
+                            {
+                                label: 'Accès (portes) largeur',
+                                value: `${ worksheet.accesPorteLargeur } m`,
+                            },
+                            {
+                                label: 'Accès (portes) hauteur',
+                                value: `${ worksheet.accesPorteHauteur } m`,
+                            },
+                            {
+                                label: 'Y\'a t-il un escalier',
+                                value: this.yesOrNo( worksheet.escalier ),
+                            },
+                            {
+                                label: 'Largeur de l\'escalier',
+                                value: `${ worksheet.escalierLargeur } m`,
+                            },
+                            {
+                                label: 'Nature des murs',
+                                value: worksheet.natureMur,
+                            },
+                            {
+                                label: 'Nature des sols',
+                                value: worksheet.natureSol,
+                            },
+                            {
+                                label: 'Nature du plafond',
+                                value: worksheet.naturePlafond,
+                            },
+                            {
+                                label: 'Prise électrique',
+                                value: `${ worksheet.priseElec } ml`,
+                            },
+                            {
+                                label: '\'a-t-il une amenée d\'air dans la piece de l\'appereil',
+                                value: this.yesOrNo( worksheet.ameneeAir ),
+                            },
+                        ],
+                    },
+
+                ];
                 break;
         }
 
