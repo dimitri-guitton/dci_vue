@@ -46,7 +46,7 @@
         "availableVoltage": ""
     },
     "worksheet": {
-        "period": "",
+        "period":                      "",
         "generateur":                  "electrique",
         "marque":                      "",
         "modele":                      "",
@@ -102,9 +102,9 @@
         "typeChantier":                "neuf",
         "infosSup":                    "RAS",
         "escalier":                    false,
-        "escalierLargeur": "",
-        "zoneInstallation": "z1",
-        "creation": true
+        "escalierLargeur":             "",
+        "zoneInstallation":            "z1",
+        "creation":                    true
     },
     "quotation": {
         "origin": "",
@@ -1443,7 +1443,7 @@
         "firstName": " ",
         "phone": " "
     },
-    "lists": {
+    "lists":     {
         "localTypeList": [
             {
                 "slug": "maison_individuelle",

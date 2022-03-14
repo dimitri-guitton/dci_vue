@@ -49,7 +49,7 @@
       </div>
     </template>
 
-    <options @optionsAreUpdated="updateOptions" :options="options"></options>
+    <options @optionsAreUpdated="updateOptions" :options="filteredOptions"></options>
 
     <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
 
@@ -183,6 +183,48 @@ export default defineComponent( {
                                       _blankOptions.value = blankOptions;
                                     };
 
+                                    /**
+                                     * Ajoute ou enlève l'option Caisson en acier pour le poêle EMBER KAMIN M3
+                                     */
+                                    const enabledOptionM3 = ( enabled: boolean ) => {
+                                      const optionalOption = _options.value.find( o => o.label.toLowerCase() === 'caisson en acier' );
+                                      console.log( 'optionalOption', optionalOption );
+                                      if ( optionalOption === undefined ) {
+                                        return;
+                                      }
+
+                                      // Change le nombre de l'option pour l'activer ou non
+                                      _options.value = _options.value.map( o => {
+                                        if ( enabled && o.label.toLowerCase() === 'caisson en acier' ) {
+                                          return { ...o, number: 1 };
+                                        } else if ( !enabled && o.label.toLowerCase() === 'caisson en acier' ) {
+                                          return { ...o, number: 0 };
+                                        }
+                                        return o;
+                                      } );
+                                    };
+
+                                    const filteredOptions = computed<Option[]>( () => {
+                                      console.log( '%c FILTERED OPTION', 'background: #FF0007; color: #000000' );
+                                      console.log( _options.value );
+
+                                      // SI KAMIN M3
+                                      if ( _selectedProducts.value.length > 0 && _selectedProducts.value[ 0 ].label.toUpperCase()
+                                                                                                             .includes(
+                                                                                                                 'KAMIN M3' ) ) {
+                                        console.log( '%c IN', 'background: #008310; color: #000000' );
+                                        enabledOptionM3( true );
+                                        return _options.value;
+
+                                      }
+
+
+                                      console.log( '%c OUT', 'background: #008310; color: #000000' );
+                                      enabledOptionM3( false );
+                                      return _options.value.filter( o => o.label.toLowerCase() !== 'caisson en acier' );
+                                    } );
+
+
                                     const price = computed<Price>( () => {
                                       // On utilise props.forceRefresh pour recalculer les prix
                                       if ( props.forceRefresh ) {
@@ -276,6 +318,7 @@ export default defineComponent( {
                                       updateBlankOtions,
                                       generateQuotation,
                                       generateAddressCertificate,
+                                      filteredOptions,
                                     };
                                   },
                                 } );

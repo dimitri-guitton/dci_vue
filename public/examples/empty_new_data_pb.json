@@ -122,14 +122,24 @@
                 "number": 1
             },
             {
-                "id": 2,
-                "fileType": "default",
-                "label": "Forfait fournitures",
-                "unit": "u",
-                "defaultPu": 50,
-                "pu": 50,
+                "id":            2,
+                "fileType":      "default",
+                "label":         "Forfait fournitures",
+                "unit":          "u",
+                "defaultPu":     50,
+                "pu":            50,
                 "defaultNumber": 1,
-                "number": 1
+                "number":        1
+            },
+            {
+                "id":            3,
+                "fileType":      "default",
+                "label":         "Caisson en acier",
+                "unit":          "u",
+                "defaultPu":     417,
+                "pu":            417,
+                "defaultNumber": 1,
+                "number":        1
             }
         ],
         "blankOptions": [
@@ -628,13 +638,13 @@
         "phone": " "
     },
     "lists":     {
-        "localTypeList": [
+        "localTypeList":        [
             {
-                "slug": "maison_individuelle",
+                "slug":  "maison_individuelle",
                 "value": "Maison individuelle"
             },
             {
-                "slug": "appartement",
+                "slug":  "appartement",
                 "value": "Appartement"
             }
         ],

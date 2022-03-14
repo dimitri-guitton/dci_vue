@@ -133,6 +133,16 @@
                     "default": 50,
                     "value":   50
                 }
+            },
+            {
+                "id":    3,
+                "label": "Caisson en acier",
+                "unit":  "u",
+                "value": 1,
+                "pu":    {
+                    "default": 417,
+                    "value":   417
+                }
             }
         ],
         "blankOptions":    [
