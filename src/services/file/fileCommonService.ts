@@ -124,6 +124,19 @@ const roundCeeBonus = ( ceeBonus: number | string ): number => {
     return ceil10( ceeBonus, -2 );
 };
 
+/**
+ * Coup de pouce
+ */
+export const getHelpingHandRo = ( codeBonus ): number => {
+    if ( codeBonus === 'GP' ) {
+        return 5000;
+    } else if ( codeBonus === 'P' ) {
+        return 4000;
+    } else {
+        return 2500;
+    }
+};
+
 const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: string ): number => {
     let formatedEtas = 0;
     let formatedArea;
