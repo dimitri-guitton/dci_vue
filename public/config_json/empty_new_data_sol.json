@@ -1,0 +1,738 @@
+{
+    "version":                   "1",
+    "type":                      "sol",
+    "ref":                       "",
+    "folderName":                "",
+    "createdAt":                 "",
+    "updatedAt":                 "",
+    "settings":                  {
+        "ceeCoef": "5.5"
+    },
+    "disabledBonus":             false,
+    "disabledCeeBonus":          false,
+    "disabledMaPrimeRenovBonus": false,
+    "assents":                   [],
+    "beneficiary":               {
+        "civility":  "m",
+        "lastName":  "",
+        "firstName": "",
+        "address":   "",
+        "zipCode":   "",
+        "city":      "",
+        "email":     "",
+        "phone":     "",
+        "mobile":    "",
+        "income":    0
+    },
+    "codeBonus":                 null,
+    "energyZone":                null,
+    "bonusRate":                 0,
+    "housing":                   {
+        "nbOccupant":        1,
+        "type":              "residentiel",
+        "heatingType":       "electrique",
+        "buildingNature":    "",
+        "isRentedHouse":     false,
+        "isAddressBenef":    true,
+        "address":           "",
+        "zipCode":           "",
+        "city":              "",
+        "plot":              "",
+        "area":              0,
+        "dataGeoportail":    [],
+        "location":          "",
+        "insulationQuality": "",
+        "constructionYear":  null,
+        "lessThan2Years":    false,
+        "availableVoltage":  ""
+    },
+    "worksheet":                 {
+        "epaisseurProduit":        "115 mm",
+        "accesCamion":             "facile",
+        "distCamion":              0,
+        "hautPlafond":             0,
+        "support":                 "bois",
+        "distPointEau":            0,
+        "resistTherm":             "",
+        "dimensionsPieces":        [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "isolationExistante":      false,
+        "niveauHabitation":        "r1",
+        "habitationSurLocalFroid": false,
+        "videSanitaire":           false,
+        "terrePlein":              false,
+        "reseauPlafond":           false,
+        "luminairesPlafond":       false,
+        "distancePortesPalfond":   [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "porteGarage":             "",
+        "nbrPorteGarage":          0,
+        "infosSup":                "RAS",
+        "period":                  ""
+    },
+    "quotation":                 {
+        "origin":             "",
+        "dateTechnicalVisit": "",
+        "executionDelay":     "",
+        "options":            [
+            {
+                "id":            51,
+                "fileType":      "sol",
+                "label":         "Préparation chantier (protection si nécessaire)",
+                "unit":          "u",
+                "defaultPu":     15,
+                "pu":            15,
+                "defaultNumber": 0,
+                "number":        0
+            }
+        ],
+        "blankOptions":       [
+            {
+                "id":     "sup1",
+                "label":  "",
+                "unit":   "u",
+                "pu":     0,
+                "number": 0
+            },
+            {
+                "id":     "sup2",
+                "label":  "",
+                "unit":   "u",
+                "pu":     0,
+                "number": 0
+            }
+        ],
+        "commentary":         "",
+        "partner":            "VTE",
+        "texts":              [
+            {
+                "type":  "tva",
+                "title": "Les travaux prévus dans ce devis concernent l'isolation d'un plancher bas",
+                "text":  "La TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans. Réalisation du chantier : Ridoret Energie 90495805500033 RGE qualibat N°E-E194452"
+            },
+            {
+                "type":  "cee",
+                "title": "Modalité de paiement : Prime CEE versée directement à Eco Atlantique par EDF",
+                "text":  "La TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.\n\nTout ou partie des travaux relatifs à ce devis ou bon de commande sont éligibles à une prime d’un montant de {{ceeBonus}} euros dont EDF (SIREN 552 081 317) est à l’origine dans le cadre du dispositif des Certificats d’Economies d’Energie. Le montant de cette prime ne pourra être révisé à la baisse qu’en cas de modification du volume de Certificats d’Economies d’Energie attaché à l’opération ou aux opérations d’économies d’énergie ou de la situation de précarité énergétique et ce, de manière proportionnelle. Dans le cadre de la réglementation un contrôle qualité des travaux sur site ou par contact pourra être demandé. Un refus de ce contrôle sur site ou par contact via EDF ou un prestataire d’EDF conduira au refus de cette prime par EDF.\n\nLe client (consommateur personne physique) peut recourir à la médiation de la consommation en s’adressant à MEDICYS 73 boulevard de clichy 75009 Paris 0749701593\n\nCe devis est accompagné d’un document informatif nommé « Cadre de contribution » remis ce jour au bénéficiaire.\n\nLe bénéficiaire est informé qu’un contrôle de son chantier par un bureau de contrôle dûment habilité à cet effet peut avoir lieu dans le cadre de l’attribution de la prime CEE. Le fait de refuser ce contrôle engendrera le non versement de la prime CEE. Ainsi Eco Atlantique sera en droit d’en exiger le montant directement au bénéficiaire."
+            }
+        ],
+        "discount":           0,
+        "totalHt":            0,
+        "totalTtc":           0,
+        "totalTva":           0,
+        "remainderToPay":     0,
+        "ceeBonus":           0,
+        "tva":                5.5,
+        "paymentOnCredit":    {
+            "active":           false,
+            "amount":           0,
+            "withoutInsurance": 0,
+            "withInsurance":    0,
+            "duration":         0,
+            "TAEG":             0,
+            "total":            0
+        },
+        "laying":             2.5,
+        "overrideLaying":     2.5,
+        "selectedProducts":   [],
+        "products":           [
+            {
+                "id":          1,
+                "productType": "iso_sol",
+                "label":       "Isolation thermique du plancher bas par Panneaux isolants de marque ST GOBAIN PLACO Terradall Portée",
+                "reference":   "Panneau polystyrène TERRADALL PORTE IGNI R=3m².K/W",
+                "pu":          32.5,
+                "defaultPu":   32.5,
+                "description": "- Panneaux polystyrène expansé 1\n            - conductivité thermique 0,038 mW/m.k\n            - Certifié ACERMI 10/081/617\n            - Produit 100% Recyclable\n            - Resistance thermique :3 m².k/w\n            - Epaisseur mini 'mm) : 115\n            Pose collée ou chevillée",
+                "quantity":    1
+            }
+        ]
+    },
+    "scales":                    [
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 19565
+                },
+                {
+                    "nbr": 2,
+                    "min": 28614
+                },
+                {
+                    "nbr": 3,
+                    "min": 34411
+                },
+                {
+                    "nbr": 4,
+                    "min": 40201
+                },
+                {
+                    "nbr": 5,
+                    "min": 46015
+                },
+                {
+                    "nbr": 6,
+                    "min": 51812
+                },
+                {
+                    "nbr": 7,
+                    "min": 57609
+                },
+                {
+                    "nbr": 8,
+                    "min": 63406
+                },
+                {
+                    "nbr": 9,
+                    "min": 69203
+                },
+                {
+                    "nbr": 10,
+                    "min": 75000
+                }
+            ],
+            "code":     "CL",
+            "ceeBonus": {
+                "h1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "h2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "h3": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                }
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 19565
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 28614
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 34411
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 40201
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 46015
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 51812
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 57609
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 63406
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 69203
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 75000
+                }
+            ],
+            "code":     "GP",
+            "ceeBonus": {
+                "h1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "h2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "h3": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                }
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 29148
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 42848
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 51592
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 60336
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 69081
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 77825
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 86569
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 95313
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 104057
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 112801
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 121545
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 130289
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 139033
+                }
+            ],
+            "code":     "PACCL",
+            "ceeBonus": {
+                "h1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "h2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "h3": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                }
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 15262
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 22320
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 26844
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 31359
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 35894
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 40420
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 44946
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 49472
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 53998
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 58524
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 63050
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 67576
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 72102
+                }
+            ],
+            "code":     "PACGP",
+            "ceeBonus": {
+                "h1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "h2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "h3": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                }
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 29148
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 42848
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 51592
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 60336
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 69081
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 77825
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 86569
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 95313
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 104057
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 112801
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 121545
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 130289
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 139033
+                }
+            ],
+            "code":     "PACIT",
+            "ceeBonus": {
+                "h1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "h2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "h3": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                }
+            }
+        },
+        {
+            "stages":   [
+                {
+                    "nbr": 1,
+                    "min": 0,
+                    "max": 19565
+                },
+                {
+                    "nbr": 2,
+                    "min": 0,
+                    "max": 28614
+                },
+                {
+                    "nbr": 3,
+                    "min": 0,
+                    "max": 34411
+                },
+                {
+                    "nbr": 4,
+                    "min": 0,
+                    "max": 40201
+                },
+                {
+                    "nbr": 5,
+                    "min": 0,
+                    "max": 46015
+                },
+                {
+                    "nbr": 6,
+                    "min": 0,
+                    "max": 51812
+                },
+                {
+                    "nbr": 7,
+                    "min": 0,
+                    "max": 57609
+                },
+                {
+                    "nbr": 8,
+                    "min": 0,
+                    "max": 63406
+                },
+                {
+                    "nbr": 9,
+                    "min": 0,
+                    "max": 69203
+                },
+                {
+                    "nbr": 10,
+                    "min": 0,
+                    "max": 75000
+                },
+                {
+                    "nbr": 11,
+                    "min": 0,
+                    "max": 80797
+                },
+                {
+                    "nbr": 12,
+                    "min": 0,
+                    "max": 86594
+                },
+                {
+                    "nbr": 13,
+                    "min": 0,
+                    "max": 92391
+                }
+            ],
+            "code":     "PACP",
+            "ceeBonus": {
+                "h1": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                },
+                "h2": {
+                    "electrique":  7.15,
+                    "combustible": 7.15
+                },
+                "h3": {
+                    "electrique":  8.8,
+                    "combustible": 8.8
+                }
+            }
+        }
+    ],
+    "statusInDci":               1,
+    "errorsStatusInDci":         [],
+    "technician":                {
+        "id":        0,
+        "lastName":  " ",
+        "firstName": " ",
+        "phone":     " "
+    },
+    "lists":                     {
+        "localTypeList":        [
+            {
+                "slug":  "residentiel",
+                "value": "Résidentiel"
+            },
+            {
+                "slug":  "tertiaire",
+                "value": "Tertiaire"
+            },
+            {
+                "slug":  "sante",
+                "value": "Santé"
+            }
+        ],
+        "chauffageTypeList":    [
+            {
+                "slug":  "electrique",
+                "value": "Electrique"
+            },
+            {
+                "slug":  "combustible",
+                "value": "Combustible"
+            }
+        ],
+        "batimentNatureList":   [
+            {
+                "slug":  "",
+                "value": "-"
+            },
+            {
+                "slug":  "nouvelle_residence",
+                "value": "Nouvelle résidence principale"
+            },
+            {
+                "slug":  "location",
+                "value": "Location"
+            },
+            {
+                "slug":  "residence_secondaire",
+                "value": "Résidence secondaire"
+            }
+        ],
+        "niveauHabitationList": [
+            {
+                "slug":  "pp",
+                "value": "Plein pied"
+            },
+            {
+                "slug":  "r1",
+                "value": "R+1"
+            },
+            {
+                "slug":  "r2",
+                "value": "R+2"
+            }
+        ],
+        "porteGarageList":      [
+            {
+                "slug":  "",
+                "value": "non"
+            },
+            {
+                "slug":  "sectionnelle",
+                "value": "sectionnelle"
+            },
+            {
+                "slug":  "coulissante",
+                "value": "coulissante"
+            }
+        ],
+        "accesCamionList":      [
+            {
+                "slug":  "facile",
+                "value": "Facile"
+            },
+            {
+                "slug":  "difficile",
+                "value": "Difficile"
+            }
+        ],
+        "supportList":          [
+            {
+                "slug":  "bois",
+                "value": "Bois"
+            },
+            {
+                "slug":  "brique",
+                "value": "Brique"
+            },
+            {
+                "slug":  "beton",
+                "value": "Béton"
+            },
+            {
+                "slug":  "hourdis",
+                "value": "Hourdis"
+            }
+        ],
+        "typeOrigineList":      []
+    }
+}

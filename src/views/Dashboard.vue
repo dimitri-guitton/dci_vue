@@ -1,11 +1,13 @@
 <template>
-  <button @click="convertOldJsonToNewJson" class="btn btn-info mx-2 my-2">UPDATE OLD JSON</button>
+  <p>DCI {{ version }}</p>
+  <!--  <button @click="convertOldJsonToNewJson" class="btn btn-success mx-2 my-2">Mettre à jours les données</button>-->
+  <button @click="getFileJson" class="btn btn-success mx-2 my-2">Mettre à jour les données</button>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { setCurrentPageTitle } from '@/core/helpers/breadcrumb';
-import { convertAllOldJsonToNewJson } from '@/services/folder/folderService';
+import { getFileJson } from '@/services/folder/folderService';
 
 
 export default defineComponent( {
@@ -16,7 +18,8 @@ export default defineComponent( {
                                     console.log( 'Environnement : ', process.env.NODE_ENV );
                                     console.log( 'URL API : ', process.env.VUE_APP_API_URL );
                                     return {
-                                      convertOldJsonToNewJson: convertAllOldJsonToNewJson,
+                                      version:     process.env.VUE_APP_VERSION,
+                                      getFileJson: getFileJson,
                                     };
                                   },
                                 } );

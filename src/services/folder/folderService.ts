@@ -7,7 +7,7 @@ import { convertOldRrFile } from '@/services/file/converter/convertRrData';
 import { convertOldCetFile } from '@/services/file/converter/convertCetData';
 import path from 'path';
 import { addFile, deleteFile } from '@/services/sqliteService';
-import { FILE_CET, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_PV } from '@/services/constantService';
+import { FILE_CET, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_PV, LIST_FILE_TYPE } from '@/services/constantService';
 import { getcurrentFolderName, setCurrentFileData, setErrorsStatusInDci } from '@/services/data/dataService';
 import { convertOldPgFile } from '@/services/file/converter/convertPgData';
 import { convertOldCombleFile } from '@/services/file/converter/convertCombleData';
@@ -106,17 +106,18 @@ const createSubFolders   = ( type: string, parent: string ) => {
 // TODO argument inutile comme type qui est déja dans NewFolderData
 export const addJsonData = ( type: string, parent: string, reference: string, folderName: string, newFolder: NewFolderData ) => {
 
-           const jsonPath = path.join( __static, `examples/empty_new_data_${ type }.json` );
+    // const jsonPath = path.join( __static, `examples/empty_new_data_${ type }.json` );
+    const jsonPath = path.join( __static, `config_json/empty_new_data_${ type }.json` );
 
-           const rawdata = fs.readFileSync( jsonPath ).toString( 'utf8' );
+    const rawdata = fs.readFileSync( jsonPath ).toString( 'utf8' );
 
-           let fileData = JSON.parse( rawdata );
+    let fileData = JSON.parse( rawdata );
 
-           const today = new Date();
-           // console.log( '+5 MONTH', new Date( today.setMonth( today.getMonth() + 5 ) ) );
+    const today = new Date();
+    // console.log( '+5 MONTH', new Date( today.setMonth( today.getMonth() + 5 ) ) );
 
-           fileData = {
-               ...fileData,
+    fileData = {
+        ...fileData,
                ref:                       reference,
                folderName:                folderName,
                createdAt:                 toEnglishDate( today.toString() ),
@@ -258,6 +259,35 @@ export const convertAllOldJsonToNewJson = () => {
     return true;
 };
 
+/**
+ * Retourne les données des json sur l'ERP
+ */
+export const getFileJson = () => {
+    const jsonFolder = path.join( __static, 'config_json' );
+
+    // Si le dossier n'existe pas on le créer
+    try {
+        fs.accessSync( jsonFolder );
+    } catch ( e ) {
+        fs.mkdirSync( jsonFolder );
+    }
+
+    for ( const file of LIST_FILE_TYPE ) {
+        const url = `${ process.env.VUE_APP_API_URL }/config-file/${ file.slug }`;
+
+        console.log( 'URL -->', url );
+        fetch( url )
+            .then( response => response.json() )
+            .then( response => {
+                console.log( 'Response -->', response );
+
+                const finalPath = `${ jsonFolder }/empty_new_data_${ file.slug }.json`;
+                fs.writeFileSync( finalPath, JSON.stringify( response ) );
+            } )
+            .catch( error => alert( 'Erreur : ' + error ) );
+    }
+};
+
 export const getFolderPath = ( folderName: string ): string => {
     const dropboxPath = store.get( 'dropboxPath' );
 
@@ -332,9 +362,6 @@ const isFolderEmpty = ( folderPath ): boolean => {
     return true;
 };
 
-/**
- * TODO A FAIRE
- */
 export const checkFolder = async ( folderName: string ) => {
     console.log( '%c IN CHECK FOLDER', 'background: #BCBE9D; color: #000000' );
     const folderPath       = getFolderPath( folderName );
