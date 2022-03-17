@@ -25,25 +25,25 @@
         "income": 0
     },
     "codeBonus": null,
-    "energyZone": null,
-    "housing": {
-        "nbOccupant": 1,
-        "type": "maison_individuelle",
-        "heatingType": "electrique",
-        "buildingNature": "",
-        "isRentedHouse": false,
-        "isAddressBenef": true,
-        "address": "",
-        "zipCode": "",
-        "city": "",
-        "plot": "",
-        "area": 0,
-        "dataGeoportail": {},
-        "location": "",
+    "energyZone":        null,
+    "housing":           {
+        "nbOccupant":        1,
+        "type":              "maison_individuelle",
+        "heatingType":       "electrique",
+        "buildingNature":    "",
+        "isRentedHouse":     false,
+        "isAddressBenef":    true,
+        "address":           "",
+        "zipCode":           "",
+        "city":              "",
+        "plot":              "",
+        "area":              0,
+        "dataGeoportail":    {},
+        "location":          "",
         "insulationQuality": "",
-        "constructionYear": null,
-        "lessThan2Years": false,
-        "availableVoltage": ""
+        "constructionYear":  null,
+        "lessThan2Years":    false,
+        "availableVoltage":  ""
     },
     "worksheet":         {
         "period":                      "",
@@ -107,16 +107,16 @@
         "creation":                    true
     },
     "quotation":         {
-        "origin": "",
+        "origin":             "",
         "dateTechnicalVisit": "",
-        "executionDelay": "",
-        "options": [
+        "executionDelay":     "",
+        "options":            [
             {
-                "id": 1,
-                "fileType": "default",
-                "label": "Forfait pose (livraison,pose et mise en service de l’appareil)",
-                "unit": "u",
-                "defaultPu": 700,
+                "id":            1,
+                "fileType":      "default",
+                "label":         "Forfait pose (livraison,pose et mise en service de l’appareil)",
+                "unit":          "u",
+                "defaultPu":     700,
                 "pu": 700,
                 "defaultNumber": 1,
                 "number": 1

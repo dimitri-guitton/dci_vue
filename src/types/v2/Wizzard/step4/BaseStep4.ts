@@ -21,6 +21,7 @@ export interface StepOption {
     id: number;
     pu: number;
     number: number;
+    label: string;
 }
 
 export interface StepProduct {

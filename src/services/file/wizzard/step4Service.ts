@@ -11,12 +11,12 @@ export const defaultInitFormDataStep4 = ( data: AllFile ): BaseStep4 => {
 
     const options: StepOption[] = [];
     for ( const o of data.quotation.options ) {
-        options.push( { id: o.id, pu: o.pu, number: o.number } );
+        options.push( { id: o.id, pu: o.pu, number: o.number, label: o.label } );
     }
 
     const blankOptions: StepOption[] = [];
     for ( const bo of data.quotation.blankOptions ) {
-        blankOptions.push( { id: bo.id, pu: bo.pu, number: bo.number } );
+        blankOptions.push( { id: bo.id, pu: bo.pu, number: bo.number, label: bo.label } );
     }
 
     const selectedProducts: StepProduct[] = [];
@@ -100,6 +100,9 @@ export const defaultGetQuotationValueStep4 = ( stepData: BaseStep4, price: Price
     const options: Option[]           = [];
     const blankOptions: BlankOption[] = [];
 
+    console.log( '%c DATA STEP 4', 'background: #fdd835; color: #000000' );
+    console.log( stepData );
+
     for ( const option of stepData.options ) {
         const jsonOption = getOptionById( option.id );
 
@@ -112,7 +115,7 @@ export const defaultGetQuotationValueStep4 = ( stepData: BaseStep4, price: Price
         const jsonBlankOption = getBlankOptionById( blankOption.id );
 
         if ( jsonBlankOption !== undefined ) {
-            blankOptions.push( { ...jsonBlankOption, number: blankOption.number, pu: blankOption.pu } );
+            blankOptions.push( { ...jsonBlankOption, number: blankOption.number, pu: blankOption.pu, label: blankOption.label } );
         }
     }
 
@@ -132,6 +135,7 @@ export const defaultGetQuotationValueStep4 = ( stepData: BaseStep4, price: Price
         dateTechnicalVisit: stepData.dateTechnicalVisit,
         executionDelay:     stepData.executionDelay,
         origin:             stepData.origin,
+        commentary:         stepData.commentary,
         paymentOnCredit:    {
             active:           stepData.paymentOnCredit.active,
             amount:           stepData.paymentOnCredit.amount,
