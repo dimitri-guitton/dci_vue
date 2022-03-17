@@ -6,6 +6,7 @@ import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
 import { updateJsonData } from '@/services/folder/folderService';
 import { Price } from '@/types/v2/File/Price';
 import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
+import { updateTotalTtc } from '@/services/sqliteService';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4
@@ -35,6 +36,7 @@ export const validatePvStep4 = async ( data: PvFileStep, price: Price ): Promise
     };
 
     updateJsonData( fileData );
+    updateTotalTtc( fileData.ref, fileData.quotation.totalTtc );
 
     return fileData;
 };

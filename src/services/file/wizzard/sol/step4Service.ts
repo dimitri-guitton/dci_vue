@@ -6,6 +6,7 @@ import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { SolFileStep } from '@/types/v2/Wizzard/FileStep';
 import { SolQuotation } from '@/types/v2/File/Sol/SolQuotation';
 import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
+import { updateTotalTtc } from '@/services/sqliteService';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4
@@ -35,6 +36,7 @@ export const validateSolStep4 = async ( data: SolFileStep, price: Price ): Promi
     };
 
     updateJsonData( fileData );
+    updateTotalTtc( fileData.ref, fileData.quotation.totalTtc );
 
     return fileData;
 };

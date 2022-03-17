@@ -7,6 +7,7 @@ import { PacRoFileStep } from '@/types/v2/Wizzard/FileStep';
 import { RoQuotation } from '@/types/v2/File/Ro/RoQuotation';
 import { PacRoStep4 } from '@/types/v2/Wizzard/step4/PacRoStep4';
 import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
+import { updateTotalTtc } from '@/services/sqliteService';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4
@@ -66,6 +67,7 @@ export const validatePacRoStep4 = async ( data: PacRoFileStep, price: Price ): P
     };
 
     updateJsonData( fileData );
+    updateTotalTtc( fileData.ref, fileData.quotation.totalTtc );
 
     return fileData;
 };

@@ -5,7 +5,7 @@ import { PgFileStep } from '@/types/v2/Wizzard/FileStep';
 import { PgFile } from '@/types/v2/File/Pg/PgFile';
 import { getCurrentPgFileData } from '@/services/data/dataService';
 import { PgWorkSheet } from '@/types/v2/File/Pg/PgWorkSheet';
-import { updateReference } from '@/services/sqliteService';
+import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 
 /**
  * Création du formualaire pour la fiche d'info
@@ -478,23 +478,8 @@ export const savePgWorksheet = ( data: PgFileStep ): PgFile => {
     };
 
     if ( updateFileReference ) {
-        let newRef: string;
-        const oldRef = fileData.ref;
-        if ( data.worksheet.technicalVisit ) {
-            // AJOUT DE VT
-            newRef = `VT-${ fileData.ref }`;
-        } else {
-            newRef = fileData.ref.substring( 3 );
-        }
-
-        fileData = {
-            ...fileData,
-            ref: newRef,
-        };
-
-        updateReference( oldRef, newRef );
+        updateFileReferenceTechnicalVisit( fileData, data.worksheet.technicalVisit === true );
     }
-
 
     updateJsonData( fileData );
 

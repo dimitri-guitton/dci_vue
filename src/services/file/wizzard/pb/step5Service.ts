@@ -5,7 +5,7 @@ import { PbWorkSheet } from '@/types/v2/File/Pb/PbWorkSheet';
 import { PbFileStep } from '@/types/v2/Wizzard/FileStep';
 import { PbFile } from '@/types/v2/File/Pb/PbFile';
 import { getCurrentPbFileData } from '@/services/data/dataService';
-import { updateReference } from '@/services/sqliteService';
+import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 
 /**
  * Création du formualaire pour la fiche d'info
@@ -478,23 +478,8 @@ export const savePbWorksheet = ( data: PbFileStep ): PbFile => {
     };
 
     if ( updateFileReference ) {
-        let newRef: string;
-        const oldRef = fileData.ref;
-        if ( data.worksheet.technicalVisit ) {
-            // AJOUT DE VT
-            newRef = `VT-${ fileData.ref }`;
-        } else {
-            newRef = fileData.ref.substring( 3 );
-        }
-
-        fileData = {
-            ...fileData,
-            ref: newRef,
-        };
-
-        updateReference( oldRef, newRef );
+        updateFileReferenceTechnicalVisit( fileData, data.worksheet.technicalVisit === true );
     }
-
 
     updateJsonData( fileData );
 
