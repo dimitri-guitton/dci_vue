@@ -164,7 +164,7 @@
             {
                 "type":  "cee",
                 "title": "Modalité de paiement : Prime CEE versée directement à Eco Atlantique par EDF",
-                "text":  "Tout ou partie des travaux relatifs à ce devis ou bon de commande sont éligibles à une prime d’un montant de {{ceeBonus}} euros dont EDF (SIREN 552 081 317) est à l’origine dans le cadre du dispositif des Certificats d’Economies d’Energie. Le montant de cette prime ne pourra être révisé à la baisse qu’en cas de modification du volume de Certificats d’Economies d’Energie attaché à l’opération ou aux opérations d’économies d’énergie ou de la situation de précarité énergétique et ce, de manière proportionnelle. Dans le cadre de la réglementation un contrôle qualité des travaux sur site ou par contact pourra être demandé. Un refus de ce contrôle sur site ou par contact via EDF ou un prestataire d’EDF conduira au refus de cette prime par EDF.\n\nLe client (consommateur personne physique) peut recourir à la médiation de la consommation en s’adressant à MEDICYS 73 boulevard de clichy 75009 Paris 0749701593\n\nCe devis est accompagné d’un document informatif nommé « Cadre de contribution » remis ce jour au bénéficiaire.\n\nLe bénéficiaire est informé qu’un contrôle de son chantier par un bureau de contrôle dûment habilité à cet effet peut avoir lieu dans le cadre de l’attribution de la prime CEE. Le fait de refuser ce contrôle engendrera le non versement de la prime CEE. Ainsi Eco Atlantique sera en droit d’en exiger le montant directement au bénéficiaire."
+                "text":  "La TVA à taux réduit de 5,5% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.\n\nTout ou partie des travaux relatifs à ce devis ou bon de commande sont éligibles à une prime d’un montant de {{ceeBonus}} euros dont EDF (SIREN 552 081 317) est à l’origine dans le cadre du dispositif des Certificats d’Economies d’Energie. Le montant de cette prime ne pourra être révisé à la baisse qu’en cas de modification du volume de Certificats d’Economies d’Energie attaché à l’opération ou aux opérations d’économies d’énergie ou de la situation de précarité énergétique et ce, de manière proportionnelle. Dans le cadre de la réglementation un contrôle qualité des travaux sur site ou par contact pourra être demandé. Un refus de ce contrôle sur site ou par contact via EDF ou un prestataire d’EDF conduira au refus de cette prime par EDF.\n\nLe client (consommateur personne physique) peut recourir à la médiation de la consommation en s’adressant à MEDICYS 73 boulevard de clichy 75009 Paris 0749701593\n\nCe devis est accompagné d’un document informatif nommé « Cadre de contribution » remis ce jour au bénéficiaire.\n\nLe bénéficiaire est informé qu’un contrôle de son chantier par un bureau de contrôle dûment habilité à cet effet peut avoir lieu dans le cadre de l’attribution de la prime CEE. Le fait de refuser ce contrôle engendrera le non versement de la prime CEE. Ainsi Eco Atlantique sera en droit d’en exiger le montant directement au bénéficiaire."
             },
             {
                 "type":  "maPrimeRenovBonus",
@@ -192,114 +192,114 @@
         "selectedProducts": [],
         "products": [
             {
-                "id": 1,
+                "id":          1,
                 "productType": "pb",
-                "label": "Poêle à bois EMBER KAMIN E-BASIC",
-                "reference": "1431",
-                "pu": 1563,
-                "defaultPu": 1563,
-                "description": "Poêle à bois EMBER KAMIN E-BASIC\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 119 kg\n- Dimensions en cm : P= 41,2  L = 55,6  H = 108,5\n- Garantie 5 ans",
-                "quantity": 1
+                "label":       "Poêle à bois EMBER KAMIN E-BASIC",
+                "reference":   "1431",
+                "pu":          1563,
+                "defaultPu":   1563,
+                "description": "Puissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 119 kg\n- Dimensions en cm : P= 41,2  L = 55,6  H = 108,5\n- Garantie 5 ans",
+                "quantity":    1
             },
             {
-                "id": 2,
+                "id":          2,
                 "productType": "pb",
-                "label": "Poêle à bois EMBER KAMIN E11",
-                "reference": "7305",
-                "pu": 1943,
-                "defaultPu": 1943,
-                "description": "Poêle à bois EMBER KAMIN E11\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 130 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 137,5\n- Garantie 5 ans",
-                "quantity": 1
+                "label":       "Poêle à bois EMBER KAMIN E11",
+                "reference":   "7305",
+                "pu":          1943,
+                "defaultPu":   1943,
+                "description": "Puissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 130 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 137,5\n- Garantie 5 ans",
+                "quantity":    1
             },
             {
-                "id": 3,
+                "id":          3,
                 "productType": "pb",
-                "label": "Poêle à bois EMBER KAMIN E11 Pierre Ollaire",
-                "reference": "8080",
-                "pu": 2321,
-                "defaultPu": 2321,
-                "description": "Poêle à bois EMBER KAMIN E11 Pierre Ollaire\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 130 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 137,5\n- Garantie 5 ans",
-                "quantity": 1
+                "label":       "Poêle à bois EMBER KAMIN E11 Pierre Ollaire",
+                "reference":   "8080",
+                "pu":          2321,
+                "defaultPu":   2321,
+                "description": "Puissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 130 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 137,5\n- Garantie 5 ans",
+                "quantity":    1
             },
             {
-                "id": 4,
+                "id":          4,
                 "productType": "pb",
-                "label": "Poêle à bois EMBER KAMIN E11 Pierre de calcaire naturelle",
-                "reference": "8848",
-                "pu": 2321,
-                "defaultPu": 2321,
-                "description": "Poêle à bois EMBER KAMIN E11 Pierre de calcaire naturelle\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 130 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 137,5\n- Garantie 5 ans",
-                "quantity": 1
+                "label":       "Poêle à bois EMBER KAMIN E11 Pierre de calcaire naturelle",
+                "reference":   "8848",
+                "pu":          2321,
+                "defaultPu":   2321,
+                "description": "Puissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 130 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 137,5\n- Garantie 5 ans",
+                "quantity":    1
             },
             {
-                "id": 5,
+                "id":          5,
                 "productType": "pb",
-                "label": "Poêle à bois EMBER KAMIN E14",
-                "reference": "7147",
-                "pu": 1859,
-                "defaultPu": 1859,
-                "description": "Poêle à bois EMBER KAMIN E14\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 119 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 108,4\n- Garantie 5 ans",
-                "quantity": 1
+                "label":       "Poêle à bois EMBER KAMIN E14",
+                "reference":   "7147",
+                "pu":          1859,
+                "defaultPu":   1859,
+                "description": "Puissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 119 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 108,4\n- Garantie 5 ans",
+                "quantity":    1
             },
             {
-                "id": 6,
+                "id":          6,
                 "productType": "pb",
-                "label": "Poêle à bois EMBER KAMIN E14 Pierre Ollaire",
-                "reference": "8849",
-                "pu": 2221,
-                "defaultPu": 2221,
-                "description": "Poêle à bois EMBER KAMIN E14 Pierre Ollaire\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 119 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 108,4\n- Garantie 5 ans",
-                "quantity": 1
+                "label":       "Poêle à bois EMBER KAMIN E14 Pierre Ollaire",
+                "reference":   "8849",
+                "pu":          2221,
+                "defaultPu":   2221,
+                "description": "Puissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 119 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 108,4\n- Garantie 5 ans",
+                "quantity":    1
             },
             {
-                "id": 7,
+                "id":          7,
                 "productType": "pb",
-                "label": "Poêle à bois EMBER KAMIN E14 Pierre de calcaire naturelle",
-                "reference": "8081",
-                "pu": 2221,
-                "defaultPu": 2221,
-                "description": "Poêle à bois EMBER KAMIN E14 Pierre de calcaire naturelle\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 119 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 108,4\n- Garantie 5 ans",
-                "quantity": 1
+                "label":       "Poêle à bois EMBER KAMIN E14 Pierre de calcaire naturelle",
+                "reference":   "8081",
+                "pu":          2221,
+                "defaultPu":   2221,
+                "description": "Puissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 119 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 108,4\n- Garantie 5 ans",
+                "quantity":    1
             },
             {
-                "id": 8,
+                "id":          8,
                 "productType": "pb",
-                "label": "Poêle à bois EMBER KAMIN E16",
-                "reference": "7307",
-                "pu": 1822,
-                "defaultPu": 1822,
-                "description": "Poêle à bois EMBER KAMIN E16\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 112 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 92,6\n- Garantie 5 ans",
-                "quantity": 1
+                "label":       "Poêle à bois EMBER KAMIN E16",
+                "reference":   "7307",
+                "pu":          1822,
+                "defaultPu":   1822,
+                "description": "Puissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 112 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 92,6\n- Garantie 5 ans",
+                "quantity":    1
             },
             {
-                "id": 9,
+                "id":          9,
                 "productType": "pb",
-                "label": "Poêle à bois EMBER KAMIN E16 Pierre Ollaire",
-                "reference": "8849",
-                "pu": 2126,
-                "defaultPu": 2126,
-                "description": "Poêle à bois EMBER KAMIN E16 Pierre Ollaire\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 112 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 92,6\n- Garantie 5 ans",
-                "quantity": 1
+                "label":       "Poêle à bois EMBER KAMIN E16 Pierre Ollaire",
+                "reference":   "8849",
+                "pu":          2126,
+                "defaultPu":   2126,
+                "description": "Puissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 112 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 92,6\n- Garantie 5 ans",
+                "quantity":    1
             },
             {
-                "id": 10,
+                "id":          10,
                 "productType": "pb",
-                "label": "Poêle à bois EMBER KAMIN E16 Pierre de calcaire naturelle",
-                "reference": "8081",
-                "pu": 2126,
-                "defaultPu": 2126,
-                "description": "Poêle à bois EMBER KAMIN E16 Pierre de calcaire naturelle\n\nPuissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 112 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 92,6\n- Garantie 5 ans",
-                "quantity": 1
+                "label":       "Poêle à bois EMBER KAMIN E16 Pierre de calcaire naturelle",
+                "reference":   "8081",
+                "pu":          2126,
+                "defaultPu":   2126,
+                "description": "Puissance nominale 6,0 kW , Rendement nominal 81 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 26 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 112 kg\n- Dimensions en cm : P= 41  L = 55,6  H = 92,6\n- Garantie 5 ans",
+                "quantity":    1
             },
             {
-                "id": 11,
+                "id":          11,
                 "productType": "pb",
-                "label": "Poêle à bois EMBER KAMIN M3 VS Steel",
-                "reference": "2381",
-                "pu": 2507,
-                "defaultPu": 2507,
-                "description": "Poêle à bois EMBER KAMIN M3 VS Steel\n\nPuissance nominale 8,1 kW , Rendement nominal 80 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 19 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 181 kg\n- Dimensions en cm : P= 42  L = 77,3  H = 98,5\n- Garantie 5 ans",
-                "quantity": 1
+                "label":       "Poêle à bois EMBER KAMIN M3 VS Steel",
+                "reference":   "2381",
+                "pu":          2507,
+                "defaultPu":   2507,
+                "description": "Puissance nominale 8,1 kW , Rendement nominal 80 %, Eco Design 2022, Classe énergétique A+, émission de CO: 0,08, émission de particules 19 mg/nm3, émission d’oxyde d’azote : 98mg/nm3, conforme à la norme NF 14785.\n\n- La série E est caractérisée par un design sophistiqué combiné avec des matériaux de haute qualité. Les poêles Ember sont conçus en utilisant une technologie de pointe et sont en grande partie fabriqués main.\n- Bûches de 33 cm\n- Chambre de combustion en béton réfractaire pour une combustion propre\n- Les modèles de la série E comportent un système de fermeture à trois points pour une meilleure étanchéité par rapport à l’extérieur. Un approvisionnement en air frais permet une bonne atmosphère de la pièce.\n- Poignées qui ne chauffent pas.\n- Compartiment à cendre caché.\n\n- Poids : 181 kg\n- Dimensions en cm : P= 42  L = 77,3  H = 98,5\n- Garantie 5 ans",
+                "quantity":    1
             },
             {
                 "id": 12,

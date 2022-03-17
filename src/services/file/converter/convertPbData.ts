@@ -60,7 +60,7 @@ const convertOldPbProduct = ( oldData ): Product[] => {
                              reference:   product[ 'ref' ],
                              pu:          product[ 'pu' ],
                              defaultPu:   product[ 'pu' ],
-                             description: product[ 'label' ],
+                             description: ( product[ 'label' ] as string ).replace( `${ label }\n\n`, '' ),
                              quantity:    1,
                          } );
 

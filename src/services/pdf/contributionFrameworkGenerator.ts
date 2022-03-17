@@ -10,7 +10,7 @@ import {
     TEL_FRANCE_RENOV,
 } from '@/services/pdf/pdfVariable';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
-import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PG, FILE_SOL } from '@/services/constantService';
+import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { AllFile } from '@/types/v2/File/All';
 import { getAddress } from '@/services/data/dataService';
 
@@ -194,6 +194,7 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
                 work = 'Installation d’un pompe à chaleur air / air/ eau';
                 break;
             case FILE_PG:
+            case FILE_PB:
                 cee  = 'TH-112';
                 work = 'Installation d’un appareil indépendant de chauffage au bois';
                 break;

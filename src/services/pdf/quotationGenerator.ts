@@ -95,7 +95,7 @@ export class QuotationGenerator extends PdfGenerator {
         }
 
         // Génération du mandat de maPrimeRenov
-        if ( ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO ) && ( this._file.quotation as CetQuotation | PgQuotation | RoQuotation ).maPrimeRenovBonus > 0 ) {
+        if ( ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PB || this._file.type === FILE_PAC_RO ) && ( this._file.quotation as CetQuotation | PgQuotation | PbQuotation | RoQuotation ).maPrimeRenovBonus > 0 ) {
             const maPrimeRenovGenerator = new MaPrimeRenovGenerator( this._file );
             maPrimeRenovGenerator.generatePdf();
         }
@@ -1062,10 +1062,11 @@ export class QuotationGenerator extends PdfGenerator {
         let text = '';
         switch ( this._file.type ) {
             case FILE_PG:
+            case FILE_PB:
             case FILE_CET:
             case FILE_PAC_RO:
-                const quotation = ( this._file.quotation as PgQuotation | CetQuotation | RoQuotation );
-                text = this.formatPrice( quotation.maPrimeRenovBonus, 1, false );
+                const quotation = ( this._file.quotation as PgQuotation | PbQuotation | CetQuotation | RoQuotation );
+                text            = this.formatPrice( quotation.maPrimeRenovBonus, 1, false, false );
 
         }
 
@@ -1105,7 +1106,7 @@ export class QuotationGenerator extends PdfGenerator {
                     items.push( PriceQuotation.CEE );
                 }
 
-                if ( ( this._file.quotation as CetQuotation | PgQuotation ).maPrimeRenovBonus > 0 ) {
+                if ( ( this._file.quotation as CetQuotation | PgQuotation | PbQuotation ).maPrimeRenovBonus > 0 ) {
                     items.push( PriceQuotation.maPrimeRenov );
                 }
 
