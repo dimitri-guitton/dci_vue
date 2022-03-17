@@ -111,27 +111,39 @@
         "ceeBonus": 0,
         "tva": 5.5,
         "paymentOnCredit": {
-            "active": false,
-            "amount": 0,
+            "active":           false,
+            "amount":           0,
             "withoutInsurance": 0,
-            "withInsurance": 0,
-            "duration": 0,
-            "TAEG": 0,
-            "total": 0
+            "withInsurance":    0,
+            "duration":         0,
+            "TAEG":             0,
+            "total":            0
         },
         "tva10": 0,
         "tva20": 0,
-        "selectedProducts": [],
+        "selectedProducts": [
+            {
+                "id":          6,
+                "productType": "pv",
+                "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 8 x 375 wc = 3000 kwc",
+                "pu":          715,
+                "defaultPu":   715,
+                "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
+                "quantity":    8,
+                "power":       375,
+                "laying":      1500
+            }
+        ],
         "products": [
             {
-                "id": 1,
+                "id":          1,
                 "productType": "pv",
-                "label": "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 3 x 375 wc = 1125 kwc",
-                "pu": 815,
-                "defaultPu": 815,
+                "label":       "Champ solaire photovoltaïque de marque DUAL Sun modèle Flash black de 3 x 375 wc = 1125 kwc",
+                "pu":          815,
+                "defaultPu":   815,
                 "description": "Fabrication française Rendement de 20%\nCellules mono cristallines\nCadre aluminium anodisé noir\nVerre 3,2mm traité anti reflet\nFace arrière : Film composite noir\nDimensions : H 1 640 mm x L 1 146 mm\nCertification IEC 61215\nGaranti matériel et production 25 ans\nElectricité : Micros onduleurs de marque Enphase modèle IQ7+\nPasserelle de communication Envoy S standard\nCoffret électrique de protection AC avec parafoudre intégré\nEtiquettes de signalisation Câbles et petits accessoires\nGarantie matériel 25 ans\nStructure de surimposition kit K2 System SingleRail\nSystème de montage SingleRail adapté aux couvertures en tuiles flamandes et aux toits en fibrociment et tôle ondulée. La fixation au toit s’effectue au moyen de crochets de toit ou de vis à double filetage.",
-                "quantity": 3,
-                "power": 375,
+                "quantity":    3,
+                "power":       375,
                 "laying": 800
             },
             {

@@ -34,10 +34,9 @@ const convertOldPvProduct = ( oldData ): Product[] => {
                                                                                             ] );
 
 
-    let index = 1;
     oldProducts.forEach( product => {
         pvProducts.push( {
-                             id:          index,
+                             id:          product[ 'id' ],
                              productType: FILE_PV,
                              label:       product[ 'label' ],
                              reference:   product[ 'ref' ],
@@ -49,7 +48,41 @@ const convertOldPvProduct = ( oldData ): Product[] => {
                              laying:      product[ 'laying' ],
                          } );
 
-        index++;
+    } );
+    return pvProducts;
+};
+
+const convertOldSelectedPvProduct = ( oldData ): Product[] => {
+    const pvProducts: Product[] = [];
+    const oldProducts: []       = getObjectData( oldData,
+                                                 [
+                                                     'devis',
+                                                     'pv',
+                                                     'products',
+                                                 ] ) === ( {} || '' ) ? [] : getObjectData( oldData,
+                                                                                            [
+                                                                                                'devis',
+                                                                                                'pv',
+                                                                                                'products',
+                                                                                            ] );
+
+
+    oldProducts.forEach( product => {
+        if ( +product[ 'quantity' ] === 8 ) {
+            pvProducts.push( {
+                                 id:          product[ 'id' ],
+                                 productType: FILE_PV,
+                                 label:       product[ 'label' ],
+                                 reference:   product[ 'ref' ],
+                                 pu:          product[ 'pu' ],
+                                 defaultPu:   product[ 'pu' ],
+                                 description: product[ 'description' ],
+                                 quantity:    product[ 'quantity' ],
+                                 power:       product[ 'power' ],
+                                 laying:      product[ 'laying' ],
+                             } );
+
+        }
     } );
     return pvProducts;
 };
@@ -204,7 +237,7 @@ export const convertOldPvFile = ( oldData ): PvFile => {
             tva10:                0,
             tva20:                0,
             ceeBonus:             getNumberData( oldData [ 'devis' ][ 'primeCEE' ] ),
-            selectedProducts:     [],
+            selectedProducts:     convertOldSelectedPvProduct( oldData ),
             products:             convertOldPvProduct( oldData ),
             selfConsumptionBonus: 0,
         },
