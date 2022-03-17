@@ -64,6 +64,8 @@ import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
+import { getCeeBonus } from '@/services/file/fileCommonService';
+import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 
 export default defineComponent( {
                                   name:       'file-sol-step-4',
@@ -171,7 +173,7 @@ export default defineComponent( {
 
                                           // Si la prime CEE est active
                                           if ( !props.fileData.disabledCeeBonus ) {
-                                            ceeBonus = ceeBonus * props.quantityArea;
+                                            ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) ) * props.quantityArea;
                                           }
                                         }
                                       }

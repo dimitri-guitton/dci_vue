@@ -64,6 +64,8 @@ import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
+import { getCeeBonus } from '@/services/file/fileCommonService';
+import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 
 export default defineComponent( {
                                   name:       'file-comble-step-4',
@@ -82,7 +84,7 @@ export default defineComponent( {
                                     selectedProducts: Array as () => Product[],
                                     options:          Array as () => Option[],
                                     blankOptions:     Array as () => BlankOption[],
-                                    quantityArea: {
+                                    quantityArea:     {
                                       type:     Number,
                                       required: true,
                                     },
@@ -170,10 +172,9 @@ export default defineComponent( {
                                       } else {
                                         // Si les primes sont actives
                                         if ( !props.fileData.disabledBonus ) {
-
                                           // Si la prime CEE est active
                                           if ( !props.fileData.disabledCeeBonus ) {
-                                            ceeBonus = ceeBonus * props.quantityArea;
+                                            ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) ) * props.quantityArea;
                                           }
                                         }
                                       }
