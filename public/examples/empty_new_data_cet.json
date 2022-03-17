@@ -202,28 +202,28 @@
                 "quantity": 1
             },
             {
-                "id": 3,
+                "id":          3,
                 "productType": "cet",
-                "label": "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
-                "reference": "CETACSP200",
-                "pu": 2456,
-                "defaultPu": 2456,
+                "label":       "CHAUFFE EAU THERMODYNAMIQUE SPLIT ATLANTIC CALYPSO 200L",
+                "reference":   "CETACSP200",
+                "pu":          2456,
+                "defaultPu":   2456,
                 "description": "Capacité: 200L SPLIT\r\nDimensions HxLxP: 1267*588*603mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
-                "size": "HxLxP: 1267*588*60",
-                "type": "split",
-                "quantity": 1
+                "size":        "HxLxP: 1267*588*60",
+                "type":        "split",
+                "quantity":    1
             },
             {
-                "id": 4,
+                "id":          4,
                 "productType": "cet",
-                "label": "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 270L",
-                "reference": "CETACSP270",
-                "pu": 2666,
-                "defaultPu": 2666,
+                "label":       "CHAUFFE EAU THERMODYNAMIQUE SPLIT ATLANTIC CALYPSO 270L",
+                "reference":   "CETACSP270",
+                "pu":          2666,
+                "defaultPu":   2666,
                 "description": "Capacité: 270L SPLIT\r\nDimensions HxLxP: 1600*588*652mm poids 55kg\r\nPuissance acoustique du groupe: 55 dBa\r\nFluide: R513a\r\nPuissance max absorbée en PAC: 650W\r\nPlage de fonctionnement: -5/+43°c  \r\nAppoint électrique: 1800W\r\nCOP: 3,18 – Profil de soutirage : L pour une efficacité énergétique de 124%\r\nClasse energetique: A+\r\nDimesion groupe exterieur HxLxP: 535*743*293 poids 26kg",
-                "size": "HxLxP: 1600*588*652",
-                "type": "split",
-                "quantity": 1
+                "size":        "HxLxP: 1600*588*652",
+                "type":        "split",
+                "quantity":    1
             }
         ],
         "maPrimeRenovBonus": 0

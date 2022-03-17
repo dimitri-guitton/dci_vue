@@ -176,7 +176,7 @@
                 },
                 {
                     "id":        3,
-                    "label":     "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 200L",
+                    "label":     "CHAUFFE EAU THERMODYNAMIQUE SPLIT ATLANTIC CALYPSO 200L",
                     "ref":       "CETACSP200",
                     "pu":        2456,
                     "defaultPU": 2456,
@@ -186,7 +186,7 @@
                 },
                 {
                     "id":        4,
-                    "label":     "CHAUFFE EAU THERMODYNAMIQUE ATLANTIC CALYPSO 270L",
+                    "label":     "CHAUFFE EAU THERMODYNAMIQUE SPLIT ATLANTIC CALYPSO 270L",
                     "ref":       "CETACSP270",
                     "pu":        2666,
                     "defaultPU": 2666,

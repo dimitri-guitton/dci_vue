@@ -324,15 +324,15 @@
                 "etas": 127
             },
             {
-                "id": 14,
+                "id":          14,
                 "productType": "pac_ro",
-                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE ERGA06EV",
-                "reference": "ERGA06EV",
-                "pu": 2345.67,
-                "defaultPu": 2345.67,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE ERGA06EV",
+                "reference":   "ERGA06EV",
+                "pu":          2345.67,
+                "defaultPu":   2345.67,
                 "description": "- Puissance calorifique +7°c/-7°c : 5,81/5,72 kW\n- COP +7°c/-7°c : 2,7/1,74\n- ETAs : 127 %\n- Classe énergétique : A++\n- Dimension : 740*884*388 mm Poids : 58,5kg\n- Plage de fonctionnement : -25°c/+25°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 38 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 6,67 € HT",
-                "quantity": 1,
-                "etas": 127
+                "quantity":    1,
+                "etas":        127
             },
             {
                 "id": 15,
@@ -346,15 +346,15 @@
                 "etas": 130
             },
             {
-                "id": 16,
+                "id":          16,
                 "productType": "pac_ro",
-                "label": "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNETEMPERATURE EPGA11DV",
-                "reference": "EPGA11DV",
-                "pu": 5150.17,
-                "defaultPu": 5150.17,
+                "label":       "UNITE EXTERIEURE DAIKIN ALTHERMA MOYENNE TEMPERATURE EPGA11DV",
+                "reference":   "EPGA11DV",
+                "pu":          5150.17,
+                "defaultPu":   5150.17,
                 "description": "- Puissance calorifique +7°c/-7°c : 15,19/10,12 kW\n- COP +7°c/-7°c : 2,89/2,28\n- ETAs : 129 %\n- Classe énergétique : A++\n- Dimension : 1440*1160*380 mm Poids : 143kg\n- Plage de fonctionnement : -25°c/+35°c\n- Réfrigérant : R32\n- Pression sonore (à 5m) : 42 dB(a)\n- Alimentation électrique : Monophasée\n- Dont éco-participation 19,17 € HT",
-                "quantity": 1,
-                "etas": 129
+                "quantity":    1,
+                "etas":        129
             },
             {
                 "id": 17,
