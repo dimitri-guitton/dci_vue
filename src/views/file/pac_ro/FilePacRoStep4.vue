@@ -108,6 +108,14 @@
     <template v-for="p in products" v-bind:key="p.reference">
       <row-price :product="p"></row-price>
     </template>
+    <template v-if="!products.length">
+      <div class="alert alert-danger d-flex align-items-center p-5 mb-10">
+        <i class="fa fa-exclamation fs-2hx me-4 text-danger"></i>
+        <div class="d-flex flex-column">
+          <h4 class="mb-1 text-danger">Aucun produit n'a pu être trouvé</h4>
+        </div>
+      </div>
+    </template>
 
     <template v-for="kit in selectedKitCascade" v-bind:key="kit.reference">
       <row-price :product="kit"></row-price>

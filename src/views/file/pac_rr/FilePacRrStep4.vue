@@ -82,7 +82,12 @@
       <row-price :product="p"></row-price>
     </template>
     <template v-if="!products.length">
-      <h6>Aucun produit de trouvé</h6>
+      <div class="alert alert-danger d-flex align-items-center p-5 mb-10">
+        <i class="fa fa-exclamation fs-2hx me-4 text-danger"></i>
+        <div class="d-flex flex-column">
+          <h4 class="mb-1 text-danger">Aucun produit n'a pu être trouvé</h4>
+        </div>
+      </div>
     </template>
 
     <!-- Formualire caché afin de binder les values au formaulaire comme la sélection des produits se fait via l'algo-->
