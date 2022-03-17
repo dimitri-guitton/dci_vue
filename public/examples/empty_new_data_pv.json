@@ -98,8 +98,9 @@
         "partner": "VTE",
         "texts": [
             {
+                "type":  "tva",
                 "title": "TVA",
-                "text": "La TVA à taux réduit de 10% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.  Réalisation du chantier SAS Allaire du temps and co rcs La Rochelle 85228498300024 QualiPV QPV/58881/58881"
+                "text":  "La TVA à taux réduit de 10% ne s'applique qu'à des commandes passées par des particuliers et relative à des locaux à usage d'habitation dont la construction est achevée depuis plus de deux ans.  Réalisation du chantier SAS Allaire du temps and co rcs La Rochelle 85228498300024 QualiPV QPV/58881/58881"
             }
         ],
         "discount": 0,

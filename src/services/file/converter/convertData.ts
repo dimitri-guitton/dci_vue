@@ -51,26 +51,74 @@ export const getArrayData = ( data: any ): [] => {
 export const convertOldText = ( oldData ): QuotationText[] => {
     const texts: QuotationText[] = [];
     if ( getObjectData( oldData, [ 'devis', 'texte1' ] ) !== '' && getObjectData( oldData, [ 'devis', 'texte1' ] ).text !== null ) {
+
+        let type = 'tva';
+        if ( getObjectData( oldData, [ 'devis', 'texte1', 'title' ] ) !== null && getObjectData( oldData, [ 'devis', 'texte1', 'title' ] )
+            .includes( 'Prime CEE' ) ) {
+            type = 'cee';
+        } else if ( getObjectData( oldData, [ 'devis', 'texte1', 'title' ] ) !== null && getObjectData( oldData,
+                                                                                                        [ 'devis', 'texte1', 'title' ] )
+            .includes( 'MaPrimeRénov' ) ) {
+            type = 'maPrimeRenovBonus';
+        }
+
         texts.push( {
+                        type,
                         title: getObjectData( oldData, [ 'devis', 'texte1', 'title' ] ),
                         text:  getObjectData( oldData, [ 'devis', 'texte1', 'text' ] ),
                     } );
     }
     if ( getObjectData( oldData, [ 'devis', 'texte2' ] ) !== '' && getObjectData( oldData, [ 'devis', 'texte2' ] ).text !== null ) {
+
+        let type = 'tva';
+        if ( getObjectData( oldData, [ 'devis', 'texte2', 'title' ] ) !== null && getObjectData( oldData, [ 'devis', 'texte2', 'title' ] )
+            .includes( 'Prime CEE' ) ) {
+            type = 'cee';
+        } else if ( getObjectData( oldData, [ 'devis', 'texte2', 'title' ] ) !== null && getObjectData( oldData,
+                                                                                                        [ 'devis', 'texte2', 'title' ] )
+            .includes( 'MaPrimeRénov' ) ) {
+            type = 'maPrimeRenovBonus';
+        }
+
         texts.push( {
+                        type,
                         title: getObjectData( oldData, [ 'devis', 'texte2', 'title' ] ),
                         text:  getObjectData( oldData, [ 'devis', 'texte2', 'text' ] ),
                     } );
     }
     if ( getObjectData( oldData, [ 'devis', 'texte3' ] ) !== '' && getObjectData( oldData, [ 'devis', 'texte3' ] ).text !== null ) {
+
+        let type = 'tva';
+        if ( getObjectData( oldData, [ 'devis', 'texte3', 'title' ] ) !== null && getObjectData( oldData, [ 'devis', 'texte3', 'title' ] )
+            .includes( 'Prime CEE' ) ) {
+            type = 'cee';
+        } else if ( getObjectData( oldData, [ 'devis', 'texte3', 'title' ] ) !== null && getObjectData( oldData,
+                                                                                                        [ 'devis', 'texte3', 'title' ] )
+            .includes( 'MaPrimeRénov' ) ) {
+            type = 'maPrimeRenovBonus';
+        }
+
         texts.push( {
+                        type,
                         title: getObjectData( oldData, [ 'devis', 'texte3', 'title' ] ),
                         text:  getObjectData( oldData, [ 'devis', 'texte3', 'text' ] ),
                     } );
     }
 
     if ( getObjectData( oldData, [ 'devis', 'texte4' ] ) !== '' && getObjectData( oldData, [ 'devis', 'texte4' ] ).text !== null ) {
+
+        let type = 'tva';
+        if ( getObjectData( oldData, [ 'devis', 'texte4', 'title' ] ) !== null && getObjectData( oldData, [ 'devis', 'texte4', 'title' ] )
+            .includes( 'Prime CEE' ) ) {
+            type = 'cee';
+        } else if ( getObjectData( oldData, [ 'devis', 'texte4', 'title' ] ) !== null && getObjectData( oldData,
+                                                                                                        [ 'devis', 'texte4', 'title' ] )
+            .includes( 'MaPrimeRénov' ) ) {
+            type = 'maPrimeRenovBonus';
+        }
+
         texts.push( {
+                        type,
                         title: getObjectData( oldData, [ 'devis', 'texte4', 'title' ] ),
                         text:  getObjectData( oldData, [ 'devis', 'texte4', 'text' ] ),
                     } );
