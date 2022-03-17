@@ -5,28 +5,28 @@
     "folderName": "",
     "createdAt": "",
     "updatedAt": "",
-    "settings": {
+    "settings":                  {
         "ceeCoef": "5.5"
     },
-    "disabledBonus": false,
-    "disabledCeeBonus": false,
+    "disabledBonus":             false,
+    "disabledCeeBonus":          false,
     "disabledMaPrimeRenovBonus": false,
-    "assents": [],
-    "beneficiary": {
-        "civility": "m",
-        "lastName": "",
+    "assents":                   [],
+    "beneficiary":               {
+        "civility":  "m",
+        "lastName":  "",
         "firstName": "",
-        "address": "",
-        "zipCode": "",
-        "city": "",
-        "email": "",
-        "phone": "",
-        "mobile": "",
-        "income": 0
+        "address":   "",
+        "zipCode":   "",
+        "city":      "",
+        "email":     "",
+        "phone":     "",
+        "mobile":    "",
+        "income":    0
     },
-    "codeBonus": null,
-    "energyZone":        null,
-    "housing":           {
+    "codeBonus":                 null,
+    "energyZone":                null,
+    "housing":                   {
         "nbOccupant":        1,
         "type":              "maison_individuelle",
         "heatingType":       "electrique",
@@ -45,7 +45,7 @@
         "lessThan2Years":    false,
         "availableVoltage":  ""
     },
-    "worksheet":         {
+    "worksheet":                 {
         "period":                      "",
         "generateur":                  "electrique",
         "marque":                      "",
@@ -106,17 +106,17 @@
         "zoneInstallation":            "z1",
         "creation":                    true
     },
-    "quotation":         {
-        "origin": "",
+    "quotation":                 {
+        "origin":             "",
         "dateTechnicalVisit": "",
-        "executionDelay": "",
-        "options": [
+        "executionDelay":     "",
+        "options":            [
             {
-                "id": 1,
-                "fileType": "pg",
-                "label": "Forfait pose (livraison,pose et mise en service de l’appareil)",
-                "unit": "u",
-                "defaultPu": 700,
+                "id":            1,
+                "fileType":      "pg",
+                "label":         "Forfait pose (livraison,pose et mise en service de l’appareil)",
+                "unit":          "u",
+                "defaultPu":     700,
                 "pu": 700,
                 "defaultNumber": 1,
                 "number": 1
@@ -173,7 +173,7 @@
         "texts": [
             {
                 "title": "Modalité de paiement : Prime CEE versée directement à Eco Atlantique par EDF",
-                "text":  "Tout ou partie des travaux relatifs à ce devis ou bon de commande sont éligibles à une prime d’un montant de {{ceeBonus}} euros dont EDF (SIREN 552 081 317) est à l’origine dans le cadre du dispositif des Certificats d’Economies d’Energie. Le montant de cette prime ne pourra être révisé à la baisse qu’en cas de modification du volume de Certificats d’Economies d’Energie attaché à l’opération ou aux opérations d’économies d’énergie ou de la situation de précarité énergétique et ce, de manière proportionnelle. Dans le cadre de la réglementation un contrôle qualité des travaux sur site ou par contact pourra être demandé. Un refus de ce contrôle sur site ou par contact via EDF ou un prestataire d’EDF conduira au refus de cette prime par EDF.\n\nLe client (consommateur personne physique) peut recourir à la médiation de la consommation en s’adressant à MEDICYS 73 boulevard de clichy 75009 Paris 0749701593\n\nCe devis est accompagné d’un document informatif nommé « Cadre de contribution » remis ce jour au bénéficiaire.\n\nLe bénéficiaire est informé qu’un contrôle de son chantier par un bureau de contrôle dûment habilité à cet effet peut avoir lieu dans le cadre de l’attribution de la prime CEE. Le fait de refuser ce contrôle engendrera le non versement de la prime CEE. Ainsi Eco Atlantique sera en droit d’en exiger le montant directement au bénéficiaire."
+                "text": "Tout ou partie des travaux relatifs à ce devis ou bon de commande sont éligibles à une prime d’un montant de {{ceeBonus}} euros dont EDF (SIREN 552 081 317) est à l’origine dans le cadre du dispositif des Certificats d’Economies d’Energie. Le montant de cette prime ne pourra être révisé à la baisse qu’en cas de modification du volume de Certificats d’Economies d’Energie attaché à l’opération ou aux opérations d’économies d’énergie ou de la situation de précarité énergétique et ce, de manière proportionnelle. Dans le cadre de la réglementation un contrôle qualité des travaux sur site ou par contact pourra être demandé. Un refus de ce contrôle sur site ou par contact via EDF ou un prestataire d’EDF conduira au refus de cette prime par EDF.\n\nLe client (consommateur personne physique) peut recourir à la médiation de la consommation en s’adressant à MEDICYS 73 boulevard de clichy 75009 Paris 0749701593\n\nCe devis est accompagné d’un document informatif nommé « Cadre de contribution » remis ce jour au bénéficiaire.\n\nLe bénéficiaire est informé qu’un contrôle de son chantier par un bureau de contrôle dûment habilité à cet effet peut avoir lieu dans le cadre de l’attribution de la prime CEE. Le fait de refuser ce contrôle engendrera le non versement de la prime CEE. Ainsi Eco Atlantique sera en droit d’en exiger le montant directement au bénéficiaire."
             },
             {
                 "title": "MaPrimeRénov'",
@@ -1129,7 +1129,7 @@
         "outsideSocket": false,
         "maPrimeRenovBonus": 0
     },
-    "scales":            [
+    "scales":                    [
         {
             "stages": [
                 {
@@ -1423,7 +1423,7 @@
                     "max": 139033
                 }
             ],
-            "code": "CL",
+            "code":   "CL",
             "ceeBonus": {
                 "h1": 38.2,
                 "h2": 20.9,
@@ -1431,15 +1431,15 @@
             }
         }
     ],
-    "statusInDci":       1,
-    "errorsStatusInDci": [],
-    "technician":        {
+    "statusInDci":               1,
+    "errorsStatusInDci":         [],
+    "technician":                {
         "id":        0,
         "lastName":  " ",
         "firstName": " ",
         "phone":     " "
     },
-    "lists":             {
+    "lists":                     {
         "localTypeList":        [
             {
                 "slug":  "maison_individuelle",
