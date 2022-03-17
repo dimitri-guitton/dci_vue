@@ -81,8 +81,9 @@ export class QuotationGenerator extends PdfGenerator {
         super.generatePdf();
 
         // Génération de l'attestation de TVA simplifé
-        // Pour les devis CET, Poele, PAC RR et RO
-        if ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR ) {
+        // Pour les devis CET, Poele, PAC RR, PAC RO et PV quand puissance <= 3000Kw
+        // TODO PV SEULEMENT QUAND <= 3000Kw
+        if ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR || this._file.type === FILE_PV ) {
             const tvaGenerator = new TvaCertificateGenerator( this._file );
             tvaGenerator.generatePdf();
         }

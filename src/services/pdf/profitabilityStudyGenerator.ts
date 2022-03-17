@@ -1,5 +1,5 @@
 import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
-import { Content, StyleDictionary, TableCell, TDocumentDefinitions } from 'pdfmake/interfaces';
+import { Content, ContentText, StyleDictionary, TableCell, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { AllFile } from '@/types/v2/File/All';
 import { DARK } from '@/services/pdf/pdfVariable';
 import { getAddress } from '@/services/data/dataService';
@@ -43,6 +43,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
                 this._photovoltaicInfo(),
                 this._benefitsOver25Years(),
                 this._chartPage(),
+                this._mention,
             ],
             styles:  this._style,
         };
@@ -210,13 +211,20 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
         const data                         = this._pvAlgo.benefitsOver25Years();
 
         for ( const benefit of data ) {
+
+            let resaleToEdf = this.formatPrice( benefit.resaleToEdf );
+
+            // Si === -1 pas de valeur pour EDF
+            if ( benefit.resaleToEdf === -1 ) {
+                resaleToEdf = '';
+            }
             formattedBody.push( [
                                     {
                                         text:      benefit.year,
                                         alignment: 'center',
                                     },
                                     {
-                                        text:      this.formatPrice( benefit.resaleToEdf ),
+                                        text:      resaleToEdf,
                                         alignment: 'center',
                                     },
                                     {
@@ -378,7 +386,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
                                     bold:      true,
                                 },
                                 {
-                                    text:      this.formatPrice( this._pvAlgo.financialReturnAverage25Years() ),
+                                    text:      `${ this._pvAlgo.financialReturnAverage25Years().toFixed( 2 ) }%`,
                                     alignment: 'center',
                                     bold:      true,
                                 },
@@ -472,9 +480,15 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
             config,
         );
 
-        const $chart = document.getElementById( 'my_chart' );
-        if ( $chart !== null ) {
-            $chart.style.display = 'none';
-        }
+        // const $chart = document.getElementById( 'my_chart' );
+        // if ( $chart !== null ) {
+        //     $chart.style.display = 'none';
+        // }
     }
+
+    private _mention: ContentText = {
+        margin:   [ 0, 10 ],
+        text:     'Les hypothèses figurant dans le tableau sont fournies à titre purement indicatif et ne sauraient présenter aucune valeur contractuelle. Ces hypothèses ont été simulées en fonction des informations disponibles à la date où elles ont été établies',
+        fontSize: 8,
+    };
 }

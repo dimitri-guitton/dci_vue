@@ -1,7 +1,5 @@
 <template>
   <div class="w-100">
-    <!-- Graphique (caché) pour le PDF sur l'étude de rentabilité-->
-    <canvas id="my_chart"></canvas>
 
     <div class="pb-10 pb-lg-15">
       <h2 class="fw-bolder text-dark">Caractéristique du chantier</h2>
@@ -55,6 +53,9 @@
         </Field>
       </div>
     </div>
+
+    <!-- Graphique (caché) pour le PDF sur l'étude de rentabilité-->
+    <canvas id="my_chart" class="mt-10"></canvas>
 
     <el-divider class="mb-20"></el-divider>
 
@@ -112,7 +113,7 @@ export default defineComponent( {
 
                                     onMounted( () => {
 
-                                      // TODO rendre dynalqiue quand on change les infos
+                                      // TODO rendre dynamique quand on change les infos
                                       const pdfGenerator = new ProfitabilityStudyGenerator( props.fileData );
                                       pdfGenerator.createChart();
                                     } );

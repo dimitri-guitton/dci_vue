@@ -124,7 +124,13 @@ export class PvAlgo {
                                  totalGains:       this.calcResalePriceToEdf() + this.savingsOnBill(),
                              } );
             } else {
-                const resaleToEdf      = result[ result.length - 1 ].resaleToEdf * 1.02;
+                let resaleToEdf = result[ result.length - 1 ].resaleToEdf * 1.02;
+
+                // La revente avec EDF est sur 20 ans et non 25 ans
+                if ( year > currentYear + 19 ) {
+                    resaleToEdf = -1;
+                }
+
                 const savingsOnInvoice = result[ result.length - 1 ].savingsOnInvoice * 1.030925266;
                 result.push( {
                                  year,
