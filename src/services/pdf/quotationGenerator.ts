@@ -1515,11 +1515,20 @@ export class QuotationGenerator extends PdfGenerator {
         let advancePayment: number;
         let advancePayment2: number;
 
+        const remainderToPay: number = +this._file.quotation.remainderToPay.toFixed( 2 );
+
         if ( paymentOnCredit.active ) {
             advancePaymentText = 'Acompte à la signature';
 
-            advancePayment  = this._file.quotation.remainderToPay - paymentOnCredit.amount;
-            advancePayment2 = paymentOnCredit.amount;
+            advancePayment = remainderToPay - paymentOnCredit.amount;
+
+            console.log( 'Acompte -->', this._file.quotation.remainderToPay );
+            console.log( 'Acompte -->', remainderToPay );
+            console.log( 'Acompte -->', paymentOnCredit.amount );
+            console.log( 'Acompte -->', advancePayment );
+            // advancePayment2 = paymentOnCredit.amount;
+            advancePayment2 = remainderToPay - advancePayment - paymentOnCredit.amount;
+            console.log( 'Solde fin de chantier -->', advancePayment );
 
             paymentText = [
                 {
@@ -1543,8 +1552,8 @@ export class QuotationGenerator extends PdfGenerator {
         } else {
             advancePaymentText = 'Acompte à la signature de 30% du net à payer';
 
-            advancePayment  = this._file.quotation.remainderToPay * 0.3;
-            advancePayment2 = this._file.quotation.remainderToPay * 0.7;
+            advancePayment  = remainderToPay * 0.3;
+            advancePayment2 = remainderToPay * 0.7;
 
             paymentText = [
                 {
@@ -1590,13 +1599,13 @@ export class QuotationGenerator extends PdfGenerator {
                                                     width: '*',
                                                     stack: [
                                                         {
-                                                            text:      this.formatPrice( advancePayment ),
+                                                            text:      this.formatPrice( advancePayment, 1, true, false ),
                                                             alignment: 'right',
                                                             bold:      true,
 
                                                         },
                                                         {
-                                                            text:      this.formatPrice( advancePayment2 ),
+                                                            text:      this.formatPrice( advancePayment2, 1, true, false ),
                                                             alignment: 'right',
                                                             bold:      true,
 
