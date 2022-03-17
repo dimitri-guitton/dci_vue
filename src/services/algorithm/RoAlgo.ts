@@ -40,7 +40,8 @@ interface UnitExtList {
  */
 interface UnitInt {
     ref: string;
-    size: number;
+    sizes: number[];
+    highTemperature: boolean;
     hotWaterTank: number;
     bizone: boolean;
 }
@@ -122,8 +123,8 @@ export class RoAlgo extends PacAlgo {
                     size:   14,
                     output: {
                         65: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-7':  9.64,
+                            '-15': 8.87,
                         },
                         55: {
                             '-7':  0,
@@ -140,8 +141,8 @@ export class RoAlgo extends PacAlgo {
                     size:   16,
                     output: {
                         65: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-7':  10.96,
+                            '-15': 10.09,
                         },
                         55: {
                             '-7':  0,
@@ -158,8 +159,8 @@ export class RoAlgo extends PacAlgo {
                     size:   18,
                     output: {
                         65: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-7':  11.47,
+                            '-15': 10.56,
                         },
                         55: {
                             '-7':  0,
@@ -340,8 +341,8 @@ export class RoAlgo extends PacAlgo {
                     size:   14,
                     output: {
                         65: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-7':  9.96,
+                            '-15': 9.47,
                         },
                         55: {
                             '-7':  0,
@@ -358,8 +359,8 @@ export class RoAlgo extends PacAlgo {
                     size:   16,
                     output: {
                         65: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-7':  11.33,
+                            '-15': 10.78,
                         },
                         55: {
                             '-7':  0,
@@ -376,8 +377,8 @@ export class RoAlgo extends PacAlgo {
                     size:   18,
                     output: {
                         65: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-7':  11.85,
+                            '-15': 11.28,
                         },
                         55: {
                             '-7':  0,
@@ -394,210 +395,244 @@ export class RoAlgo extends PacAlgo {
         this.unitIntList = {
             monophase: [
                 {
-                    ref:          'ETBH16E6V',
-                    size:         16,
-                    hotWaterTank: 180,
-                    bizone:       false,
+                    ref:             'ETBH16E6V',
+                    sizes:           [ 14, 16, 18 ],
+                    hotWaterTank:    0,
+                    bizone:          false,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVH16S18E6V',
-                    size:         16,
-                    hotWaterTank: 180,
-                    bizone:       false,
+                    ref:             'ETVH16S18E6V',
+                    sizes:           [ 14, 16, 18 ],
+                    hotWaterTank:    180,
+                    bizone:          false,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVH16S23E6V',
-                    size:         16,
-                    hotWaterTank: 230,
-                    bizone:       false,
+                    ref:             'ETVH16S23E6V',
+                    sizes:           [ 14, 16, 18 ],
+                    hotWaterTank:    230,
+                    bizone:          false,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVZ16S18E6V',
-                    size:         16,
-                    hotWaterTank: 180,
-                    bizone:       true,
+                    ref:             'ETVZ16S18E6V',
+                    sizes:           [ 14, 16, 18 ],
+                    hotWaterTank:    180,
+                    bizone:          true,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVZ16S23E6V',
-                    size:         16,
-                    hotWaterTank: 230,
-                    bizone:       true,
+                    ref:             'ETVZ16S23E6V',
+                    sizes:           [ 14, 16, 18 ],
+                    hotWaterTank:    230,
+                    bizone:          true,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EHBH04E6V',
-                    size:         4,
-                    hotWaterTank: 0,
-                    bizone:       false,
+                    ref:             'EHBH04E6V',
+                    sizes:           [ 4 ],
+                    hotWaterTank:    0,
+                    bizone:          false,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EHBH08E6V',
-                    size:         8,
-                    hotWaterTank: 0,
-                    bizone:       false,
+                    ref:             'EHBH08E6V',
+                    sizes:           [ 6, 8 ],
+                    hotWaterTank:    0,
+                    bizone:          false,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EHVH04S18E6V',
-                    size:         4,
-                    hotWaterTank: 180,
-                    bizone:       false,
+                    ref:             'EHVH04S18E6V',
+                    sizes:           [ 4 ],
+                    hotWaterTank:    180,
+                    bizone:          false,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EHVH08S18E6V',
-                    size:         8,
-                    hotWaterTank: 180,
-                    bizone:       false,
+                    ref:             'EHVH08S18E6V',
+                    sizes:           [ 6, 8 ],
+                    hotWaterTank:    180,
+                    bizone:          false,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EHVH04S23E6V',
-                    size:         4,
-                    hotWaterTank: 230,
-                    bizone:       false,
+                    ref:             'EHVH04S23E6V',
+                    sizes:           [ 4 ],
+                    hotWaterTank:    230,
+                    bizone:          false,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EHVH08S23E6V',
-                    size:         8,
-                    hotWaterTank: 230,
-                    bizone:       false,
+                    ref:             'EHVH08S23E6V',
+                    sizes:           [ 6, 8 ],
+                    hotWaterTank:    230,
+                    bizone:          false,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EHVZ04S18E6V',
-                    size:         4,
-                    hotWaterTank: 180,
-                    bizone:       true,
+                    ref:             'EHVZ04S18E6V',
+                    sizes:           [ 4 ],
+                    hotWaterTank:    180,
+                    bizone:          true,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EHVZ08S18E6V',
-                    size:         8,
-                    hotWaterTank: 180,
-                    bizone:       true,
+                    ref:             'EHVZ08S18E6V',
+                    sizes:           [ 6, 8 ],
+                    hotWaterTank:    180,
+                    bizone:          true,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EHVZ08S23E6V',
-                    size:         8,
-                    hotWaterTank: 230,
-                    bizone:       true,
+                    ref:             'EHVZ08S23E6V',
+                    sizes:           [ 6, 8 ],
+                    hotWaterTank:    230,
+                    bizone:          true,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EABH16D6V',
-                    size:         16,
-                    hotWaterTank: 0,
-                    bizone:       false,
+                    ref:             'EABH16D6V',
+                    sizes:           [ 11, 14, 16 ],
+                    hotWaterTank:    0,
+                    bizone:          false,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EAVH16S18D6V',
-                    size:         16,
-                    hotWaterTank: 180,
-                    bizone:       false,
+                    ref:             'EAVH16S18D6V',
+                    sizes:           [ 11, 14, 16 ],
+                    hotWaterTank:    180,
+                    bizone:          false,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EAVH16S23D6V',
-                    size:         16,
-                    hotWaterTank: 230,
-                    bizone:       false,
+                    ref:             'EAVH16S23D6V',
+                    sizes:           [ 11, 14, 16 ],
+                    hotWaterTank:    230,
+                    bizone:          false,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EAVZ16S18D6V',
-                    size:         16,
-                    hotWaterTank: 180,
-                    bizone:       true,
+                    ref:             'EAVZ16S18D6V',
+                    sizes:           [ 11, 14, 16 ],
+                    hotWaterTank:    180,
+                    bizone:          true,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'EAVZ16S23D6V',
-                    size:         16,
-                    hotWaterTank: 230,
-                    bizone:       true,
+                    ref:             'EAVZ16S23D6V',
+                    sizes:           [ 11, 14, 16 ],
+                    hotWaterTank:    230,
+                    bizone:          true,
+                    highTemperature: false,
                 },
                 {
-                    ref:          'ETBH12E6V',
-                    size:         12,
-                    hotWaterTank: 0,
-                    bizone:       false,
+                    ref:             'ETBH12E6V',
+                    sizes:           [ 8, 10, 12 ],
+                    hotWaterTank:    0,
+                    bizone:          false,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVH12S18E6V',
-                    size:         12,
-                    hotWaterTank: 180,
-                    bizone:       false,
+                    ref:             'ETVH12S18E6V',
+                    sizes:           [ 8, 10, 12 ],
+                    hotWaterTank:    180,
+                    bizone:          false,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVH12S23E6V',
-                    size:         12,
-                    hotWaterTank: 230,
-                    bizone:       false,
+                    ref:             'ETVH12S23E6V',
+                    sizes:           [ 8, 10, 12 ],
+                    hotWaterTank:    230,
+                    bizone:          false,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVZ12S18E6V',
-                    size:         12,
-                    hotWaterTank: 180,
-                    bizone:       true,
+                    ref:             'ETVZ12S18E6V',
+                    sizes:           [ 8, 10, 12 ],
+                    hotWaterTank:    180,
+                    bizone:          true,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVZ12S23E6V',
-                    size:         12,
-                    hotWaterTank: 230,
-                    bizone:       true,
+                    ref:             'ETVZ12S23E6V',
+                    sizes:           [ 8, 10, 12 ],
+                    hotWaterTank:    230,
+                    bizone:          true,
+                    highTemperature: true,
                 },
             ],
             triphase:  [
                 {
-                    ref:          'ETBH16E9W',
-                    size:         16,
-                    hotWaterTank: 230,
-                    bizone:       false,
+                    ref:             'ETBH16E9W',
+                    sizes:           [ 14, 16, 18 ],
+                    hotWaterTank:    0,
+                    bizone:          false,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVH16S18E9W',
-                    size:         16,
-                    hotWaterTank: 180,
-                    bizone:       false,
+                    ref:             'ETVH16S18E9W',
+                    sizes:           [ 14, 16, 18 ],
+                    hotWaterTank:    180,
+                    bizone:          false,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVH16S23E9W',
-                    size:         16,
-                    hotWaterTank: 230,
-                    bizone:       false,
+                    ref:             'ETVH16S23E9W',
+                    sizes:           [ 14, 16, 18 ],
+                    hotWaterTank:    230,
+                    bizone:          false,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVZ16S18E9W',
-                    size:         16,
-                    hotWaterTank: 180,
-                    bizone:       true,
+                    ref:             'ETVZ16S18E9W',
+                    sizes:           [ 14, 16, 18 ],
+                    hotWaterTank:    180,
+                    bizone:          true,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVZ16S23E9W',
-                    size:         16,
-                    hotWaterTank: 230,
-                    bizone:       true,
+                    ref:             'ETVZ16S23E9W',
+                    sizes:           [ 14, 16, 18 ],
+                    hotWaterTank:    230,
+                    bizone:          true,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETBH12E9W',
-                    size:         12,
-                    hotWaterTank: 0,
-                    bizone:       false,
+                    ref:             'ETBH12E9W',
+                    sizes:           [ 8, 10, 12 ],
+                    hotWaterTank:    0,
+                    bizone:          false,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVH12S18E9W',
-                    size:         12,
-                    hotWaterTank: 180,
-                    bizone:       false,
+                    ref:             'ETVH12S18E9W',
+                    sizes:           [ 8, 10, 12 ],
+                    hotWaterTank:    180,
+                    bizone:          false,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVH12S23E9W',
-                    size:         12,
-                    hotWaterTank: 230,
-                    bizone:       false,
+                    ref:             'ETVH12S23E9W',
+                    sizes:           [ 8, 10, 12 ],
+                    hotWaterTank:    230,
+                    bizone:          false,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVZ12S18E9W',
-                    size:         12,
-                    hotWaterTank: 180,
-                    bizone:       true,
+                    ref:             'ETVZ12S18E9W',
+                    sizes:           [ 8, 10, 12 ],
+                    hotWaterTank:    180,
+                    bizone:          true,
+                    highTemperature: true,
                 },
                 {
-                    ref:          'ETVZ12S23E9W',
-                    size:         12,
-                    hotWaterTank: 230,
-                    bizone:       true,
+                    ref:             'ETVZ12S23E9W',
+                    sizes:           [ 8, 10, 12 ],
+                    hotWaterTank:    230,
+                    bizone:          true,
+                    highTemperature: true,
                 },
             ],
         };
@@ -618,10 +653,6 @@ export class RoAlgo extends PacAlgo {
 
         if ( heater === 'p_chauffant' ) {
             return 40;
-        }
-
-        if ( heater === 'r_fonte_p_chauffant' ) {
-            return 65;
         }
 
         return 0;
@@ -704,6 +735,7 @@ export class RoAlgo extends PacAlgo {
             return null;
         }
 
+        console.log( `%c VOLUME ECS --> ${ volumeECS }`, 'background: #fdd835; color: #000000' );
         const hotWater = volumeECS;
         const bizone   = this.isBiZone( this.housing.heaters );
         const size     = selectedUnitExt.size;
@@ -714,9 +746,36 @@ export class RoAlgo extends PacAlgo {
                          'size':       size,
                      } );
 
-        // ON récupère le model intérieur selon les infos renseigné
+        // On récupère le model intérieur selon les infos renseigné
         const filteredUnitInt = this.unitIntList[ this.housing.availableVoltage ].filter( ( unit: UnitInt ) => {
-            return unit.hotWaterTank === hotWater && unit.bizone === bizone && unit.size >= size;
+
+            const highTemperature = heaterValue === 65;
+
+            console.log( '---' );
+            console.log( '---' );
+            if ( highTemperature === unit.highTemperature ) {
+                console.log( 'BONNE TEMPÉRATURE' );
+                if ( unit.sizes.includes( size ) ) {
+                    console.log( 'BONNE TAILLE' );
+                    if ( unit.hotWaterTank === hotWater ) {
+                        console.log( 'BON BALLON EAU CHAUDE' );
+                        if ( unit.bizone === bizone ) {
+                            console.log( 'BIZONE OK' );
+                            console.log( unit );
+                        }
+                    }
+                }
+            }
+
+            // console.log( 'unit.sizes', unit.sizes );
+            // console.log( 'size', size );
+            // console.log( 'unit.hotWaterTank === hotWater', unit.hotWaterTank === hotWater );
+            // console.log( 'unit.bizone === bizone', unit.bizone === bizone );
+            // console.log( 'unit.sizes.includes(size)', unit.sizes.includes( size ) );
+            // console.log( 'highTemperature === unit.highTemperature', highTemperature === unit.highTemperature );
+
+
+            return unit.hotWaterTank === hotWater && unit.bizone === bizone && unit.sizes.includes( size ) && highTemperature === unit.highTemperature;
         } );
         console.log( 'filteredUnitInt', filteredUnitInt );
 
@@ -725,7 +784,7 @@ export class RoAlgo extends PacAlgo {
             if ( selectedUnitInt === null ) {
                 selectedUnitInt = unitInt;
             } else {
-                if ( selectedUnitInt.size > unitInt.size ) {
+                if ( selectedUnitInt.sizes > unitInt.size ) {
                     selectedUnitInt = unitInt;
                 }
             }

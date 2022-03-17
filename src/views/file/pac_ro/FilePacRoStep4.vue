@@ -267,6 +267,7 @@ export default defineComponent( {
 
                                     const resetVolumeECS = ( isEcsDeporte: boolean ) => {
                                       if ( isEcsDeporte ) {
+                                        // TODO bug quand set à 0 ça affiche 230 dans la checkbox mais bien 0 sélectionné
                                         volumeECS.value = 0;
                                       } else {
                                         volumeECSDeporte.value = 150;
@@ -277,7 +278,7 @@ export default defineComponent( {
                                     const kitCascade = props.fileData.quotation.products.filter( p => p.productType === 'kit_cascade' );
 
                                     const selectedEcsDeportes = computed<Product[]>( () => {
-                                      // Reset le volume si jaais on switch en ECS et ECSDeporté
+                                      // Reset le volume si jamais on switch en ECS et ECSDeporté
                                       resetVolumeECS( isEcsDeporte.value );
 
                                       if ( !isEcsDeporte.value ) {

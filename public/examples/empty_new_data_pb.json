@@ -45,7 +45,7 @@
         "lessThan2Years": false,
         "availableVoltage": ""
     },
-    "worksheet": {
+    "worksheet":         {
         "period":                      "",
         "generateur":                  "electrique",
         "marque":                      "",
@@ -106,7 +106,7 @@
         "zoneInstallation":            "z1",
         "creation":                    true
     },
-    "quotation": {
+    "quotation":         {
         "origin": "",
         "dateTechnicalVisit": "",
         "executionDelay": "",
@@ -327,7 +327,7 @@
         "maPrimeRenovBonus": 0,
         "newCreation": true
     },
-    "scales": [
+    "scales":            [
         {
             "stages": [
                 {
@@ -629,15 +629,15 @@
             }
         }
     ],
-    "statusInDci": 1,
+    "statusInDci":       1,
     "errorsStatusInDci": [],
-    "technician": {
-        "id": 0,
-        "lastName": " ",
+    "technician":        {
+        "id":        0,
+        "lastName":  " ",
         "firstName": " ",
-        "phone": " "
+        "phone":     " "
     },
-    "lists":     {
+    "lists":             {
         "localTypeList":        [
             {
                 "slug":  "maison_individuelle",

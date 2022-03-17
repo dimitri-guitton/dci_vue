@@ -1444,13 +1444,13 @@
         "phone": " "
     },
     "lists":     {
-        "localTypeList": [
+        "localTypeList":        [
             {
-                "slug": "maison_individuelle",
+                "slug":  "maison_individuelle",
                 "value": "Maison individuelle"
             },
             {
-                "slug": "appartement",
+                "slug":  "appartement",
                 "value": "Appartement"
             }
         ],
