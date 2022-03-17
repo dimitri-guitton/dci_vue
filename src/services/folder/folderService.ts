@@ -7,7 +7,7 @@ import { convertOldRrFile } from '@/services/file/converter/convertRrData';
 import { convertOldCetFile } from '@/services/file/converter/convertCetData';
 import path from 'path';
 import { addFile, deleteFile } from '@/services/sqliteService';
-import { FILE_CET, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG } from '@/services/constantService';
+import { FILE_CET, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_PV } from '@/services/constantService';
 import { getcurrentFolderName, setCurrentFileData, setErrorsStatusInDci } from '@/services/data/dataService';
 import { convertOldPgFile } from '@/services/file/converter/convertPgData';
 import { convertOldCombleFile } from '@/services/file/converter/convertCombleData';
@@ -56,7 +56,10 @@ export const FoldersNames = {
     CADRE_CONTRIBUTION_CEE:      'cadre_contribution_cee',
     DIMENSIONNEMENT_PAC:         'dimensionnement_pac',
     VIDEO:                       'video',
-    PHOTO:                       'photos',
+    PHOTO:                       'photo',
+    MANDAT_ENEDIS:               'mandat_enedis',
+    MANDAT_MAIRIE:               'mandat_mairie',
+    ETUDE_RENTABILITE:           'etude_rentabilite',
 };
 
 const Folders = [
@@ -75,6 +78,9 @@ const Folders = [
     { name: FoldersNames.DIMENSIONNEMENT_PAC, dossierType: [ FILE_PAC_RR, FILE_PAC_RO ] },
     { name: FoldersNames.VIDEO, dossierType: [ 'all' ] },
     { name: FoldersNames.PHOTO, dossierType: [ 'all' ] },
+    { name: FoldersNames.MANDAT_ENEDIS, dossierType: [ FILE_PV ] },
+    { name: FoldersNames.MANDAT_MAIRIE, dossierType: [ FILE_PV ] },
+    { name: FoldersNames.ETUDE_RENTABILITE, dossierType: [ FILE_PV ] },
 ];
 
 /**
@@ -420,7 +426,7 @@ export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) =
             name   = 'mandat_ma_prime_renov.pdf';
             break;
         case PdfType.ProfitabilityStudy:
-            folder = FoldersNames.FICHE;
+            folder = FoldersNames.ETUDE_RENTABILITE;
             name   = 'etude_rentabilite.pdf';
             break;
         case PdfType.SizingPac:
