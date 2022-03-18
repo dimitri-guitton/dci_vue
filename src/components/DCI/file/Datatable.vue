@@ -163,6 +163,7 @@ import { setCurrentFileReference, setcurrentFolderName } from '@/services/data/d
 import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 import { DatatableFileType } from '@/types/v2/DatatableFile/DatatableFileType';
 import { numberToPrice } from '@/services/commonService';
+import { postFileToERP } from '@/services/apiService';
 
 
 export default defineComponent( {
@@ -308,6 +309,7 @@ export default defineComponent( {
                                           break;
                                         case 'send':
                                           console.log( '%c ON SEND', 'background: #fdd835; color: #000000' );
+                                          postFileToERP( command.folder.folderName );
                                           break;
                                       }
                                     };

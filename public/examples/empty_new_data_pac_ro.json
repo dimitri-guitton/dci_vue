@@ -189,7 +189,7 @@
                 "defaultPu":   5539,
                 "description": "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 140 %",
                 "quantity":    1,
-                "etas":        140
+                "etas": 134
             },
             {
                 "id":          2,
@@ -200,7 +200,7 @@
                 "defaultPu":   5539,
                 "description": "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 140 %",
                 "quantity":    1,
-                "etas":        140
+                "etas": 138
             },
             {
                 "id":          3,
@@ -211,7 +211,7 @@
                 "defaultPu":   5903,
                 "description": "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 140 %",
                 "quantity":    1,
-                "etas":        140
+                "etas": 134
             },
             {
                 "id":          4,
@@ -222,7 +222,7 @@
                 "defaultPu":   5903,
                 "description": "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 140 %",
                 "quantity":    1,
-                "etas":        140
+                "etas": 138
             },
             {
                 "id":          5,
@@ -233,7 +233,7 @@
                 "defaultPu":   6267,
                 "description": "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 140 %",
                 "quantity":    1,
-                "etas":        140
+                "etas": 134
             },
             {
                 "id":          6,
@@ -244,7 +244,7 @@
                 "defaultPu":   6267,
                 "description": "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 140 %",
                 "quantity":    1,
-                "etas":        140
+                "etas": 138
             },
             {
                 "id": 7,

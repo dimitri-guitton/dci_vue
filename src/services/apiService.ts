@@ -1,6 +1,13 @@
 import Store from 'electron-store';
 import { ElMessage } from 'element-plus';
-import { getLastUpdateFileState, setCommercialInfo, setLastUpdateFileState } from '@/services/data/dataService';
+import {
+    getCurrentFileData,
+    getLastUpdateFileState,
+    setCommercialInfo,
+    setcurrentFolderName,
+    setLastUpdateFileState,
+} from '@/services/data/dataService';
+import { AllFile } from '@/types/v2/File/All';
 
 const schema = {
     apiKey: {
@@ -66,4 +73,27 @@ export const fetchDossierState = () => {
             ElMessage.error( 'Une erreur est survenue lors de la synchronisation avec l\'ERP' );
             console.error( error );
         } );
+};
+
+export const postFileToERP = ( folderName: string ) => {
+    setcurrentFolderName( folderName );
+
+    const fileData: AllFile = getCurrentFileData();
+
+    fetch( `${ API_URL }/file`, {
+        method:  'POST',
+        headers: defaultHeader,
+        body:    JSON.stringify( fileData ),
+    } )
+        .then( response => response.json() )
+        .then( response => {
+            console.log( 'response -->', response );
+            setLastUpdateFileState();
+        } )
+        .catch( error => {
+            ElMessage.error( 'Une erreur est survenue lors de la transmission à l\'ERP' );
+            console.error( error );
+        } );
+
+
 };
