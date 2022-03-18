@@ -14,7 +14,7 @@ import { convertOldCombleFile } from '@/services/file/converter/convertCombleDat
 import { convertOldSolFile } from '@/services/file/converter/convertSolData';
 import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 import { PdfType } from '@/services/pdf/pdfGenerator';
-import { shell } from 'electron';
+import { ipcRenderer, remote, shell } from 'electron';
 import { NewFolderData } from '@/components/DCI/modals/NewFileModal.vue';
 import { convertOldPbFile } from '@/services/file/converter/convertPbData';
 import { convertOldPvFile } from '@/services/file/converter/convertPvData';
@@ -107,7 +107,11 @@ const createSubFolders   = ( type: string, parent: string ) => {
 export const addJsonData = ( type: string, parent: string, reference: string, folderName: string, newFolder: NewFolderData ) => {
 
     // const jsonPath = path.join( __static, `examples/empty_new_data_${ type }.json` );
-    const jsonPath = path.join( __static, `config_json/empty_new_data_${ type }.json` );
+    // const jsonPath       = path.join( __static, `config_json/empty_new_data_${ type }.json` );
+
+    const app            = remote.app;
+    const downloadFolder = `${ app.getPath( 'userData' ) }/files`;
+    const jsonPath       = path.join( downloadFolder, `config_${ type }.json` );
 
     const rawdata = fs.readFileSync( jsonPath ).toString( 'utf8' );
 
@@ -118,16 +122,16 @@ export const addJsonData = ( type: string, parent: string, reference: string, fo
 
     fileData = {
         ...fileData,
-               ref:                       reference,
-               folderName:                folderName,
-               createdAt:                 toEnglishDate( today.toString() ),
-               updatedAt:                 toEnglishDate( today.toString() ),
-               disabledBonus:             newFolder.disabledBonus,
-               disabledCeeBonus:          newFolder.disabledCeeBonus,
-               disabledMaPrimeRenovBonus: newFolder.disabledMaPrimeRenovBonus,
-               statusInDci:               2,
-               errorsStatusInDci:         [],
-               quotation:                 {
+        ref:                       reference,
+        folderName:                folderName,
+        createdAt:                 toEnglishDate( today.toString() ),
+        updatedAt:                 toEnglishDate( today.toString() ),
+        disabledBonus:             newFolder.disabledBonus,
+        disabledCeeBonus:          newFolder.disabledCeeBonus,
+        disabledMaPrimeRenovBonus: newFolder.disabledMaPrimeRenovBonus,
+        statusInDci:               2,
+        errorsStatusInDci:         [],
+        quotation:                 {
                    ...fileData.quotation,
                    executionDelay: toEnglishDate( new Date( today.setMonth( today.getMonth() + 5 ) ).toString() ),
                },
@@ -263,29 +267,22 @@ export const convertAllOldJsonToNewJson = () => {
  * Retourne les données des json sur l'ERP
  */
 export const getFileJson = () => {
-    const jsonFolder = path.join( __static, 'config_json' );
+    const app            = remote.app;
+    const downloadFolder = `${ app.getPath( 'userData' ) }/files`;
 
-    // Si le dossier n'existe pas on le créer
-    try {
-        fs.accessSync( jsonFolder );
-    } catch ( e ) {
-        fs.mkdirSync( jsonFolder );
-    }
-
+    const urls: string[] = [];
     for ( const file of LIST_FILE_TYPE ) {
-        const url = `${ process.env.VUE_APP_API_URL }/config-file/${ file.slug }`;
-
-        console.log( 'URL -->', url );
-        fetch( url )
-            .then( response => response.json() )
-            .then( response => {
-                console.log( 'Response -->', response );
-
-                const finalPath = `${ jsonFolder }/empty_new_data_${ file.slug }.json`;
-                fs.writeFileSync( finalPath, JSON.stringify( response ) );
-            } )
-            .catch( error => alert( 'Erreur : ' + error ) );
+        urls.push( `${ process.env.VUE_APP_API_URL }/config-file/${ file.slug }` );
     }
+
+    ipcRenderer.send( 'download', {
+        payload: {
+            urls,
+            properties: {
+                directory: downloadFolder,
+            },
+        },
+    } );
 };
 
 export const getFolderPath = ( folderName: string ): string => {

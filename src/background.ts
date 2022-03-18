@@ -1,6 +1,6 @@
 'use strict';
 
-import { app, BrowserWindow, protocol } from 'electron';
+import { app, BrowserWindow, ipcMain, protocol } from 'electron';
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer';
 import { autoUpdater } from 'electron-updater';
@@ -28,7 +28,7 @@ const store = new ElectronStore( { schema } );
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win;
+let mainWindow;
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged( [
@@ -42,44 +42,44 @@ async function createWindow() {
     const height = ( store.get( 'windowHeight' ) as number );
     console.log( 'Height -->', height );
     // Create the browser window.
-    win = new BrowserWindow( {
-                                 width,
-                                 height,
-                                 webPreferences: {
-                                     // Use pluginOptions.nodeIntegration, leave this alone
-                                     // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-                                     nodeIntegration:    ( process.env
-                                         .ELECTRON_NODE_INTEGRATION as unknown ) as boolean,
-                                     contextIsolation:   !process.env.ELECTRON_NODE_INTEGRATION,
-                                     enableRemoteModule: true,
-                                 },
-                             } );
+    mainWindow = new BrowserWindow( {
+                                        width,
+                                        height,
+                                        webPreferences: {
+                                            // Use pluginOptions.nodeIntegration, leave this alone
+                                            // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
+                                            nodeIntegration:    ( process.env
+                                                .ELECTRON_NODE_INTEGRATION as unknown ) as boolean,
+                                            contextIsolation:   !process.env.ELECTRON_NODE_INTEGRATION,
+                                            enableRemoteModule: true,
+                                        },
+                                    } );
 
     if ( process.env.WEBPACK_DEV_SERVER_URL ) {
         // Load the url of the dev server if in development mode
-        await win.loadURL( process.env.WEBPACK_DEV_SERVER_URL as string );
+        await mainWindow.loadURL( process.env.WEBPACK_DEV_SERVER_URL as string );
         if ( !process.env.IS_TEST ) {
-            win.webContents.openDevTools();
+            mainWindow.webContents.openDevTools();
         }
     } else {
         createProtocol( 'app' );
         // Load the index.html when not in development
-        win.loadURL( 'app://./index.html' );
+        mainWindow.loadURL( 'app://./index.html' );
         const response = await autoUpdater.checkForUpdatesAndNotify();
         console.log( 'Update -->', response );
     }
 
-    win.on( 'resize', () => {
+    mainWindow.on( 'resize', () => {
         // The event doesn't pass us the window size, so we call the `getBounds` method which returns an object with
         // the height, width, and x and y coordinates.
-        const { width, height } = win.getBounds();
+        const { width, height } = mainWindow.getBounds();
         // Now that we have them, save them using the `set` method.
         store.set( 'windowWidth', width );
         store.set( 'windowHeight', height );
     } );
 
-    win.on( 'closed', () => {
-        win = null;
+    mainWindow.on( 'closed', () => {
+        mainWindow = null;
     } );
 }
 
@@ -95,7 +95,7 @@ app.on( 'window-all-closed', () => {
 app.on( 'activate', () => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if ( win === null ) {
+    if ( mainWindow === null ) {
         createWindow();
     }
 } );
@@ -129,3 +129,31 @@ if ( isDevelopment ) {
         } );
     }
 }
+
+// const dialog   = electron.dialog;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { download } = require( 'electron-dl' );
+
+ipcMain.on( 'download', async ( event, { payload } ) => {
+    // Handle dowload
+    console.log( 'HANDLE DOWNLOAD' );
+
+    console.log( 'payload.properties.directory -->', payload.properties.directory );
+
+    for ( const url of payload.urls ) {
+        console.log( 'URL' );
+        await download( BrowserWindow.getFocusedWindow(), url, {
+            directory:   payload.properties.directory,
+            saveAs:      false,
+            overwrite:   true,
+            onProgress:  ( progress ) => {
+                mainWindow.webContents.send( 'download-progress', progress );
+            },
+            onCompleted: ( item ) => {
+                console.log( 'COMPLETE FOR -->', url );
+                mainWindow.webContents.send( 'download-complete', item );
+            },
+        } );
+    }
+
+} );
