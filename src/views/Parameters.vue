@@ -66,6 +66,7 @@ import { ErrorMessage, Field, Form } from 'vee-validate';
 
 import Store from 'electron-store';
 import { OpenDialogReturnValue } from 'electron';
+import { fetchCommercialData } from '@/services/apiService';
 
 const { dialog } = require( 'electron' ).remote;
 
@@ -138,6 +139,9 @@ export default defineComponent( {
                                     onSubmit( values ) {
                                       store.set( 'apiKey', values.apiKey );
                                       store.set( 'dropboxPath', values.dropboxPath );
+
+                                      // Récupère les infos du commercial garce à l'api KEY
+                                      fetchCommercialData();
 
                                       this.flashActive = true;
                                       setTimeout( () => {

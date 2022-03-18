@@ -21,6 +21,7 @@ import { PbFile } from '@/types/v2/File/Pb/PbFile';
 import { PvFile } from '@/types/v2/File/Pv/PvFile';
 import { AllFile } from '@/types/v2/File/All';
 import { updateErrorsStatusInDci } from '@/services/sqliteService';
+import { Technician } from '@/types/v2/File/Common/Technician';
 
 const schema = {
     dropboxPath:          {
@@ -36,6 +37,22 @@ const schema = {
         default: '',
     },
     currentFileData:      {
+        type:    'string',
+        default: '',
+    },
+    commercialId:         {
+        type:    'number',
+        default: 0,
+    },
+    commercialFirstName:  {
+        type:    'string',
+        default: '',
+    },
+    commercialLastName:   {
+        type:    'string',
+        default: '',
+    },
+    commercialPhone:      {
         type:    'string',
         default: '',
     },
@@ -67,6 +84,22 @@ export const setcurrentFolderName = ( folderName: string ) => {
 export const setCurrentFileData = ( fileData: string ) => {
     console.log( '%c SET CURRENT FILE DATA', 'background: #fdd835; color: #000000' );
     store.set( 'currentFileData', fileData );
+};
+
+export const setCommercialInfo = ( id: number, firstName: string, lastName: string, phone: string ) => {
+    store.set( 'commercialId', id );
+    store.set( 'commercialFirstName', firstName );
+    store.set( 'commercialLastName', lastName );
+    store.set( 'commercialPhone', phone );
+};
+
+export const getCommercialInfo = (): Technician => {
+    return {
+        id:        store.get( 'commercialId' ) as number,
+        firstName: store.get( 'commercialFirstName' ) as string,
+        lastName:  store.get( 'commercialLastName' ) as string,
+        phone:     store.get( 'commercialPhone' ) as string,
+    };
 };
 
 export const getCurrentFileData = (): AllFile => {
