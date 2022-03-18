@@ -36,25 +36,29 @@ const schema = {
         type:    'string',
         default: '',
     },
-    currentFileData:      {
+    currentFileData:     {
         type:    'string',
         default: '',
     },
-    commercialId:         {
+    commercialId:        {
         type:    'number',
         default: 0,
     },
-    commercialFirstName:  {
+    commercialFirstName: {
         type:    'string',
         default: '',
     },
-    commercialLastName:   {
+    commercialLastName:  {
         type:    'string',
         default: '',
     },
-    commercialPhone:      {
+    commercialPhone:     {
         type:    'string',
         default: '',
+    },
+    lastUpdateFileState: { // Date de la dernière mise à jour de l'état des dossiers (todos, ...)
+        type:    'number',
+        default: 0,
     },
 } as const;
 
@@ -91,6 +95,15 @@ export const setCommercialInfo = ( id: number, firstName: string, lastName: stri
     store.set( 'commercialFirstName', firstName );
     store.set( 'commercialLastName', lastName );
     store.set( 'commercialPhone', phone );
+};
+
+export const getLastUpdateFileState = (): string => {
+    return store.get( 'lastUpdateFileState' ) as string;
+};
+
+export const setLastUpdateFileState = () => {
+    const now = Math.round( new Date().getTime() / 1000 );
+    store.set( 'lastUpdateFileState', now );
 };
 
 export const getCommercialInfo = (): Technician => {

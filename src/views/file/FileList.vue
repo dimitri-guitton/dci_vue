@@ -23,6 +23,7 @@ import NewFolderModal from '@/components/DCI/modals/NewFileModal.vue';
 import * as folderService from '../../services/folder/folderService';
 import FolderDatatable from '@/components/DCI/file/Datatable.vue';
 import { resetCurrentFileData } from '@/services/data/dataService';
+import { fetchDossierState } from '@/services/apiService';
 
 
 export default defineComponent( {
@@ -39,6 +40,9 @@ export default defineComponent( {
 
                                     onMounted( () => {
                                       resetCurrentFileData();
+
+                                      // TODO FAIRE LA LOGIQUE APRES LA RECUPE DES TODOS
+                                      fetchDossierState();
                                     } );
 
                                     const onHideModal = () => {
