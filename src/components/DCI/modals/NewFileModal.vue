@@ -152,6 +152,7 @@ import { defineComponent, ref } from 'vue';
 import { ErrorMessage, Field, Form } from 'vee-validate';
 import * as Yup from 'yup';
 import * as folderService from '@/services/folder/folderService';
+import { checkFolder } from '@/services/folder/folderService';
 import { LIST_FILE_TYPE } from '@/services/constantService';
 import router from '@/router';
 import { setCurrentFileReference, setcurrentFolderName } from '@/services/data/dataService';
@@ -213,6 +214,9 @@ export default defineComponent( {
                                         submitButtonRef.value.disabled = true;
                                         const response                 = await folderService.createAFolder(
                                             newFolderData.value );
+
+                                        // Check les données dans le dossier
+                                        checkFolder( response.folderName );
 
                                         setCurrentFileReference( response.reference );
                                         setcurrentFolderName( response.folderName );

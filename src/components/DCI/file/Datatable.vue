@@ -69,7 +69,7 @@
                   trigger="hover"
               >
                 <template #reference>
-                  <span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span>
+                  <span :class="`badge badge-light-${data.status.class} cursor-pointer`">{{ data.status.name }}</span>
                 </template>
                 <template #default>
                   <template v-if="data.errors.length > 0">
@@ -336,6 +336,7 @@ export default defineComponent( {
                                         case 6:
                                           return 'Manque l\'attestation sur honneur';
                                         default:
+                                          console.warn( `Le code error ${ code } est inconnue` );
                                           return 'Erreur inconue';
                                       }
                                     };
