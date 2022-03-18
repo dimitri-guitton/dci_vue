@@ -3,6 +3,7 @@ import { ElMessage } from 'element-plus';
 import {
     getCurrentFileData,
     getLastUpdateFileState,
+    resetCurrentFileData,
     setCommercialInfo,
     setcurrentFolderName,
     setLastUpdateFileState,
@@ -77,7 +78,6 @@ export const fetchDossierState = () => {
 
 export const postFileToERP = ( folderName: string ) => {
     setcurrentFolderName( folderName );
-
     const fileData: AllFile = getCurrentFileData();
 
     fetch( `${ API_URL }/file`, {
@@ -89,6 +89,7 @@ export const postFileToERP = ( folderName: string ) => {
         .then( response => {
             console.log( 'response -->', response );
             setLastUpdateFileState();
+            resetCurrentFileData();
         } )
         .catch( error => {
             ElMessage.error( 'Une erreur est survenue lors de la transmission à l\'ERP' );

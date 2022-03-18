@@ -419,7 +419,8 @@ export const getAddress = ( data: BaseFile ): { address: string; zipCode: string
     };
 };
 
-export const setErrorsStatusInDci = async ( errors: number[] ) => {
+export const setErrorsStatusInDci = async ( errors: number[], folderName: string ) => {
+    setcurrentFolderName( folderName );
     const fileData: BaseFile = getCurrentFileData();
 
     const newFileData: BaseFile = {
@@ -431,6 +432,7 @@ export const setErrorsStatusInDci = async ( errors: number[] ) => {
     updateJsonData( newFileData );
 
     await updateErrorsStatusInDci( fileData.ref, errors );
+    resetCurrentFileData();
 
     return fileData;
 };

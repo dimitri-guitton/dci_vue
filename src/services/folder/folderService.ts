@@ -383,6 +383,7 @@ const isFolderEmpty = ( folderPath ): boolean => {
 
 export const checkFolder = async ( folderName: string ) => {
     console.log( '%c IN CHECK FOLDER', 'background: #BCBE9D; color: #000000' );
+    console.log( folderName );
     const folderPath       = getFolderPath( folderName );
     const errors: number[] = [];
 
@@ -428,7 +429,7 @@ export const checkFolder = async ( folderName: string ) => {
     }
 
     console.log( 'ERRRORS', errors );
-    await setErrorsStatusInDci( errors );
+    await setErrorsStatusInDci( errors, folderName );
 };
 
 
