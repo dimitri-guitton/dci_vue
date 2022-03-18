@@ -3,7 +3,7 @@
         "id":        1,
         "ref":       "EPRA08EV3",
         "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA08EV3",
-        "descr":     "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 140 %",
+        "descr":     "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 134 %",
         "defaultPU": 5539,
         "pu":        5539,
         "quantity":  1
@@ -12,7 +12,7 @@
         "id":        2,
         "ref":       "EPRA08EW1",
         "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA08EW1",
-        "descr":     "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 140 %",
+        "descr":     "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 138 %",
         "defaultPU": 5539,
         "pu":        5539,
         "quantity":  1
@@ -21,7 +21,7 @@
         "id":        3,
         "ref":       "EPRA10EV3",
         "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA10EV3",
-        "descr":     "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 140 %",
+        "descr":     "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 134 %",
         "defaultPU": 5903,
         "pu":        5903,
         "quantity":  1
@@ -30,7 +30,7 @@
         "id":        4,
         "ref":       "EPRA10EW1",
         "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA10EW1",
-        "descr":     "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 140 %",
+        "descr":     "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 138 %",
         "defaultPU": 5903,
         "pu":        5903,
         "quantity":  1
@@ -39,7 +39,7 @@
         "id":        5,
         "ref":       "EPRA12EV3",
         "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA12EV3",
-        "descr":     "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 140 %",
+        "descr":     "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 134 %",
         "defaultPU": 6267,
         "pu":        6267,
         "quantity":  1
@@ -48,7 +48,7 @@
         "id":        6,
         "ref":       "EPRA12EW1",
         "label":     "UNITE EXTERIEURE DAIKIN ALTHERMA HAUTETEMPERATURE EPRA12EW1",
-        "descr":     "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 140 %",
+        "descr":     "GROUPE EXTERIEURE DAIKIN A MODIFIER ETAs : 138 %",
         "defaultPU": 6267,
         "pu":        6267,
         "quantity":  1
