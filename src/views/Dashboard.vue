@@ -1,7 +1,8 @@
 <template>
-  <p>DCI {{ version }}</p>
+  <div class="row d-flex justify-content-center">
+    <button @click="getFileJson" class="btn btn-success mx-2 my-2 w-auto">Mettre à jour les ressources</button>
+  </div>
   <!--  <button @click="convertOldJsonToNewJson" class="btn btn-success mx-2 my-2">Mettre à jours les données</button>-->
-  <button @click="getFileJson" class="btn btn-success mx-2 my-2">Mettre à jour les données</button>
 </template>
 
 <script lang="ts">
@@ -18,7 +19,6 @@ export default defineComponent( {
                                     console.log( 'Environnement : ', process.env.NODE_ENV );
                                     console.log( 'URL API : ', process.env.VUE_APP_API_URL );
                                     return {
-                                      version:     process.env.VUE_APP_VERSION,
                                       getFileJson: getFileJson,
                                     };
                                   },

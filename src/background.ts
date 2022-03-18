@@ -66,7 +66,6 @@ async function createWindow() {
         // Load the index.html when not in development
         mainWindow.loadURL( 'app://./index.html' );
         const response = await autoUpdater.checkForUpdatesAndNotify();
-        console.log( 'Update -->', response );
     }
 
     mainWindow.on( 'resize', () => {
@@ -136,12 +135,8 @@ const { download } = require( 'electron-dl' );
 
 ipcMain.on( 'download', async ( event, { payload } ) => {
     // Handle dowload
-    console.log( 'HANDLE DOWNLOAD' );
-
-    console.log( 'payload.properties.directory -->', payload.properties.directory );
 
     for ( const url of payload.urls ) {
-        console.log( 'URL' );
         await download( BrowserWindow.getFocusedWindow(), url, {
             directory:   payload.properties.directory,
             saveAs:      false,
@@ -150,10 +145,11 @@ ipcMain.on( 'download', async ( event, { payload } ) => {
                 mainWindow.webContents.send( 'download-progress', progress );
             },
             onCompleted: ( item ) => {
-                console.log( 'COMPLETE FOR -->', url );
                 mainWindow.webContents.send( 'download-complete', item );
             },
         } );
     }
+
+    mainWindow.webContents.send( 'all-download-complete' );
 
 } );

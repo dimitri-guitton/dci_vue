@@ -18,7 +18,7 @@ import { ipcRenderer, remote, shell } from 'electron';
 import { NewFolderData } from '@/components/DCI/modals/NewFileModal.vue';
 import { convertOldPbFile } from '@/services/file/converter/convertPbData';
 import { convertOldPvFile } from '@/services/file/converter/convertPvData';
-import { ElMessage } from 'element-plus';
+import { ElLoading, ElMessage } from 'element-plus';
 
 declare const __static: string;
 
@@ -132,15 +132,15 @@ export const addJsonData = ( type: string, parent: string, reference: string, fo
         statusInDci:               2,
         errorsStatusInDci:         [],
         quotation:                 {
-                   ...fileData.quotation,
-                   executionDelay: toEnglishDate( new Date( today.setMonth( today.getMonth() + 5 ) ).toString() ),
-               },
-           };
+            ...fileData.quotation,
+            executionDelay: toEnglishDate( new Date( today.setMonth( today.getMonth() + 5 ) ).toString() ),
+        },
+    };
 
-           console.log( `${ parent }/data.json` );
-           console.log( fileData );
-           fs.writeFileSync( `${ parent }/data.json`, JSON.stringify( fileData ) );
-           setCurrentFileData( JSON.stringify( fileData ) );
+    console.log( `${ parent }/data.json` );
+    console.log( fileData );
+    fs.writeFileSync( `${ parent }/data.json`, JSON.stringify( fileData ) );
+    setCurrentFileData( JSON.stringify( fileData ) );
 
        }
 ;
@@ -275,6 +275,11 @@ export const getFileJson = () => {
         urls.push( `${ process.env.VUE_APP_API_URL }/config-file/${ file.slug }` );
     }
 
+    const loading = ElLoading.service( {
+                                           lock:       true,
+                                           text:       'Téléchargement des ressources ...',
+                                           background: 'rgba(0, 0, 0, 0.7)',
+                                       } );
     ipcRenderer.send( 'download', {
         payload: {
             urls,
@@ -282,6 +287,22 @@ export const getFileJson = () => {
                 directory: downloadFolder,
             },
         },
+    } );
+
+
+    // TODO FAIRE BARRE DE PROGRESSION DU TÉLÉCHARGELENT
+    // ipcRenderer.on( 'download-complete', ( event, args ) => {
+    //     console.log( event );
+    //     console.log( args );
+    // } );
+
+
+    ipcRenderer.on( 'all-download-complete', () => {
+        loading.close();
+        ElMessage( {
+                       message: 'Ressources téléchargées avec succès',
+                       type:    'success',
+                   } );
     } );
 };
 

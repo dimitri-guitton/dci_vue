@@ -12,6 +12,12 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="mb-5 col-6">
+        <h6>Version de DCI : {{ version }}</h6>
+      </div>
+    </div>
+
     <Form @submit="onSubmit" :validation-schema="simpleSchema">
       <div class="row">
         <div class="mb-10 col-6">
@@ -86,6 +92,8 @@ export default defineComponent( {
                                   },
                                   setup() {
 
+                                    console.log( 'Version de l\'app : ', process.env.VUE_APP_VERSION );
+
                                     // Recup les données du users
                                     const apiKey      = store.get( 'apiKey' );
                                     const dropboxPath = ref( store.get( 'dropboxPath' ) );
@@ -123,6 +131,7 @@ export default defineComponent( {
                                       dropboxPath,
                                       flashActive,
                                       openFileExplorer,
+                                      version: process.env.VUE_APP_VERSION,
                                     };
                                   },
                                   methods: {
