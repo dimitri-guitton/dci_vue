@@ -88,15 +88,15 @@
         "executionDelay": "",
         "options": [
             {
-                "id": 4,
-                "fileType": "pac_ro",
-                "label": "Nettoyage et désembouage (si nécessaire) du circuit de chauffage.",
-                "unit": "u",
-                "defaultPu": 0,
-                "pu": 0,
+                "id":            4,
+                "fileType":      "pac_ro",
+                "label":         "Nettoyage et rinçage du circuit de chauffage",
+                "unit":          "u",
+                "defaultPu":     0,
+                "pu":            0,
                 "defaultNumber": 1,
-                "number": 1,
-                "calcTva10": false
+                "number":        1,
+                "calcTva10":     false
             },
             {
                 "id": 5,
