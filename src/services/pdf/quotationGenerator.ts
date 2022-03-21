@@ -104,8 +104,6 @@ export class QuotationGenerator extends PdfGenerator {
         if ( this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR ) {
             const sizingPacGenerator = new SizingPacGenerator( this._file );
             sizingPacGenerator.generatePdf();
-            // const pathToAsset = path.join( __static, '/pdf/dimensionnement_pac.pdf' );
-            // copyFileFromAssetToDropbox( pathToAsset, FoldersNames.DIMENSIONNEMENT_PAC, 'dimensionnement_pac.pdf' );
         }
     }
 
