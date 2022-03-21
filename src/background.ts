@@ -135,8 +135,10 @@ const { download } = require( 'electron-dl' );
 
 ipcMain.on( 'download', async ( event, { payload } ) => {
     // Handle dowload
+    console.log( 'HANDLE DOWNLOAD' );
 
     for ( const url of payload.urls ) {
+        console.log( 'URL -->', url );
         await download( BrowserWindow.getFocusedWindow(), url, {
             directory:   payload.properties.directory,
             saveAs:      false,
@@ -149,6 +151,7 @@ ipcMain.on( 'download', async ( event, { payload } ) => {
             },
         } );
     }
+    console.log( 'AFTER FOR' );
 
     mainWindow.webContents.send( 'all-download-complete' );
 

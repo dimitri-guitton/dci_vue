@@ -55,7 +55,7 @@ export const fetchCommercialData = () => {
 };
 
 /**
- * Récupère le stattus des dossiers
+ * Récupère le status des dossiers
  */
 export const fetchDossierState = () => {
     const params = {

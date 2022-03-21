@@ -270,6 +270,7 @@ export const convertAllOldJsonToNewJson = () => {
 export const getFileJson = () => {
     const app            = remote.app;
     const downloadFolder = `${ app.getPath( 'userData' ) }/files`;
+    console.log( 'downloadFolder-->', downloadFolder );
 
     const urls: string[] = [];
     for ( const file of LIST_FILE_TYPE ) {
@@ -281,6 +282,8 @@ export const getFileJson = () => {
                                            text:       'Téléchargement des ressources ...',
                                            background: 'rgba(0, 0, 0, 0.7)',
                                        } );
+
+    console.log( '%c SEND DOWNLOAD', 'background: #fdd835; color: #000000' );
     ipcRenderer.send( 'download', {
         payload: {
             urls,
