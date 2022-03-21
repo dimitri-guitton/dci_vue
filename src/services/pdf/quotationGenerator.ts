@@ -517,6 +517,58 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PAC_RR:
                 list              = ( this._file.lists as RrList );
                 const rrQuotation = ( this._file.quotation as RrQuotation );
+
+                const addedLeftValues: { label: string; value: string }[]  = [];
+                const addedRightValues: { label: string; value: string }[] = [];
+                if ( rrQuotation.rrType !== 'mono' ) {
+                    addedLeftValues.push(
+                        {
+                            label: 'Nombre de pièces',
+                            value: rrQuotation.rrMulti.roomNumber.toString(),
+                        },
+                    );
+
+                    addedRightValues.push(
+                        {
+                            label: 'Superficie de la pièce 1 (m2)',
+                            value: rrQuotation.rrMulti.areaP1.toString(),
+                        },
+                        {
+                            label: 'Superficie de la pièce 2 (m2)',
+                            value: rrQuotation.rrMulti.areaP2.toString(),
+                        },
+                    );
+
+
+                    if ( rrQuotation.rrMulti.roomNumber >= 3 ) {
+                        addedRightValues.push(
+                            {
+                                label: 'Superficie de la pièce 3 (m2)',
+                                value: rrQuotation.rrMulti.roomNumber >= 3 ? rrQuotation.rrMulti.areaP3.toString() : ' ',
+                            },
+                        );
+                    }
+
+                    if ( rrQuotation.rrMulti.roomNumber >= 4 ) {
+                        addedRightValues.push(
+                            {
+                                label: 'Superficie de la pièce 4 (m2)',
+                                value: rrQuotation.rrMulti.roomNumber >= 4 ? rrQuotation.rrMulti.areaP4.toString() : ' ',
+                            },
+                        );
+                    }
+
+                    if ( rrQuotation.rrMulti.roomNumber >= 5 ) {
+                        addedRightValues.push(
+                            {
+                                label: 'Superficie de la pièce 5 (m2)',
+                                value: rrQuotation.rrMulti.roomNumber >= 5 ? rrQuotation.rrMulti.areaP5.toString() : ' ',
+                            },
+                        );
+                    }
+
+                }
+
                 return {
                     left:  [
                         {
@@ -533,34 +585,14 @@ export class QuotationGenerator extends PdfGenerator {
                         },
                         {
                             label: 'Tension disponible',
-                            value: housing.availableVoltage ? housing.availableVoltage : ' ',
+                            value: housing.availableVoltage
+                                   ? this.getValueInList( list.tensionDisponibleList, housing.availableVoltage )
+                                   : ' ',
                         },
-                        {
-                            label: 'Nombre de pièces',  // TODO ajouter le nombre de piece
-                            value: rrQuotation.rrMulti.roomNumber.toString(),
-                        },
+                        ...addedLeftValues,
                     ],
                     right: [
-                        {
-                            label: 'Superficie de la pièce 1 (m2)',
-                            value: rrQuotation.rrMulti.areaP1.toString(),
-                        },
-                        {
-                            label: 'Superficie de la pièce 2 (m2)',
-                            value: rrQuotation.rrMulti.roomNumber >= 2 ? rrQuotation.rrMulti.areaP2.toString() : ' ',
-                        },
-                        {
-                            label: 'Superficie de la pièce 3 (m2)',
-                            value: rrQuotation.rrMulti.roomNumber >= 3 ? rrQuotation.rrMulti.areaP3.toString() : ' ',
-                        },
-                        {
-                            label: 'Superficie de la pièce 4 (m2)',
-                            value: rrQuotation.rrMulti.roomNumber >= 4 ? rrQuotation.rrMulti.areaP4.toString() : ' ',
-                        },
-                        {
-                            label: 'Superficie de la pièce 5 (m2)',
-                            value: rrQuotation.rrMulti.roomNumber >= 4 ? rrQuotation.rrMulti.areaP5.toString() : ' ',
-                        },
+                        ...addedRightValues,
                     ],
                 };
             case FILE_PG:

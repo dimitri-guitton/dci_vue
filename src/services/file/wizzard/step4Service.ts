@@ -64,11 +64,9 @@ export const defaultYupConfigStep4 = () => {
                                .of(
                                    Yup.object().shape( {
                                                            pu:     Yup.number()
-                                                                      .required()
                                                                       .min( 0,
                                                                             'Le montant doit être supérieur ou égal à 0' ),
                                                            number: Yup.number()
-                                                                      .required()
                                                                       .min( 0,
                                                                             'Le nombre doit être supérieur ou égal à 0' ),
                                                        } ),

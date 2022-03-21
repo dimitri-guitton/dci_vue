@@ -202,17 +202,17 @@
         "selectedProducts": [],
         "rrType": "mono",
         "rrMulti": {
-            "roomNumber": 2,
-            "areaP1": 0,
-            "areaP2": 0,
-            "areaP3": 0,
-            "areaP4": 0,
-            "areaP5": 0,
-            "assortmentP1": "sensira",
-            "assortmentP2": "sensira",
-            "assortmentP3": "sensira",
-            "assortmentP4": "sensira",
-            "assortmentP5": "sensira"
+            "roomNumber":   2,
+            "areaP1":       0,
+            "areaP2":       0,
+            "areaP3":       0,
+            "areaP4":       0,
+            "areaP5":       0,
+            "assortmentP1": "perfera",
+            "assortmentP2": "perfera",
+            "assortmentP3": "perfera",
+            "assortmentP4": "perfera",
+            "assortmentP5": "perfera"
         },
         "assortment": "sensira",
         "products": [
