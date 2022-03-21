@@ -60,9 +60,21 @@ const schema = {
         type:    'number',
         default: 0,
     },
+    connectedToInternet: {
+        type:    'boolean',
+        default: true,
+    },
 } as const;
 
 const store = new Store( { schema } );
+
+export const getConnectedToInternet = (): boolean => {
+    return ( store.get( 'connectedToInternet' ) as boolean );
+};
+
+export const setConnectedToInternet = ( value: boolean ) => {
+    store.set( 'connectedToInternet', value );
+};
 
 
 export const getCurrentFileReference = () => {

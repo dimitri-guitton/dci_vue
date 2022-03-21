@@ -308,6 +308,14 @@ export const getFileJson = () => {
                        type:    'success',
                    } );
     } );
+
+    ipcRenderer.on( 'no-internet', () => {
+        loading.close();
+        ElMessage( {
+                       message: 'Vérifiez votre connexion internet',
+                       type:    'warning',
+                   } );
+    } );
 };
 
 export const getFolderPath = ( folderName: string ): string => {

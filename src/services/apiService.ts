@@ -1,6 +1,7 @@
 import Store from 'electron-store';
 import { ElMessage } from 'element-plus';
 import {
+    getConnectedToInternet,
     getCurrentFileData,
     getLastUpdateFileState,
     resetCurrentFileData,
@@ -36,22 +37,31 @@ const encodeParameters = ( params ): string => {
 };
 
 /**
+ * Check que l'on est connecté à internet
+ */
+const checkInternet = (): boolean => {
+    return getConnectedToInternet();
+};
+
+/**
  * Récupère les infos du commercial depuis son API_TOKEN
  */
 export const fetchCommercialData = () => {
-    fetch( `${ API_URL }/commercial-info`, {
-        method:  'GET',
-        headers: defaultHeader,
-    } )
-        .then( response => response.json() )
-        .then( response => {
-            console.log( 'response -->', response );
-            setCommercialInfo( +response.id, response.firstName, response.lastName, response.phone );
+    if ( checkInternet() ) {
+        fetch( `${ API_URL }/commercial-info`, {
+            method:  'GET',
+            headers: defaultHeader,
         } )
-        .catch( error => {
-            ElMessage.error( 'Une erreur est survenue pour récupérer les informations sur l\'ERP' );
-            console.error( error );
-        } );
+            .then( response => response.json() )
+            .then( response => {
+                console.log( 'response -->', response );
+                setCommercialInfo( +response.id, response.firstName, response.lastName, response.phone );
+            } )
+            .catch( error => {
+                ElMessage.error( 'Une erreur est survenue pour récupérer les informations sur l\'ERP' );
+                console.error( error );
+            } );
+    }
 };
 
 /**
@@ -61,40 +71,42 @@ export const fetchDossierState = () => {
     const params = {
         since: getLastUpdateFileState(),
     };
-    fetch( `${ API_URL }/file-state?${ encodeParameters( params ) }`, {
-        method:  'GET',
-        headers: defaultHeader,
-    } )
-        .then( response => response.json() )
-        .then( response => {
-            console.log( 'response -->', response );
-            setLastUpdateFileState();
+    if ( checkInternet() ) {
+        fetch( `${ API_URL }/file-state?${ encodeParameters( params ) }`, {
+            method:  'GET',
+            headers: defaultHeader,
         } )
-        .catch( error => {
-            ElMessage.error( 'Une erreur est survenue lors de la synchronisation avec l\'ERP' );
-            console.error( error );
-        } );
+            .then( response => response.json() )
+            .then( response => {
+                console.log( 'response -->', response );
+                setLastUpdateFileState();
+            } )
+            .catch( error => {
+                ElMessage.error( 'Une erreur est survenue lors de la synchronisation avec l\'ERP' );
+                console.error( error );
+            } );
+    }
 };
 
 export const postFileToERP = ( folderName: string ) => {
     setcurrentFolderName( folderName );
     const fileData: AllFile = getCurrentFileData();
 
-    fetch( `${ API_URL }/file`, {
-        method:  'POST',
-        headers: defaultHeader,
-        body:    JSON.stringify( fileData ),
-    } )
-        .then( response => response.json() )
-        .then( response => {
-            console.log( 'response -->', response );
-            setLastUpdateFileState();
-            resetCurrentFileData();
+    if ( checkInternet() ) {
+        fetch( `${ API_URL }/file`, {
+            method:  'POST',
+            headers: defaultHeader,
+            body:    JSON.stringify( fileData ),
         } )
-        .catch( error => {
-            ElMessage.error( 'Une erreur est survenue lors de la transmission à l\'ERP' );
-            console.error( error );
-        } );
-
-
+            .then( response => response.json() )
+            .then( response => {
+                console.log( 'response -->', response );
+                setLastUpdateFileState();
+                resetCurrentFileData();
+            } )
+            .catch( error => {
+                ElMessage.error( 'Une erreur est survenue lors de la transmission à l\'ERP' );
+                console.error( error );
+            } );
+    }
 };

@@ -57,6 +57,8 @@ import {
   Title,
   Tooltip,
 } from 'chart.js';
+import { getConnectedToInternet, setConnectedToInternet } from '@/services/data/dataService';
+import { ElMessage } from 'element-plus';
 
 Chart.register(
     ArcElement,
@@ -97,6 +99,31 @@ export default defineComponent( {
                                        * remove this to use config only from static config (@/core/config/DefaultLayoutConfig.ts)
                                        */
                                       store.commit( Mutations.OVERRIDE_LAYOUT_CONFIG );
+
+                                      // Event pour check la connection internet
+                                      const updateOnlineStatus = () => {
+                                        if ( navigator.onLine ) {
+                                          if ( !getConnectedToInternet() ) {
+                                            ElMessage( {
+                                                         message: 'Vous êtes de nouveau connecté à Internet',
+                                                         type:    'success',
+                                                       } );
+                                          }
+                                          setConnectedToInternet( true );
+
+                                        } else {
+                                          setConnectedToInternet( false );
+                                          ElMessage( {
+                                                       message: 'Vous n\'êtes pas connecté à Internet',
+                                                       type:    'warning',
+                                                     } );
+                                        }
+
+
+                                      };
+
+                                      window.addEventListener( 'online', updateOnlineStatus );
+                                      window.addEventListener( 'offline', updateOnlineStatus );
                                     } );
                                   },
                                 } );

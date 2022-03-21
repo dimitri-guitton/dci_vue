@@ -11,15 +11,19 @@ ElectronStore.initRenderer();
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const schema = {
-    windowWidth:  {
+    windowWidth:         {
         type:    'number',
         minimum: 200,
         default: 800,
     },
-    windowHeight: {
+    windowHeight:        {
         type:    'number',
         minimum: 100,
         default: 400,
+    },
+    connectedToInternet: {
+        type:    'boolean',
+        default: true,
     },
 } as const;
 
@@ -137,22 +141,26 @@ ipcMain.on( 'download', async ( event, { payload } ) => {
     // Handle dowload
     console.log( 'HANDLE DOWNLOAD' );
 
-    for ( const url of payload.urls ) {
-        console.log( 'URL -->', url );
-        await download( BrowserWindow.getFocusedWindow(), url, {
-            directory:   payload.properties.directory,
-            saveAs:      false,
-            overwrite:   true,
-            onProgress:  ( progress ) => {
-                mainWindow.webContents.send( 'download-progress', progress );
-            },
-            onCompleted: ( item ) => {
-                mainWindow.webContents.send( 'download-complete', item );
-            },
-        } );
-    }
-    console.log( 'AFTER FOR' );
+    if ( store.get( 'connectedToInternet' ) ) {
+        for ( const url of payload.urls ) {
+            console.log( 'URL -->', url );
+            await download( BrowserWindow.getFocusedWindow(), url, {
+                directory:   payload.properties.directory,
+                saveAs:      false,
+                overwrite:   true,
+                onProgress:  ( progress ) => {
+                    mainWindow.webContents.send( 'download-progress', progress );
+                },
+                onCompleted: ( item ) => {
+                    mainWindow.webContents.send( 'download-complete', item );
+                },
+            } );
+        }
 
-    mainWindow.webContents.send( 'all-download-complete' );
+        mainWindow.webContents.send( 'all-download-complete' );
+    } else {
+        mainWindow.webContents.send( 'no-internet' );
+    }
+
 
 } );
