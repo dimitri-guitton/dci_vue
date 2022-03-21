@@ -115,7 +115,7 @@ export const getEnergyZone = ( zipCode: number ): string => {
 };
 
 
-const roundCeeBonus = ( ceeBonus: number | string ): number => {
+export const roundCeeBonus = ( ceeBonus: number | string ): number => {
 
     if ( typeof ceeBonus === 'string' ) {
         ceeBonus = +ceeBonus;
@@ -796,18 +796,28 @@ export const getCeeBonus = ( data: BaseFile ): number => {
             break;
         case FILE_PAC_RO:
             const roData = data as RoFile;
-            return getCeeRo( roData.quotation.selectedProducts,
-                             roData.housing.type,
-                             roData.housing.area,
-                             roData.energyZone );
+            value        = getCeeRo( roData.quotation.selectedProducts,
+                                     roData.housing.type,
+                                     roData.housing.area,
+                                     roData.energyZone );
+            break;
         case FILE_PAC_RR:
             const rrData = data as RrFile;
-            return getCeeRr( rrData.quotation.selectedProducts,
-                             rrData.housing.type,
-                             rrData.housing.area,
-                             rrData.energyZone );
+            value        = getCeeRr( rrData.quotation.selectedProducts,
+                                     rrData.housing.type,
+                                     rrData.housing.area,
+                                     rrData.energyZone );
+            break;
 
     }
+
+    // Si de type COMBLE OU SOL on arrondie après car on miltiplie la prime par la surface
+    switch ( type ) {
+        case FILE_COMBLE:
+        case FILE_SOL:
+            return value;
+    }
+
     return roundCeeBonus( value );
 };
 
@@ -904,7 +914,7 @@ export const getMaPrimeRenov = ( type: string, totalTtc = 0, cee = 0 ): number =
             break;
     }
 
-    return roundCeeBonus( value );
+    return value;
 };
 
 
