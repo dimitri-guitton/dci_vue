@@ -1648,7 +1648,8 @@ export class QuotationGenerator extends PdfGenerator {
             fontSize:   10,
             stack:      [
                 {
-                    columns: [
+                    unbreakable: true,
+                    columns:     [
                         {
                             width: '50%',
                             stack: [
