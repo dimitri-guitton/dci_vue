@@ -1540,7 +1540,7 @@ export class QuotationGenerator extends PdfGenerator {
                 },
                 {
                     text: [
-                        'Etablissement financier : Franfinance\n',
+                        'Etablissement financier : DOMIFINANCE\n',
                         `Montant du crédit : ${ this.formatPrice( paymentOnCredit.amount, 1, true, false ) }\n`,
                         `Mensualité sans assurance : ${ this.formatPrice( paymentOnCredit.withoutInsurance, 1, true, false ) }\n`,
                         `Mensualité avec assurance : ${ this.formatPrice( paymentOnCredit.withInsurance, 1, true, false ) }\n`,
