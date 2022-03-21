@@ -467,7 +467,7 @@ export class RrAlgo extends PacAlgo {
 
     public getUnitsMono = ( assortment: string ): { unitExt: string; unitInt: string } | null => {
         console.log( '%c GET UNITS RR MONO', 'background: #FF54AB; color: #000000' );
-        const requiredPower: number = this.calcRequiredPower( this.housing );
+        const requiredPower: number = this.calcRequiredPower( this.housing, 'pac_rr' );
         const model                 = this.calcMonoModel( requiredPower );
 
         const selectedUnitExt = this.getMonoCodeExt( model, assortment ).toUpperCase();

@@ -668,7 +668,7 @@ export class RoAlgo extends PacAlgo {
 
     public getUnitsRo = ( volumeECS: number ): { unitExt: UnitExt; unitInt: UnitInt } | null => {
         console.log( '%c GET UNITS RO', 'background: #5ADFFF; color: #000000' );
-        const requiredPower: number = this.calcRequiredPower( this.housing );
+        const requiredPower: number = this.calcRequiredPower( this.housing, 'pac_ro' );
         const baseTemp: number      = this.getBaseTemperature( this.housing.climaticZone, this.housing.altitude );
         const heaterValue: number   = this.heaterToValue( this.housing.heaters );
 
