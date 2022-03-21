@@ -503,7 +503,8 @@ export class QuotationGenerator extends PdfGenerator {
                     right: [
                         {
                             label: 'Appareil à remplacer',
-                            value: roQuotation.deviceToReplace.type ? roQuotation.deviceToReplace.type : ' ',
+                            value: roQuotation.deviceToReplace.type ? this.getValueInList( list.typeChaudiereList,
+                                                                                           roQuotation.deviceToReplace.type ) : ' ',
                         },
                         {
                             label: 'Marque',
