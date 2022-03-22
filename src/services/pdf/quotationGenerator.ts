@@ -89,7 +89,7 @@ export class QuotationGenerator extends PdfGenerator {
         }
 
         // Génération du cadre de contribution
-        // Pour les pompes à chaleur RO et RR quand la prime CEE est > à 0
+        // Pour les pompes à chaleur quand la prime CEE est > à 0
         if ( this._file.quotation.ceeBonus > 0 ) {
             const contributionFrameworkGenerator = new ContributionFrameworkGenerator( this._file );
             contributionFrameworkGenerator.generatePdf();

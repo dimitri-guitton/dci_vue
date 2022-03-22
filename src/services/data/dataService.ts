@@ -64,9 +64,21 @@ const schema = {
         type:    'boolean',
         default: true,
     },
+    oldJsonAreConverted: {
+        type:    'boolean',
+        default: false,
+    },
 } as const;
 
 const store = new Store( { schema } );
+
+export const getDropboxPath = (): string => {
+    return ( store.get( 'dropboxPath' ) as string );
+};
+
+export const setDropboxPath = ( value: string ) => {
+    store.set( 'dropboxPath', value );
+};
 
 export const getConnectedToInternet = (): boolean => {
     return ( store.get( 'connectedToInternet' ) as boolean );
@@ -76,6 +88,13 @@ export const setConnectedToInternet = ( value: boolean ) => {
     store.set( 'connectedToInternet', value );
 };
 
+export const getOldJsonAreConverted = (): boolean => {
+    return ( store.get( 'oldJsonAreConverted' ) as boolean );
+};
+
+export const setOldJsonAreConverted = ( value: boolean ) => {
+    store.set( 'oldJsonAreConverted', value );
+};
 
 export const getCurrentFileReference = () => {
     return store.get( 'currentFileReference' );
@@ -136,7 +155,7 @@ export const getCurrentFileData = (): AllFile => {
         console.log( '%c CURRENT FILE EMPTY', 'background: #fdd835; color: #000000' );
         const name = getcurrentFolderName() as string;
         console.log( 'GET FILE DATA NAME -->', name );
-        const path = `${ getFolderPath( name ) }/data.json`;
+        const path = `${ getFolderPath( name ) }/${ process.env.VUE_APP_FILENAME_DATA }.json`;
         console.log( 'GET FILE DATA PATH -->', path );
 
         // TODO faire la verif si la path existe, si il n'existe pas créer le .json

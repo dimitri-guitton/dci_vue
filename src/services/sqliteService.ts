@@ -211,7 +211,8 @@ export async function addFile( reference: string,
     const strTodos     = convertToStringIfNotNull( todos );
     const strCreatedAt = dateToString( createdAt );
     const strUpdatedAt = dateToString( updatedAt );
-    const strSendAt    = dateToString( sendAt );
+    console.log( 'SEND AT -->', sendAt );
+    const strSendAt = dateToString( sendAt );
 
     const query = `INSERT INTO file (reference, folderName, fileTypes, customer, totalTTC, isProspect, isClosed,
                                      statusInDCI, errorsStatusInDci, todos, createdAt, updatedAt, sendAt)
@@ -230,6 +231,8 @@ export async function addFile( reference: string,
                            ${ strSendAt })
     `;
 
+    console.log( '%c BEFORE EXECUTE QUERY', 'background: #fdd835; color: #000000' );
+    console.log( query );
     await db.exec( query );
 }
 

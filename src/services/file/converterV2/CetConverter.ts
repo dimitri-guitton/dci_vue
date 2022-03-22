@@ -74,19 +74,21 @@ export class CetConverter extends BaseConverter {
         const convertedJson = super.convertJsonFile();
 
         // Récupération de nouveau JSON
-        let fileData = this.getNewJson( 'cet' );
+        let fileData = this.getNewJson( FILE_CET );
 
         fileData = {
             ...fileData,
             ...convertedJson,
             type:      FILE_CET,
             housing:   {
+                ...fileData.housing,
                 ...convertedJson.housing,
                 heatingType:       this.getObjectData( this.oldData, [ 'logement', 'chauffageType' ] ),
                 insulationQuality: this.getObjectData( this.oldData, [ 'logement', 'qualiteIsolation' ] ),
                 availableVoltage:  this.getObjectData( this.oldData, [ 'logement', 'tensionDisponible' ] ),
             },
             quotation: {
+                ...fileData.quotation,
                 ...convertedJson.quotation,
                 selectedProducts:  this.getOldSelectedProduct(),
                 products:          this.getOldProduct(),

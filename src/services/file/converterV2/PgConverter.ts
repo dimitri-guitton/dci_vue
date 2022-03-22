@@ -135,23 +135,27 @@ export class PgConverter extends BaseConverter {
         const convertedJson = super.convertJsonFile();
 
         // Récupération de nouveau JSON
-        let fileData = this.getNewJson( 'cet' );
+        let fileData = this.getNewJson( FILE_PG );
+        console.log( 'NEW FILE DATA', fileData );
 
         fileData = {
             ...fileData,
             ...convertedJson,
             type:      FILE_PG,
             housing:   {
+                ...fileData.housing,
                 ...convertedJson.housing,
                 heatingType:       this.getObjectData( this.oldData, [ 'logement', 'chauffageType' ] ),
                 insulationQuality: this.getObjectData( this.oldData, [ 'logement', 'qualiteIsolation' ] ),
                 availableVoltage:  this.getObjectData( this.oldData, [ 'logement', 'tensionDisponible' ] ),
             },
             quotation: {
+                ...fileData.quotation,
                 ...convertedJson.quotation,
                 selectedProducts:  this.getOldSelectedProduct(),
                 products:          this.getOldProduct(),
                 maPrimeRenovBonus: this.getNumberData( this.oldData [ 'devis' ][ 'primeAnah' ] ),
+                outsideSocket:     this.getBoolData( this.oldData[ 'outsideSocket' ] ),
             },
             worksheet: {
                 ...convertedJson.worksheet,

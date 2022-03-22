@@ -139,7 +139,18 @@ export class BaseConverter {
     protected getOldAssents(): Assent[] {
         const assents: Assent[] = [];
         const oldAssents: any[] = this.getArrayData( this.oldData[ 'avis' ] );
+
+
         for ( const assent of oldAssents ) {
+            let civility = assent[ 'civilite' ];
+
+            if ( civility !== undefined && civility.toLowerCase() === 'mme' ) {
+                civility = 'f';
+            }
+            if ( civility === 'M' ) {
+                civility = 'm';
+            }
+
             assents.push( {
                               refAvis:       assent[ 'refAvis' ],
                               numFiscal:     assent[ 'numFiscal' ],
@@ -161,7 +172,7 @@ export class BaseConverter {
                               codepostal:    assent[ 'codepostal' ],
                               ville:         assent[ 'ville' ],
                               revenu:        this.getNumberData( assent[ 'revenu' ] ),
-                              civility:      assent[ 'civilite' ],
+                              civility,
                           } );
         }
         return assents;
@@ -232,9 +243,15 @@ export class BaseConverter {
 
 
     protected getOldBaseHousing(): Housing {
+
+        let type = this.getObjectData( this.oldData, [ 'logement', 'localType' ] );
+        if ( this.oldData[ 'type' ] === 'comble' || this.oldData[ 'type' ] === 'sol' ) {
+            type = this.getObjectData( this.oldData, [ 'logement', 'batimentType' ] );
+        }
+
         return {
             nbOccupant:       this.getNumberData( this.oldData[ 'logement' ][ 'occupants' ] ),
-            type:             this.getObjectData( this.oldData, [ 'logement', 'localType' ] ),
+            type,
             buildingNature:   this.getObjectData( this.oldData, [ 'logement', 'batimentNature' ] ),
             isRentedHouse:    this.getObjectData( this.oldData, [ 'logement', 'batimentNature' ] ) === 'location',
             isAddressBenef:   this.getObjectData( this.oldData, [ 'logement', 'isAdresseBenef' ] ),
@@ -246,7 +263,9 @@ export class BaseConverter {
             dataGeoportail:   this.getOldDataGeoportail(),
             location:         this.getObjectData( this.oldData, [ 'logement', 'location' ] ),
             constructionYear: this.getNullableNumberData( this.oldData [ 'logement' ][ 'anneeConstruction' ] ),
-            lessThan2Years:   this.getObjectData( this.oldData, [ 'logement', 'moinsDe2Ans' ] ),
+            lessThan2Years:   this.getObjectData( this.oldData, [ 'logement', 'moinsDe2Ans' ] ) === ''
+                              ? false
+                              : this.getObjectData( this.oldData, [ 'logement', 'moinsDe2Ans' ] ) === '',
         };
     }
 

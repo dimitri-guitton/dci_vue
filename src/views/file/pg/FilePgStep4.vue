@@ -33,7 +33,7 @@
 
         <Field name="q_power"
                id="q_power"
-               class="form-selectsolid"
+               class="form-select"
                as="select"
                v-model.number="power">
           <item-list :lists="lists.puissancePoeleList"></item-list>

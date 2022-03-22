@@ -83,12 +83,14 @@ export class CombleConverter extends BaseConverter {
             ...convertedJson,
             type:      FILE_COMBLE,
             housing:   {
+                ...fileData.housing,
                 ...convertedJson.housing,
                 heatingType:       this.getObjectData( this.oldData, [ 'logement', 'chauffageType' ] ),
                 insulationQuality: this.getObjectData( this.oldData, [ 'logement', 'qualiteIsolation' ] ),
                 availableVoltage:  this.getObjectData( this.oldData, [ 'logement', 'tensionDisponible' ] ),
             },
             quotation: {
+                ...fileData.quotation,
                 ...convertedJson.quotation,
                 selectedProducts: this.getOldSelectedProduct(),
                 products:         this.getOldProduct(),

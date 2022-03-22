@@ -6,13 +6,14 @@ export class RoConverter extends BaseConverter {
         const convertedJson = super.convertJsonFile();
 
         // Récupération de nouveau JSON
-        let fileData = this.getNewJson( 'cet' );
+        let fileData = this.getNewJson( FILE_PAC_RO );
 
         fileData = {
             ...fileData,
             ...convertedJson,
             type:      FILE_PAC_RO,
             housing:   {
+                ...fileData.housing,
                 ...convertedJson.housing,
                 heatingType:         this.getObjectData( this.oldData, [ 'logement', 'chauffageType' ] ),
                 availableVoltage:    this.getObjectData( this.oldData, [ 'logement', 'tensionDisponible' ] ),
@@ -24,6 +25,7 @@ export class RoConverter extends BaseConverter {
                 setPointTemperature: 19,            // Température de consigne
             },
             quotation: {
+                ...fileData.quotation,
                 ...convertedJson.quotation,
                 maPrimeRenovBonus: this.getNumberData( this.oldData [ 'devis' ][ 'primeAnah' ] ),
                 assortment:        this.getObjectData( this.oldData, [ 'devis', 'gamme' ] ),

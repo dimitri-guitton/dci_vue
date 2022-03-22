@@ -44,13 +44,22 @@ export class RrConverter extends BaseConverter {
         const convertedJson = super.convertJsonFile();
 
         // Récupération de nouveau JSON
-        let fileData = this.getNewJson( 'cet' );
+        let fileData = this.getNewJson( FILE_PAC_RR );
+
+        let rrType = this.getObjectData( this.oldData, [ 'devis', 'rrType' ] );
+
+        if ( rrType === 'rr_multi' ) {
+            rrType = 'multi';
+        } else {
+            rrType = 'mono';
+        }
 
         fileData = {
             ...fileData,
             ...convertedJson,
             type:      FILE_PAC_RR,
             housing:   {
+                ...fileData.housing,
                 ...convertedJson.housing,
                 heatingType:         this.getObjectData( this.oldData, [ 'logement', 'chauffageType' ] ),
                 availableVoltage:    this.getObjectData( this.oldData, [ 'logement', 'tensionDisponible' ] ),
@@ -62,11 +71,12 @@ export class RrConverter extends BaseConverter {
                 setPointTemperature: 19,            // Température de consigne
             },
             quotation: {
+                ...fileData.quotation,
                 ...convertedJson.quotation,
                 maPrimeRenovBonus: this.getNumberData( this.oldData [ 'devis' ][ 'primeAnah' ] ),
                 tva10:             this.getNumberData( this.oldData [ 'devis' ][ 'tva10' ] ),
                 tva20:             this.getNumberData( this.oldData [ 'devis' ][ 'tva20' ] ),
-                rrType:            this.getObjectData( this.oldData, [ 'devis', 'rrType' ] ),
+                rrType,
                 rrMulti:           this.convertOldRrMulti(),
                 assortment:        this.getObjectData( this.oldData, [ 'devis', 'gamme' ] ),
 
