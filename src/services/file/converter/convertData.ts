@@ -294,7 +294,6 @@ export const convertOldOptions = ( oldData ): Option[] => {
     return newOptions;
 };
 
-
 export const convertOldTotalHt = ( oldData ): number => {
     return oldData[ 'devis' ][ 'totalHT' ] !== undefined ? oldData[ 'devis' ][ 'totalHT' ] : 0;
 };
