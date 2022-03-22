@@ -450,6 +450,7 @@ export const convertAllOldjsonToNewJson = async () => {
             console.log( 'NEW JSON', newJson );
             const parent = `${ dropboxPath }/DCI/${ folder[ 'folderName' ] }`;
             fs.writeFileSync( `${ parent }/${ process.env.VUE_APP_FILENAME_DATA }.json`, JSON.stringify( newJson ) );
+            createSubFolders( type, `${ dropboxPath }/DCI/${ folder[ 'folderName' ] }` );
         }
     }
 
