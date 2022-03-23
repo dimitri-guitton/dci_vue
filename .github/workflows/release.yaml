@@ -30,7 +30,7 @@ jobs:
                     SIGN:     false
                 run:   |
                        yarn install --network-timeout 1000000
-                       yarn electron:build --publish="always"
+                       yarn electron:build:prod --publish="always"
                        
             -   name: Upload artifact
                 uses: actions/upload-artifact@v2
