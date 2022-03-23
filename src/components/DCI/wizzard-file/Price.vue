@@ -35,6 +35,10 @@
           - {{ numberToPrice( price.maPrimeRenov ) }}
         </el-descriptions-item>
 
+        <el-descriptions-item align="right" label="Remise">
+          - {{ numberToPrice( price.discount, 1, false ) }}
+        </el-descriptions-item>
+
         <el-descriptions-item align="right" label="Reste à Payer">
           {{ numberToPrice( price.remainderToPay ) }}
         </el-descriptions-item>
@@ -64,6 +68,7 @@ export default defineComponent( {
                                           CEE:            0,
                                           maPrimeRenov:   0,
                                           remainderToPay: 0,
+                                          discount:       0,
                                         };
                                       },
                                     },

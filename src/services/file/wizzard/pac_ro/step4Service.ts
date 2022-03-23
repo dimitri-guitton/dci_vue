@@ -25,6 +25,7 @@ export const initPacRoFormDataStep4 = ( fileData: RoFile ): PacRoStep4 => {
         volumeECSDeporte:     fileData.quotation.volumeECSDeporte,
         volumeECS:            fileData.quotation.volumeECS,
         cascadeSystem:        fileData.quotation.cascadeSystem,
+        discount:             fileData.quotation.discount,
     };
 };
 
@@ -38,6 +39,7 @@ export const yupPacRoConfigStep4 = () => {
                            volumeECSDeporte:     Yup.number(),
                            volumeECS:            Yup.number(),
                            cascadeSystem:        Yup.boolean(),
+                           discount:             Yup.number().min( 0, 'La remise ne peut pas être inférieur à 0' ),
                        } );
 };
 

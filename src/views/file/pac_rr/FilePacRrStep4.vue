@@ -112,6 +112,8 @@
 
     <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
 
+    <input-discount @discountUpdated="updateDiscount" :discount="discount"></input-discount>
+
     <wizzard-file-price :price="price"></wizzard-file-price>
 
     <div class="row mt-10">
@@ -167,10 +169,12 @@ import RrMulti from '@/types/v2/File/Rr/RrMulti';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
 import { RrAlgo } from '@/services/algorithm/RrAlgo';
 import { getCeeBonus } from '@/services/file/fileCommonService';
+import InputDiscount from '@/components/DCI/input/Discount.vue';
 
 export default defineComponent( {
                                   name:       'file-pac-rr-step-4',
                                   components: {
+                                    InputDiscount,
                                     RowPrice,
                                     TemplateItemList,
                                     Step4Header,
@@ -198,6 +202,7 @@ export default defineComponent( {
                                     console.log( 'OPTION -->', _options );
 
 
+                                    const discount   = ref<number>( props.fileData.quotation.discount );
                                     const rrType     = ref<string>( ( props.fileData.quotation.rrType ) );
                                     const assortment = ref<string>( ( props.fileData.quotation.assortment ) );
                                     const rrMulti    = ref<RrMulti>( ( props.fileData.quotation.rrMulti ) );
@@ -214,6 +219,11 @@ export default defineComponent( {
 
                                     const updateOptions = ( options ) => {
                                       _options.value = options;
+                                    };
+
+                                    const updateDiscount = ( value ) => {
+                                      console.log( 'updateDiscount' );
+                                      discount.value = value;
                                     };
 
                                     /**
@@ -362,7 +372,8 @@ export default defineComponent( {
                                       }
 
                                       const totalTva = tva10 + tva20;
-                                      const totalTtc = totalHt + totalTva;
+                                      let totalTtc   = totalHt + totalTva;
+                                      totalTtc -= discount.value;
 
                                       if ( !props.fileData.disabledBonus ) {
                                         // Si la prime CEE est active
@@ -390,6 +401,7 @@ export default defineComponent( {
                                         TTC:            totalTtc,
                                         remainderToPay: totalTtc - totalPrime,
                                         CEE:            ceeBonus,
+                                        discount:       discount.value,
                                       };
 
                                       ctx.emit( 'calculedPrice', price );
@@ -408,8 +420,10 @@ export default defineComponent( {
                                       rrType,
                                       rrMulti,
                                       assortmentLists,
+                                      discount,
                                       updateOptions,
                                       updateBlankOtions,
+                                      updateDiscount,
                                       generateQuotation,
                                       generateAddressCertificate,
                                     };

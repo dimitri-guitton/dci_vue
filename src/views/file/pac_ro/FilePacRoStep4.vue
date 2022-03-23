@@ -165,6 +165,8 @@
 
     <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
 
+    <input-discount @discountUpdated="updateDiscount" :discount="discount"></input-discount>
+
     <wizzard-file-price :price="price"></wizzard-file-price>
 
     <div class="row mt-10">
@@ -218,10 +220,12 @@ import ItemList from '@/components/DCI/input/ItemList.vue';
 import RowPrice from '@/components/DCI/wizzard-file/rowPrice.vue';
 import { RoAlgo } from '@/services/algorithm/RoAlgo';
 import { getCeeBonus, getHelpingHandRo, getMaPrimeRenov } from '@/services/file/fileCommonService';
+import InputDiscount from '@/components/DCI/input/Discount.vue';
 
 export default defineComponent( {
                                   name:       'file-pac-ro-step-4',
                                   components: {
+                                    InputDiscount,
                                     RowPrice,
                                     ItemList,
                                     Step4Header,
@@ -248,6 +252,7 @@ export default defineComponent( {
                                     const lists         = ref<RoList>( ( props.fileData.lists as RoList ) );
 
                                     const deviceToReplace      = ref( props.fileData.quotation.deviceToReplace );
+                                    const discount             = ref<number>( props.fileData.quotation.discount );
                                     const isEcsDeporte         = ref<boolean>( props.fileData.quotation.isEcsDeporte );
                                     const volumeECS            = ref<number>( props.fileData.quotation.volumeECS );
                                     const volumeECSDeporte     = ref<number>( props.fileData.quotation.volumeECSDeporte );
@@ -272,6 +277,11 @@ export default defineComponent( {
 
                                     const updateBlankOtions = ( blankOptions ) => {
                                       _blankOptions.value = blankOptions;
+                                    };
+
+                                    const updateDiscount = ( value ) => {
+                                      console.log( 'updateDiscount' );
+                                      discount.value = value;
                                     };
 
                                     const updateCascadeSystem = ( value: boolean ) => {
@@ -440,7 +450,9 @@ export default defineComponent( {
                                         tva = 20;
                                       }
                                       const totalTva = tva * totalHt / 100;
-                                      const totalTtc = totalHt + totalTva;
+                                      let totalTtc   = totalHt + totalTva;
+
+                                      totalTtc -= discount.value;
 
 
                                       // Si les primes sont actives
@@ -488,6 +500,7 @@ export default defineComponent( {
                                         maPrimeRenov:   maPrimeRenov,
                                         remainderToPay: totalTtc - totalPrime,
                                         CEE:            ceeBonus,
+                                        discount:       discount.value,
                                       };
 
                                       ctx.emit( 'calculedPrice', price );
@@ -516,8 +529,10 @@ export default defineComponent( {
                                       price,
                                       products,
                                       needBiZoneSupplement,
+                                      discount,
                                       updateOptions,
                                       updateBlankOtions,
+                                      updateDiscount,
                                       generateQuotation,
                                       generateAddressCertificate,
                                     };

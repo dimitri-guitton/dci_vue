@@ -8,4 +8,5 @@ export interface PacRoStep4 extends BaseStep4 {
     volumeECSDeporte: number;
     volumeECS: number;
     cascadeSystem: boolean;
+    discount: number;
 }

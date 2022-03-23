@@ -30,7 +30,7 @@ export const initPacRrFormDataStep4 = ( fileData: RrFile ): PacRrStep4 => {
         housingAssortmentP3: fileData.quotation.rrMulti.assortmentP3,
         housingAssortmentP4: fileData.quotation.rrMulti.assortmentP4,
         housingAssortmentP5: fileData.quotation.rrMulti.assortmentP5,
-
+        discount:            fileData.quotation.discount,
     };
 };
 
@@ -47,6 +47,7 @@ export const yupPacRrConfigStep4 = () => {
                            housingAreaP3:       Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ),
                            housingAreaP4:       Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ),
                            housingAreaP5:       Yup.number().min( 0, 'La superficie ne peut pas être inférieur à 0' ),
+                           discount:            Yup.number().min( 0, 'La remise ne peut pas être inférieur à 0' ),
                            housingAssortmentP1: Yup.string(),
                            housingAssortmentP2: Yup.string(),
                            housingAssortmentP3: Yup.string(),
