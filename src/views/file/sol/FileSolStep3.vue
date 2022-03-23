@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <input-area></input-area>
+    <input-area area-name="Surface à isoler"></input-area>
 
     <step3-address :lists="lists" :file-data="fileData"></step3-address>
   </div>

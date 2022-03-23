@@ -6,6 +6,8 @@
 
     <step3-housing :lists="lists"></step3-housing>
 
+    <input-area area-name="Surface exploitable toiture"></input-area>
+
     <step3-address :lists="lists" :file-data="fileData"></step3-address>
   </div>
 </template>
@@ -16,10 +18,12 @@ import Step3Housing from '@/components/DCI/wizzard-file/Step3Housing.vue';
 import Step3Address from '@/components/DCI/wizzard-file/Step3Address.vue';
 import PvList from '@/types/v2/File/Pv/PvList';
 import { PvFile } from '@/types/v2/File/Pv/PvFile';
+import InputArea from '@/components/DCI/input/Area.vue';
 
 export default defineComponent( {
                                   name:       'file-pv-step-3',
                                   components: {
+                                    InputArea,
                                     Step3Address,
                                     Step3Housing,
                                   },

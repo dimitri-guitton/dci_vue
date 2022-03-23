@@ -30,7 +30,7 @@
 
           <!--begin::Step 3-->
           <div data-kt-stepper-element="content">
-            <FilePbStep3 :file-data="fileData" :lists="lists"></FilePbStep3>
+            <FilePvStep3 :file-data="fileData" :lists="lists"></FilePvStep3>
           </div>
           <!--end::Step 3-->
 
@@ -141,7 +141,6 @@ import { WorksheetGenerator } from '@/services/pdf/worksheetGenerator';
 import { Price } from '@/types/v2/File/Price';
 import { QuotationGenerator } from '@/services/pdf/quotationGenerator';
 import { ElLoading } from 'element-plus';
-import FilePbStep3 from '@/views/file/pb/FilePbStep3.vue';
 import FilePvStep4 from '@/views/file/pv/FilePvStep4.vue';
 import FilePvStep5 from '@/views/file/pv/FilePvStep5.vue';
 import { initPvFormDataStep3, validatePvStep3, yupPvConfigStep3 } from '@/services/file/wizzard/pv/step3Service';
@@ -152,6 +151,7 @@ import { PvFile } from '@/types/v2/File/Pv/PvFile';
 import { PvStep5 } from '@/types/v2/Wizzard/step5/PvStep5';
 import { BaseStep3 } from '@/types/v2/Wizzard/step3/BaseStep3';
 import { PvAlgo } from '@/services/algorithm/PvAlgo';
+import FilePvStep3 from '@/views/file/pv/FilePvStep3.vue';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -166,9 +166,9 @@ setLocale( {
 export default defineComponent( {
                                   name:       'file-pv-edit',
                                   components: {
+                                    FilePvStep3,
                                     FilePvStep5,
                                     FilePvStep4,
-                                    FilePbStep3,
                                     WizzardFileHeader,
                                     CommonStep2,
                                     CommonStep1,
