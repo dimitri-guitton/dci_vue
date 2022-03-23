@@ -1,15 +1,15 @@
 {
-    "name":        "eco-atl-dci",
-    "productName": "DCI",
-    "version":     "3.0.0-beta.3",
-    "private":     true,
-    "description": "Logiciel de devis",
-    "author":      {
+    "name":            "eco-atl-dci",
+    "productName":     "DCI",
+    "version":         "3.0.0-beta.3",
+    "private":         true,
+    "description":     "Logiciel de devis",
+    "author":          {
         "email": "echonumeric.team@gmail.com",
         "name":  "Echo Numeric",
         "url":   "https://echo-numeric.com/"
     },
-    "scripts":     {
+    "scripts":         {
         "serve":                   "vue-cli-service serve",
         "build":                   "vue-cli-service build",
         "deploy":                  "./deploy.sh",
@@ -17,8 +17,8 @@
         "clean":                   "yarn clean-deps && rm -rf dist_electron",
         "clean-deps":              "rm -rf node_modules",
         "electron:generate-icons": "electron-icon-builder --input=./public/icon.png --output=build --flatten",
-        "electron:build":          "vue-cli-service electron:build",
-        "electron:build:preprod":  "vue-cli-service electron:build --mode preprod",
+        "electron:build:prod":     "vue-cli-service electron:build --mode production",
+        "electron:build":          "vue-cli-service electron:build --mode development",
         "electron:serve":          "vue-cli-service electron:serve",
         "pdfmake:update-fonts":    "cd node_modules/pdfmake && node build-vfs.js \"../../src/assets/pdfmake_fonts\"",
         "postinstall":             "electron-builder install-app-deps && yarn pdfmake:update-fonts",
