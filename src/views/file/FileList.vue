@@ -33,7 +33,6 @@ export default defineComponent( {
                                     NewFolderModal,
                                   },
                                   setup() {
-                                    // const btnModal = ref( null );
                                     const btnModal = ref<null | { click: () => null }>( null );
 
                                     folderService.createDciFolderIfNotExist();
