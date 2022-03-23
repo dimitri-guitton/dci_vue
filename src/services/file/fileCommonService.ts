@@ -129,7 +129,7 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
  */
 export const getHelpingHandRo = ( codeBonus ): number => {
     if ( codeBonus === 'GP' ) {
-        return 5000;
+        return 4200;
     } else if ( codeBonus === 'P' ) {
         return 4000;
     } else {
