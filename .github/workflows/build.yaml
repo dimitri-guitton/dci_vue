@@ -2,7 +2,6 @@ name: Build
 
 on:
     push:
-        # Sequence of patterns matched against refs/heads
         branches:
             - preprod
 
@@ -22,10 +21,11 @@ jobs:
                 uses: actions/setup-node@v2
                 with:
                     node-version: 14.19.0
+                    
             -   name:  Build Electron app
                 shell: bash
                 env:
-                    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                    GH_TOKEN: ${{ secrets.AUTO_UPDATE_TOKEN }}
                     SIGN:     false
                 run:   |
                        yarn install --network-timeout 1000000
@@ -34,7 +34,7 @@ jobs:
             -   name: Upload artifact
                 uses: actions/upload-artifact@v2
                 with:
-                    # Artifact name 
+                    # Artifact name
                     name: ${{ matrix.os }}-artifact
                     # Directory containing files to upload
                     path: dist_electron
