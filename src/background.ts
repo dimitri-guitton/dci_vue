@@ -5,6 +5,7 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer';
 import { autoUpdater } from 'electron-updater';
 import ElectronStore from 'electron-store';
+import fs from 'fs';
 
 ElectronStore.initRenderer();
 
@@ -161,6 +162,18 @@ ipcMain.on( 'download', async ( event, { payload } ) => {
     } else {
         mainWindow.webContents.send( 'no-internet' );
     }
+} );
 
-
+ipcMain.on( 'save-screenshot', ( event, data ) => {
+    const { target } = data;
+    console.log( 'IN SAVE SCREENSHOT' );
+    mainWindow.webContents.capturePage().then( image => {
+        //writing  image to the disk
+        fs.writeFile( target, image.toPNG(), ( err ) => {
+            if ( err ) {
+                throw err;
+            }
+            console.log( 'Image Saved' )
+        } )
+    } )
 } );

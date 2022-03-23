@@ -16,15 +16,13 @@
 import { defineComponent, ref } from 'vue';
 import { setCurrentPageTitle } from '@/core/helpers/breadcrumb';
 import { convertAllOldjsonToNewJson, getFileJson } from '@/services/folder/folderService';
-import { getDropboxPath, getOldJsonAreConverted, setOldJsonAreConverted } from '@/services/data/dataService';
+import { getDropboxPath, getOldJsonAreConverted } from '@/services/data/dataService';
 
 declare const __static: string;
 
 export default defineComponent( {
                                   name: 'dashboard',
                                   setup() {
-
-                                    setOldJsonAreConverted( false );
 
                                     const oldJsonAreConverted = ref<boolean>( getOldJsonAreConverted() );
                                     const dropboxPath         = ref<string>( getDropboxPath() );
