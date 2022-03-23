@@ -125,6 +125,10 @@
       <row-price :product="ecs"></row-price>
     </template>
 
+    <template v-for="kitBiZone in selectedKitBiZone" v-bind:key="kitBiZone.reference">
+      <row-price :product="kitBiZone"></row-price>
+    </template>
+
     <!-- Formualaire caché afin de binder les values au formaulaire comme la sélection des produits se fait via l'algo-->
     <div class="row d-none">
       <label for="cascadeSystem" class="form-check form-switch form-check-custom">
@@ -243,10 +247,11 @@ export default defineComponent( {
                                     const _blankOptions = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                     const lists         = ref<RoList>( ( props.fileData.lists as RoList ) );
 
-                                    const deviceToReplace  = ref( props.fileData.quotation.deviceToReplace );
-                                    const isEcsDeporte     = ref<boolean>( props.fileData.quotation.isEcsDeporte );
-                                    const volumeECS        = ref<number>( props.fileData.quotation.volumeECS );
-                                    const volumeECSDeporte = ref<number>( props.fileData.quotation.volumeECSDeporte );
+                                    const deviceToReplace      = ref( props.fileData.quotation.deviceToReplace );
+                                    const isEcsDeporte         = ref<boolean>( props.fileData.quotation.isEcsDeporte );
+                                    const volumeECS            = ref<number>( props.fileData.quotation.volumeECS );
+                                    const volumeECSDeporte     = ref<number>( props.fileData.quotation.volumeECSDeporte );
+                                    const needBiZoneSupplement = ref<boolean>( false );
 
                                     const roAlgo = new RoAlgo( props.fileData.housing );
 
@@ -273,6 +278,11 @@ export default defineComponent( {
                                       cascadeSystem.value = value;
                                     };
 
+                                    const updateNeedBiZone = ( value: boolean ) => {
+                                      console.log( 'IN update -->', value );
+                                      needBiZoneSupplement.value = value;
+                                    };
+
                                     const resetVolumeECS = ( isEcsDeporte: boolean ) => {
                                       if ( isEcsDeporte ) {
                                         // TODO bug quand set à 0 ça affiche 230 dans la checkbox mais bien 0 sélectionné
@@ -284,6 +294,7 @@ export default defineComponent( {
 
                                     const ecsDeporte = props.fileData.quotation.products.filter( p => p.productType === 'ecs' );
                                     const kitCascade = props.fileData.quotation.products.filter( p => p.productType === 'kit_cascade' );
+                                    const kitBiZone  = props.fileData.quotation.products.filter( p => p.productType === 'kit_bi_zone' );
 
                                     const selectedEcsDeportes = computed<Product[]>( () => {
                                       // Reset le volume si jamais on switch en ECS et ECSDeporté
@@ -293,6 +304,15 @@ export default defineComponent( {
                                         return [];
                                       }
                                       return ecsDeporte.filter( ecs => ecs.volume === volumeECSDeporte.value );
+                                    } );
+
+                                    const selectedKitBiZone = computed<Product[]>( () => {
+                                      console.log( '%c IN COMPUTED SELECT KIT BI ZONE',
+                                                   'background: #DAFF83; color: #000000' );
+                                      if ( !needBiZoneSupplement.value ) {
+                                        return [];
+                                      }
+                                      return kitBiZone;
                                     } );
 
                                     const selectedKitCascade = computed<Product[]>( () => {
@@ -317,6 +337,9 @@ export default defineComponent( {
 
                                           const productExt: Product | undefined = getProductByRef( response.unitExt.ref );
                                           const productInt: Product | undefined = getProductByRef( response.unitInt.ref );
+                                          console.log( 'Need biZone Value', needBiZoneSupplement.value );
+                                          updateNeedBiZone( response.needBiZoneSupplement );
+                                          console.log( 'Need biZone Value', needBiZoneSupplement.value );
 
                                           if ( productExt === undefined || productInt === undefined ) {
                                             return [];
@@ -357,11 +380,13 @@ export default defineComponent( {
                                       console.log( [
                                                      ...selectedEcsDeportes.value,
                                                      ...selectedKitCascade.value,
+                                                     ...selectedKitBiZone.value,
                                                      ...products.value,
                                                    ] );
                                       return [
                                         ...selectedEcsDeportes.value,
                                         ...selectedKitCascade.value,
+                                        ...selectedKitBiZone.value,
                                         ...products.value,
                                       ];
                                     } );
@@ -383,6 +408,10 @@ export default defineComponent( {
                                       }
 
                                       for ( const product of selectedKitCascade.value ) {
+                                        totalHt += product.pu * product.quantity;
+                                      }
+
+                                      for ( const product of selectedKitBiZone.value ) {
                                         totalHt += product.pu * product.quantity;
                                       }
 
@@ -478,6 +507,7 @@ export default defineComponent( {
                                       deviceToReplace,
                                       selectedEcsDeportes,
                                       selectedKitCascade,
+                                      selectedKitBiZone,
                                       isEcsDeporte,
                                       volumeECS,
                                       volumeECSDeporte,
@@ -485,6 +515,7 @@ export default defineComponent( {
                                       lists,
                                       price,
                                       products,
+                                      needBiZoneSupplement,
                                       updateOptions,
                                       updateBlankOtions,
                                       generateQuotation,

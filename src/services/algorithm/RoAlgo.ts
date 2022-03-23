@@ -666,7 +666,7 @@ export class RoAlgo extends PacAlgo {
         return heater === 'r_autre_p_chauffant' || heater === 'r_fonte_p_chauffant';
     };
 
-    public getUnitsRo = ( volumeECS: number ): { unitExt: UnitExt; unitInt: UnitInt } | null => {
+    public getUnitsRo = ( volumeECS: number ): { unitExt: UnitExt; unitInt: UnitInt; needBiZoneSupplement: boolean } | null => {
         console.log( '%c GET UNITS RO', 'background: #5ADFFF; color: #000000' );
         const requiredPower: number = this.calcRequiredPower( this.housing, 'pac_ro' );
         const baseTemp: number      = this.getBaseTemperature( this.housing.climaticZone, this.housing.altitude );
@@ -737,7 +737,7 @@ export class RoAlgo extends PacAlgo {
 
         console.log( `%c VOLUME ECS --> ${ volumeECS }`, 'background: #fdd835; color: #000000' );
         const hotWater = volumeECS;
-        const bizone   = this.isBiZone( this.housing.heaters );
+        let bizone     = this.isBiZone( this.housing.heaters );
         const size     = selectedUnitExt.size;
 
         console.log( {
@@ -745,6 +745,14 @@ export class RoAlgo extends PacAlgo {
                          'bizone':     bizone,
                          'size':       size,
                      } );
+
+        // Pompe à chaleur bi-zone avec ECS n'existe pas, on doit rajouter un KIT-Bi-Zone
+        // On passe donc bizone à false
+        let needBiZoneSupplement = false;
+        if ( bizone && hotWater === 0 ) {
+            bizone               = false;
+            needBiZoneSupplement = true;
+        }
 
         // On récupère le model intérieur selon les infos renseigné
         const filteredUnitInt = this.unitIntList[ this.housing.availableVoltage ].filter( ( unit: UnitInt ) => {
@@ -812,6 +820,7 @@ export class RoAlgo extends PacAlgo {
         return {
             unitExt: selectedUnitExt,
             unitInt: selectedUnitInt,
+            needBiZoneSupplement,
         };
     };
 }
