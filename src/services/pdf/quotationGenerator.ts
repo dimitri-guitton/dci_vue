@@ -33,8 +33,6 @@ import { AllFile, AllQuotation } from '@/types/v2/File/All';
 import { PbQuotation } from '@/types/v2/File/Pb/PbQuotation';
 import { SizingPacGenerator } from '@/services/pdf/sizingPacGenerator';
 
-declare const __static: string;
-
 enum PriceQuotation {
     HT           = 'Total HT',
     TTC          = 'Total TTC',
@@ -52,13 +50,13 @@ export class QuotationGenerator extends PdfGenerator {
     private _file: AllFile;
 
     private _style: StyleDictionary = {
-        header: {
+        header:      {
             fontSize: 10,
             bold:     true,
         },
-        tableHeader:     {
+        tableHeader: {
             bold:      true,
-            fontSize:  10,
+            fontSize:  9,
             alignment: 'center',
         },
         commercialTable: {
@@ -175,14 +173,16 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PG:
             case FILE_PB:
                 body[ 0 ].push( {
-                                    image: LOGO_QUALIBOIS,
-                                    width: 40,
+                                    margin: [ 40, 0 ],
+                                    image:  LOGO_QUALIBOIS,
+                                    width:  60,
                                 } );
                 break;
             default:
                 body[ 0 ].push( {
-                                    image: LOGO_QUALIFELEC,
-                                    width: 40,
+                                    margin: [ 50, 0 ],
+                                    image:  LOGO_QUALIFELEC,
+                                    width:  50,
                                 } );
         }
 
@@ -1511,7 +1511,8 @@ export class QuotationGenerator extends PdfGenerator {
                                      ],
                                      [
                                          {
-                                             text: textToDisplay,
+                                             text:  textToDisplay,
+                                             style: 'xsText',
                                          },
                                      ],
                                  ],
@@ -1661,7 +1662,7 @@ export class QuotationGenerator extends PdfGenerator {
                     return 5;
                 },
                 paddingBottom: function () {
-                    return 45;
+                    return 5;
                 },
             },
         };
