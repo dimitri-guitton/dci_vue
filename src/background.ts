@@ -50,7 +50,8 @@ async function createWindow() {
     mainWindow = new BrowserWindow( {
                                         width,
                                         height,
-                                        webPreferences: {
+                                        autoHideMenuBar: true,// Masquer la barre de menu sauf si la touche Alt est enfoncée
+                                        webPreferences:  {
                                             // Use pluginOptions.nodeIntegration, leave this alone
                                             // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
                                             nodeIntegration:    ( process.env
@@ -59,6 +60,7 @@ async function createWindow() {
                                             enableRemoteModule: true,
                                         },
                                     } );
+
 
     if ( process.env.WEBPACK_DEV_SERVER_URL ) {
         // Load the url of the dev server if in development mode
@@ -173,7 +175,7 @@ ipcMain.on( 'save-screenshot', ( event, data ) => {
             if ( err ) {
                 throw err;
             }
-            console.log( 'Image Saved' )
-        } )
-    } )
+            console.log( 'Image Saved' );
+        } );
+    } );
 } );
