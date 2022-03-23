@@ -158,7 +158,7 @@ export default defineComponent( {
                                       let selfConsumptionBonus;
                                       let tva10 = 0;
                                       let tva20 = 0;
-                                      if ( totalPower > 3000 ) {
+                                      if ( lessThan2Year || totalPower > 3000 ) {
                                         tva20                = 20 * totalHt / 100;
                                         selfConsumptionBonus = ( totalPower / 1000 ) * 280;
                                       } else {
