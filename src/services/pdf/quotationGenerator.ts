@@ -1577,7 +1577,7 @@ export class QuotationGenerator extends PdfGenerator {
                         `Mensualité sans assurance : ${ this.formatPrice( paymentOnCredit.withoutInsurance, 1, true, false ) }\n`,
                         `Mensualité avec assurance : ${ this.formatPrice( paymentOnCredit.withInsurance, 1, true, false ) }\n`,
                         `Durée : ${ paymentOnCredit.duration } mois\n`,
-                        `TAEG : ${ this.formatPrice( paymentOnCredit.TAEG, 1, true, false ) }\n`,
+                        `TAEG : ${ paymentOnCredit.TAEG }%\n`,
                         `Coût total du crédit : ${ this.formatPrice( paymentOnCredit.total, 1, true, false ) }\n`,
                     ],
                 },
