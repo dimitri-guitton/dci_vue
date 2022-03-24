@@ -35,7 +35,7 @@
           - {{ numberToPrice( price.maPrimeRenov ) }}
         </el-descriptions-item>
 
-        <el-descriptions-item align="right" label="Remise">
+        <el-descriptions-item v-if="price.discount > 0" align="right" label="Remise">
           - {{ numberToPrice( price.discount, 1, false ) }}
         </el-descriptions-item>
 
