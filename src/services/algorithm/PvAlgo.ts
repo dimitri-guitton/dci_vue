@@ -36,10 +36,13 @@ export class PvAlgo {
      */
     public productionPerPanelInKWh(): number {
         if ( this.worksheet.orientation === 'sud' ) {
+            console.log( 'IN SUD' );
             return 456.25;
         } else if ( this.worksheet.orientation === 'est_ouest' ) {
+            console.log( 'IN EST OUEST' );
             return 406.25;
         } else if ( this.worksheet.orientation === 'sud_est_sud_ouest' ) {
+            console.log( 'IN SUD EST SUD OUEST' );
             return 431.25;
         }
 

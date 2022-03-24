@@ -52,6 +52,7 @@
             id="orientation"
             class="form-select"
             as="select"
+            @change="updateWorksheet"
         >
           <item-list :lists="lists.orientationList"></item-list>
         </Field>
@@ -89,12 +90,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onMounted, ref, watch } from 'vue';
 import PvList from '@/types/v2/File/Pv/PvList';
 import { Field } from 'vee-validate';
 import ItemList from '@/components/DCI/input/ItemList.vue';
 import { PvFile } from '@/types/v2/File/Pv/PvFile';
 import { ProfitabilityStudyGenerator } from '@/services/pdf/profitabilityStudyGenerator';
+import useDebouncedRef from '@/services/useDebouncedRef';
 
 export default defineComponent( {
                                   name:       'file-pv-step-5',
@@ -111,25 +113,61 @@ export default defineComponent( {
                                   },
                                   emits:      [ 'generateWorksheet' ],
                                   setup( props, ctx ) {
-                                    const montantFactureElectrique  = ref( props.fileData.worksheet.montantFactureElectrique );
-                                    const totalKwhFactureElectrique = ref( props.fileData.worksheet.totalKwhFactureElectrique );
-                                    const orientation               = ref( props.fileData.worksheet.orientation );
+                                    const pdfGenerator = new ProfitabilityStudyGenerator( props.fileData );
+                                    const orientation  = ref( props.fileData.worksheet.orientation );
 
                                     const generateWorksheet = () => {
                                       ctx.emit( 'generateWorksheet' );
                                     };
 
                                     onMounted( () => {
-
-                                      // TODO rendre dynamique quand on change les infos
-                                      const pdfGenerator = new ProfitabilityStudyGenerator( props.fileData );
                                       pdfGenerator.createChart();
                                     } );
+
+                                    const montantFactureElectrique  = useDebouncedRef( props.fileData.worksheet.montantFactureElectrique,
+                                                                                       400 );
+                                    const totalKwhFactureElectrique = useDebouncedRef( props.fileData.worksheet.totalKwhFactureElectrique,
+                                                                                       400 );
+
+                                    const updateWorksheet = () => {
+
+                                      console.log( 'montantFactureElectrique', montantFactureElectrique.value );
+                                      console.log( 'totalKwhFactureElectrique', totalKwhFactureElectrique.value );
+                                      console.log( 'orientation', orientation.value );
+
+                                      const newWoksheet = {
+                                        ...props.fileData.worksheet,
+                                        montantFactureElectrique:  montantFactureElectrique.value,
+                                        totalKwhFactureElectrique: totalKwhFactureElectrique.value,
+                                        orientation:               orientation.value,
+                                      };
+
+                                      pdfGenerator.updateChart( props.fileData.quotation, newWoksheet );
+
+
+                                      console.log( newWoksheet );
+                                    };
+
+
+                                    watch( montantFactureElectrique, newQuery => {
+                                      console.log( { newQuery } );
+                                      updateWorksheet();
+                                      // init an API request
+                                    } );
+
+                                    watch( totalKwhFactureElectrique, newQuery => {
+                                      console.log( { newQuery } );
+                                      updateWorksheet();
+                                      // init an API request
+                                    } );
+
+
                                     return {
                                       generateWorksheet,
                                       montantFactureElectrique,
                                       totalKwhFactureElectrique,
                                       orientation,
+                                      updateWorksheet,
                                     };
                                   },
                                 } );

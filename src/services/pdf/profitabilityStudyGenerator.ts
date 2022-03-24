@@ -12,6 +12,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
     private _file: AllFile;
     private _pvAlgo: PvAlgo;
     private _quotation: PvQuotation;
+    private _chart: Chart | null;
 
     private _style: StyleDictionary = {
         title: {
@@ -30,9 +31,9 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
         this.type       = PdfType.ProfitabilityStudy;
         this._quotation = ( file.quotation as PvQuotation );
         this._pvAlgo    = new PvAlgo( ( this._file.quotation as PvQuotation ), ( this._file.worksheet as PvWorkSheet ) );
+        this._chart     = null;
 
         this.docDefinition = this._generateDocDefinition();
-
     }
 
     private _generateDocDefinition(): TDocumentDefinitions {
@@ -475,7 +476,81 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
             },
         };
 
-        new Chart(
+        this._chart = new Chart(
+            ( document.getElementById( 'my_chart' ) as HTMLCanvasElement ),
+            config,
+        );
+    }
+
+    public updateChart( quoation: PvQuotation, worksheet: PvWorkSheet ) {
+
+        this._pvAlgo = new PvAlgo( ( quoation as PvQuotation ), ( worksheet as PvWorkSheet ) );
+
+        if ( this._chart === null ) {
+            return;
+        }
+
+        this._chart.destroy();
+
+        const data                           = this._pvAlgo.priceEvolutionOver25Years();
+        const labels: string[]               = [];
+        const datasetsEdf: number[]          = [];
+        const datasetsPhotovoltaic: number[] = [];
+
+        for ( const item of data ) {
+            labels.push( item.year.toString() );
+            datasetsEdf.push( +item.kwhEdf );
+            datasetsPhotovoltaic.push( +item.kwhPhotovoltaic );
+        }
+
+        const chartData = {
+            labels:   labels,
+            datasets: [
+                {
+                    label:           'Kwh EDF',
+                    backgroundColor: '#003D74',
+                    borderColor:     '#003D74',
+                    data:            datasetsEdf,
+                    pointRadius:     0,
+                    borderWidth:     15,
+                    tension:         0.4,
+                },
+                {
+                    label:           'KWh PV',
+                    backgroundColor: '#57AD57',
+                    borderColor:     '#57AD57',
+                    data:            datasetsPhotovoltaic,
+                    pointRadius:     0,
+                    borderWidth:     15,
+                    tension:         0.4,
+                },
+            ],
+        };
+
+        const config: ChartConfiguration = {
+            type:    'line',
+            data:    chartData,
+            options: {
+                responsive:  true,
+                interaction: {
+                    intersect: false,
+                },
+                scales:      {
+                    x: {
+                        grid: {
+                            display: false,
+                        },
+                    },
+                    y: {
+                        grid: {
+                            display: false,
+                        },
+                    },
+                },
+            },
+        };
+
+        this._chart = new Chart(
             ( document.getElementById( 'my_chart' ) as HTMLCanvasElement ),
             config,
         );
