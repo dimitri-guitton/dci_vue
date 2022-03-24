@@ -237,9 +237,19 @@ export default defineComponent( {
                                     } );
 
                                     const computedPg = computed<Product[]>( () => {
-                                      const newList = props.products.filter( p => p.productType === 'pg' && p.type === type.value && p.power === power.value && ( power.value !== 9 || ( power.value === 9 && p.color === color.value ) ) );
+                                      let newList = props.products.filter( p => p.productType === 'pg' && p.type === type.value && p.power === power.value && ( power.value !== 9 || ( power.value === 9 && p.color === color.value ) ) );
+
+                                      if ( !outsideSocket.value ) {
+                                        // Si pas de prise d'air, sélection impossible de la gamme AMBRIA2
+                                        newList = newList.filter( p => {
+                                          console.log( 'P -->', p );
+                                          console.log( 'Ref -->', p.reference );
+                                          return !p.reference.toString().toUpperCase().includes( 'AMBRIA2' );
+                                        } );
+                                      }
 
                                       const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'pg' && p.type === type.value && p.power === power.value && ( power.value !== 9 || ( power.value === 9 && p.color === color.value ) ) );
+
                                       if ( filterSelectedProducts.length < 1 ) {
                                         const newSelectedPoele = ( $selectedPoele.value as any )?.resetSelectedValue(
                                             newList );

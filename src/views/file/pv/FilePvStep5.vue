@@ -22,7 +22,8 @@
       <div class="col-md-6 mb-5">
         <label for="montantFactureElectrique" class="form-label mb-3">Montant facture électrique <sup>€</sup></label>
         <Field
-            type="text"
+            v-model.number="montantFactureElectrique"
+            type="number"
             name="worksheet.montantFactureElectrique"
             id="montantFactureElectrique"
             class="form-control"
@@ -34,7 +35,8 @@
         <label for="totalKwhFactureElectrique" class="form-label mb-3">Total kwh sur facture électrique
           <sup><var>KWh</var></sup></label>
         <Field
-            type="text"
+            v-model.number="totalKwhFactureElectrique"
+            type="number"
             name="worksheet.totalKwhFactureElectrique"
             id="totalKwhFactureElectrique"
             class="form-control"
@@ -44,10 +46,12 @@
 
       <div class="col-md-6 mb-5">
         <label for="orientation" class="form-label">Orientation</label>
-        <Field name="worksheet.orientation"
-               id="orientation"
-               class="form-select"
-               as="select"
+        <Field
+            v-model.number="orientation"
+            name="worksheet.orientation"
+            id="orientation"
+            class="form-select"
+            as="select"
         >
           <item-list :lists="lists.orientationList"></item-list>
         </Field>
@@ -85,7 +89,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import PvList from '@/types/v2/File/Pv/PvList';
 import { Field } from 'vee-validate';
 import ItemList from '@/components/DCI/input/ItemList.vue';
@@ -107,6 +111,10 @@ export default defineComponent( {
                                   },
                                   emits:      [ 'generateWorksheet' ],
                                   setup( props, ctx ) {
+                                    const montantFactureElectrique  = ref( props.fileData.worksheet.montantFactureElectrique );
+                                    const totalKwhFactureElectrique = ref( props.fileData.worksheet.totalKwhFactureElectrique );
+                                    const orientation               = ref( props.fileData.worksheet.orientation );
+
                                     const generateWorksheet = () => {
                                       ctx.emit( 'generateWorksheet' );
                                     };
@@ -119,6 +127,9 @@ export default defineComponent( {
                                     } );
                                     return {
                                       generateWorksheet,
+                                      montantFactureElectrique,
+                                      totalKwhFactureElectrique,
+                                      orientation,
                                     };
                                   },
                                 } );
