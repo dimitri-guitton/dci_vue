@@ -156,18 +156,19 @@ export default defineComponent( {
 
 
                                       let selfConsumptionBonus;
-                                      let tva10 = 0;
-                                      let tva20 = 0;
+                                      let tva10    = 0;
+                                      let tva20    = 0;
+                                      let totalTtc = 0;
                                       if ( lessThan2Year || totalPower > 3000 ) {
                                         tva20                = 20 * totalHt / 100;
                                         selfConsumptionBonus = ( totalPower / 1000 ) * 280;
+                                        totalTtc             = totalHt + tva20;
                                       } else {
                                         tva10                = 10 * totalHt / 100;
                                         selfConsumptionBonus = ( totalPower / 1000 ) * 380;
+                                        totalTtc             = totalHt + tva10;
                                       }
-                                      const totalTtc = totalHt + tva10;
 
-                                      // TODO CHECK TVA PV
                                       const price: Price = {
                                         HT:             totalHt,
                                         TVA:            0,
