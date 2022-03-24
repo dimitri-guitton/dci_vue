@@ -284,7 +284,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
                             bold:      true,
                         },
                         {
-                            text:      'Années',
+                            text:      'Gains Totaux',
                             alignment: 'center',
                             bold:      true,
                         },
