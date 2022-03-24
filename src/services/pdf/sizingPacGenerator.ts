@@ -38,14 +38,67 @@ export class SizingPacGenerator extends PdfGenerator {
         const pacAlgo             = new PacAlgo( housing );
 
         const { address, zipCode, city } = getAddress( this._file );
+
+        const deltaT     = pacAlgo.calcDeltaT( housing.setPointTemperature, housing.climaticZone, housing.altitude );
+        let altitudeText = '0 à 200m';
+        switch ( +housing.altitude ) {
+            case 201:
+                altitudeText = '201 à 400m';
+                break;
+            case 401:
+                altitudeText = '401 à 600m';
+                break;
+            case 601:
+                altitudeText = '600 à 801m';
+                break;
+            case 801:
+                altitudeText = '801 à 1000m';
+                break;
+        }
+
+        let heaterText = '';
+        switch ( housing.heaters ) {
+            case 'r_fonte':
+            case 'r_fonte_p_chauffant':
+                heaterText = 'Nous préconisons l\'installation d\'une pompe à chaleur haute température.\n';
+                break;
+            case 'r_autre':
+            case 'p_chauffant':
+            case 'r_autre_p_chauffant':
+                heaterText = 'Nous préconisons l\'installation d\'une pompe à chaleur moyenne température.\n';
+                break;
+        }
+
+        let powerPacText = '';
+        for ( const product of this._file.quotation.selectedProducts ) {
+            if ( product.productType === 'pac_rr' || product.productType === 'pac_ro' ) {
+                if ( product.label.toLowerCase().includes( 'unite exterieure' ) ) {
+                    const regex = /Puissance calorifique.*/gm;
+                    let m;
+
+                    while ( ( m = regex.exec( product.description ) ) !== null ) {
+                        if ( m.index === regex.lastIndex ) {
+                            regex.lastIndex++;
+                        }
+
+                        m.forEach( ( match, groupIndex ) => {
+                            if ( groupIndex === 0 ) {
+                                powerPacText = match;
+                            }
+                        } );
+                    }
+                }
+            }
+        }
+
         return {
             content: [
                 {
-                    unbreakable: true,
-                    stack:       [
+                    // unbreakable: true,
+                    stack: [
                         {
-                            margin:    [ 0, 25, 0, 10 ],
-                            text:      'Dimensionnement d’une pompe à chaleur',
+                            margin:    [ 0, 5, 0, 5 ],
+                            text:      'Note de dimensionnement',
                             bold:      true,
                             fontSize:  16,
                             alignment: 'center',
@@ -61,22 +114,56 @@ export class SizingPacGenerator extends PdfGenerator {
                             alignment: 'center',
                         },
                         {
-                            margin:    [ 0, 20, 0, 5 ],
+                            margin:    [ 0, 10, 0, 5 ],
                             text:      'Déperdition = G x V x Delta T',
                             fontSize:  18,
                             bold:      true,
                             alignment: 'center',
                         },
                         {
-                            margin:    [ 0, 5, 0, 25 ],
-                            text:      `Déperdition = ${ housing.buildingCoefficient } x ${ housing.area * housing.ceilingHeight } x ${ pacAlgo.calcDeltaT(
-                                housing.setPointTemperature,
-                                housing.climaticZone,
-                                housing.altitude ) } = ${ pacAlgo.calcRequiredPower( housing ) } KW`,
+                            text:      `Température de consigne : ${ housing.setPointTemperature }°c`,
+                            italics:   true,
+                            fontSize:  10,
+                            alignment: 'center',
+                        },
+                        {
+                            text:      `Zone climatique: ${ housing.climaticZone }`,
+                            italics:   true,
+                            fontSize:  10,
+                            alignment: 'center',
+                        },
+                        {
+                            text:      `Altitude: ${ altitudeText }`,
+                            italics:   true,
+                            fontSize:  10,
+                            alignment: 'center',
+                        },
+                        {
+                            text:      `Donc le delta T est de : ${ deltaT }`,
+                            italics:   true,
+                            fontSize:  10,
+                            alignment: 'center',
+                        },
+                        {
+                            margin:    [ 0, 5, 0, 15 ],
+                            text:      `Déperdition = ${ housing.buildingCoefficient } x ${ housing.area * housing.ceilingHeight } x ${ deltaT } = ${ pacAlgo.calcRequiredPower(
+                                housing ) } KW`,
                             fontSize:  18,
                             alignment: 'center',
                         },
                         this._addPages,
+                        {
+                            lineHeight: 1.2,
+                            margin:     [ 48, -20, 0, 0 ],
+                            fontSize:   11,
+                            color:      '#323232',
+                            text:       [
+                                'Température d\'arrêt de la PAC : -25°c\n',
+                                'Les déperditions concernent les pièces du logement desservies par le réseau de chauffage.\n',
+                                heaterText,
+                                powerPacText,
+                            ],
+                        },
                     ],
                 },
             ],
@@ -88,7 +175,7 @@ export class SizingPacGenerator extends PdfGenerator {
         {
             margin: [ 0, 0, 0, 0 ],
             image:  PAC_DIMENSION,
-            fit:    [ 600, 600 ],
+            fit:    [ 575, 575 ],
         },
     ];
 }

@@ -163,6 +163,7 @@ import { PacRoFileStep } from '@/types/v2/Wizzard/FileStep';
 import { PacRoStep5 } from '@/types/v2/Wizzard/step5/PacRoStep5';
 import { PacRoStep3 } from '@/types/v2/Wizzard/step3/PacRoStep3';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
+import { SizingPacGenerator } from '@/services/pdf/sizingPacGenerator';
 
 setLocale( {
              // use constant translation keys for messages without values
@@ -239,6 +240,11 @@ export default defineComponent( {
                                       yupPacRoConfigStep4(),
                                       yupPacRoConfigStep5(),
                                     ];
+
+
+                                    // TODO REMOVE
+                                    const genPdf = new SizingPacGenerator( fileData.value );
+                                    genPdf.generatePdf();
 
                                     // --------------------- Début config du Wizzard et du formulaire--------------------------
                                     const currentSchema   = computed( () => {
