@@ -1,13 +1,14 @@
 import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
 import { PAC_DIMENSION } from '@/services/pdf/pdfVariable';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
-import { AllFile } from '@/types/v2/File/All';
 import { getAddress } from '@/services/data/dataService';
 import { PacAlgo } from '@/services/algorithm/PacAlgo';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
+import { RoFile } from '@/types/v2/File/Ro/RoFile';
+import { RrFile } from '@/types/v2/File/Rr/RrFile';
 
 export class SizingPacGenerator extends PdfGenerator {
-    private _file: AllFile;
+    private readonly _file: RoFile | RrFile;
 
     private _style: StyleDictionary = {
         title:   {
@@ -23,7 +24,7 @@ export class SizingPacGenerator extends PdfGenerator {
     };
 
 
-    constructor( file: AllFile ) {
+    constructor( file: RoFile | RrFile ) {
         super();
         this._file = file;
         this.type  = PdfType.SizingPac;

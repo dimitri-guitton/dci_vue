@@ -32,6 +32,8 @@ import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
 import { AllFile, AllQuotation } from '@/types/v2/File/All';
 import { PbQuotation } from '@/types/v2/File/Pb/PbQuotation';
 import { SizingPacGenerator } from '@/services/pdf/sizingPacGenerator';
+import { RoFile } from '@/types/v2/File/Ro/RoFile';
+import { RrFile } from '@/types/v2/File/Rr/RrFile';
 
 enum PriceQuotation {
     HT           = 'Total HT',
@@ -100,7 +102,7 @@ export class QuotationGenerator extends PdfGenerator {
         }
 
         if ( this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR ) {
-            const sizingPacGenerator = new SizingPacGenerator( this._file );
+            const sizingPacGenerator = new SizingPacGenerator( this._file as RoFile | RrFile );
             sizingPacGenerator.generatePdf();
         }
     }
@@ -769,7 +771,13 @@ export class QuotationGenerator extends PdfGenerator {
                 text = 'Nature des travaux réalisés (Poêle à bois)';
                 break;
             case FILE_PAC_RO:
-                text = 'Remplacement du système de chauffage par une pompe à chaleur air/eau';
+                const quotation: RoQuotation = this._file.quotation as RoQuotation;
+
+                if ( quotation.deviceToReplace.type === 'aucun' || quotation.deviceToReplace.type === 'autre' ) {
+                    text = 'Remplacement du système de chauffage par une pompe à chaleur air/eau';
+                } else {    // Prime CEE Coup de Pouce Chauffage
+                    text = 'Dépose de la chaudière fioul, gaz ou charbon hors condensation et remplacement de la chaudière fioul, gaz ou charbon hors condensation par une Pompe à chaleur Air / Eau. /eau';
+                }
                 break;
             case FILE_PAC_RR:
                 text = 'Installation d\'une pompe à chaleur air/air';
@@ -780,7 +788,7 @@ export class QuotationGenerator extends PdfGenerator {
             return [
                 {
                     text,
-                    colSpan: 5,
+                    colSpan: 2,
                 },
                 {},
                 {},
