@@ -1,7 +1,6 @@
 import { BaseConverter } from '@/services/file/converterV2/BaseConverter';
 import { Product } from '@/types/v2/File/Common/Product';
 import { FILE_SOL } from '@/services/constantService';
-import { getNumberData } from '@/services/file/converter/convertData';
 
 export class SolConverter extends BaseConverter {
     private getOldProduct(): Product[] {
@@ -102,10 +101,10 @@ export class SolConverter extends BaseConverter {
                 ...convertedJson.worksheet,
                 epaisseurProduit:        this.getObjectData( this.oldData, [ 'fiche', 'epaisseurProduit' ] ),
                 accesCamion:             this.getObjectData( this.oldData, [ 'fiche', 'accesCamion' ] ),
-                distCamion:              getNumberData( this.oldData [ 'fiche' ][ 'distCamion' ] ),
-                hautPlafond:             getNumberData( this.oldData [ 'fiche' ][ 'hautPlafond' ] ),
+                distCamion:              this.getNumberData( this.oldData [ 'fiche' ][ 'distCamion' ] ),
+                hautPlafond:             this.getNumberData( this.oldData [ 'fiche' ][ 'hautPlafond' ] ),
                 support:                 this.getObjectData( this.oldData, [ 'fiche', 'support' ] ),
-                distPointEau:            getNumberData( this.oldData [ 'fiche' ][ 'distPointEau' ] ),
+                distPointEau:            this.getNumberData( this.oldData [ 'fiche' ][ 'distPointEau' ] ),
                 resistTherm:             this.getObjectData( this.oldData, [ 'fiche', 'resistTherm' ] ),
                 dimensionsPieces:        this.getObjectData( this.oldData, [ 'fiche', 'dimensionsPieces' ] ),
                 isolationExistante:      this.getObjectData( this.oldData, [ 'fiche', 'isolationExistante' ] ),
@@ -117,7 +116,7 @@ export class SolConverter extends BaseConverter {
                 luminairesPlafond:       this.getObjectData( this.oldData, [ 'fiche', 'luminairesPlafond' ] ),
                 distancePortesPalfond:   this.getObjectData( this.oldData, [ 'fiche', 'distancePortesPalfond' ] ),
                 porteGarage:             this.getObjectData( this.oldData, [ 'fiche', 'porteGarage' ] ),
-                nbrPorteGarage:          getNumberData( this.oldData [ 'fiche' ][ 'nbrPorteGarage' ] ),
+                nbrPorteGarage:          this.getNumberData( this.oldData [ 'fiche' ][ 'nbrPorteGarage' ] ),
             },
         };
 

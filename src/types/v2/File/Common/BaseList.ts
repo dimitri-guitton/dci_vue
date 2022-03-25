@@ -5,4 +5,5 @@ export interface BaseList {
     batimentNatureList: ItemList[];
     niveauHabitationList: ItemList[];
     typeOrigineList: ItemList[];
+    deadlineReportList: ItemList[];
 }

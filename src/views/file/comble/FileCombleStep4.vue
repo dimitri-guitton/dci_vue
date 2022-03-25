@@ -1,7 +1,7 @@
 <template>
   <div class="w-100">
 
-    <step4-header></step4-header>
+    <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit" :price="price" :lists="lists"></step4-header>
 
     <step4-quotation-header></step4-quotation-header>
 
@@ -66,6 +66,7 @@ import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataServ
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { getCeeBonus, roundCeeBonus } from '@/services/file/fileCommonService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
+import CombleList from '@/types/v2/File/Comble/CombleList';
 
 export default defineComponent( {
                                   name:       'file-comble-step-4',
@@ -99,6 +100,7 @@ export default defineComponent( {
                                     const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
                                     const _options          = ref<Option[]>( ( props.options as Option[] ) );
                                     const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
+                                    const lists             = ref<CombleList>( ( props.fileData.lists as CombleList ) );
 
                                     const generateQuotation = () => {
                                       ctx.emit( 'generateQuotation' );
@@ -209,6 +211,7 @@ export default defineComponent( {
 
                                     return {
                                       price,
+                                      lists,
                                       updateSelectedProduct,
                                       updateOptions,
                                       updateBlankOtions,

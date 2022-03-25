@@ -134,15 +134,17 @@ export const defaultGetQuotationValueStep4 = ( stepData: BaseStep4, price: Price
         executionDelay:     stepData.executionDelay,
         origin:             stepData.origin,
         commentary:         stepData.commentary,
-        paymentOnCredit:    {
-            active:           stepData.paymentOnCredit.active,
-            amount:           stepData.paymentOnCredit.amount,
-            withoutInsurance: stepData.paymentOnCredit.withoutInsurance,
-            withInsurance:    stepData.paymentOnCredit.withInsurance,
-            duration:         stepData.paymentOnCredit.duration,
-            TAEG:             stepData.paymentOnCredit.TAEG,
-            total:            stepData.paymentOnCredit.total,
+        paymentOnCredit: {
+            active:                         stepData.paymentOnCredit.active,
+            cashPrice:                      stepData.paymentOnCredit.cashPrice,
+            deposit:                        +stepData.paymentOnCredit.deposit,
+            amount:                         stepData.paymentOnCredit.amount,
+            deadlineNumber:                 +stepData.paymentOnCredit.deadlineNumber,
+            deadlineReport:                 +stepData.paymentOnCredit.deadlineReport,
+            monthlyPaymentWithoutInsurance: +stepData.paymentOnCredit.monthlyPaymentWithoutInsurance,
+            rate:                           +stepData.paymentOnCredit.rate,
+            TAEG:                           +stepData.paymentOnCredit.TAEG,
+            totalAmountDueWithoutInsurance: +stepData.paymentOnCredit.totalAmountDueWithoutInsurance,
         },
-
     };
 };

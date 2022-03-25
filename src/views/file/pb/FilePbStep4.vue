@@ -1,7 +1,7 @@
 <template>
   <div class="w-100">
 
-    <step4-header></step4-header>
+    <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit" :price="price" :lists="lists"></step4-header>
 
     <div class="row mt-10">
       <div class="col-md-6 mb-5">
@@ -105,6 +105,7 @@ import { PbFile } from '@/types/v2/File/Pb/PbFile';
 import RowPrice from '@/components/DCI/wizzard-file/rowPrice.vue';
 import { getCeeBonus, getMaPrimeRenov } from '@/services/file/fileCommonService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
+import PbList from '@/types/v2/File/Pb/PbList';
 
 export default defineComponent( {
                                   name:       'file-pb-step-4',
@@ -138,6 +139,7 @@ export default defineComponent( {
                                     const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
                                     const _options          = ref<Option[]>( ( props.options as Option[] ) );
                                     const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
+                                    const lists             = ref<PbList>( ( props.fileData.lists as PbList ) );
 
                                     console.log( '%c SET UP', 'background: #fdd835; color: #000000' );
                                     console.log( '%c SET UP', 'background: #fdd835; color: #000000' );
@@ -310,6 +312,7 @@ export default defineComponent( {
 
                                     return {
                                       price,
+                                      lists,
                                       filterredProducts,
                                       productCreation,
                                       isCreation,

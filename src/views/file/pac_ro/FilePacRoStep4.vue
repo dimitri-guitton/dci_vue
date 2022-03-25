@@ -1,7 +1,7 @@
 <template>
   <div class="w-100">
 
-    <step4-header></step4-header>
+    <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit" :price="price" :lists="lists"></step4-header>
 
     <!--    <div class="row mt-10">-->
     <!--      <h1>Values</h1>-->

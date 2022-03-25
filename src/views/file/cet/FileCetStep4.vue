@@ -1,7 +1,7 @@
 <template>
   <div class="w-100">
 
-    <step4-header></step4-header>
+    <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit" :price="price" :lists="lists"></step4-header>
 
     <step4-quotation-header></step4-quotation-header>
 
@@ -64,6 +64,7 @@ import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
 import { getCeeBonus, getMaPrimeRenov } from '@/services/file/fileCommonService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
+import { CetList } from '@/types/v2/File/Cet/CetList';
 
 export default defineComponent( {
                                   name:       'file-cet-step-4',
@@ -93,6 +94,7 @@ export default defineComponent( {
                                     const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
                                     const _options          = ref<Option[]>( ( props.options as Option[] ) );
                                     const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
+                                    const lists             = ref<CetList>( ( props.fileData.lists as CetList ) );
 
                                     const generateQuotation = () => {
                                       ctx.emit( 'generateQuotation' );
@@ -196,6 +198,7 @@ export default defineComponent( {
 
                                     return {
                                       price,
+                                      lists,
                                       updateSelectedProduct,
                                       updateOptions,
                                       updateBlankOtions,

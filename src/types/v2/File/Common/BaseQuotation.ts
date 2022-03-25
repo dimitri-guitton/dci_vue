@@ -2,6 +2,7 @@ import { Option } from '@/types/v2/File/Common/Option';
 import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import { Product } from '@/types/v2/File/Common/Product';
 import { QuotationText } from '@/types/v2/File/Common/QuotationText';
+import { PaymentOnCredit } from '@/types/v2/File/Common/paymentOnCredit';
 
 export interface BaseQuotation {
     origin: string;
@@ -21,14 +22,6 @@ export interface BaseQuotation {
     remainderToPay: number;
     ceeBonus: number;
     tva: number;
-    paymentOnCredit: {
-        active: boolean;
-        amount: number;
-        withoutInsurance: number;
-        withInsurance: number;
-        duration: number;
-        TAEG: number;
-        total: number;
-    };
+    paymentOnCredit: PaymentOnCredit;
 }
 

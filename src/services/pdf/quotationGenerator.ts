@@ -23,7 +23,7 @@ import { RoQuotation } from '@/types/v2/File/Ro/RoQuotation';
 import { RrQuotation } from '@/types/v2/File/Rr/RrQuotation';
 import { CetQuotation } from '@/types/v2/File/Cet/CetQuotation';
 import { PgQuotation } from '@/types/v2/File/Pg/PgQuotation';
-import { toFrenchDate } from '@/services/commonService';
+import { numberToPrice, toFrenchDate } from '@/services/commonService';
 import { TvaCertificateGenerator } from '@/services/pdf/tvaCertificateGenerator';
 import { ContributionFrameworkGenerator } from '@/services/pdf/contributionFrameworkGenerator';
 import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
@@ -1592,12 +1592,16 @@ export class QuotationGenerator extends PdfGenerator {
                 {
                     text: [
                         'Etablissement financier : DOMOFINANCE\n',
-                        `Montant du crédit : ${ this.formatPrice( paymentOnCredit.amount, 1, true, false ) }\n`,
-                        `Mensualité sans assurance : ${ this.formatPrice( paymentOnCredit.withoutInsurance, 1, true, false ) }\n`,
-                        `Mensualité avec assurance : ${ this.formatPrice( paymentOnCredit.withInsurance, 1, true, false ) }\n`,
-                        `Durée : ${ paymentOnCredit.duration } mois\n`,
-                        `TAEG : ${ paymentOnCredit.TAEG }%\n`,
-                        `Coût total du crédit : ${ this.formatPrice( paymentOnCredit.total, 1, true, false ) }\n`,
+                        `Prix au comptant : ${ numberToPrice( paymentOnCredit.cashPrice, 1, false ) }\n`,
+                        `Apport : ${ paymentOnCredit.deposit } €\n`,
+                        `Montant crédit : ${ numberToPrice( paymentOnCredit.amount, 1, false ) }\n`,
+                        `Nombre d'échéance : ${ paymentOnCredit.deadlineNumber } \n`,
+                        `Report d'échéance : ${ this.getValueInList( this._file.lists.deadlineReportList,
+                                                                     paymentOnCredit.deadlineReport ) } \n`,
+                        `Mensualité sans assurance : ${ paymentOnCredit.monthlyPaymentWithoutInsurance } € \n`,
+                        `Taux débiteur fixe : ${ paymentOnCredit.rate } % \n`,
+                        `TAEG annuel : ${ paymentOnCredit.TAEG } %\n`,
+                        `Montant total dû sans assurance : ${ paymentOnCredit.totalAmountDueWithoutInsurance } €\n`,
                     ],
                 },
             ];

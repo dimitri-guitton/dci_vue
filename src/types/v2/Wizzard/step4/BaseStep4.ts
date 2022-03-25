@@ -1,3 +1,5 @@
+import { PaymentOnCredit } from '@/types/v2/File/Common/paymentOnCredit';
+
 export interface BaseStep4 {
     origin: string;
     dateTechnicalVisit: string;
@@ -6,15 +8,7 @@ export interface BaseStep4 {
     blankOptions: StepOption[];
     selectedProducts: StepProduct[];
     commentary: string;
-    paymentOnCredit: {
-        active: boolean;
-        amount: number;
-        withoutInsurance: number;
-        withInsurance: number;
-        duration: number;
-        TAEG: number;
-        total: number;
-    };
+    paymentOnCredit: PaymentOnCredit;
 }
 
 export interface StepOption {

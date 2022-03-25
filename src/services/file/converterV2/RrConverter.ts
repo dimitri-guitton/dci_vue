@@ -1,13 +1,12 @@
 import { BaseConverter } from '@/services/file/converterV2/BaseConverter';
 import { FILE_PAC_RR } from '@/services/constantService';
-import { getObjectData } from '@/services/file/converter/convertData';
 import RrMulti from '@/types/v2/File/Rr/RrMulti';
 
 export class RrConverter extends BaseConverter {
     private convertOldRrMulti(): RrMulti {
         let dataRrMulti: RrMulti;
 
-        if ( getObjectData( this.oldData, [ 'devis', 'rrMulti' ] ) !== '' ) {
+        if ( this.getObjectData( this.oldData, [ 'devis', 'rrMulti' ] ) !== '' ) {
             dataRrMulti = {
                 roomNumber:   this.oldData[ 'devis' ][ 'rrMulti' ][ 'nombreDePiece' ],
                 areaP1:       this.oldData[ 'devis' ][ 'rrMulti' ][ 'superficieP1' ],

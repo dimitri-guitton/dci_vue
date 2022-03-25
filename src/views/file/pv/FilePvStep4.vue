@@ -1,7 +1,7 @@
 <template>
   <div class="w-100">
 
-    <step4-header></step4-header>
+    <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit" :price="price" :lists="lists"></step4-header>
 
     <step4-quotation-header></step4-quotation-header>
 
@@ -61,6 +61,7 @@ import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year } from '@/services/data/dataService';
+import PvList from '@/types/v2/File/Pv/PvList';
 
 export default defineComponent( {
                                   name:       'file-pv-step-4',
@@ -90,6 +91,7 @@ export default defineComponent( {
                                     const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
                                     const _options          = ref<Option[]>( ( props.options as Option[] ) );
                                     const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
+                                    const lists             = ref<PvList>( ( props.fileData.lists as PvList ) );
 
                                     const generateQuotation = () => {
                                       ctx.emit( 'generateQuotation' );
@@ -187,6 +189,7 @@ export default defineComponent( {
 
                                     return {
                                       price,
+                                      lists,
                                       updateSelectedProduct,
                                       updateOptions,
                                       updateBlankOtions,
