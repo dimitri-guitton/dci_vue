@@ -24,7 +24,7 @@ export const defaultInitFormDataStep3 = ( data: BaseFile ) => {
 
 export const defaultYupConfigStep3 = () => {
     return {
-        nbOccupant:              Yup.number().required(),
+        nbOccupant:              Yup.number().required().min( 1, 'Le nombre d\'occupant doit être supérieur à 0' ),
         housingType:             Yup.string().required(),
         housingBuildingNature:   Yup.string(),
         housingLessThan2Years:   Yup.boolean(),

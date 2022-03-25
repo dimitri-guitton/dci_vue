@@ -33,12 +33,13 @@ export const yupPacRoConfigStep3 = () => {
     return Yup.object( {
                            ...defaultYupConfigStep3(),
                            housingAvailableVoltage:    Yup.string().required(),
-                           housingBuildingCoefficient: Yup.number().required(),
+                           housingBuildingCoefficient: Yup.number().required().positive( 'La valeur ne peut pas être vide' ),
                            housingClimaticZone:        Yup.string().required(),
-                           housingAltitude:            Yup.number().required(),
+                           housingAltitude:            Yup.number().required().min( 0, 'La valeur ne peut pas être vide' ),
                            housingHeaters:             Yup.string().required(),
-                           housingSetPointTemperature: Yup.number().required(),
-                           housingCeilingHeight:       Yup.number().positive().required(),
+                           housingSetPointTemperature: Yup.number().required().positive( 'La valeur ne peut pas être vide' ),
+                           housingCeilingHeight:       Yup.number().required().min( 0.1,
+                                                                                    'La hauteur sous plafond doit être supérieur à 0' ),
                            area:                       Yup.number().required().min( 1, 'La superficie doit être supérieur à 0' ),
                        } );
 };
