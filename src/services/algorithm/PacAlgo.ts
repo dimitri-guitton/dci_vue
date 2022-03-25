@@ -31,7 +31,7 @@ export class PacAlgo {
      * @param climaticZone
      * @param altitude
      */
-    protected getBaseTemperature = ( climaticZone: string, altitude: number ): number => {
+    public getBaseTemperature = ( climaticZone: string, altitude: number ): number => {
         const coef: CoefTemperature = {
             B: {
                 '0':   -4,

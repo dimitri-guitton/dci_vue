@@ -57,6 +57,9 @@ export class SizingPacGenerator extends PdfGenerator {
         }
 
         let heaterText = '';
+
+        const prefix = `${ this.getValueInList( this._file.lists.heatersList, housing.heaters ) } :`;
+
         switch ( housing.heaters ) {
             case 'r_fonte':
             case 'r_fonte_p_chauffant':
@@ -68,6 +71,8 @@ export class SizingPacGenerator extends PdfGenerator {
                 heaterText = 'Nous préconisons l\'installation d\'une pompe à chaleur moyenne température.\n';
                 break;
         }
+
+        heaterText = `${ prefix } ${ heaterText }`;
 
         let powerPacText = '';
         for ( const product of this._file.quotation.selectedProducts ) {
@@ -139,7 +144,8 @@ export class SizingPacGenerator extends PdfGenerator {
                             alignment: 'center',
                         },
                         {
-                            text:      `Donc le delta T est de : ${ deltaT }`,
+                            text:      `Donc le delta T est de : ${ housing.setPointTemperature } - (${ pacAlgo.getBaseTemperature( housing.climaticZone,
+                                                                                                                                    housing.altitude ) })`,
                             italics:   true,
                             fontSize:  10,
                             alignment: 'center',
