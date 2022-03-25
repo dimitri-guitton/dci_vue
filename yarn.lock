@@ -5315,6 +5315,15 @@ geoportal-access-lib@3.0.5:
     node-fetch "^2.6.1"
     xmldom "^0.1.27"
 
+geoportal-access-lib@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/geoportal-access-lib/-/geoportal-access-lib-3.1.0.tgz#8b53fab5865e73917dc16b43dc1ec8889d45235d"
+  integrity sha512-2G24zh3wkfF43++KbCCfG1x4t3QseaiV1x75urlKRhVgFHXTzC8D9MWnaPUeVVyBbgskhr9rV/ZzFFwGPdTBrQ==
+  dependencies:
+    es6-promise "^4.2.4"
+    node-fetch "^2.6.1"
+    xmldom "^0.1.27"
+
 geoportal-extensions-openlayers@3.2.8:
   version "3.2.8"
   resolved "https://registry.yarnpkg.com/geoportal-extensions-openlayers/-/geoportal-extensions-openlayers-3.2.8.tgz#8153db67a3bcd6cc765dfb60bf35fd39ab27a502"

@@ -152,13 +152,11 @@ export default defineComponent( {
                                     watch( montantFactureElectrique, newQuery => {
                                       console.log( { newQuery } );
                                       updateWorksheet();
-                                      // init an API request
                                     } );
 
                                     watch( totalKwhFactureElectrique, newQuery => {
                                       console.log( { newQuery } );
                                       updateWorksheet();
-                                      // init an API request
                                     } );
 
 

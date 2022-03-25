@@ -37,6 +37,12 @@
     </div>
   </div>
   <div class="row mb-10">
+    <div class="col-md-6 fv-row mb-5">
+      <label class="form-label mb-3">Chercher un adresse</label>
+      <input type="text" class="form-control"
+             placeholder="Rechercher..."
+             v-model="findAddress" />
+    </div>
     <div class="col-md-12">
       <div id="map" v-loading="isLoading" element-loading-text="Chargement de la carte"></div>
     </div>
@@ -53,10 +59,10 @@
           :column="1"
           border
       >
-        <el-descriptions-item label="Parcelle">-</el-descriptions-item>
-        <el-descriptions-item label="Adresse">-</el-descriptions-item>
-        <el-descriptions-item label="Code postal">-</el-descriptions-item>
-        <el-descriptions-item label="Ville">-</el-descriptions-item>
+        <el-descriptions-item label="Parcelle">{{ geoportail.plot }}</el-descriptions-item>
+        <el-descriptions-item label="Adresse">{{ geoportail.address }}</el-descriptions-item>
+        <el-descriptions-item label="Code postal">{{ geoportail.zipCode }}</el-descriptions-item>
+        <el-descriptions-item label="Ville">{{ geoportail.city }}</el-descriptions-item>
       </el-descriptions>
     </div>
     <div class="col-md-6 offset-md-1">
@@ -67,7 +73,7 @@
               class="form-control"
               name="address.plot"
               placeholder="Commune absorbée / section / numéro"
-              value=""
+              v-model="geoportail.plot"
           />
           <ErrorMessage
               name="address.plot"
@@ -82,7 +88,7 @@
               class="form-control"
               name="address.address"
               placeholder="Adresse"
-              value=""
+              v-model="geoportail.address"
           />
           <ErrorMessage
               name="address.address"
@@ -97,7 +103,7 @@
               class="form-control"
               name="address.zipCode"
               placeholder="Code postal"
-              value=""
+              v-model="geoportail.zipCode"
           />
           <ErrorMessage
               name="address.zipCode"
@@ -110,7 +116,7 @@
               class="form-control"
               name="address.city"
               placeholder="Ville"
-              value=""
+              v-model="geoportail.city"
           />
           <ErrorMessage
               name="address.city"
@@ -124,7 +130,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue';
+import { computed, defineComponent, ref, watch } from 'vue';
 import { ErrorMessage, Field } from 'vee-validate';
 import ItemList from '@/components/DCI/input/ItemList.vue';
 import * as Gp from '@ignf-geoportal/sdk-2d';
@@ -134,7 +140,9 @@ import { FoldersNames, getFolderPath } from '@/services/folder/folderService';
 import { ipcRenderer, shell } from 'electron';
 import { ElMessage } from 'element-plus';
 import fs from 'fs';
-import { geocodingAddress } from '@/services/geocodingService';
+import { geocodingAddress, getGeoportalAddress, getGeoportalPlot } from '@/services/geocodingService';
+import useDebouncedRef from '@/services/useDebouncedRef';
+import { DataGeoportail } from '@/types/v2/File/Common/DataGeoportail';
 
 export default defineComponent( {
                                   name:       'step3-address',
@@ -153,6 +161,8 @@ export default defineComponent( {
                                     const isLoading     = ref<boolean>( false );
                                     const map           = ref();
 
+                                    const geoportail = ref<DataGeoportail>( props.fileData.housing.dataGeoportail );
+
                                     /**
                                      * Formate l'adresse pour le geocoding
                                      */
@@ -166,249 +176,75 @@ export default defineComponent( {
                                       return '';
                                     } );
 
-                                    // Permet de charger la carte
-                                    // TODO faire en sorte que la map se charge quand on arrive sur l'étape 3 et non quand le componement est monté car ils est monté à la step 1 et ela fait que la map ne se load pas
-                                    const loadMap = async () => {
-                                      console.log( '%c ON LOAD MAP', 'background: #fdd835; color: #000000' );
+                                    /**
+                                     * Initialise la carte
+                                     * @param coordinate
+                                     *
+                                     * Retourne false si la carte existe déja
+                                     **/
+                                    const initMap = async ( coordinate: number[] | null = null ) => {
+                                      console.log( '%c Initialisation de lacart',
+                                                   'background: #D43FC8; color: #000000' );
                                       isLoading.value = true;
 
-                                      let coordinate;
-
-                                      if ( formattedAddress.value !== '' ) {
-                                        coordinate = await geocodingAddress( formattedAddress.value );
-                                        if ( coordinate === null ) {
-                                          ElMessage( {
-                                                       message: 'Une erreur est survenue pour trouver l\'adresse sur la carte',
-                                                       type:    'warning',
-                                                     } );
+                                      // Si pas de coordonnées en parametre, on récupère les coordonnées de l'adresse du Beneficiaire
+                                      if ( coordinate === null ) {
+                                        if ( formattedAddress.value !== '' ) {
+                                          coordinate = await geocodingAddress( formattedAddress.value );
+                                          if ( coordinate === null ) {
+                                            ElMessage( {
+                                                         message: `Impossible de trouver l'adresse : "${ formattedAddress.value }" sur la carte`,
+                                                         type:    'warning',
+                                                       } );
+                                            coordinate = [ -1.1220979, 46.1703322 ];
+                                          }
+                                        } else {
                                           coordinate = [ -1.1220979, 46.1703322 ];
                                         }
-                                      } else {
-                                        coordinate = [ -1.1220979, 46.1703322 ];
                                       }
-                                      map.value = Gp.Map.load(
-                                          'map', // html div
-                                          {
-                                            apiKey:  'essentiels,cartes,parcellaire',
-                                            zoom:    18,
-                                            maxZoom: 20,
-                                            minZoom: 6,
-                                            center:  {
-                                              x:          coordinate[ 0 ],
-                                              y:          coordinate[ 1 ],
-                                              projection: 'CRS:84',
-                                            },
-                                            // layers to display
-                                            layersOptions: {
-                                              'ORTHOIMAGERY.ORTHOPHOTOS': {
-                                                opacity: 0.7,
-                                              },
-                                              'CADASTRALPARCELS.PARCELS': {},
-                                            },
-                                            // additional tools to display on the map
-                                            controlsOptions:  {
-                                              'layerSwitcher': {},
-                                              'drawing':       {},
-                                              'length':        {},
-                                              'area':          {},
-                                            },
-                                            mapEventsOptions: {
-                                              // when map has finished to initialize and to render
-                                              'mapLoaded': function () {
-                                                isLoading.value = false;
-                                                console.log( '%c___', 'background: #35D452; color: #000000' );
-                                                console.log( '%c___', 'background: #35D452; color: #000000' );
-                                                console.log( '%c___', 'background: #35D452; color: #000000' );
-                                                console.log( '%c MAP CHARGÉ AVEC SUCCÈS',
-                                                             'background: #35D452; color: #000000' );
-                                                console.log( '%c___', 'background: #35D452; color: #000000' );
-                                                console.log( '%c___', 'background: #35D452; color: #000000' );
-                                                console.log( '%c___', 'background: #35D452; color: #000000' );
-                                              },
-                                            },
-                                          },
-                                      );
 
-                                      map.value.setMarkersOptions( [
-                                                                     {
-                                                                       position: {
-                                                                         x:          coordinate[ 0 ],
-                                                                         y:          coordinate[ 1 ],
-                                                                         projection: 'CRS:84',
-                                                                       },
-                                                                     },
-                                                                   ] );
+
+                                      // Charge la map si elle est pas déja chargé
+                                      if ( map.value === undefined ) {
+                                        map.value = Gp.Map.load(
+                                            'map', // html div
+                                            {
+                                              apiKey:  'essentiels,cartes,parcellaire',
+                                              zoom:    18,
+                                              maxZoom: 20,
+                                              minZoom: 6,
+                                              center:  {
+                                                x:          coordinate[ 0 ],
+                                                y:          coordinate[ 1 ],
+                                                projection: 'CRS:84',
+                                              },
+                                              // layers to display
+                                              layersOptions: {
+                                                'ORTHOIMAGERY.ORTHOPHOTOS': {
+                                                  opacity: 0.7,
+                                                },
+                                                'CADASTRALPARCELS.PARCELS': {},
+                                              },
+                                              // additional tools to display on the map
+                                              controlsOptions:  {
+                                                'layerSwitcher': {},
+                                                'drawing':       {},
+                                                'length':        {},
+                                                'area':          {},
+                                              },
+                                              mapEventsOptions: {
+                                                // when map has finished to initialize and to render
+                                                'mapLoaded': function () {
+                                                  isLoading.value = false;
+                                                  console.log( '%c MAP CHARGÉ AVEC SUCCÈS',
+                                                               'background: #35D452; color: #000000' );
+                                                },
+                                              },
+                                            },
+                                        );
+
+                                      }
                                     };
-
-
-                                    // On charge la map que lorsque l'on est en prod
-                                    if ( !isDevelopment ) {
-
-                                      // Watch Effect pour mettre à jour la map quand il y a un changement dans l'adresse
-                                      // watchEffect( async () => {
-                                      //   console.log( '%c watchEffect', 'background: #F5ADFD; color: #000000' );
-                                      //
-                                      //   if ( map.value !== undefined ) {
-                                      //     isLoading.value = true;
-                                      //
-                                      //     let coordinate;
-                                      //
-                                      //     if ( formattedAddress.value !== '' ) {
-                                      //       coordinate = await geocodingAddress( formattedAddress.value );
-                                      //       if ( coordinate === null ) {
-                                      //         ElMessage( {
-                                      //                      message: 'Une erreur est survenue pour trouver l\'adresse sur la carte',
-                                      //                      type:    'warning',
-                                      //                    } );
-                                      //         coordinate = [ -1.1220979, 46.1703322 ];
-                                      //       }
-                                      //     } else {
-                                      //       coordinate = [ -1.1220979, 46.1703322 ];
-                                      //     }
-                                      //
-                                      //     map.value.setCenter( {
-                                      //                            x:          coordinate[ 0 ],
-                                      //                            y:          coordinate[ 1 ],
-                                      //                            projection: 'CRS:84',
-                                      //                          } );
-                                      //
-                                      //
-                                      //     // const icon = path.join( __static, `/map/home.png` );
-                                      //     // console.log( '__c ICON PATH', icon );
-                                      //
-                                      //     map.value.setMarkersOptions( [
-                                      //                                    {
-                                      //                                      position: {
-                                      //                                        x:          coordinate[ 0 ],
-                                      //                                        y:          coordinate[ 1 ],
-                                      //                                        projection: 'CRS:84',
-                                      //                                      },
-                                      //                                    },
-                                      //                                  ] );
-                                      //
-                                      //     isLoading.value = false;
-                                      //   } else {
-                                      //     console.log( 'MAP IS UNDEFINED' );
-                                      //   }
-                                      // } );
-
-                                      // onMounted( async () => {
-                                      //   console.log( '%c ON MOUNTED', 'background: #D43FC8; color: #000000' );
-                                      //   const coordinate = [ -1.1220979, 46.1703322 ];
-                                      //   setTimeout( () => {
-                                      //     map.value = Gp.Map.load(
-                                      //         'map', // html div
-                                      //         {
-                                      //           apiKey:  'essentiels,cartes,parcellaire',
-                                      //           zoom:    18,
-                                      //           maxZoom: 20,
-                                      //           minZoom: 6,
-                                      //           center:  {
-                                      //             x:          coordinate[ 0 ],
-                                      //             y:          coordinate[ 1 ],
-                                      //             projection: 'CRS:84',
-                                      //           },
-                                      //           // layers to display
-                                      //           layersOptions: {
-                                      //             'ORTHOIMAGERY.ORTHOPHOTOS': {
-                                      //               opacity: 0.7,
-                                      //             },
-                                      //             'CADASTRALPARCELS.PARCELS': {},
-                                      //           },
-                                      //           // additional tools to display on the map
-                                      //           controlsOptions:  {
-                                      //             'layerSwitcher': {},
-                                      //             'drawing':       {},
-                                      //             'length':        {},
-                                      //             'area':          {},
-                                      //           },
-                                      //           mapEventsOptions: {
-                                      //             // when map has finished to initialize and to render
-                                      //             'mapLoaded': function () {
-                                      //               isLoading.value = false;
-                                      //               console.log( '%c___', 'background: #35D452; color: #000000' );
-                                      //               console.log( '%c___', 'background: #35D452; color: #000000' );
-                                      //               console.log( '%c___', 'background: #35D452; color: #000000' );
-                                      //               console.log( '%c MAP CHARGÉ AVEC SUCCÈS',
-                                      //                            'background: #35D452; color: #000000' );
-                                      //               console.log( '%c___', 'background: #35D452; color: #000000' );
-                                      //               console.log( '%c___', 'background: #35D452; color: #000000' );
-                                      //               console.log( '%c___', 'background: #35D452; color: #000000' );
-                                      //             },
-                                      //           },
-                                      //         },
-                                      //     );
-                                      //   }, 5000 );
-                                      //   //   if ( map.value == undefined ) {
-                                      //   //     console.log( 'MAP IS UNDEFINED' );
-                                      //   //   }
-                                      //   //   // On récupère les coordonnées de l'adresse
-                                      //   //   let coordinate;
-                                      //   //
-                                      //   //   console.log( 'formattedAddress -->', formattedAddress.value );
-                                      //   //   if ( formattedAddress.value !== '' ) {
-                                      //   //     console.log( 'EN ATTENTE DU GEOCODING' );
-                                      //   //     coordinate = await geocodingAddress( formattedAddress.value );
-                                      //   //     if ( coordinate === null ) {
-                                      //   //       ElMessage( {
-                                      //   //                    message: 'Impossible de trouver l\'adresse sur la carte',
-                                      //   //                    type:    'warning',
-                                      //   //                  } );
-                                      //   //       coordinate = [ -1.1220979, 46.1703322 ];
-                                      //   //     }
-                                      //   //   } else {
-                                      //   //     coordinate = [ -1.1220979, 46.1703322 ];
-                                      //   //   }
-                                      //   //   console.log( 'COORD -->', coordinate );
-                                      //   //
-                                      //   //   console.log( 'BEFORE FUNCTION LOAD MAP' );
-                                      //   //
-                                      //   //   // Chargement de la carte
-                                      //   //   // map.value = Gp.Map.load(
-                                      //   //   //     'map', // html div
-                                      //   //   //     {
-                                      //   //   //       apiKey:  'essentiels,cartes,parcellaire',
-                                      //   //   //       zoom:    18,
-                                      //   //   //       maxZoom: 20,
-                                      //   //   //       minZoom: 6,
-                                      //   //   //       center:  {
-                                      //   //   //         x:          coordinate[ 0 ],
-                                      //   //   //         y:          coordinate[ 1 ],
-                                      //   //   //         projection: 'CRS:84',
-                                      //   //   //       },
-                                      //   //   //       // layers to display
-                                      //   //   //       layersOptions: {
-                                      //   //   //         'ORTHOIMAGERY.ORTHOPHOTOS': {
-                                      //   //   //           opacity: 0.7,
-                                      //   //   //         },
-                                      //   //   //         'CADASTRALPARCELS.PARCELS': {},
-                                      //   //   //       },
-                                      //   //   //       // additional tools to display on the map
-                                      //   //   //       controlsOptions:  {
-                                      //   //   //         'layerSwitcher': {},
-                                      //   //   //         'drawing':       {},
-                                      //   //   //         'length':        {},
-                                      //   //   //         'area':          {},
-                                      //   //   //       },
-                                      //   //   //       mapEventsOptions: {
-                                      //   //   //         // when map has finished to initialize and to render
-                                      //   //   //         'mapLoaded': function () {
-                                      //   //   //           isLoading.value = false;
-                                      //   //   //           console.log( '%c___', 'background: #35D452; color: #000000' );
-                                      //   //   //           console.log( '%c___', 'background: #35D452; color: #000000' );
-                                      //   //   //           console.log( '%c___', 'background: #35D452; color: #000000' );
-                                      //   //   //           console.log( '%c MAP CHARGÉ AVEC SUCCÈS',
-                                      //   //   //                        'background: #35D452; color: #000000' );
-                                      //   //   //           console.log( '%c___', 'background: #35D452; color: #000000' );
-                                      //   //   //           console.log( '%c___', 'background: #35D452; color: #000000' );
-                                      //   //   //           console.log( '%c___', 'background: #35D452; color: #000000' );
-                                      //   //   //         },
-                                      //   //   //       },
-                                      //   //   //     },
-                                      //   //   // );
-                                      //   //
-                                      // } );
-                                    }
 
 
                                     /**
@@ -443,11 +279,79 @@ export default defineComponent( {
                                       }
                                     };
 
+                                    const setDataGeoportal = ( data ) => {
+                                      console.log( '%c IN SET DATA GEOPORTAIL', 'background: #fdd835; color: #000000' );
+                                      console.log( data );
+
+                                      if ( data.locations.length > 0 ) {
+                                        const location = data.locations[ 0 ];
+                                        switch ( location.type ) {
+                                          case 'StreetAddress': {
+                                            const { postalCode, number, street, commune } = location.placeAttributes;
+
+                                            geoportail.value = {
+                                              ...geoportail.value,
+                                              zipCode: postalCode,
+                                              city:    commune,
+                                              address: `${ number } ${ street }`,
+                                            };
+                                          }
+                                            break;
+                                          case 'CadastralParcel': {
+                                            const { absorbedCity, section, number } = location.placeAttributes;
+                                            geoportail.value.plot                   = `${ absorbedCity } / ${ section } / ${ number }`;
+                                          }
+                                            break;
+                                          default:
+                                            return;
+                                        }
+                                      }
+
+                                    };
+
+                                    /**
+                                     *
+                                     * @param address
+                                     */
+                                    const findAddressOnMap = async ( address: string ) => {
+                                      isLoading.value = true;
+                                      console.log( '%c FIND ADDRESS ON MAP', 'background: #fdd835; color: #000000' );
+                                      const coordinate = await geocodingAddress( address );
+                                      console.log( coordinate );
+                                      if ( coordinate !== null ) {
+                                        console.log( map.value );
+                                        getGeoportalAddress( coordinate, setDataGeoportal );
+                                        getGeoportalPlot( coordinate, setDataGeoportal );
+                                        if ( map.value !== undefined ) {
+                                          // Si la map est déja initialisé
+                                          map.value.setCenter( {
+                                                                 x:          coordinate[ 0 ],
+                                                                 y:          coordinate[ 1 ],
+                                                                 projection: 'CRS:84',
+                                                               } );
+                                        } else {
+                                          await initMap( coordinate );
+                                        }
+                                      }
+                                      isLoading.value = false;
+                                    };
+
+
+                                    const findAddress = useDebouncedRef( '', 1000 );
+                                    watch( findAddress, newQuery => {
+                                      console.log( { newQuery } );
+                                      if ( newQuery !== '' ) {
+                                        findAddressOnMap( newQuery );
+                                      }
+                                    } );
+
                                     return {
+                                      findAddress,
                                       isLoading,
                                       takeScreenshot,
                                       openMapFolder,
-                                      loadMap,
+                                      loadMap: initMap,
+                                      geoportail,
                                     };
                                   },
                                 },

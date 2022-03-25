@@ -19,6 +19,7 @@ export const defaultInitFormDataStep3 = ( data: BaseFile ) => {
             city:    data.housing.city,
         },
         area:                    data.housing.area,
+        dataGeoportail:          data.housing.dataGeoportail,
     };
 };
 
@@ -64,6 +65,7 @@ export const defaultGetHoussingValueStep3 = ( fileData: BaseFile, stepData: Base
         buildingNature:   stepData.housingBuildingNature,
         isRentedHouse:    stepData.housingBuildingNature === 'location',
         area:             +stepData.area,
+        dataGeoportail:   stepData.dataGeoportail,
         ...address,
     };
 };

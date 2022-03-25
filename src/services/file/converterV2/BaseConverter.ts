@@ -223,18 +223,25 @@ export class BaseConverter {
     /**
      * Retourne les anciennes données Geoportail
      */
-    private getOldDataGeoportail = (): DataGeoportail | null => {
-        let dataGeoportail: DataGeoportail | null = null;
+    private getOldDataGeoportail = (): DataGeoportail => {
+        let dataGeoportail: DataGeoportail;
 
         if ( this.getObjectData( this.oldData, [ 'logement', 'dataGeoportail' ] ) !== '' ) {
             dataGeoportail = {
-                zoom:     this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'zoom' ],
-                center:   this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'center' ],
-                position: this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'position' ],
-                zipCode:  this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'codepostal' ],
-                city:     this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'ville' ],
-                address:  this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'adresse' ],
-                plot:     this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'parcelle' ],
+                // zoom:     this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'zoom' ],
+                // center:   this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'center' ],
+                // position: this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'position' ],
+                zipCode: this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'codepostal' ],
+                city:    this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'ville' ],
+                address: this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'adresse' ],
+                plot:    this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'parcelle' ],
+            };
+        } else {
+            dataGeoportail = {
+                zipCode: '',
+                city:    '',
+                address: '',
+                plot:    '',
             };
         }
 

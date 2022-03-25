@@ -1,3 +1,5 @@
+import { DataGeoportail } from '@/types/v2/File/Common/DataGeoportail';
+
 export interface BaseStep3 {
     housingBuildingNature: string;
     nbOccupant: number;
@@ -12,4 +14,5 @@ export interface BaseStep3 {
         zipCode: string;
         city: string;
     };
+    dataGeoportail: DataGeoportail;
 }

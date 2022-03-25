@@ -14,7 +14,7 @@ export interface Housing {
     city: string;
     plot: string;
     area: number;
-    dataGeoportail: DataGeoportail | null;
+    dataGeoportail: DataGeoportail;
     location: string;
     constructionYear: number | null;
     lessThan2Years: boolean;
