@@ -618,6 +618,14 @@ export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) =
             folder = FoldersNames.DIMENSIONNEMENT_PAC;
             name   = 'dimensionnement_pac.pdf';
             break;
+        case PdfType.CityHallMandate:
+            folder = FoldersNames.MANDAT_MAIRIE;
+            name   = 'mandat_mairie.pdf';
+            break;
+        case PdfType.EnedisMandate:
+            folder = FoldersNames.MANDAT_ENEDIS;
+            name   = 'mandat_enedis.pdf';
+            break;
         default:
             console.log( '%c ERROR', 'background: #fdd835; color: #000000' );
     }
