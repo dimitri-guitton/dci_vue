@@ -43,12 +43,17 @@
              placeholder="Rechercher..."
              v-model="findAddress" />
     </div>
-    <div class="col-md-12">
-      <div id="map" v-loading="isLoading" element-loading-text="Chargement de la carte"></div>
+    <div class="col-md-12 position-relative">
+      <div id="map"
+           v-loading="isLoading"
+           element-loading-text="Chargement de la carte"></div>
+      <div v-if="!mapHasBeenHover" @mouseenter="initMap(null)" id="mapCover">
+        <h1 class="text-white">Survoler la carte pour l'activer</h1>
+      </div>
     </div>
+
   </div>
   <div class="row mb-10 d-flex justify-content-end">
-    <button @click="initMap(null)" type="button" class="btn btn-primary w-auto mx-2">Charger la carte</button>
     <button @click="takeScreenshot" type="button" class="btn btn-primary w-auto mx-2">Sauvergarder le plan</button>
     <button @click="openMapFolder" type="button" class="btn btn-info w-auto mx-2">Voir le plan dans le dossier</button>
   </div>
@@ -157,9 +162,10 @@ export default defineComponent( {
                                   setup( props ) {
 
                                     // const isDevelopment = process.env.NODE_ENV !== 'production';
-                                    const isDevelopment = false;
-                                    const isLoading     = ref<boolean>( false );
-                                    const map           = ref();
+                                    const isDevelopment   = false;
+                                    const isLoading       = ref<boolean>( false );
+                                    const map             = ref();
+                                    const mapHasBeenHover = ref<boolean>( false );
 
                                     const geoportail = ref<DataGeoportail>( props.fileData.housing.dataGeoportail );
 
@@ -176,6 +182,36 @@ export default defineComponent( {
                                       return '';
                                     } );
 
+                                    const setDataGeoportal = ( data ) => {
+                                      console.log( '%c IN SET DATA GEOPORTAIL', 'background: #fdd835; color: #000000' );
+                                      console.log( data );
+
+                                      if ( data.locations.length > 0 ) {
+                                        const location = data.locations[ 0 ];
+                                        switch ( location.type ) {
+                                          case 'StreetAddress': {
+                                            const { postalCode, number, street, commune } = location.placeAttributes;
+
+                                            geoportail.value = {
+                                              ...geoportail.value,
+                                              zipCode: postalCode,
+                                              city:    commune,
+                                              address: `${ number } ${ street }`,
+                                            };
+                                          }
+                                            break;
+                                          case 'CadastralParcel': {
+                                            const { absorbedCity, section, number } = location.placeAttributes;
+                                            geoportail.value.plot                   = `${ absorbedCity } / ${ section } / ${ number }`;
+                                          }
+                                            break;
+                                          default:
+                                            return;
+                                        }
+                                      }
+                                    };
+
+
                                     /**
                                      * Initialise la carte
                                      * @param coordinate
@@ -183,6 +219,13 @@ export default defineComponent( {
                                      * Retourne false si la carte existe déja
                                      **/
                                     const initMap = async ( coordinate: number[] | null = null ) => {
+
+                                      // On s'assure que la map est Init qu'une seul fois
+                                      if ( mapHasBeenHover.value ) {
+                                        return;
+                                      }
+                                      mapHasBeenHover.value = true;
+
                                       console.log( '%c __ Initialisation de la carte',
                                                    'background: #D43FC8; color: #000000' );
                                       console.log( ' __ coordonées', coordinate );
@@ -233,8 +276,52 @@ export default defineComponent( {
                                                 'drawing':       {},
                                                 'length':        {},
                                                 'area':          {},
-                                                'search':        {},
-                                                'reversesearch': {},
+                                                // 'search':        {
+                                                //   resources:           {
+                                                //     autocomplete: [ 'StreetAddress' ],
+                                                //   },
+                                                //   autocompleteOptions: {
+                                                //     zoomTo: 8,
+                                                //     onSuccess: ( value ) => {
+                                                //       console.log( '%c OK 33', 'background: #00D4C7; color: #000000' );
+                                                //       console.log( value );
+                                                //     },
+                                                //     serviceOptions: {
+                                                //       maximumResponses: 5,
+                                                //       onSuccess: ( value ) => {
+                                                //         console.log( '%c OK', 'background: #00D4C7; color: #000000' );
+                                                //         console.log( value );
+                                                //       },
+                                                //     },
+                                                //   },
+                                                // },
+                                                'reversesearch': {
+                                                  resources:             [ 'CadastralParcel' ],
+                                                  delimitations:         [ 'Point' ],
+                                                  reverseGeocodeOptions: {
+                                                    maximumResponses: 1,
+                                                    onSuccess:        ( value ) => {
+                                                      console.log( '%c OK', 'background: #00FF55; color: #000000' );
+                                                      console.log( value );
+                                                      if ( value.length > 0 ) {
+                                                        console.log( '> 0' );
+                                                        const {
+                                                                absorbedCity,
+                                                                section,
+                                                                number,
+                                                              }               = value[ 0 ].placeAttributes;
+                                                        geoportail.value.plot = `${ absorbedCity } / ${ section } / ${ number }`;
+
+                                                        // récupère l'address depuis les coordonées
+                                                        console.log( value[ 0 ].position );
+                                                        getGeoportalAddress( [
+                                                                               value[ 0 ].position.x,
+                                                                               value[ 0 ].position.y,
+                                                                             ], setDataGeoportal );
+                                                      }
+                                                    },
+                                                  },
+                                                },
                                               },
                                               mapEventsOptions: {
                                                 // when map has finished to initialize and to render
@@ -289,36 +376,6 @@ export default defineComponent( {
                                       }
                                     };
 
-                                    const setDataGeoportal = ( data ) => {
-                                      console.log( '%c IN SET DATA GEOPORTAIL', 'background: #fdd835; color: #000000' );
-                                      console.log( data );
-
-                                      if ( data.locations.length > 0 ) {
-                                        const location = data.locations[ 0 ];
-                                        switch ( location.type ) {
-                                          case 'StreetAddress': {
-                                            const { postalCode, number, street, commune } = location.placeAttributes;
-
-                                            geoportail.value = {
-                                              ...geoportail.value,
-                                              zipCode: postalCode,
-                                              city:    commune,
-                                              address: `${ number } ${ street }`,
-                                            };
-                                          }
-                                            break;
-                                          case 'CadastralParcel': {
-                                            const { absorbedCity, section, number } = location.placeAttributes;
-                                            geoportail.value.plot                   = `${ absorbedCity } / ${ section } / ${ number }`;
-                                          }
-                                            break;
-                                          default:
-                                            return;
-                                        }
-                                      }
-
-                                    };
-
                                     /**
                                      *
                                      * @param address
@@ -362,6 +419,7 @@ export default defineComponent( {
                                       openMapFolder,
                                       initMap,
                                       geoportail,
+                                      mapHasBeenHover,
                                     };
                                   },
                                 },
@@ -372,5 +430,20 @@ export default defineComponent( {
 #map {
   width  : 100%;
   height : 500px;
+}
+
+#mapCover {
+  width            : 100%;
+  height           : 500px;
+  background-color : rgba(0, 0, 0, 0.4);
+  position         : absolute;
+  left             : 0;
+  top              : 0;
+}
+
+#mapCover h1 {
+  text-align     : center !important;
+  vertical-align : middle;
+  line-height    : 500px;
 }
 </style>
