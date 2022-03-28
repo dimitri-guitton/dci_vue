@@ -238,6 +238,13 @@ export default defineComponent( {
                                                   isLoading.value = false;
                                                   console.log( '%c MAP CHARGÉ AVEC SUCCÈS',
                                                                'background: #35D452; color: #000000' );
+
+                                                  const measureBtn = document.querySelector(
+                                                      '[id^="GPtoolbox-measure-button-"]' );
+                                                  if ( measureBtn !== null ) {
+                                                    // On set le type à "Button" afin que le bouton ne trigger pas l'event submit pour changer de step du wizzard
+                                                    measureBtn.setAttribute( 'type', 'button' );
+                                                  }
                                                 },
                                               },
                                             },
