@@ -276,20 +276,17 @@ export default defineComponent( {
                                                 'drawing':       {},
                                                 'length':        {},
                                                 'area':          {},
-                                                // 'search':        {
+                                                // 'search':        { TODO Utiliser le systeme natif, le pb impossible de recupérer le callback du OnSuccess
                                                 //   resources:           {
                                                 //     autocomplete: [ 'StreetAddress' ],
                                                 //   },
                                                 //   autocompleteOptions: {
-                                                //     zoomTo: 8,
-                                                //     onSuccess: ( value ) => {
-                                                //       console.log( '%c OK 33', 'background: #00D4C7; color: #000000' );
-                                                //       console.log( value );
-                                                //     },
                                                 //     serviceOptions: {
                                                 //       maximumResponses: 5,
-                                                //       onSuccess: ( value ) => {
-                                                //         console.log( '%c OK', 'background: #00D4C7; color: #000000' );
+                                                //       onSuccess:        ( value ) => {
+                                                //         for ( let i = 0; i < 50; i++ ) {
+                                                //           console.log( '%c OK', 'background: #00D4C7; color: #000000' );
+                                                //         }
                                                 //         console.log( value );
                                                 //       },
                                                 //     },
