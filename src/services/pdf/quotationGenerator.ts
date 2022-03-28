@@ -947,6 +947,7 @@ export class QuotationGenerator extends PdfGenerator {
 
                 break;
             default:
+                console.log( 'PDF SELECTED PRODUCTS', this._file.quotation.selectedProducts );
                 for ( const product of this._file.quotation.selectedProducts ) {
                     const totalPrice = this.formatPrice( product.pu, product.quantity );
                     const quantity   = `${ product.quantity }u`;

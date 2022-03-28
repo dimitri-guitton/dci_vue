@@ -761,6 +761,7 @@ export class RoAlgo extends PacAlgo {
 
             console.log( '---' );
             console.log( '---' );
+            console.log( `${ unit.hotWaterTank } --- ${ hotWater }` );
             if ( highTemperature === unit.highTemperature ) {
                 console.log( 'BONNE TEMPÉRATURE' );
                 if ( unit.sizes.includes( size ) ) {

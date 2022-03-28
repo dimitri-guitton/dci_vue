@@ -151,6 +151,8 @@ const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: strin
         }
     }
 
+    console.log( 'PACS -->', pacs );
+    console.log( 'ETAS -->', etas );
     console.log( 'formatedEtas', formatedEtas );
 
     if ( etas >= 110 && etas < 120 ) {

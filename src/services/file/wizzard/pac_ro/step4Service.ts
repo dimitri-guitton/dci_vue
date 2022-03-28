@@ -22,8 +22,8 @@ export const initPacRoFormDataStep4 = ( fileData: RoFile ): PacRoStep4 => {
         deviceToReplaceBrand: fileData.quotation.deviceToReplace.brand === undefined ? '' : fileData.quotation.deviceToReplace.brand,
         deviceToReplaceModel: fileData.quotation.deviceToReplace.model === undefined ? '' : fileData.quotation.deviceToReplace.model,
         isEcsDeporte:         fileData.quotation.isEcsDeporte,
-        volumeECSDeporte:     fileData.quotation.volumeECSDeporte,
-        volumeECS:            fileData.quotation.volumeECS,
+        volumeECSDeporte:     fileData.quotation.volumeECSDeporte === null ? 150 : fileData.quotation.volumeECSDeporte,
+        volumeECS:            fileData.quotation.volumeECS === null ? 0 : fileData.quotation.volumeECS,
         cascadeSystem:        fileData.quotation.cascadeSystem,
         discount:             fileData.quotation.discount,
     };
@@ -49,6 +49,22 @@ export const validatePacRoStep4 = async ( data: PacRoFileStep, price: Price ): P
 
     let quotation: RoQuotation = fileData.quotation;
 
+    console.log( '%c ECS', 'background: #fdd835; color: #000000' );
+    console.log( '%c ECS', 'background: #fdd835; color: #000000' );
+    console.log( '%c ECS', 'background: #fdd835; color: #000000' );
+    console.log( '%c ECS', 'background: #fdd835; color: #000000' );
+    console.log( data.volumeECS );
+
+    let volumeECS = data.volumeECS;
+    if ( data.volumeECS === undefined || data.volumeECS === null ) {
+        volumeECS = 0;
+    }
+
+    let volumeECSDeporte = data.volumeECSDeporte;
+    if ( data.volumeECSDeporte === undefined || data.volumeECSDeporte === null ) {
+        volumeECSDeporte = 150;
+    }
+
     quotation = {
         ...quotation,
         ...defaultGetQuotationValueStep4( data, price ),
@@ -57,8 +73,8 @@ export const validatePacRoStep4 = async ( data: PacRoFileStep, price: Price ): P
             brand: data.deviceToReplaceBrand,
             model: data.deviceToReplaceModel,
         },
-        volumeECS:        data.volumeECS,
-        volumeECSDeporte: data.volumeECSDeporte,
+        volumeECS:        volumeECS,
+        volumeECSDeporte: volumeECSDeporte,
         isEcsDeporte:     data.isEcsDeporte,
         cascadeSystem:    data.cascadeSystem,
     };

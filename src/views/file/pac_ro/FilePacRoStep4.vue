@@ -3,16 +3,6 @@
 
     <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit" :price="price" :lists="lists"></step4-header>
 
-    <!--    <div class="row mt-10">-->
-    <!--      <h1>Values</h1>-->
-    <!--      <ul>-->
-    <!--        <li>isEcsDeporte : {{ isEcsDeporte }}</li>-->
-    <!--        <li>volumeECS : {{ volumeECS }}</li>-->
-    <!--        <li>volumeECSDeporte : {{ volumeECSDeporte }}</li>-->
-    <!--        <li>cascadeSystem : {{ cascadeSystem }}</li>-->
-    <!--      </ul>-->
-    <!--    </div>-->
-
     <div class="row mt-10">
       <div class="col-md-6 mb-5">
         <label for="deviceToReplaceType" class="form-label">Appareil à remplacer</label>
@@ -85,7 +75,6 @@
       <template v-else>
         <div class="col-md-6 mb-5">
           <label for="volumeECS" class="form-label">Volume ECS</label>
-
           <Field name="volumeECS"
                  id="volumeECS"
                  class="form-select"
@@ -129,7 +118,7 @@
       <row-price :product="kitBiZone"></row-price>
     </template>
 
-    <!-- Formualaire caché afin de binder les values au formaulaire comme la sélection des produits se fait via l'algo-->
+    <!-- Formualaire caché afin de binder les values au formulaire comme la sélection des produits se fait via l'algo-->
     <div class="row d-none">
       <label for="cascadeSystem" class="form-check form-switch form-check-custom">
         <Field
@@ -143,18 +132,18 @@
       </label>
     </div>
 
-    <!-- Formualaire caché afin de binder les values au formaulaire comme la sélection des produits se fait via l'algo-->
-    <template v-for="(p, index) in allProducts" v-bind:key="`val_${p.reference}`">
+    <!-- Formualaire caché afin de binder les values au formulaire comme la sélection des produits se fait via l'algo-->
+    <template v-for="(p, index) in allProducts" v-bind:key="`val_${p.reference}_${p.id}`">
       <div class="row d-none">
-        <Field type="text"
+        <Field type="number"
                :name="`selectedProducts[${index}].id`"
                class="form-control"
                v-model.number="p.id" />
-        <Field type="text"
+        <Field type="number"
                :name="`selectedProducts[${index}].quantity`"
                class="form-control"
                v-model.number="p.quantity" />
-        <Field type="text"
+        <Field type="number"
                :name="`selectedProducts[${index}].pu`"
                class="form-control"
                v-model.number="p.pu" />
@@ -254,8 +243,8 @@ export default defineComponent( {
                                     const deviceToReplace      = ref( props.fileData.quotation.deviceToReplace );
                                     const discount             = ref<number>( props.fileData.quotation.discount );
                                     const isEcsDeporte         = ref<boolean>( props.fileData.quotation.isEcsDeporte );
-                                    const volumeECS            = ref<number>( props.fileData.quotation.volumeECS );
-                                    const volumeECSDeporte     = ref<number>( props.fileData.quotation.volumeECSDeporte );
+                                    const volumeECS            = ref<number>( +props.fileData.quotation.volumeECS );
+                                    const volumeECSDeporte     = ref<number>( +props.fileData.quotation.volumeECSDeporte );
                                     const needBiZoneSupplement = ref<boolean>( false );
 
                                     const roAlgo = new RoAlgo( props.fileData.housing );
@@ -293,14 +282,14 @@ export default defineComponent( {
                                       needBiZoneSupplement.value = value;
                                     };
 
-                                    const resetVolumeECS = ( isEcsDeporte: boolean ) => {
-                                      if ( isEcsDeporte ) {
-                                        // TODO bug quand set à 0 ça affiche 230 dans la checkbox mais bien 0 sélectionné
-                                        volumeECS.value = 0;
-                                      } else {
-                                        volumeECSDeporte.value = 150;
-                                      }
-                                    };
+                                    // const resetVolumeECS = ( isEcsDeporte: boolean ) => {
+                                    //   if ( isEcsDeporte ) {
+                                    //     // TODO bug quand set à 0 ça affiche 230 dans la checkbox mais bien 0 sélectionné
+                                    //     volumeECS.value = 1;
+                                    //   } else {
+                                    //     volumeECSDeporte.value = 150;
+                                    //   }
+                                    // };
 
                                     const ecsDeporte = props.fileData.quotation.products.filter( p => p.productType === 'ecs' );
                                     const kitCascade = props.fileData.quotation.products.filter( p => p.productType === 'kit_cascade' );
@@ -308,7 +297,7 @@ export default defineComponent( {
 
                                     const selectedEcsDeportes = computed<Product[]>( () => {
                                       // Reset le volume si jamais on switch en ECS et ECSDeporté
-                                      resetVolumeECS( isEcsDeporte.value );
+                                      // resetVolumeECS( isEcsDeporte.value );
 
                                       if ( !isEcsDeporte.value ) {
                                         return [];
@@ -336,9 +325,16 @@ export default defineComponent( {
 
                                     const products = computed<Product[]>(
                                         () => {
-
+                                          console.log( '%c COMPUTED PRODUCTS', 'background: #0094BE; color: #000000' );
                                           roAlgo.updateHousing( props.fileData.housing );
-                                          const response = roAlgo.getUnitsRo( volumeECS.value );
+
+                                          let response;
+                                          // Si ECS Deporté -> ECS = 0
+                                          if ( isEcsDeporte.value ) {
+                                            response = roAlgo.getUnitsRo( 0 );
+                                          } else {
+                                            response = roAlgo.getUnitsRo( volumeECS.value );
+                                          }
                                           console.log( 'Response', response );
 
                                           if ( response === null ) {
@@ -386,19 +382,25 @@ export default defineComponent( {
                                         } );
 
                                     const allProducts = computed<Product[]>( () => {
-                                      console.log( '%c COMPUTED ALLPRoducts', 'background: #fdd835; color: #000000' );
-                                      console.log( [
-                                                     ...selectedEcsDeportes.value,
-                                                     ...selectedKitCascade.value,
-                                                     ...selectedKitBiZone.value,
-                                                     ...products.value,
-                                                   ] );
-                                      return [
-                                        ...selectedEcsDeportes.value,
-                                        ...selectedKitCascade.value,
-                                        ...selectedKitBiZone.value,
+                                      console.log( '%c COMPUTED ALLPRoducts', 'background: #FF0017; color: #000000' );
+
+                                      const allProducts = [
                                         ...products.value,
+                                        ...selectedKitCascade.value,
+                                        ...selectedEcsDeportes.value,
+                                        ...selectedKitBiZone.value,
                                       ];
+                                      console.log( products.value );
+                                      console.log( selectedKitCascade.value );
+                                      console.log( selectedEcsDeportes.value );
+                                      console.log( selectedKitBiZone.value );
+
+                                      console.log( allProducts );
+                                      for ( const p of allProducts ) {
+                                        console.log( `${ p.id } - ${ p.label } - ${ p.quantity } - ${ p.pu }` );
+                                      }
+
+                                      return allProducts;
                                     } );
 
                                     const price = computed<Price>( () => {
@@ -473,7 +475,9 @@ export default defineComponent( {
                                                 selectedProducts: products.value,
                                               },
                                             };
-                                            ceeBonus                      = getCeeBonus( updatedFileData );
+                                            console.log( '%c BEFORE CEE', 'background: #fdd835; color: #000000' );
+                                            console.log( 'Products -->', products.value );
+                                            ceeBonus = getCeeBonus( updatedFileData );
                                           }
                                         }
 

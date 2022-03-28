@@ -70,40 +70,6 @@
             </div>
 
             <div>
-              <!--              {{ currentStepIndex }}<br>-->
-              <!--              {{ totalSteps - 1 }}<br>-->
-              <!--              {{ // currentStepIndex === totalSteps - 1 }}<br>-->
-              <!--              <button-->
-              <!--                  type="button"-->
-              <!--                  class="btn btn-lg btn-primary me-3"-->
-              <!--                  data-kt-stepper-action="submit"-->
-              <!--                  v-if="currentStepIndex === totalSteps - 1"-->
-              <!--                  @click="formSubmit()"-->
-              <!--              >-->
-              <!--                <span class="indicator-label">-->
-              <!--                  Submit-->
-              <!--                  <span class="svg-icon svg-icon-3 ms-2 me-0">-->
-              <!--                    <i class="fa-arrow-right"></i>-->
-              <!--                  </span>-->
-              <!--                </span>-->
-              <!--                <span class="indicator-progress">-->
-              <!--                  Please wait...-->
-              <!--                  <span-->
-              <!--                      class="spinner-border spinner-border-sm align-middle ms-2"-->
-              <!--                  ></span>-->
-              <!--                </span>-->
-              <!--              </button>-->
-
-              <!--              <button-->
-              <!--                  type="submit"-->
-              <!--                  class="btn btn-lg btn-primary me-3"-->
-              <!--                  v-if="currentStepIndex === totalSteps - 1"-->
-              <!--              >-->
-              <!--                STOP-->
-              <!--                <span class="svg-icon svg-icon-4 ms-1 me-0">-->
-              <!--                  <i class="fa fa-arrow-right"></i>-->
-              <!--                </span>-->
-              <!--              </button>-->
               <button v-if="currentStepIndex !== totalSteps - 1" type="submit" class="btn btn-lg btn-primary">
                 Suivant
                 <span class="svg-icon svg-icon-4 ms-1 me-0">
@@ -120,7 +86,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue';
-import Swal from 'sweetalert2/dist/sweetalert2.min.js';
 import { StepperComponent } from '@/assets/ts/components';
 import { setCurrentPageBreadcrumbs } from '@/core/helpers/breadcrumb';
 import { setLocale } from 'yup';
@@ -324,21 +289,6 @@ export default defineComponent( {
                                     } );
 
 
-                                    const formSubmit = () => {
-                                      Swal.fire( {
-                                                   text:              'All is cool! Now you submit this form',
-                                                   icon:              'success',
-                                                   buttonsStyling:    false,
-                                                   confirmButtonText: 'Ok, got it!',
-                                                   customClass:       {
-                                                     confirmButton: 'btn fw-bold btn-light-primary',
-                                                   },
-                                                 } ).then( () => {
-                                        window.location.reload();
-                                      } );
-                                    };
-
-
                                     const onGenerateQuotation = handleSubmit( async ( values ) => {
                                       console.log( '%c ONgenerateQuotation', 'background: #00FFCD; color: #000000' );
                                       console.log( values );
@@ -391,7 +341,6 @@ export default defineComponent( {
                                       onGenerateAddressCertificate,
                                       previousStep,
                                       handleStep,
-                                      formSubmit,
                                       totalSteps,
                                       currentStepIndex,
                                       assents,
