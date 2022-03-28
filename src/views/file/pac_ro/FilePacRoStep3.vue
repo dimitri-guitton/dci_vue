@@ -8,7 +8,7 @@
 
     <div class="row mb-10">
       <div class="col-md-4 fv-row mb-10">
-        <label class="form-label mb-3">Hauteur sous plafond</label>
+        <label class="form-label mb-3">Hauteur sous plafond <sup><var>m</var></sup></label>
         <Field
             type="number"
             class="form-control"
