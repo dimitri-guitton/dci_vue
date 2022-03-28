@@ -48,7 +48,7 @@
     </div>
   </div>
   <div class="row mb-10 d-flex justify-content-end">
-    <button @click="loadMap" type="button" class="btn btn-primary w-auto mx-2">Charger la carte</button>
+    <button @click="initMap(null)" type="button" class="btn btn-primary w-auto mx-2">Charger la carte</button>
     <button @click="takeScreenshot" type="button" class="btn btn-primary w-auto mx-2">Sauvergarder le plan</button>
     <button @click="openMapFolder" type="button" class="btn btn-info w-auto mx-2">Voir le plan dans le dossier</button>
   </div>
@@ -183,8 +183,9 @@ export default defineComponent( {
                                      * Retourne false si la carte existe déja
                                      **/
                                     const initMap = async ( coordinate: number[] | null = null ) => {
-                                      console.log( '%c Initialisation de lacart',
+                                      console.log( '%c __ Initialisation de la carte',
                                                    'background: #D43FC8; color: #000000' );
+                                      console.log( ' __ coordonées', coordinate );
                                       isLoading.value = true;
 
                                       // Si pas de coordonnées en parametre, on récupère les coordonnées de l'adresse du Beneficiaire
@@ -206,6 +207,7 @@ export default defineComponent( {
 
                                       // Charge la map si elle est pas déja chargé
                                       if ( map.value === undefined ) {
+                                        console.log( '%c __ BEFORE MAP LOAD', 'background: #fdd835; color: #000000' );
                                         map.value = Gp.Map.load(
                                             'map', // html div
                                             {
@@ -226,11 +228,13 @@ export default defineComponent( {
                                                 'CADASTRALPARCELS.PARCELS': {},
                                               },
                                               // additional tools to display on the map
-                                              controlsOptions:  {
+                                              controlsOptions: {
                                                 'layerSwitcher': {},
                                                 'drawing':       {},
                                                 'length':        {},
                                                 'area':          {},
+                                                'search':        {},
+                                                'reversesearch': {},
                                               },
                                               mapEventsOptions: {
                                                 // when map has finished to initialize and to render
@@ -249,7 +253,6 @@ export default defineComponent( {
                                               },
                                             },
                                         );
-
                                       }
                                     };
 
@@ -357,7 +360,7 @@ export default defineComponent( {
                                       isLoading,
                                       takeScreenshot,
                                       openMapFolder,
-                                      loadMap: initMap,
+                                      initMap,
                                       geoportail,
                                     };
                                   },
