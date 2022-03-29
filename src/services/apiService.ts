@@ -85,14 +85,14 @@ export const fetchDossierState = () => {
         since: getLastUpdateFileState(),
     };
     if ( checkInternet() ) {
-        fetch( `${ API_URL }/file-state?${ encodeParameters( params ) }`, {
+        fetch( `${ API_URL }/api/dossiers/update?${ encodeParameters( params ) }`, {
             method:  'GET',
             headers: defaultHeader(),
         } )
             .then( response => response.json() )
             .then( response => {
                 console.log( 'response -->', response );
-                setLastUpdateFileState();
+                // setLastUpdateFileState();
             } )
             .catch( error => {
                 ElMessage.error( 'Une erreur est survenue lors de la synchronisation avec l\'ERP' );

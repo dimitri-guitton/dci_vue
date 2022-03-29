@@ -247,6 +247,14 @@ export default defineComponent( {
                                     const volumeECSDeporte     = ref<number>( +props.fileData.quotation.volumeECSDeporte );
                                     const needBiZoneSupplement = ref<boolean>( false );
 
+                                    if ( volumeECS.value !== 0 && volumeECS.value !== 180 && volumeECS.value !== 230 ) {
+                                      volumeECS.value = 0;
+                                    }
+
+                                    if ( volumeECSDeporte.value !== 150 && volumeECSDeporte.value !== 200 && volumeECSDeporte.value !== 300 ) {
+                                      volumeECSDeporte.value = 150;
+                                    }
+
                                     const roAlgo = new RoAlgo( props.fileData.housing );
 
                                     // TODO REVOIR LE SYSTEME DE CASCADE
@@ -333,6 +341,7 @@ export default defineComponent( {
                                           if ( isEcsDeporte.value ) {
                                             response = roAlgo.getUnitsRo( 0 );
                                           } else {
+                                            console.log( 'ECS BEFORE GET UNITS RO', volumeECS.value );
                                             response = roAlgo.getUnitsRo( volumeECS.value );
                                           }
                                           console.log( 'Response', response );
