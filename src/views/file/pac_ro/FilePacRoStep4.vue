@@ -344,6 +344,14 @@ export default defineComponent( {
                                           roAlgo.updateHousing( props.fileData.housing );
 
                                           console.log( 'Volume ECS IN COMPUTED PRODUCT', volumeECS.value );
+
+                                          if ( volumeECS.value === undefined ) {
+                                            console.log( 'Volume ECS IS UNDEFINED', volumeECS );
+                                            //HACK QUAND VALUE à 0 BUG
+                                            // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+                                            volumeECS.value = 1;
+                                          }
+
                                           let response;
                                           // Si ECS Deporté -> ECS = 0
                                           if ( isEcsDeporte.value ) {
