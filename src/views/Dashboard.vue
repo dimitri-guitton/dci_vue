@@ -48,7 +48,7 @@ export default defineComponent( {
                                       oldJsonAreConverted.value = true;
                                     };
 
-                                    ipcRenderer.on( 'update-available', () => {
+                                    ipcRenderer.on( 'update_available', () => {
                                       ElMessage( {
                                                    message: 'Téléchargement d\'une nouvelle version en cours...',
                                                    type:    'success',

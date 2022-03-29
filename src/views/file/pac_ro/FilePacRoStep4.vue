@@ -74,7 +74,7 @@
       </template>
       <template v-else>
         <div class="col-md-6 mb-5">
-          <label for="volumeECS" class="form-label">Volume ECS {{ volumeECS }}</label>
+          <label for="volumeECS" class="form-label">Volume ECS {{ volumeECS }} (VERSION 13)</label>
           <Field name="volumeECS"
                  id="volumeECS"
                  class="form-select"
@@ -351,6 +351,8 @@ export default defineComponent( {
                                             // eslint-disable-next-line vue/no-side-effects-in-computed-properties
                                             volumeECS.value = 1;
                                           }
+                                          console.log( 'Volume ECS IN COMPUTED PRODUCT AFTER UNDEFINED',
+                                                       volumeECS.value );
 
                                           let response;
                                           // Si ECS Deporté -> ECS = 0
