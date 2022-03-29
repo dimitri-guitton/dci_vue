@@ -20,12 +20,14 @@ const schema = {
 
 const store = new Store( { schema } );
 
-const API_URL: string   = process.env.VUE_APP_API_URL ? process.env.VUE_APP_API_URL : '';
-const API_TOKEN: string = store.get( 'currentFileData' );
+const API_URL: string = process.env.VUE_APP_API_URL ? process.env.VUE_APP_API_URL : '';
 
-const defaultHeader = {
-    'auth-token': API_TOKEN,
-    mode:         'no-cors',
+const defaultHeader = () => {
+    return {
+        'Content-Type': 'application/json',
+        'X-AUTH-TOKEN': store.get( 'apiKey' ) as string,
+        mode:           'no-cors',
+    };
 };
 
 /**
@@ -48,14 +50,23 @@ const checkInternet = (): boolean => {
  */
 export const fetchCommercialData = () => {
     if ( checkInternet() ) {
-        fetch( `${ API_URL }/commercial-info`, {
+        fetch( `${ API_URL }/api/dci-settings`, {
             method:  'GET',
-            headers: defaultHeader,
+            headers: defaultHeader(),
         } )
             .then( response => response.json() )
             .then( response => {
                 console.log( 'response -->', response );
-                setCommercialInfo( +response.id, response.firstName, response.lastName, response.phone );
+                let phone = response.phone;
+                if ( phone === null ) {
+                    phone = '';
+                }
+                setCommercialInfo( +response.id, response.firstName, response.lastName, phone );
+
+                ElMessage( {
+                               message: 'Vos informations ont été changées avec succès',
+                               type:    'success',
+                           } );
             } )
             .catch( error => {
                 ElMessage.error( 'Une erreur est survenue pour récupérer les informations sur l\'ERP' );
@@ -74,7 +85,7 @@ export const fetchDossierState = () => {
     if ( checkInternet() ) {
         fetch( `${ API_URL }/file-state?${ encodeParameters( params ) }`, {
             method:  'GET',
-            headers: defaultHeader,
+            headers: defaultHeader(),
         } )
             .then( response => response.json() )
             .then( response => {
@@ -95,7 +106,7 @@ export const postFileToERP = ( folderName: string ) => {
     if ( checkInternet() ) {
         fetch( `${ API_URL }/file`, {
             method:  'POST',
-            headers: defaultHeader,
+            headers: defaultHeader(),
             body:    JSON.stringify( fileData ),
         } )
             .then( response => response.json() )

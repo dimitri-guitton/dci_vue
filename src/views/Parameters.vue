@@ -1,17 +1,5 @@
 <template>
   <div class="row gy-5">
-    <div v-if="flashActive">
-      <div class="alert alert-success d-flex align-items-center p-5 mb-10">
-    <span class="svg-icon svg-icon-2hx svg-icon-success me-4">
-      <i class="far fa-check-circle text-success fs-2x me-2"></i>
-    </span>
-        <div class="d-flex flex-column">
-          <h4 class="mb-1 text-success">Modifications enregistrées</h4>
-          <span>Vos modifications ont été prises en compte</span>
-        </div>
-      </div>
-    </div>
-
     <div class="row">
       <div class="mb-5 col-6">
         <h6>Version de DCI : {{ version }}</h6>
@@ -98,7 +86,6 @@ export default defineComponent( {
                                     // Recup les données du users
                                     const apiKey      = store.get( 'apiKey' );
                                     const dropboxPath = ref( store.get( 'dropboxPath' ) );
-                                    const flashActive = ref( false );
 
                                     // Set up les schémas pour le formulaire
                                     const simpleSchema = {
@@ -130,24 +117,18 @@ export default defineComponent( {
                                       simpleSchema,
                                       apiKey,
                                       dropboxPath,
-                                      flashActive,
                                       openFileExplorer,
                                       version: process.env.VUE_APP_VERSION,
                                     };
                                   },
                                   methods: {
                                     onSubmit( values ) {
+                                      console.log( 'API KEY ON SUBMIT -->', values.apiKey );
                                       store.set( 'apiKey', values.apiKey );
                                       store.set( 'dropboxPath', values.dropboxPath );
 
-                                      // Récupère les infos du commercial garce à l'api KEY
+                                      // Récupère les infos du commercial grace à l'api KEY
                                       fetchCommercialData();
-
-                                      this.flashActive = true;
-                                      setTimeout( () => {
-                                        this.flashActive = false;
-                                      }, 5000 );
-
                                     },
                                   },
                                 } );
