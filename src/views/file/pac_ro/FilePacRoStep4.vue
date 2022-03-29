@@ -42,51 +42,52 @@
       </template>
     </div>
     <div class="row mt-10 d-flex align-items-end">
+      <!--      <div class="col-md-6 mb-5">-->
+      <!--        <label for="isEcsDeporte" class="form-check form-switch form-check-custom">-->
+      <!--          <Field-->
+      <!--              type="checkbox"-->
+      <!--              class="form-check-input h-30px w-55px"-->
+      <!--              name="isEcsDeporte"-->
+      <!--              id="isEcsDeporte"-->
+      <!--              :value="true"-->
+      <!--              v-model="isEcsDeporte"-->
+      <!--          />-->
+      <!--          <span class="form-check-label fw-bold text-gray-600 me-5">Volume ECS déporté</span>-->
+      <!--        </label>-->
+      <!--      </div>-->
+      <!--      <template v-if="isEcsDeporte">-->
+      <!--        <div class="col-md-6 mb-5">-->
+      <!--          <label for="volumeECSDeporte" class="form-label">Volume ECS déporté</label>-->
+
+      <!--          <Field name="volumeECSDeporte"-->
+      <!--                 id="volumeECSDeporte"-->
+      <!--                 class="form-select"-->
+      <!--                 as="select"-->
+      <!--                 v-model.number="volumeECSDeporte"-->
+
+      <!--          >-->
+      <!--            <option :value="150">150</option>-->
+      <!--            <option :value="200">200</option>-->
+      <!--            <option :value="300">300</option>-->
+      <!--          </Field>-->
+      <!--        </div>-->
+      <!--      </template>-->
       <div class="col-md-6 mb-5">
-        <label for="isEcsDeporte" class="form-check form-switch form-check-custom">
-          <Field
-              type="checkbox"
-              class="form-check-input h-30px w-55px"
-              name="isEcsDeporte"
-              id="isEcsDeporte"
-              :value="true"
-              v-model="isEcsDeporte"
-          />
-          <span class="form-check-label fw-bold text-gray-600 me-5">Volume ECS déporté</span>
-        </label>
+        <label for="volumeECS" class="form-label">Volume ECS</label>
+        <Field name="volumeECS"
+               id="volumeECS"
+               class="form-select"
+               as="select"
+               v-model.number="volumeECS"
+        >
+          <option :value="0">0L</option>
+          <option :value="180">180L</option>
+          <option :value="230">230L</option>
+          <option :value="150">150L Déporté</option>
+          <option :value="200">200L Déporté</option>
+          <option :value="300">300L Déporté</option>
+        </Field>
       </div>
-      <template v-if="isEcsDeporte">
-        <div class="col-md-6 mb-5">
-          <label for="volumeECSDeporte" class="form-label">Volume ECS déporté</label>
-
-          <Field name="volumeECSDeporte"
-                 id="volumeECSDeporte"
-                 class="form-select"
-                 as="select"
-                 v-model.number="volumeECSDeporte"
-
-          >
-            <option :value="150">150</option>
-            <option :value="200">200</option>
-            <option :value="300">300</option>
-          </Field>
-        </div>
-      </template>
-      <template v-else>
-        <div class="col-md-6 mb-5">
-          <label for="volumeECS" class="form-label">Volume ECS {{ volumeECS }} (VERSION 13)</label>
-          <Field name="volumeECS"
-                 id="volumeECS"
-                 class="form-select"
-                 as="select"
-                 v-model.number="volumeECS"
-          >
-            <option :value="1">0</option><!-- HACK QUAND VALUE à 0 BUG -->
-            <option :value="180">180</option>
-            <option :value="230">230</option>
-          </Field>
-        </div>
-      </template>
 
     </div>
 
@@ -248,17 +249,17 @@ export default defineComponent( {
                                     const volumeECSDeporte     = ref<number>( +props.fileData.quotation.volumeECSDeporte );
                                     const needBiZoneSupplement = ref<boolean>( false );
 
-                                    if ( volumeECS.value !== 180 && volumeECS.value !== 230 ) {
-                                      console.log( 'Volume ECS IN IF OTHER 180/230', volumeECS );
-                                      // SI pas 180 ou 230 FORCE à 1
-                                      // HACK QUAND VALUE à 0 BUG
-                                      volumeECS.value = 1;
-                                      console.log( 'Volume ECS IN IF AFTER SET TO 1', volumeECS );
-                                    }
-
-                                    if ( volumeECSDeporte.value !== 150 && volumeECSDeporte.value !== 200 && volumeECSDeporte.value !== 300 ) {
-                                      volumeECSDeporte.value = 150;
-                                    }
+                                    // if ( volumeECS.value !== 180 && volumeECS.value !== 230 ) {
+                                    //   console.log( 'Volume ECS IN IF OTHER 180/230', volumeECS );
+                                    //   // SI pas 180 ou 230 FORCE à 1
+                                    //   // HACK QUAND VALUE à 0 BUG
+                                    //   volumeECS.value = 1;
+                                    //   console.log( 'Volume ECS IN IF AFTER SET TO 1', volumeECS );
+                                    // }
+                                    //
+                                    // if ( volumeECSDeporte.value !== 150 && volumeECSDeporte.value !== 200 && volumeECSDeporte.value !== 300 ) {
+                                    //   volumeECSDeporte.value = 150;
+                                    // }
 
                                     const roAlgo = new RoAlgo( props.fileData.housing );
 
@@ -295,16 +296,16 @@ export default defineComponent( {
                                       needBiZoneSupplement.value = value;
                                     };
 
-                                    const resetVolumeECS = ( isEcsDeporte: boolean ) => {
-                                      console.log( 'Volume ECS IN RESET', volumeECS );
-                                      if ( isEcsDeporte ) {
-                                        // HACK QUAND VALUE à 0 BUG
-                                        volumeECS.value = 1;
-                                      } else {
-                                        volumeECSDeporte.value = 150;
-                                      }
-                                      console.log( 'Volume ECS AFTER RESET', volumeECS );
-                                    };
+                                    // const resetVolumeECS = ( isEcsDeporte: boolean ) => {
+                                    //   console.log( 'Volume ECS IN RESET', volumeECS );
+                                    //   if ( isEcsDeporte ) {
+                                    //     // HACK QUAND VALUE à 0 BUG
+                                    //     volumeECS.value = 1;
+                                    //   } else {
+                                    //     volumeECSDeporte.value = 150;
+                                    //   }
+                                    //   console.log( 'Volume ECS AFTER RESET', volumeECS );
+                                    // };
 
                                     const ecsDeporte = props.fileData.quotation.products.filter( p => p.productType === 'ecs' );
                                     // const kitCascade = props.fileData.quotation.products.filter( p => p.productType === 'kit_cascade' );
@@ -312,12 +313,15 @@ export default defineComponent( {
 
                                     const selectedEcsDeportes = computed<Product[]>( () => {
                                       // Reset le volume si jamais on switch en ECS et ECSDeporté
-                                      resetVolumeECS( isEcsDeporte.value );
+                                      // resetVolumeECS( isEcsDeporte.value );
 
-                                      if ( !isEcsDeporte.value ) {
-                                        return [];
+                                      console.log( '%c COMPUTED ECS DEPORTE', 'background: #fdd835; color: #000000' );
+                                      console.log( volumeECS.value );
+                                      if ( volumeECS.value === 150 || volumeECS.value === 200 || volumeECS.value === 300 ) {
+                                        return ecsDeporte.filter( ecs => ecs.volume === volumeECS.value );
                                       }
-                                      return ecsDeporte.filter( ecs => ecs.volume === volumeECSDeporte.value );
+
+                                      return [];
                                     } );
 
                                     const selectedKitBiZone = computed<Product[]>( () => {
@@ -356,15 +360,10 @@ export default defineComponent( {
 
                                           let response;
                                           // Si ECS Deporté -> ECS = 0
-                                          if ( isEcsDeporte.value ) {
+                                          if ( volumeECS.value === 150 || volumeECS.value === 200 || volumeECS.value === 300 ) {
                                             response = roAlgo.getUnitsRo( 0 );
                                           } else {
-                                            if ( volumeECS.value === 1 ) {
-                                              // HACK QUAND VALUE à 0 BUG DONC QUAND ON 0 1 ON FAIT UN GET DE 0
-                                              response = roAlgo.getUnitsRo( 0 );
-                                            } else {
-                                              response = roAlgo.getUnitsRo( volumeECS.value );
-                                            }
+                                            response = roAlgo.getUnitsRo( volumeECS.value );
                                           }
                                           console.log( 'Response', response );
 
