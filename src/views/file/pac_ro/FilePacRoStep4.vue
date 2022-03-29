@@ -81,7 +81,7 @@
                  as="select"
                  v-model.number="volumeECS"
           >
-            <option :value="0">0</option>
+            <option :value="1">0</option><!-- HACK QUAND VALUE à 0 BUG -->
             <option :value="180">180</option>
             <option :value="230">230</option>
           </Field>
@@ -106,9 +106,9 @@
       </div>
     </template>
 
-    <template v-for="kit in selectedKitCascade" v-bind:key="kit.reference">
-      <row-price :product="kit"></row-price>
-    </template>
+    <!--    <template v-for="kit in selectedKitCascade" v-bind:key="kit.reference">-->
+    <!--      <row-price :product="kit"></row-price>-->
+    <!--    </template>-->
 
     <template v-for="ecs in selectedEcsDeportes" v-bind:key="ecs.reference">
       <row-price :product="ecs"></row-price>
@@ -119,18 +119,18 @@
     </template>
 
     <!-- Formualaire caché afin de binder les values au formulaire comme la sélection des produits se fait via l'algo-->
-    <div class="row d-none">
-      <label for="cascadeSystem" class="form-check form-switch form-check-custom">
-        <Field
-            type="checkbox"
-            class="form-check-input h-30px w-55px"
-            name="cascadeSystem"
-            id="cascadeSystem"
-            :value="true"
-            v-model="cascadeSystem"
-        />
-      </label>
-    </div>
+    <!--    <div class="row d-none">-->
+    <!--      <label for="cascadeSystem" class="form-check form-switch form-check-custom">-->
+    <!--        <Field-->
+    <!--            type="checkbox"-->
+    <!--            class="form-check-input h-30px w-55px"-->
+    <!--            name="cascadeSystem"-->
+    <!--            id="cascadeSystem"-->
+    <!--            :value="true"-->
+    <!--            v-model="cascadeSystem"-->
+    <!--        />-->
+    <!--      </label>-->
+    <!--    </div>-->
 
     <!-- Formualaire caché afin de binder les values au formulaire comme la sélection des produits se fait via l'algo-->
     <template v-for="(p, index) in allProducts" v-bind:key="`val_${p.reference}_${p.id}`">
@@ -247,8 +247,10 @@ export default defineComponent( {
                                     const volumeECSDeporte     = ref<number>( +props.fileData.quotation.volumeECSDeporte );
                                     const needBiZoneSupplement = ref<boolean>( false );
 
-                                    if ( volumeECS.value !== 0 && volumeECS.value !== 180 && volumeECS.value !== 230 ) {
-                                      volumeECS.value = 0;
+                                    if ( volumeECS.value !== 180 && volumeECS.value !== 230 ) {
+                                      // SI pas 180 ou 230 FORCE à 1
+                                      // HACK QUAND VALUE à 0 BUG
+                                      volumeECS.value = 1;
                                     }
 
                                     if ( volumeECSDeporte.value !== 150 && volumeECSDeporte.value !== 200 && volumeECSDeporte.value !== 300 ) {
@@ -258,7 +260,7 @@ export default defineComponent( {
                                     const roAlgo = new RoAlgo( props.fileData.housing );
 
                                     // TODO REVOIR LE SYSTEME DE CASCADE
-                                    const cascadeSystem = ref<boolean>( props.fileData.quotation.cascadeSystem );
+                                    // const cascadeSystem = ref<boolean>( props.fileData.quotation.cascadeSystem );
 
                                     const generateQuotation = () => {
                                       ctx.emit( 'generateQuotation' );
@@ -281,31 +283,31 @@ export default defineComponent( {
                                       discount.value = value;
                                     };
 
-                                    const updateCascadeSystem = ( value: boolean ) => {
-                                      cascadeSystem.value = value;
-                                    };
+                                    // const updateCascadeSystem = ( value: boolean ) => {
+                                    //   cascadeSystem.value = value;
+                                    // };
 
                                     const updateNeedBiZone = ( value: boolean ) => {
                                       console.log( 'IN update -->', value );
                                       needBiZoneSupplement.value = value;
                                     };
 
-                                    // const resetVolumeECS = ( isEcsDeporte: boolean ) => {
-                                    //   if ( isEcsDeporte ) {
-                                    //     // TODO bug quand set à 0 ça affiche 230 dans la checkbox mais bien 0 sélectionné
-                                    //     volumeECS.value = 1;
-                                    //   } else {
-                                    //     volumeECSDeporte.value = 150;
-                                    //   }
-                                    // };
+                                    const resetVolumeECS = ( isEcsDeporte: boolean ) => {
+                                      if ( isEcsDeporte ) {
+                                        // HACK QUAND VALUE à 0 BUG
+                                        volumeECS.value = 1;
+                                      } else {
+                                        volumeECSDeporte.value = 150;
+                                      }
+                                    };
 
                                     const ecsDeporte = props.fileData.quotation.products.filter( p => p.productType === 'ecs' );
-                                    const kitCascade = props.fileData.quotation.products.filter( p => p.productType === 'kit_cascade' );
+                                    // const kitCascade = props.fileData.quotation.products.filter( p => p.productType === 'kit_cascade' );
                                     const kitBiZone  = props.fileData.quotation.products.filter( p => p.productType === 'kit_bi_zone' );
 
                                     const selectedEcsDeportes = computed<Product[]>( () => {
                                       // Reset le volume si jamais on switch en ECS et ECSDeporté
-                                      // resetVolumeECS( isEcsDeporte.value );
+                                      resetVolumeECS( isEcsDeporte.value );
 
                                       if ( !isEcsDeporte.value ) {
                                         return [];
@@ -322,27 +324,32 @@ export default defineComponent( {
                                       return kitBiZone;
                                     } );
 
-                                    const selectedKitCascade = computed<Product[]>( () => {
-                                      console.log( '%c KIT CASCADE', 'background: #fdd835; color: #000000' );
-                                      console.log( cascadeSystem );
-                                      if ( !cascadeSystem.value ) {
-                                        return [];
-                                      }
-                                      return kitCascade;
-                                    } );
+                                    // const selectedKitCascade = computed<Product[]>( () => {
+                                    //   console.log( '%c KIT CASCADE', 'background: #fdd835; color: #000000' );
+                                    //   console.log( cascadeSystem );
+                                    //   if ( !cascadeSystem.value ) {
+                                    //     return [];
+                                    //   }
+                                    //   return kitCascade;
+                                    // } );
 
                                     const products = computed<Product[]>(
                                         () => {
                                           console.log( '%c COMPUTED PRODUCTS', 'background: #0094BE; color: #000000' );
                                           roAlgo.updateHousing( props.fileData.housing );
 
+                                          console.log( 'ECS BEFORE GET UNITS RO', volumeECS.value );
                                           let response;
                                           // Si ECS Deporté -> ECS = 0
                                           if ( isEcsDeporte.value ) {
                                             response = roAlgo.getUnitsRo( 0 );
                                           } else {
-                                            console.log( 'ECS BEFORE GET UNITS RO', volumeECS.value );
-                                            response = roAlgo.getUnitsRo( volumeECS.value );
+                                            if ( volumeECS.value === 1 ) {
+                                              // HACK QUAND VALUE à 0 BUG DONC QUAND ON 0 1 ON FAIT UN GET DE 0
+                                              response = roAlgo.getUnitsRo( 0 );
+                                            } else {
+                                              response = roAlgo.getUnitsRo( volumeECS.value );
+                                            }
                                           }
                                           console.log( 'Response', response );
 
@@ -395,14 +402,14 @@ export default defineComponent( {
 
                                       const allProducts = [
                                         ...products.value,
-                                        ...selectedKitCascade.value,
-                                        ...selectedEcsDeportes.value,
+                                        // ...selectedKitCascade.value,
                                         ...selectedKitBiZone.value,
+                                        ...selectedEcsDeportes.value,
                                       ];
                                       console.log( products.value );
-                                      console.log( selectedKitCascade.value );
-                                      console.log( selectedEcsDeportes.value );
+                                      // console.log( selectedKitCascade.value );
                                       console.log( selectedKitBiZone.value );
+                                      console.log( selectedEcsDeportes.value );
 
                                       console.log( allProducts );
                                       for ( const p of allProducts ) {
@@ -428,9 +435,9 @@ export default defineComponent( {
                                         totalHt += product.pu * product.quantity;
                                       }
 
-                                      for ( const product of selectedKitCascade.value ) {
-                                        totalHt += product.pu * product.quantity;
-                                      }
+                                      // for ( const product of selectedKitCascade.value ) {
+                                      //   totalHt += product.pu * product.quantity;
+                                      // }
 
                                       for ( const product of selectedKitBiZone.value ) {
                                         totalHt += product.pu * product.quantity;
@@ -524,7 +531,7 @@ export default defineComponent( {
 
                                     console.log( '%c END SET UP', 'background: #fdd835; color: #000000' );
                                     console.log( ecsDeporte );
-                                    console.log( kitCascade );
+                                    // console.log( kitCascade );
                                     console.log( products );
                                     console.log( '%c END SET UP', 'background: #fdd835; color: #000000' );
 
@@ -532,12 +539,12 @@ export default defineComponent( {
                                       allProducts,
                                       deviceToReplace,
                                       selectedEcsDeportes,
-                                      selectedKitCascade,
+                                      // selectedKitCascade,
                                       selectedKitBiZone,
                                       isEcsDeporte,
                                       volumeECS,
                                       volumeECSDeporte,
-                                      cascadeSystem,
+                                      // cascadeSystem,
                                       lists,
                                       price,
                                       products,
