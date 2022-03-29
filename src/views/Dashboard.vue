@@ -24,6 +24,8 @@
 import { defineComponent, ref } from 'vue';
 import { convertAllOldjsonToNewJson, getFileJson } from '@/services/folder/folderService';
 import { getDropboxPath, getOldJsonAreConverted } from '@/services/data/dataService';
+import { ipcRenderer } from 'electron';
+import { ElMessage } from 'element-plus';
 
 declare const __static: string;
 
@@ -45,6 +47,13 @@ export default defineComponent( {
                                       convertAllOldjsonToNewJson();
                                       oldJsonAreConverted.value = true;
                                     };
+
+                                    ipcRenderer.on( 'update-available', () => {
+                                      ElMessage( {
+                                                   message: 'Téléchargement d\'une nouvelle version en cours...',
+                                                   type:    'success',
+                                                 } );
+                                    } );
 
                                     return {
                                       getFileJson: getFileJson,

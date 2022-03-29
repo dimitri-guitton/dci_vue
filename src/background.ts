@@ -74,6 +74,8 @@ async function createWindow() {
         // Load the index.html when not in development
         mainWindow.loadURL( 'app://./index.html' );
         const response = await autoUpdater.checkForUpdatesAndNotify();
+        console.log( 'Response ', autoUpdater.checkForUpdatesAndNotify() );
+        console.log( response );
     }
 
     mainWindow.on( 'resize', () => {
@@ -179,4 +181,8 @@ ipcMain.on( 'save-screenshot', ( event, data ) => {
             console.log( 'Image Saved' );
         } );
     } );
+} );
+
+autoUpdater.on( 'update-available', () => {
+    mainWindow.webContents.send( 'update_available' );
 } );
