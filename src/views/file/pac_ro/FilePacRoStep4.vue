@@ -74,7 +74,7 @@
       </template>
       <template v-else>
         <div class="col-md-6 mb-5">
-          <label for="volumeECS" class="form-label">Volume ECS</label>
+          <label for="volumeECS" class="form-label">Volume ECS {{ volumeECS }}</label>
           <Field name="volumeECS"
                  id="volumeECS"
                  class="form-select"
@@ -240,17 +240,20 @@ export default defineComponent( {
                                     const _blankOptions = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                     const lists         = ref<RoList>( ( props.fileData.lists as RoList ) );
 
-                                    const deviceToReplace      = ref( props.fileData.quotation.deviceToReplace );
-                                    const discount             = ref<number>( props.fileData.quotation.discount );
-                                    const isEcsDeporte         = ref<boolean>( props.fileData.quotation.isEcsDeporte );
-                                    const volumeECS            = ref<number>( +props.fileData.quotation.volumeECS );
+                                    const deviceToReplace = ref( props.fileData.quotation.deviceToReplace );
+                                    const discount        = ref<number>( props.fileData.quotation.discount );
+                                    const isEcsDeporte    = ref<boolean>( props.fileData.quotation.isEcsDeporte );
+                                    const volumeECS       = ref<number>( +props.fileData.quotation.volumeECS );
+                                    console.log( 'Volume ECS INIT', volumeECS );
                                     const volumeECSDeporte     = ref<number>( +props.fileData.quotation.volumeECSDeporte );
                                     const needBiZoneSupplement = ref<boolean>( false );
 
                                     if ( volumeECS.value !== 180 && volumeECS.value !== 230 ) {
+                                      console.log( 'Volume ECS IN IF OTHER 180/230', volumeECS );
                                       // SI pas 180 ou 230 FORCE à 1
                                       // HACK QUAND VALUE à 0 BUG
                                       volumeECS.value = 1;
+                                      console.log( 'Volume ECS IN IF AFTER SET TO 1', volumeECS );
                                     }
 
                                     if ( volumeECSDeporte.value !== 150 && volumeECSDeporte.value !== 200 && volumeECSDeporte.value !== 300 ) {
@@ -293,12 +296,14 @@ export default defineComponent( {
                                     };
 
                                     const resetVolumeECS = ( isEcsDeporte: boolean ) => {
+                                      console.log( 'Volume ECS IN RESET', volumeECS );
                                       if ( isEcsDeporte ) {
                                         // HACK QUAND VALUE à 0 BUG
                                         volumeECS.value = 1;
                                       } else {
                                         volumeECSDeporte.value = 150;
                                       }
+                                      console.log( 'Volume ECS AFTER RESET', volumeECS );
                                     };
 
                                     const ecsDeporte = props.fileData.quotation.products.filter( p => p.productType === 'ecs' );
@@ -338,7 +343,7 @@ export default defineComponent( {
                                           console.log( '%c COMPUTED PRODUCTS', 'background: #0094BE; color: #000000' );
                                           roAlgo.updateHousing( props.fileData.housing );
 
-                                          console.log( 'ECS BEFORE GET UNITS RO', volumeECS.value );
+                                          console.log( 'Volume ECS IN COMPUTED PRODUCT', volumeECS.value );
                                           let response;
                                           // Si ECS Deporté -> ECS = 0
                                           if ( isEcsDeporte.value ) {
