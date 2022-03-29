@@ -68,6 +68,10 @@ const schema = {
         type:    'boolean',
         default: false,
     },
+    apiTokenIsValid:     { // Pour savoir si toute les infos nécessaire au fonctionnement du DCI sont présentes
+        type:    'boolean',
+        default: false,
+    },
 } as const;
 
 const store = new Store( { schema } );
@@ -78,6 +82,14 @@ export const getDropboxPath = (): string => {
 
 export const setDropboxPath = ( value: string ) => {
     store.set( 'dropboxPath', value );
+};
+
+export const getApiTokenIsValid = (): boolean => {
+    return ( store.get( 'apiTokenIsValid' ) as boolean );
+};
+
+export const setApiTokenIsValid = ( value: boolean ) => {
+    store.set( 'apiTokenIsValid', value );
 };
 
 export const getConnectedToInternet = (): boolean => {

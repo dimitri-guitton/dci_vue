@@ -1,15 +1,25 @@
 <template>
   <Suspense>
     <template #default>
-      <div class="row gy-5">
-        <NewFolderModal @hideModal="onHideModal"></NewFolderModal>
-        <FolderDatatable></FolderDatatable>
-        <el-affix position="bottom" :offset="25">
-          <button ref="btnModal" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#kt_modal_new_folder">
-            Nouveau Dossier
-          </button>
-        </el-affix>
-      </div>
+      <template v-if="apiTokenIsValid">
+        <div class="row gy-5">
+          <NewFolderModal @hideModal="onHideModal"></NewFolderModal>
+          <FolderDatatable></FolderDatatable>
+          <el-affix position="bottom" :offset="25">
+            <button ref="btnModal" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#kt_modal_new_folder">
+              Nouveau Dossier
+            </button>
+          </el-affix>
+        </div>
+      </template>
+      <template v-else>
+        <div class="alert alert-warning d-flex align-items-center p-5 mb-10">
+          <div class="d-flex flex-column">
+            <h4 class="mb-1 text-warning">Informations manquantes</h4>
+            <span>Veuillez indiquer votre clé Api et votre dossier Dropbox dans l'onglet paramètres</span>
+          </div>
+        </div>
+      </template>
     </template>
     <template #fallback>
       <span>Chargement...</span>
@@ -22,7 +32,7 @@ import { defineComponent, onMounted, ref } from 'vue';
 import NewFolderModal from '@/components/DCI/modals/NewFileModal.vue';
 import * as folderService from '../../services/folder/folderService';
 import FolderDatatable from '@/components/DCI/file/Datatable.vue';
-import { resetCurrentFileData } from '@/services/data/dataService';
+import { getApiTokenIsValid, resetCurrentFileData } from '@/services/data/dataService';
 import { fetchDossierState } from '@/services/apiService';
 
 
@@ -33,7 +43,8 @@ export default defineComponent( {
                                     NewFolderModal,
                                   },
                                   setup() {
-                                    const btnModal = ref<null | { click: () => null }>( null );
+                                    const btnModal        = ref<null | { click: () => null }>( null );
+                                    const apiTokenIsValid = ref<boolean>( getApiTokenIsValid() );
 
                                     folderService.createDciFolderIfNotExist();
 
@@ -41,7 +52,9 @@ export default defineComponent( {
                                       resetCurrentFileData();
 
                                       // TODO FAIRE LA LOGIQUE APRES LA RECUPE DES TODOS
-                                      fetchDossierState();
+                                      if ( apiTokenIsValid.value ) {
+                                        fetchDossierState();
+                                      }
                                     } );
 
                                     const onHideModal = () => {
@@ -54,6 +67,7 @@ export default defineComponent( {
                                     return {
                                       onHideModal,
                                       btnModal,
+                                      apiTokenIsValid,
                                     };
                                   },
                                 } );

@@ -5,6 +5,7 @@ import {
     getCurrentFileData,
     getLastUpdateFileState,
     resetCurrentFileData,
+    setApiTokenIsValid,
     setCommercialInfo,
     setcurrentFolderName,
     setLastUpdateFileState,
@@ -62,7 +63,7 @@ export const fetchCommercialData = () => {
                     phone = '';
                 }
                 setCommercialInfo( +response.id, response.firstName, response.lastName, phone );
-
+                setApiTokenIsValid( true );
                 ElMessage( {
                                message: 'Vos informations ont été changées avec succès',
                                type:    'success',
@@ -70,6 +71,7 @@ export const fetchCommercialData = () => {
             } )
             .catch( error => {
                 ElMessage.error( 'Une erreur est survenue pour récupérer les informations sur l\'ERP' );
+                setApiTokenIsValid( false );
                 console.error( error );
             } );
     }
