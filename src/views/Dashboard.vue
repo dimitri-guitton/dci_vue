@@ -23,7 +23,8 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { convertAllOldjsonToNewJson, getFileJson } from '@/services/folder/folderService';
-import { getDropboxPath, getOldJsonAreConverted } from '@/services/data/dataService';
+import { getDropboxPath, getOldJsonAreConverted, setOldJsonAreConverted } from '@/services/data/dataService';
+import { ElLoading } from 'element-plus';
 
 declare const __static: string;
 
@@ -39,11 +40,21 @@ export default defineComponent( {
                                     console.log( 'URL API : ', process.env.VUE_APP_API_URL );
 
                                     /**
-                                     * Convertion des anciens JSON
+                                     * Conversion des anciens JSON
                                      */
-                                    const convertAllJson = () => {
-                                      convertAllOldjsonToNewJson();
+                                    const convertAllJson = async () => {
+
+                                      const loading = ElLoading.service( {
+                                                                           lock:       true,
+                                                                           text:       'Conversion des ressources ...',
+                                                                           background: 'rgba(0, 0, 0, 0.7)',
+                                                                         } );
+
+                                      await convertAllOldjsonToNewJson();
+
                                       oldJsonAreConverted.value = true;
+                                      setOldJsonAreConverted( true );
+                                      loading.close();
                                     };
 
                                     return {

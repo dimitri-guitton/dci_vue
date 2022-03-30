@@ -40,6 +40,7 @@
         </div>
       </div>
       <div class="float-start">
+        <button type="button" @click="resetData" class="btn btn-danger me-5">Réinitialiser les données</button>
         <button type="submit" class="btn btn-success"><i class="far fa-check-circle fs-4 me-2"></i>Valider</button>
       </div>
     </Form>
@@ -55,6 +56,14 @@ import { ErrorMessage, Field, Form } from 'vee-validate';
 import Store from 'electron-store';
 import { OpenDialogReturnValue } from 'electron';
 import { fetchCommercialData } from '@/services/apiService';
+import {
+  setApiTokenIsValid,
+  setConnectedToInternet,
+  setcurrentFolderName,
+  setDropboxPath,
+  setOldJsonAreConverted,
+} from '@/services/data/dataService';
+import router from '@/router';
 
 const { dialog } = require( 'electron' ).remote;
 
@@ -129,6 +138,15 @@ export default defineComponent( {
 
                                       // Récupère les infos du commercial grace à l'api KEY
                                       fetchCommercialData();
+                                    },
+
+                                    resetData() {
+                                      setDropboxPath( '' );
+                                      setcurrentFolderName( '' );
+                                      setConnectedToInternet( true );
+                                      setOldJsonAreConverted( false );
+                                      setApiTokenIsValid( false );
+                                      router.go( 0 );
                                     },
                                   },
                                 } );

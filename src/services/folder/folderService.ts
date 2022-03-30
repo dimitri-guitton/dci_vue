@@ -27,7 +27,7 @@ import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 import { PdfType } from '@/services/pdf/pdfGenerator';
 import { ipcRenderer, remote, shell } from 'electron';
 import { NewFolderData } from '@/components/DCI/modals/NewFileModal.vue';
-import { ElLoading, ElMessage } from 'element-plus';
+import { ElLoading, ElMessage, ElNotification } from 'element-plus';
 import { CetConverter } from '@/services/file/converterV2/CetConverter';
 import { CombleConverter } from '@/services/file/converterV2/CombleConverter';
 import { SolConverter } from '@/services/file/converterV2/SolConverter';
@@ -153,10 +153,10 @@ export const addJsonData = ( type: string, parent: string, reference: string, fo
                technician:                getCommercialInfo(),
            };
 
-    console.log( `${ parent }/${ process.env.VUE_APP_FILENAME_DATA }.json` );
-    console.log( fileData );
-    fs.writeFileSync( `${ parent }/${ process.env.VUE_APP_FILENAME_DATA }.json`, JSON.stringify( fileData ) );
-    setCurrentFileData( JSON.stringify( fileData ) );
+           console.log( `${ parent }/${ process.env.VUE_APP_FILENAME_DATA }.json` );
+           console.log( fileData );
+           fs.writeFileSync( `${ parent }/${ process.env.VUE_APP_FILENAME_DATA }.json`, JSON.stringify( fileData ) );
+           setCurrentFileData( JSON.stringify( fileData ) );
 
        }
 ;
@@ -366,10 +366,14 @@ export const convertAllOldjsonToNewJson = async () => {
     // TODO FAIRE LA RECUP DES TODOS
 
     console.log( oldFolderData );
+
+    let nbFileNotExist = 0;
     for ( const folder of oldFolderData[ 'dossiers' ] ) {
         if ( !fs.existsSync( `${ dropboxPath }/DCI/${ folder[ 'folderName' ] }` ) ) {
             console.log( '%c NOT EXISTS', 'background: #fdd835; color: #000000' );
             console.log( `${ dropboxPath }/DCI/${ folder[ 'folderName' ] }` );
+            nbFileNotExist++;
+            // fs.mkdirSync( `${ dropboxPath }/DCI/${ folder[ 'folderName' ] }` );
             continue;
         }
         console.log( 'folder -->', folder );
@@ -452,6 +456,17 @@ export const convertAllOldjsonToNewJson = async () => {
             fs.writeFileSync( `${ parent }/${ process.env.VUE_APP_FILENAME_DATA }.json`, JSON.stringify( newJson ) );
             createSubFolders( type, `${ dropboxPath }/DCI/${ folder[ 'folderName' ] }` );
         }
+    }
+
+    if ( nbFileNotExist > 0 ) {
+        ElNotification( {
+                            type:     'warning',
+                            title:    'Conversion',
+                            message:  `${ nbFileNotExist } dossiers non pas été trouvés`,
+                            position: 'bottom-left',
+                            offset:   25,
+                        } );
+
     }
 
     setOldJsonAreConverted( true );
