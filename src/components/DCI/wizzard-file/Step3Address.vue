@@ -352,7 +352,7 @@ export default defineComponent( {
                                       ipcRenderer.send( 'save-screenshot', { target: path } );
 
                                       ElMessage( {
-                                                   message: 'Image sauvegardé avec succès',
+                                                   message: 'Plan sauvegardé avec succès',
                                                    type:    'success',
                                                  } );
                                     };

@@ -8,7 +8,6 @@ import {
     setApiTokenIsValid,
     setCommercialInfo,
     setcurrentFolderName,
-    setLastUpdateFileState,
 } from '@/services/data/dataService';
 import { AllFile } from '@/types/v2/File/All';
 
@@ -106,7 +105,7 @@ export const postFileToERP = ( folderName: string ) => {
     const fileData: AllFile = getCurrentFileData();
 
     if ( checkInternet() ) {
-        fetch( `${ API_URL }/file`, {
+        fetch( `${ API_URL }/api/dossier`, {
             method:  'POST',
             headers: defaultHeader(),
             body:    JSON.stringify( fileData ),
@@ -114,7 +113,10 @@ export const postFileToERP = ( folderName: string ) => {
             .then( response => response.json() )
             .then( response => {
                 console.log( 'response -->', response );
-                setLastUpdateFileState();
+                ElMessage( {
+                               message: 'Dossier transféré avec succès',
+                               type:    'success',
+                           } );
                 resetCurrentFileData();
             } )
             .catch( error => {
