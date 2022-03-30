@@ -58,7 +58,8 @@ import {
   Tooltip,
 } from 'chart.js';
 import { getConnectedToInternet, setConnectedToInternet } from '@/services/data/dataService';
-import { ElMessage } from 'element-plus';
+import { ElMessage, ElNotification } from 'element-plus';
+import { ipcRenderer } from 'electron';
 
 Chart.register(
     ArcElement,
@@ -122,9 +123,53 @@ export default defineComponent( {
 
                                       };
 
+                                      ipcRenderer.on( 'download_update', () => {
+                                        ElNotification( {
+                                                          type:     'info',
+                                                          title:    'Mise à jour',
+                                                          message:  'Une nouvelle version est en cours de téléchargement',
+                                                          position: 'bottom-left',
+                                                          offset:   25,
+                                                          duration: 0,
+                                                        } );
+                                      } );
+
+                                      const restartApp = () => {
+                                        console.log( 'restart_app' );
+                                        ipcRenderer.send( 'restart_app' );
+                                      };
+
+                                      ipcRenderer.on( 'update_downloaded', () => {
+                                        console.log( '%c update_downloaded', 'background: #fdd835; color: #000000' );
+                                        ElNotification( {
+                                                          type:                     'success',
+                                                          title:                    'Mise à jour',
+                                                          dangerouslyUseHTMLString: true,
+                                                          message:                  `<p class="mb-5">Mise à jour téléchargée. Elle sera installée au redémarrage de l'application. Redémarrer maintenant ?</p><button id="restart_btn" class="btn btn-success">Redémarrer</button>`,
+                                                          position:                 'bottom-left',
+                                                          offset:                   25,
+                                                          duration:                 0,
+                                                        } );
+
+                                        const btn = document.getElementById( 'restart_btn' );
+                                        if ( btn !== null ) {
+                                          btn.addEventListener( 'click', restartApp );
+                                        }
+                                      } );
+
                                       window.addEventListener( 'online', updateOnlineStatus );
                                       window.addEventListener( 'offline', updateOnlineStatus );
                                     } );
                                   },
                                 } );
 </script>
+
+<style>
+.el-icon-info {
+  color : lightskyblue !important;
+}
+
+.el-icon-success {
+  color : limegreen !important;
+}
+</style>

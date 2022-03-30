@@ -12,15 +12,15 @@ ElectronStore.initRenderer();
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const schema = {
-    windowWidth:         {
+    windowWidth:  {
         type:    'number',
         minimum: 200,
-        default: 800,
+        default: 1000,
     },
-    windowHeight:        {
+    windowHeight: {
         type:    'number',
         minimum: 100,
-        default: 400,
+        default: 500,
     },
     connectedToInternet: {
         type:    'boolean',
@@ -42,25 +42,23 @@ protocol.registerSchemesAsPrivileged( [
 
 async function createWindow() {
     // First we'll get our height and width. This will be the defaults if there wasn't anything saved
-    const width = ( store.get( 'windowWidth' ) as number );
-    console.log( 'Width -->', width );
+    const width  = ( store.get( 'windowWidth' ) as number );
     const height = ( store.get( 'windowHeight' ) as number );
-    console.log( 'Height -->', height );
     // Create the browser window.
-    mainWindow = new BrowserWindow( {
-                                        width,
-                                        height,
-                                        autoHideMenuBar: true,// Masquer la barre de menu sauf si la touche Alt est enfoncée
-                                        webPreferences: {
-                                            // Use pluginOptions.nodeIntegration, leave this alone
-                                            // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-                                            nodeIntegration:    ( process.env
-                                                .ELECTRON_NODE_INTEGRATION as unknown ) as boolean,
-                                            contextIsolation:   !process.env.ELECTRON_NODE_INTEGRATION,
-                                            enableRemoteModule: true,
-                                            webSecurity:        false,
-                                        },
-                                    } );
+    mainWindow   = new BrowserWindow( {
+                                          width,
+                                          height,
+                                          autoHideMenuBar: true,// Masquer la barre de menu sauf si la touche Alt est enfoncée
+                                          webPreferences:  {
+                                              // Use pluginOptions.nodeIntegration, leave this alone
+                                              // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
+                                              nodeIntegration:    ( process.env
+                                                  .ELECTRON_NODE_INTEGRATION as unknown ) as boolean,
+                                              contextIsolation:   !process.env.ELECTRON_NODE_INTEGRATION,
+                                              enableRemoteModule: true,
+                                              webSecurity:        false,
+                                          },
+                                      } );
 
 
     if ( process.env.WEBPACK_DEV_SERVER_URL ) {
@@ -74,8 +72,14 @@ async function createWindow() {
         // Load the index.html when not in development
         mainWindow.loadURL( 'app://./index.html' );
         const response = await autoUpdater.checkForUpdatesAndNotify();
-        console.log( 'Response ', autoUpdater.checkForUpdatesAndNotify() );
+        console.log( 'Response ', response );
         console.log( response );
+        if ( response?.downloadPromise !== undefined ) {
+            setTimeout( () => {
+                console.log( '%c IN TIME OUT', 'background: #FF0017; color: #000000' );
+                mainWindow.webContents.send( 'download_update' );
+            }, 5000 );
+        }
     }
 
     mainWindow.on( 'resize', () => {
@@ -171,18 +175,22 @@ ipcMain.on( 'download', async ( event, { payload } ) => {
 
 ipcMain.on( 'save-screenshot', ( event, data ) => {
     const { target } = data;
-    console.log( 'IN SAVE SCREENSHOT' );
     mainWindow.webContents.capturePage().then( image => {
         //writing  image to the disk
         fs.writeFile( target, image.toPNG(), ( err ) => {
             if ( err ) {
                 throw err;
             }
-            console.log( 'Image Saved' );
         } );
     } );
 } );
 
-autoUpdater.on( 'update-available', () => {
-    mainWindow.webContents.send( 'update_available' );
+autoUpdater.on( 'update-downloaded', () => {
+    console.log( 'SEND EVENT update-downloaded' );
+    mainWindow.webContents.send( 'update_downloaded' );
+} );
+
+ipcMain.on( 'restart_app', () => {
+    console.log( 'ON RESTART APP' );
+    autoUpdater.quitAndInstall();
 } );
