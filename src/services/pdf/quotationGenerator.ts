@@ -44,7 +44,7 @@ enum PriceQuotation {
     TVA10        = 'TVA 10%',
     TVA20        = 'TVA 20%',
     CEE          = 'PRIME CEE EDF SIREN 552 081 317',
-    CEE_CPC      = 'Prime CEE « coup de pouce chauffage »',
+    CEE_CPC      = 'PRIME CEE EDF SIREN 552 081 317', // Coup de pouce chauffage
     maPrimeRenov = 'Estimation MaPrimeRenov',
     discount     = 'Remise',
     laying       = 'Pose',
