@@ -166,7 +166,10 @@ export const createFolderRef = ( type: string ): string => {
     const stringDate = `${ today.getFullYear() }${ commonService.minTwoDigits( today.getMonth() + 1 ) }${ commonService.minTwoDigits(
         today.getDate() ) }${ commonService.minTwoDigits( today.getHours() ) }${ commonService.minTwoDigits( today.getMinutes() ) }${ commonService.minTwoDigits(
         today.getSeconds() ) }`;
-    return `ID_COM-${ stringDate }-${ type.toUpperCase() }`;
+
+    const commercial = getCommercialInfo();
+    const id         = `${ commercial.firstName[ 0 ] }${ commercial.lastName[ 0 ] }${ commercial.id }`;
+    return `${ id }-${ stringDate }-${ type.toUpperCase() }`;
 };
 
 /**
