@@ -8,8 +8,11 @@ import {
     setApiTokenIsValid,
     setCommercialInfo,
     setcurrentFolderName,
+    setLastUpdateFileState,
 } from '@/services/data/dataService';
 import { AllFile } from '@/types/v2/File/All';
+import { addTodo, addTodoToFile, closeFile, getTodoByFile, sendAt, setStatusFile } from '@/services/sqliteService';
+import { FILE_COMPLETE_STATUS, FILE_TO_CORRECT_STATUS } from '@/services/constantService';
 
 const schema = {
     apiKey: {
@@ -24,9 +27,11 @@ const API_URL: string = process.env.VUE_APP_API_URL ? process.env.VUE_APP_API_UR
 
 const defaultHeader = () => {
     return {
-        'Content-Type': 'application/json',
-        'X-AUTH-TOKEN': store.get( 'apiKey' ) as string,
-        mode:           'no-cors',
+        'Content-Type':  'application/json',
+        'X-AUTH-TOKEN':  store.get( 'apiKey' ) as string,
+        mode:            'no-cors',
+        'cache-control': 'no-cache',
+        pragma:          'no-cache',
     };
 };
 
@@ -91,7 +96,25 @@ export const fetchDossierState = () => {
             .then( response => response.json() )
             .then( response => {
                 console.log( 'response -->', response );
-                // setLastUpdateFileState();
+                const files = response.files;
+
+                for ( const file of files ) {
+                    console.log( 'FILE -->', file.isClosed );
+                    closeFile( file.ref, file.isClosed );
+
+
+                    if ( file.todos.length > 0 ) {
+                        const allTodoId: number[] = [];
+                        for ( const todo of file.todos ) {
+                            addTodo( todo.id, todo.label, false, new Date(), null );
+                            allTodoId.push( todo.id );
+                        }
+
+                        addTodoToFile( allTodoId, file.ref );
+                    }
+                }
+                // setLastUpdateFileState( 1648721875 );
+                setLastUpdateFileState( response.date );
             } )
             .catch( error => {
                 ElMessage.error( 'Une erreur est survenue lors de la synchronisation avec l\'ERP' );
@@ -100,15 +123,18 @@ export const fetchDossierState = () => {
     }
 };
 
-export const postFileToERP = ( folderName: string ) => {
+export const postFileToERP = async ( folderName: string ) => {
     setcurrentFolderName( folderName );
     const fileData: AllFile = getCurrentFileData();
+
+    const todos = await getTodoByFile( fileData.ref );
+    console.log( 'TODO BEFORE SEND -->', todos );
 
     if ( checkInternet() ) {
         fetch( `${ API_URL }/api/dossier`, {
             method:  'POST',
             headers: defaultHeader(),
-            body:    JSON.stringify( fileData ),
+            body:    JSON.stringify( { ...fileData, todos } ),
         } )
             .then( response => response.json() )
             .then( response => {
@@ -117,6 +143,13 @@ export const postFileToERP = ( folderName: string ) => {
                                message: 'Dossier transféré avec succès',
                                type:    'success',
                            } );
+
+                if ( response.allTodosAreDone ) {
+                    setStatusFile( fileData.ref, FILE_COMPLETE_STATUS.code );
+                } else {
+                    setStatusFile( fileData.ref, FILE_TO_CORRECT_STATUS.code );
+                }
+                sendAt( fileData.ref, new Date() );
                 resetCurrentFileData();
             } )
             .catch( error => {

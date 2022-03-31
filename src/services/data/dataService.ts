@@ -58,7 +58,7 @@ const schema = {
     },
     lastUpdateFileState: { // Date de la dernière mise à jour de l'état des dossiers (todos, ...)
         type:    'number',
-        default: 0,
+        default: 1648620000,    // 30/03/2022 06:00:00
     },
     connectedToInternet: {
         type:    'boolean',
@@ -144,9 +144,11 @@ export const getLastUpdateFileState = (): string => {
     return store.get( 'lastUpdateFileState' ) as string;
 };
 
-export const setLastUpdateFileState = () => {
-    const now = Math.round( new Date().getTime() / 1000 );
-    store.set( 'lastUpdateFileState', now );
+export const setLastUpdateFileState = ( unixTime: number | null = null ) => {
+    if ( unixTime === null ) {
+        unixTime = Math.round( new Date().getTime() / 1000 );
+    }
+    store.set( 'lastUpdateFileState', unixTime );
 };
 
 export const getCommercialInfo = (): Technician => {

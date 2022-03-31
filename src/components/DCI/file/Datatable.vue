@@ -60,7 +60,6 @@
           <td v-if="data.totalTTC > 0">{{ numberToPrice( data.totalTTC ) }}</td>
           <td v-if="data.totalTTC <= 0">0.00 €</td>
           <td>{{ data.createdAt }}</td>
-          <!--          <td><span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span></td>-->
           <td>
             <template v-if="data.errors.length > 0">
               <el-popover
@@ -85,7 +84,46 @@
                 </template>
               </el-popover>
             </template>
-            <template v-else>
+            <template v-if="data.errors.length === 0 && data.status.code === 3">
+              <el-popover
+                  placement="bottom-end"
+                  :width="300"
+                  trigger="hover"
+              >
+                <template #reference>
+                  <span :class="`badge badge-light-${data.status.class} cursor-pointer`">{{ data.status.name }}</span>
+                </template>
+                <template #default>
+                  <template>
+                    <h6>Corrections</h6>
+                  </template>
+                  <template v-for="todo in data.todos" :key="`t_${todo.serverId}`">
+                    <div class="d-flex flex-column">
+                      <li class="d-flex align-items-center py-2">
+                        <div
+                            class="form-check form-check-custom form-check-solid form-check-sm"
+                        >
+                          <input
+                              class="form-check-input"
+                              type="checkbox"
+                              v-model="todo.isDone"
+                              :id="`todo_checkbox_${todo.serverId}`"
+                              @change="updateTodo(todo)"
+                          />
+                          <label class="form-check-label" :for="`todo_checkbox_${todo.serverId}`">{{ todo.label }}
+                                                                                                  {{ todo.isDone }} {{
+                              todo.isDone ?
+                              'checked' :
+                              ''
+                                                                                                  }}</label>
+                        </div>
+                      </li>
+                    </div>
+                  </template>
+                </template>
+              </el-popover>
+            </template>
+            <template v-else-if="data.errors.length === 0 && data.status.code !== 3">
               <span :class="`badge badge-light-${data.status.class}`">{{ data.status.name }}</span>
             </template>
           </td>
@@ -152,7 +190,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 import * as sqliteService from '../../../services/sqliteService';
-import { deleteFile } from '@/services/sqliteService';
+import { deleteFile, updateDbTodo } from '@/services/sqliteService';
 import { datatableFileHasType, datatableFileTypesToString } from '@/services/file/datatableFileService';
 import { ElMessage } from 'element-plus';
 import { shell } from 'electron';
@@ -164,6 +202,7 @@ import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 import { DatatableFileType } from '@/types/v2/DatatableFile/DatatableFileType';
 import { numberToPrice } from '@/services/commonService';
 import { postFileToERP } from '@/services/apiService';
+import { DbFileTodo } from '@/types/v2/Sqlite/DbFileTodo';
 
 
 export default defineComponent( {
@@ -309,7 +348,8 @@ export default defineComponent( {
                                           break;
                                         case 'send':
                                           console.log( '%c ON SEND', 'background: #fdd835; color: #000000' );
-                                          postFileToERP( command.folder.folderName );
+                                          await postFileToERP( command.folder.folderName );
+                                          tableData.value = ( await sqliteService.getAllFiles() );
                                           break;
                                       }
                                     };
@@ -343,6 +383,11 @@ export default defineComponent( {
                                       }
                                     };
 
+                                    const updateTodo = ( todo: DbFileTodo ) => {
+                                      console.log( '%c UPDATE TODO', 'background: #fdd835; color: #000000' );
+                                      console.log( todo );
+                                      updateDbTodo( todo.serverId, todo.isDone );
+                                    };
                                     return {
                                       handleAction,
                                       numberOfItems,
@@ -360,6 +405,7 @@ export default defineComponent( {
                                       listFolderType,
                                       numberToPrice,
                                       codeErrorToString,
+                                      updateTodo,
                                     };
                                   },
                                 } );

@@ -1,5 +1,6 @@
 import { DatatableFileType } from '@/types/v2/DatatableFile/DatatableFileType';
 import { DatatableFileStatus } from '@/types/v2/DatatableFile/DatatableFileStatus';
+import { DbFileTodo } from '@/types/v2/Sqlite/DbFileTodo';
 
 export interface DatatableFile {
     id: number;
@@ -11,7 +12,7 @@ export interface DatatableFile {
     isProspect: boolean;
     isClosed: boolean;
     status: DatatableFileStatus;
-    todos: string;
+    todos: DbFileTodo[];
     errors: number[];
     createdAt: string;
     updatedAt: string;

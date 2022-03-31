@@ -21,6 +21,7 @@ import { DbFile } from '@/types/v2/Sqlite/DbFile';
 import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 import { DatatableFileType } from '@/types/v2/DatatableFile/DatatableFileType';
 import { DatatableFileStatus } from '@/types/v2/DatatableFile/DatatableFileStatus';
+import { DbFileTodo } from '@/types/v2/Sqlite/DbFileTodo';
 import RunResult = ISqlite.RunResult;
 
 const schema = {
@@ -36,13 +37,27 @@ const store = new Store( { schema } );
 let db: Database;
 
 /**
+ * Retourne les todos depuis la chaine de caractère dans la table File
+ * @param todosId
+ */
+async function getTodos( todosId: string ): Promise<DbFileTodo[]> {
+    const query = `SELECT *
+                   from fileTodo
+                   WHERE serverId IN (${ todosId.split( ',' ) })
+                   ORDER BY serverId;`;
+
+    return await db.all( query );
+}
+
+
+/**
  * Convertie les données de la DB en objets FileItem
  * @param items
  */
-function convertDbFileToFileItem( items: DbFile[] ) {
+async function convertDbFileToFileItem( items: DbFile[] ) {
     const data: DatatableFile[] = [];
 
-    items.forEach( ( item: DbFile ) => {
+    for ( const item of items ) {
         const types: DatatableFileType[] = [];
         let status: DatatableFileStatus;
 
@@ -101,6 +116,24 @@ function convertDbFileToFileItem( items: DbFile[] ) {
             errorsStatusInDci = item.errorsStatusInDci.split( ';' ).map( i => parseInt( i ) );
         }
 
+        const todos: DbFileTodo[] = [];
+        if ( item.todos !== null ) {
+            const dbTodos = await getTodos( item.todos );
+
+
+            for ( const todo of dbTodos ) {
+                //! ON FORCE à true ou false et non à 1 ou 0, sinon les checkbox ne comprennent pas
+                if ( todo.isDone ) {
+                    todo.isDone = true;
+                } else {
+                    todo.isDone = false;
+                }
+
+                todos.push( todo );
+            }
+
+        }
+
         data.push( {
                        id:         item.id,
                        reference:  item.reference,
@@ -111,14 +144,14 @@ function convertDbFileToFileItem( items: DbFile[] ) {
                        isProspect: item.isProspect,
                        isClosed:   item.isClosed,
                        status:     status,
-                       todos:      item.todos,
+                       todos,
                        errors:     errorsStatusInDci,
                        createdAt:  toFrenchDate( item.createdAt ),
                        updatedAt:  toFrenchDate( item.updatedAt ),
                        sendAt:     toFrenchDate( item.sendAt ),
                    } )
         ;
-    } );
+    }
 
     return data;
 }
@@ -245,7 +278,12 @@ export async function getAllFiles(): Promise<DatatableFile[]> {
                    from file
                    ORDER BY createdAt DESC;`;
 
-    return convertDbFileToFileItem( await db.all( query ) );
+    const queryResult = await db.all( query );
+    console.log( 'queryResult', queryResult );
+
+    const result = await convertDbFileToFileItem( queryResult );
+    console.log( 'result', result );
+    return result;
 }
 
 export async function setFileProspect( fileId: number, value: boolean ) {
@@ -333,3 +371,108 @@ export async function updateErrorsStatusInDci( referene: string, errors: number[
     await db.run( query );
     await db.run( query2 );
 }
+
+export async function closeFile( reference: string, isClosed: boolean ) {
+
+    let status = FILE_COMPLETE_STATUS.code;
+    if ( isClosed ) {
+        status = FILE_CLOSE_STATUS.code;
+    }
+
+    const query = `UPDATE file
+                   SET isClosed    = ${ isClosed },
+                       statusInDCI = ${ status }
+                   WHERE reference = '${ reference }'`;
+
+    console.log( query );
+    await db.run( query );
+}
+
+export async function addTodo( serverId: number,
+                               label: string,
+                               isDone: boolean,
+                               receivedAt: Date,
+                               doneAt: Date | null ) {
+
+    const strReceivedAt = dateToString( receivedAt );
+    const strDoneAt     = dateToString( doneAt );
+    console.log( 'receivedAt', receivedAt );
+    console.log( strReceivedAt );
+    const query = `INSERT INTO fileTodo (serverId, label, isDone, receivedAt, donedAt)
+                   VALUES (${ serverId },
+                           "${ label }",
+                           ${ isDone },
+                           ${ strReceivedAt },
+                           ${ strDoneAt })
+    `;
+
+    console.log( query );
+    await db.exec( query );
+}
+
+export async function addTodoToFile( todosId: number[],
+                                     fileReference: string ) {
+
+    const strTodosId: string = todosId.join( ',' );
+
+    const query = `UPDATE file
+                   SET todos       = '${ strTodosId }',
+                       statusInDCI = ${ FILE_TO_CORRECT_STATUS.code }
+                   WHERE reference = '${ fileReference }'`;
+
+    console.log( query );
+    await db.run( query );
+}
+
+export async function sendAt( reference: string, sendAt: Date ) {
+    const query = `UPDATE file
+                   SET sendAt = ${ dateToString( sendAt ) }
+                   WHERE reference = '${ reference }'`;
+
+    console.log( query );
+    await db.run( query );
+}
+
+export async function updateDbTodo( id: number, isDone: boolean ) {
+    let date: string | null = null;
+    if ( isDone ) {
+        date = dateToString( new Date() );
+    }
+    console.log( 'Date of is done', date );
+    const query = `UPDATE fileTodo
+                   SET isDone  = ${ isDone },
+                       donedAt = ${ date }
+                   WHERE serverId = ${ id }`;
+
+    console.log( query );
+    await db.run( query );
+}
+
+export async function getTodoByFile( reference: string ) {
+    console.log( '%c GETTODO BY FILE', 'background: #fdd835; color: #000000' );
+    const query = `SELECT todos
+                   from file
+                   WHERE reference = '${ reference }';`;
+
+    const queryResult = await db.all( query );
+    console.log( 'queryResult', queryResult );
+
+    let todos: DbFileTodo[] = [];
+    if ( queryResult.length > 0 ) {
+        todos = await getTodos( queryResult[ 0 ].todos );
+    }
+
+
+    return todos;
+}
+
+export async function setStatusFile( reference: string, status: number ) {
+    const query = `UPDATE file
+                   SET statusInDCI = ${ status }
+                   WHERE reference = '${ reference }'`;
+
+    console.log( query );
+    await db.run( query );
+}
+
+
