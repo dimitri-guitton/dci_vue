@@ -37,7 +37,7 @@ export class CetConverter extends BaseConverter {
 
     private getOldSelectedProduct(): Product[] {
         const selectedCeProducts: Product[] = [];
-        const idSelectedProduct             = this.getNumberData( this.oldData[ 'devis' ][ 'chauffeEau' ][ 'selectedId' ] );
+        const idSelectedProduct             = this.getObjectData( this.oldData, [ 'devis', 'chauffeEau', 'selectedId' ] );
         const oldProducts: []               = this.getObjectData( this.oldData,
                                                                   [
                                                                       'devis',
@@ -49,6 +49,10 @@ export class CetConverter extends BaseConverter {
                                                                                                                       'chauffeEau',
                                                                                                                       'products',
                                                                                                                   ] );
+
+        if ( oldProducts === undefined ) {
+            return [];
+        }
 
         oldProducts.forEach( product => {
             if ( product[ 'id' ] === idSelectedProduct ) {

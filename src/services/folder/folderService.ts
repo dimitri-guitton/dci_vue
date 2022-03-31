@@ -371,6 +371,7 @@ export const convertAllOldjsonToNewJson = async () => {
     console.log( oldFolderData );
 
     let nbFileNotExist = 0;
+    let nbErrorConvert = 0;
     for ( const folder of oldFolderData[ 'dossiers' ] ) {
         if ( !fs.existsSync( `${ dropboxPath }/DCI/${ folder[ 'folderName' ] }` ) ) {
             console.log( '%c NOT EXISTS', 'background: #fdd835; color: #000000' );
@@ -426,31 +427,36 @@ export const convertAllOldjsonToNewJson = async () => {
             const oldJson = JSON.parse( fs.readFileSync( oldPath, 'utf8' ) );
             let newJson   = '';
 
-            switch ( type ) {
-                case FILE_CET:
-                    const cetConverter = new CetConverter( oldJson );
-                    newJson            = cetConverter.convertJsonFile();
-                    break;
-                case FILE_PG:
-                    const pgConverter = new PgConverter( oldJson );
-                    newJson           = pgConverter.convertJsonFile();
-                    break;
-                case FILE_SOL:
-                    const solConverter = new SolConverter( oldJson );
-                    newJson            = solConverter.convertJsonFile();
-                    break;
-                case FILE_COMBLE:
-                    const combleConverter = new CombleConverter( oldJson );
-                    newJson               = combleConverter.convertJsonFile();
-                    break;
-                case FILE_PAC_RR:
-                    const rrConverter = new RrConverter( oldJson );
-                    newJson           = rrConverter.convertJsonFile();
-                    break;
-                case FILE_PAC_RO:
-                    const roConverter = new RoConverter( oldJson );
-                    newJson           = roConverter.convertJsonFile();
-                    break;
+            try {
+                switch ( type ) {
+                    case FILE_CET:
+                        const cetConverter = new CetConverter( oldJson );
+                        newJson            = cetConverter.convertJsonFile();
+                        break;
+                    case FILE_PG:
+                        const pgConverter = new PgConverter( oldJson );
+                        newJson           = pgConverter.convertJsonFile();
+                        break;
+                    case FILE_SOL:
+                        const solConverter = new SolConverter( oldJson );
+                        newJson            = solConverter.convertJsonFile();
+                        break;
+                    case FILE_COMBLE:
+                        const combleConverter = new CombleConverter( oldJson );
+                        newJson               = combleConverter.convertJsonFile();
+                        break;
+                    case FILE_PAC_RR:
+                        const rrConverter = new RrConverter( oldJson );
+                        newJson           = rrConverter.convertJsonFile();
+                        break;
+                    case FILE_PAC_RO:
+                        const roConverter = new RoConverter( oldJson );
+                        newJson           = roConverter.convertJsonFile();
+                        break;
+                }
+            } catch ( e ) {
+                nbErrorConvert++;
+                console.warn( 'Erreur dans la conversion des ancinnees donnée -->', e );
             }
 
 
@@ -471,6 +477,20 @@ export const convertAllOldjsonToNewJson = async () => {
                         } );
 
     }
+
+    setTimeout( () => {
+        if ( nbErrorConvert > 0 ) {
+            ElNotification( {
+                                type:     'warning',
+                                title:    'Conversion',
+                                message:  `${ nbErrorConvert } dossiers présentes des erreurs et n'ont pas été convertis`,
+                                position: 'bottom-left',
+                                offset:   25,
+                            } );
+
+        }
+
+    }, 500 );
 
     setOldJsonAreConverted( true );
 };

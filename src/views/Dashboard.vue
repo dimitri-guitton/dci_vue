@@ -32,8 +32,11 @@ export default defineComponent( {
                                   name: 'dashboard',
                                   setup() {
 
+                                    // setOldJsonAreConverted( false );
+
                                     const oldJsonAreConverted = ref<boolean>( getOldJsonAreConverted() );
-                                    const dropboxPath         = ref<string>( getDropboxPath() );
+                                    console.log( 'oldJsonAreConverted -->', oldJsonAreConverted.value );
+                                    const dropboxPath = ref<string>( getDropboxPath() );
 
                                     console.log( 'Version de l\'app : ', process.env.VUE_APP_VERSION );
                                     console.log( 'Environnement : ', process.env.NODE_ENV );
