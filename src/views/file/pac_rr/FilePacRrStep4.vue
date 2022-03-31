@@ -372,8 +372,7 @@ export default defineComponent( {
                                       }
 
                                       const totalTva = tva10 + tva20;
-                                      let totalTtc   = totalHt + totalTva;
-                                      totalTtc -= discount.value;
+                                      const totalTtc = totalHt + totalTva;
 
                                       if ( !props.fileData.disabledBonus ) {
                                         // Si la prime CEE est active
@@ -399,7 +398,7 @@ export default defineComponent( {
                                         TVA10:          tva10,
                                         TVA20:          tva20,
                                         TTC:            totalTtc,
-                                        remainderToPay: totalTtc - totalPrime,
+                                        remainderToPay: totalTtc - totalPrime - discount.value,
                                         CEE:            ceeBonus,
                                         discount:       discount.value,
                                       };
