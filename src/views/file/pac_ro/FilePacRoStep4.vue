@@ -482,10 +482,7 @@ export default defineComponent( {
                                         tva = 20;
                                       }
                                       const totalTva = tva * totalHt / 100;
-                                      let totalTtc   = totalHt + totalTva;
-
-                                      totalTtc -= discount.value;
-
+                                      const totalTtc = totalHt + totalTva;
 
                                       // Si les primes sont actives
                                       if ( !props.fileData.disabledBonus ) {
@@ -532,7 +529,7 @@ export default defineComponent( {
                                         TVA20:          lessThan2Year ? totalTva : 0,
                                         TTC:            totalTtc,
                                         maPrimeRenov:   maPrimeRenov,
-                                        remainderToPay: totalTtc - totalPrime,
+                                        remainderToPay: totalTtc - totalPrime - discount.value,
                                         CEE:            ceeBonus,
                                         discount:       discount.value,
                                       };
