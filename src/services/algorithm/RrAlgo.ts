@@ -525,6 +525,12 @@ export class RrAlgo extends PacAlgo {
                     break;
             }
 
+            if ( assortment === undefined ) {
+                assortment = 'PERFERA';
+            }
+
+            console.log( rrMulti );
+            console.log( 'assortment', assortment );
             const model = this.calcMultiModel( power );
             const code  = this.getMultiCodeInt( model, assortment );
 
