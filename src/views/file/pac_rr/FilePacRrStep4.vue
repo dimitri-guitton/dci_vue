@@ -246,6 +246,29 @@ export default defineComponent( {
                                       } );
                                     };
 
+                                    const updateNbLayingOption = ( nbLaying: number ) => {
+                                      console.log( '%c IN UPDATE', 'background: #fdd835; color: #000000' );
+                                      const layingOption = _options.value.find( o => o.label.includes( 'Forfait pose' ) );
+                                      console.log( layingOption );
+                                      if ( layingOption === undefined ) {
+                                        return;
+                                      }
+
+                                      // Change le prix de la pose
+                                      _options.value = _options.value.map( o => {
+                                        if ( o.label.includes( 'Forfait pose' ) ) {
+                                          if ( nbLaying === 1 || nbLaying === 2 ) {
+                                            return { ...o, pu: 600 };
+                                          } else if ( nbLaying === 3 || nbLaying === 4 ) {
+                                            return { ...o, pu: 1200 };
+                                          } else if ( nbLaying === 5 ) {
+                                            return { ...o, pu: 1800 };
+                                          }
+                                        }
+                                        return o;
+                                      } );
+                                    };
+
                                     const updateBlankOtions = ( blankOptions ) => {
                                       _blankOptions.value = blankOptions;
                                     };
@@ -254,10 +277,17 @@ export default defineComponent( {
                                       console.log( '%c FILTERED OPTION', 'background: #FF0007; color: #000000' );
                                       console.log( _options.value );
 
+                                      if ( rrType.value === 'multi' ) {
+                                        console.log( '%c BEFORe UPDAYE CALL UPDATE LATING',
+                                                     'background: #fdd835; color: #000000' );
+                                        updateNbLayingOption( rrMulti.value.roomNumber );
+                                      }
+
                                       if ( rrType.value === 'multi' || assortment.value !== 'sensira' ) {
                                         enabledWifiOption( false );
                                         return _options.value.filter( o => o.label !== 'Wifi' );
                                       }
+
 
                                       enabledWifiOption( true );
                                       return _options.value;
