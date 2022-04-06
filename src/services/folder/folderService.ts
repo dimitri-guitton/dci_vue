@@ -18,8 +18,11 @@ import {
 } from '@/services/constantService';
 import {
     getCommercialInfo,
+    getCurrentFileData,
     getcurrentFolderName,
+    resetCurrentFileData,
     setCurrentFileData,
+    setcurrentFolderName,
     setErrorsStatusInDci,
     setOldJsonAreConverted,
 } from '@/services/data/dataService';
@@ -34,6 +37,7 @@ import { SolConverter } from '@/services/file/converterV2/SolConverter';
 import { RoConverter } from '@/services/file/converterV2/RoConverter';
 import { RrConverter } from '@/services/file/converterV2/RrConverter';
 import { PgConverter } from '@/services/file/converterV2/PgConverter';
+import { AllFile } from '@/types/v2/File/All';
 
 declare const __static: string;
 
@@ -531,10 +535,11 @@ export const updateJsonData = ( fileData ) => {
 };
 
 /**
- * Check si un dossier est vide
+ * Check si un dossier contient le bon nombre de fichier
  * @param folderPath
+ * @param nbFile
  */
-const isFolderEmpty = ( folderPath ): boolean => {
+const folderContainFiles = ( folderPath: string, nbFile = 1 ): boolean => {
     try {
         fs.accessSync( folderPath );
 
@@ -545,37 +550,55 @@ const isFolderEmpty = ( folderPath ): boolean => {
             files.splice( 0, 1 );
         }
 
-        console.log( files );
-        if ( files.length > 0 ) {
-            return false;
+        console.log( 'files.length -->', files.length );
+        if ( files.length >= nbFile ) {
+            return true;
         }
     } catch ( e ) {
         console.warn( e );
     }
-
-    console.log( `${ folderPath } IS EMPTY` );
-    return true;
+    return false;
 };
 
-export const checkFolder = async ( folderName: string ) => {
+export const checkFolder = async ( folderName: string, fileType: string ) => {
     console.log( '%c IN CHECK FOLDER', 'background: #BCBE9D; color: #000000' );
     console.log( folderName );
+
     const folderPath       = getFolderPath( folderName );
     const errors: number[] = [];
 
     // Fichier dans le dossier "DEVIS"
-    const quotationEmpty: boolean       = isFolderEmpty( path.join( folderPath, FoldersNames.DEVIS ) );
+    const quotationEmpty       = !folderContainFiles( path.join( folderPath, FoldersNames.DEVIS ) );
     // Fichier dans le dossier "DEVIS SIGNE"
-    const signedQuotationEmpty: boolean = isFolderEmpty( path.join( folderPath, FoldersNames.DEVIS_SIGNE ) );
+    const signedQuotationEmpty = !folderContainFiles( path.join( folderPath, FoldersNames.DEVIS_SIGNE ) );
     // Fichier dans le dossier "AVIS"
-    const assentEmpty: boolean          = isFolderEmpty( path.join( folderPath, FoldersNames.AVIS ) );
+    const assentEmpty          = !folderContainFiles( path.join( folderPath, FoldersNames.AVIS ) );
     // Fichier dans le dossier "FICHE"
-    const worksheetEmpty: boolean       = isFolderEmpty( path.join( folderPath, FoldersNames.FICHE ) );
+    const worksheetEmpty       = !folderContainFiles( path.join( folderPath, FoldersNames.FICHE ) );
+
+
+    let photoEmpty;
     // Fichier dans le dossier "PHOTO"
-    const photoEmpty: boolean           = isFolderEmpty( path.join( folderPath, FoldersNames.PHOTO ) );
+    if ( fileType === FILE_PAC_RR || fileType === FILE_PAC_RO || fileType === FILE_CET ) {
+        photoEmpty = !folderContainFiles( path.join( folderPath, FoldersNames.PHOTO ), 4 );
+    } else {
+        photoEmpty = !folderContainFiles( path.join( folderPath, FoldersNames.PHOTO ) );
+    }
 
     // Fichier dans le dossier "ATTESTATION_HONNEUR"
     // const attestEmpty: boolean          = isFolderEmpty( path.join( folderPath, FoldersNames.ATTESTATION_HONNEUR ) );
+
+    setcurrentFolderName( folderName );
+    const fileData: AllFile = getCurrentFileData();
+    console.log( 'fileData.quotation.ceeBonus', fileData.quotation.ceeBonus );
+
+    let ceeEmpty = false;
+    if ( fileData.quotation.ceeBonus > 0 ) {
+        // Fichier dans le dossier "CADRE_CONTRIBUTION_CEE"
+        ceeEmpty = !folderContainFiles( path.join( folderPath, FoldersNames.CADRE_CONTRIBUTION_CEE ) );
+    }
+
+    resetCurrentFileData();
 
     console.log( '%c ', 'background: #fdd835; color: #000000' );
     console.log( quotationEmpty );
@@ -584,6 +607,7 @@ export const checkFolder = async ( folderName: string ) => {
     console.log( worksheetEmpty );
     console.log( photoEmpty );
     // console.log( attestEmpty );
+    console.log( ceeEmpty );
     console.log( '%c ', 'background: #fdd835; color: #000000' );
 
     if ( quotationEmpty ) {
@@ -604,6 +628,10 @@ export const checkFolder = async ( folderName: string ) => {
     // if ( attestEmpty ) {
     //     errors.push( 6 );
     // }
+
+    if ( ceeEmpty ) {
+        errors.push( 7 );
+    }
 
     console.log( 'ERRRORS', errors );
     await setErrorsStatusInDci( errors, folderName );

@@ -299,7 +299,12 @@ export default defineComponent( {
                                     const handleAction = async ( command: { type: string; folder: DatatableFile } ) => {
                                       switch ( command.type ) {
                                         case 'check_element':
-                                          await checkFolder( command.folder.folderName );
+                                          let type = '';
+                                          if ( command.folder.types.length > 0 ) {
+                                            type = command.folder.types[ 0 ].slug;
+                                          }
+                                          console.log( 'TYPE -->', type );
+                                          await checkFolder( command.folder.folderName, type );
                                           tableData.value = ( await sqliteService.getAllFiles() );
                                           break;
                                         case 'open':
@@ -377,6 +382,8 @@ export default defineComponent( {
                                           return 'Manque des photos';
                                         case 6:
                                           return 'Manque l\'attestation sur honneur';
+                                        case 7:
+                                          return 'Manque cadre contribution CEE';
                                         default:
                                           console.warn( `Le code error ${ code } est inconnue` );
                                           return 'Erreur inconue';

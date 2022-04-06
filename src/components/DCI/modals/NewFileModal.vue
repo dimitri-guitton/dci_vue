@@ -216,7 +216,7 @@ export default defineComponent( {
                                             newFolderData.value );
 
                                         // Check les données dans le dossier
-                                        checkFolder( response.folderName );
+                                        checkFolder( response.folderName, newFolderData.value.type );
 
                                         setCurrentFileReference( response.reference );
                                         setcurrentFolderName( response.folderName );
