@@ -326,7 +326,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { ErrorMessage, Field } from 'vee-validate';
-import { Assent } from '@/types/v2/File/Common/Assent';
 
 export default defineComponent( {
                                   name:       'common-step-2',
@@ -337,14 +336,9 @@ export default defineComponent( {
                                   props:      {
                                     assents: Array,
                                   },
-                                  setup() {
-                                    const copyAssentToForm = ( assent: Assent ) => {
-                                      console.log( assent );
-                                    };
-
-                                    return {
-                                      copyAssentToForm,
-                                    };
+                                  setup( props ) {
+                                    console.log( 'PROPS -->', props );
+                                    console.log( 'assents -->', props.assents );
                                   },
                                 } );
 </script>

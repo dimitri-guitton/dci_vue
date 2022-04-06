@@ -290,23 +290,9 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficia
  * @param revenu
  */
 const filterScale = ( stages, occupant, revenu ) => {
-    console.log( {
-                     stages,
-                     occupant,
-                     revenu,
-                 } );
-    return stages.filter( ( stage ) => {
-                              console.log( {
-                                               nbr:      stage.nbr,
-                                               occupant: parseFloat( occupant ),
-                                               revenu,
-                                               min:      stage.min,
-                                               max:      stage.max,
-                                           } );
-                              return Object.prototype.hasOwnProperty.call( stage, 'max' )
-                                     ? stage.nbr === parseFloat( occupant ) && revenu > stage.min && revenu <= stage.max
-                                     : stage.nbr === parseFloat( occupant ) && revenu > stage.min;
-                          },
+    return stages.filter( ( stage ) => Object.prototype.hasOwnProperty.call( stage, 'max' )
+                                       ? stage.nbr === parseFloat( occupant ) && revenu > stage.min && revenu <= stage.max
+                                       : stage.nbr === parseFloat( occupant ) && revenu > stage.min,
     );
 };
 

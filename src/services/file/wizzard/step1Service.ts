@@ -64,6 +64,8 @@ export const validateStepOne = async ( data, assentOnJson: Assent[] ): Promise<{
         };
     }
 
+    const assentAlreadyExistList: Assent[] = [];
+
     data.assents.forEach( assent => {
         if ( assent.numFiscal !== '' && assent.refAvis !== '' ) {
 
@@ -74,14 +76,18 @@ export const validateStepOne = async ( data, assentOnJson: Assent[] ): Promise<{
 
             if ( assentAlreadyExist === undefined ) {
                 assentsToSvair.push( assent );
+            } else {
+                assentAlreadyExistList.push( assentAlreadyExist );
             }
 
         }
     } );
 
+    console.log( 'assentAlreadyExistList', assentAlreadyExistList );
+
     if ( assentsToSvair.length === 0 ) {
         return {
-            assents,
+            assents:  assentAlreadyExistList,
             formData: data,
         };
     }

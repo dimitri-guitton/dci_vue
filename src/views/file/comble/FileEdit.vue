@@ -187,7 +187,7 @@ export default defineComponent( {
                                     const options             = fileData.value.quotation.options;
                                     const blankOptions        = fileData.value.quotation.blankOptions;
                                     const area                = ref<number>( fileData.value.housing.area );
-                                    const assents             = ref<Assent[]>( [] );
+                                    const assents             = ref<Assent[]>( fileData.value.assents );
                                     const formData            = ref<CombleFileStep>( {
                                                                                        ...initFormDataStep1And2(
                                                                                            fileData.value.assents,
@@ -266,7 +266,9 @@ export default defineComponent( {
 
                                         const response = await validateStepOne( formData.value,
                                                                                 fileData.value.assents );
-                                        assents.value  = response.assents;
+                                        console.log( 'Response step ONE', response.assents );
+                                        assents.value = response.assents;
+                                        console.log( assents.value );
                                         formData.value = response.formData;
                                         // Force le refersh des data du formulaire
                                         refreshFormData();

@@ -175,7 +175,7 @@ export default defineComponent( {
                                     const options             = fileData.value.quotation.options;
                                     const blankOptions        = fileData.value.quotation.blankOptions;
                                     const area                = ref<number>( fileData.value.housing.area );
-                                    const assents             = ref<Assent[]>( [] );
+                                    const assents             = ref<Assent[]>( fileData.value.assents );
                                     const formData            = ref<SolFileStep>( {
                                                                                     ...initFormDataStep1And2(
                                                                                         fileData.value.assents,

@@ -184,7 +184,7 @@ export default defineComponent( {
                                     const selectedProducts    = fileData.value.quotation.selectedProducts;
                                     const options             = fileData.value.quotation.options;
                                     const blankOptions        = fileData.value.quotation.blankOptions;
-                                    const assents             = ref<Assent[]>( [] );
+                                    const assents             = ref<Assent[]>( fileData.value.assents );
                                     const formData            = ref<PacRoFileStep>( {
                                                                                       ...initFormDataStep1And2( fileData.value.assents,
                                                                                                                 fileData.value.beneficiary ),
