@@ -284,16 +284,29 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficia
 };
 
 /**
- * Retourne le palier selon les revenues et lenombre d'occupant d'un logement
+ * Retourne le palier selon les revenues et le nombre d'occupant d'un logement
  * @param stages
  * @param occupant
  * @param revenu
  */
 const filterScale = ( stages, occupant, revenu ) => {
-    return stages.filter( ( stage ) =>
-                              Object.prototype.hasOwnProperty.call( stage, 'max' )
-                              ? stage.nbr === parseFloat( occupant ) && revenu >= stage.min && revenu < stage.max
-                              : stage.nbr === parseFloat( occupant ) && revenu >= stage.min,
+    console.log( {
+                     stages,
+                     occupant,
+                     revenu,
+                 } );
+    return stages.filter( ( stage ) => {
+                              console.log( {
+                                               nbr:      stage.nbr,
+                                               occupant: parseFloat( occupant ),
+                                               revenu,
+                                               min:      stage.min,
+                                               max:      stage.max,
+                                           } );
+                              return Object.prototype.hasOwnProperty.call( stage, 'max' )
+                                     ? stage.nbr === parseFloat( occupant ) && revenu > stage.min && revenu <= stage.max
+                                     : stage.nbr === parseFloat( occupant ) && revenu > stage.min;
+                          },
     );
 };
 
@@ -306,16 +319,29 @@ export const getCodeBonus = ( fileData: BaseFile | null = null ) => {
         fileData = getCurrentFileData();
     }
 
-    const totalRevenu = fileData.assents.reduce( ( a, b ) => ( b.revenu && !Number.isNaN( b.revenu ) ? a + b.revenu : a ), 0 );
+
+    // const totalRevenu = fileData.assents.reduce( ( a, b ) => ( b.revenu && !Number.isNaN( b.revenu ) ? a + b.revenu : a ), 0 );
+
+    let totalRevenu = 0;
+    for ( const assent of fileData.assents ) {
+        totalRevenu += +assent.revenu;
+    }
+
+    console.log( '%c GET CODE BONUS', 'background: #0094BE; color: #000000' );
+    console.log( '%c GET CODE BONUS', 'background: #0094BE; color: #000000' );
+    console.log( '%c GET CODE BONUS', 'background: #0094BE; color: #000000' );
+    console.log( 'TotalRevenu -->', totalRevenu );
 
     // Quand la prime est désactivé retourne 'CL'
     if ( fileData.disabledBonus ) {
         return 'CL';
     }
 
+    console.log( 'Scales -->', fileData.scales );
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     const scales = fileData.scales.filter( ( scale ) => filterScale( scale.stages, fileData.housing.nbOccupant, totalRevenu ).length > 0 );
+    console.log( 'filtered Scale -->', scales );
     return ( scales.length > 0 ? scales[ 0 ].code : 'CL' ).toUpperCase();
 };
 
