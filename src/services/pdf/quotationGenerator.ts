@@ -787,9 +787,15 @@ export class QuotationGenerator extends PdfGenerator {
                 const quotation: RoQuotation = this._file.quotation as RoQuotation;
 
                 if ( quotation.deviceToReplace.type === 'aucun' || quotation.deviceToReplace.type === 'autre' ) {
-                    text = 'Remplacement du système de chauffage par une pompe à chaleur air/eau';
-                } else {    // Prime CEE Coup de Pouce Chauffage
-                    text = 'Dépose de la chaudière fioul, gaz ou charbon hors condensation et remplacement de la chaudière fioul, gaz ou charbon hors condensation par une Pompe à chaleur Air / Eau. /eau';
+                    text = 'Remplacement du système de chauffage par une pompe à chaleur Air / Eau';
+                } else if ( quotation.deviceToReplace.type === 'CCHC' ) {       //   Prime CEE Coup de Pouce Chauffage CHARBON
+                    text = 'Dépose de la chaudière charbon hors condensation et remplacement de la chaudière charbon hors condensation par une Pompe à chaleur Air / Eau.';
+                } else if ( quotation.deviceToReplace.type === 'CFHC' ) {       //  Prime CEE Coup de Pouce Chauffage FIOUL
+                    text = 'Dépose de la chaudière fioul hors condensation et remplacement de la chaudière fioul hors condensation par une Pompe à chaleur Air / Eau.';
+                } else if ( quotation.deviceToReplace.type === 'CGHC' ) {       //  Prime CEE Coup de Pouce Chauffage GAZ
+                    text = 'Dépose de la chaudière gaz hors condensation et remplacement de la chaudière gaz hors condensation par une Pompe à chaleur Air / Eau.';
+                } else {    // Prime CEE Coup de Pouce Chauffage par défaut
+                    text = 'Dépose de la chaudière fioul, gaz ou charbon hors condensation et remplacement de la chaudière fioul, gaz ou charbon hors condensation par une Pompe à chaleur Air / Eau.';
                 }
                 break;
             case FILE_PAC_RR:
