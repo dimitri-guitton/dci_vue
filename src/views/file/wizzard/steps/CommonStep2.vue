@@ -3,22 +3,23 @@
 
     <template v-if="assents.length > 0">
       <template v-for="(assent, index) in assents" v-bind:key="'assent_'+index">
-        <el-descriptions
-            class="mb-15"
-            title="Avis Imposition"
-            :column="2"
-            size="large"
-            border
-        >
-          <el-descriptions-item label="N° Fiscal">{{ assent.datagouv.numFiscal }}</el-descriptions-item>
-          <el-descriptions-item label="Référence Avis">{{ assent.datagouv.refAvis }}</el-descriptions-item>
-          <el-descriptions-item label="Nom">{{ assent.datagouv.nom }}</el-descriptions-item>
-          <el-descriptions-item label="Prénom">{{ assent.datagouv.prenom }}</el-descriptions-item>
-          <el-descriptions-item label="Adresse">{{ assent.datagouv.adresse }}</el-descriptions-item>
-          <el-descriptions-item label="Ville">{{ assent.datagouv.ville }}</el-descriptions-item>
-          <el-descriptions-item label="Revenus référence">{{ assent.datagouv.revenu }}</el-descriptions-item>
-        </el-descriptions>
-
+        <template v-if="assent.datagouv !== undefined">
+          <el-descriptions
+              class="mb-15"
+              title="Avis Imposition"
+              :column="2"
+              size="large"
+              border
+          >
+            <el-descriptions-item label="N° Fiscal">{{ assent.datagouv.numFiscal }}</el-descriptions-item>
+            <el-descriptions-item label="Référence Avis">{{ assent.datagouv.refAvis }}</el-descriptions-item>
+            <el-descriptions-item label="Nom">{{ assent.datagouv.nom }}</el-descriptions-item>
+            <el-descriptions-item label="Prénom">{{ assent.datagouv.prenom }}</el-descriptions-item>
+            <el-descriptions-item label="Adresse">{{ assent.datagouv.adresse }}</el-descriptions-item>
+            <el-descriptions-item label="Ville">{{ assent.datagouv.ville }}</el-descriptions-item>
+            <el-descriptions-item label="Revenus référence">{{ assent.datagouv.revenu }}</el-descriptions-item>
+          </el-descriptions>
+        </template>
         <div class="pb-10 pb-lg-15">
           <h2 class="fw-bolder text-dark">Informations client</h2>
         </div>

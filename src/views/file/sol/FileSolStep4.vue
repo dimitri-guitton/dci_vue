@@ -3,6 +3,37 @@
 
     <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit" :price="price" :lists="lists"></step4-header>
 
+    <div class="col-md-12 mb-15">
+      <h6 class="mb-5">Isolation d’un plancher bas situé entre un volume chauffé et un ...</h6>
+      <Field name="izolationZone"
+             id="r_izolation_zone_1"
+             class="form-check-input ms-5"
+             type="radio"
+             value="sous_sol"
+             v-model="izolationZone"
+      >
+      </Field>
+      <label class="ms-2" for="r_izolation_zone_1">Sous-sol non chauffé</label>
+      <Field name="izolationZone"
+             id="r_izolation_zone_2"
+             class="form-check-input ms-5"
+             type="radio"
+             value="vide_sanitaire"
+             v-model="izolationZone"
+      >
+      </Field>
+      <label class="ms-2" for="r_izolation_zone_2">Vide sanitaire</label>
+      <Field name="izolationZone"
+             id="r_ecs_3"
+             class="form-check-input ms-5"
+             type="radio"
+             value="passage_ouvert"
+             v-model="izolationZone"
+      >
+      </Field>
+      <label class="ms-2" for="r_ecs_3">Passage ouvert</label>
+    </div>
+
     <step4-quotation-header></step4-quotation-header>
 
     <selected-product :alert="alert"
@@ -101,6 +132,7 @@ export default defineComponent( {
                                     const _options          = ref<Option[]>( ( props.options as Option[] ) );
                                     const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                     const lists             = ref<SolList>( ( props.fileData.lists as SolList ) );
+                                    const izolationZone     = ref<string>( ( props.fileData.quotation.izolationZone ) );
 
                                     const generateQuotation = () => {
                                       ctx.emit( 'generateQuotation' );
@@ -210,6 +242,7 @@ export default defineComponent( {
                                       updateBlankOtions,
                                       generateQuotation,
                                       generateAddressCertificate,
+                                      izolationZone,
                                     };
                                   },
                                 } );

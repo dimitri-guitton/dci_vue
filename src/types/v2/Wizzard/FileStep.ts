@@ -18,6 +18,7 @@ import { PacRrStep4 } from '@/types/v2/Wizzard/step4/PacRrStep4';
 import { PacRoStep4 } from '@/types/v2/Wizzard/step4/PacRoStep4';
 import { PbStep4 } from '@/types/v2/Wizzard/step4/PbStep4';
 import { BaseStep3 } from '@/types/v2/Wizzard/step3/BaseStep3';
+import { SolStep4 } from '@/types/v2/Wizzard/step4/SolStep4';
 
 export interface CetFileStep extends Step1, Step2, CetStep3, BaseStep4, CetStep5 {}
 
@@ -33,4 +34,4 @@ export interface PacRrFileStep extends Step1, Step2, PacRrStep3, PacRrStep4, Pac
 
 export interface CombleFileStep extends Step1, Step2, CombleStep3, BaseStep4, CombleStep5 {}
 
-export interface SolFileStep extends Step1, Step2, SolStep3, BaseStep4, SolStep5 {}
+export interface SolFileStep extends Step1, Step2, SolStep3, SolStep4, SolStep5 {}

@@ -775,7 +775,16 @@ export class QuotationGenerator extends PdfGenerator {
                 text = 'Isolation en combles perdus';
                 break;
             case FILE_SOL:
-                text = 'Isolation d\'un plancher bas';
+                const solQuotation: SolQuotation = this._file.quotation as SolQuotation;
+                text                             = 'Isolation d\'un plancher bas';
+
+                let izolationZone = 'sous-sol non chauffé';
+                if ( solQuotation.izolationZone === 'vide_sanitaire' ) {
+                    izolationZone = 'vide sanitaire';
+                } else if ( solQuotation.izolationZone === 'passage_ouvert' ) {
+                    izolationZone = 'passage ouvert';
+                }
+                text = `Isolation d’un plancher bas situé entre un volume chauffé et un ${ izolationZone }`;
                 break;
             case FILE_PG:
                 text = 'Mise en place d\'un appareil indépendant de chauffage au bois';
