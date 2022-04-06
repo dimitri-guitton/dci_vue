@@ -735,7 +735,7 @@ export class RoAlgo extends PacAlgo {
             return null;
         }
 
-        console.log( `%c VOLUME ECS --> ${ volumeECS }`, 'background: #fdd835; color: #000000' );
+        console.log( `%c VOLUME ECS IN ALGO --> ${ volumeECS }`, 'background: #fdd835; color: #000000' );
         const hotWater = volumeECS;
         let bizone     = this.isBiZone( this.housing.heaters );
         const size     = selectedUnitExt.size;

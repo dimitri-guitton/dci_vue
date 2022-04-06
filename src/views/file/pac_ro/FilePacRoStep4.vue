@@ -72,21 +72,73 @@
       <!--          </Field>-->
       <!--        </div>-->
       <!--      </template>-->
+      <!--      <div class="col-md-6 mb-5">-->
+      <!--        <label for="volumeECS" class="form-label">Volume ECS</label>-->
+      <!--        <Field name="volumeECS"-->
+      <!--               id="volumeECS"-->
+      <!--               class="form-select"-->
+      <!--               as="select"-->
+      <!--               v-model.number="volumeECS"-->
+      <!--        >-->
+      <!--          <option value="ecs_1">0L</option>-->
+      <!--          <option value="ecs_2">180L</option>-->
+      <!--          <option value="ecs_3">230L</option>-->
+      <!--          <option value="ecs_4">150L Déporté</option>-->
+      <!--          <option value="ecs_5">200L Déporté</option>-->
+      <!--          <option value="ecs_6">300L Déporté</option>-->
+      <!--        </Field>-->
+      <!--      </div>-->
       <div class="col-md-6 mb-5">
-        <label for="volumeECS" class="form-label">Volume ECS</label>
+        <h1>VOLUME ECS SÉLECTIONNÉ {{ volumeECS }}</h1>
+        <h6>Volume ECS : </h6>
         <Field name="volumeECS"
-               id="volumeECS"
-               class="form-select"
-               as="select"
-               v-model.number="volumeECS"
+               class="form-check-input me-5"
+               type="radio"
+               value="ecs_1"
+               v-model="volumeECS"
         >
-          <option value="ecs_1">0L</option>
-          <option value="ecs_2">180L</option>
-          <option value="ecs_3">230L</option>
-          <option value="ecs_4">150L Déporté</option>
-          <option value="ecs_5">200L Déporté</option>
-          <option value="ecs_6">300L Déporté</option>
         </Field>
+        0L
+        <Field name="volumeECS"
+               class="form-check-input me-5"
+               type="radio"
+               value="ecs_2"
+               v-model="volumeECS"
+        >
+        </Field>
+        180L
+        <Field name="volumeECS"
+               class="form-check-input me-5"
+               type="radio"
+               value="ecs_3"
+               v-model="volumeECS"
+        >
+        </Field>
+        230L
+        <Field name="volumeECS"
+               class="form-check-input me-5"
+               type="radio"
+               value="ecs_4"
+               v-model="volumeECS"
+        >
+        </Field>
+        150L
+        <Field name="volumeECS"
+               class="form-check-input me-5"
+               type="radio"
+               value="ecs_5"
+               v-model="volumeECS"
+        >
+        </Field>
+        200L
+        <Field name="volumeECS"
+               class="form-check-input me-5"
+               type="radio"
+               value="ecs_6"
+               v-model="volumeECS"
+        >
+        </Field>
+        300L
       </div>
 
     </div>
