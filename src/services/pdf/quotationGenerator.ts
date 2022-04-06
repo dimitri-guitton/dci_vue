@@ -771,11 +771,14 @@ export class QuotationGenerator extends PdfGenerator {
     private _getQuotationSubTitle(): TableCell[] {
         let text = '';
         switch ( this._file.type ) {
+            case FILE_COMBLE:
+                text = 'Isolation en combles perdus';
+                break;
             case FILE_SOL:
                 text = 'Isolation d\'un plancher bas';
                 break;
             case FILE_PG:
-                text = 'Nature des travaux réalisés (Poêle à granulé ou pellets)';
+                text = 'Mise en place d\'un appareil indépendant de chauffage au bois';
                 break;
             case FILE_PB:
                 text = 'Nature des travaux réalisés (Poêle à bois)';
@@ -821,7 +824,7 @@ export class QuotationGenerator extends PdfGenerator {
         switch ( this._file.type ) {
             case FILE_SOL:
             case FILE_COMBLE:
-                text = 'Pas de mise en place de par-vapeur';
+                text = 'Pas de mise en place de pare-vapeur';
                 break;
             case FILE_PV:
                 text = 'Démarches administratives incluses (déclaration préalable de travaux, demande de raccordement et CONSUEL)';
