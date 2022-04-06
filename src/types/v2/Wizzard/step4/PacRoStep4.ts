@@ -6,7 +6,7 @@ export interface PacRoStep4 extends BaseStep4 {
     deviceToReplaceModel: string;
     isEcsDeporte: boolean;
     volumeECSDeporte: number;
-    volumeECS: number;
+    volumeECS: string;
     cascadeSystem: boolean;
     discount: number;
 }

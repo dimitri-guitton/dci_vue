@@ -27,9 +27,9 @@ jobs:
                 env:
                     GH_TOKEN: ${{ secrets.AUTO_UPDATE_TOKEN }}
                     SIGN:     false
-                run:   |
+                run: |
                        yarn install --network-timeout 1000000
-                       yarn electron:build --publish="never"
+                       yarn electron:build:prod --publish="never"
             
             -   name: Upload artifact
                 uses: actions/upload-artifact@v2

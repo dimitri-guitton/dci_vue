@@ -80,12 +80,12 @@
                as="select"
                v-model.number="volumeECS"
         >
-          <option :value="0">0L</option>
-          <option :value="180">180L</option>
-          <option :value="230">230L</option>
-          <option :value="150">150L Déporté</option>
-          <option :value="200">200L Déporté</option>
-          <option :value="300">300L Déporté</option>
+          <option value="ecs_1">0L</option>
+          <option value="ecs_2">180L</option>
+          <option value="ecs_3">230L</option>
+          <option value="ecs_4">150L Déporté</option>
+          <option value="ecs_5">200L Déporté</option>
+          <option value="ecs_6">300L Déporté</option>
         </Field>
       </div>
 
@@ -243,10 +243,10 @@ export default defineComponent( {
 
                                     const deviceToReplace = ref( props.fileData.quotation.deviceToReplace );
                                     const discount        = ref<number>( props.fileData.quotation.discount );
-                                    const isEcsDeporte    = ref<boolean>( props.fileData.quotation.isEcsDeporte );
-                                    const volumeECS       = ref<number>( +props.fileData.quotation.volumeECS );
-                                    console.log( 'Volume ECS INIT', volumeECS );
-                                    const volumeECSDeporte     = ref<number>( +props.fileData.quotation.volumeECSDeporte );
+                                    // const isEcsDeporte    = ref<boolean>( props.fileData.quotation.isEcsDeporte );
+                                    const volumeECS       = ref<string>( props.fileData.quotation.volumeECS );
+                                    console.log( '__ecs Volume ECS on Setup -->', volumeECS.value );
+                                    // const volumeECSDeporte     = ref<number>( +props.fileData.quotation.volumeECSDeporte );
                                     const needBiZoneSupplement = ref<boolean>( false );
 
                                     // if ( volumeECS.value !== 180 && volumeECS.value !== 230 ) {
@@ -316,10 +316,20 @@ export default defineComponent( {
                                       // resetVolumeECS( isEcsDeporte.value );
 
                                       console.log( '%c COMPUTED ECS DEPORTE', 'background: #fdd835; color: #000000' );
-                                      console.log( volumeECS.value );
-                                      if ( volumeECS.value === 150 || volumeECS.value === 200 || volumeECS.value === 300 ) {
-                                        return ecsDeporte.filter( ecs => ecs.volume === volumeECS.value );
+                                      console.log( '__ecs volumeECS.value IN selectedEcsDeportes computed',
+                                                   volumeECS.value );
+
+                                      if ( volumeECS.value === 'ecs_4' ) {
+                                        return ecsDeporte.filter( ecs => ecs.volume === 150 );
+                                      } else if ( volumeECS.value === 'ecs_5' ) {
+                                        return ecsDeporte.filter( ecs => ecs.volume === 200 );
+                                      } else if ( volumeECS.value === 'ecs_6' ) {
+                                        return ecsDeporte.filter( ecs => ecs.volume === 300 );
                                       }
+
+                                      // if ( volumeECS.value === 150 || volumeECS.value === 200 || volumeECS.value === 300 ) {
+                                      //   return ecsDeporte.filter( ecs => ecs.volume === volumeECS.value );
+                                      // }
 
                                       return [];
                                     } );
@@ -348,21 +358,27 @@ export default defineComponent( {
                                           roAlgo.updateHousing( props.fileData.housing );
 
                                           console.log( 'Volume ECS IN COMPUTED PRODUCT', volumeECS.value );
+                                          console.log( '__ecs Volume ECS IN COMPUTED PRODUCT', volumeECS.value );
 
-                                          if ( volumeECS.value === undefined ) {
-                                            console.log( 'Volume ECS IS UNDEFINED', volumeECS );
-                                            // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-                                            volumeECS.value = 0;
-                                          }
+                                          // if ( volumeECS.value === undefined ) {
+                                          //   console.log( 'Volume ECS IS UNDEFINED', volumeECS );
+                                          //   // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+                                          //   volumeECS.value = 0;
+                                          // }
                                           console.log( 'Volume ECS IN COMPUTED PRODUCT AFTER UNDEFINED',
                                                        volumeECS.value );
 
                                           let response;
-                                          // Si ECS Deporté -> ECS = 0
-                                          if ( volumeECS.value === 150 || volumeECS.value === 200 || volumeECS.value === 300 ) {
+
+                                          if ( volumeECS.value === 'ecs_1' ) {
                                             response = roAlgo.getUnitsRo( 0 );
+                                          } else if ( volumeECS.value === 'ecs_2' ) {
+                                            response = roAlgo.getUnitsRo( 180 );
+                                          } else if ( volumeECS.value === 'ecs_3' ) {
+                                            response = roAlgo.getUnitsRo( 130 );
                                           } else {
-                                            response = roAlgo.getUnitsRo( volumeECS.value );
+                                            // ECS DEPORTÉ DONC ECS = 0
+                                            response = roAlgo.getUnitsRo( 0 );
                                           }
                                           console.log( 'Response', response );
 
@@ -551,9 +567,9 @@ export default defineComponent( {
                                       selectedEcsDeportes,
                                       // selectedKitCascade,
                                       selectedKitBiZone,
-                                      isEcsDeporte,
+                                      // isEcsDeporte,
                                       volumeECS,
-                                      volumeECSDeporte,
+                                      // volumeECSDeporte,
                                       // cascadeSystem,
                                       lists,
                                       price,
