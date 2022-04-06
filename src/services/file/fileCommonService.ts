@@ -424,11 +424,6 @@ const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: strin
         },
     };
 
-    console.log( '%c OK', 'background: #fdd835; color: #000000' );
-    console.log( '%c OK', 'background: #fdd835; color: #000000' );
-    console.log( '%c OK', 'background: #fdd835; color: #000000' );
-    console.log( listBonus[ 'ok' ] );
-
     try {
         console.log( listBonus );
         console.log( listBonus[ zone ] );

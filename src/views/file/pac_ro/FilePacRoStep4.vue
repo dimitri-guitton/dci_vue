@@ -88,57 +88,63 @@
       <!--          <option value="ecs_6">300L Déporté</option>-->
       <!--        </Field>-->
       <!--      </div>-->
-      <div class="col-md-6 mb-5">
-        <h1>VOLUME ECS SÉLECTIONNÉ {{ volumeECS }}</h1>
-        <h6>Volume ECS : </h6>
+      <div class="col-md-12 mb-5">
+        <!--        <h1>VOLUME ECS SÉLECTIONNÉ {{ volumeECS }}</h1>-->
+        <h6 class="mb-5">Volume ECS : </h6>
         <Field name="volumeECS"
-               class="form-check-input me-5"
+               id="r_ecs_1"
+               class="form-check-input ms-5"
                type="radio"
                value="ecs_1"
                v-model="volumeECS"
         >
         </Field>
-        0L
+        <label class="ms-2" for="r_ecs_1">0L</label>
         <Field name="volumeECS"
-               class="form-check-input me-5"
+               id="r_ecs_2"
+               class="form-check-input ms-5"
                type="radio"
                value="ecs_2"
                v-model="volumeECS"
         >
         </Field>
-        180L
+        <label class="ms-2" for="r_ecs_2">180L</label>
         <Field name="volumeECS"
-               class="form-check-input me-5"
+               id="r_ecs_3"
+               class="form-check-input ms-5"
                type="radio"
                value="ecs_3"
                v-model="volumeECS"
         >
         </Field>
-        230L
+        <label class="ms-2" for="r_ecs_3">230L</label>
         <Field name="volumeECS"
-               class="form-check-input me-5"
+               id="r_ecs_4"
+               class="form-check-input ms-5"
                type="radio"
                value="ecs_4"
                v-model="volumeECS"
         >
         </Field>
-        150L
+        <label class="ms-2" for="r_ecs_4">150L Déporté</label>
         <Field name="volumeECS"
-               class="form-check-input me-5"
+               id="r_ecs_5"
+               class="form-check-input ms-5"
                type="radio"
                value="ecs_5"
                v-model="volumeECS"
         >
         </Field>
-        200L
+        <label class="ms-2" for="r_ecs_5">200L Déporté</label>
         <Field name="volumeECS"
-               class="form-check-input me-5"
+               id="r_ecs_6"
+               class="form-check-input ms-5"
                type="radio"
                value="ecs_6"
                v-model="volumeECS"
         >
         </Field>
-        300L
+        <label class="ms-2" for="r_ecs_6">300L Déporté</label>
       </div>
 
     </div>
@@ -427,7 +433,7 @@ export default defineComponent( {
                                           } else if ( volumeECS.value === 'ecs_2' ) {
                                             response = roAlgo.getUnitsRo( 180 );
                                           } else if ( volumeECS.value === 'ecs_3' ) {
-                                            response = roAlgo.getUnitsRo( 130 );
+                                            response = roAlgo.getUnitsRo( 230 );
                                           } else {
                                             // ECS DEPORTÉ DONC ECS = 0
                                             response = roAlgo.getUnitsRo( 0 );
