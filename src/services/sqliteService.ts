@@ -40,7 +40,11 @@ let db: Database;
  * Retourne les todos depuis la chaine de caractère dans la table File
  * @param todosId
  */
-async function getTodos( todosId: string ): Promise<DbFileTodo[]> {
+async function getTodos( todosId: string | null ): Promise<DbFileTodo[]> {
+    if ( todosId === null ) {
+        todosId = '';
+    }
+
     const query = `SELECT *
                    from fileTodo
                    WHERE serverId IN (${ todosId.split( ',' ) })

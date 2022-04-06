@@ -152,19 +152,24 @@ ipcMain.on( 'download', async ( event, { payload } ) => {
     console.log( 'HANDLE DOWNLOAD' );
 
     if ( store.get( 'connectedToInternet' ) ) {
-        for ( const url of payload.urls ) {
-            console.log( 'URL -->', url );
-            await download( BrowserWindow.getFocusedWindow(), url, {
-                directory:   payload.properties.directory,
-                saveAs:      false,
-                overwrite:   true,
-                onProgress:  ( progress ) => {
-                    mainWindow.webContents.send( 'download-progress', progress );
-                },
-                onCompleted: ( item ) => {
-                    mainWindow.webContents.send( 'download-complete', item );
-                },
-            } );
+        try {
+            for ( const url of payload.urls ) {
+                console.log( 'URL -->', url );
+
+                await download( BrowserWindow.getFocusedWindow(), url, {
+                    directory: payload.properties.directory,
+                    saveAs:    false,
+                    overwrite: true,
+                    // onProgress:  ( progress ) => {
+                    //     mainWindow.webContents.send( 'download-progress', progress );
+                    // },
+                    // onCompleted: ( item ) => {
+                    //     mainWindow.webContents.send( 'download-complete', item );
+                    // },
+                } );
+            }
+        } catch ( e ) {
+            console.error( e );
         }
 
         mainWindow.webContents.send( 'all-download-complete' );
