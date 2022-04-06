@@ -573,8 +573,9 @@ export const checkFolder = async ( folderName: string ) => {
     const worksheetEmpty: boolean       = isFolderEmpty( path.join( folderPath, FoldersNames.FICHE ) );
     // Fichier dans le dossier "PHOTO"
     const photoEmpty: boolean           = isFolderEmpty( path.join( folderPath, FoldersNames.PHOTO ) );
+
     // Fichier dans le dossier "ATTESTATION_HONNEUR"
-    const attestEmpty: boolean          = isFolderEmpty( path.join( folderPath, FoldersNames.ATTESTATION_HONNEUR ) );
+    // const attestEmpty: boolean          = isFolderEmpty( path.join( folderPath, FoldersNames.ATTESTATION_HONNEUR ) );
 
     console.log( '%c ', 'background: #fdd835; color: #000000' );
     console.log( quotationEmpty );
@@ -582,7 +583,7 @@ export const checkFolder = async ( folderName: string ) => {
     console.log( assentEmpty );
     console.log( worksheetEmpty );
     console.log( photoEmpty );
-    console.log( attestEmpty );
+    // console.log( attestEmpty );
     console.log( '%c ', 'background: #fdd835; color: #000000' );
 
     if ( quotationEmpty ) {
@@ -600,9 +601,9 @@ export const checkFolder = async ( folderName: string ) => {
     if ( photoEmpty ) {
         errors.push( 5 );
     }
-    if ( attestEmpty ) {
-        errors.push( 6 );
-    }
+    // if ( attestEmpty ) {
+    //     errors.push( 6 );
+    // }
 
     console.log( 'ERRRORS', errors );
     await setErrorsStatusInDci( errors, folderName );
