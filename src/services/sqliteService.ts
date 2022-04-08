@@ -16,7 +16,7 @@ import {
     FILE_SOL_TYPE,
     FILE_TO_CORRECT_STATUS,
 } from '@/services/constantService';
-import { toFrenchDate } from '@/services/commonService';
+import { toFrenchDate, toFrenchDateWithTime } from '@/services/commonService';
 import { DbFile } from '@/types/v2/Sqlite/DbFile';
 import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 import { DatatableFileType } from '@/types/v2/DatatableFile/DatatableFileType';
@@ -152,7 +152,7 @@ async function convertDbFileToFileItem( items: DbFile[] ) {
                        errors:     errorsStatusInDci,
                        createdAt:  toFrenchDate( item.createdAt ),
                        updatedAt:  toFrenchDate( item.updatedAt ),
-                       sendAt:     toFrenchDate( item.sendAt ),
+                       sendAt:     toFrenchDateWithTime( item.sendAt ),
                    } )
         ;
     }
