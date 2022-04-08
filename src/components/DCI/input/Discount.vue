@@ -10,7 +10,6 @@
           class="form-control"
           name="discount"
           placeholder="100"
-          @change="onChangeDiscount()"
       />
       <ErrorMessage
           name="discount"
@@ -24,7 +23,7 @@
 
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 import { ErrorMessage, Field } from 'vee-validate';
 import { numberToPrice } from '@/services/commonService';
 
@@ -43,6 +42,11 @@ export default defineComponent( {
                                   emits:      [ 'discountUpdated' ],
                                   setup( props, ctx ) {
                                     const newDiscount = ref( props.discount );
+
+                                    // watch works directly on a ref
+                                    watch( newDiscount, ( newValue ) => {
+                                      ctx.emit( 'discountUpdated', newValue );
+                                    } );
 
                                     const onChangeDiscount = () => {
                                       ctx.emit( 'discountUpdated', newDiscount.value );
