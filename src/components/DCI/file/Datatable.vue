@@ -355,7 +355,9 @@ export default defineComponent( {
                                         case 'send':
                                           console.log( '%c ON SEND', 'background: #fdd835; color: #000000' );
                                           await postFileToERP( command.folder.folderName );
+                                          console.log( 'AFTER AWAIT postFileToERP' );
                                           tableData.value = ( await sqliteService.getAllFiles() );
+                                          console.log( 'AFTER AWAIT getAllFiles' );
                                           break;
                                       }
                                     };
