@@ -71,7 +71,7 @@ export const solWorksheetBuilder = (): WorksheetBuilder => {
                     {
                         type:  WorksheetBuilderItemType.Number,
                         name:  'dimensionsPieces.3',
-                        label: 'Dimensions pièce 5',
+                        label: 'Dimensions pièce 4',
                     },
                     {
                         type:  WorksheetBuilderItemType.Number,

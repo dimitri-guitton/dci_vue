@@ -1,5 +1,7 @@
 import { PacAlgo } from '@/services/algorithm/PacAlgo';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
+import { getProductByRef } from '@/services/data/dataService';
+import { Product } from '@/types/v2/File/Common/Product';
 
 /**
  * Sortie en KW de la PAC
@@ -7,8 +9,15 @@ import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
  * -15 -> A -15°C
  */
 interface UnitExtOutput {
-    '-7': number;
     '-15': number;
+    '-13': number;
+    '-11': number;
+    '-9': number;
+    '-8': number;
+    '-7': number;
+    '-6': number;
+    '-5': number;
+    '-4': number;
 }
 
 /**
@@ -69,16 +78,37 @@ export class RoAlgo extends PacAlgo {
                     size:   8,
                     output: {
                         65: {
+                            '-15': 6,
+                            '-13': 7,
+                            '-11': 7,
+                            '-9':  8,
+                            '-8':  8,
                             '-7':  8,
-                            '-15': 6.24,
+                            '-6':  8,
+                            '-5':  8,
+                            '-4':  8,
                         },
                         55: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 7,
+                            '-13': 7,
+                            '-11': 7,
+                            '-9':  7,
+                            '-8':  7,
+                            '-7':  8,
+                            '-6':  8,
+                            '-5':  8,
+                            '-4':  8,
                         },
                         40: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 6,
+                            '-13': 7,
+                            '-11': 7,
+                            '-9':  7,
+                            '-8':  7,
+                            '-7':  8,
+                            '-6':  8,
+                            '-5':  8,
+                            '-4':  8,
                         },
                     },
                 },
@@ -87,16 +117,37 @@ export class RoAlgo extends PacAlgo {
                     size:   10,
                     output: {
                         65: {
-                            '-7':  9.25,
-                            '-15': 6.73,
+                            '-15': 7,
+                            '-13': 8,
+                            '-11': 8,
+                            '-9':  9,
+                            '-8':  9,
+                            '-7':  9,
+                            '-6':  9,
+                            '-5':  10,
+                            '-4':  10,
                         },
                         55: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 8,
+                            '-13': 8,
+                            '-11': 9,
+                            '-9':  9,
+                            '-8':  9,
+                            '-7':  9,
+                            '-6':  9,
+                            '-5':  9,
+                            '-4':  9,
                         },
                         40: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 7,
+                            '-13': 8,
+                            '-11': 8,
+                            '-9':  9,
+                            '-8':  9,
+                            '-7':  9,
+                            '-6':  9,
+                            '-5':  9,
+                            '-4':  9,
                         },
                     },
                 },
@@ -105,16 +156,37 @@ export class RoAlgo extends PacAlgo {
                     size:   12,
                     output: {
                         65: {
-                            '-7':  10.75,
-                            '-15': 6.73,
+                            '-15': 7,
+                            '-13': 9,
+                            '-11': 10,
+                            '-9':  10,
+                            '-8':  11,
+                            '-7':  11,
+                            '-6':  11,
+                            '-5':  11,
+                            '-4':  11,
                         },
                         55: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 9,
+                            '-13': 10,
+                            '-11': 10,
+                            '-9':  11,
+                            '-8':  11,
+                            '-7':  11,
+                            '-6':  10,
+                            '-5':  10,
+                            '-4':  10,
                         },
                         40: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 9,
+                            '-13': 9,
+                            '-11': 10,
+                            '-9':  10,
+                            '-8':  10,
+                            '-7':  10,
+                            '-6':  10,
+                            '-5':  10,
+                            '-4':  10,
                         },
                     },
                 },
@@ -123,16 +195,37 @@ export class RoAlgo extends PacAlgo {
                     size:   14,
                     output: {
                         65: {
-                            '-7':  9.64,
-                            '-15': 8.87,
+                            '-15': 9,
+                            '-13': 9,
+                            '-11': 9,
+                            '-9':  9,
+                            '-8':  10,
+                            '-7':  10,
+                            '-6':  10,
+                            '-5':  10,
+                            '-4':  10,
                         },
                         55: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 10,
+                            '-13': 10,
+                            '-11': 10,
+                            '-9':  10,
+                            '-8':  10,
+                            '-7':  10,
+                            '-6':  10,
+                            '-5':  10,
+                            '-4':  10,
                         },
                         40: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 9,
+                            '-13': 10,
+                            '-11': 10,
+                            '-9':  10,
+                            '-8':  10,
+                            '-7':  11,
+                            '-6':  10,
+                            '-5':  10,
+                            '-4':  9,
                         },
                     },
                 },
@@ -141,16 +234,37 @@ export class RoAlgo extends PacAlgo {
                     size:   16,
                     output: {
                         65: {
-                            '-7':  10.96,
-                            '-15': 10.09,
+                            '-15': 10,
+                            '-13': 10,
+                            '-11': 11,
+                            '-9':  11,
+                            '-8':  11,
+                            '-7':  11,
+                            '-6':  11,
+                            '-5':  11,
+                            '-4':  11,
                         },
                         55: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 11,
+                            '-13': 11,
+                            '-11': 11,
+                            '-9':  12,
+                            '-8':  12,
+                            '-7':  12,
+                            '-6':  12,
+                            '-5':  12,
+                            '-4':  12,
                         },
                         40: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 10,
+                            '-13': 11,
+                            '-11': 11,
+                            '-9':  11,
+                            '-8':  12,
+                            '-7':  12,
+                            '-6':  11,
+                            '-5':  11,
+                            '-4':  10,
                         },
                     },
                 },
@@ -159,16 +273,37 @@ export class RoAlgo extends PacAlgo {
                     size:   18,
                     output: {
                         65: {
-                            '-7':  11.47,
-                            '-15': 10.56,
+                            '-15': 11,
+                            '-13': 11,
+                            '-11': 11,
+                            '-9':  11,
+                            '-8':  11,
+                            '-7':  11,
+                            '-6':  12,
+                            '-5':  12,
+                            '-4':  12,
                         },
                         55: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 11,
+                            '-13': 12,
+                            '-11': 12,
+                            '-9':  12,
+                            '-8':  12,
+                            '-7':  12,
+                            '-6':  12,
+                            '-5':  12,
+                            '-4':  12,
                         },
                         40: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 11,
+                            '-13': 11,
+                            '-11': 12,
+                            '-9':  12,
+                            '-8':  12,
+                            '-7':  13,
+                            '-6':  12,
+                            '-5':  12,
+                            '-4':  11,
                         },
                     },
                 },
@@ -177,16 +312,37 @@ export class RoAlgo extends PacAlgo {
                     size:   4,
                     output: {
                         65: {
-                            '-7':  0,
                             '-15': 0,
+                            '-13': 0,
+                            '-11': 0,
+                            '-9':  0,
+                            '-8':  0,
+                            '-7':  0,
+                            '-6':  0,
+                            '-5':  0,
+                            '-4':  0,
                         },
                         55: {
+                            '-15': 4,
+                            '-13': 4,
+                            '-11': 4,
+                            '-9':  4,
+                            '-8':  4,
                             '-7':  4,
-                            '-15': 3.94,
+                            '-6':  4,
+                            '-5':  4,
+                            '-4':  4,
                         },
                         40: {
-                            '-7':  5.34,
-                            '-15': 4.64,
+                            '-15': 5,
+                            '-13': 5,
+                            '-11': 5,
+                            '-9':  5,
+                            '-8':  5,
+                            '-7':  5,
+                            '-6':  5,
+                            '-5':  5,
+                            '-4':  5,
                         },
                     },
                 },
@@ -195,16 +351,37 @@ export class RoAlgo extends PacAlgo {
                     size:   6,
                     output: {
                         65: {
-                            '-7':  0,
                             '-15': 0,
+                            '-13': 0,
+                            '-11': 0,
+                            '-9':  0,
+                            '-8':  0,
+                            '-7':  0,
+                            '-6':  0,
+                            '-5':  0,
+                            '-4':  0,
                         },
                         55: {
-                            '-7':  4.91,
-                            '-15': 4.91,
+                            '-15': 5,
+                            '-13': 5,
+                            '-11': 5,
+                            '-9':  5,
+                            '-8':  5,
+                            '-7':  5,
+                            '-6':  5,
+                            '-5':  5,
+                            '-4':  5,
                         },
                         40: {
-                            '-7':  6.25,
-                            '-15': 5.53,
+                            '-15': 6,
+                            '-13': 6,
+                            '-11': 6,
+                            '-9':  6,
+                            '-8':  6,
+                            '-7':  6,
+                            '-6':  6,
+                            '-5':  6,
+                            '-4':  6,
                         },
                     },
                 },
@@ -213,16 +390,37 @@ export class RoAlgo extends PacAlgo {
                     size:   8,
                     output: {
                         65: {
-                            '-7':  0,
                             '-15': 0,
+                            '-13': 0,
+                            '-11': 0,
+                            '-9':  0,
+                            '-8':  0,
+                            '-7':  0,
+                            '-6':  0,
+                            '-5':  0,
+                            '-4':  0,
                         },
                         55: {
-                            '-7':  6.74,
-                            '-15': 6.33,
+                            '-15': 6,
+                            '-13': 6,
+                            '-11': 7,
+                            '-9':  7,
+                            '-8':  7,
+                            '-7':  7,
+                            '-6':  7,
+                            '-5':  7,
+                            '-4':  7,
                         },
                         40: {
-                            '-7':  7.29,
-                            '-15': 6.53,
+                            '-15': 7,
+                            '-13': 7,
+                            '-11': 7,
+                            '-9':  7,
+                            '-8':  7,
+                            '-7':  7,
+                            '-6':  7,
+                            '-5':  7,
+                            '-4':  7,
                         },
                     },
                 },
@@ -231,16 +429,37 @@ export class RoAlgo extends PacAlgo {
                     size:   11,
                     output: {
                         65: {
-                            '-7':  0,
                             '-15': 0,
+                            '-13': 0,
+                            '-11': 0,
+                            '-9':  0,
+                            '-8':  0,
+                            '-7':  0,
+                            '-6':  0,
+                            '-5':  0,
+                            '-4':  0,
                         },
                         55: {
-                            '-7':  10.12,
-                            '-15': 8.71,
+                            '-15': 9,
+                            '-13': 9,
+                            '-11': 9,
+                            '-9':  10,
+                            '-8':  10,
+                            '-7':  10,
+                            '-6':  10,
+                            '-5':  10,
+                            '-4':  10,
                         },
                         40: {
+                            '-15': 10.96,   // TODO CHANGER AVEC LES VRAIES VALEURS
+                            '-13': 10.96,
+                            '-11': 10.96,
+                            '-9':  10.96,
+                            '-8':  10.96,
                             '-7':  10.86,
-                            '-15': 10.96,
+                            '-6':  10.86,
+                            '-5':  10.86,
+                            '-4':  10.86,
                         },
                     },
                 },
@@ -249,16 +468,37 @@ export class RoAlgo extends PacAlgo {
                     size:   14,
                     output: {
                         65: {
-                            '-7':  0,
                             '-15': 0,
+                            '-13': 0,
+                            '-11': 0,
+                            '-9':  0,
+                            '-8':  0,
+                            '-7':  0,
+                            '-6':  0,
+                            '-5':  0,
+                            '-4':  0,
                         },
                         55: {
-                            '-7':  11.38,
-                            '-15': 9.80,
+                            '-15': 10,
+                            '-13': 10,
+                            '-11': 11,
+                            '-9':  11,
+                            '-8':  11,
+                            '-7':  11,
+                            '-6':  11,
+                            '-5':  12,
+                            '-4':  12,
                         },
                         40: {
+                            '-15': 12.33,   // TODO CHANGER AVEC LES VRAIES VALEURS
+                            '-13': 12.33,
+                            '-11': 12.33,
+                            '-9':  12.33,
+                            '-8':  12.33,
                             '-7':  12.22,
-                            '-15': 12.33,
+                            '-6':  12.22,
+                            '-5':  12.22,
+                            '-4':  12.22,
                         },
                     },
                 },
@@ -267,16 +507,37 @@ export class RoAlgo extends PacAlgo {
                     size:   16,
                     output: {
                         65: {
-                            '-7':  0,
                             '-15': 0,
+                            '-13': 0,
+                            '-11': 0,
+                            '-9':  0,
+                            '-8':  0,
+                            '-7':  0,
+                            '-6':  0,
+                            '-5':  0,
+                            '-4':  0,
                         },
                         55: {
-                            '-7':  12.65,
-                            '-15': 10.89,
+                            '-15': 11,
+                            '-13': 11,
+                            '-11': 12,
+                            '-9':  12,
+                            '-8':  12,
+                            '-7':  13,
+                            '-6':  13,
+                            '-5':  13,
+                            '-4':  13,
                         },
                         40: {
+                            '-15': 13.70,   // TODO CHANGER AVEC LES VRAIES VALEURS
+                            '-13': 13.70,
+                            '-11': 13.70,
+                            '-9':  13.70,
+                            '-8':  13.70,
                             '-7':  13.57,
-                            '-15': 13.70,
+                            '-6':  13.57,
+                            '-5':  13.57,
+                            '-4':  13.57,
                         },
                     },
                 },
@@ -287,16 +548,37 @@ export class RoAlgo extends PacAlgo {
                     size:   8,
                     output: {
                         65: {
+                            '-15': 6,
+                            '-13': 7,
+                            '-11': 7,
+                            '-9':  8,
+                            '-8':  8,
                             '-7':  8,
-                            '-15': 6.24,
+                            '-6':  8,
+                            '-5':  8,
+                            '-4':  8,
                         },
                         55: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 7,
+                            '-13': 7,
+                            '-11': 7,
+                            '-9':  7,
+                            '-8':  7,
+                            '-7':  8,
+                            '-6':  8,
+                            '-5':  8,
+                            '-4':  8,
                         },
                         40: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 6,
+                            '-13': 7,
+                            '-11': 7,
+                            '-9':  7,
+                            '-8':  7,
+                            '-7':  8,
+                            '-6':  8,
+                            '-5':  8,
+                            '-4':  8,
                         },
                     },
                 },
@@ -305,16 +587,37 @@ export class RoAlgo extends PacAlgo {
                     size:   10,
                     output: {
                         65: {
-                            '-7':  9.25,
-                            '-15': 6.73,
+                            '-15': 7,
+                            '-13': 8,
+                            '-11': 8,
+                            '-9':  9,
+                            '-8':  9,
+                            '-7':  9,
+                            '-6':  9,
+                            '-5':  10,
+                            '-4':  10,
                         },
                         55: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 8,
+                            '-13': 8,
+                            '-11': 9,
+                            '-9':  9,
+                            '-8':  9,
+                            '-7':  9,
+                            '-6':  9,
+                            '-5':  9,
+                            '-4':  9,
                         },
                         40: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 7,
+                            '-13': 8,
+                            '-11': 8,
+                            '-9':  9,
+                            '-8':  9,
+                            '-7':  9,
+                            '-6':  9,
+                            '-5':  9,
+                            '-4':  9,
                         },
                     },
                 },
@@ -323,16 +626,37 @@ export class RoAlgo extends PacAlgo {
                     size:   12,
                     output: {
                         65: {
-                            '-7':  10.75,
-                            '-15': 6.73,
+                            '-15': 7,
+                            '-13': 9,
+                            '-11': 10,
+                            '-9':  10,
+                            '-8':  11,
+                            '-7':  11,
+                            '-6':  11,
+                            '-5':  11,
+                            '-4':  11,
                         },
                         55: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 9,
+                            '-13': 10,
+                            '-11': 10,
+                            '-9':  11,
+                            '-8':  11,
+                            '-7':  11,
+                            '-6':  10,
+                            '-5':  10,
+                            '-4':  10,
                         },
                         40: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 9,
+                            '-13': 9,
+                            '-11': 10,
+                            '-9':  10,
+                            '-8':  10,
+                            '-7':  10,
+                            '-6':  10,
+                            '-5':  10,
+                            '-4':  10,
                         },
                     },
                 },
@@ -341,16 +665,37 @@ export class RoAlgo extends PacAlgo {
                     size:   14,
                     output: {
                         65: {
-                            '-7':  9.96,
-                            '-15': 9.47,
+                            '-15': 9,
+                            '-13': 10,
+                            '-11': 10,
+                            '-9':  10,
+                            '-8':  10,
+                            '-7':  10,
+                            '-6':  10,
+                            '-5':  10,
+                            '-4':  10,
                         },
                         55: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 10,
+                            '-13': 10,
+                            '-11': 11,
+                            '-9':  11,
+                            '-8':  11,
+                            '-7':  11,
+                            '-6':  11,
+                            '-5':  11,
+                            '-4':  11,
                         },
                         40: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 10,
+                            '-13': 10,
+                            '-11': 10,
+                            '-9':  10,
+                            '-8':  11,
+                            '-7':  11,
+                            '-6':  10,
+                            '-5':  10,
+                            '-4':  10,
                         },
                     },
                 },
@@ -359,16 +704,38 @@ export class RoAlgo extends PacAlgo {
                     size:   16,
                     output: {
                         65: {
-                            '-7':  11.33,
-                            '-15': 10.78,
+                            '-15': 11,
+                            '-13': 11,
+                            '-11': 11,
+                            '-9':  11,
+                            '-8':  11,
+                            '-7':  11,
+                            '-6':  11,
+                            '-5':  11,
+                            '-4':  12,
                         },
                         55: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 12,
+                            '-13': 12,
+                            '-11': 12,
+                            '-9':  12,
+                            '-8':  12,
+                            '-7':  13,
+                            '-6':  12,
+                            '-5':  12,
+                            '-4':  12,
+
                         },
                         40: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 11,
+                            '-13': 11,
+                            '-11': 11,
+                            '-9':  12,
+                            '-8':  12,
+                            '-7':  12,
+                            '-6':  11,
+                            '-5':  11,
+                            '-4':  11,
                         },
                     },
                 },
@@ -377,16 +744,37 @@ export class RoAlgo extends PacAlgo {
                     size:   18,
                     output: {
                         65: {
-                            '-7':  11.85,
-                            '-15': 11.28,
+                            '-15': 11,
+                            '-13': 11,
+                            '-11': 12,
+                            '-9':  12,
+                            '-8':  12,
+                            '-7':  12,
+                            '-6':  12,
+                            '-5':  12,
+                            '-4':  12,
                         },
                         55: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 12,
+                            '-13': 12,
+                            '-11': 13,
+                            '-9':  13,
+                            '-8':  13,
+                            '-7':  13,
+                            '-6':  13,
+                            '-5':  13,
+                            '-4':  13,
                         },
                         40: {
-                            '-7':  0,
-                            '-15': 0,
+                            '-15': 11,
+                            '-13': 12,
+                            '-11': 12,
+                            '-9':  12,
+                            '-8':  13,
+                            '-7':  13,
+                            '-6':  12,
+                            '-5':  12,
+                            '-4':  12,
                         },
                     },
                 },
@@ -642,7 +1030,7 @@ export class RoAlgo extends PacAlgo {
      * Retourne le niveau de tempéature que peut gérer le type de radiateur
      * @param heater
      */
-    private heaterToValue = ( heater: string ): number => {
+    private heaterToValue( heater: string ): number {
         if ( heater === 'r_fonte' || heater === 'r_fonte_p_chauffant' ) {
             return 65;
         }
@@ -656,27 +1044,33 @@ export class RoAlgo extends PacAlgo {
         }
 
         return 0;
-    };
+    }
 
     /**
      * Retourne si oui ou non la PAC doit être Bi Zone selon les radiatieurs
      * @param heater
      */
-    private isBiZone = ( heater: string ): boolean => {
+    private isBiZone( heater: string ): boolean {
         return heater === 'r_autre_p_chauffant' || heater === 'r_fonte_p_chauffant';
-    };
+    }
 
-    public getUnitsRo = ( volumeECS: number ): { unitExt: UnitExt; unitInt: UnitInt; needBiZoneSupplement: boolean } | null => {
+    public getUnitsRo( volumeECS: number ): { unitExt: UnitExt; unitInt: UnitInt; needBiZoneSupplement: boolean } | null {
         console.log( '%c GET UNITS RO', 'background: #5ADFFF; color: #000000' );
         const requiredPower: number = this.calcRequiredPower( this.housing, 'pac_ro' );
         const baseTemp: number      = this.getBaseTemperature( this.housing.climaticZone, this.housing.altitude );
         const heaterValue: number   = this.heaterToValue( this.housing.heaters );
 
         let formatedBaseTemp: string;
-        if ( baseTemp > -7 ) {
-            formatedBaseTemp = '-7';
-        } else {
+        if ( baseTemp > -4 ) {
+            formatedBaseTemp = '-4';
+        } else if ( baseTemp === -10 ) {
+            formatedBaseTemp = '-11';
+        } else if ( baseTemp === -12 ) {
+            formatedBaseTemp = '-13';
+        } else if ( baseTemp === -14 ) {
             formatedBaseTemp = '-15';
+        } else {
+            formatedBaseTemp = baseTemp.toString();
         }
 
         console.log( {
@@ -710,16 +1104,28 @@ export class RoAlgo extends PacAlgo {
         } else {
             console.log( 'filterredUnitExt -->', filterredUnitExt );
             // Si il y a plus de 1 PAC on parcours les pacs et on récupère celle à la plus faible puissance (la plus proche de la puissance requise)
+            // Si Même puissance la moins chère
             for ( const unitExt of filterredUnitExt ) {
                 console.log( unitExt );
                 console.log( 's1 ->', selectedUnitExt );
                 if ( selectedUnitExt === null ) {
                     selectedUnitExt = unitExt;
-                } else {
-                    if ( selectedUnitExt.output[ heaterValue ][ formatedBaseTemp ] > unitExt.output[ heaterValue ][ formatedBaseTemp ] ) {
-                        selectedUnitExt = unitExt;
+                } else if ( selectedUnitExt.output[ heaterValue ][ formatedBaseTemp ] > unitExt.output[ heaterValue ][ formatedBaseTemp ] ) {
+                    selectedUnitExt = unitExt;
+                } else if ( selectedUnitExt.output[ heaterValue ][ formatedBaseTemp ] === unitExt.output[ heaterValue ][ formatedBaseTemp ] ) {
+                    console.log( '%c MEME PUISSANCE', 'background: #fdd835; color: #000000' );
+
+                    const p1: Product | undefined = getProductByRef( selectedUnitExt.ref );
+                    const p2: Product | undefined = getProductByRef( unitExt.ref );
+
+                    // On check les prix et assigne la moins chère
+                    if ( p1 !== undefined && p2 !== undefined ) {
+                        if ( p1.pu > p2.pu ) {
+                            selectedUnitExt = unitExt;
+                        }
                     }
                 }
+
                 console.log( 's2 ->', selectedUnitExt );
             }
         }
@@ -823,5 +1229,76 @@ export class RoAlgo extends PacAlgo {
             unitInt: selectedUnitInt,
             needBiZoneSupplement,
         };
-    };
+    }
+
+    /**
+     * Retourne la puissance réel d'une unité extérieur selon la zone climatique
+     */
+    public getRealPowerUnitExt(): number {
+        const requiredPower: number = this.calcRequiredPower( this.housing, 'pac_ro' );
+        const baseTemp: number      = this.getBaseTemperature( this.housing.climaticZone, this.housing.altitude );
+        const heaterValue: number   = this.heaterToValue( this.housing.heaters );
+
+        let formatedBaseTemp: string;
+        if ( baseTemp > -4 ) {
+            formatedBaseTemp = '-4';
+        } else if ( baseTemp === -10 ) {
+            formatedBaseTemp = '-11';
+        } else if ( baseTemp === -12 ) {
+            formatedBaseTemp = '-13';
+        } else if ( baseTemp === -14 ) {
+            formatedBaseTemp = '-15';
+        } else {
+            formatedBaseTemp = baseTemp.toString();
+        }
+
+        // Si on ne trouve pas dans la liste la tension souhaité on retourne null
+        if ( this.unitExtList[ this.housing.availableVoltage ] === undefined ) {
+            return 0;
+        }
+
+        // On filtre la liste pour trouver la PAC souhaité
+        const filterredUnitExt: UnitExt[] = this.unitExtList[ this.housing.availableVoltage ].filter( ( pac: UnitExt ) => {
+            // Si valeur de chauffage n'est pas défini
+            if ( pac.output[ heaterValue ] === undefined ) {
+                return false;
+            }
+
+            // On retourne la PAC que si sont output est supérieur à la puissance requise
+            return pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower;
+        } );
+
+        let selectedUnitExt: UnitExt | null = null;
+
+        if ( filterredUnitExt.length === 1 ) {
+            selectedUnitExt = filterredUnitExt[ 0 ];
+        } else {
+            // Si il y a plus de 1 PAC on parcours les pacs et on récupère celle à la plus faible puissance (la plus proche de la puissance requise)
+            // Si Même puissance la moins chère
+            for ( const unitExt of filterredUnitExt ) {
+                if ( selectedUnitExt === null ) {
+                    selectedUnitExt = unitExt;
+                } else if ( selectedUnitExt.output[ heaterValue ][ formatedBaseTemp ] > unitExt.output[ heaterValue ][ formatedBaseTemp ] ) {
+                    selectedUnitExt = unitExt;
+                } else if ( selectedUnitExt.output[ heaterValue ][ formatedBaseTemp ] === unitExt.output[ heaterValue ][ formatedBaseTemp ] ) {
+                    const p1: Product | undefined = getProductByRef( selectedUnitExt.ref );
+                    const p2: Product | undefined = getProductByRef( unitExt.ref );
+
+                    // On check les prix et assigne la moins chère
+                    if ( p1 !== undefined && p2 !== undefined ) {
+                        if ( p1.pu > p2.pu ) {
+                            selectedUnitExt = unitExt;
+                        }
+                    }
+                }
+            }
+        }
+
+        if ( selectedUnitExt === null ) {
+            return 0;
+        }
+
+
+        return selectedUnitExt.output[ heaterValue ][ formatedBaseTemp ];
+    }
 }

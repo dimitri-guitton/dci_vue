@@ -2,10 +2,10 @@ import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
 import { PAC_DIMENSION } from '@/services/pdf/pdfVariable';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { getAddress } from '@/services/data/dataService';
-import { PacAlgo } from '@/services/algorithm/PacAlgo';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
+import { RoAlgo } from '@/services/algorithm/RoAlgo';
 
 export class SizingPacGenerator extends PdfGenerator {
     private readonly _file: RoFile | RrFile;
@@ -35,11 +35,11 @@ export class SizingPacGenerator extends PdfGenerator {
 
     private _generateDocDefinition(): TDocumentDefinitions {
         const housing: PacHousing = this._file.housing as PacHousing;
-        const pacAlgo             = new PacAlgo( housing );
+        const roAlgo              = new RoAlgo( housing );
 
         const { address, zipCode, city } = getAddress( this._file );
 
-        const deltaT     = pacAlgo.calcDeltaT( housing.setPointTemperature, housing.climaticZone, housing.altitude );
+        const deltaT     = roAlgo.calcDeltaT( housing.setPointTemperature, housing.climaticZone, housing.altitude );
         let altitudeText = '0 à 200m';
         switch ( +housing.altitude ) {
             case 201:
@@ -60,6 +60,7 @@ export class SizingPacGenerator extends PdfGenerator {
 
         const prefix = `${ this.getValueInList( this._file.lists.heatersList, housing.heaters ) } :`;
 
+
         switch ( housing.heaters ) {
             case 'r_fonte':
             case 'r_fonte_p_chauffant':
@@ -75,26 +76,44 @@ export class SizingPacGenerator extends PdfGenerator {
         heaterText = `${ prefix } ${ heaterText }`;
 
         let powerPacText = '';
-        for ( const product of this._file.quotation.selectedProducts ) {
-            if ( product.productType === 'pac_rr' || product.productType === 'pac_ro' ) {
-                if ( product.label.toLowerCase().includes( 'unite exterieure' ) ) {
-                    const regex = /Puissance calorifique.*/gm;
-                    let m;
-
-                    while ( ( m = regex.exec( product.description ) ) !== null ) {
-                        if ( m.index === regex.lastIndex ) {
-                            regex.lastIndex++;
-                        }
-
-                        m.forEach( ( match, groupIndex ) => {
-                            if ( groupIndex === 0 ) {
-                                powerPacText = match;
-                            }
-                        } );
-                    }
-                }
-            }
+        switch ( housing.heaters ) {
+            case 'r_fonte':
+            case 'r_fonte_p_chauffant':
+                powerPacText = `Départ d’eau 65°C -> Puissance calorifique à ${ roAlgo.getBaseTemperature( housing.climaticZone,
+                                                                                                           housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt() }KW`;
+                break;
+            case 'r_autre':
+            case 'r_autre_p_chauffant':
+                powerPacText = `Départ d’eau 55°C -> Puissance calorifique à ${ roAlgo.getBaseTemperature( housing.climaticZone,
+                                                                                                           housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt() }KW`;
+                break;
+            case 'p_chauffant':
+                powerPacText = `Départ d’eau 40°C -> Puissance calorifique à ${ roAlgo.getBaseTemperature( housing.climaticZone,
+                                                                                                           housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt() }KW`;
+                break;
         }
+
+
+        // for ( const product of this._file.quotation.selectedProducts ) {
+        //     if ( product.productType === 'pac_rr' || product.productType === 'pac_ro' ) {
+        //         if ( product.label.toLowerCase().includes( 'unite exterieure' ) ) {
+        //             const regex = /Puissance calorifique.*/gm;
+        //             let m;
+        //
+        //             while ( ( m = regex.exec( product.description ) ) !== null ) {
+        //                 if ( m.index === regex.lastIndex ) {
+        //                     regex.lastIndex++;
+        //                 }
+        //
+        //                 m.forEach( ( match, groupIndex ) => {
+        //                     if ( groupIndex === 0 ) {
+        //                         powerPacText = match;
+        //                     }
+        //                 } );
+        //             }
+        //         }
+        //     }
+        // }
 
         return {
             content: [
@@ -144,15 +163,15 @@ export class SizingPacGenerator extends PdfGenerator {
                             alignment: 'center',
                         },
                         {
-                            text:      `Donc le delta T est de : ${ housing.setPointTemperature } - (${ pacAlgo.getBaseTemperature( housing.climaticZone,
-                                                                                                                                    housing.altitude ) })`,
+                            text:      `Donc le delta T est de : ${ housing.setPointTemperature } - (${ roAlgo.getBaseTemperature( housing.climaticZone,
+                                                                                                                                   housing.altitude ) })`,
                             italics:   true,
                             fontSize:  10,
                             alignment: 'center',
                         },
                         {
                             margin:    [ 0, 5, 0, 15 ],
-                            text:      `Déperdition = ${ housing.buildingCoefficient } x ${ housing.area * housing.ceilingHeight } x ${ deltaT } = ${ pacAlgo.calcRequiredPower(
+                            text: `Déperdition = ${ housing.buildingCoefficient } x ${ housing.area * housing.ceilingHeight } x ${ deltaT } = ${ roAlgo.calcRequiredPower(
                                 housing ) } KW`,
                             fontSize:  18,
                             alignment: 'center',

@@ -95,10 +95,9 @@ export class PacAlgo {
         const deltaT: number = this.calcDeltaT( housing.setPointTemperature, housing.climaticZone, housing.altitude );
 
         let coef = 1;
-        if ( type === 'pac_rr' ) {  // SI pac RR on surdimensionne de 10%
-            coef = 1.1;
-        } else if ( type === 'pac_ro' ) {
+        if ( type === 'pac_ro' ) {
             coef = 0.9;
+            // coef = 1;
         }
 
         // Puissance en W
