@@ -292,8 +292,9 @@ export default defineComponent( {
                                       return tempData;
                                     } );
 
-                                    const updateProspect = ( fileId: number, event ) => {
-                                      sqliteService.setFileProspect( fileId, event.target.checked );
+                                    const updateProspect = async ( fileId: number, event ) => {
+                                      await sqliteService.setFileProspect( fileId, event.target.checked );
+                                      tableData.value = ( await sqliteService.getAllFiles() );
                                     };
 
                                     const handleAction = async ( command: { type: string; folder: DatatableFile } ) => {

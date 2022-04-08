@@ -48,12 +48,7 @@ export default defineComponent( {
                                       ctx.emit( 'discountUpdated', newValue );
                                     } );
 
-                                    const onChangeDiscount = () => {
-                                      ctx.emit( 'discountUpdated', newDiscount.value );
-                                    };
-
                                     return {
-                                      onChangeDiscount,
                                       numberToPrice,
                                       newDiscount,
                                     };
