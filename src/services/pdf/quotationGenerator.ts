@@ -388,7 +388,7 @@ export class QuotationGenerator extends PdfGenerator {
                                                 },
                                             ],
                                         },
-                                        `${ this._file.beneficiary.firstName } ${ this._file.beneficiary.lastName }`,
+                                        `${ this._file.beneficiary.lastName } ${ this._file.beneficiary.firstName }`,
                                         this._file.beneficiary.address,
                                         this._file.beneficiary.city,
                                         this._file.beneficiary.zipCode,
