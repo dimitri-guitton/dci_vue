@@ -348,7 +348,6 @@ export async function updateReference( oldReferene: string, newReference: string
 }
 
 export async function updateErrorsStatusInDci( referene: string, errors: number[] ) {
-    console.log( '%C SET ERRROR', 'background: #CEFF00; color: #000000' );
     const res = await getFileByReference( referene );
 
     let fileId = 0;

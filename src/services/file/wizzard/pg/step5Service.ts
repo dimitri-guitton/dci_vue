@@ -5,7 +5,6 @@ import { PgFileStep } from '@/types/v2/Wizzard/FileStep';
 import { PgFile } from '@/types/v2/File/Pg/PgFile';
 import { getCurrentPgFileData } from '@/services/data/dataService';
 import { PgWorkSheet } from '@/types/v2/File/Pg/PgWorkSheet';
-import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 
 /**
  * Création du formualaire pour la fiche d'info
@@ -462,10 +461,10 @@ export const savePgWorksheet = ( data: PgFileStep ): PgFile => {
 
     let worksheet: PgWorkSheet = fileData.worksheet;
 
-    let updateFileReference = false;
-    if ( worksheet.technicalVisit !== data.worksheet.technicalVisit ) {
-        updateFileReference = true;
-    }
+    // let updateFileReference = false;
+    // if ( worksheet.technicalVisit !== data.worksheet.technicalVisit ) {
+    //     updateFileReference = true;
+    // }
 
     worksheet = {
         ...worksheet,
@@ -477,9 +476,9 @@ export const savePgWorksheet = ( data: PgFileStep ): PgFile => {
         worksheet,
     };
 
-    if ( updateFileReference ) {
-        updateFileReferenceTechnicalVisit( fileData, data.worksheet.technicalVisit === true );
-    }
+    // if ( updateFileReference ) {
+    //     updateFileReferenceTechnicalVisit( fileData, data.worksheet.technicalVisit === true );
+    // }
 
     updateJsonData( fileData );
 

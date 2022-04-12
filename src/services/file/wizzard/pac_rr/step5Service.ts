@@ -341,7 +341,7 @@ export const savePacRrWorksheet = ( data: PacRrFileStep ): RrFile => {
     };
 
     if ( updateFileReference ) {
-        updateFileReferenceTechnicalVisit( fileData, data.worksheet.technicalVisit === true );
+        fileData = updateFileReferenceTechnicalVisit( fileData, data.worksheet.technicalVisit === true ) as RrFile;
     }
 
     updateJsonData( fileData );
