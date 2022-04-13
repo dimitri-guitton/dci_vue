@@ -121,6 +121,10 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
         ceeBonus = +ceeBonus;
     }
 
+    // On fix à 4 chiffre apres la virgule avant de faire l'arrondi car on peut avoir des erreur sur certain chiffre
+    // Exemple 8.05 * 66 = 531.3000000000001 et donc l'arrondi est 531.31 et non 531.3
+    ceeBonus = +ceeBonus.toFixed( 4 );
+
     return ceil10( ceeBonus, -2 );
 };
 
