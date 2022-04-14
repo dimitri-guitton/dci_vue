@@ -354,9 +354,10 @@ export default defineComponent( {
                                         } );
 
                                     const price = computed<Price>( () => {
-                                      let totalHt  = 0;
-                                      let ceeBonus = 0;
-                                      let tva10    = 0;
+                                      let totalHt     = 0;
+                                      let ceeBonus    = 0;
+                                      let sumForTva10 = 0;
+                                      let tva10;
                                       let tva20;
 
                                       console.log( 'Prix par defaut -->', totalHt );
@@ -371,7 +372,7 @@ export default defineComponent( {
                                           totalHt += option.pu * option.number;
 
                                           if ( option.calcTva10 === true ) {
-                                            tva10 += option.pu * option.number;
+                                            sumForTva10 += option.pu * option.number;
                                           }
                                         }
                                       }
@@ -393,8 +394,11 @@ export default defineComponent( {
 
                                       // SI plus de 2 ans
                                       if ( !lessThan2Year ) {
-                                        tva10 = tva10 * 0.1;
-                                        tva20 = ( totalHt - tva10 ) * 0.2;
+                                        console.log( 'sumForTva10', sumForTva10 );
+                                        tva10 = sumForTva10 * 0.1;
+                                        console.log( 'TVA 20 -->', tva10 );
+                                        tva20 = ( totalHt - sumForTva10 ) * 0.2;
+                                        console.log( 'TVA 20 -->', tva20 );
                                       } else {
                                         console.log( '%c TVA 10 = 0', 'background: #fdd835; color: #000000' );
                                         tva10 = 0;

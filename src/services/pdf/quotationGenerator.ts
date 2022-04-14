@@ -1453,7 +1453,10 @@ export class QuotationGenerator extends PdfGenerator {
                             ],
                             [
                                 {
-                                    text: 'Assurance décennale SMA BTP C30911H',
+                                    text: [
+                                        'Assurance décennale SMA BTP C30911H\n',
+                                        'Durée de validité des prix indiqués sur ce devis 1 mois à partir de la date de son établissement',
+                                    ],
                                     bold: true,
                                 },
                                 {

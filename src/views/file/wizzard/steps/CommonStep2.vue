@@ -306,7 +306,7 @@
       </div>
 
       <div class="col-md-6 fv-row">
-        <label class="form-label mb-3">Potable</label>
+        <label class="form-label mb-3">Portable</label>
         <Field
             type="text"
             class="form-control"
