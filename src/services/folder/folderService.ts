@@ -150,9 +150,10 @@ export const addJsonData = ( type: string, parent: string, reference: string, fo
                disabledMaPrimeRenovBonus: newFolder.disabledMaPrimeRenovBonus,
                statusInDci:               2,
                errorsStatusInDci:         [],
-               quotation:                 {
+               quotation: {
                    ...fileData.quotation,
-                   executionDelay: toEnglishDate( new Date( today.setMonth( today.getMonth() + 5 ) ).toString() ),
+                   executionDelay:     toEnglishDate( new Date( today.setMonth( today.getMonth() + 5 ) ).toString() ),
+                   dateTechnicalVisit: toEnglishDate( new Date().toString() ),
                },
                technician:                getCommercialInfo(),
            };
