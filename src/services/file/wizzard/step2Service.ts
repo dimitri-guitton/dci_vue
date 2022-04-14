@@ -29,8 +29,8 @@ export const yupConfigStep2  = () => {
                                                                                           .required(),
                                                                             income:    Yup.number()
                                                                                           .required()
-                                                                                          .min( 1,
-                                                                                                'Le revenu doit être supérieur à 0' ),
+                                                                                          .min( 0,
+                                                                                                'Le revenu doit être supérieur ou égal à 0' ),
                                                                         } ),
                                                 ),
                            indexBeneficiary: Yup.number().required(),
