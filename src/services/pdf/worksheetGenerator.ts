@@ -2,7 +2,24 @@ import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { CombleWorkSheet } from '@/types/v2/File/Comble/CombleWorkSheet';
 import { BROWN, DARK } from '@/services/pdf/pdfVariable';
-import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_PV, FILE_SOL } from '@/services/constantService';
+import {
+    FILE_CET,
+    FILE_CET_TYPE,
+    FILE_COMBLE,
+    FILE_COMBLE_TYPE,
+    FILE_PAC_RO,
+    FILE_PAC_RO_TYPE,
+    FILE_PAC_RR,
+    FILE_PAC_RR_TYPE,
+    FILE_PB,
+    FILE_PB_TYPE,
+    FILE_PG,
+    FILE_PG_TYPE,
+    FILE_PV,
+    FILE_PV_TYPE,
+    FILE_SOL,
+    FILE_SOL_TYPE,
+} from '@/services/constantService';
 import CombleList from '@/types/v2/File/Comble/CombleList';
 import { CombleQuotation } from '@/types/v2/File/Comble/CombleQuotation';
 import { CetWorkSheet } from '@/types/v2/File/Cet/CetWorkSheet';
@@ -74,13 +91,43 @@ export class WorksheetGenerator extends PdfGenerator {
         if ( this._file.technician !== undefined ) {
             technician += `${ this._file.technician.firstName } ${ this._file.technician.lastName }`;
         }
+
+
+        let type = '';
+        switch ( this._file.type ) {
+            case FILE_CET:
+                type = FILE_CET_TYPE.name;
+                break;
+            case FILE_SOL:
+                type = FILE_SOL_TYPE.name;
+                break;
+            case FILE_COMBLE:
+                type = FILE_COMBLE_TYPE.name;
+                break;
+            case FILE_PAC_RR:
+                type = FILE_PAC_RR_TYPE.name;
+                break;
+            case FILE_PAC_RO:
+                type = FILE_PAC_RO_TYPE.name;
+                break;
+            case FILE_PG:
+                type = FILE_PG_TYPE.name;
+                break;
+            case FILE_PB:
+                type = FILE_PB_TYPE.name;
+                break;
+            case FILE_PV:
+                type = FILE_PV_TYPE.name;
+                break;
+        }
+
         return {
-            style:  [ 'text' ],
-            table:  {
+            style: [ 'text' ],
+            table: {
                 widths: [ '50%', '*' ],
                 body:   [
                     [
-                        'FICHE VISITE TECHNIQUE POUR POELE',
+                        `FICHE VISITE TECHNIQUE POUR ${ type.toUpperCase() }`,
                         'N° DEVIS ECO À RAPPELER LORS DE LA PRISE DE RDV',
                     ],
                     [
