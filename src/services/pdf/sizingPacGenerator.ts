@@ -69,6 +69,7 @@ export class SizingPacGenerator extends PdfGenerator {
             case 'r_autre':
             case 'p_chauffant':
             case 'r_autre_p_chauffant':
+            case 'p_chauffant_p_chauffant':
                 heaterText = 'Nous préconisons l\'installation d\'une pompe à chaleur moyenne température.\n';
                 break;
         }
@@ -88,6 +89,7 @@ export class SizingPacGenerator extends PdfGenerator {
                                                                                                            housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt() }KW`;
                 break;
             case 'p_chauffant':
+            case 'p_chauffant_p_chauffant':
                 powerPacText = `Départ d’eau 40°C -> Puissance calorifique à ${ roAlgo.getBaseTemperature( housing.climaticZone,
                                                                                                            housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt() }KW`;
                 break;

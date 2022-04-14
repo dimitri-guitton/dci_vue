@@ -1039,7 +1039,7 @@ export class RoAlgo extends PacAlgo {
             return 55;
         }
 
-        if ( heater === 'p_chauffant' ) {
+        if ( heater === 'p_chauffant' || heater === 'p_chauffant_p_chauffant' ) {
             return 40;
         }
 
@@ -1051,7 +1051,7 @@ export class RoAlgo extends PacAlgo {
      * @param heater
      */
     private isBiZone( heater: string ): boolean {
-        return heater === 'r_autre_p_chauffant' || heater === 'r_fonte_p_chauffant';
+        return heater === 'r_autre_p_chauffant' || heater === 'r_fonte_p_chauffant' || heater === 'p_chauffant_p_chauffant';
     }
 
     public getUnitsRo( volumeECS: number ): { unitExt: UnitExt; unitInt: UnitInt; needBiZoneSupplement: boolean } | null {

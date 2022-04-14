@@ -333,7 +333,7 @@ export class RrAlgo extends PacAlgo {
             return 'DAIFTXM71R';
         }
         if ( model === 15 && assortment === 'STYLISH_NOIR' ) {
-            return 'DAIFTXA15BB';
+            return 'DAICTXA15BB';
         }
         if ( model === 20 && assortment === 'STYLISH_NOIR' ) {
             return 'DAIFTXA20BB';
@@ -351,7 +351,7 @@ export class RrAlgo extends PacAlgo {
             return 'DAIFTXA50BB';
         }
         if ( model === 15 && assortment === 'STYLISH_BLANC' ) {
-            return 'DAIFTXA15AW';
+            return 'DAICTXA15AW';
         }
         if ( model === 20 && assortment === 'STYLISH_BLANC' ) {
             return 'DAIFTXA20AW';
@@ -369,7 +369,7 @@ export class RrAlgo extends PacAlgo {
             return 'DAIFTXA50AW';
         }
         if ( model === 15 && assortment === 'STYLISH_ARGENT' ) {
-            return 'DAIFTXA15BS';
+            return 'DAICTXA15BS';
         }
         if ( model === 20 && assortment === 'STYLISH_ARGENT' ) {
             return 'DAIFTXA20BS';
@@ -387,7 +387,7 @@ export class RrAlgo extends PacAlgo {
             return 'DAIFTXA50BS';
         }
         if ( model === 15 && assortment === 'STYLISH_BOIS' ) {
-            return 'DAIFTXA15BT';
+            return 'DAICTXA15BT';
         }
         if ( model === 20 && assortment === 'STYLISH_BOIS' ) {
             return 'DAIFTXA20BT';
