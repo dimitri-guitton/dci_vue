@@ -42,6 +42,29 @@
       ></ErrorMessage>
     </div>
   </div>
+  <div class="row mb-10 d-flex align-items-end">
+    <div class="col-md-4">
+      <label class="form-check form-switch form-check-custom">
+        <Field
+            type="checkbox"
+            class="form-check-input"
+            name="requestTechnicalVisit"
+            :value="true"
+        />
+        <span class="form-check-label fw-bold text-gray-400">Demande de visite technique avant travaux</span>
+      </label>
+    </div>
+    <div class="col-md-4 fv-row">
+      <label class="form-label mb-3">Motif</label>
+      <Field
+          type="text"
+          class="form-control"
+          name="technicalVisitReason"
+          placeholder="Motif"
+          value=""
+      />
+    </div>
+  </div>
   <div class="row mb-10">
     <div class="col-md-4 mb-10">
       <label class="form-check form-switch form-check-custom">

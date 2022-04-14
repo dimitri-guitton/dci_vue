@@ -7,6 +7,7 @@ import { updateJsonData } from '@/services/folder/folderService';
 import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
 import { BaseStep4 } from '@/types/v2/Wizzard/step4/BaseStep4';
 import { updateTotalTtc } from '@/services/sqliteService';
+import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4
@@ -25,6 +26,12 @@ export const validateCombleStep4 = async ( data: CombleFileStep, price: Price ):
     let fileData                   = getCurrentCombleFileData();
     let quotation: CombleQuotation = fileData.quotation;
 
+    // Si modification de visite technique
+    let updateFileReference = false;
+    if ( quotation.requestTechnicalVisit !== data.requestTechnicalVisit ) {
+        updateFileReference = true;
+    }
+
     quotation = {
         ...quotation,
         ...defaultGetQuotationValueStep4( data, price ),
@@ -34,6 +41,13 @@ export const validateCombleStep4 = async ( data: CombleFileStep, price: Price ):
         ...fileData,
         quotation,
     };
+
+    console.log( 'updateFileReference', updateFileReference );
+    console.log( 'data.requestTechnicalVisit', data.requestTechnicalVisit );
+    if ( updateFileReference ) {
+        fileData = updateFileReferenceTechnicalVisit( fileData, data.requestTechnicalVisit === true ) as CombleFile;
+    }
+    console.log( 'File data before update', fileData );
 
     updateJsonData( fileData );
     updateTotalTtc( fileData.ref, fileData.quotation.totalTtc );

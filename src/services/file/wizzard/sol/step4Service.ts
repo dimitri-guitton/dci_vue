@@ -7,6 +7,7 @@ import { SolQuotation } from '@/types/v2/File/Sol/SolQuotation';
 import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
 import { updateTotalTtc } from '@/services/sqliteService';
 import { SolStep4 } from '@/types/v2/Wizzard/step4/SolStep4';
+import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4
@@ -28,6 +29,12 @@ export const validateSolStep4 = async ( data: SolFileStep, price: Price ): Promi
     let fileData                = getCurrentSolFileData();
     let quotation: SolQuotation = fileData.quotation;
 
+    // Si modification de visite technique
+    let updateFileReference = false;
+    if ( quotation.requestTechnicalVisit !== data.requestTechnicalVisit ) {
+        updateFileReference = true;
+    }
+
     quotation = {
         ...quotation,
         ...defaultGetQuotationValueStep4( data, price ),
@@ -38,6 +45,10 @@ export const validateSolStep4 = async ( data: SolFileStep, price: Price ): Promi
         ...fileData,
         quotation,
     };
+
+    if ( updateFileReference ) {
+        fileData = updateFileReferenceTechnicalVisit( fileData, data.requestTechnicalVisit === true ) as SolFile;
+    }
 
     updateJsonData( fileData );
     updateTotalTtc( fileData.ref, fileData.quotation.totalTtc );

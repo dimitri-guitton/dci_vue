@@ -695,6 +695,20 @@ export class QuotationGenerator extends PdfGenerator {
         const tableBody: ContentText[][] = [];
         let rowTable: ContentText[]      = [];
 
+        const baseQuotation = this._file.quotation;
+        // Demande visite technique
+        if ( baseQuotation.requestTechnicalVisit === true ) {
+            tableBody.push( [
+                                { text: `Visite technique demandé`, bold: true },
+                                { text: 'OUI' },
+                            ] );
+
+            tableBody.push( [
+                                { text: `Motif visite technique`, bold: true },
+                                { text: baseQuotation.technicalVisitReason ? baseQuotation.technicalVisitReason : '' },
+                            ] );
+        }
+
         if ( data.left !== undefined ) {
             for ( const item of data.left ) {
                 rowTable.push( { text: `${ item.label } :`, bold: true } );

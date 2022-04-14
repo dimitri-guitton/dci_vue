@@ -5,7 +5,6 @@ import { PacRrFileStep } from '@/types/v2/Wizzard/FileStep';
 import { getCurrentRrFileData } from '@/services/data/dataService';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { RrWorkSheet } from '@/types/v2/File/Rr/RrWorkSheet';
-import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 
 /**
  * Création du formualaire pour la fiche d'info
@@ -277,8 +276,6 @@ export const initPacRrFormDataStep5 = ( worksheet: RrWorkSheet ) => {
         worksheet: {
             period:               worksheet.period,
             infosSup:             worksheet.infosSup,
-            technicalVisit:       worksheet.technicalVisit,
-            technicalVisitReason: worksheet.technicalVisitReason,
             niveauHabitation:     worksheet.niveauHabitation,
             typeChantier:         worksheet.typeChantier,
             disjoncteur:          worksheet.disjoncteur,
@@ -325,11 +322,6 @@ export const savePacRrWorksheet = ( data: PacRrFileStep ): RrFile => {
 
     let worksheet: RrWorkSheet = fileData.worksheet;
 
-    let updateFileReference = false;
-    if ( worksheet.technicalVisit !== data.worksheet.technicalVisit ) {
-        updateFileReference = true;
-    }
-
     worksheet = {
         ...worksheet,
         ...data.worksheet,
@@ -339,10 +331,6 @@ export const savePacRrWorksheet = ( data: PacRrFileStep ): RrFile => {
         ...fileData,
         worksheet,
     };
-
-    if ( updateFileReference ) {
-        fileData = updateFileReferenceTechnicalVisit( fileData, data.worksheet.technicalVisit === true ) as RrFile;
-    }
 
     updateJsonData( fileData );
 

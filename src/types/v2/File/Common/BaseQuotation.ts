@@ -23,5 +23,7 @@ export interface BaseQuotation {
     ceeBonus: number;
     tva: number;
     paymentOnCredit: PaymentOnCredit;
+    requestTechnicalVisit?: boolean;
+    technicalVisitReason?: string;
 }
 

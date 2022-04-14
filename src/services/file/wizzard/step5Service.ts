@@ -1,14 +1,14 @@
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 import { updateReference } from '@/services/sqliteService';
 
-export const updateFileReferenceTechnicalVisit = ( fileData: BaseFile, technicalVisit: boolean ): BaseFile => {
+export const updateFileReferenceTechnicalVisit = ( fileData: BaseFile, requestTechnicalVisit: boolean ): BaseFile => {
     let newRef: string;
 
     const oldRef        = fileData.ref;
     const oldFolderName = fileData.folderName;
     let newFolderName   = oldFolderName;
 
-    if ( technicalVisit ) {
+    if ( requestTechnicalVisit ) {
         // AJOUT DE VT
         newRef = `VT-${ fileData.ref }`;
     } else {

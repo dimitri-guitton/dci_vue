@@ -122,8 +122,8 @@ export class WorksheetGenerator extends PdfGenerator {
         }
 
         return {
-            style: [ 'text' ],
-            table: {
+            style:  [ 'text' ],
+            table:  {
                 widths: [ '50%', '*' ],
                 body:   [
                     [
@@ -141,6 +141,10 @@ export class WorksheetGenerator extends PdfGenerator {
                     [
                         `PÉRIODE DE POSE SOUHAITÉE : ${ this._file.worksheet.period }`,
                         `CATÉGORIE DU CLIENT : ${ this._file.codeBonus }`,
+                    ],
+                    [
+                        `VISITE TECHNIQUE DEMANDÉ : ${ this.yesOrNo( this._file.quotation.requestTechnicalVisit ) }`,
+                        this._file.quotation.requestTechnicalVisit ? `MOTIF : ${ this._file.quotation.technicalVisitReason }` : '',
                     ],
                 ],
             },
@@ -177,7 +181,7 @@ export class WorksheetGenerator extends PdfGenerator {
                         return 0;
                     }
 
-                    if ( i === ( node.table.widths.length + 1 ) ) {
+                    if ( i === ( node.table.body.length - 1 ) ) {
                         return 10;
                     }
                     return 2;

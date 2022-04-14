@@ -25,11 +25,13 @@ export const defaultInitFormDataStep4 = ( data: AllFile ): BaseStep4 => {
     }
 
     return {
-        origin:             data.quotation.origin,
-        dateTechnicalVisit: data.quotation.dateTechnicalVisit,
-        executionDelay:     data.quotation.executionDelay,
-        commentary:         data.quotation.commentary,
-        paymentOnCredit:    data.quotation.paymentOnCredit,
+        origin:                data.quotation.origin,
+        dateTechnicalVisit:    data.quotation.dateTechnicalVisit,
+        executionDelay:        data.quotation.executionDelay,
+        commentary:            data.quotation.commentary,
+        paymentOnCredit:       data.quotation.paymentOnCredit,
+        requestTechnicalVisit: data.quotation.requestTechnicalVisit,
+        technicalVisitReason:  data.quotation.technicalVisitReason,
         options,
         blankOptions,
         selectedProducts,
@@ -130,11 +132,13 @@ export const defaultGetQuotationValueStep4 = ( stepData: BaseStep4, price: Price
         selectedProducts,
         options,
         blankOptions,
-        dateTechnicalVisit: stepData.dateTechnicalVisit,
-        executionDelay:     stepData.executionDelay,
-        origin:             stepData.origin,
-        commentary:         stepData.commentary,
-        paymentOnCredit: {
+        dateTechnicalVisit:    stepData.dateTechnicalVisit,
+        executionDelay:        stepData.executionDelay,
+        origin:                stepData.origin,
+        commentary:            stepData.commentary,
+        requestTechnicalVisit: stepData.requestTechnicalVisit,
+        technicalVisitReason:  stepData.technicalVisitReason,
+        paymentOnCredit:       {
             active:                         stepData.paymentOnCredit.active,
             cashPrice:                      stepData.paymentOnCredit.cashPrice,
             deposit:                        +stepData.paymentOnCredit.deposit,
