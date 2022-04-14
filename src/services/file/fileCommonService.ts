@@ -121,6 +121,10 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
         ceeBonus = +ceeBonus;
     }
 
+    // On fix à 4 chiffre apres la virgule avant de faire l'arrondi car on peut avoir des erreur sur certain chiffre
+    // Exemple 8.05 * 66 = 531.3000000000001 et donc l'arrondi est 531.31 et non 531.3
+    ceeBonus = +ceeBonus.toFixed( 4 );
+
     return ceil10( ceeBonus, -2 );
 };
 
@@ -819,26 +823,26 @@ export const getCeeBonus = ( data: BaseFile ): number => {
 };
 
 const getRoMaPrimeRenov = ( totalTTC: number, cee: number, codeBonus: string ): number => {
-    const amountGp = 4000;
-    const amountP  = 3000;
-    const amountIt = 2000;
+    const amountGp = 5000;
+    const amountP  = 4000;
+    const amountIt = 3000;
 
     if ( totalTTC - amountGp - cee > totalTTC * 0.1 && codeBonus === 'GP' ) {
-        return 4000;
+        return amountGp;
     }
     if ( totalTTC - amountGp - cee < totalTTC * 0.1 && codeBonus === 'GP' ) {
         return totalTTC - cee - totalTTC * 0.1;
     }
 
     if ( totalTTC - amountP - cee > totalTTC * 0.25 && codeBonus === 'P' ) {
-        return 3000;
+        return amountP;
     }
     if ( totalTTC - amountP - cee < totalTTC * 0.25 && codeBonus === 'P' ) {
         return totalTTC - cee - totalTTC * 0.25;
     }
 
     if ( totalTTC - amountIt - cee > totalTTC * 0.4 && codeBonus === 'IT' ) {
-        return 2000;
+        return amountIt;
     }
     if ( totalTTC - amountIt - cee < totalTTC * 0.4 && codeBonus === 'IT' ) {
         return totalTTC - cee - totalTTC * 0.4;
