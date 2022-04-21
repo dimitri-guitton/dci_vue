@@ -69,6 +69,23 @@ export const validatePacRrStep4 = async ( data: PacRrFileStep, price: Price ): P
         updateFileReference = true;
     }
 
+    if ( data.pacType === 'mono' ) {
+        data = {
+            ...data,
+            housingRoomNumber:   2,
+            housingAreaP1:       1,
+            housingAreaP2:       1,
+            housingAreaP3:       1,
+            housingAreaP4:       1,
+            housingAreaP5:       1,
+            housingAssortmentP1: 'perfera',
+            housingAssortmentP2: 'perfera',
+            housingAssortmentP3: 'perfera',
+            housingAssortmentP4: 'perfera',
+            housingAssortmentP5: 'perfera',
+        };
+    }
+
     quotation = {
         ...quotation,
         ...defaultGetQuotationValueStep4( data, price ),

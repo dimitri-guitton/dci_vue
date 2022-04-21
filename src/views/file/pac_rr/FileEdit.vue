@@ -149,19 +149,19 @@ import FilePacRrStep5 from '@/views/file/pac_rr/FilePacRrStep5.vue';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { PacRrFileStep } from '@/types/v2/Wizzard/FileStep';
 import {
-  initPacRrFormDataStep3,
-  validatePacRrStep3,
-  yupPacRrConfigStep3,
+    initPacRrFormDataStep3,
+    validatePacRrStep3,
+    yupPacRrConfigStep3,
 } from '@/services/file/wizzard/pac_rr/step3Service';
 import {
-  initPacRrFormDataStep5,
-  savePacRrWorksheet,
-  yupPacRrConfigStep5,
+    initPacRrFormDataStep5,
+    savePacRrWorksheet,
+    yupPacRrConfigStep5,
 } from '@/services/file/wizzard/pac_rr/step5Service';
 import {
-  initPacRrFormDataStep4,
-  validatePacRrStep4,
-  yupPacRrConfigStep4,
+    initPacRrFormDataStep4,
+    validatePacRrStep4,
+    yupPacRrConfigStep4,
 } from '@/services/file/wizzard/pac_rr/step4Service';
 import { PacRrStep3 } from '@/types/v2/Wizzard/step3/PacRrStep3';
 import { PacRrStep5 } from '@/types/v2/Wizzard/step5/PacRrStep5';
@@ -314,8 +314,10 @@ export default defineComponent( {
                                         fileData.value          = await validatePacRrStep3( formData.value );
                                         forceRefreshStep4.value = !forceRefreshStep4.value;
                                       } else if ( currentStepIndex.value === 3 ) {
-                                        console.log( '%c Validation step 4', 'background: #fdd835; color: #000000' );
-                                        fileData.value = await validatePacRrStep4( formData.value, price );
+                                          console.log( '%c Validation step 4', 'background: #fdd835; color: #000000' );
+                                          console.log( 'File DATA before', fileData.value );
+                                          fileData.value = await validatePacRrStep4( formData.value, price );
+                                          console.log( 'File DATA after', fileData.value );
                                       }
 
                                       currentStepIndex.value++;
@@ -343,18 +345,20 @@ export default defineComponent( {
 
 
                                     const onGenerateQuotation = handleSubmit( async ( values ) => {
-                                      console.log( '%c ONgenerateQuotation', 'background: #00FFCD; color: #000000' );
-                                      console.log( values );
+                                        console.log( '%c ONgenerateQuotation', 'background: #00FFCD; color: #000000' );
+                                        console.log( values );
 
-                                      const newFileData     = await validatePacRrStep4( ( values as PacRrFileStep ),
-                                                                                        price );
-                                      // Loader
-                                      const loadingInstance = ElLoading.service( { fullscreen: true } );
-                                      setTimeout( () => {
-                                        const quotationGenerator = new QuotationGenerator( newFileData );
-                                        quotationGenerator.generatePdf();
-                                        loadingInstance.close();
-                                      }, 500 );
+                                        console.log( 'VALUES -->', values );
+                                        const newFileData = await validatePacRrStep4( ( values as PacRrFileStep ),
+                                                                                      price );
+                                        console.log( 'NEW FILE DATA -->', newFileData );
+                                        // Loader
+                                        const loadingInstance = ElLoading.service( { fullscreen: true } );
+                                        setTimeout( () => {
+                                            const quotationGenerator = new QuotationGenerator( newFileData );
+                                            quotationGenerator.generatePdf();
+                                            loadingInstance.close();
+                                        }, 500 );
                                     } );
 
                                     const onGenerateAddressCertificate = handleSubmit( async ( values ) => {
