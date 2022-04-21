@@ -265,7 +265,7 @@ export default defineComponent( {
                                         fileData.value = ( await validateStepTwo( formData.value ) as SolFile );
                                       } else if ( currentStepIndex.value === 2 ) {
                                         console.log( '%c Validation step 3', 'background: #fdd835; color: #000000' );
-                                        await validateSolStep3( formData.value );
+                                        fileData.value          = await validateSolStep3( formData.value );
                                         area.value              = formData.value.area;
                                         forceRefreshStep4.value = !forceRefreshStep4.value;
                                       } else if ( currentStepIndex.value === 3 ) {

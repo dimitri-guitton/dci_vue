@@ -49,6 +49,8 @@ export const validatePgStep3 = async ( data: PgFileStep ) => {
     };
 
     updateJsonData( fileData );
+
+    return fileData;
 };
 
 

@@ -53,6 +53,8 @@ export const validateSolStep3 = async ( data: SolFileStep ) => {
     };
 
     updateJsonData( fileData );
+
+    return fileData;
 };
 
 

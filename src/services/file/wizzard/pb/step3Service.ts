@@ -49,6 +49,8 @@ export const validatePbStep3 = async ( data: PbFileStep ) => {
     };
 
     updateJsonData( fileData );
+
+    return fileData;
 };
 
 
