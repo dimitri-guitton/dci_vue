@@ -1600,7 +1600,7 @@ export class QuotationGenerator extends PdfGenerator {
         const paymentOnCredit = this._file.quotation.paymentOnCredit;
 
         let advancePaymentText: string;
-        let advancePayment: number;
+        let advancePayment: string;
         let advancePayment2: number;
 
         const remainderToPay: number = +this._file.quotation.remainderToPay.toFixed( 2 );
@@ -1608,14 +1608,15 @@ export class QuotationGenerator extends PdfGenerator {
         if ( paymentOnCredit.active ) {
             advancePaymentText = 'Acompte à la signature';
 
-            advancePayment = remainderToPay - paymentOnCredit.amount;
+            const tmpAdvancePayment = remainderToPay - paymentOnCredit.amount;
+            advancePayment          = this.formatPrice( tmpAdvancePayment, 1, true, false );
 
             console.log( 'Acompte -->', this._file.quotation.remainderToPay );
             console.log( 'Acompte -->', remainderToPay );
             console.log( 'Acompte -->', paymentOnCredit.amount );
-            console.log( 'Acompte -->', advancePayment );
+            console.log( 'Acompte -->', tmpAdvancePayment );
             // advancePayment2 = paymentOnCredit.amount;
-            advancePayment2 = remainderToPay - advancePayment - paymentOnCredit.amount;
+            advancePayment2 = remainderToPay - tmpAdvancePayment - paymentOnCredit.amount;
             console.log( 'Solde fin de chantier -->', advancePayment );
 
             paymentText = [
@@ -1642,10 +1643,19 @@ export class QuotationGenerator extends PdfGenerator {
                 },
             ];
         } else {
-            advancePaymentText = 'Acompte à la signature de 30% du net à payer';
+            switch ( this._file.type ) {
+                case FILE_COMBLE:
+                case FILE_SOL:
+                    advancePaymentText = '';
+                    advancePayment     = '';
+                    advancePayment2    = remainderToPay;
+                    break;
+                default:
+                    advancePaymentText = 'Acompte à la signature de 30% du net à payer';
+                    advancePayment     = this.formatPrice( ( remainderToPay * 0.3 ), 1, true, false );
+                    advancePayment2    = remainderToPay * 0.7;
+            }
 
-            advancePayment  = remainderToPay * 0.3;
-            advancePayment2 = remainderToPay * 0.7;
 
             paymentText = [
                 {
@@ -1691,7 +1701,7 @@ export class QuotationGenerator extends PdfGenerator {
                                                     width: '*',
                                                     stack: [
                                                         {
-                                                            text:      this.formatPrice( advancePayment, 1, true, false ),
+                                                            text:      advancePayment,
                                                             alignment: 'right',
                                                             bold:      true,
 
