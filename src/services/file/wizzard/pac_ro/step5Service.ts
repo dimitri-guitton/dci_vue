@@ -58,12 +58,12 @@ export const pacRoWorksheetBuilder = (): WorksheetBuilder => {
                         label: 'Distance entre le compteur électrique et la PAC',
                     },
                     {
-                        type:  WorksheetBuilderItemType.Number,
+                        type:  WorksheetBuilderItemType.Checkbox,
                         name:  'espaceSolRequisUnitInt',
                         label: 'Espace au sol requis pour unité intérieur 700*700mm (595*600mm)',
                     },
                     {
-                        type:  WorksheetBuilderItemType.Number,
+                        type:  WorksheetBuilderItemType.Checkbox,
                         name:  'hauteurRequiseUnitInt',
                         label: 'Hauteur requise pour l’unité intérieur 2200 mm (1850mm)',
                     },
@@ -159,8 +159,8 @@ export const pacRoWorksheetBuilder = (): WorksheetBuilder => {
                     // TODO LOGIQUE SI "positionEauChaude" est checké
                     {
                         type:  WorksheetBuilderItemType.Number,
-                        name:  'positionEauChaude',
-                        label: ' À quelle hauteur du sol',
+                        name:  'hauteurDuSol',
+                        label: 'À quelle hauteur du sol',
                     },
                 ],
             },

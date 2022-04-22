@@ -769,6 +769,14 @@ export class WorksheetGenerator extends PdfGenerator {
                                 value: this.getValueInList( list.etatToitureList, worksheet.etatToiture ),
                             },
                             {
+                                label: 'ESPACE AU SOL REQUIS POUR UNITÉ INTÉRIEUR 700*700MM (595*600MM)',
+                                value: this.yesOrNo( worksheet.espaceSolRequisUnitInt ),
+                            },
+                            {
+                                label: 'HAUTEUR REQUISE POUR L’UNITÉ INTÉRIEUR 2200 MM (1850MM)',
+                                value: this.yesOrNo( worksheet.hauteurRequiseUnitInt ),
+                            },
+                            {
                                 label: 'TYPE CHARPENTE',
                                 value: this.getValueInList( list.typeCharpenteList, worksheet.typeCharpente ),
                             },
@@ -804,6 +812,14 @@ export class WorksheetGenerator extends PdfGenerator {
                             {
                                 label: 'PUISSANCE COMPTEUR',
                                 value: this.getValueInList( list.puissanceCompteurList, worksheet.puissanceCompteur ),
+                            },
+                            {
+                                label: 'POSITION GROUPE EXTERIEUR',
+                                value: this.getValueInList( list.positionEauChaudeList, worksheet.positionEauChaude ),
+                            },
+                            {
+                                label: 'À QUELLE HAUTEUR DU SOL',
+                                value: worksheet.hauteurDuSol,
                             },
                         ],
                     },
@@ -952,19 +968,19 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
 
                             {
-                                label: 'Nombre de pompe de relevage',
+                                label: 'NOMBRE DE POMPE DE RELEVAGE',
                                 value: worksheet.nbPompeRelevage,
                             },
                             {
-                                label: 'Emplacement du groupe extérieur',
+                                label: 'EMPLACEMENT DU GROUPE EXTÉRIEUR',
                                 value: worksheet.emplacementGrpExt,
                             },
                             {
-                                label: 'Position groupe exterieur',
+                                label: 'POSITION GROUPE EXTERIEUR',
                                 value: this.getValueInList( list.positionEauChaudeList, worksheet.positionEauChaude ),
                             },
                             {
-                                label: 'À quelle hauteur du sol',
+                                label: 'À QUELLE HAUTEUR DU SOL',
                                 value: worksheet.hauteurDuSol,
                             },
                             ...pacOtherInfo,

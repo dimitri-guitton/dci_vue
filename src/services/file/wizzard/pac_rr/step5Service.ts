@@ -211,7 +211,7 @@ export const pacRrWorksheetBuilder = ( fileData: RrFile ): WorksheetBuilder => {
                     // TODO LOGIQUE SI "positionEauChaude" est checké
                     {
                         type:  WorksheetBuilderItemType.Number,
-                        name:  'positionEauChaude',
+                        name:  'hauteurDuSol',
                         label: ' À quelle hauteur du sol',
                     },
                     ...pacOtherInfo,
