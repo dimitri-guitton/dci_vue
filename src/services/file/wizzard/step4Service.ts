@@ -123,7 +123,7 @@ export const defaultGetQuotationValueStep4 = ( stepData: BaseStep4, price: Price
         const jsonSelectedProduct = getProductById( selectedProduct.id );
 
         if ( jsonSelectedProduct !== undefined ) {
-            selectedProducts.push( { ...jsonSelectedProduct, pu: selectedProduct.pu } );
+            selectedProducts.push( { ...jsonSelectedProduct, pu: +selectedProduct.pu } );
         }
     }
 

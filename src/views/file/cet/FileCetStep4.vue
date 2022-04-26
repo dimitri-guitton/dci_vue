@@ -128,7 +128,7 @@ export default defineComponent( {
 
                                       console.log( 'Prix par defaut -->', totalHt );
                                       for ( const selectedProduct of _selectedProducts.value ) {
-                                        totalHt += selectedProduct.pu;
+                                        totalHt += +selectedProduct.pu;
                                       }
                                       console.log( 'Prix avec les produits -->', totalHt );
 
