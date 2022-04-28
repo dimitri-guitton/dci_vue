@@ -765,16 +765,16 @@ export const getCeeBonus = ( data: BaseFile ): number => {
         case FILE_SOL:
             if ( energyZone === 'H1' ) {
                 if ( codeBonus === 'GP' ) {
-                    value = 9.2;
+                    value = 6.325;
                 } else {
-                    value = 8.64;
+                    value = 5.94;
                 }
 
             } else {
                 if ( codeBonus === 'GP' ) {
-                    value = 7.475;
+                    value = 5.1175;
                 } else {
-                    value = 7.02;
+                    value = 4.806;
                 }
             }
             break;
