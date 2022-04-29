@@ -1104,18 +1104,14 @@ export class RoAlgo extends PacAlgo {
             selectedUnitExt = filterredUnitExt[ 0 ];
         } else {
             console.log( 'filterredUnitExt -->', filterredUnitExt );
-            // Si il y a plus de 1 PAC on parcours les pacs et on récupère celle à la plus faible puissance (la plus proche de la puissance requise)
-            // Si Même puissance la moins chère
+
+            // Si il y a plus de 1 PAC on parcours les pacs et on récupère la moins chère
             for ( const unitExt of filterredUnitExt ) {
                 console.log( unitExt );
                 console.log( 's1 ->', selectedUnitExt );
                 if ( selectedUnitExt === null ) {
                     selectedUnitExt = unitExt;
-                } else if ( selectedUnitExt.output[ heaterValue ][ formatedBaseTemp ] > unitExt.output[ heaterValue ][ formatedBaseTemp ] ) {
-                    selectedUnitExt = unitExt;
-                } else if ( selectedUnitExt.output[ heaterValue ][ formatedBaseTemp ] === unitExt.output[ heaterValue ][ formatedBaseTemp ] ) {
-                    console.log( '%c MEME PUISSANCE', 'background: #fdd835; color: #000000' );
-
+                } else {
                     const p1: Product | undefined = getProductByRef( selectedUnitExt.ref );
                     const p2: Product | undefined = getProductByRef( unitExt.ref );
 
@@ -1163,6 +1159,10 @@ export class RoAlgo extends PacAlgo {
 
         // On récupère le model intérieur selon les infos renseigné
         const filteredUnitInt = this.unitIntList[ this.housing.availableVoltage ].filter( ( unit: UnitInt ) => {
+
+            // TODO highTemperature
+            // Les highTemperature pas que 65°C mais que pour les Unité EPRA qui font de la haute température
+            // Donc highTemperature = reférence == EPRA
 
             const highTemperature = heaterValue === 65;
 
