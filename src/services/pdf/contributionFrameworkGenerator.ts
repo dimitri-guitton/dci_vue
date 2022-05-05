@@ -12,7 +12,6 @@ import {
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { AllFile } from '@/types/v2/File/All';
-import { getAddress } from '@/services/data/dataService';
 
 export class ContributionFrameworkGenerator extends PdfGenerator {
     private _file: AllFile;
@@ -161,7 +160,10 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
     private _generateTable(): Content {
 
         // On récup l'adresse
-        const { address, zipCode, city } = getAddress( this._file );
+        // L'adresse du client est l'adresse du bénéficiaire même si l'adresse des travaux est différente de celle du bénéficiaire.
+        const address = this._file.beneficiary.address;
+        const zipCode = this._file.beneficiary.zipCode;
+        const city    = this._file.beneficiary.city;
 
         const formatedInfo = `${ this._file.beneficiary.lastName } ${ this._file.beneficiary.firstName }, ${ address }, ${ city } ${ zipCode }`;
 
@@ -187,11 +189,11 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
                 break;
             case FILE_PAC_RO:
                 cee  = 'TH-104';
-                work = 'Installation d’un pompe à chaleur air / eau';
+                work = 'Installation d’une pompe à chaleur air / eau';
                 break;
             case FILE_PAC_RR:
                 cee  = 'TH-129';
-                work = 'Installation d’un pompe à chaleur air / air/ eau';
+                work = 'Installation d’une pompe à chaleur air / air';
                 break;
             case FILE_PG:
             case FILE_PB:
