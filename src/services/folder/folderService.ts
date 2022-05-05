@@ -17,6 +17,7 @@ import {
     LIST_FILE_TYPE,
 } from '@/services/constantService';
 import {
+    getCodeBonus,
     getCommercialInfo,
     getCurrentFileData,
     getcurrentFolderName,
@@ -572,8 +573,6 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
     const quotationEmpty       = !folderContainFiles( path.join( folderPath, FoldersNames.DEVIS ) );
     // Fichier dans le dossier "DEVIS SIGNE"
     const signedQuotationEmpty = !folderContainFiles( path.join( folderPath, FoldersNames.DEVIS_SIGNE ) );
-    // Fichier dans le dossier "AVIS"
-    const assentEmpty          = !folderContainFiles( path.join( folderPath, FoldersNames.AVIS ) );
     // Fichier dans le dossier "FICHE"
     const worksheetEmpty       = !folderContainFiles( path.join( folderPath, FoldersNames.FICHE ) );
 
@@ -592,6 +591,18 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
     setcurrentFolderName( folderName );
     const fileData: AllFile = getCurrentFileData();
     console.log( 'fileData.quotation.ceeBonus', fileData.quotation.ceeBonus );
+
+
+    const codeBonus = getCodeBonus( fileData );
+    let assentEmpty: boolean;
+
+    // Si comble en non précaire on demande pas l'avis d'impot
+    if ( fileType === FILE_COMBLE && codeBonus !== 'GP' && codeBonus !== 'P' ) {
+        assentEmpty = false;
+    } else {
+        // Fichier dans le dossier "AVIS"
+        assentEmpty = !folderContainFiles( path.join( folderPath, FoldersNames.AVIS ) );
+    }
 
     let ceeEmpty = false;
     if ( fileData.quotation.ceeBonus > 0 ) {
