@@ -196,6 +196,9 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
                 work = 'Installation d’une pompe à chaleur air / air';
                 break;
             case FILE_PG:
+                cee  = 'TH-112';
+                work = 'Installation d’un appareil indépendant de chauffage à granulés';
+                break;
             case FILE_PB:
                 cee  = 'TH-112';
                 work = 'Installation d’un appareil indépendant de chauffage au bois';
