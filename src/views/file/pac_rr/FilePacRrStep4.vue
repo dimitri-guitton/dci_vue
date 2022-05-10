@@ -479,7 +479,6 @@ export default defineComponent( {
 
                                             const totalPrime = ceeBonus;
 
-                                            // TODO CHECK TVA 20% quand mons de 2ans
                                             const price: Price = {
                                                 HT:             totalHt,
                                                 TVA:            0,

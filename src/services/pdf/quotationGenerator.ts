@@ -1209,6 +1209,10 @@ export class QuotationGenerator extends PdfGenerator {
 
                 items.push( PriceQuotation.TTC );
 
+                if ( roQuotation.discount > 0 ) {
+                    items.push( PriceQuotation.discount );
+                }
+
                 if ( roQuotation.deviceToReplace.type === 'aucun' || roQuotation.deviceToReplace.type === 'autre' ) {
                     if ( this._file.quotation.ceeBonus > 0 ) {
                         items.push( PriceQuotation.CEE );
@@ -1222,10 +1226,6 @@ export class QuotationGenerator extends PdfGenerator {
 
                 if ( roQuotation.maPrimeRenovBonus > 0 ) {
                     items.push( PriceQuotation.maPrimeRenov );
-                }
-
-                if ( roQuotation.discount > 0 ) {
-                    items.push( PriceQuotation.discount );
                 }
                 break;
             case FILE_PAC_RR:
@@ -1257,6 +1257,10 @@ export class QuotationGenerator extends PdfGenerator {
 
                 items.push( PriceQuotation.TTC );
 
+                if ( rrQuotation.discount > 0 ) {
+                    items.push( PriceQuotation.discount );
+                }
+
 
                 if ( this._file.quotation.ceeBonus > 0 ) {
                     items.push( PriceQuotation.CEE );
@@ -1264,10 +1268,6 @@ export class QuotationGenerator extends PdfGenerator {
 
                 if ( rrQuotation.maPrimeRenovBonus > 0 ) {
                     items.push( PriceQuotation.maPrimeRenov );
-                }
-
-                if ( rrQuotation.discount > 0 ) {
-                    items.push( PriceQuotation.discount );
                 }
                 break;
             case FILE_PV:
