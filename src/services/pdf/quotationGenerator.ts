@@ -26,7 +26,6 @@ import { PgQuotation } from '@/types/v2/File/Pg/PgQuotation';
 import { numberToPrice, toFrenchDate } from '@/services/commonService';
 import { TvaCertificateGenerator } from '@/services/pdf/tvaCertificateGenerator';
 import { ContributionFrameworkGenerator } from '@/services/pdf/contributionFrameworkGenerator';
-import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
 import PbList from '@/types/v2/File/Pb/PbList';
 import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
 import { AllFile, AllQuotation } from '@/types/v2/File/All';
@@ -36,6 +35,7 @@ import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { CityHallManadateGenerator } from '@/services/pdf/cityHallManadateGenerator';
 import { EnedisMandateGenerator } from '@/services/pdf/enedisMandateGenerator';
+import { MaPrimeRenovGeneratorV2 } from '@/services/pdf/maPrimeRenovGeneratorV2';
 
 enum PriceQuotation {
     HT           = 'Total HT',
@@ -99,7 +99,8 @@ export class QuotationGenerator extends PdfGenerator {
 
         // Génération du mandat de maPrimeRenov
         if ( ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PB || this._file.type === FILE_PAC_RO ) && ( this._file.quotation as CetQuotation | PgQuotation | PbQuotation | RoQuotation ).maPrimeRenovBonus > 0 ) {
-            const maPrimeRenovGenerator = new MaPrimeRenovGenerator( this._file );
+            // const maPrimeRenovGenerator = new MaPrimeRenovGenerator( this._file );
+            const maPrimeRenovGenerator = new MaPrimeRenovGeneratorV2( this._file );
             maPrimeRenovGenerator.generatePdf();
         }
 
