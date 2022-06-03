@@ -685,7 +685,9 @@ export class WorksheetGenerator extends PdfGenerator {
                 const pacHousing  = housing as PacHousing;
 
                 if ( roQuotation.selectedProducts.length > 0 ) {
-                    selectedProduct = roQuotation.selectedProducts[ 0 ].label;
+                    for ( const product of roQuotation.selectedProducts ) {
+                        selectedProduct = `${ product.label } / `;
+                    }
                 }
 
                 data = [
@@ -823,15 +825,71 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                         ],
                     },
+                    {
+                        title: 'PRESTATIONS COMMANDEES',
+                        items: [
+                            {
+                                label: 'PRODUIT COMMANDE',
+                                value: selectedProduct,
+                            },
+                            {
+                                label: 'SURFACE TOTALE A CHAUFFER',
+                                value: `${ pacHousing.area } M2`,
+                            },
+                            {
+                                label: 'TYPE DE PAC',
+                                value: 'AIREAU',
+                            },
+                            {
+                                label: 'DISTANCE GROUPE EXT / UNITE INT',
+                                value: `${ worksheet.distanceGpExtUnitInt } M`,
+                            },
+                            {
+                                label: 'NOMBRE TOTAL RADIATEUR',
+                                value: worksheet.nbTotalRadiateur,
+                            },
+                            {
+                                label: 'NOMBRE RADIATEUR THERMOSTATIQUE',
+                                value: worksheet.nbRadiateurThermostatique,
+                            },
+                            {
+                                label: 'TYPE RADIATEUR',
+                                value: this.getValueInList( list.typeRadiateurList, worksheet.typeRadiateur ),
+                            },
+                            {
+                                label: 'ESPACE AU SOL REQUIS POUR UNITÉ INTÉRIEUR 700*700MM (595*600MM)',
+                                value: this.yesOrNo( worksheet.espaceSolRequisUnitInt ),
+                            },
+                            {
+                                label: 'HAUTEUR REQUISE POUR L’UNITÉ INTÉRIEUR 2200 MM (1850MM)',
+                                value: this.yesOrNo( worksheet.hauteurRequiseUnitInt ),
+                            },
+                            {
+                                label: 'POSITION GROUPE EXTERIEUR',
+                                value: this.getValueInList( list.positionEauChaudeList, worksheet.positionEauChaude ),
+                            },
+                            {
+                                label: 'HAUTEUR DU SOL',
+                                value: `${ worksheet.hauteurDuSol } M`,
+                            },
+                            {
+                                label: '',
+                                value: '',
+                            },
+                        ],
+                    },
                 ];
                 break;
             case FILE_PAC_RR:
-                worksheet         = ( this._file.worksheet as RrWorkSheet );
-                list              = ( this._file.lists as RrList );
-                const rrQuotation = ( this._file.quotation as RrQuotation );
+                worksheet          = ( this._file.worksheet as RrWorkSheet );
+                list               = ( this._file.lists as RrList );
+                const rrQuotation  = ( this._file.quotation as RrQuotation );
+                const pacRrHousing = housing as PacHousing;
 
                 if ( rrQuotation.selectedProducts.length > 0 ) {
-                    selectedProduct = rrQuotation.selectedProducts[ 0 ].label;
+                    for ( const product of rrQuotation.selectedProducts ) {
+                        selectedProduct = `${ product.label } / `;
+                    }
                 }
 
                 const pacMono  = [
@@ -887,7 +945,62 @@ export class WorksheetGenerator extends PdfGenerator {
                     },
                 ];
 
-                const pacOtherInfo = rrQuotation.rrType === 'multi' ? pacMulti : pacMono;
+                const pacMono2 = [
+                    {
+                        label: 'EMPLACEMENT DU SPLIT',
+                        value: worksheet.emplacementSplitMono,
+                    },
+                    {
+                        label: 'DISTANCE DU SPLIT DU GROUPE EXTÉRIEUR',
+                        value: worksheet.distanceGpExtUnitInt,
+                    },
+                ];
+
+                const pacMulti2 = [
+                    {
+                        label: 'EMPLACEMENT DU SPLIT 1',
+                        value: worksheet.emplacementSplit1,
+                    },
+                    {
+                        label: 'EMPLACEMENT DU SPLIT 2',
+                        value: worksheet.emplacementSplit2,
+                    },
+                    {
+                        label: 'EMPLACEMENT DU SPLIT 3',
+                        value: worksheet.emplacementSplit3,
+                    },
+                    {
+                        label: 'EMPLACEMENT DU SPLIT 4',
+                        value: worksheet.emplacementSplit4,
+                    },
+                    {
+                        label: 'EMPLACEMENT DU SPLIT 5',
+                        value: worksheet.emplacementSplit5,
+                    },
+                    {
+                        label: 'DISTANCE DU SPLIT 1 DU GROUPE EXTÉRIEUR',
+                        value: worksheet.distanceGpExtSplit1,
+                    },
+                    {
+                        label: 'DISTANCE DU SPLIT 2 DU GROUPE EXTÉRIEUR',
+                        value: worksheet.distanceGpExtSplit2,
+                    },
+                    {
+                        label: 'DISTANCE DU SPLIT 3 DU GROUPE EXTÉRIEUR',
+                        value: worksheet.distanceGpExtSplit3,
+                    },
+                    {
+                        label: 'DISTANCE DU SPLIT 4 DU GROUPE EXTÉRIEUR',
+                        value: worksheet.distanceGpExtSplit4,
+                    },
+                    {
+                        label: 'DISTANCE DU SPLIT 5 DU GROUPE EXTÉRIEUR',
+                        value: worksheet.distanceGpExtSplit5,
+                    },
+                ];
+
+                const pacOtherInfo  = rrQuotation.rrType === 'multi' ? pacMulti : pacMono;
+                const pacOtherInfo2 = rrQuotation.rrType === 'multi' ? pacMulti2 : pacMono2;
 
                 data = [
                     {
@@ -985,6 +1098,36 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             ...pacOtherInfo,
 
+                        ],
+                    },
+                    {
+                        title: 'PRESTATIONS COMMANDEES',
+                        items: [
+                            {
+                                label: 'PRODUIT COMMANDE',
+                                value: selectedProduct,
+                            },
+                            {
+                                label: 'SURFACE TOTALE A CHAUFFER',
+                                value: `${ pacRrHousing.area } M2`,
+                            },
+                            {
+                                label: 'TYPE DE PAC',
+                                value: `AIR / AIR ${ rrQuotation.rrType }`,
+                            },
+                            {
+                                label: 'EMPLACEMENT GROUPE EXTERIEUR',
+                                value: worksheet.emplacementGrpExt,
+                            },
+                            ...pacOtherInfo2,
+                            {
+                                label: 'NOMBRE POMPES DE RELEVAGES',
+                                value: worksheet.nbPompeRelevage,
+                            },
+                            {
+                                label: 'HAUTEUR DU SOL',
+                                value: `${ worksheet.hauteurDuSol } M`,
+                            },
                         ],
                     },
                 ];
@@ -1244,7 +1387,7 @@ export class WorksheetGenerator extends PdfGenerator {
                         ],
                     },
                     {
-                        title: 'production de chaleur',
+                        title: 'PRODUCTION DE CHALEUR',
                         items: [
                             {
                                 label: 'générateur',
@@ -1266,7 +1409,7 @@ export class WorksheetGenerator extends PdfGenerator {
                         ],
                     },
                     {
-                        title: 'production de chaleur',
+                        title: 'CARACTÉRISTIQUES DE L\'EXISTANT',
                         items: [
                             {
                                 label: 'Hauteur total',
@@ -1311,7 +1454,7 @@ export class WorksheetGenerator extends PdfGenerator {
                         ],
                     },
                     {
-                        title: 'Débouché en toiture',
+                        title: 'DÉBOUCHÉ EN TOITURE',
                         items: [
                             {
                                 label: 'Le débouché dépasse t\'il d\'au moins 40cm au dessus du fraîtage',
@@ -1336,7 +1479,7 @@ export class WorksheetGenerator extends PdfGenerator {
                         ],
                     },
                     {
-                        title: 'Débouché en toiture',
+                        title: 'FUTUR LOCAL À POELE',
                         items: [
                             {
                                 label: 'Dans quel pièce du logement',
