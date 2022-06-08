@@ -197,11 +197,11 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
                 break;
             case FILE_PG:
                 cee  = 'TH-112';
-                work = 'Installation d’un appareil indépendant de chauffage à granulés';
+                work = 'Installation d’un appareil indépendant de chauffage au bois (poêle à granulés)';
                 break;
             case FILE_PB:
                 cee  = 'TH-112';
-                work = 'Installation d’un appareil indépendant de chauffage au bois';
+                work = 'Installation d’un appareil indépendant de chauffage au bois (poêle à bûches)';
                 break;
             case FILE_CET:
                 cee  = 'TH-148';
