@@ -552,8 +552,8 @@ const getCeeRr = ( pacs: Product[], localType: string, area: number, zone: strin
                         other: 252.40,
                         GP:    268.755,
                     },
-                    70:  {
-                        other: 294.46,
+                    70: {
+                        other: 294.47,
                         GP:    313.5475,
                     },
                     90:  {
