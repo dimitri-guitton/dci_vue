@@ -802,10 +802,10 @@ export class QuotationGenerator extends PdfGenerator {
                 text = `Isolation d’un plancher bas situé entre un volume chauffé et un ${ izolationZone }`;
                 break;
             case FILE_PG:
-                text = 'Mise en place d\'un appareil indépendant de chauffage au bois';
+                text = 'Mise en place d\'un appareil indépendant de chauffage au bois (poêle à granulés)';
                 break;
             case FILE_PB:
-                text = 'Nature des travaux réalisés (Poêle à bois)';
+                text = 'Mise en place d\'un appareil indépendant de chauffage au bois (poêle à bûches)';
                 break;
             case FILE_PAC_RO:
                 const quotation: RoQuotation = this._file.quotation as RoQuotation;
