@@ -2,7 +2,24 @@ import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { CombleWorkSheet } from '@/types/v2/File/Comble/CombleWorkSheet';
 import { BROWN, DARK } from '@/services/pdf/pdfVariable';
-import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_PV, FILE_SOL } from '@/services/constantService';
+import {
+    FILE_CET,
+    FILE_CET_TYPE,
+    FILE_COMBLE,
+    FILE_COMBLE_TYPE,
+    FILE_PAC_RO,
+    FILE_PAC_RO_TYPE,
+    FILE_PAC_RR,
+    FILE_PAC_RR_TYPE,
+    FILE_PB,
+    FILE_PB_TYPE,
+    FILE_PG,
+    FILE_PG_TYPE,
+    FILE_PV,
+    FILE_PV_TYPE,
+    FILE_SOL,
+    FILE_SOL_TYPE,
+} from '@/services/constantService';
 import CombleList from '@/types/v2/File/Comble/CombleList';
 import { CombleQuotation } from '@/types/v2/File/Comble/CombleQuotation';
 import { CetWorkSheet } from '@/types/v2/File/Cet/CetWorkSheet';
@@ -74,13 +91,43 @@ export class WorksheetGenerator extends PdfGenerator {
         if ( this._file.technician !== undefined ) {
             technician += `${ this._file.technician.firstName } ${ this._file.technician.lastName }`;
         }
+
+
+        let type = '';
+        switch ( this._file.type ) {
+            case FILE_CET:
+                type = FILE_CET_TYPE.name;
+                break;
+            case FILE_SOL:
+                type = FILE_SOL_TYPE.name;
+                break;
+            case FILE_COMBLE:
+                type = FILE_COMBLE_TYPE.name;
+                break;
+            case FILE_PAC_RR:
+                type = FILE_PAC_RR_TYPE.name;
+                break;
+            case FILE_PAC_RO:
+                type = FILE_PAC_RO_TYPE.name;
+                break;
+            case FILE_PG:
+                type = FILE_PG_TYPE.name;
+                break;
+            case FILE_PB:
+                type = FILE_PB_TYPE.name;
+                break;
+            case FILE_PV:
+                type = FILE_PV_TYPE.name;
+                break;
+        }
+
         return {
             style:  [ 'text' ],
             table:  {
                 widths: [ '50%', '*' ],
                 body:   [
                     [
-                        'FICHE VISITE TECHNIQUE POUR POELE',
+                        `FICHE VISITE TECHNIQUE POUR ${ type.toUpperCase() }`,
                         'N° DEVIS ECO À RAPPELER LORS DE LA PRISE DE RDV',
                     ],
                     [
@@ -94,6 +141,10 @@ export class WorksheetGenerator extends PdfGenerator {
                     [
                         `PÉRIODE DE POSE SOUHAITÉE : ${ this._file.worksheet.period }`,
                         `CATÉGORIE DU CLIENT : ${ this._file.codeBonus }`,
+                    ],
+                    [
+                        `VISITE TECHNIQUE DEMANDÉ : ${ this.yesOrNo( this._file.quotation.requestTechnicalVisit ) }`,
+                        this._file.quotation.requestTechnicalVisit ? `MOTIF : ${ this._file.quotation.technicalVisitReason }` : '',
                     ],
                 ],
             },
@@ -130,7 +181,7 @@ export class WorksheetGenerator extends PdfGenerator {
                         return 0;
                     }
 
-                    if ( i === ( node.table.widths.length + 1 ) ) {
+                    if ( i === ( node.table.body.length - 1 ) ) {
                         return 10;
                     }
                     return 2;
@@ -634,7 +685,9 @@ export class WorksheetGenerator extends PdfGenerator {
                 const pacHousing  = housing as PacHousing;
 
                 if ( roQuotation.selectedProducts.length > 0 ) {
-                    selectedProduct = roQuotation.selectedProducts[ 0 ].label;
+                    for ( const product of roQuotation.selectedProducts ) {
+                        selectedProduct = `${ product.label } / `;
+                    }
                 }
 
                 data = [
@@ -718,6 +771,14 @@ export class WorksheetGenerator extends PdfGenerator {
                                 value: this.getValueInList( list.etatToitureList, worksheet.etatToiture ),
                             },
                             {
+                                label: 'ESPACE AU SOL REQUIS POUR UNITÉ INTÉRIEUR 700*700MM (595*600MM)',
+                                value: this.yesOrNo( worksheet.espaceSolRequisUnitInt ),
+                            },
+                            {
+                                label: 'HAUTEUR REQUISE POUR L’UNITÉ INTÉRIEUR 2200 MM (1850MM)',
+                                value: this.yesOrNo( worksheet.hauteurRequiseUnitInt ),
+                            },
+                            {
                                 label: 'TYPE CHARPENTE',
                                 value: this.getValueInList( list.typeCharpenteList, worksheet.typeCharpente ),
                             },
@@ -754,17 +815,81 @@ export class WorksheetGenerator extends PdfGenerator {
                                 label: 'PUISSANCE COMPTEUR',
                                 value: this.getValueInList( list.puissanceCompteurList, worksheet.puissanceCompteur ),
                             },
+                            {
+                                label: 'POSITION GROUPE EXTERIEUR',
+                                value: this.getValueInList( list.positionEauChaudeList, worksheet.positionEauChaude ),
+                            },
+                            {
+                                label: 'À QUELLE HAUTEUR DU SOL',
+                                value: worksheet.hauteurDuSol,
+                            },
+                        ],
+                    },
+                    {
+                        title: 'PRESTATIONS COMMANDEES',
+                        items: [
+                            {
+                                label: 'PRODUIT COMMANDE',
+                                value: selectedProduct,
+                            },
+                            {
+                                label: 'SURFACE TOTALE A CHAUFFER',
+                                value: `${ pacHousing.area } M2`,
+                            },
+                            {
+                                label: 'TYPE DE PAC',
+                                value: 'AIREAU',
+                            },
+                            {
+                                label: 'DISTANCE GROUPE EXT / UNITE INT',
+                                value: `${ worksheet.distanceGpExtUnitInt } M`,
+                            },
+                            {
+                                label: 'NOMBRE TOTAL RADIATEUR',
+                                value: worksheet.nbTotalRadiateur,
+                            },
+                            {
+                                label: 'NOMBRE RADIATEUR THERMOSTATIQUE',
+                                value: worksheet.nbRadiateurThermostatique,
+                            },
+                            {
+                                label: 'TYPE RADIATEUR',
+                                value: this.getValueInList( list.typeRadiateurList, worksheet.typeRadiateur ),
+                            },
+                            {
+                                label: 'ESPACE AU SOL REQUIS POUR UNITÉ INTÉRIEUR 700*700MM (595*600MM)',
+                                value: this.yesOrNo( worksheet.espaceSolRequisUnitInt ),
+                            },
+                            {
+                                label: 'HAUTEUR REQUISE POUR L’UNITÉ INTÉRIEUR 2200 MM (1850MM)',
+                                value: this.yesOrNo( worksheet.hauteurRequiseUnitInt ),
+                            },
+                            {
+                                label: 'POSITION GROUPE EXTERIEUR',
+                                value: this.getValueInList( list.positionEauChaudeList, worksheet.positionEauChaude ),
+                            },
+                            {
+                                label: 'HAUTEUR DU SOL',
+                                value: `${ worksheet.hauteurDuSol } M`,
+                            },
+                            {
+                                label: '',
+                                value: '',
+                            },
                         ],
                     },
                 ];
                 break;
             case FILE_PAC_RR:
-                worksheet         = ( this._file.worksheet as RrWorkSheet );
-                list              = ( this._file.lists as RrList );
-                const rrQuotation = ( this._file.quotation as RrQuotation );
+                worksheet          = ( this._file.worksheet as RrWorkSheet );
+                list               = ( this._file.lists as RrList );
+                const rrQuotation  = ( this._file.quotation as RrQuotation );
+                const pacRrHousing = housing as PacHousing;
 
                 if ( rrQuotation.selectedProducts.length > 0 ) {
-                    selectedProduct = rrQuotation.selectedProducts[ 0 ].label;
+                    for ( const product of rrQuotation.selectedProducts ) {
+                        selectedProduct = `${ product.label } / `;
+                    }
                 }
 
                 const pacMono  = [
@@ -820,7 +945,62 @@ export class WorksheetGenerator extends PdfGenerator {
                     },
                 ];
 
-                const pacOtherInfo = rrQuotation.rrType === 'multi' ? pacMulti : pacMono;
+                const pacMono2 = [
+                    {
+                        label: 'EMPLACEMENT DU SPLIT',
+                        value: worksheet.emplacementSplitMono,
+                    },
+                    {
+                        label: 'DISTANCE DU SPLIT DU GROUPE EXTÉRIEUR',
+                        value: worksheet.distanceGpExtUnitInt,
+                    },
+                ];
+
+                const pacMulti2 = [
+                    {
+                        label: 'EMPLACEMENT DU SPLIT 1',
+                        value: worksheet.emplacementSplit1,
+                    },
+                    {
+                        label: 'EMPLACEMENT DU SPLIT 2',
+                        value: worksheet.emplacementSplit2,
+                    },
+                    {
+                        label: 'EMPLACEMENT DU SPLIT 3',
+                        value: worksheet.emplacementSplit3,
+                    },
+                    {
+                        label: 'EMPLACEMENT DU SPLIT 4',
+                        value: worksheet.emplacementSplit4,
+                    },
+                    {
+                        label: 'EMPLACEMENT DU SPLIT 5',
+                        value: worksheet.emplacementSplit5,
+                    },
+                    {
+                        label: 'DISTANCE DU SPLIT 1 DU GROUPE EXTÉRIEUR',
+                        value: worksheet.distanceGpExtSplit1,
+                    },
+                    {
+                        label: 'DISTANCE DU SPLIT 2 DU GROUPE EXTÉRIEUR',
+                        value: worksheet.distanceGpExtSplit2,
+                    },
+                    {
+                        label: 'DISTANCE DU SPLIT 3 DU GROUPE EXTÉRIEUR',
+                        value: worksheet.distanceGpExtSplit3,
+                    },
+                    {
+                        label: 'DISTANCE DU SPLIT 4 DU GROUPE EXTÉRIEUR',
+                        value: worksheet.distanceGpExtSplit4,
+                    },
+                    {
+                        label: 'DISTANCE DU SPLIT 5 DU GROUPE EXTÉRIEUR',
+                        value: worksheet.distanceGpExtSplit5,
+                    },
+                ];
+
+                const pacOtherInfo  = rrQuotation.rrType === 'multi' ? pacMulti : pacMono;
+                const pacOtherInfo2 = rrQuotation.rrType === 'multi' ? pacMulti2 : pacMono2;
 
                 data = [
                     {
@@ -901,23 +1081,53 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
 
                             {
-                                label: 'Nombre de pompe de relevage',
+                                label: 'NOMBRE DE POMPE DE RELEVAGE',
                                 value: worksheet.nbPompeRelevage,
                             },
                             {
-                                label: 'Emplacement du groupe extérieur',
+                                label: 'EMPLACEMENT DU GROUPE EXTÉRIEUR',
                                 value: worksheet.emplacementGrpExt,
                             },
                             {
-                                label: 'Position groupe exterieur',
+                                label: 'POSITION GROUPE EXTERIEUR',
                                 value: this.getValueInList( list.positionEauChaudeList, worksheet.positionEauChaude ),
                             },
                             {
-                                label: 'À quelle hauteur du sol',
+                                label: 'À QUELLE HAUTEUR DU SOL',
                                 value: worksheet.hauteurDuSol,
                             },
                             ...pacOtherInfo,
 
+                        ],
+                    },
+                    {
+                        title: 'PRESTATIONS COMMANDEES',
+                        items: [
+                            {
+                                label: 'PRODUIT COMMANDE',
+                                value: selectedProduct,
+                            },
+                            {
+                                label: 'SURFACE TOTALE A CHAUFFER',
+                                value: `${ pacRrHousing.area } M2`,
+                            },
+                            {
+                                label: 'TYPE DE PAC',
+                                value: `AIR / AIR ${ rrQuotation.rrType }`,
+                            },
+                            {
+                                label: 'EMPLACEMENT GROUPE EXTERIEUR',
+                                value: worksheet.emplacementGrpExt,
+                            },
+                            ...pacOtherInfo2,
+                            {
+                                label: 'NOMBRE POMPES DE RELEVAGES',
+                                value: worksheet.nbPompeRelevage,
+                            },
+                            {
+                                label: 'HAUTEUR DU SOL',
+                                value: `${ worksheet.hauteurDuSol } M`,
+                            },
                         ],
                     },
                 ];
@@ -1177,7 +1387,7 @@ export class WorksheetGenerator extends PdfGenerator {
                         ],
                     },
                     {
-                        title: 'production de chaleur',
+                        title: 'PRODUCTION DE CHALEUR',
                         items: [
                             {
                                 label: 'générateur',
@@ -1199,7 +1409,7 @@ export class WorksheetGenerator extends PdfGenerator {
                         ],
                     },
                     {
-                        title: 'production de chaleur',
+                        title: 'CARACTÉRISTIQUES DE L\'EXISTANT',
                         items: [
                             {
                                 label: 'Hauteur total',
@@ -1244,7 +1454,7 @@ export class WorksheetGenerator extends PdfGenerator {
                         ],
                     },
                     {
-                        title: 'Débouché en toiture',
+                        title: 'DÉBOUCHÉ EN TOITURE',
                         items: [
                             {
                                 label: 'Le débouché dépasse t\'il d\'au moins 40cm au dessus du fraîtage',
@@ -1269,7 +1479,7 @@ export class WorksheetGenerator extends PdfGenerator {
                         ],
                     },
                     {
-                        title: 'Débouché en toiture',
+                        title: 'FUTUR LOCAL À POELE',
                         items: [
                             {
                                 label: 'Dans quel pièce du logement',

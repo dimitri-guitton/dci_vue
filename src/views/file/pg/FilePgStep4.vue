@@ -278,7 +278,7 @@ export default defineComponent( {
                                       console.log( _selectedProducts.value );
                                       for ( const selectedProduct of _selectedProducts.value ) {
                                         console.log( 'SL ->', selectedProduct );
-                                        totalHt += selectedProduct.pu;
+                                          totalHt += +selectedProduct.pu;
                                       }
                                       console.log( 'Prix avec les produits -->', totalHt );
 

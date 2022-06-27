@@ -292,7 +292,7 @@ export default defineComponent( {
                                         fileData.value = ( await validateStepTwo( formData.value ) as PbFile );
                                       } else if ( currentStepIndex.value === 2 ) {
                                         console.log( '%c Validation step 3', 'background: #fdd835; color: #000000' );
-                                        await validatePbStep3( formData.value );
+                                        fileData.value          = await validatePbStep3( formData.value );
                                         forceRefreshStep4.value = !forceRefreshStep4.value;
                                       } else if ( currentStepIndex.value === 3 ) {
                                         console.log( '%c Validation step 4', 'background: #fdd835; color: #000000' );

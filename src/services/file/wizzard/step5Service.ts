@@ -1,11 +1,14 @@
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 import { updateReference } from '@/services/sqliteService';
 
-export const updateFileReferenceTechnicalVisit = ( fileData: BaseFile, technicalVisit: boolean ): BaseFile => {
+export const updateFileReferenceTechnicalVisit = ( fileData: BaseFile, requestTechnicalVisit: boolean ): BaseFile => {
     let newRef: string;
 
-    const oldRef = fileData.ref;
-    if ( technicalVisit ) {
+    const oldRef        = fileData.ref;
+    const oldFolderName = fileData.folderName;
+    let newFolderName   = oldFolderName;
+
+    if ( requestTechnicalVisit ) {
         // AJOUT DE VT
         newRef = `VT-${ fileData.ref }`;
     } else {
@@ -15,11 +18,20 @@ export const updateFileReferenceTechnicalVisit = ( fileData: BaseFile, technical
         } else {
             newRef = oldRef;
         }
+
+        // Le folderName ne dois jamais changer
+        // FIX car certain folderName avait changé
+        if ( oldFolderName.includes( 'VT-' ) ) {
+            newFolderName = fileData.ref.substring( 3 );
+        } else {
+            newFolderName = oldFolderName;
+        }
     }
 
     fileData = {
         ...fileData,
-        ref: newRef,
+        ref:        newRef,
+        folderName: newFolderName,
     };
 
     updateReference( oldRef, newRef );

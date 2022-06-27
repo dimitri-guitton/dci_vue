@@ -146,7 +146,7 @@ export class PdfGenerator {
      * @param value
      * @protected
      */
-    protected yesOrNo( value: boolean ): string {
+    protected yesOrNo( value: boolean | undefined ): string {
         if ( value ) {
             return 'Oui';
         } else {

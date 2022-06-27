@@ -9,6 +9,8 @@ export interface BaseStep4 {
     selectedProducts: StepProduct[];
     commentary: string;
     paymentOnCredit: PaymentOnCredit;
+    requestTechnicalVisit?: boolean;
+    technicalVisitReason?: string;
 }
 
 export interface StepOption {

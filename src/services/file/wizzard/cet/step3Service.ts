@@ -52,6 +52,8 @@ export const validateCetStep3 = async ( data: CetFileStep ) => {
     };
 
     updateJsonData( fileData );
+
+    return fileData;
 };
 
 

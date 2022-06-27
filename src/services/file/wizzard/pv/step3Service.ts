@@ -49,6 +49,8 @@ export const validatePvStep3 = async ( data: PvFileStep ) => {
     };
 
     updateJsonData( fileData );
+
+    return fileData;
 };
 
 

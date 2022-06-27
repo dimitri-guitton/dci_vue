@@ -8,6 +8,7 @@ import { RrQuotation } from '@/types/v2/File/Rr/RrQuotation';
 import { updateTotalTtc } from '@/services/sqliteService';
 import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
 import { PacRrStep4 } from '@/types/v2/Wizzard/step4/PacRrStep4';
+import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4
@@ -62,6 +63,29 @@ export const validatePacRrStep4 = async ( data: PacRrFileStep, price: Price ): P
 
     let quotation: RrQuotation = fileData.quotation;
 
+    // Si modification de visite technique
+    let updateFileReference = false;
+    if ( quotation.requestTechnicalVisit !== data.requestTechnicalVisit ) {
+        updateFileReference = true;
+    }
+
+    if ( data.pacType === 'mono' ) {
+        data = {
+            ...data,
+            housingRoomNumber:   2,
+            housingAreaP1:       1,
+            housingAreaP2:       1,
+            housingAreaP3:       1,
+            housingAreaP4:       1,
+            housingAreaP5:       1,
+            housingAssortmentP1: 'perfera',
+            housingAssortmentP2: 'perfera',
+            housingAssortmentP3: 'perfera',
+            housingAssortmentP4: 'perfera',
+            housingAssortmentP5: 'perfera',
+        };
+    }
+
     quotation = {
         ...quotation,
         ...defaultGetQuotationValueStep4( data, price ),
@@ -86,6 +110,10 @@ export const validatePacRrStep4 = async ( data: PacRrFileStep, price: Price ): P
         ...fileData,
         quotation,
     };
+
+    if ( updateFileReference ) {
+        fileData = updateFileReferenceTechnicalVisit( fileData, data.requestTechnicalVisit === true ) as RrFile;
+    }
 
     updateJsonData( fileData );
     updateTotalTtc( fileData.ref, fileData.quotation.totalTtc );

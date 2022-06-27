@@ -244,7 +244,7 @@ export default defineComponent( {
                                       console.log( 'Prix avec les produits -->', totalHt );
 
                                       for ( const product of productCreation.value ) {
-                                        totalHt += product.pu;
+                                        totalHt += +product.pu;
                                       }
 
                                       for ( const option of _options.value ) {

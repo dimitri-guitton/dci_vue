@@ -5,7 +5,6 @@ import { RoWorkSheet } from '@/types/v2/File/Ro/RoWorkSheet';
 import { PacRoFileStep } from '@/types/v2/Wizzard/FileStep';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { getCurrentRoFileData } from '@/services/data/dataService';
-import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 
 /**
  * Création du formualaire pour la fiche d'info
@@ -59,12 +58,12 @@ export const pacRoWorksheetBuilder = (): WorksheetBuilder => {
                         label: 'Distance entre le compteur électrique et la PAC',
                     },
                     {
-                        type:  WorksheetBuilderItemType.Number,
+                        type:  WorksheetBuilderItemType.Checkbox,
                         name:  'espaceSolRequisUnitInt',
                         label: 'Espace au sol requis pour unité intérieur 700*700mm (595*600mm)',
                     },
                     {
-                        type:  WorksheetBuilderItemType.Number,
+                        type:  WorksheetBuilderItemType.Checkbox,
                         name:  'hauteurRequiseUnitInt',
                         label: 'Hauteur requise pour l’unité intérieur 2200 mm (1850mm)',
                     },
@@ -160,8 +159,8 @@ export const pacRoWorksheetBuilder = (): WorksheetBuilder => {
                     // TODO LOGIQUE SI "positionEauChaude" est checké
                     {
                         type:  WorksheetBuilderItemType.Number,
-                        name:  'positionEauChaude',
-                        label: ' À quelle hauteur du sol',
+                        name:  'hauteurDuSol',
+                        label: 'À quelle hauteur du sol',
                     },
                 ],
             },
@@ -255,10 +254,10 @@ export const savePacRoWorksheet = ( data: PacRoFileStep ): RoFile => {
     let worksheet: RoWorkSheet = fileData.worksheet;
 
 
-    let updateFileReference = false;
-    if ( worksheet.technicalVisit !== data.worksheet.technicalVisit ) {
-        updateFileReference = true;
-    }
+    // let updateFileReference = false;
+    // if ( worksheet.technicalVisit !== data.worksheet.technicalVisit ) {
+    //     updateFileReference = true;
+    // }
 
     worksheet = {
         ...worksheet,
@@ -270,9 +269,9 @@ export const savePacRoWorksheet = ( data: PacRoFileStep ): RoFile => {
         worksheet,
     };
 
-    if ( updateFileReference ) {
-        updateFileReferenceTechnicalVisit( fileData, data.worksheet.technicalVisit === true );
-    }
+    // if ( updateFileReference ) {
+    //     updateFileReferenceTechnicalVisit( fileData, data.worksheet.technicalVisit === true );
+    // }
 
     updateJsonData( fileData );
 

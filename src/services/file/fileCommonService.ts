@@ -121,6 +121,10 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
         ceeBonus = +ceeBonus;
     }
 
+    // On fix à 4 chiffre apres la virgule avant de faire l'arrondi car on peut avoir des erreur sur certain chiffre
+    // Exemple 8.05 * 66 = 531.3000000000001 et donc l'arrondi est 531.31 et non 531.3
+    ceeBonus = +ceeBonus.toFixed( 4 );
+
     return ceil10( ceeBonus, -2 );
 };
 
@@ -129,6 +133,10 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
  */
 export const getHelpingHandRo = ( codeBonus ): number => {
     if ( codeBonus === 'GP' ) {
+        if ( new Date() >= new Date( '2022-07-01 00:00' ) ) {
+            console.log( '%c PRIME APRES LE 1 JUILLET', 'background: #00FF2E; color: #000000' );
+            return 4000;
+        }
         return 4200;
     } else if ( codeBonus === 'P' ) {
         return 4000;
@@ -544,8 +552,8 @@ const getCeeRr = ( pacs: Product[], localType: string, area: number, zone: strin
                         other: 252.40,
                         GP:    268.755,
                     },
-                    70:  {
-                        other: 294.46,
+                    70: {
+                        other: 294.47,
                         GP:    313.5475,
                     },
                     90:  {
@@ -562,8 +570,8 @@ const getCeeRr = ( pacs: Product[], localType: string, area: number, zone: strin
                     },
                 },
                 '4_3': {
-                    0:   {
-                        other: 129.92,
+                    0: {
+                        other: 129.93,
                         GP:    138.345,
                     },
                     35:  {
@@ -658,16 +666,16 @@ const getCeeRr = ( pacs: Product[], localType: string, area: number, zone: strin
                     },
                 },
                 '4_3': {
-                    0:   {
-                        other: 106.27,
+                    0:  {
+                        other: 106.28,
                         GP:    113.16,
                     },
                     35:  {
                         other: 177.12,
                         GP:    188.6,
                     },
-                    60:  {
-                        other: 212.54,
+                    60: {
+                        other: 212.55,
                         GP:    226.32,
                     },
                     70:  {
@@ -761,16 +769,16 @@ export const getCeeBonus = ( data: BaseFile ): number => {
         case FILE_SOL:
             if ( energyZone === 'H1' ) {
                 if ( codeBonus === 'GP' ) {
-                    value = 9.2;
+                    value = 6.325;
                 } else {
-                    value = 8.64;
+                    value = 5.94;
                 }
 
             } else {
                 if ( codeBonus === 'GP' ) {
-                    value = 7.475;
+                    value = 5.1175;
                 } else {
-                    value = 7.02;
+                    value = 4.806;
                 }
             }
             break;
@@ -819,26 +827,26 @@ export const getCeeBonus = ( data: BaseFile ): number => {
 };
 
 const getRoMaPrimeRenov = ( totalTTC: number, cee: number, codeBonus: string ): number => {
-    const amountGp = 4000;
-    const amountP  = 3000;
-    const amountIt = 2000;
+    const amountGp = 5000;
+    const amountP  = 4000;
+    const amountIt = 3000;
 
     if ( totalTTC - amountGp - cee > totalTTC * 0.1 && codeBonus === 'GP' ) {
-        return 4000;
+        return amountGp;
     }
     if ( totalTTC - amountGp - cee < totalTTC * 0.1 && codeBonus === 'GP' ) {
         return totalTTC - cee - totalTTC * 0.1;
     }
 
     if ( totalTTC - amountP - cee > totalTTC * 0.25 && codeBonus === 'P' ) {
-        return 3000;
+        return amountP;
     }
     if ( totalTTC - amountP - cee < totalTTC * 0.25 && codeBonus === 'P' ) {
         return totalTTC - cee - totalTTC * 0.25;
     }
 
     if ( totalTTC - amountIt - cee > totalTTC * 0.4 && codeBonus === 'IT' ) {
-        return 2000;
+        return amountIt;
     }
     if ( totalTTC - amountIt - cee < totalTTC * 0.4 && codeBonus === 'IT' ) {
         return totalTTC - cee - totalTTC * 0.4;

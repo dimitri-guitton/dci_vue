@@ -8,6 +8,7 @@ import { Price } from '@/types/v2/File/Price';
 import { PbStep4 } from '@/types/v2/Wizzard/step4/PbStep4';
 import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
 import { updateTotalTtc } from '@/services/sqliteService';
+import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4
@@ -32,6 +33,12 @@ export const validatePbStep4 = async ( data: PbFileStep, price: Price ): Promise
     let fileData               = getCurrentPbFileData();
     let quotation: PbQuotation = fileData.quotation;
 
+    // Si modification de visite technique
+    let updateFileReference = false;
+    if ( quotation.requestTechnicalVisit !== data.requestTechnicalVisit ) {
+        updateFileReference = true;
+    }
+
     quotation = {
         ...quotation,
         ...defaultGetQuotationValueStep4( data, price ),
@@ -42,6 +49,10 @@ export const validatePbStep4 = async ( data: PbFileStep, price: Price ): Promise
         ...fileData,
         quotation,
     };
+
+    if ( updateFileReference ) {
+        fileData = updateFileReferenceTechnicalVisit( fileData, data.requestTechnicalVisit === true ) as PbFile;
+    }
 
     updateJsonData( fileData );
     updateTotalTtc( fileData.ref, fileData.quotation.totalTtc );

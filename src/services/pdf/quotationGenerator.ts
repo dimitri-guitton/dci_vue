@@ -26,7 +26,6 @@ import { PgQuotation } from '@/types/v2/File/Pg/PgQuotation';
 import { numberToPrice, toFrenchDate } from '@/services/commonService';
 import { TvaCertificateGenerator } from '@/services/pdf/tvaCertificateGenerator';
 import { ContributionFrameworkGenerator } from '@/services/pdf/contributionFrameworkGenerator';
-import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
 import PbList from '@/types/v2/File/Pb/PbList';
 import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
 import { AllFile, AllQuotation } from '@/types/v2/File/All';
@@ -36,6 +35,7 @@ import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { CityHallManadateGenerator } from '@/services/pdf/cityHallManadateGenerator';
 import { EnedisMandateGenerator } from '@/services/pdf/enedisMandateGenerator';
+import { MaPrimeRenovGeneratorV2 } from '@/services/pdf/maPrimeRenovGeneratorV2';
 
 enum PriceQuotation {
     HT           = 'Total HT',
@@ -99,7 +99,8 @@ export class QuotationGenerator extends PdfGenerator {
 
         // Génération du mandat de maPrimeRenov
         if ( ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PB || this._file.type === FILE_PAC_RO ) && ( this._file.quotation as CetQuotation | PgQuotation | PbQuotation | RoQuotation ).maPrimeRenovBonus > 0 ) {
-            const maPrimeRenovGenerator = new MaPrimeRenovGenerator( this._file );
+            // const maPrimeRenovGenerator = new MaPrimeRenovGenerator( this._file );
+            const maPrimeRenovGenerator = new MaPrimeRenovGeneratorV2( this._file );
             maPrimeRenovGenerator.generatePdf();
         }
 
@@ -388,7 +389,7 @@ export class QuotationGenerator extends PdfGenerator {
                                                 },
                                             ],
                                         },
-                                        `${ this._file.beneficiary.firstName } ${ this._file.beneficiary.lastName }`,
+                                        `${ this._file.beneficiary.lastName } ${ this._file.beneficiary.firstName }`,
                                         this._file.beneficiary.address,
                                         this._file.beneficiary.city,
                                         this._file.beneficiary.zipCode,
@@ -695,6 +696,20 @@ export class QuotationGenerator extends PdfGenerator {
         const tableBody: ContentText[][] = [];
         let rowTable: ContentText[]      = [];
 
+        const baseQuotation = this._file.quotation;
+        // Demande visite technique
+        if ( baseQuotation.requestTechnicalVisit === true ) {
+            tableBody.push( [
+                                { text: `Visite technique demandé`, bold: true },
+                                { text: 'OUI' },
+                            ] );
+
+            tableBody.push( [
+                                { text: `Motif visite technique`, bold: true },
+                                { text: baseQuotation.technicalVisitReason ? baseQuotation.technicalVisitReason : '' },
+                            ] );
+        }
+
         if ( data.left !== undefined ) {
             for ( const item of data.left ) {
                 rowTable.push( { text: `${ item.label } :`, bold: true } );
@@ -787,10 +802,10 @@ export class QuotationGenerator extends PdfGenerator {
                 text = `Isolation d’un plancher bas situé entre un volume chauffé et un ${ izolationZone }`;
                 break;
             case FILE_PG:
-                text = 'Mise en place d\'un appareil indépendant de chauffage au bois';
+                text = 'Mise en place d\'un appareil indépendant de chauffage au bois (poêle à granulés)';
                 break;
             case FILE_PB:
-                text = 'Nature des travaux réalisés (Poêle à bois)';
+                text = 'Mise en place d\'un appareil indépendant de chauffage au bois (poêle à bûches)';
                 break;
             case FILE_PAC_RO:
                 const quotation: RoQuotation = this._file.quotation as RoQuotation;
@@ -1195,6 +1210,10 @@ export class QuotationGenerator extends PdfGenerator {
 
                 items.push( PriceQuotation.TTC );
 
+                if ( roQuotation.discount > 0 ) {
+                    items.push( PriceQuotation.discount );
+                }
+
                 if ( roQuotation.deviceToReplace.type === 'aucun' || roQuotation.deviceToReplace.type === 'autre' ) {
                     if ( this._file.quotation.ceeBonus > 0 ) {
                         items.push( PriceQuotation.CEE );
@@ -1208,10 +1227,6 @@ export class QuotationGenerator extends PdfGenerator {
 
                 if ( roQuotation.maPrimeRenovBonus > 0 ) {
                     items.push( PriceQuotation.maPrimeRenov );
-                }
-
-                if ( roQuotation.discount > 0 ) {
-                    items.push( PriceQuotation.discount );
                 }
                 break;
             case FILE_PAC_RR:
@@ -1243,6 +1258,10 @@ export class QuotationGenerator extends PdfGenerator {
 
                 items.push( PriceQuotation.TTC );
 
+                if ( rrQuotation.discount > 0 ) {
+                    items.push( PriceQuotation.discount );
+                }
+
 
                 if ( this._file.quotation.ceeBonus > 0 ) {
                     items.push( PriceQuotation.CEE );
@@ -1250,10 +1269,6 @@ export class QuotationGenerator extends PdfGenerator {
 
                 if ( rrQuotation.maPrimeRenovBonus > 0 ) {
                     items.push( PriceQuotation.maPrimeRenov );
-                }
-
-                if ( rrQuotation.discount > 0 ) {
-                    items.push( PriceQuotation.discount );
                 }
                 break;
             case FILE_PV:
@@ -1453,7 +1468,10 @@ export class QuotationGenerator extends PdfGenerator {
                             ],
                             [
                                 {
-                                    text: 'Assurance décennale SMA BTP C30911H',
+                                    text: [
+                                        'Assurance décennale SMA BTP C30911H\n',
+                                        'Durée de validité des prix indiqués sur ce devis 1 mois à partir de la date de son établissement',
+                                    ],
                                     bold: true,
                                 },
                                 {
@@ -1583,7 +1601,7 @@ export class QuotationGenerator extends PdfGenerator {
         const paymentOnCredit = this._file.quotation.paymentOnCredit;
 
         let advancePaymentText: string;
-        let advancePayment: number;
+        let advancePayment: string;
         let advancePayment2: number;
 
         const remainderToPay: number = +this._file.quotation.remainderToPay.toFixed( 2 );
@@ -1591,14 +1609,15 @@ export class QuotationGenerator extends PdfGenerator {
         if ( paymentOnCredit.active ) {
             advancePaymentText = 'Acompte à la signature';
 
-            advancePayment = remainderToPay - paymentOnCredit.amount;
+            const tmpAdvancePayment = remainderToPay - paymentOnCredit.amount;
+            advancePayment          = this.formatPrice( tmpAdvancePayment, 1, true, false );
 
             console.log( 'Acompte -->', this._file.quotation.remainderToPay );
             console.log( 'Acompte -->', remainderToPay );
             console.log( 'Acompte -->', paymentOnCredit.amount );
-            console.log( 'Acompte -->', advancePayment );
+            console.log( 'Acompte -->', tmpAdvancePayment );
             // advancePayment2 = paymentOnCredit.amount;
-            advancePayment2 = remainderToPay - advancePayment - paymentOnCredit.amount;
+            advancePayment2 = remainderToPay - tmpAdvancePayment - paymentOnCredit.amount;
             console.log( 'Solde fin de chantier -->', advancePayment );
 
             paymentText = [
@@ -1625,10 +1644,19 @@ export class QuotationGenerator extends PdfGenerator {
                 },
             ];
         } else {
-            advancePaymentText = 'Acompte à la signature de 30% du net à payer';
+            switch ( this._file.type ) {
+                case FILE_COMBLE:
+                case FILE_SOL:
+                    advancePaymentText = '';
+                    advancePayment     = '';
+                    advancePayment2    = remainderToPay;
+                    break;
+                default:
+                    advancePaymentText = 'Acompte à la signature de 30% du net à payer';
+                    advancePayment     = this.formatPrice( ( remainderToPay * 0.3 ), 1, true, false );
+                    advancePayment2    = remainderToPay * 0.7;
+            }
 
-            advancePayment  = remainderToPay * 0.3;
-            advancePayment2 = remainderToPay * 0.7;
 
             paymentText = [
                 {
@@ -1674,7 +1702,7 @@ export class QuotationGenerator extends PdfGenerator {
                                                     width: '*',
                                                     stack: [
                                                         {
-                                                            text:      this.formatPrice( advancePayment, 1, true, false ),
+                                                            text:      advancePayment,
                                                             alignment: 'right',
                                                             bold:      true,
 

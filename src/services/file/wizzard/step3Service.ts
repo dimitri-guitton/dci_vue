@@ -71,11 +71,16 @@ export const defaultGetHoussingValueStep3 = ( fileData: BaseFile, stepData: Base
 };
 
 export const defaultGetEnergyZoneStep3 = ( fileData: BaseFile, housing: Housing ) => {
+    console.log( '%c DEFAULT ENERGY ZONE', 'background: #00EBFF; color: #000000' );
     let zipCode = housing.zipCode;
+    console.log( 'zipcode', zipCode );
+    console.log( 'isAddressBenef', housing.isAddressBenef );
 
     if ( housing.isAddressBenef ) {
         zipCode = fileData.beneficiary.zipCode;
     }
+    console.log( zipCode );
+    console.log( getEnergyZone( +zipCode ) );
     return {
         energyZone: getEnergyZone( +zipCode ),
     };
