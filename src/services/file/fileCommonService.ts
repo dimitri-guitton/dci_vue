@@ -133,8 +133,8 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
  */
 export const getHelpingHandRo = ( codeBonus ): number => {
     if ( codeBonus === 'GP' ) {
-        if ( new Date() >= new Date( '2022-07-01 00:00' ) ) {
-            console.log( '%c PRIME APRES LE 1 JUILLET', 'background: #00FF2E; color: #000000' );
+        if ( new Date() >= new Date( '2022-09-30 02:00' ) ) {
+            console.log( '%c PRIME APRES LE 30 SEPTEMBRE', 'background: #00FF2E; color: #000000' );
             return 4000;
         }
         return 4200;
