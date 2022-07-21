@@ -285,6 +285,19 @@ export class QuotationGenerator extends PdfGenerator {
                             ],
                             style:   'text',
                         },
+                        {
+                            columns: [
+                                {
+                                    width: '70%',
+                                    text:  'Date d\'établissement du devis :',
+                                },
+                                {
+                                    width: '30%',
+                                    text:  toFrenchDate( this._file.quotation.dateTechnicalVisit ), alignment: 'right',
+                                },
+                            ],
+                            style:   'text',
+                        },
                     ],
                 },
             ],
