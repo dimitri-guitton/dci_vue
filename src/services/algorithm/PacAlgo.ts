@@ -94,10 +94,12 @@ export class PacAlgo {
 
         const deltaT: number = this.calcDeltaT( housing.setPointTemperature, housing.climaticZone, housing.altitude );
 
-        let coef = 1;
+        let coef;
+
         if ( type === 'pac_ro' ) {
-            coef = 0.9;
-            // coef = 1;
+            coef = 0.85;
+        } else {
+            coef = 1.5;
         }
 
         // Puissance en W
