@@ -160,9 +160,9 @@ export default defineComponent( {
 
                                     const productCreation = computed<Product[]>( () => {
                                       if ( isCreation.value ) {
-                                        return props.products.filter( p => p.productType === 'creation' && p.reference === 'creation' );
+                                        return props.products.filter( p => p.productType === 'pb_option' && p.reference === 'creation' );
                                       }
-                                      return props.products.filter( p => p.productType === 'creation' && p.reference !== 'creation' );
+                                        return props.products.filter( p => p.productType === 'pb_option' && p.reference !== 'creation' );
                                     } );
 
                                     const generateQuotation = () => {
