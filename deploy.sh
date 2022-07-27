@@ -57,7 +57,5 @@ OLD_PACKAGE_VERSION=$(cat package.json \
   | sed 's/[",]//g')
 
 echo "Version précédente : $OLD_PACKAGE_VERSION"
-echo "Mettre le package.json de prod avant la mis en prod"
 
-#start
-
+start
