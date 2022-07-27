@@ -211,7 +211,7 @@
             </div>
         </template>
 
-        <options @optionsAreUpdated="updateOptions" :options="options"></options>
+        <options @optionsAreUpdated="updateOptions" :options="filteredOptions"></options>
 
         <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
 
@@ -512,6 +512,132 @@ export default defineComponent( {
                                             return allProducts;
                                         } );
 
+                                        /**
+                                         * Ajoute ou enlève l'option Soupape antigel selon les PAC
+                                         */
+                                        const enabledSoupageOption = ( enabled: boolean ) => {
+                                            console.log( '%c enabledSoupageOption',
+                                                         'background: #F600FF; color: #000000' );
+                                            console.log( enabled );
+                                            const soupageOption = _options.value.find( o => o.label === 'Soupape antigel' );
+                                            if ( soupageOption === undefined ) {
+                                                return;
+                                            }
+
+                                            // Change le nombre de l'option Soupape antigel pour l'activer ou non
+                                            _options.value = _options.value.map( o => {
+                                                if ( enabled && o.label === 'Soupape antigel' ) {
+                                                    console.log( '%c ENABLED', 'background: #00FF2E; color: #000000' );
+                                                    return { ...o, number: 2 };
+                                                } else if ( !enabled && o.label === 'Soupape antigel' ) {
+                                                    console.log( '%c DISABMED', 'background: #FF000A; color: #000000' );
+                                                    return { ...o, number: 0 };
+                                                }
+                                                return o;
+                                            } );
+                                        };
+
+                                        /**
+                                         * Ajoute ou enlève l'option Forfait ballon tampon
+                                         */
+                                        const enabledBallonTamponOption = ( enabled: boolean ) => {
+                                            console.log( '%c enabledBallonTamponOption',
+                                                         'background: #F600FF; color: #000000' );
+                                            console.log( enabled );
+                                            const ballonTamponOption = _options.value.find( o => o.label.includes(
+                                                'Forfait ballon tampon' ) );
+                                            if ( ballonTamponOption === undefined ) {
+                                                return;
+                                            }
+
+                                            // Change le nombre de l'option Forfait ballon tampon pour l'activer ou non
+                                            _options.value = _options.value.map( o => {
+                                                if ( enabled && o.label.includes( 'Forfait ballon tampon' ) ) {
+                                                    console.log( '%c ENABLED', 'background: #00FF2E; color: #000000' );
+                                                    return { ...o, number: 1 };
+                                                } else if ( !enabled && o.label.includes( 'Forfait ballon tampon' ) ) {
+                                                    console.log( '%c DISABMED', 'background: #FF000A; color: #000000' );
+                                                    return { ...o, number: 0 };
+                                                }
+                                                return o;
+                                            } );
+                                        };
+
+                                        /**
+                                         * Ajoute ou enlève l'option Mitigeur
+                                         */
+                                        const enabledMitigeurOption = ( enabled: boolean ) => {
+                                            console.log( '%c enabledMitigeurOption',
+                                                         'background: #F600FF; color: #000000' );
+                                            console.log( enabled );
+                                            const mitigeurOption = _options.value.find( o => o.label.includes(
+                                                'Forfait ballon tampon' ) );
+                                            if ( mitigeurOption === undefined ) {
+                                                return;
+                                            }
+
+                                            // Change le nombre de l'option Forfait ballon tampon pour l'activer ou non
+                                            _options.value = _options.value.map( o => {
+                                                if ( enabled && o.label.includes( 'Forfait mitigeur' ) ) {
+                                                    console.log( '%c ENABLED', 'background: #00FF2E; color: #000000' );
+                                                    return { ...o, number: 1 };
+                                                } else if ( !enabled && o.label.includes( 'Forfait mitigeur' ) ) {
+                                                    console.log( '%c DISABMED', 'background: #FF000A; color: #000000' );
+                                                    return { ...o, number: 0 };
+                                                }
+                                                return o;
+                                            } );
+                                        };
+
+
+                                        const filteredOptions = computed<Option[]>( () => {
+                                            console.log( '%c FILTERED OPTION', 'background: #FF0007; color: #000000' );
+                                            console.log( _options.value );
+
+                                            for ( const option of _options.value ) {
+
+                                                if ( props.fileData.housing.availableVoltage === 'triphase' && option.label.includes(
+                                                    'Forfait tableau électrique' ) ) {
+                                                    option.pu += 400;
+                                                }
+
+                                                if ( option.label.includes( 'Soupape antigel' ) ) {
+                                                    let enabled = false;
+                                                    for ( const product of products.value ) {
+                                                        if ( product.reference.includes( 'EPGA' ) || product.reference.includes(
+                                                            'EPRA' ) ) {
+                                                            enabled = true;
+                                                        }
+                                                    }
+                                                    enabledSoupageOption( enabled );
+                                                }
+
+                                                if ( option.label.includes( 'Forfait ballon tampon' ) ) {
+                                                    props.fileData.housing.heaters;
+                                                    console.log( props.fileData.housing.heaters );
+                                                    if ( props.fileData.housing.heaters === 'r_fonte' || props.fileData.housing.heaters === 'r_fonte_p_chauffant' || props.fileData.housing.heaters === 'r_autre' || props.fileData.housing.heaters === 'r_autre_p_chauffant' ) {
+                                                        enabledBallonTamponOption( true );
+                                                    } else {
+                                                        enabledBallonTamponOption( false );
+                                                    }
+                                                }
+
+                                                if ( option.label.includes( 'Forfait mitigeur' ) ) {
+                                                    props.fileData.housing.heaters;
+                                                    console.log( volumeECS.value );
+                                                    if ( volumeECS.value === 'ecs_1' ) {
+                                                        enabledMitigeurOption( false );
+                                                    } else {
+                                                        enabledMitigeurOption( true );
+                                                    }
+                                                }
+                                            }
+
+
+                                            return _options.value;
+                                        } );
+
+
                                         const price = computed<Price>( () => {
                                             let totalHt      = 0;
                                             let maPrimeRenov = 0;
@@ -639,6 +765,7 @@ export default defineComponent( {
                                             // cascadeSystem,
                                             lists,
                                             price,
+                                            filteredOptions,
                                             products,
                                             needBiZoneSupplement,
                                             discount,
