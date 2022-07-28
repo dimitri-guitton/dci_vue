@@ -189,20 +189,25 @@ export default defineComponent( {
                                      * Ajoute ou enlève l'option Caisson en acier pour le poêle EMBER KAMIN M3
                                      */
                                     const enabledOptionM3 = ( enabled: boolean ) => {
-                                      const optionalOption = _options.value.find( o => o.label.toLowerCase() === 'caisson en acier' );
+                                      const optionalOption = _options.value.find( o => o.id === 36 );
                                       console.log( 'optionalOption', optionalOption );
                                       if ( optionalOption === undefined ) {
+                                          console.log( '%c UNDEFINED', 'background: #FF000A; color: #000000' );
                                         return;
                                       }
 
                                       // Change le nombre de l'option pour l'activer ou non
                                       _options.value = _options.value.map( o => {
-                                        if ( enabled && o.label.toLowerCase() === 'caisson en acier' ) {
-                                          return { ...o, number: 1 };
-                                        } else if ( !enabled && o.label.toLowerCase() === 'caisson en acier' ) {
-                                          return { ...o, number: 0 };
-                                        }
-                                        return o;
+                                          if ( enabled && o.id === 36 ) {
+                                              console.log( '%c SET NUMBER TO 1',
+                                                           'background: #FF000A; color: #000000' );
+                                              return { ...o, number: 1 };
+                                          } else if ( !enabled && o.id === 36 ) {
+                                              console.log( '%c SET NUMBER TO 0',
+                                                           'background: #FF000A; color: #000000' );
+                                              return { ...o, number: 0 };
+                                          }
+                                          return o;
                                       } );
                                     };
 
