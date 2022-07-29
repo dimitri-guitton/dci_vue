@@ -156,6 +156,7 @@ export class PgConverter extends BaseConverter {
                 products:          this.getOldProduct(),
                 maPrimeRenovBonus: this.getNumberData( this.oldData [ 'devis' ][ 'primeAnah' ] ),
                 outsideSocket:     this.getBoolData( this.oldData[ 'outsideSocket' ] ),
+                smoke:             'back',
             },
             worksheet: {
                 ...convertedJson.worksheet,

@@ -5,20 +5,30 @@ import { PgFile } from '@/types/v2/File/Pg/PgFile';
 import { PgFileStep } from '@/types/v2/Wizzard/FileStep';
 import { PgQuotation } from '@/types/v2/File/Pg/PgQuotation';
 import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
-import { BaseStep4 } from '@/types/v2/Wizzard/step4/BaseStep4';
 import { updateTotalTtc } from '@/services/sqliteService';
 import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
+import { PgStep4 } from '@/types/v2/Wizzard/step4/PgStep4';
+import * as Yup from 'yup';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4
  * @param fileData
  */
-export const initPgFormDataStep4 = ( fileData: PgFile ): BaseStep4 => {
-    return defaultInitFormDataStep4( fileData );
+export const initPgFormDataStep4 = ( fileData: PgFile ): PgStep4 => {
+    return {
+        ...defaultInitFormDataStep4( fileData ),
+        outsideSocket: fileData.quotation.outsideSocket ?? false,
+        smoke:         fileData.quotation.smoke ?? 'back',
+    };
+
 };
 
 export const yupPgConfigStep4 = () => {
-    return defaultYupConfigStep4();
+    return Yup.object( {
+                           ...defaultYupConfigStep4(),
+                           outsideSocket: Yup.boolean(),
+                           smoke:         Yup.string(),
+                       } );
 };
 
 
@@ -32,9 +42,16 @@ export const validatePgStep4 = async ( data: PgFileStep, price: Price ): Promise
         updateFileReference = true;
     }
 
+    console.log( data );
+    console.log( '%c SAVE PG 4', 'background: #fdd835; color: #000000' );
+    console.log( data.outsideSocket );
+    console.log( data.smoke );
+
     quotation = {
         ...quotation,
         ...defaultGetQuotationValueStep4( data, price ),
+        outsideSocket: data.outsideSocket === undefined ? false : data.outsideSocket,
+        smoke:         data.smoke === undefined ? 'back' : data.smoke,
     };
 
     fileData = {
