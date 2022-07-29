@@ -94,11 +94,11 @@ export class PacAlgo {
 
         const deltaT: number = this.calcDeltaT( housing.setPointTemperature, housing.climaticZone, housing.altitude );
 
-        let coef;
+        let coef = 1;
 
         if ( type === 'pac_ro' ) {
             coef = 0.85;
-        } else {
+        } else if ( type === 'pac_rr' ) {
             coef = 1.5;
         }
 

@@ -173,7 +173,7 @@ export class SizingPacGenerator extends PdfGenerator {
                         },
                         {
                             margin:    [ 0, 5, 0, 15 ],
-                            text: `Déperdition = ${ housing.buildingCoefficient } x ${ housing.area * housing.ceilingHeight } x ${ deltaT } = ${ roAlgo.calcRequiredPower(
+                            text:      `Déperdition = ${ housing.buildingCoefficient } x ${ housing.area * housing.ceilingHeight } x ${ deltaT } = ${ roAlgo.calcRequiredPower(
                                 housing ) } KW`,
                             fontSize:  18,
                             alignment: 'center',
