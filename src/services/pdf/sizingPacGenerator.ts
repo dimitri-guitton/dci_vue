@@ -185,7 +185,7 @@ export class SizingPacGenerator extends PdfGenerator {
                             fontSize:   10,
                             color:      '#323232',
                             text:       [
-                                'La pompe à chaleur doit couvrir au minimum 70 % et au maximum 120 % des déperditions\n' +
+                                'La pompe à chaleur doit couvrir au minimum 60 % et au maximum 110 % des déperditions\n' +
                                 'de la maison à la température de base. Elle doit couvrir au moins 120 % des déperditions\n' +
                                 'avec les appoints électriques.\n\n',
                                 'Température d\'arrêt de la PAC : -25°c\n',
