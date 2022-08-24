@@ -596,9 +596,25 @@ export default defineComponent( {
 
                                             for ( const option of _options.value ) {
 
-                                                if ( props.fileData.housing.availableVoltage === 'triphase' && option.label.includes(
-                                                    'Forfait tableau électrique' ) ) {
-                                                    option.pu += 400;
+                                                if ( props.fileData.housing.availableVoltage === 'triphase' && option.id === 24 ) {
+                                                    console.log( '%c OPTION ID 24',
+                                                                 'background: #fdd835; color: #000000' );
+                                                    console.log( option.pu );
+                                                    console.log( option.defaultPu );
+
+                                                    // Si le PU n'a pas déja été augmenté
+                                                    if ( option.pu === option.defaultPu ) {
+                                                        console.log( '%c PU + 400',
+                                                                     'background: #fdd835; color: #000000' );
+                                                        option.pu += 400;
+                                                    }
+                                                } else if ( option.id === 24 ) {
+                                                    // Si le PU a été modifié
+                                                    if ( option.pu !== option.defaultPu ) {
+                                                        console.log( '%c PU - 400',
+                                                                     'background: #fdd835; color: #000000' );
+                                                        option.pu -= 400;
+                                                    }
                                                 }
 
                                                 if ( option.label.includes( 'Soupape antigel' ) ) {
