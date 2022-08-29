@@ -519,8 +519,8 @@ export default defineComponent( {
                                             console.log( '%c enabledSoupageOption',
                                                          'background: #F600FF; color: #000000' );
                                             console.log( enabled );
-                                            const soupageOption = _options.value.find( o => o.label === 'Soupape antigel' );
-                                            if ( soupageOption === undefined ) {
+                                            const soupapeOption = _options.value.find( o => o.label === 'Soupape antigel' );
+                                            if ( soupapeOption === undefined ) {
                                                 return;
                                             }
 

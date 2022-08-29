@@ -1033,6 +1033,9 @@ export class QuotationGenerator extends PdfGenerator {
         const data: TableCell[][] = [];
 
         for ( const option of this._file.quotation.options ) {
+            if ( option.number <= 0 ) {
+                continue;
+            }
             data.push( [
                            {
                                text:    option.label,
