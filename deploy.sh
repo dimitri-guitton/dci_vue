@@ -27,6 +27,7 @@ echo "$error"
 # Lancement du script
 start()
 {
+
 echo "Changement de version : "
 
 select item in "- Majeur- " "- Mineur -" "- Patch -"
@@ -58,4 +59,5 @@ OLD_PACKAGE_VERSION=$(cat package.json \
 
 echo "Version précédente : $OLD_PACKAGE_VERSION"
 
-start
+echo "Changer l'url de l'api dans le .env"
+#start
