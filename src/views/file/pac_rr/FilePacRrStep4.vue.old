@@ -1,5 +1,6 @@
 <template>
     <div class="w-100">
+
         <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit"
                       :price="price"
                       :lists="lists"></step4-header>
@@ -15,6 +16,17 @@
                        @change="removeSelectedProducts"
                 >
                     <template-item-list :lists="lists.rrTypeList"></template-item-list>
+                </Field>
+            </div>
+            <div class="col-md-6 mb-5" v-if="rrType === 'mono'">
+                <label for="assortment" class="form-label">Gamme de produit</label>
+                <Field name="assortment"
+                       id="assortment"
+                       class="form-select"
+                       as="select"
+                       v-model="assortment"
+                >
+                    <template-item-list :lists="assortmentLists"></template-item-list>
                 </Field>
             </div>
         </div>
@@ -37,6 +49,7 @@
 
             <div class="row mt-10">
                 <template v-for="index in rrMulti.roomNumber" v-bind:key="`area${index}`">
+                    <!--                    <div class="row d-flex align-items-end">-->
                     <div class="col-md-2">
                         <label class="form-label mb-3">Pièce n°{{ index }} <sup><var>m2</var></sup></label>
                         <Field
@@ -46,6 +59,18 @@
                             placeholder="1"
                             v-model.number="rrMulti[`areaP${index}`]"
                         />
+                        <!--                        </div>-->
+                        <!--                        <div class="col-md-4">-->
+                        <!--                            <label :for="`housingAssortmentP${index}`" class="form-label">Gamme de produit</label>-->
+                        <!--                            <Field :name="`housingAssortmentP${index}`"-->
+                        <!--                                   :id="`housingAssortmentP${index}`"-->
+                        <!--                                   class="form-select"-->
+                        <!--                                   as="select"-->
+                        <!--                                   v-model.number="rrMulti[`assortmentP${index}`]"-->
+                        <!--                            >-->
+                        <!--                                <template-item-list :lists="assortmentLists"></template-item-list>-->
+                        <!--                            </Field>-->
+                        <!--                        </div>-->
                     </div>
                 </template>
             </div>
@@ -56,33 +81,99 @@
 
         <step4-quotation-header></step4-quotation-header>
 
-        <template v-for="p in selectedProducts" v-bind:key="`select_product_${p.id}`">
-            <p>{{ p.id }} - {{ p.reference }} - {{ p.label }}</p>
-        </template>
+        <!--        <h1>&#45;&#45;&#45;&#45;</h1>-->
+        <!--        <template v-for="(p,index) in products" v-bind:key="`p_${index}_${p.reference}`">-->
+        <!--            <p>{{ p.id }} - {{ p.reference }} - {{ p.label }}</p>-->
+        <!--        </template>-->
+        <!--        <h1>&#45;&#45;&#45;&#45;</h1>-->
 
-        <selected-product :index="0"
+        <!--        <template v-for="(p,index) in products" v-bind:key="`${index}_${p.reference}`">-->
+        <!--            <row-price :product="p"></row-price>-->
+        <!--        </template>-->
+        <!--        <template v-if="!products.length">-->
+        <!--            <div class="alert alert-danger d-flex align-items-center p-5 mb-10">-->
+        <!--                <i class="fa fa-exclamation fs-2hx me-4 text-danger"></i>-->
+        <!--                <div class="d-flex flex-column">-->
+        <!--                    <h4 class="mb-1 text-danger">Aucun produit n'a pu être trouvé</h4>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </template>-->
+
+        <selected-product ref="$selectedExtProduct"
+                          :index="0"
                           :products="extProducts"
                           :selectedProducts="selectedProducts"
                           @selectedProductIsUpdated="updateSelectedProduct($event, 0)"
                           :show-reference="true"></selected-product>
-
         <template v-if="rrType === 'mono'">
-            <selected-product :index="1"
+            <selected-product ref="$selectedIntProduct1"
+                              :index="1"
                               :products="intProducts"
                               :selectedProducts="selectedProducts"
                               @selectedProductIsUpdated="updateSelectedProduct($event, 1)"
                               :show-reference="true"></selected-product>
         </template>
         <template v-else>
-            <template v-for="index in rrMulti.roomNumber" v-bind:key="`select_int_product_${index}`">
-                <h1>{{ index }}</h1>
-                <selected-product :index="index"
+            <template v-for="index in rrMulti.roomNumber" v-bind:key="`select_product_${index}`">
+                <selected-product :ref="`$selectedIntProduct${index}`"
+                                  :index="index+1"
                                   :products="intProducts"
                                   :selectedProducts="selectedProducts"
-                                  @selectedProductIsUpdated="updateSelectedProduct($event, index)"
+                                  @selectedProductIsUpdated="updateSelectedProduct($event, index+1)"
                                   :show-reference="true"></selected-product>
             </template>
         </template>
+
+        <!-- Formulaire caché afin de binder les values au formaulaire comme la sélection des produits se fait via l'algo-->
+        <!--        <template v-for="(p, index) in products" v-bind:key="`val_${index}_${p.reference}`">-->
+        <!--            <div class="row mt-5 d-none">-->
+        <!--                <div class="col-md-4">-->
+        <!--                    <Field type="text"-->
+        <!--                           :name="`selectedProducts[${index}].id`"-->
+        <!--                           class="form-control"-->
+        <!--                           v-model.number="p.id" />-->
+        <!--                </div>-->
+        <!--                <div class="col-md-4">-->
+        <!--                    <Field type="text"-->
+        <!--                           :name="`selectedProducts[${index}].quantity`"-->
+        <!--                           class="form-control"-->
+        <!--                           v-model.number="p.quantity" />-->
+        <!--                </div>-->
+        <!--                <div class="col-md-4">-->
+        <!--                    <Field type="text"-->
+        <!--                           :name="`selectedProducts[${index}].pu`"-->
+        <!--                           class="form-control"-->
+        <!--                           v-model.number="p.pu" />-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </template>-->
+
+        <!-- Formulaire caché afin de binder les values au formaulaire -->
+        <!-- HACK : Boucle sur les produits deja set mais qui ne le sont plus, exemple 4 RrMulti -> 2 RrMono, on remove les 2 RrMulti qui ne seront pas set-->
+        <!--        <template v-for="index in 6" :key="index">-->
+        <!--            <template v-if="products.length < index">-->
+        <!--                <div class="row mt-5 d-none">-->
+        <!--                    <div class="col-md-4">-->
+        <!--                        <Field type="number"-->
+        <!--                               :name="`selectedProducts[${index-1}].id`"-->
+        <!--                               class="form-control"-->
+        <!--                               v-model.number="emptyVal" />-->
+        <!--                    </div>-->
+        <!--                    <div class="col-md-4">-->
+        <!--                        <Field type="number"-->
+        <!--                               :name="`selectedProducts[${index-1}].quantity`"-->
+        <!--                               class="form-control"-->
+        <!--                               v-model.number="emptyVal" />-->
+        <!--                    </div>-->
+        <!--                    <div class="col-md-4">-->
+        <!--                        <Field type="number"-->
+        <!--                               :name="`selectedProducts[${index-1}].pu`"-->
+        <!--                               class="form-control"-->
+        <!--                               v-model.number="emptyVal" />-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </template>-->
+        <!--        </template>-->
 
         <options @optionsAreUpdated="updateOptions" :options="filteredOptions"></options>
 
@@ -178,11 +269,9 @@ export default defineComponent( {
                                     emits:      [ 'generateQuotation', 'generateAddressCertificate', 'calculedPrice' ],
                                     setup( props, ctx ) {
                                         const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
-                                        console.log( '%c SELECTED PRODUCTS', 'background: #00FF2E; color: #000000' );
-                                        console.log( _selectedProducts.value );
-                                        const _options      = ref<Option[]>( ( props.options as Option[] ) );
-                                        const _blankOptions = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
-                                        const lists         = ref<RrList>( ( props.fileData.lists as RrList ) );
+                                        const _options          = ref<Option[]>( ( props.options as Option[] ) );
+                                        const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
+                                        const lists             = ref<RrList>( ( props.fileData.lists as RrList ) );
                                         console.log( 'OPTION -->', _options );
 
 
@@ -198,6 +287,8 @@ export default defineComponent( {
                                         const $selectedIntProduct3 = ref( null );
                                         const $selectedIntProduct4 = ref( null );
                                         const $selectedIntProduct5 = ref( null );
+
+                                        // const rrAlgo = new RrAlgo( props.fileData.housing );
 
                                         const generateQuotation = () => {
                                             ctx.emit( 'generateQuotation' );
@@ -286,76 +377,70 @@ export default defineComponent( {
 
 
                                         const updateSelectedProduct = ( product, index ) => {
-                                            console.log( '%c UPDATE', 'background: #FEFF00; color: #000000' );
-                                            console.log( '%c UPDATE', 'background: #FEFF00; color: #000000' );
-                                            console.log( '%c UPDATE', 'background: #FEFF00; color: #000000' );
-                                            console.log( index, product );
+                                            console.log( 'UPDATE' );
+                                            console.log( product );
+                                            console.log( index );
                                             _selectedProducts.value[ index ] = product;
-                                            console.log( '%c SELECTED PRODUCTS',
-                                                         'background: #00FF2E; color: #000000' );
-                                            console.log( _selectedProducts.value );
                                         };
 
                                         const removeSelectedProducts = () => {
-                                            // console.log( '%c REMOVE', 'background: #0A00FF; color: #000000' );
-                                            // console.log( '%c REMOVE', 'background: #0A00FF; color: #000000' );
-                                            // console.log( '%c REMOVE', 'background: #0A00FF; color: #000000' );
-                                            // _selectedProducts.value = [];
-                                            // const extProducts       = props.products.filter( p => p.productType === 'pac_rr' && p.label.toUpperCase()
-                                            //                                                                                      .includes(
-                                            //                                                                                          'EXTERIEURE' ) );
-                                            // const intProducts       = props.products.filter( p => p.productType === 'pac_rr' && !p.label.toUpperCase()
-                                            //                                                                                       .includes(
-                                            //                                                                                           'EXTERIEURE' ) );
-                                            //
-                                            //
-                                            // const newExtProduct = ( $selectedExtProduct.value as any )?.resetSelectedValue(
-                                            //     extProducts );
-                                            // console.log( 'newExtProduct', newExtProduct );
-                                            // _selectedProducts.value.push( newExtProduct );
-                                            //
-                                            // if ( rrType.value === 'mono' ) {
-                                            //     console.log( '%c IN IN', 'background: #fdd835; color: #000000' );
-                                            //     const newIntProduct = ( $selectedIntProduct1.value as any )?.resetSelectedValue(
-                                            //         intProducts );
-                                            //
-                                            //     _selectedProducts.value.push( newIntProduct );
-                                            // } else {
-                                            //     console.log( '%c IN ELSE', 'background: #fdd835; color: #000000' );
-                                            //     for ( let i = 1; i <= rrMulti.value.roomNumber; i++ ) {
-                                            //         let newIntProduct = null;
-                                            //         switch ( i ) {
-                                            //             case 1:
-                                            //                 newIntProduct = ( $selectedIntProduct1.value as any )?.resetSelectedValue(
-                                            //                     intProducts );
-                                            //                 break;
-                                            //             case 2:
-                                            //                 newIntProduct = ( $selectedIntProduct2.value as any )?.resetSelectedValue(
-                                            //                     intProducts );
-                                            //                 break;
-                                            //             case 3:
-                                            //                 newIntProduct = ( $selectedIntProduct3.value as any )?.resetSelectedValue(
-                                            //                     intProducts );
-                                            //                 break;
-                                            //             case 4:
-                                            //                 newIntProduct = ( $selectedIntProduct4.value as any )?.resetSelectedValue(
-                                            //                     intProducts );
-                                            //                 break;
-                                            //             case 5:
-                                            //                 newIntProduct = ( $selectedIntProduct5.value as any )?.resetSelectedValue(
-                                            //                     intProducts );
-                                            //                 break;
-                                            //         }
-                                            //         if ( newIntProduct !== null ) {
-                                            //             _selectedProducts.value.push( newIntProduct );
-                                            //         }
-                                            //     }
-                                            //     console.log( '%c IN ELSE', 'background: #fdd835; color: #000000' );
-                                            // }
-                                            //
-                                            // console.log( '%c SELECTED PRODUCTS',
-                                            //              'background: #00FF2E; color: #000000' );
-                                            // console.log( _selectedProducts.value );
+                                            console.log( '%c REMOVE', 'background: #0A00FF; color: #000000' );
+                                            console.log( '%c REMOVE', 'background: #0A00FF; color: #000000' );
+                                            console.log( '%c REMOVE', 'background: #0A00FF; color: #000000' );
+                                            _selectedProducts.value = [];
+                                            const extProducts       = props.products.filter( p => p.productType === 'pac_rr' && p.label.toUpperCase()
+                                                                                                                                 .includes(
+                                                                                                                                     'EXTERIEURE' ) );
+                                            const intProducts       = props.products.filter( p => p.productType === 'pac_rr' && !p.label.toUpperCase()
+                                                                                                                                  .includes(
+                                                                                                                                      'EXTERIEURE' ) );
+
+
+                                            const newExtProduct = ( $selectedExtProduct.value as any )?.resetSelectedValue(
+                                                extProducts );
+                                            console.log( 'newExtProduct', newExtProduct );
+                                            _selectedProducts.value.push( newExtProduct );
+
+                                            if ( rrType.value === 'mono' ) {
+                                                console.log( '%c IN IN', 'background: #fdd835; color: #000000' );
+                                                const newIntProduct = ( $selectedIntProduct1.value as any )?.resetSelectedValue(
+                                                    intProducts );
+
+                                                _selectedProducts.value.push( newIntProduct );
+                                            } else {
+                                                console.log( '%c IN ELSE', 'background: #fdd835; color: #000000' );
+                                                for ( let i = 1; i <= rrMulti.value.roomNumber; i++ ) {
+                                                    let newIntProduct = null;
+                                                    switch ( i ) {
+                                                        case 1:
+                                                            newIntProduct = ( $selectedIntProduct1.value as any )?.resetSelectedValue(
+                                                                intProducts );
+                                                            break;
+                                                        case 2:
+                                                            newIntProduct = ( $selectedIntProduct2.value as any )?.resetSelectedValue(
+                                                                intProducts );
+                                                            break;
+                                                        case 3:
+                                                            newIntProduct = ( $selectedIntProduct3.value as any )?.resetSelectedValue(
+                                                                intProducts );
+                                                            break;
+                                                        case 4:
+                                                            newIntProduct = ( $selectedIntProduct4.value as any )?.resetSelectedValue(
+                                                                intProducts );
+                                                            break;
+                                                        case 5:
+                                                            newIntProduct = ( $selectedIntProduct5.value as any )?.resetSelectedValue(
+                                                                intProducts );
+                                                            break;
+                                                    }
+                                                    if ( newIntProduct !== null ) {
+                                                        _selectedProducts.value.push( newIntProduct );
+                                                    }
+                                                }
+                                                console.log( '%c IN ELSE', 'background: #fdd835; color: #000000' );
+                                            }
+
+
                                         };
 
 
@@ -405,22 +490,15 @@ export default defineComponent( {
 
                                             if ( filterSelectedProducts.length > rrMulti.value.roomNumber ) {
                                                 console.log( 'splice -->',
-                                                             -Math.abs( filterSelectedProducts.length - rrMulti.value.roomNumber ) );
+                                                             filterSelectedProducts.length - rrMulti.value.roomNumber );
 
                                                 // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-                                                _selectedProducts.value.splice( -Math.abs( filterSelectedProducts.length - rrMulti.value.roomNumber ) );
+                                                _selectedProducts.value.splice( ( filterSelectedProducts.length - rrMulti.value.roomNumber ) );
                                                 console.log( '%c IN', 'background: #FF000A; color: #000000' );
                                                 console.log( '%c IN', 'background: #FF000A; color: #000000' );
                                                 console.log( '%c IN', 'background: #FF000A; color: #000000' );
                                                 console.log( filterSelectedProducts );
-                                            } else if ( rrType.value === 'mono' && filterSelectedProducts.length > 1 ) {
-                                                // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-                                                _selectedProducts.value.splice( -Math.abs( filterSelectedProducts.length - 1 ) );
                                             }
-
-                                            console.log( '%c SELECTED PRODUCTS',
-                                                         'background: #00FF2E; color: #000000' );
-                                            console.log( _selectedProducts.value );
 
                                             // for ( let i = 1; i <= rrMulti.value.roomNumber; i++ ) {
                                             //     let newIntProduct = null;
