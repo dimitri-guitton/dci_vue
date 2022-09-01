@@ -358,7 +358,7 @@ export default defineComponent( {
                                       console.log( formData.value );
 
                                       const newFileData: CetFile = saveCetWorksheet( ( values as CetFileStep ) );
-                                      const worksheetGenerator   = new WorksheetGenerator( newFileData );
+                                        const worksheetGenerator = await WorksheetGenerator.initialize( newFileData );
                                       worksheetGenerator.generatePdf();
                                     } );
 

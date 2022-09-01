@@ -110,19 +110,19 @@ import FilePacRoStep3 from '@/views/file/pac_ro/FilePacRoStep3.vue';
 import FilePacRoStep4 from '@/views/file/pac_ro/FilePacRoStep4.vue';
 import FilePacRoStep5 from '@/views/file/pac_ro/FilePacRoStep5.vue';
 import {
-  initPacRoFormDataStep3,
-  validatePacRoStep3,
-  yupPacRoConfigStep3,
+    initPacRoFormDataStep3,
+    validatePacRoStep3,
+    yupPacRoConfigStep3,
 } from '@/services/file/wizzard/pac_ro/step3Service';
 import {
-  initPacRoFormDataStep4,
-  validatePacRoStep4,
-  yupPacRoConfigStep4,
+    initPacRoFormDataStep4,
+    validatePacRoStep4,
+    yupPacRoConfigStep4,
 } from '@/services/file/wizzard/pac_ro/step4Service';
 import {
-  initPacRoFormDataStep5,
-  savePacRoWorksheet,
-  yupPacRoConfigStep5,
+    initPacRoFormDataStep5,
+    savePacRoWorksheet,
+    yupPacRoConfigStep5,
 } from '@/services/file/wizzard/pac_ro/step5Service';
 import { PacRoFileStep } from '@/types/v2/Wizzard/FileStep';
 import { PacRoStep5 } from '@/types/v2/Wizzard/step5/PacRoStep5';
@@ -322,8 +322,8 @@ export default defineComponent( {
                                       console.log( '%c ', 'background: #fdd835; color: #000000' );
                                       console.log( formData.value );
 
-                                      const newFileData: RoFile = savePacRoWorksheet( ( values as PacRoFileStep ) );
-                                      const worksheetGenerator  = new WorksheetGenerator( newFileData );
+                                        const newFileData: RoFile = savePacRoWorksheet( ( values as PacRoFileStep ) );
+                                        const worksheetGenerator  = await WorksheetGenerator.initialize( newFileData );
                                       worksheetGenerator.generatePdf();
                                     } );
 

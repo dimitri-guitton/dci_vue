@@ -356,8 +356,8 @@ export default defineComponent( {
                                       console.log( '%c ', 'background: #fdd835; color: #000000' );
                                       console.log( formData.value );
 
-                                      const newFileData: PgFile = savePgWorksheet( ( values as PgFileStep ) );
-                                      const worksheetGenerator  = new WorksheetGenerator( newFileData );
+                                      const newFileData: PgFile  = savePgWorksheet( ( values as PgFileStep ) );
+                                        const worksheetGenerator = await WorksheetGenerator.initialize( newFileData );
                                       worksheetGenerator.generatePdf();
                                     } );
 

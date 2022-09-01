@@ -1096,6 +1096,7 @@ export class RoAlgo extends PacAlgo {
             }
 
             // On retourne la PAC que si sont output est supérieur à la puissance requise
+            // TODO FAIRE en sorte que cela ne soit pas en dessous de 60% et au dessus de 110%
             return pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower * ( sizingPercentage / 100 );
         } );
 

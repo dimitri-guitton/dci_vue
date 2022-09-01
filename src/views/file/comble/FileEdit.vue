@@ -112,19 +112,19 @@ import FileCombleStep3 from '@/views/file/comble/FileCombleStep3.vue';
 import { CombleStep5 } from '@/types/v2/Wizzard/step5/CombleStep5';
 import { CombleStep3 } from '@/types/v2/Wizzard/step3/CombleStep3';
 import {
-  initCombleFormDataStep3,
-  validateCombleStep3,
-  yupCombleConfigStep3,
+    initCombleFormDataStep3,
+    validateCombleStep3,
+    yupCombleConfigStep3,
 } from '@/services/file/wizzard/comble/step3Service';
 import {
-  initCombleFormDataStep4,
-  validateCombleStep4,
-  yupCombleConfigStep4,
+    initCombleFormDataStep4,
+    validateCombleStep4,
+    yupCombleConfigStep4,
 } from '@/services/file/wizzard/comble/step4Service';
 import {
-  initCombleFormDataStep5,
-  saveCombleWorksheet,
-  yupCombleConfigStep5,
+    initCombleFormDataStep5,
+    saveCombleWorksheet,
+    yupCombleConfigStep5,
 } from '@/services/file/wizzard/comble/step5Service';
 import { ElLoading } from 'element-plus';
 import { QuotationGenerator } from '@/services/pdf/quotationGenerator';
@@ -344,8 +344,8 @@ export default defineComponent( {
                                       console.log( '%c ', 'background: #fdd835; color: #000000' );
                                       console.log( formData.value );
 
-                                      const newFileData: CombleFile = saveCombleWorksheet( ( values as CombleFileStep ) );
-                                      const worksheetGenerator      = new WorksheetGenerator( newFileData );
+                                        const newFileData: CombleFile = saveCombleWorksheet( ( values as CombleFileStep ) );
+                                        const worksheetGenerator      = await WorksheetGenerator.initialize( newFileData );
                                       worksheetGenerator.generatePdf();
                                     } );
 

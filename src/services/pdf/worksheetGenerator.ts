@@ -36,15 +36,21 @@ import { RoWorkSheet } from '@/types/v2/File/Ro/RoWorkSheet';
 import { RrWorkSheet } from '@/types/v2/File/Rr/RrWorkSheet';
 import { PgWorkSheet } from '@/types/v2/File/Pg/PgWorkSheet';
 import { AllFile, AllQuotation } from '@/types/v2/File/All';
-import { getAddress } from '@/services/data/dataService';
+import { getAddress, getcurrentFolderName } from '@/services/data/dataService';
 import { RoQuotation } from '@/types/v2/File/Ro/RoQuotation';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 import { ProfitabilityStudyGenerator } from '@/services/pdf/profitabilityStudyGenerator';
 import { PbWorkSheet } from '@/types/v2/File/Pb/PbWorkSheet';
 import PbList from '@/types/v2/File/Pb/PbList';
+import { FoldersNames, getFolderPath } from '@/services/folder/folderService';
+import path from 'path';
+import fs from 'fs';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const imageToBase64 = require( 'image-to-base64' );
 
 export class WorksheetGenerator extends PdfGenerator {
     private _file: AllFile;
+    private _photos: Content[];
 
     private _style: StyleDictionary = {
         title: {
@@ -56,13 +62,19 @@ export class WorksheetGenerator extends PdfGenerator {
     };
 
 
-    constructor( file: AllFile ) {
+    constructor( file: AllFile, photos: Content[] ) {
         super();
-        this._file = file;
-        this.type  = PdfType.Worksheet;
+        this._file   = file;
+        this._photos = photos;
+        this.type    = PdfType.Worksheet;
 
         this.docDefinition = this._generateDocDefinition();
 
+    }
+
+    static async initialize( file: AllFile ): Promise<WorksheetGenerator> {
+        const photos = await this._getPhotos();
+        return new WorksheetGenerator( file, photos );
     }
 
     generatePdf() {
@@ -75,12 +87,15 @@ export class WorksheetGenerator extends PdfGenerator {
     }
 
     private _generateDocDefinition(): TDocumentDefinitions {
+
+
         return {
             content: [
                 this._generateHeader(),
                 this._generateSubHeader(),
                 this._generateBody(),
                 this._generateFooter(),
+                this._photos,
             ],
             styles:  this._style,
         };
@@ -1546,6 +1561,50 @@ export class WorksheetGenerator extends PdfGenerator {
 
         return data;
     }
+
+    private static async _getPhotos(): Promise<Content[]> {
+        const folderPath = getFolderPath( getcurrentFolderName() );
+        const photoPath  = path.join( folderPath, FoldersNames.PHOTO );
+
+        const imgBase64: Content[] = [];
+        try {
+            fs.accessSync( photoPath );
+
+            const files = fs.readdirSync( photoPath );
+
+            // Suppression du .DS_Store sous MAC
+            if ( files[ 0 ] == '.DS_Store' ) {
+                files.splice( 0, 1 );
+            }
+
+            console.log( 'files -->', files );
+
+            for ( const file of files ) {
+                const filePath      = path.join( photoPath, file );
+                const extensionFile = file.substr( file.lastIndexOf( '.' ) + 1 );
+                console.log( 'filePath -->', filePath );
+                console.log( 'extensionFile -->', extensionFile );
+                if ( extensionFile === 'png' || extensionFile === 'jpg' || extensionFile === 'jpeg' ) {
+                    let base64OLD = await imageToBase64( filePath );
+                    base64OLD     = `data:image/${ extensionFile };base64,${ base64OLD }`;
+
+                    imgBase64.push(
+                        {
+                            margin: [ 0, 15, 0, 15 ],
+                            image:  base64OLD,
+                            fit:    [ 575, 575 ],
+                        },
+                    );
+                }
+            }
+
+        } catch ( e ) {
+            console.warn( e );
+        }
+
+        return imgBase64;
+    }
+
 }
 
 interface ParsedWorksheet {

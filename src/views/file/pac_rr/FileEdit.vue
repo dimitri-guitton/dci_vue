@@ -379,8 +379,8 @@ export default defineComponent( {
                                       console.log( '%c ', 'background: #fdd835; color: #000000' );
                                       console.log( formData.value );
 
-                                      const newFileData: RrFile = savePacRrWorksheet( ( values as PacRrFileStep ) );
-                                      const worksheetGenerator  = new WorksheetGenerator( newFileData );
+                                      const newFileData: RrFile  = savePacRrWorksheet( ( values as PacRrFileStep ) );
+                                        const worksheetGenerator = await WorksheetGenerator.initialize( newFileData );
                                       worksheetGenerator.generatePdf();
                                     } );
 
