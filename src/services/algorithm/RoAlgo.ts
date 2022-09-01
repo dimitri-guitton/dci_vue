@@ -1057,7 +1057,7 @@ export class RoAlgo extends PacAlgo {
 
     public getUnitsRo( volumeECS: number ): { unitExt: UnitExt; unitInt: UnitInt; needBiZoneSupplement: boolean } | null {
         console.log( '%c GET UNITS RO', 'background: #5ADFFF; color: #000000' );
-        const requiredPower: number = this.calcRequiredPower( this.housing, 'pac_ro' );
+        const requiredPower: number = this.calcRequiredPower( this.housing );
         const baseTemp: number      = this.getBaseTemperature( this.housing.climaticZone, this.housing.altitude );
         const heaterValue: number   = this.heaterToValue( this.housing.heaters );
 
@@ -1236,7 +1236,7 @@ export class RoAlgo extends PacAlgo {
      * Retourne la puissance réel d'une unité extérieur selon la zone climatique
      */
     public getRealPowerUnitExt(): number {
-        const requiredPower: number = this.calcRequiredPower( this.housing, 'pac_ro' );
+        const requiredPower: number = this.calcRequiredPower( this.housing );
         const baseTemp: number      = this.getBaseTemperature( this.housing.climaticZone, this.housing.altitude );
         const heaterValue: number   = this.heaterToValue( this.housing.heaters );
 

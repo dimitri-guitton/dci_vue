@@ -4,6 +4,18 @@
                       :price="price"
                       :lists="lists"></step4-header>
 
+        <div class="row">
+            <p>Dimensionnement total chaud 1.20 : <b>{{
+                    ( rrAlgo.calcRequiredPower( fileData.housing ) * 1.20 ).toFixed( 1 )
+                                                     }} KW</b></p>
+            <p>Dimensionnement total chaud 1.80 : <b>{{
+                    ( rrAlgo.calcRequiredPower( fileData.housing ) * 1.80 ).toFixed( 1 )
+                                                     }} KW</b></p>
+            <p>Dimensionnement total froid : <b>{{ ( rrAlgo.calcRequiredPowerCold( fileData.housing ) ).toFixed( 1 ) }}
+                                                KW</b></p>
+        </div>
+        <el-divider class="mb-10"></el-divider>
+
         <div class="row mt-10">
             <div class="col-md-6 mb-5">
                 <label for="pacType" class="form-label">Type de pompe à chaleur</label>
@@ -12,7 +24,6 @@
                        class="form-select"
                        as="select"
                        v-model="rrType"
-                       @change="removeSelectedProducts"
                 >
                     <template-item-list :lists="lists.rrTypeList"></template-item-list>
                 </Field>
@@ -37,15 +48,35 @@
 
             <div class="row mt-10">
                 <template v-for="index in rrMulti.roomNumber" v-bind:key="`area${index}`">
-                    <div class="col-md-2">
-                        <label class="form-label mb-3">Pièce n°{{ index }} <sup><var>m2</var></sup></label>
-                        <Field
-                            type="number"
-                            class="form-control"
-                            :name="`housingAreaP${index}`"
-                            placeholder="1"
-                            v-model.number="rrMulti[`areaP${index}`]"
-                        />
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="form-label mb-3">Pièce n°{{ index }} <sup><var>m2</var></sup></label>
+                            <Field
+                                type="number"
+                                class="form-control"
+                                :name="`housingAreaP${index}`"
+                                placeholder="1"
+                                v-model.number="rrMulti[`areaP${index}`]"
+                            />
+                        </div>
+                        <div class="col-md-3">
+                            <p>Dimensionnement chaud P{{ index }} 1.20 : <b>{{
+                                    ( rrAlgo.calcRequiredPower( fileData.housing,
+                                                                rrMulti[ `areaP${ index }` ] ) * 1.20 ).toFixed( 1 )
+                                                                            }} KW</b></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>Dimensionnement chaud P{{ index }} 1.80 : <b>{{
+                                    ( rrAlgo.calcRequiredPower( fileData.housing,
+                                                                rrMulti[ `areaP${ index }` ] ) * 1.80 ).toFixed( 1 )
+                                                                            }} KW</b></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>Dimensionnement froid P{{ index }} : <b>{{
+                                    ( rrAlgo.calcRequiredPowerCold( fileData.housing,
+                                                                    rrMulti[ `areaP${ index }` ] ) ).toFixed( 1 )
+                                                                       }} KW</b></p>
+                        </div>
                     </div>
                 </template>
             </div>
@@ -75,7 +106,6 @@
         </template>
         <template v-else>
             <template v-for="index in rrMulti.roomNumber" v-bind:key="`select_int_product_${index}`">
-                <h1>{{ index }}</h1>
                 <selected-product :index="index"
                                   :products="intProducts"
                                   :selectedProducts="selectedProducts"
@@ -146,6 +176,7 @@ import { ItemList } from '@/types/v2/File/Common/ItemList';
 import { getCeeBonus } from '@/services/file/fileCommonService';
 import InputDiscount from '@/components/DCI/input/Discount.vue';
 import SelectedProduct from '@/components/DCI/input/SelectedProduct.vue';
+import { RrAlgo } from '@/services/algorithm/RrAlgo';
 
 export default defineComponent( {
                                     name:       'file-pac-rr-step-4',
@@ -178,26 +209,16 @@ export default defineComponent( {
                                     emits:      [ 'generateQuotation', 'generateAddressCertificate', 'calculedPrice' ],
                                     setup( props, ctx ) {
                                         const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
-                                        console.log( '%c SELECTED PRODUCTS', 'background: #00FF2E; color: #000000' );
-                                        console.log( _selectedProducts.value );
-                                        const _options      = ref<Option[]>( ( props.options as Option[] ) );
-                                        const _blankOptions = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
-                                        const lists         = ref<RrList>( ( props.fileData.lists as RrList ) );
-                                        console.log( 'OPTION -->', _options );
-
+                                        const _options          = ref<Option[]>( ( props.options as Option[] ) );
+                                        const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
+                                        const lists             = ref<RrList>( ( props.fileData.lists as RrList ) );
 
                                         const discount   = ref<number>( props.fileData.quotation.discount );
                                         const rrType     = ref<string>( ( props.fileData.quotation.rrType ) );
                                         const assortment = ref<string>( ( props.fileData.quotation.assortment ) );
                                         const rrMulti    = ref<RrMulti>( ( props.fileData.quotation.rrMulti ) );
 
-
-                                        const $selectedExtProduct  = ref( null );
-                                        const $selectedIntProduct1 = ref( null );
-                                        const $selectedIntProduct2 = ref( null );
-                                        const $selectedIntProduct3 = ref( null );
-                                        const $selectedIntProduct4 = ref( null );
-                                        const $selectedIntProduct5 = ref( null );
+                                        const rrAlgo = new RrAlgo( props.fileData.housing );
 
                                         const generateQuotation = () => {
                                             ctx.emit( 'generateQuotation' );
@@ -212,7 +233,6 @@ export default defineComponent( {
                                         };
 
                                         const updateDiscount = ( value ) => {
-                                            console.log( 'updateDiscount' );
                                             discount.value = value;
                                         };
 
@@ -237,10 +257,8 @@ export default defineComponent( {
                                         };
 
                                         const updateNbLayingOption = ( nbLaying: number ) => {
-                                            console.log( '%c IN UPDATE', 'background: #fdd835; color: #000000' );
                                             const layingOption = _options.value.find( o => o.label.includes(
                                                 'Forfait pose' ) );
-                                            console.log( layingOption );
                                             if ( layingOption === undefined ) {
                                                 return;
                                             }
@@ -265,12 +283,8 @@ export default defineComponent( {
                                         };
 
                                         const filteredOptions = computed<Option[]>( () => {
-                                            console.log( '%c FILTERED OPTION', 'background: #FF0007; color: #000000' );
-                                            console.log( _options.value );
 
                                             if ( rrType.value === 'multi' ) {
-                                                console.log( '%c BEFORe UPDAYE CALL UPDATE LATING',
-                                                             'background: #fdd835; color: #000000' );
                                                 updateNbLayingOption( rrMulti.value.roomNumber );
                                             }
 
@@ -286,180 +300,31 @@ export default defineComponent( {
 
 
                                         const updateSelectedProduct = ( product, index ) => {
-                                            console.log( '%c UPDATE', 'background: #FEFF00; color: #000000' );
-                                            console.log( '%c UPDATE', 'background: #FEFF00; color: #000000' );
-                                            console.log( '%c UPDATE', 'background: #FEFF00; color: #000000' );
-                                            console.log( index, product );
                                             _selectedProducts.value[ index ] = product;
-                                            console.log( '%c SELECTED PRODUCTS',
-                                                         'background: #00FF2E; color: #000000' );
-                                            console.log( _selectedProducts.value );
                                         };
-
-                                        const removeSelectedProducts = () => {
-                                            // console.log( '%c REMOVE', 'background: #0A00FF; color: #000000' );
-                                            // console.log( '%c REMOVE', 'background: #0A00FF; color: #000000' );
-                                            // console.log( '%c REMOVE', 'background: #0A00FF; color: #000000' );
-                                            // _selectedProducts.value = [];
-                                            // const extProducts       = props.products.filter( p => p.productType === 'pac_rr' && p.label.toUpperCase()
-                                            //                                                                                      .includes(
-                                            //                                                                                          'EXTERIEURE' ) );
-                                            // const intProducts       = props.products.filter( p => p.productType === 'pac_rr' && !p.label.toUpperCase()
-                                            //                                                                                       .includes(
-                                            //                                                                                           'EXTERIEURE' ) );
-                                            //
-                                            //
-                                            // const newExtProduct = ( $selectedExtProduct.value as any )?.resetSelectedValue(
-                                            //     extProducts );
-                                            // console.log( 'newExtProduct', newExtProduct );
-                                            // _selectedProducts.value.push( newExtProduct );
-                                            //
-                                            // if ( rrType.value === 'mono' ) {
-                                            //     console.log( '%c IN IN', 'background: #fdd835; color: #000000' );
-                                            //     const newIntProduct = ( $selectedIntProduct1.value as any )?.resetSelectedValue(
-                                            //         intProducts );
-                                            //
-                                            //     _selectedProducts.value.push( newIntProduct );
-                                            // } else {
-                                            //     console.log( '%c IN ELSE', 'background: #fdd835; color: #000000' );
-                                            //     for ( let i = 1; i <= rrMulti.value.roomNumber; i++ ) {
-                                            //         let newIntProduct = null;
-                                            //         switch ( i ) {
-                                            //             case 1:
-                                            //                 newIntProduct = ( $selectedIntProduct1.value as any )?.resetSelectedValue(
-                                            //                     intProducts );
-                                            //                 break;
-                                            //             case 2:
-                                            //                 newIntProduct = ( $selectedIntProduct2.value as any )?.resetSelectedValue(
-                                            //                     intProducts );
-                                            //                 break;
-                                            //             case 3:
-                                            //                 newIntProduct = ( $selectedIntProduct3.value as any )?.resetSelectedValue(
-                                            //                     intProducts );
-                                            //                 break;
-                                            //             case 4:
-                                            //                 newIntProduct = ( $selectedIntProduct4.value as any )?.resetSelectedValue(
-                                            //                     intProducts );
-                                            //                 break;
-                                            //             case 5:
-                                            //                 newIntProduct = ( $selectedIntProduct5.value as any )?.resetSelectedValue(
-                                            //                     intProducts );
-                                            //                 break;
-                                            //         }
-                                            //         if ( newIntProduct !== null ) {
-                                            //             _selectedProducts.value.push( newIntProduct );
-                                            //         }
-                                            //     }
-                                            //     console.log( '%c IN ELSE', 'background: #fdd835; color: #000000' );
-                                            // }
-                                            //
-                                            // console.log( '%c SELECTED PRODUCTS',
-                                            //              'background: #00FF2E; color: #000000' );
-                                            // console.log( _selectedProducts.value );
-                                        };
-
 
                                         const extProducts = computed<Product[]>( () => {
-                                            console.log( '%c EXT', 'background: #FF80C7; color: #000000' );
-                                            console.log( '%c EXT', 'background: #FF80C7; color: #000000' );
-                                            console.log( '%c EXT', 'background: #FF80C7; color: #000000' );
-                                            console.log( '%c EXT', 'background: #FF80C7; color: #000000' );
-                                            console.log( '_selectedProducts', _selectedProducts.value );
-                                            const filtered = props.products.filter( p => p.productType === 'pac_rr' && p.label.toUpperCase()
-                                                                                                                        .includes(
-                                                                                                                            'EXTERIEURE' ) );
-                                            console.log( 'Filterred -->', filtered );
-
-                                            const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'pac_rr' && p.label.toUpperCase()
-                                                                                                                                               .includes(
-                                                                                                                                                   'EXTERIEURE' ) );
-
-                                            // if ( filterSelectedProducts.length === 1 ) {
-                                            //     const extProduct = ( $selectedExtProduct.value as any )?.resetSelectedValue(
-                                            //         filtered );
-                                            //     if ( extProduct !== undefined ) {
-                                            //         updateSelectedProduct( extProduct, 0 );
-                                            //     }
-                                            // }
-
-                                            return filtered;
+                                            return props.products.filter( p => p.productType === 'pac_rr' && p.label.toUpperCase()
+                                                                                                              .includes(
+                                                                                                                  'EXTERIEURE' ) );
                                         } );
 
                                         const intProducts = computed<Product[]>( () => {
-                                            console.log( '%c intProducts', 'background: #FF80C7; color: #000000' );
-                                            console.log( '%c intProducts', 'background: #FF80C7; color: #000000' );
-                                            console.log( '%c intProducts', 'background: #FF80C7; color: #000000' );
-                                            console.log( '%c intProducts', 'background: #FF80C7; color: #000000' );
-                                            console.log( '_selectedProducts', _selectedProducts.value );
                                             const filtered = props.products.filter( p => p.productType === 'pac_rr' && !p.label.toUpperCase()
                                                                                                                          .includes(
                                                                                                                              'EXTERIEURE' ) );
-                                            console.log( 'Filterred -->', filtered );
 
                                             const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'pac_rr' && !p.label.toUpperCase()
                                                                                                                                                 .includes(
                                                                                                                                                     'EXTERIEURE' ) );
 
-                                            console.log( 'filterSelectedProducts', filterSelectedProducts );
-                                            console.log( 'rrMulti.value.roomNumber', rrMulti.value.roomNumber );
-
                                             if ( filterSelectedProducts.length > rrMulti.value.roomNumber ) {
-                                                console.log( 'splice -->',
-                                                             -Math.abs( filterSelectedProducts.length - rrMulti.value.roomNumber ) );
-
                                                 // eslint-disable-next-line vue/no-side-effects-in-computed-properties
                                                 _selectedProducts.value.splice( -Math.abs( filterSelectedProducts.length - rrMulti.value.roomNumber ) );
-                                                console.log( '%c IN', 'background: #FF000A; color: #000000' );
-                                                console.log( '%c IN', 'background: #FF000A; color: #000000' );
-                                                console.log( '%c IN', 'background: #FF000A; color: #000000' );
-                                                console.log( filterSelectedProducts );
                                             } else if ( rrType.value === 'mono' && filterSelectedProducts.length > 1 ) {
                                                 // eslint-disable-next-line vue/no-side-effects-in-computed-properties
                                                 _selectedProducts.value.splice( -Math.abs( filterSelectedProducts.length - 1 ) );
                                             }
-
-                                            console.log( '%c SELECTED PRODUCTS',
-                                                         'background: #00FF2E; color: #000000' );
-                                            console.log( _selectedProducts.value );
-
-                                            // for ( let i = 1; i <= rrMulti.value.roomNumber; i++ ) {
-                                            //     let newIntProduct = null;
-                                            //     switch ( i ) {
-                                            //         case 1:
-                                            //             newIntProduct = ( $selectedIntProduct1.value as any )?.resetSelectedValue(
-                                            //                 [filterSelectedProducts[0]] );
-                                            //             break;
-                                            //         case 2:
-                                            //             newIntProduct = ( $selectedIntProduct2.value as any )?.resetSelectedValue(
-                                            //                 [filterSelectedProducts[1]] );
-                                            //             break;
-                                            //         case 3:
-                                            //             newIntProduct = ( $selectedIntProduct3.value as any )?.resetSelectedValue(
-                                            //                 [filterSelectedProducts[2]] );
-                                            //             break;
-                                            //         case 4:
-                                            //             newIntProduct = ( $selectedIntProduct4.value as any )?.resetSelectedValue(
-                                            //                 [filterSelectedProducts[3]] );
-                                            //             break;
-                                            //         case 5:
-                                            //             newIntProduct = ( $selectedIntProduct5.value as any )?.resetSelectedValue(
-                                            //                 [filterSelectedProducts[4]] );
-                                            //             break;
-                                            //     }
-                                            //     if ( newIntProduct !== null ) {
-                                            //         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-                                            //         _selectedProducts.value.push( newIntProduct );
-                                            //     }
-                                            // }
-
-
-                                            // if ( filterSelectedProducts.length < 1 ) {
-                                            //     const newSelectedProduct = ( $selectedIntProduct.value as any )?.resetSelectedValue(
-                                            //         filtered );
-                                            //     if ( newSelectedProduct !== undefined ) {
-                                            //         updateSelectedProduct( newSelectedProduct, 1 );
-                                            //     }
-                                            // }
 
                                             return filtered;
                                         } );
@@ -470,70 +335,6 @@ export default defineComponent( {
                                             }
                                             return lists.value.gammeTypeList;
                                         } );
-
-                                        // TODO au changement d'isolation en multi on garde de vieux PAC
-                                        // const products = computed<Product[]>(
-                                        //     () => {
-                                        //         console.log( '%c COMPUTED PRODUCTS RR',
-                                        //                      'background: #00FF2E; color: #FFFFFF' );
-                                        //
-                                        //         rrAlgo.updateHousing( props.fileData.housing );
-                                        //
-                                        //         console.log( 'GAMME -->', assortment.value );
-                                        //         let _products: Product[] = [];
-                                        //         if ( rrType.value === 'mono' ) {
-                                        //             const response = rrAlgo.getUnitsMono( assortment.value );
-                                        //
-                                        //             if ( response === null ) {
-                                        //                 return [];
-                                        //             }
-                                        //
-                                        //             const productExt = getProductByRef( response.unitExt );
-                                        //             const productInt = getProductByRef( response.unitInt );
-                                        //
-                                        //             if ( productExt === undefined || productInt === undefined ) {
-                                        //                 return [];
-                                        //             }
-                                        //
-                                        //             console.log( productExt );
-                                        //             console.log( productInt );
-                                        //             _products = [ productInt, productExt ];
-                                        //         } else {
-                                        //             const response = rrAlgo.getPacRrMulti( rrMulti.value );
-                                        //             console.log( 'RESPONSE -->', response );
-                                        //
-                                        //             if ( response === null ) {
-                                        //                 return [];
-                                        //             }
-                                        //
-                                        //             const productGroup              = getProductByRef( response.unitExt );
-                                        //             const productPerRoom: Product[] = [];
-                                        //
-                                        //             let hasAnUnavailableProduct = false;
-                                        //             for ( const p of response.unitsInt ) {
-                                        //                 const product = getProductByRef( p );
-                                        //                 if ( product === undefined ) {
-                                        //                     hasAnUnavailableProduct = true;
-                                        //                     continue;
-                                        //                 }
-                                        //                 productPerRoom.push( product );
-                                        //             }
-                                        //
-                                        //             if ( hasAnUnavailableProduct || productGroup === undefined ) {
-                                        //                 return [];
-                                        //             }
-                                        //
-                                        //             console.log( 'productGroup', productGroup );
-                                        //             console.log( 'productPerRoom', productPerRoom );
-                                        //             _products = [ productGroup, ...productPerRoom ];
-                                        //         }
-                                        //
-                                        //
-                                        //         console.log( '%c _PRODUCTS', 'background: #FFB122; color: #000000' );
-                                        //         console.log( _products );
-                                        //         return _products;
-                                        //
-                                        //     } );
 
                                         const price = computed<Price>( () => {
                                             // On utilise props.forceRefresh pour recalculer les prix
@@ -547,11 +348,7 @@ export default defineComponent( {
                                             let tva10;
                                             let tva20;
 
-                                            console.log( 'Prix par defaut -->', totalHt );
-                                            console.log( _selectedProducts.value );
-
                                             for ( const selectedProduct of _selectedProducts.value ) {
-                                                console.log( selectedProduct );
                                                 if ( selectedProduct === undefined ) {
                                                     continue;
                                                 }
@@ -638,12 +435,6 @@ export default defineComponent( {
 
 
                                         return {
-                                            $selectedExtProduct,
-                                            $selectedIntProduct1,
-                                            $selectedIntProduct2,
-                                            $selectedIntProduct3,
-                                            $selectedIntProduct4,
-                                            $selectedIntProduct5,
                                             lists,
                                             price,
                                             filteredOptions,
@@ -654,14 +445,13 @@ export default defineComponent( {
                                             rrMulti,
                                             assortmentLists,
                                             discount,
+                                            rrAlgo,
                                             updateSelectedProduct,
                                             updateOptions,
                                             updateBlankOtions,
                                             updateDiscount,
                                             generateQuotation,
                                             generateAddressCertificate,
-                                            removeSelectedProducts,
-                                            emptyVal: 99999,
                                         };
                                     },
                                 } );

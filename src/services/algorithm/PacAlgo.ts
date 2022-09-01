@@ -86,24 +86,27 @@ export class PacAlgo {
     /**
      * Calcul la puissance (KW) minimal requise de la PAC
      * @param housing
-     * @param type
+     * @param overrideArea
      */
-    public calcRequiredPower = ( housing: PacHousing, type = '' ): number => {
+    public calcRequiredPower = ( housing: PacHousing, overrideArea?: number ): number => {
         // Volume à chauffer
-        const volume: number = housing.area * housing.ceilingHeight;
+
+        let volume: number = housing.area * housing.ceilingHeight;
+        if ( overrideArea !== undefined ) {
+            volume = overrideArea * housing.ceilingHeight;
+        }
+
 
         const deltaT: number = this.calcDeltaT( housing.setPointTemperature, housing.climaticZone, housing.altitude );
 
-        let coef = 1;
-
-        if ( type === 'pac_ro' ) {
-            coef = 0.85;
-        } else if ( type === 'pac_rr' ) {
-            coef = 1.5;
-        }
+        // let coef = 1;
+        //
+        // if ( type === 'pac_ro' ) {
+        //     coef = 0.85;
+        // }
 
         // Puissance en W
-        const power: number = +( volume * deltaT * housing.buildingCoefficient * coef ).toFixed( 4 );
+        const power: number = +( volume * deltaT * housing.buildingCoefficient ).toFixed( 4 );
 
 
         console.log( {
@@ -124,7 +127,6 @@ export class PacAlgo {
 
     public updateHousing( value: PacHousing ) {
         this.housing = value;
-
     }
 }
 
