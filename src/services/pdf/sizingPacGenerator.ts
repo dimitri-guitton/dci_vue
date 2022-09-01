@@ -83,17 +83,20 @@ export class SizingPacGenerator extends PdfGenerator {
             case 'r_fonte':
             case 'r_fonte_p_chauffant':
                 powerPacText = `Départ d’eau 65°C -> Puissance calorifique à ${ pacAlgo.getBaseTemperature( housing.climaticZone,
-                                                                                                            housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt() }KW`;
+                                                                                                            housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt(
+                    ( this._file as RoFile ).quotation.sizingPercentage ?? 80 ) }KW`;
                 break;
             case 'r_autre':
             case 'r_autre_p_chauffant':
                 powerPacText = `Départ d’eau 55°C -> Puissance calorifique à ${ pacAlgo.getBaseTemperature( housing.climaticZone,
-                                                                                                            housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt() }KW`;
+                                                                                                            housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt(
+                    ( this._file as RoFile ).quotation.sizingPercentage ?? 80 ) }KW`;
                 break;
             case 'p_chauffant':
             case 'p_chauffant_p_chauffant':
                 powerPacText = `Départ d’eau 40°C -> Puissance calorifique à ${ pacAlgo.getBaseTemperature( housing.climaticZone,
-                                                                                                            housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt() }KW`;
+                                                                                                            housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt(
+                    ( this._file as RoFile ).quotation.sizingPercentage ?? 80 ) }KW`;
                 break;
         }
 

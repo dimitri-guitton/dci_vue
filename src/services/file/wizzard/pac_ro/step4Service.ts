@@ -16,7 +16,13 @@ import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5
  */
 export const initPacRoFormDataStep4 = ( fileData: RoFile ): PacRoStep4 => {
 
-
+    console.log( '%c IN', 'background: #fdd835; color: #000000' );
+    console.log( '%c IN', 'background: #fdd835; color: #000000' );
+    console.log( '%c IN', 'background: #fdd835; color: #000000' );
+    console.log( '%c IN', 'background: #fdd835; color: #000000' );
+    console.log( '%c IN', 'background: #fdd835; color: #000000' );
+    console.log( '%c IN', 'background: #fdd835; color: #000000' );
+    console.log( 'fileData.quotation.sizingPercentage', fileData.quotation.sizingPercentage );
     return {
         ...defaultInitFormDataStep4( fileData ),
         deviceToReplaceType:  fileData.quotation.deviceToReplace.type === undefined ? '' : fileData.quotation.deviceToReplace.type,
@@ -27,6 +33,7 @@ export const initPacRoFormDataStep4 = ( fileData: RoFile ): PacRoStep4 => {
         volumeECS:            fileData.quotation.volumeECS === null ? 'ecs_1' : fileData.quotation.volumeECS,
         cascadeSystem:        fileData.quotation.cascadeSystem,
         discount:             fileData.quotation.discount,
+        sizingPercentage:     fileData.quotation.sizingPercentage === undefined ? 80 : fileData.quotation.sizingPercentage,
     };
 };
 
@@ -41,6 +48,7 @@ export const yupPacRoConfigStep4 = () => {
                            volumeECS:            Yup.string(),
                            cascadeSystem:        Yup.boolean(),
                            discount:             Yup.number().min( 0, 'La remise ne peut pas être inférieur à 0' ),
+                           sizingPercentage:     Yup.number(),
                        } );
 };
 
@@ -82,8 +90,9 @@ export const validatePacRoStep4 = async ( data: PacRoFileStep, price: Price ): P
         },
         volumeECS:       data.volumeECS,
         // volumeECSDeporte: volumeECSDeporte,
-        isEcsDeporte:  data.isEcsDeporte,
-        cascadeSystem: data.cascadeSystem,
+        isEcsDeporte:     data.isEcsDeporte,
+        cascadeSystem:    data.cascadeSystem,
+        sizingPercentage: data.sizingPercentage,
     };
 
     fileData = {

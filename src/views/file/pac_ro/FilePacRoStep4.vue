@@ -5,6 +5,67 @@
                       :price="price"
                       :lists="lists"></step4-header>
 
+        <div class="row">
+            <div class="col-md-6 mb-5">
+                <label for="sizingPercentage" class="form-label">La pompe à chaleur doit couvrir au minimum 60% et au
+                                                                 maximum 110% des déperditions de la maison à la
+                                                                 température de base.<br><b>Quelle pourcentage voulez
+                                                                                            choisir ?</b></label>
+                <Field name="sizingPercentage"
+                       id="sizingPercentage"
+                       class="form-select"
+                       as="select"
+                       v-model="sizingPercentage"
+                >
+                    <template-item-list :lists="[
+                        {
+                            slug:'65',
+                            value: 65
+                        },
+                         {
+                            slug:'70',
+                            value: 70
+                        },
+                         {
+                            slug:'75',
+                            value: 75
+                        },
+                         {
+                            slug:'80',
+                            value: 80
+                        },
+                         {
+                            slug:'85',
+                            value: 85
+                        },
+                         {
+                            slug:'90',
+                            value: 90
+                        },
+                         {
+                            slug:'95',
+                            value: 95
+                        },
+                         {
+                            slug:'100',
+                            value: 100
+                        },
+                         {
+                            slug:'105',
+                            value: 105
+                        },
+
+                    ]"></template-item-list>
+                </Field>
+            </div>
+            <div class="col-md-6 mb-5">
+                Dimensionnement à {{ sizingPercentage }}% des déperditions =
+                {{ ( roAlgo.calcRequiredPower( fileData.housing ) * ( sizingPercentage / 100 ) ).toFixed( 4 ) }}KW
+            </div>
+        </div>
+
+        <el-divider class="mb-10"></el-divider>
+
         <div class="row mt-10">
             <div class="col-md-6 mb-5">
                 <label for="deviceToReplaceType" class="form-label">Appareil à remplacer</label>
@@ -268,6 +329,7 @@ import { getCodeBonus, getLessThan2Year, getProductByRef, getTva } from '@/servi
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import RoList from '@/types/v2/File/Ro/RoList';
 import ItemList from '@/components/DCI/input/ItemList.vue';
+import TemplateItemList from '@/components/DCI/input/ItemList.vue';
 import RowPrice from '@/components/DCI/wizzard-file/rowPrice.vue';
 import { RoAlgo } from '@/services/algorithm/RoAlgo';
 import { getCeeBonus, getHelpingHandRo, getMaPrimeRenov } from '@/services/file/fileCommonService';
@@ -286,6 +348,7 @@ export default defineComponent( {
                                         Step4QuotationHeader,
                                         Field,
                                         ErrorMessage,
+                                        TemplateItemList,
                                     },
                                     props:      {
                                         options:      Array as () => Option[],
@@ -302,10 +365,11 @@ export default defineComponent( {
                                         const _blankOptions = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                         const lists         = ref<RoList>( ( props.fileData.lists as RoList ) );
 
-                                        const deviceToReplace = ref( props.fileData.quotation.deviceToReplace );
-                                        const discount        = ref<number>( props.fileData.quotation.discount );
+                                        const deviceToReplace  = ref( props.fileData.quotation.deviceToReplace );
+                                        const discount         = ref<number>( props.fileData.quotation.discount );
                                         // const isEcsDeporte    = ref<boolean>( props.fileData.quotation.isEcsDeporte );
-                                        const volumeECS       = ref<string>( props.fileData.quotation.volumeECS );
+                                        const volumeECS        = ref<string>( props.fileData.quotation.volumeECS );
+                                        const sizingPercentage = ref<number>( props.fileData.quotation.sizingPercentage ?? 80 );
                                         console.log( '__ecs Volume ECS on Setup -->', volumeECS.value );
                                         // const volumeECSDeporte     = ref<number>( +props.fileData.quotation.volumeECSDeporte );
                                         const needBiZoneSupplement = ref<boolean>( false );
@@ -434,14 +498,14 @@ export default defineComponent( {
                                                 let response;
 
                                                 if ( volumeECS.value === 'ecs_1' ) {
-                                                    response = roAlgo.getUnitsRo( 0 );
+                                                    response = roAlgo.getUnitsRo( 0, sizingPercentage.value );
                                                 } else if ( volumeECS.value === 'ecs_2' ) {
-                                                    response = roAlgo.getUnitsRo( 180 );
+                                                    response = roAlgo.getUnitsRo( 180, sizingPercentage.value );
                                                 } else if ( volumeECS.value === 'ecs_3' ) {
-                                                    response = roAlgo.getUnitsRo( 230 );
+                                                    response = roAlgo.getUnitsRo( 230, sizingPercentage.value );
                                                 } else {
                                                     // ECS DEPORTÉ DONC ECS = 0
-                                                    response = roAlgo.getUnitsRo( 0 );
+                                                    response = roAlgo.getUnitsRo( 0, sizingPercentage.value );
                                                 }
                                                 console.log( 'Response', response );
 
@@ -785,11 +849,13 @@ export default defineComponent( {
                                             products,
                                             needBiZoneSupplement,
                                             discount,
+                                            roAlgo,
                                             updateOptions,
                                             updateBlankOtions,
                                             updateDiscount,
                                             generateQuotation,
                                             generateAddressCertificate,
+                                            sizingPercentage,
                                         };
                                     },
                                 } );
