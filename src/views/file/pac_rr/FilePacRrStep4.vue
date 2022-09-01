@@ -60,22 +60,22 @@
                             />
                         </div>
                         <div class="col-md-3">
-                            <p>Dimensionnement chaud P{{ index }} 1.20 : <b>{{
+                            <p>Chaud 1.20 : <b>{{
                                     ( rrAlgo.calcRequiredPower( fileData.housing,
                                                                 rrMulti[ `areaP${ index }` ] ) * 1.20 ).toFixed( 1 )
-                                                                            }} KW</b></p>
+                                               }} KW</b></p>
                         </div>
                         <div class="col-md-3">
-                            <p>Dimensionnement chaud P{{ index }} 1.80 : <b>{{
+                            <p>Chaud 1.80 : <b>{{
                                     ( rrAlgo.calcRequiredPower( fileData.housing,
                                                                 rrMulti[ `areaP${ index }` ] ) * 1.80 ).toFixed( 1 )
-                                                                            }} KW</b></p>
+                                               }} KW</b></p>
                         </div>
                         <div class="col-md-3">
-                            <p>Dimensionnement froid P{{ index }} : <b>{{
+                            <p>Froid : <b>{{
                                     ( rrAlgo.calcRequiredPowerCold( fileData.housing,
                                                                     rrMulti[ `areaP${ index }` ] ) ).toFixed( 1 )
-                                                                       }} KW</b></p>
+                                          }} KW</b></p>
                         </div>
                     </div>
                 </template>
@@ -210,8 +210,9 @@ export default defineComponent( {
                                     setup( props, ctx ) {
                                         const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
                                         const _options          = ref<Option[]>( ( props.options as Option[] ) );
-                                        const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
-                                        const lists             = ref<RrList>( ( props.fileData.lists as RrList ) );
+                                        console.log( 'OPTIONS -->', _options );
+                                        const _blankOptions = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
+                                        const lists         = ref<RrList>( ( props.fileData.lists as RrList ) );
 
                                         const discount   = ref<number>( props.fileData.quotation.discount );
                                         const rrType     = ref<string>( ( props.fileData.quotation.rrType ) );
@@ -240,8 +241,13 @@ export default defineComponent( {
                                          * Ajoute ou enlève l'option Wifi selon les PAC
                                          */
                                         const enabledWifiOption = ( enabled: boolean ) => {
+                                            console.log( '%c ENABLED WIFI', 'background: #fdd835; color: #000000' );
+                                            console.log( enabled );
+                                            console.log( _options.value );
                                             const wifiOption = _options.value.find( o => o.label === 'Wifi' );
                                             if ( wifiOption === undefined ) {
+                                                console.log( '%c WIFI OPTION UNDEFINED',
+                                                             'background: #fdd835; color: #000000' );
                                                 return;
                                             }
 
@@ -288,7 +294,13 @@ export default defineComponent( {
                                                 updateNbLayingOption( rrMulti.value.roomNumber );
                                             }
 
-                                            if ( rrType.value === 'multi' || assortment.value !== 'sensira' ) {
+                                            const sensiraSelected = _selectedProducts.value.length > 0 && _selectedProducts.value[ 0 ].label.toLowerCase()
+                                                                                                                                      .includes(
+                                                                                                                                          'sensira' );
+                                            console.log( 'WIFI' );
+                                            console.log( 'Sensira selected', sensiraSelected );
+
+                                            if ( rrType.value === 'multi' || !sensiraSelected ) {
                                                 enabledWifiOption( false );
                                                 return _options.value.filter( o => o.label !== 'Wifi' );
                                             }
