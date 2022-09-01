@@ -59,5 +59,5 @@ OLD_PACKAGE_VERSION=$(cat package.json \
 
 echo "Version précédente : $OLD_PACKAGE_VERSION"
 
-echo "Changer l'url de l'api dans le .env"
+echo "Changer le nom du package.json + Changer l'url de l'api dans le .env"
 #start
