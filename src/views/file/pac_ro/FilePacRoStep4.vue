@@ -93,6 +93,7 @@
             <div class="col-md-12 mb-5">
                 <!--        <h1>VOLUME ECS SÉLECTIONNÉ {{ volumeECS }}</h1>-->
                 <h6 class="mb-5">Volume ECS : </h6>
+
                 <Field name="volumeECS"
                        id="r_ecs_1"
                        class="form-check-input ms-5"
@@ -102,6 +103,7 @@
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_1">0L</label>
+
                 <Field name="volumeECS"
                        id="r_ecs_2"
                        class="form-check-input ms-5"
@@ -111,6 +113,7 @@
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_2">180L</label>
+
                 <Field name="volumeECS"
                        id="r_ecs_3"
                        class="form-check-input ms-5"
@@ -120,6 +123,7 @@
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_3">230L</label>
+
                 <Field name="volumeECS"
                        id="r_ecs_4"
                        class="form-check-input ms-5"
@@ -129,6 +133,7 @@
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_4">150L Déporté</label>
+
                 <Field name="volumeECS"
                        id="r_ecs_5"
                        class="form-check-input ms-5"
@@ -138,6 +143,7 @@
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_5">200L Déporté</label>
+
                 <Field name="volumeECS"
                        id="r_ecs_6"
                        class="form-check-input ms-5"
@@ -306,6 +312,28 @@ export default defineComponent( {
                                         const discount        = ref<number>( props.fileData.quotation.discount );
                                         // const isEcsDeporte    = ref<boolean>( props.fileData.quotation.isEcsDeporte );
                                         const volumeECS       = ref<string>( props.fileData.quotation.volumeECS );
+
+
+                                        // Si on ouvre un dossier avec l'ancien fonctionnement d'ECS
+                                        if ( typeof volumeECS.value === 'number' ) {
+                                            if ( volumeECS.value === 0 ) {
+                                                volumeECS.value = 'ecs_1';
+                                            } else if ( volumeECS.value === 150 ) {
+                                                volumeECS.value = 'ecs_4';
+                                            } else if ( volumeECS.value === 180 ) {
+                                                volumeECS.value = 'ecs_2';
+                                            } else if ( volumeECS.value === 200 ) {
+                                                volumeECS.value = 'ecs_5';
+                                            } else if ( volumeECS.value === 230 ) {
+                                                volumeECS.value = 'ecs_3';
+                                            } else if ( volumeECS.value === 300 ) {
+                                                volumeECS.value = 'ecs_6';
+                                            } else {
+                                                volumeECS.value = 'ecs_1';
+                                            }
+                                        }
+
+
                                         console.log( '__ecs Volume ECS on Setup -->', volumeECS.value );
                                         // const volumeECSDeporte     = ref<number>( +props.fileData.quotation.volumeECSDeporte );
                                         const needBiZoneSupplement = ref<boolean>( false );
