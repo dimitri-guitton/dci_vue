@@ -26,7 +26,7 @@ export const initSolFormDataStep3 = ( fileData: SolFile ): SolStep3 => {
 export const yupSolConfigStep3 = () => {
     return Yup.object( {
                            ...defaultYupConfigStep3(),
-                           area: Yup.number().required().min( 1, 'La superficie doit être supérieur à 0' ),
+                           area: Yup.number().required().min( 30, 'La superficie doit être supérieur à 29' ),
                        } );
 };
 
