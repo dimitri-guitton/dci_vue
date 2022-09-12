@@ -1014,16 +1014,16 @@ export const getCeeBonus = ( data: BaseFile ): number => {
             if ( new Date() > new Date( '2022/10/01 00:00:01' ) ) {
                 if ( energyZone === 'H1' ) {
                     if ( codeBonus === 'GP' ) {
-                        value = 7.14;
+                        value = 4.62;
                     } else {
-                        value = 6.46;
+                        value = 4.18;
                     }
 
                 } else {
                     if ( codeBonus === 'GP' ) {
-                        value = 5.88;
+                        value = 3.738;
                     } else {
-                        value = 5.32;
+                        value = 3.382;
                     }
                 }
             } else {
