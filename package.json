@@ -1,7 +1,7 @@
 {
     "name":        "eco-atl-preprod-dci",
     "productName": "DCI",
-    "version":     "10.0.0",
+    "version":     "10.0.1",
     "private":     true,
     "description": "Logiciel de devis",
     "author":      {
