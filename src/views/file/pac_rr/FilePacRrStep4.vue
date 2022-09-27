@@ -319,11 +319,11 @@ export default defineComponent( {
                                             if ( rrType.value === 'mono' ) {
                                                 return props.products.filter( p => p.productType === 'pac_rr'
                                                     && p.label.toUpperCase().includes( 'EXTERIEURE' )
-                                                    && p.label.toUpperCase().includes( 'MONOSPLIT' ) );
+                                                    && !p.label.toUpperCase().includes( 'MULTISPLIT' ) );
                                             } else {
                                                 return props.products.filter( p => p.productType === 'pac_rr'
                                                     && p.label.toUpperCase().includes( 'EXTERIEURE' )
-                                                    && !p.label.toUpperCase().includes( 'MONOSPLIT' ) );
+                                                    && p.label.toUpperCase().includes( 'MULTISPLIT' ) );
                                             }
                                         } );
 
