@@ -237,30 +237,30 @@ export default defineComponent( {
                                             discount.value = value;
                                         };
 
-                                        /**
-                                         * Ajoute ou enlève l'option Wifi selon les PAC
-                                         */
-                                        const enabledWifiOption = ( enabled: boolean ) => {
-                                            console.log( '%c ENABLED WIFI', 'background: #fdd835; color: #000000' );
-                                            console.log( enabled );
-                                            console.log( _options.value );
-                                            const wifiOption = _options.value.find( o => o.label === 'Wifi' );
-                                            if ( wifiOption === undefined ) {
-                                                console.log( '%c WIFI OPTION UNDEFINED',
-                                                             'background: #fdd835; color: #000000' );
-                                                return;
-                                            }
-
-                                            // Change le nombre de l'option WIFI pour l'activer ou non
-                                            _options.value = _options.value.map( o => {
-                                                if ( enabled && o.label === 'Wifi' ) {
-                                                    return { ...o, number: 1 };
-                                                } else if ( !enabled && o.label === 'Wifi' ) {
-                                                    return { ...o, number: 0 };
-                                                }
-                                                return o;
-                                            } );
-                                        };
+                                        // /**
+                                        //  * Ajoute ou enlève l'option Wifi selon les PAC
+                                        //  */
+                                        // const enabledWifiOption = ( enabled: boolean ) => {
+                                        //     console.log( '%c ENABLED WIFI', 'background: #fdd835; color: #000000' );
+                                        //     console.log( enabled );
+                                        //     console.log( _options.value );
+                                        //     const wifiOption = _options.value.find( o => o.label === 'Wifi' );
+                                        //     if ( wifiOption === undefined ) {
+                                        //         console.log( '%c WIFI OPTION UNDEFINED',
+                                        //                      'background: #fdd835; color: #000000' );
+                                        //         return;
+                                        //     }
+                                        //
+                                        //     // Change le nombre de l'option WIFI pour l'activer ou non
+                                        //     _options.value = _options.value.map( o => {
+                                        //         if ( enabled && o.label === 'Wifi' ) {
+                                        //             return { ...o, number: 1 };
+                                        //         } else if ( !enabled && o.label === 'Wifi' ) {
+                                        //             return { ...o, number: 0 };
+                                        //         }
+                                        //         return o;
+                                        //     } );
+                                        // };
 
                                         const updateNbLayingOption = ( nbLaying: number ) => {
                                             const layingOption = _options.value.find( o => o.label.includes(
@@ -300,13 +300,13 @@ export default defineComponent( {
                                             console.log( 'WIFI' );
                                             console.log( 'Sensira selected', sensiraSelected );
 
-                                            if ( rrType.value === 'multi' || !sensiraSelected ) {
-                                                enabledWifiOption( false );
-                                                return _options.value.filter( o => o.label !== 'Wifi' );
-                                            }
+                                            // if ( rrType.value === 'multi' || !sensiraSelected ) {
+                                            //     enabledWifiOption( false );
+                                            //     return _options.value.filter( o => o.label !== 'Wifi' );
+                                            // }
 
 
-                                            enabledWifiOption( true );
+                                            // enabledWifiOption( true );
                                             return _options.value;
                                         } );
 
@@ -316,19 +316,38 @@ export default defineComponent( {
                                         };
 
                                         const extProducts = computed<Product[]>( () => {
-                                            return props.products.filter( p => p.productType === 'pac_rr' && p.label.toUpperCase()
-                                                                                                              .includes(
-                                                                                                                  'EXTERIEURE' ) );
+                                            if ( rrType.value === 'mono' ) {
+                                                return props.products.filter( p => p.productType === 'pac_rr'
+                                                    && p.label.toUpperCase().includes( 'EXTERIEURE' )
+                                                    && p.label.toUpperCase().includes( 'MONOSPLIT' ) );
+                                            } else {
+                                                return props.products.filter( p => p.productType === 'pac_rr'
+                                                    && p.label.toUpperCase().includes( 'EXTERIEURE' )
+                                                    && !p.label.toUpperCase().includes( 'MONOSPLIT' ) );
+                                            }
                                         } );
 
                                         const intProducts = computed<Product[]>( () => {
-                                            const filtered = props.products.filter( p => p.productType === 'pac_rr' && !p.label.toUpperCase()
-                                                                                                                         .includes(
-                                                                                                                             'EXTERIEURE' ) );
+                                            let filtered: Product[];
+                                            let filterSelectedProducts: Product[];
 
-                                            const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'pac_rr' && !p.label.toUpperCase()
-                                                                                                                                                .includes(
-                                                                                                                                                    'EXTERIEURE' ) );
+                                            if ( rrType.value === 'multi' ) {
+                                                filtered = props.products.filter( p => p.productType === 'pac_rr'
+                                                    && !p.label.toUpperCase().includes( 'EXTERIEURE' )
+                                                    && !p.label.toUpperCase().includes( 'SENSIRA' )
+                                                    && !p.label.toUpperCase().includes( 'OPTIMISED HEATING' ) );
+
+                                                filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'pac_rr'
+                                                    && !p.label.toUpperCase().includes( 'EXTERIEURE' )
+                                                    && !p.label.toUpperCase().includes( 'SENSIRA' )
+                                                    && !p.label.toUpperCase().includes( 'OPTIMISED HEATING' ) );
+                                            } else {
+                                                filtered = props.products.filter( p => p.productType === 'pac_rr'
+                                                    && !p.label.toUpperCase().includes( 'EXTERIEURE' ) );
+
+                                                filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'pac_rr'
+                                                    && !p.label.toUpperCase().includes( 'EXTERIEURE' ) );
+                                            }
 
                                             if ( filterSelectedProducts.length > rrMulti.value.roomNumber ) {
                                                 // eslint-disable-next-line vue/no-side-effects-in-computed-properties

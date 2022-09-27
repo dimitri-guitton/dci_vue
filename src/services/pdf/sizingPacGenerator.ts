@@ -7,6 +7,7 @@ import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { RoAlgo } from '@/services/algorithm/RoAlgo';
 import { PacAlgo } from '@/services/algorithm/PacAlgo';
+import { FILE_PAC_RO } from '@/services/constantService';
 
 export class SizingPacGenerator extends PdfGenerator {
     private readonly _file: RoFile | RrFile;
@@ -58,69 +59,65 @@ export class SizingPacGenerator extends PdfGenerator {
                 break;
         }
 
-        let heaterText = '';
-
-        const prefix = `${ this.getValueInList( this._file.lists.heatersList, housing.heaters ) } :`;
-
-
-        switch ( housing.heaters ) {
-            case 'r_fonte':
-            case 'r_fonte_p_chauffant':
-                heaterText = 'Nous préconisons l\'installation d\'une pompe à chaleur haute température.\n';
-                break;
-            case 'r_autre':
-            case 'p_chauffant':
-            case 'r_autre_p_chauffant':
-            case 'p_chauffant_p_chauffant':
-                heaterText = 'Nous préconisons l\'installation d\'une pompe à chaleur moyenne température.\n';
-                break;
-        }
-
-        heaterText = `${ prefix } ${ heaterText }`;
-
+        let heaterText   = '';
         let powerPacText = '';
-        switch ( housing.heaters ) {
-            case 'r_fonte':
-            case 'r_fonte_p_chauffant':
-                powerPacText = `Départ d’eau 65°C -> Puissance calorifique à ${ pacAlgo.getBaseTemperature( housing.climaticZone,
-                                                                                                            housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt(
-                    ( this._file as RoFile ).quotation.sizingPercentage ?? 80 ) }KW`;
-                break;
-            case 'r_autre':
-            case 'r_autre_p_chauffant':
-                powerPacText = `Départ d’eau 55°C -> Puissance calorifique à ${ pacAlgo.getBaseTemperature( housing.climaticZone,
-                                                                                                            housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt(
-                    ( this._file as RoFile ).quotation.sizingPercentage ?? 80 ) }KW`;
-                break;
-            case 'p_chauffant':
-            case 'p_chauffant_p_chauffant':
-                powerPacText = `Départ d’eau 40°C -> Puissance calorifique à ${ pacAlgo.getBaseTemperature( housing.climaticZone,
-                                                                                                            housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt(
-                    ( this._file as RoFile ).quotation.sizingPercentage ?? 80 ) }KW`;
-                break;
+        let finalText;
+
+        if ( this._file.type === FILE_PAC_RO ) {
+
+            const prefix = `${ this.getValueInList( this._file.lists.heatersList, housing.heaters ) } :`;
+
+
+            switch ( housing.heaters ) {
+                case 'r_fonte':
+                case 'r_fonte_p_chauffant':
+                    heaterText = 'Nous préconisons l\'installation d\'une pompe à chaleur haute température.\n';
+                    break;
+                case 'r_autre':
+                case 'p_chauffant':
+                case 'r_autre_p_chauffant':
+                case 'p_chauffant_p_chauffant':
+                    heaterText = 'Nous préconisons l\'installation d\'une pompe à chaleur moyenne température.\n';
+                    break;
+            }
+
+            heaterText = `${ prefix } ${ heaterText }`;
+
+            switch ( housing.heaters ) {
+                case 'r_fonte':
+                case 'r_fonte_p_chauffant':
+                    powerPacText = `Départ d’eau 65°C -> Puissance calorifique à ${ pacAlgo.getBaseTemperature( housing.climaticZone,
+                                                                                                                housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt(
+                        ( this._file as RoFile ).quotation.sizingPercentage ?? 80 ) }KW`;
+                    break;
+                case 'r_autre':
+                case 'r_autre_p_chauffant':
+                    powerPacText = `Départ d’eau 55°C -> Puissance calorifique à ${ pacAlgo.getBaseTemperature( housing.climaticZone,
+                                                                                                                housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt(
+                        ( this._file as RoFile ).quotation.sizingPercentage ?? 80 ) }KW`;
+                    break;
+                case 'p_chauffant':
+                case 'p_chauffant_p_chauffant':
+                    powerPacText = `Départ d’eau 40°C -> Puissance calorifique à ${ pacAlgo.getBaseTemperature( housing.climaticZone,
+                                                                                                                housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt(
+                        ( this._file as RoFile ).quotation.sizingPercentage ?? 80 ) }KW`;
+                    break;
+            }
+
+            finalText = [
+                'La pompe à chaleur doit couvrir au minimum 60 % et au maximum 110 % des déperditions de la maison à la température de base. Elle doit couvrir au moins 120 % des déperditions avec les appoints électriques.\n\n',
+                'Température d\'arrêt de la PAC : -25°c\n',
+                'Les déperditions concernent les pièces du logement desservies par le réseau de chauffage.\n',
+                heaterText,
+                powerPacText,
+            ];
+
+        } else {
+            finalText = [
+                'La pompe à chaleur doit couvrir au minimum 120 % et au maximum 180 % des déperditions de la maison à la température de base\n',
+                'Les déperditions concernent les pièces du logement desservies par le réseau de chauffage.\n',
+            ];
         }
-
-
-        // for ( const product of this._file.quotation.selectedProducts ) {
-        //     if ( product.productType === 'pac_rr' || product.productType === 'pac_ro' ) {
-        //         if ( product.label.toLowerCase().includes( 'unite exterieure' ) ) {
-        //             const regex = /Puissance calorifique.*/gm;
-        //             let m;
-        //
-        //             while ( ( m = regex.exec( product.description ) ) !== null ) {
-        //                 if ( m.index === regex.lastIndex ) {
-        //                     regex.lastIndex++;
-        //                 }
-        //
-        //                 m.forEach( ( match, groupIndex ) => {
-        //                     if ( groupIndex === 0 ) {
-        //                         powerPacText = match;
-        //                     }
-        //                 } );
-        //             }
-        //         }
-        //     }
-        // }
 
         return {
             content: [
@@ -190,15 +187,7 @@ export class SizingPacGenerator extends PdfGenerator {
                             margin:     [ 48, -20, 0, 0 ],
                             fontSize:   10,
                             color:      '#323232',
-                            text:       [
-                                'La pompe à chaleur doit couvrir au minimum 60 % et au maximum 110 % des déperditions\n' +
-                                'de la maison à la température de base. Elle doit couvrir au moins 120 % des déperditions\n' +
-                                'avec les appoints électriques.\n\n',
-                                'Température d\'arrêt de la PAC : -25°c\n',
-                                'Les déperditions concernent les pièces du logement desservies par le réseau de chauffage.\n',
-                                heaterText,
-                                powerPacText,
-                            ],
+                            text:       finalText,
                         },
                     ],
                 },
