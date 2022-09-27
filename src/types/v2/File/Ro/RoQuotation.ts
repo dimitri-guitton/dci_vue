@@ -13,4 +13,5 @@ export interface RoQuotation extends BaseQuotation {
         model?: string;
     };
     cascadeSystem: boolean;
+    sizingPercentage?: number;
 }

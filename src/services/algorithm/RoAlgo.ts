@@ -1055,9 +1055,10 @@ export class RoAlgo extends PacAlgo {
         return heater === 'r_autre_p_chauffant' || heater === 'r_fonte_p_chauffant' || heater === 'p_chauffant_p_chauffant';
     }
 
-    public getUnitsRo( volumeECS: number ): { unitExt: UnitExt; unitInt: UnitInt; needBiZoneSupplement: boolean } | null {
+    public getUnitsRo( volumeECS: number,
+                       sizingPercentage: number ): { unitExt: UnitExt; unitInt: UnitInt; needBiZoneSupplement: boolean } | null {
         console.log( '%c GET UNITS RO', 'background: #5ADFFF; color: #000000' );
-        const requiredPower: number = this.calcRequiredPower( this.housing, 'pac_ro' );
+        const requiredPower: number = this.calcRequiredPower( this.housing );
         const baseTemp: number      = this.getBaseTemperature( this.housing.climaticZone, this.housing.altitude );
         const heaterValue: number   = this.heaterToValue( this.housing.heaters );
 
@@ -1095,7 +1096,7 @@ export class RoAlgo extends PacAlgo {
             }
 
             // On retourne la PAC que si sont output est supérieur à la puissance requise
-            return pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower;
+            return pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower * ( sizingPercentage / 100 );
         } );
 
         let selectedUnitExt: UnitExt | null = null;
@@ -1235,8 +1236,8 @@ export class RoAlgo extends PacAlgo {
     /**
      * Retourne la puissance réel d'une unité extérieur selon la zone climatique
      */
-    public getRealPowerUnitExt(): number {
-        const requiredPower: number = this.calcRequiredPower( this.housing, 'pac_ro' );
+    public getRealPowerUnitExt( sizingPercentage: number ): number {
+        const requiredPower: number = this.calcRequiredPower( this.housing );
         const baseTemp: number      = this.getBaseTemperature( this.housing.climaticZone, this.housing.altitude );
         const heaterValue: number   = this.heaterToValue( this.housing.heaters );
 
@@ -1266,7 +1267,7 @@ export class RoAlgo extends PacAlgo {
             }
 
             // On retourne la PAC que si sont output est supérieur à la puissance requise
-            return pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower;
+            return pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower * ( sizingPercentage / 100 );
         } );
 
         let selectedUnitExt: UnitExt | null = null;

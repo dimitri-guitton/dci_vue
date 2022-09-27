@@ -279,7 +279,9 @@ export default defineComponent( {
 
                                             console.log( 'Prix par defaut -->', totalHt );
                                             for ( const selectedProduct of _selectedProducts.value ) {
-                                                totalHt += selectedProduct.pu;
+                                                if ( selectedProduct.productType !== 'pb_option' ) {
+                                                    totalHt += selectedProduct.pu;
+                                                }
                                             }
                                             console.log( 'Prix avec les produits -->', totalHt );
 
@@ -288,6 +290,7 @@ export default defineComponent( {
                                             }
 
                                             for ( const option of _options.value ) {
+                                                console.log( option );
                                                 if ( option.number > 0 ) {
                                                     totalHt += option.pu * option.number;
                                                 }

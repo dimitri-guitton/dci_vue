@@ -456,7 +456,11 @@ const getCeeRr = ( pacs: Product[], localType: string, area: number, zone: strin
     let formatedCodeBonus;
 
     let scop = 0;
+    console.log( 'PACS -->', pacs );
     for ( const pac of pacs ) {
+        if ( pac === undefined ) {
+            continue;
+        }
         console.log( 'PAC -->', pac );
         if ( pac.scop !== undefined && pac.scop > 0 ) {
             scop = pac.scop;

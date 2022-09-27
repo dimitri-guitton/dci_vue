@@ -1,9 +1,20 @@
 <template>
     <div class="w-100">
-
         <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit"
                       :price="price"
                       :lists="lists"></step4-header>
+
+        <div class="row">
+            <p>Dimensionnement total chaud 1.20 : <b>{{
+                    ( rrAlgo.calcRequiredPower( fileData.housing ) * 1.20 ).toFixed( 1 )
+                                                     }} KW</b></p>
+            <p>Dimensionnement total chaud 1.80 : <b>{{
+                    ( rrAlgo.calcRequiredPower( fileData.housing ) * 1.80 ).toFixed( 1 )
+                                                     }} KW</b></p>
+            <p>Dimensionnement total froid : <b>{{ ( rrAlgo.calcRequiredPowerCold( fileData.housing ) ).toFixed( 1 ) }}
+                                                KW</b></p>
+        </div>
+        <el-divider class="mb-10"></el-divider>
 
         <div class="row mt-10">
             <div class="col-md-6 mb-5">
@@ -15,17 +26,6 @@
                        v-model="rrType"
                 >
                     <template-item-list :lists="lists.rrTypeList"></template-item-list>
-                </Field>
-            </div>
-            <div class="col-md-6 mb-5" v-if="rrType === 'mono'">
-                <label for="assortment" class="form-label">Gamme de produit</label>
-                <Field name="assortment"
-                       id="assortment"
-                       class="form-select"
-                       as="select"
-                       v-model="assortment"
-                >
-                    <template-item-list :lists="assortmentLists"></template-item-list>
                 </Field>
             </div>
         </div>
@@ -48,7 +48,7 @@
 
             <div class="row mt-10">
                 <template v-for="index in rrMulti.roomNumber" v-bind:key="`area${index}`">
-                    <div class="row d-flex align-items-end">
+                    <div class="row">
                         <div class="col-md-2">
                             <label class="form-label mb-3">Pièce n°{{ index }} <sup><var>m2</var></sup></label>
                             <Field
@@ -59,16 +59,23 @@
                                 v-model.number="rrMulti[`areaP${index}`]"
                             />
                         </div>
-                        <div class="col-md-4">
-                            <label :for="`housingAssortmentP${index}`" class="form-label">Gamme de produit</label>
-                            <Field :name="`housingAssortmentP${index}`"
-                                   :id="`housingAssortmentP${index}`"
-                                   class="form-select"
-                                   as="select"
-                                   v-model.number="rrMulti[`assortmentP${index}`]"
-                            >
-                                <template-item-list :lists="assortmentLists"></template-item-list>
-                            </Field>
+                        <div class="col-md-3">
+                            <p>Chaud 1.20 : <b>{{
+                                    ( rrAlgo.calcRequiredPower( fileData.housing,
+                                                                rrMulti[ `areaP${ index }` ] ) * 1.20 ).toFixed( 1 )
+                                               }} KW</b></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>Chaud 1.80 : <b>{{
+                                    ( rrAlgo.calcRequiredPower( fileData.housing,
+                                                                rrMulti[ `areaP${ index }` ] ) * 1.80 ).toFixed( 1 )
+                                               }} KW</b></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>Froid : <b>{{
+                                    ( rrAlgo.calcRequiredPowerCold( fileData.housing,
+                                                                    rrMulti[ `areaP${ index }` ] ) ).toFixed( 1 )
+                                          }} KW</b></p>
                         </div>
                     </div>
                 </template>
@@ -80,72 +87,30 @@
 
         <step4-quotation-header></step4-quotation-header>
 
-        <!--        <h1>&#45;&#45;&#45;&#45;</h1>-->
-        <!--        <template v-for="(p,index) in products" v-bind:key="`p_${index}_${p.reference}`">-->
-        <!--            <p>{{ p.id }} - {{ p.reference }} - {{ p.label }}</p>-->
-        <!--        </template>-->
-        <!--        <h1>&#45;&#45;&#45;&#45;</h1>-->
-
-        <template v-for="(p,index) in products" v-bind:key="`${index}_${p.reference}`">
-            <row-price :product="p"></row-price>
-        </template>
-        <template v-if="!products.length">
-            <div class="alert alert-danger d-flex align-items-center p-5 mb-10">
-                <i class="fa fa-exclamation fs-2hx me-4 text-danger"></i>
-                <div class="d-flex flex-column">
-                    <h4 class="mb-1 text-danger">Aucun produit n'a pu être trouvé</h4>
-                </div>
-            </div>
+        <template v-for="p in selectedProducts" v-bind:key="`select_product_${p.id}`">
+            <p>{{ p.id }} - {{ p.reference }} - {{ p.label }}</p>
         </template>
 
-        <!-- Formulaire caché afin de binder les values au formaulaire comme la sélection des produits se fait via l'algo-->
-        <template v-for="(p, index) in products" v-bind:key="`val_${index}_${p.reference}`">
-            <div class="row mt-5 d-none">
-                <div class="col-md-4">
-                    <Field type="text"
-                           :name="`selectedProducts[${index}].id`"
-                           class="form-control"
-                           v-model.number="p.id" />
-                </div>
-                <div class="col-md-4">
-                    <Field type="text"
-                           :name="`selectedProducts[${index}].quantity`"
-                           class="form-control"
-                           v-model.number="p.quantity" />
-                </div>
-                <div class="col-md-4">
-                    <Field type="text"
-                           :name="`selectedProducts[${index}].pu`"
-                           class="form-control"
-                           v-model.number="p.pu" />
-                </div>
-            </div>
-        </template>
+        <selected-product :index="0"
+                          :products="extProducts"
+                          :selectedProducts="selectedProducts"
+                          @selectedProductIsUpdated="updateSelectedProduct($event, 0)"
+                          :show-reference="true"></selected-product>
 
-        <!-- Formulaire caché afin de binder les values au formaulaire -->
-        <!-- HACK : Boucle sur les produits deja set mais qui ne le sont plus, exemple 4 RrMulti -> 2 RrMono, on remove les 2 RrMulti qui ne seront pas set-->
-        <template v-for="index in 6" :key="index">
-            <template v-if="products.length < index">
-                <div class="row mt-5 d-none">
-                    <div class="col-md-4">
-                        <Field type="number"
-                               :name="`selectedProducts[${index-1}].id`"
-                               class="form-control"
-                               v-model.number="emptyVal" />
-                    </div>
-                    <div class="col-md-4">
-                        <Field type="number"
-                               :name="`selectedProducts[${index-1}].quantity`"
-                               class="form-control"
-                               v-model.number="emptyVal" />
-                    </div>
-                    <div class="col-md-4">
-                        <Field type="number"
-                               :name="`selectedProducts[${index-1}].pu`"
-                               class="form-control"
-                               v-model.number="emptyVal" />
-                    </div>
-                </div>
+        <template v-if="rrType === 'mono'">
+            <selected-product :index="1"
+                              :products="intProducts"
+                              :selectedProducts="selectedProducts"
+                              @selectedProductIsUpdated="updateSelectedProduct($event, 1)"
+                              :show-reference="true"></selected-product>
+        </template>
+        <template v-else>
+            <template v-for="index in rrMulti.roomNumber" v-bind:key="`select_int_product_${index}`">
+                <selected-product :index="index"
+                                  :products="intProducts"
+                                  :selectedProducts="selectedProducts"
+                                  @selectedProductIsUpdated="updateSelectedProduct($event, index)"
+                                  :show-reference="true"></selected-product>
             </template>
         </template>
 
@@ -202,22 +167,21 @@ import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
-import { getCodeBonus, getLessThan2Year, getProductByRef } from '@/services/data/dataService';
+import { getCodeBonus, getLessThan2Year } from '@/services/data/dataService';
 import TemplateItemList from '@/components/DCI/input/ItemList.vue';
-import RowPrice from '@/components/DCI/wizzard-file/rowPrice.vue';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import RrList from '@/types/v2/File/Rr/RrList';
 import RrMulti from '@/types/v2/File/Rr/RrMulti';
 import { ItemList } from '@/types/v2/File/Common/ItemList';
-import { RrAlgo } from '@/services/algorithm/RrAlgo';
 import { getCeeBonus } from '@/services/file/fileCommonService';
 import InputDiscount from '@/components/DCI/input/Discount.vue';
+import SelectedProduct from '@/components/DCI/input/SelectedProduct.vue';
+import { RrAlgo } from '@/services/algorithm/RrAlgo';
 
 export default defineComponent( {
                                     name:       'file-pac-rr-step-4',
                                     components: {
                                         InputDiscount,
-                                        RowPrice,
                                         TemplateItemList,
                                         Step4Header,
                                         WizzardFilePrice,
@@ -226,23 +190,29 @@ export default defineComponent( {
                                         Step4QuotationHeader,
                                         Field,
                                         ErrorMessage,
+                                        SelectedProduct,
                                     },
                                     props:      {
-                                        options:      Array as () => Option[],
-                                        blankOptions: Array as () => BlankOption[],
-                                        fileData:     {
+                                        products:         {
+                                            type:     Array as () => Product[],
+                                            required: true,
+                                        },
+                                        selectedProducts: Array as () => Product[],
+                                        options:          Array as () => Option[],
+                                        blankOptions:     Array as () => BlankOption[],
+                                        fileData:         {
                                             type:     Object as () => RrFile,
                                             required: true,
                                         },
-                                        forceRefresh: Boolean,  // Pour focer le compute des prix quand on arrive sur la step4
+                                        forceRefresh:     Boolean,  // Pour focer le compute des prix quand on arrive sur la step4
                                     },
                                     emits:      [ 'generateQuotation', 'generateAddressCertificate', 'calculedPrice' ],
                                     setup( props, ctx ) {
-                                        const _options      = ref<Option[]>( ( props.options as Option[] ) );
+                                        const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
+                                        const _options          = ref<Option[]>( ( props.options as Option[] ) );
+                                        console.log( 'OPTIONS -->', _options );
                                         const _blankOptions = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                         const lists         = ref<RrList>( ( props.fileData.lists as RrList ) );
-                                        console.log( 'OPTION -->', _options );
-
 
                                         const discount   = ref<number>( props.fileData.quotation.discount );
                                         const rrType     = ref<string>( ( props.fileData.quotation.rrType ) );
@@ -264,35 +234,37 @@ export default defineComponent( {
                                         };
 
                                         const updateDiscount = ( value ) => {
-                                            console.log( 'updateDiscount' );
                                             discount.value = value;
                                         };
 
-                                        /**
-                                         * Ajoute ou enlève l'option Wifi selon les PAC
-                                         */
-                                        const enabledWifiOption = ( enabled: boolean ) => {
-                                            const wifiOption = _options.value.find( o => o.label === 'Wifi' );
-                                            if ( wifiOption === undefined ) {
-                                                return;
-                                            }
-
-                                            // Change le nombre de l'option WIFI pour l'activer ou non
-                                            _options.value = _options.value.map( o => {
-                                                if ( enabled && o.label === 'Wifi' ) {
-                                                    return { ...o, number: 1 };
-                                                } else if ( !enabled && o.label === 'Wifi' ) {
-                                                    return { ...o, number: 0 };
-                                                }
-                                                return o;
-                                            } );
-                                        };
+                                        // /**
+                                        //  * Ajoute ou enlève l'option Wifi selon les PAC
+                                        //  */
+                                        // const enabledWifiOption = ( enabled: boolean ) => {
+                                        //     console.log( '%c ENABLED WIFI', 'background: #fdd835; color: #000000' );
+                                        //     console.log( enabled );
+                                        //     console.log( _options.value );
+                                        //     const wifiOption = _options.value.find( o => o.label === 'Wifi' );
+                                        //     if ( wifiOption === undefined ) {
+                                        //         console.log( '%c WIFI OPTION UNDEFINED',
+                                        //                      'background: #fdd835; color: #000000' );
+                                        //         return;
+                                        //     }
+                                        //
+                                        //     // Change le nombre de l'option WIFI pour l'activer ou non
+                                        //     _options.value = _options.value.map( o => {
+                                        //         if ( enabled && o.label === 'Wifi' ) {
+                                        //             return { ...o, number: 1 };
+                                        //         } else if ( !enabled && o.label === 'Wifi' ) {
+                                        //             return { ...o, number: 0 };
+                                        //         }
+                                        //         return o;
+                                        //     } );
+                                        // };
 
                                         const updateNbLayingOption = ( nbLaying: number ) => {
-                                            console.log( '%c IN UPDATE', 'background: #fdd835; color: #000000' );
                                             const layingOption = _options.value.find( o => o.label.includes(
                                                 'Forfait pose' ) );
-                                            console.log( layingOption );
                                             if ( layingOption === undefined ) {
                                                 return;
                                             }
@@ -317,23 +289,75 @@ export default defineComponent( {
                                         };
 
                                         const filteredOptions = computed<Option[]>( () => {
-                                            console.log( '%c FILTERED OPTION', 'background: #FF0007; color: #000000' );
-                                            console.log( _options.value );
 
                                             if ( rrType.value === 'multi' ) {
-                                                console.log( '%c BEFORe UPDAYE CALL UPDATE LATING',
-                                                             'background: #fdd835; color: #000000' );
                                                 updateNbLayingOption( rrMulti.value.roomNumber );
                                             }
 
-                                            if ( rrType.value === 'multi' || assortment.value !== 'sensira' ) {
-                                                enabledWifiOption( false );
-                                                return _options.value.filter( o => o.label !== 'Wifi' );
+                                            const sensiraSelected = _selectedProducts.value.length > 0 && _selectedProducts.value[ 0 ].label.toLowerCase()
+                                                                                                                                      .includes(
+                                                                                                                                          'sensira' );
+                                            console.log( 'WIFI' );
+                                            console.log( 'Sensira selected', sensiraSelected );
+
+                                            // if ( rrType.value === 'multi' || !sensiraSelected ) {
+                                            //     enabledWifiOption( false );
+                                            //     return _options.value.filter( o => o.label !== 'Wifi' );
+                                            // }
+
+
+                                            // enabledWifiOption( true );
+                                            return _options.value;
+                                        } );
+
+
+                                        const updateSelectedProduct = ( product, index ) => {
+                                            _selectedProducts.value[ index ] = product;
+                                        };
+
+                                        const extProducts = computed<Product[]>( () => {
+                                            if ( rrType.value === 'mono' ) {
+                                                return props.products.filter( p => p.productType === 'pac_rr'
+                                                    && p.label.toUpperCase().includes( 'EXTERIEURE' )
+                                                    && !p.label.toUpperCase().includes( 'MULTISPLIT' ) );
+                                            } else {
+                                                return props.products.filter( p => p.productType === 'pac_rr'
+                                                    && p.label.toUpperCase().includes( 'EXTERIEURE' )
+                                                    && p.label.toUpperCase().includes( 'MULTISPLIT' ) );
+                                            }
+                                        } );
+
+                                        const intProducts = computed<Product[]>( () => {
+                                            let filtered: Product[];
+                                            let filterSelectedProducts: Product[];
+
+                                            if ( rrType.value === 'multi' ) {
+                                                filtered = props.products.filter( p => p.productType === 'pac_rr'
+                                                    && !p.label.toUpperCase().includes( 'EXTERIEURE' )
+                                                    && !p.label.toUpperCase().includes( 'SENSIRA' )
+                                                    && !p.label.toUpperCase().includes( 'OPTIMISED HEATING' ) );
+
+                                                filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'pac_rr'
+                                                    && !p.label.toUpperCase().includes( 'EXTERIEURE' )
+                                                    && !p.label.toUpperCase().includes( 'SENSIRA' )
+                                                    && !p.label.toUpperCase().includes( 'OPTIMISED HEATING' ) );
+                                            } else {
+                                                filtered = props.products.filter( p => p.productType === 'pac_rr'
+                                                    && !p.label.toUpperCase().includes( 'EXTERIEURE' ) );
+
+                                                filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'pac_rr'
+                                                    && !p.label.toUpperCase().includes( 'EXTERIEURE' ) );
                                             }
 
+                                            if ( filterSelectedProducts.length > rrMulti.value.roomNumber ) {
+                                                // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+                                                _selectedProducts.value.splice( -Math.abs( filterSelectedProducts.length - rrMulti.value.roomNumber ) );
+                                            } else if ( rrType.value === 'mono' && filterSelectedProducts.length > 1 ) {
+                                                // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+                                                _selectedProducts.value.splice( -Math.abs( filterSelectedProducts.length - 1 ) );
+                                            }
 
-                                            enabledWifiOption( true );
-                                            return _options.value;
+                                            return filtered;
                                         } );
 
                                         const assortmentLists = computed<ItemList[]>( () => {
@@ -343,82 +367,25 @@ export default defineComponent( {
                                             return lists.value.gammeTypeList;
                                         } );
 
-                                        // TODO au changement d'isolation en multi on garde de vieux PAC
-                                        const products = computed<Product[]>(
-                                            () => {
-                                                console.log( '%c COMPUTED PRODUCTS RR',
-                                                             'background: #00FF2E; color: #FFFFFF' );
-
-                                                rrAlgo.updateHousing( props.fileData.housing );
-
-                                                console.log( 'GAMME -->', assortment.value );
-                                                let _products: Product[] = [];
-                                                if ( rrType.value === 'mono' ) {
-                                                    const response = rrAlgo.getUnitsMono( assortment.value );
-
-                                                    if ( response === null ) {
-                                                        return [];
-                                                    }
-
-                                                    const productExt = getProductByRef( response.unitExt );
-                                                    const productInt = getProductByRef( response.unitInt );
-
-                                                    if ( productExt === undefined || productInt === undefined ) {
-                                                        return [];
-                                                    }
-
-                                                    console.log( productExt );
-                                                    console.log( productInt );
-                                                    _products = [ productInt, productExt ];
-                                                } else {
-                                                    const response = rrAlgo.getPacRrMulti( rrMulti.value );
-                                                    console.log( 'RESPONSE -->', response );
-
-                                                    if ( response === null ) {
-                                                        return [];
-                                                    }
-
-                                                    const productGroup              = getProductByRef( response.unitExt );
-                                                    const productPerRoom: Product[] = [];
-
-                                                    let hasAnUnavailableProduct = false;
-                                                    for ( const p of response.unitsInt ) {
-                                                        const product = getProductByRef( p );
-                                                        if ( product === undefined ) {
-                                                            hasAnUnavailableProduct = true;
-                                                            continue;
-                                                        }
-                                                        productPerRoom.push( product );
-                                                    }
-
-                                                    if ( hasAnUnavailableProduct || productGroup === undefined ) {
-                                                        return [];
-                                                    }
-
-                                                    console.log( 'productGroup', productGroup );
-                                                    console.log( 'productPerRoom', productPerRoom );
-                                                    _products = [ productGroup, ...productPerRoom ];
-                                                }
-
-
-                                                console.log( '%c _PRODUCTS', 'background: #FFB122; color: #000000' );
-                                                console.log( _products );
-                                                return _products;
-
-                                            } );
-
                                         const price = computed<Price>( () => {
+                                            // On utilise props.forceRefresh pour recalculer les prix
+                                            if ( props.forceRefresh ) {
+                                                console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
+                                            }
+
                                             let totalHt     = 0;
                                             let ceeBonus    = 0;
                                             let sumForTva10 = 0;
                                             let tva10;
                                             let tva20;
 
-                                            console.log( 'Prix par defaut -->', totalHt );
-
-                                            for ( const product of products.value ) {
-                                                totalHt += product.pu * product.quantity;
+                                            for ( const selectedProduct of _selectedProducts.value ) {
+                                                if ( selectedProduct === undefined ) {
+                                                    continue;
+                                                }
+                                                totalHt += selectedProduct.pu;
                                             }
+
                                             console.log( 'Prix avec les produits -->', totalHt );
 
                                             for ( const option of _options.value ) {
@@ -470,7 +437,8 @@ export default defineComponent( {
                                                         ...props.fileData,
                                                         quotation: {
                                                             ...props.fileData.quotation,
-                                                            selectedProducts: products.value,
+                                                            // selectedProducts: products.value,
+                                                            selectedProducts: _selectedProducts.value,
                                                         },
                                                     };
                                                     ceeBonus                      = getCeeBonus( updatedFileData );
@@ -501,18 +469,20 @@ export default defineComponent( {
                                             lists,
                                             price,
                                             filteredOptions,
-                                            products,
+                                            extProducts,
+                                            intProducts,
                                             assortment,
                                             rrType,
                                             rrMulti,
                                             assortmentLists,
                                             discount,
+                                            rrAlgo,
+                                            updateSelectedProduct,
                                             updateOptions,
                                             updateBlankOtions,
                                             updateDiscount,
                                             generateQuotation,
                                             generateAddressCertificate,
-                                            emptyVal: 99999,
                                         };
                                     },
                                 } );
