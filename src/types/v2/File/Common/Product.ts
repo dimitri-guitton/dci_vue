@@ -22,4 +22,6 @@ export interface Product {
     addedValue?: number;
     automaticPriceCalculation?: boolean;
     laying?: number;
+    ext1?: string;
+    ext2?: string;
 }

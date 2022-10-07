@@ -178,15 +178,6 @@ export default defineComponent( {
                                     emits:      [ 'generateQuotation', 'generateAddressCertificate', 'calculedPrice' ],
                                     setup( props, ctx ) {
                                         console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
                                         const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
                                         const _options          = ref<Option[]>( ( props.options as Option[] ) );
                                         const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
