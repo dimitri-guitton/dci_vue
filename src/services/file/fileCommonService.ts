@@ -133,10 +133,11 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
  */
 export const getHelpingHandRo = ( codeBonus ): number => {
     if ( codeBonus === 'GP' ) {
-        if ( new Date() >= new Date( '2022-09-30 02:00' ) ) {
-            console.log( '%c PRIME APRES LE 30 SEPTEMBRE', 'background: #00FF2E; color: #000000' );
+        if ( new Date() >= new Date( '2022/10/01 00:00:01' ) ) {
+            console.log( '%c PRIME A PARTIR DU 1ER OCTOBRE', 'background: #00FF2E; color: #000000' );
             return 4000;
         }
+        console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
         return 4200;
     } else if ( codeBonus === 'P' ) {
         return 4000;
@@ -508,200 +509,401 @@ const getCeeRr = ( pacs: Product[], localType: string, area: number, zone: strin
         formatedCodeBonus = 'other';
     }
 
-    const listBonus: CeePacRr = {
-        H1: {
-            appartement:           {
-                '3_9': {
-                    0:   {
-                        other: 57.51,
-                        GP:    61.24,
+    // CEE A PARTIR DU 1ER OCTOBRE
+    let listBonus: CeePacRr;
+    if ( new Date() > new Date( '2022/10/01 00:00:01' ) ) {
+        listBonus = {
+            H1: {
+                appartement:           {
+                    '3_9': {
+                        0:   {
+                            other: 40.47,
+                            GP:    44.73,
+                        },
+                        35:  {
+                            other: 56.658,
+                            GP:    62.622,
+                        },
+                        60:  {
+                            other: 80.94,
+                            GP:    89.46,
+                        },
+                        70:  {
+                            other: 97.128,
+                            GP:    107.352,
+                        },
+                        90:  {
+                            other: 121.41,
+                            GP:    134.19,
+                        },
+                        110: {
+                            other: 153.786,
+                            GP:    169.974,
+                        },
+                        130: {
+                            other: 202.35,
+                            GP:    223.65,
+                        },
                     },
-                    35:  {
-                        other: 80.51,
-                        GP:    85.7325,
+                },
+                'maison_individuelle': {
+                    '3_9': {
+                        0:   {
+                            other: 88.806,
+                            GP:    98.154,
+                        },
+                        35:  {
+                            other: 148.01,
+                            GP:    163.59,
+                        },
+                        60:  {
+                            other: 177.612,
+                            GP:    196.308,
+                        },
+                        70:  {
+                            other: 207.214,
+                            GP:    229.026,
+                        },
+                        90:  {
+                            other: 296.02,
+                            GP:    327.18,
+                        },
+                        110: {
+                            other: 325.622,
+                            GP:    359.898,
+                        },
+                        130: {
+                            other: 473.632,
+                            GP:    523.488,
+                        },
                     },
-                    60:  {
-                        other: 115.02,
-                        GP:    122.475,
-                    },
-                    70:  {
-                        other: 138.02,
-                        GP:    146.97,
-                    },
-                    90:  {
-                        other: 172.53,
-                        GP:    183.7125,
-                    },
-                    110: {
-                        other: 218.54,
-                        GP:    232.7025,
-                    },
-                    130: {
-                        other: 287.55,
-                        GP:    306.1875,
+                    '4_3': {
+                        0:   {
+                            other: 91.428,
+                            GP:    101.052,
+                        },
+                        35:  {
+                            other: 152.38,
+                            GP:    168.42,
+                        },
+                        60:  {
+                            other: 182.856,
+                            GP:    202.104,
+                        },
+                        70:  {
+                            other: 213.332,
+                            GP:    235.788,
+                        },
+                        90:  {
+                            other: 304.76,
+                            GP:    336.84,
+                        },
+                        110: {
+                            other: 335.236,
+                            GP:    370.524,
+                        },
+                        130: {
+                            other: 487.616,
+                            GP:    538.944,
+                        },
                     },
                 },
             },
-            'maison_individuelle': {
-                '3_9': {
-                    0:   {
-                        other: 126.20,
-                        GP:    134.3775,
-                    },
-                    35:  {
-                        other: 210.33,
-                        GP:    223.9625,
-                    },
-                    60:  {
-                        other: 252.40,
-                        GP:    268.755,
-                    },
-                    70: {
-                        other: 294.47,
-                        GP:    313.5475,
-                    },
-                    90:  {
-                        other: 420.66,
-                        GP:    447.925,
-                    },
-                    110: {
-                        other: 462.73,
-                        GP:    492.7175,
-                    },
-                    130: {
-                        other: 673.06,
-                        GP:    716.68,
-                    },
-                },
-                '4_3': {
-                    0: {
-                        other: 129.93,
-                        GP:    138.345,
-                    },
-                    35:  {
-                        other: 216.54,
-                        GP:    230.575,
-                    },
-                    60:  {
-                        other: 259.85,
-                        GP:    276.69,
-                    },
-                    70:  {
-                        other: 303.16,
-                        GP:    322.805,
-                    },
-                    90:  {
-                        other: 433.08,
-                        GP:    461.15,
-                    },
-                    110: {
-                        other: 476.39,
-                        GP:    507.265,
-                    },
-                    130: {
-                        other: 692.93,
-                        GP:    737.84,
+            H2: {
+                appartement:           {
+                    '3_9': {
+                        0:   {
+                            other: 33.06,
+                            GP:    36.54,
+                        },
+                        35:  {
+                            other: 46.284,
+                            GP:    51.156,
+                        },
+                        60:  {
+                            other: 66.12,
+                            GP:    73.08,
+                        },
+                        70:  {
+                            other: 79.344,
+                            GP:    87.696,
+                        },
+                        90:  {
+                            other: 99.18,
+                            GP:    109.62,
+                        },
+                        110: {
+                            other: 125.628,
+                            GP:    138.852,
+                        },
+                        130: {
+                            other: 165.3,
+                            GP:    182.7,
+                        },
                     },
                 },
-            },
-        },
-        H2: {
-            appartement:           {
-                '3_9': {
-                    0:   {
-                        other: 46.98,
-                        GP:    50.025,
+                'maison_individuelle': {
+                    '3_9': {
+                        0:   {
+                            other: 72.618,
+                            GP:    80.262,
+                        },
+                        35:  {
+                            other: 121.03,
+                            GP:    133.77,
+                        },
+                        60:  {
+                            other: 145.236,
+                            GP:    160.524,
+                        },
+                        70:  {
+                            other: 169.442,
+                            GP:    187.278,
+                        },
+                        90:  {
+                            other: 242.06,
+                            GP:    267.54,
+                        },
+                        110: {
+                            other: 266.266,
+                            GP:    294.294,
+                        },
+                        130: {
+                            other: 387.296,
+                            GP:    428.064,
+                        },
                     },
-                    35:  {
-                        other: 65.77,
-                        GP:    70.035,
-                    },
-                    60:  {
-                        other: 93.96,
-                        GP:    100.05,
-                    },
-                    70:  {
-                        other: 112.75,
-                        GP:    120.06,
-                    },
-                    90:  {
-                        other: 140.94,
-                        GP:    150.075,
-                    },
-                    110: {
-                        other: 178.52,
-                        GP:    190.095,
-                    },
-                    130: {
-                        other: 234.90,
-                        GP:    250.125,
-                    },
-                },
-            },
-            'maison_individuelle': {
-                '3_9': {
-                    0:   {
-                        other: 103.19,
-                        GP:    109.8825,
-                    },
-                    35:  {
-                        other: 171.99,
-                        GP:    183.1375,
-                    },
-                    60:  {
-                        other: 206.39,
-                        GP:    219.765,
-                    },
-                    70:  {
-                        other: 240.79,
-                        GP:    256.3925,
-                    },
-                    90:  {
-                        other: 343.98,
-                        GP:    366.275,
-                    },
-                    110: {
-                        other: 378.38,
-                        GP:    402.9025,
-                    },
-                    130: {
-                        other: 550.37,
-                        GP:    586.04,
-                    },
-                },
-                '4_3': {
-                    0:  {
-                        other: 106.28,
-                        GP:    113.16,
-                    },
-                    35:  {
-                        other: 177.12,
-                        GP:    188.6,
-                    },
-                    60: {
-                        other: 212.55,
-                        GP:    226.32,
-                    },
-                    70:  {
-                        other: 247.97,
-                        GP:    264.04,
-                    },
-                    90:  {
-                        other: 354.24,
-                        GP:    377.2,
-                    },
-                    110: {
-                        other: 389.66,
-                        GP:    414.92,
-                    },
-                    130: {
-                        other: 566.78,
-                        GP:    603.52,
+                    '4_3': {
+                        0:   {
+                            other: 74.784,
+                            GP:    82.656,
+                        },
+                        35:  {
+                            other: 124.64,
+                            GP:    137.76,
+                        },
+                        60:  {
+                            other: 149.568,
+                            GP:    165.312,
+                        },
+                        70:  {
+                            other: 174.496,
+                            GP:    192.864,
+                        },
+                        90:  {
+                            other: 249.28,
+                            GP:    275.52,
+                        },
+                        110: {
+                            other: 274.208,
+                            GP:    303.072,
+                        },
+                        130: {
+                            other: 398.848,
+                            GP:    440.832,
+                        },
                     },
                 },
             },
-        },
-    };
+        };
+    } else {
+        console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
+        listBonus = {
+            H1: {
+                appartement:           {
+                    '3_9': {
+                        0:   {
+                            other: 57.51,
+                            GP:    61.24,
+                        },
+                        35:  {
+                            other: 80.51,
+                            GP:    85.7325,
+                        },
+                        60:  {
+                            other: 115.02,
+                            GP:    122.475,
+                        },
+                        70:  {
+                            other: 138.02,
+                            GP:    146.97,
+                        },
+                        90:  {
+                            other: 172.53,
+                            GP:    183.7125,
+                        },
+                        110: {
+                            other: 218.54,
+                            GP:    232.7025,
+                        },
+                        130: {
+                            other: 287.55,
+                            GP:    306.1875,
+                        },
+                    },
+                },
+                'maison_individuelle': {
+                    '3_9': {
+                        0:   {
+                            other: 126.20,
+                            GP:    134.3775,
+                        },
+                        35:  {
+                            other: 210.33,
+                            GP:    223.9625,
+                        },
+                        60:  {
+                            other: 252.40,
+                            GP:    268.755,
+                        },
+                        70:  {
+                            other: 294.47,
+                            GP:    313.5475,
+                        },
+                        90:  {
+                            other: 420.66,
+                            GP:    447.925,
+                        },
+                        110: {
+                            other: 462.73,
+                            GP:    492.7175,
+                        },
+                        130: {
+                            other: 673.06,
+                            GP:    716.68,
+                        },
+                    },
+                    '4_3': {
+                        0:   {
+                            other: 129.93,
+                            GP:    138.345,
+                        },
+                        35:  {
+                            other: 216.54,
+                            GP:    230.575,
+                        },
+                        60:  {
+                            other: 259.85,
+                            GP:    276.69,
+                        },
+                        70:  {
+                            other: 303.16,
+                            GP:    322.805,
+                        },
+                        90:  {
+                            other: 433.08,
+                            GP:    461.15,
+                        },
+                        110: {
+                            other: 476.39,
+                            GP:    507.265,
+                        },
+                        130: {
+                            other: 692.93,
+                            GP:    737.84,
+                        },
+                    },
+                },
+            },
+            H2: {
+                appartement:           {
+                    '3_9': {
+                        0:   {
+                            other: 46.98,
+                            GP:    50.025,
+                        },
+                        35:  {
+                            other: 65.77,
+                            GP:    70.035,
+                        },
+                        60:  {
+                            other: 93.96,
+                            GP:    100.05,
+                        },
+                        70:  {
+                            other: 112.75,
+                            GP:    120.06,
+                        },
+                        90:  {
+                            other: 140.94,
+                            GP:    150.075,
+                        },
+                        110: {
+                            other: 178.52,
+                            GP:    190.095,
+                        },
+                        130: {
+                            other: 234.90,
+                            GP:    250.125,
+                        },
+                    },
+                },
+                'maison_individuelle': {
+                    '3_9': {
+                        0:   {
+                            other: 103.19,
+                            GP:    109.8825,
+                        },
+                        35:  {
+                            other: 171.99,
+                            GP:    183.1375,
+                        },
+                        60:  {
+                            other: 206.39,
+                            GP:    219.765,
+                        },
+                        70:  {
+                            other: 240.79,
+                            GP:    256.3925,
+                        },
+                        90:  {
+                            other: 343.98,
+                            GP:    366.275,
+                        },
+                        110: {
+                            other: 378.38,
+                            GP:    402.9025,
+                        },
+                        130: {
+                            other: 550.37,
+                            GP:    586.04,
+                        },
+                    },
+                    '4_3': {
+                        0:   {
+                            other: 106.28,
+                            GP:    113.16,
+                        },
+                        35:  {
+                            other: 177.12,
+                            GP:    188.6,
+                        },
+                        60:  {
+                            other: 212.55,
+                            GP:    226.32,
+                        },
+                        70:  {
+                            other: 247.97,
+                            GP:    264.04,
+                        },
+                        90:  {
+                            other: 354.24,
+                            GP:    377.2,
+                        },
+                        110: {
+                            other: 389.66,
+                            GP:    414.92,
+                        },
+                        130: {
+                            other: 566.78,
+                            GP:    603.52,
+                        },
+                    },
+                },
+            },
+        };
+    }
+
 
     try {
         console.log( zone );
@@ -739,50 +941,110 @@ export const getCeeBonus = ( data: BaseFile ): number => {
 
     switch ( type ) {
         case FILE_CET:
-            if ( housingType === 'appartement' ) {
-                if ( codeBonus === 'GP' ) {
-                    value = 68.425;
+            // CEE A PARTIR DU 1ER OCTOBRE
+            if ( new Date() > new Date( '2022/10/01 00:00:01' ) ) {
+                if ( housingType === 'appartement' ) {
+                    if ( codeBonus === 'GP' ) {
+                        value = 49.98;
+                    } else {
+                        value = 45.22;
+                    }
+
                 } else {
-                    value = 64.26;
+                    if ( codeBonus === 'GP' ) {
+                        value = 65.52;
+                    } else {
+                        value = 59.28;
+                    }
                 }
 
             } else {
-                if ( codeBonus === 'GP' ) {
-                    value = 89.7;
+                console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
+                if ( housingType === 'appartement' ) {
+                    if ( codeBonus === 'GP' ) {
+                        value = 68.425;
+                    } else {
+                        value = 64.26;
+                    }
+
                 } else {
-                    value = 84.24;
+                    if ( codeBonus === 'GP' ) {
+                        value = 89.7;
+                    } else {
+                        value = 84.24;
+                    }
                 }
             }
+
             break;
         case FILE_COMBLE:
-            if ( energyZone === 'H1' ) {
-                if ( codeBonus === 'GP' ) {
-                    value = 9.775;
+            // CEE A PARTIR DU 1ER OCTOBRE
+            if ( new Date() > new Date( '2022/10/01 00:00:01' ) ) {
+                if ( energyZone === 'H1' ) {
+                    if ( codeBonus === 'GP' ) {
+                        value = 7.14;
+                    } else {
+                        value = 6.46;
+                    }
+
                 } else {
-                    value = 9.18;
+                    if ( codeBonus === 'GP' ) {
+                        value = 5.88;
+                    } else {
+                        value = 5.32;
+                    }
                 }
 
             } else {
-                if ( codeBonus === 'GP' ) {
-                    value = 8.05;
+                console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
+                if ( energyZone === 'H1' ) {
+                    if ( codeBonus === 'GP' ) {
+                        value = 9.775;
+                    } else {
+                        value = 9.18;
+                    }
+
                 } else {
-                    value = 7.56;
+                    if ( codeBonus === 'GP' ) {
+                        value = 8.05;
+                    } else {
+                        value = 7.56;
+                    }
                 }
             }
             break;
         case FILE_SOL:
-            if ( energyZone === 'H1' ) {
-                if ( codeBonus === 'GP' ) {
-                    value = 6.325;
-                } else {
-                    value = 5.94;
-                }
+            // CEE A PARTIR DU 1ER OCTOBRE
+            if ( new Date() > new Date( '2022/10/01 00:00:01' ) ) {
+                if ( energyZone === 'H1' ) {
+                    if ( codeBonus === 'GP' ) {
+                        value = 4.62;
+                    } else {
+                        value = 4.18;
+                    }
 
-            } else {
-                if ( codeBonus === 'GP' ) {
-                    value = 5.1175;
                 } else {
-                    value = 4.806;
+                    if ( codeBonus === 'GP' ) {
+                        value = 3.738;
+                    } else {
+                        value = 3.382;
+                    }
+                }
+            } else {
+                console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
+                if ( energyZone === 'H1' ) {
+                    if ( codeBonus === 'GP' ) {
+                        value = 6.325;
+                    } else {
+                        value = 5.94;
+                    }
+
+                } else {
+                    if ( codeBonus === 'GP' ) {
+                        value = 5.1175;
+                    } else {
+                        value = 4.806;
+                    }
                 }
             }
             break;

@@ -189,43 +189,81 @@ export default defineComponent( {
                                         };
 
                                         /**
-                                         * Ajoute ou enlève l'option Caisson en acier pour le poêle EMBER KAMIN M3
+                                         * Ajoute ou enlève l'option Porte basse pour les pôeles NORDRÏ
                                          */
-                                        const enabledOptionM3 = ( enabled: boolean ) => {
-                                            const optionalOption = _options.value.find( o => o.id === 36 );
+                                        const enabledOptionPorteBasse = ( enabled: boolean ) => {
+                                            const optionalOption = _options.value.find( o => o.id === 43 );
                                             if ( optionalOption === undefined ) {
                                                 return;
                                             }
 
                                             // Change le nombre de l'option pour l'activer ou non
                                             _options.value = _options.value.map( o => {
-                                                if ( enabled && o.id === 36 ) {
+                                                if ( enabled && o.id === 43 ) {
                                                     return { ...o, number: 1 };
-                                                } else if ( !enabled && o.id === 36 ) {
+                                                } else if ( !enabled && o.id === 43 ) {
                                                     return { ...o, number: 0 };
                                                 }
                                                 return o;
                                             } );
                                         };
 
+                                        /**
+                                         * Ajoute ou enlève l'option Kit accumulation pour le pôele NORDRÏ MIDGARD
+                                         */
+                                        const enabledOptionKitAcu = ( enabled: boolean ) => {
+                                            const optionalOption = _options.value.find( o => o.id === 44 );
+                                            if ( optionalOption === undefined ) {
+                                                return;
+                                            }
+
+                                            // Change le nombre de l'option pour l'activer ou non
+                                            _options.value = _options.value.map( o => {
+                                                if ( enabled && o.id === 44 ) {
+                                                    return { ...o, number: 1 };
+                                                } else if ( !enabled && o.id === 44 ) {
+                                                    return { ...o, number: 0 };
+                                                }
+                                                return o;
+                                            } );
+                                        };
+
+
                                         const filteredOptions = computed<Option[]>( () => {
                                             console.log( '%c FILTERED OPTION', 'background: #FF0007; color: #000000' );
                                             console.log( _options.value );
 
-                                            // SI KAMIN M3
-                                            if ( _selectedProducts.value.length > 0
-                                                && _selectedProducts.value[ 0 ].label.toUpperCase()
-                                                                               .includes( 'KAMIN M3' ) ) {
-                                                console.log( '%c IN', 'background: #008310; color: #000000' );
-                                                enabledOptionM3( true );
+                                            // Si Poele NORDRÏ MIDGARD
+                                            if ( _selectedProducts.value.length > 0 && _selectedProducts.value[ 0 ].label.toUpperCase()
+                                                                                                                   .includes(
+                                                                                                                       'NORDRÏ MIDGARD' ) ) {
+                                                console.log( '%c IN NORDRÏ MIDGARD',
+                                                             'background: #7F4CFF; color: #000000' );
+                                                enabledOptionKitAcu( true );
+                                                enabledOptionPorteBasse( true );
+                                                return _options.value;
+                                            }
+
+                                            // SI pôele NORDRÏ
+                                            if ( _selectedProducts.value.length > 0 && _selectedProducts.value[ 0 ].label.toUpperCase()
+                                                                                                                   .includes(
+                                                                                                                       'NORDRÏ' ) ) {
+                                                console.log( '%c IN NORDRÏ', 'background: #00FF9D; color: #000000' );
+                                                enabledOptionPorteBasse( true );
+                                                enabledOptionKitAcu( false );
+                                                // On affiche pas l'option ACCU
+                                                // return _options.value.filter( o => o.id !== 44 );
                                                 return _options.value;
 
                                             }
 
 
-                                            console.log( '%c OUT', 'background: #008310; color: #000000' );
-                                            enabledOptionM3( false );
-                                            return _options.value.filter( o => o.label.toLowerCase() !== 'caisson en acier' );
+                                            console.log( '%c OUT', 'background: #0A00FF; color: #000000' );
+                                            enabledOptionPorteBasse( false );
+                                            enabledOptionKitAcu( false );
+                                            // ON affiche pas l'option Porte basse et Kit accu
+                                            // return _options.value.filter( o => o.id !== 43 && o.id !== 44 );
+                                            return _options.value;
                                         } );
 
 
@@ -250,11 +288,11 @@ export default defineComponent( {
                                             for ( const product of productCreation.value ) {
                                                 totalHt += +product.pu;
                                             }
-                                            console.log( 'Prix avec la création -->', totalHt );
 
                                             for ( const option of _options.value ) {
+                                                console.log( option );
                                                 if ( option.number > 0 ) {
-                                                    totalHt += ( option.pu * option.number );
+                                                    totalHt += option.pu * option.number;
                                                 }
                                             }
                                             console.log( 'Prix avec les options -->', totalHt );

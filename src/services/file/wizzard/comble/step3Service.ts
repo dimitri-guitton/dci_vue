@@ -26,7 +26,7 @@ export const initCombleFormDataStep3 = ( fileData: CombleFile ): CombleStep3 => 
 export const yupCombleConfigStep3 = () => {
     return Yup.object( {
                            ...defaultYupConfigStep3(),
-                           area: Yup.number().required().min( 1, 'La superficie doit être supérieur à 0' ),
+                           area: Yup.number().required().min( 30, 'La superficie doit être supérieur à 29' ),
                        } );
 };
 
