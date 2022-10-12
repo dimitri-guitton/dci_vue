@@ -23,4 +23,5 @@ export interface StepOption {
 export interface StepProduct {
     id: number;
     pu: number;
+    quantity: number;
 }

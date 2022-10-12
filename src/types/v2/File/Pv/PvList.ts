@@ -14,6 +14,7 @@ interface PvList extends BaseList {
     puissancePoeleList: ItemList[];
     zoneInstallationList: ItemList[];
     orientationList: ItemList[];
+    electricityPriceEvolutionList: ItemList[];
 }
 
 export default PvList;

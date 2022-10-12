@@ -21,7 +21,7 @@ export const defaultInitFormDataStep4 = ( data: AllFile ): BaseStep4 => {
 
     const selectedProducts: StepProduct[] = [];
     for ( const sp of data.quotation.selectedProducts ) {
-        selectedProducts.push( { id: sp.id, pu: sp.pu } );
+        selectedProducts.push( { id: sp.id, pu: sp.pu, quantity: sp.quantity } );
     }
 
     return {

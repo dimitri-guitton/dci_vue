@@ -17,11 +17,13 @@ interface PriceEvolution {
 export class PvAlgo {
     private quotation: PvQuotation;
     private worksheet: PvWorkSheet;
+    private energyZone: string;
 
 
-    constructor( quotation: PvQuotation, worksheet: PvWorkSheet ) {
-        this.quotation = quotation;
-        this.worksheet = worksheet;
+    constructor( quotation: PvQuotation, worksheet: PvWorkSheet, energyZone: string ) {
+        this.quotation  = quotation;
+        this.worksheet  = worksheet;
+        this.energyZone = energyZone;
     }
 
     /**
@@ -35,15 +37,40 @@ export class PvAlgo {
      * Production par panneau en KWh
      */
     public productionPerPanelInKWh(): number {
-        if ( this.worksheet.orientation === 'sud' ) {
-            console.log( 'IN SUD' );
-            return 456.25;
-        } else if ( this.worksheet.orientation === 'est_ouest' ) {
-            console.log( 'IN EST OUEST' );
-            return 406.25;
-        } else if ( this.worksheet.orientation === 'sud_est_sud_ouest' ) {
-            console.log( 'IN SUD EST SUD OUEST' );
-            return 431.25;
+        if ( this.energyZone === 'H1' ) {
+            if ( this.worksheet.orientation === 'sud' ) {
+                console.log( 'IN SUD' );
+                return 448;
+            } else if ( this.worksheet.orientation === 'sud_ouest' ) {
+                console.log( 'IN SUD OUEST' );
+                return 425;
+            } else if ( this.worksheet.orientation === 'sud_est' ) {
+                console.log( 'IN SUD EST' );
+                return 429;
+            } else if ( this.worksheet.orientation === 'ouest' ) {
+                console.log( 'IN OUEST' );
+                return 371;
+            } else if ( this.worksheet.orientation === 'est' ) {
+                console.log( 'IN EST' );
+                return 387;
+            }
+        } else {
+            if ( this.worksheet.orientation === 'sud' ) {
+                console.log( 'IN SUD' );
+                return 458;
+            } else if ( this.worksheet.orientation === 'sud_ouest' ) {
+                console.log( 'IN SUD OUEST' );
+                return 457;
+            } else if ( this.worksheet.orientation === 'sud_est' ) {
+                console.log( 'IN SUD EST' );
+                return 458;
+            } else if ( this.worksheet.orientation === 'ouest' ) {
+                console.log( 'IN OUEST' );
+                return 395;
+            } else if ( this.worksheet.orientation === 'est' ) {
+                console.log( 'IN EST' );
+                return 397;
+            }
         }
 
         return 0;
@@ -53,23 +80,54 @@ export class PvAlgo {
      * Prix TTC posé des panneaux
      */
     public calclTotalTtcPerPanel(): number {
-        if ( this.quotation.selectedProducts.length > 0 ) {
-            const selectedProduct    = this.quotation.selectedProducts[ 0 ];
-            const power: number      = selectedProduct.power !== undefined ? selectedProduct.power : 0;
-            const laying: number     = selectedProduct.laying !== undefined ? selectedProduct.laying : 0;
-            const totalPower: number = power * selectedProduct.quantity;
-            let tva                  = 10;
-
-            if ( totalPower > 3000 ) {
-                tva = 20;
+        let totalHt    = 0;
+        let totalPower = 0;
+        let nbPanel    = 3;
+        let laying     = 0;
+        let tva        = 10;
+        console.log( this.quotation );
+        for ( const selectedProduct of this.quotation.selectedProducts ) {
+            if ( selectedProduct.productType === 'pv' ) {
+                const power = selectedProduct.power !== undefined
+                              ? selectedProduct.power
+                              : 0;
+                totalPower  = selectedProduct.quantity * power;
+                nbPanel     = selectedProduct.quantity;
             }
+            totalHt += selectedProduct.pu * selectedProduct.quantity;
+        }
+        console.log( 'Total HT --> ', totalHt );
+        console.log( 'nbPanel --> ', nbPanel );
+        console.log( 'totalPower --> ', totalPower );
 
-            const priceHt = selectedProduct.quantity * selectedProduct.pu + laying;
+        for ( const option of this.quotation.options ) {
+            if ( option.id === 38 ) {
+                if ( nbPanel <= 4 ) {
+                    laying = 800;
+                } else if ( nbPanel === 5 ) {
+                    laying = 1000;
+                } else if ( nbPanel <= 7 ) {
+                    laying = 1100;
+                } else if ( nbPanel <= 10 ) {
+                    laying = 1500;
+                } else if ( nbPanel <= 15 ) {
+                    laying = 2150;
+                } else {
+                    laying = 2500;
+                }
+            } else {
+                if ( option.number > 0 ) {
+                    totalHt += option.pu * option.number;
+                }
+            }
+        }
+        console.log( 'Laying --> ', laying );
 
-            return priceHt * ( tva / 100 + 1 );
+        if ( totalPower >= 3000 ) {
+            tva = 20;
         }
 
-        return 0;
+        return ( totalHt + laying ) * ( tva / 100 + 1 );
     }
 
     /**
@@ -127,14 +185,15 @@ export class PvAlgo {
                                  totalGains:       this.calcResalePriceToEdf() + this.savingsOnBill(),
                              } );
             } else {
-                let resaleToEdf = result[ result.length - 1 ].resaleToEdf * 1.02;
+                let resaleToEdf = result[ result.length - 1 ].resaleToEdf * 1.015;
 
                 // La revente avec EDF est sur 20 ans et non 25 ans
                 if ( year > currentYear + 19 ) {
                     resaleToEdf = -1;
                 }
 
-                const savingsOnInvoice = result[ result.length - 1 ].savingsOnInvoice * 1.030925266;
+                const percentage       = 1 + ( this.worksheet.electricityPriceEvolution / 100 );
+                const savingsOnInvoice = result[ result.length - 1 ].savingsOnInvoice * percentage;
                 result.push( {
                                  year,
                                  resaleToEdf,
@@ -162,7 +221,8 @@ export class PvAlgo {
                                  kwhPhotovoltaic: this.calcPhotovoltaicAverageSellingPrice(),
                              } );
             } else {
-                const kwhEdf = result[ result.length - 1 ].kwhEdf * 1.030925266;
+                const percentage = 1 + ( this.worksheet.electricityPriceEvolution / 100 );
+                const kwhEdf     = result[ result.length - 1 ].kwhEdf * percentage;
                 result.push( {
                                  year,
                                  kwhEdf,

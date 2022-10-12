@@ -41,7 +41,7 @@
                           @selectedProductIsUpdated="updateSelectedProduct"
                           :index="2"></selected-product>
 
-        <options @optionsAreUpdated="updateOptions" :options="options"></options>
+        <options @optionsAreUpdated="updateOptions" :options="computedOptions"></options>
 
         <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
 
@@ -132,6 +132,13 @@ export default defineComponent( {
                                         const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                         const lists             = ref<PvList>( ( props.fileData.lists as PvList ) );
                                         const quantity          = ref<number>( 3 );
+
+                                        for ( const selectedProduct of _selectedProducts.value ) {
+                                            if ( selectedProduct.productType === 'pv' ) {
+                                                quantity.value = selectedProduct.quantity;
+                                            }
+                                        }
+
 
                                         const $selectedPannels     = ref( null );
                                         const $selectedOnduleurs   = ref( null );
@@ -248,6 +255,43 @@ export default defineComponent( {
                                             return newList;
                                         } );
 
+                                        const updateLaying = ( qte: number ) => {
+                                            const layingOption = _options.value.find( o => o.id === 38 );
+                                            if ( layingOption === undefined ) {
+                                                return;
+                                            }
+
+                                            // Change le prix de l'option
+                                            _options.value = _options.value.map( o => {
+                                                if ( o.id === 38 ) {
+                                                    let laying: number;
+                                                    if ( qte <= 4 ) {
+                                                        laying = 800;
+                                                    } else if ( qte === 5 ) {
+                                                        laying = 1000;
+                                                    } else if ( qte <= 7 ) {
+                                                        laying = 1100;
+                                                    } else if ( qte <= 10 ) {
+                                                        laying = 1500;
+                                                    } else if ( qte <= 15 ) {
+                                                        laying = 2150;
+                                                    } else {
+                                                        laying = 2500;
+                                                    }
+
+                                                    return { ...o, pu: laying };
+                                                }
+                                                return o;
+                                            } );
+                                        };
+
+
+                                        const computedOptions = computed<Option[]>( () => {
+                                            updateLaying( quantity.value );
+
+                                            return _options.value;
+                                        } );
+
                                         const computedSelectedPannels = computed<Product[]>( () => {
                                             console.log( '%c SELECTED PANNELS', 'background: #0A00FF; color: #000000' );
                                             console.log( _selectedProducts.value.filter( p => p.productType === 'pv' ) );
@@ -280,25 +324,10 @@ export default defineComponent( {
                                             if ( props.forceRefresh ) {
                                                 console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
                                             }
-                                            console.log( '%c IN COMPUTED PRICE',
-                                                         'background: #FF000A; color: #FFFFFF' );
-                                            console.log( '%c IN COMPUTED PRICE',
-                                                         'background: #FF000A; color: #FFFFFF' );
-                                            console.log( '%c IN COMPUTED PRICE',
-                                                         'background: #FF000A; color: #FFFFFF' );
-                                            console.log( '%c IN COMPUTED PRICE',
-                                                         'background: #FF000A; color: #FFFFFF' );
-                                            console.log( '%c IN COMPUTED PRICE',
-                                                         'background: #FF000A; color: #FFFFFF' );
-                                            console.log( '%c IN COMPUTED PRICE',
-                                                         'background: #FF000A; color: #FFFFFF' );
-                                            console.log( '%c IN COMPUTED PRICE',
-                                                         'background: #FF000A; color: #FFFFFF' );
-                                            console.log( '%c IN COMPUTED PRICE',
-                                                         'background: #FF000A; color: #FFFFFF' );
 
                                             let totalHt    = 0;
                                             let totalPower = 0;
+
 
                                             console.log( 'Prix par defaut -->', totalHt );
                                             console.log( _selectedProducts.value );
@@ -314,7 +343,7 @@ export default defineComponent( {
                                                     const power = selectedProduct.power !== undefined
                                                                   ? selectedProduct.power
                                                                   : 0;
-                                                    totalPower += selectedProduct.quantity * power;
+                                                    totalPower = selectedProduct.quantity * power;
                                                 }
                                                 totalHt += selectedProduct.pu * selectedProduct.quantity;
                                             }
@@ -322,12 +351,6 @@ export default defineComponent( {
 
 
                                             for ( const option of _options.value ) {
-                                                if ( option.id === 38 ) {
-                                                    if ( _selectedProducts.value.length > 0 && _selectedProducts.value[ 0 ].laying !== undefined ) {
-                                                        option.pu = _selectedProducts.value[ 0 ].laying;
-                                                    }
-                                                }
-
                                                 if ( option.number > 0 ) {
                                                     totalHt += option.pu * option.number;
                                                 }
@@ -348,16 +371,16 @@ export default defineComponent( {
 
 
                                             let selfConsumptionBonus;
-                                            let tva10    = 0;
-                                            let tva20    = 0;
-                                            let totalTtc = 0;
-                                            if ( lessThan2Year || totalPower > 3000 ) {
+                                            let tva10 = 0;
+                                            let tva20 = 0;
+                                            let totalTtc: number;
+                                            if ( lessThan2Year || totalPower >= 3000 ) {
                                                 tva20                = 20 * totalHt / 100;
-                                                selfConsumptionBonus = ( totalPower / 1000 ) * 290;
+                                                selfConsumptionBonus = ( totalPower / 1000 ) * 430;
                                                 totalTtc             = totalHt + tva20;
                                             } else {
                                                 tva10                = 10 * totalHt / 100;
-                                                selfConsumptionBonus = ( totalPower / 1000 ) * 390;
+                                                selfConsumptionBonus = ( totalPower / 1000 ) * 320;
                                                 totalTtc             = totalHt + tva10;
                                             }
 
@@ -391,6 +414,7 @@ export default defineComponent( {
                                             computedSelectedPannels,
                                             computedSelectedPasserelles,
                                             computedSelectedOnduleurs,
+                                            computedOptions,
                                             quantity,
                                             $selectedPannels,
                                             $selectedOnduleurs,

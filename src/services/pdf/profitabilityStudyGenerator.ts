@@ -30,7 +30,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
         this._file      = file;
         this.type       = PdfType.ProfitabilityStudy;
         this._quotation = ( file.quotation as PvQuotation );
-        this._pvAlgo    = new PvAlgo( ( this._file.quotation as PvQuotation ), ( this._file.worksheet as PvWorkSheet ) );
+        this._pvAlgo    = new PvAlgo( ( this._file.quotation as PvQuotation ), ( this._file.worksheet as PvWorkSheet ), file.energyZone );
         this._chart     = null;
 
         this.docDefinition = this._generateDocDefinition();
@@ -211,6 +211,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
         const formattedBody: TableCell[][] = [];
         const data                         = this._pvAlgo.benefitsOver25Years();
 
+        let index = 1;
         for ( const benefit of data ) {
 
             let resaleToEdf = this.formatPrice( benefit.resaleToEdf );
@@ -221,7 +222,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
             }
             formattedBody.push( [
                                     {
-                                        text:      benefit.year,
+                                        text:      index,
                                         alignment: 'center',
                                     },
                                     {
@@ -237,6 +238,8 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
                                         alignment: 'center',
                                     },
                                 ] );
+
+            index++;
         }
 
         return {
@@ -482,9 +485,9 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
         );
     }
 
-    public updateChart( quoation: PvQuotation, worksheet: PvWorkSheet ) {
+    public updateChart( quoation: PvQuotation, worksheet: PvWorkSheet, energyZone: string ) {
 
-        this._pvAlgo = new PvAlgo( ( quoation as PvQuotation ), ( worksheet as PvWorkSheet ) );
+        this._pvAlgo = new PvAlgo( ( quoation as PvQuotation ), ( worksheet as PvWorkSheet ), energyZone );
 
         if ( this._chart === null ) {
             return;

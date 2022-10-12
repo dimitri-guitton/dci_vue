@@ -66,12 +66,13 @@ export class WorksheetGenerator extends PdfGenerator {
     }
 
     generatePdf() {
-        super.generatePdf();
-
         if ( this._file.type === FILE_PV ) {
             const profitabilityStudyGenerator = new ProfitabilityStudyGenerator( this._file );
             profitabilityStudyGenerator.generatePdf();
+            return;
         }
+
+        super.generatePdf();
     }
 
     private _generateDocDefinition(): TDocumentDefinitions {

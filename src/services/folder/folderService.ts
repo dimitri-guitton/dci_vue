@@ -573,8 +573,15 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
     const quotationEmpty       = !folderContainFiles( path.join( folderPath, FoldersNames.DEVIS ) );
     // Fichier dans le dossier "DEVIS SIGNE"
     const signedQuotationEmpty = !folderContainFiles( path.join( folderPath, FoldersNames.DEVIS_SIGNE ) );
+
+    let worksheetEmpty;
     // Fichier dans le dossier "FICHE"
-    const worksheetEmpty       = !folderContainFiles( path.join( folderPath, FoldersNames.FICHE ) );
+    // Pas de fiche poir la panneaux photovoltaïques
+    if ( fileType === FILE_PV ) {
+        worksheetEmpty = false;
+    } else {
+        worksheetEmpty = !folderContainFiles( path.join( folderPath, FoldersNames.FICHE ) );
+    }
 
 
     let photoEmpty;
@@ -596,8 +603,8 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
     const codeBonus = getCodeBonus( fileData );
     let assentEmpty: boolean;
 
-    // Si comble en non précaire on demande pas l'avis d'impot
-    if ( fileType === FILE_COMBLE && codeBonus !== 'GP' && codeBonus !== 'P' ) {
+    // Si comble en non précaire on demande pas l'avis d'impot OU si PV
+    if ( ( fileType === FILE_COMBLE && codeBonus !== 'GP' && codeBonus !== 'P' ) || fileType === FILE_PV ) {
         assentEmpty = false;
     } else {
         // Fichier dans le dossier "AVIS"

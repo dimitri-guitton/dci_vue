@@ -4,4 +4,5 @@ export interface PvWorkSheet extends BaseWorksheet {
     montantFactureElectrique: number;
     totalKwhFactureElectrique: number;
     orientation: string;
+    electricityPriceEvolution: number;
 }

@@ -150,7 +150,6 @@ import { initPvFormDataStep5, savePvWorksheet, yupPvConfigStep5 } from '@/servic
 import { PvFile } from '@/types/v2/File/Pv/PvFile';
 import { PvStep5 } from '@/types/v2/Wizzard/step5/PvStep5';
 import { BaseStep3 } from '@/types/v2/Wizzard/step3/BaseStep3';
-import { PvAlgo } from '@/services/algorithm/PvAlgo';
 import FilePvStep3 from '@/views/file/pv/FilePvStep3.vue';
 
 setLocale( {
@@ -225,26 +224,6 @@ export default defineComponent( {
                                       yupPvConfigStep4(),
                                       yupPvConfigStep5(),
                                     ];
-
-                                    // TEST
-                                    const pvAlgo = new PvAlgo( fileData.value.quotation, fileData.value.worksheet );
-                                    console.log( '%c PHOTOVOLTAIQUE', 'background: #DAFF83; color: #000000' );
-                                    console.log( 'Prix moyen KWh Facture',
-                                                 pvAlgo.calcAveragePricePerKWhOnElectricBill() );
-                                    console.log( 'PRODUCTIBLE PAR PANNEAU EN kWh', pvAlgo.productionPerPanelInKWh() );
-                                    console.log( 'PRODUCTIBLE DE L’INSTALLATION',
-                                                 pvAlgo.calcInstallationProduction() );
-                                    console.log( 'PRIX MOYEN DU kWh PHOTOVOLTAÏQUE',
-                                                 pvAlgo.calcPhotovoltaicAverageSellingPrice() );
-                                    console.log( 'REVENTE AUPRÈS D’EDF', pvAlgo.calcResalePriceToEdf() );
-                                    console.log( 'ÉCONOMIE SUR FACTURE', pvAlgo.savingsOnBill() );
-                                    console.log( 'GAINS PHOTOVOLTAÏQUES', pvAlgo.benefitsOver25Years() );
-                                    console.log( 'SOMME GAINS PHOTOVOLTAÏQUES', pvAlgo.sumBenefits25Years() );
-                                    console.log( 'Gain mensuel (moyenne sur 25 ans)',
-                                                 pvAlgo.monthlyBenefitsAverage25Year() );
-                                    console.log( 'Rendement finacier (moyenne sur 25 ans)',
-                                                 pvAlgo.financialReturnAverage25Years() );
-                                    // TEST
 
                                     // --------------------- Début config du Wizzard et du formulaire--------------------------
                                     const currentSchema   = computed( () => {
