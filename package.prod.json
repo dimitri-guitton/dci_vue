@@ -1,15 +1,15 @@
 {
-    "name":            "eco-atl-dci",
-    "productName":     "DCI",
-    "version":         "3.2.5",
-    "private":         true,
-    "description":     "Logiciel de devis",
-    "author":          {
+    "name":        "eco-atl-dci",
+    "productName": "DCI",
+    "version":     "3.5.0",
+    "private":     true,
+    "description": "Logiciel de devis",
+    "author":      {
         "email": "echonumeric.team@gmail.com",
         "name":  "Echo Numeric",
         "url":   "https://echo-numeric.com/"
     },
-    "scripts":         {
+    "scripts":     {
         "serve":                   "vue-cli-service serve",
         "build":                   "vue-cli-service build",
         "deploy":                  "./deploy.sh",
