@@ -978,72 +978,88 @@ export const getCeeBonus = ( data: BaseFile ): number => {
 
             break;
         case FILE_COMBLE:
-            // CEE A PARTIR DU 1ER OCTOBRE
-            if ( new Date() > new Date( '2022/10/01 00:00:01' ) ) {
+            if ( data.partner === 'obj_eco_energie' ) {
                 if ( energyZone === 'H1' ) {
-                    if ( codeBonus === 'GP' ) {
-                        value = 7.14;
-                    } else {
-                        value = 6.46;
-                    }
-
+                    value = 1.7 * 5.7;
                 } else {
-                    if ( codeBonus === 'GP' ) {
-                        value = 5.88;
-                    } else {
-                        value = 5.32;
-                    }
+                    value = 1.1 * 5.7;
                 }
-
             } else {
-                console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
-                if ( energyZone === 'H1' ) {
-                    if ( codeBonus === 'GP' ) {
-                        value = 9.775;
+                // CEE A PARTIR DU 1ER OCTOBRE
+                if ( new Date() > new Date( '2022/10/01 00:00:01' ) ) {
+                    if ( energyZone === 'H1' ) {
+                        if ( codeBonus === 'GP' ) {
+                            value = 7.14;
+                        } else {
+                            value = 6.46;
+                        }
+
                     } else {
-                        value = 9.18;
+                        if ( codeBonus === 'GP' ) {
+                            value = 5.88;
+                        } else {
+                            value = 5.32;
+                        }
                     }
 
                 } else {
-                    if ( codeBonus === 'GP' ) {
-                        value = 8.05;
+                    console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
+                    if ( energyZone === 'H1' ) {
+                        if ( codeBonus === 'GP' ) {
+                            value = 9.775;
+                        } else {
+                            value = 9.18;
+                        }
+
                     } else {
-                        value = 7.56;
+                        if ( codeBonus === 'GP' ) {
+                            value = 8.05;
+                        } else {
+                            value = 7.56;
+                        }
                     }
                 }
             }
             break;
         case FILE_SOL:
-            // CEE A PARTIR DU 1ER OCTOBRE
-            if ( new Date() > new Date( '2022/10/01 00:00:01' ) ) {
+            if ( data.partner === 'obj_eco_energie' ) {
                 if ( energyZone === 'H1' ) {
-                    if ( codeBonus === 'GP' ) {
-                        value = 4.62;
-                    } else {
-                        value = 4.18;
-                    }
-
+                    value = 1.1 * 5.7;
                 } else {
-                    if ( codeBonus === 'GP' ) {
-                        value = 3.738;
-                    } else {
-                        value = 3.382;
-                    }
+                    value = 0.89 * 5.7;
                 }
             } else {
-                console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
-                if ( energyZone === 'H1' ) {
-                    if ( codeBonus === 'GP' ) {
-                        value = 6.325;
-                    } else {
-                        value = 5.94;
-                    }
+                // CEE A PARTIR DU 1ER OCTOBRE
+                if ( new Date() > new Date( '2022/10/01 00:00:01' ) ) {
+                    if ( energyZone === 'H1' ) {
+                        if ( codeBonus === 'GP' ) {
+                            value = 4.62;
+                        } else {
+                            value = 4.18;
+                        }
 
-                } else {
-                    if ( codeBonus === 'GP' ) {
-                        value = 5.1175;
                     } else {
-                        value = 4.806;
+                        if ( codeBonus === 'GP' ) {
+                            value = 3.738;
+                        } else {
+                            value = 3.382;
+                        }
+                    }
+                } else {
+                    console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
+                    if ( energyZone === 'H1' ) {
+                        if ( codeBonus === 'GP' ) {
+                            value = 6.325;
+                        } else {
+                            value = 5.94;
+                        }
+
+                    } else {
+                        if ( codeBonus === 'GP' ) {
+                            value = 5.1175;
+                        } else {
+                            value = 4.806;
+                        }
                     }
                 }
             }
