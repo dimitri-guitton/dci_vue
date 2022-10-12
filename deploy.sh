@@ -28,6 +28,8 @@ echo "$error"
 start()
 {
 
+python3 update_package.py
+
 echo "Changement de version : "
 
 select item in "- Majeur- " "- Mineur -" "- Patch -"
@@ -45,7 +47,7 @@ do
   | sed 's/[",]//g')
 
     echo "Nouvelle version" $PACKAGE_VERSION
-    git push && git push --tags
+#    git push && git push --tags
     break;
   fi
 done
@@ -58,5 +60,8 @@ OLD_PACKAGE_VERSION=$(cat package.json \
   | sed 's/[",]//g')
 
 echo "Version précédente : $OLD_PACKAGE_VERSION"
+
+python3 store_old_version.py $OLD_PACKAGE_VERSION
+
 
 start
