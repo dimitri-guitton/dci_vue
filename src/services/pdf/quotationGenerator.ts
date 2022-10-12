@@ -36,6 +36,7 @@ import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { CityHallManadateGenerator } from '@/services/pdf/cityHallManadateGenerator';
 import { EnedisMandateGenerator } from '@/services/pdf/enedisMandateGenerator';
 import { MaPrimeRenovGeneratorV2 } from '@/services/pdf/maPrimeRenovGeneratorV2';
+import { ObjEcoEnergie } from '@/services/pdf/contributionFramework/ObjEcoEnergie';
 
 enum PriceQuotation {
     HT           = 'Total HT',
@@ -93,8 +94,13 @@ export class QuotationGenerator extends PdfGenerator {
         // Génération du cadre de contribution
         // Pour les pompes à chaleur quand la prime CEE est > à 0
         if ( this._file.quotation.ceeBonus > 0 ) {
-            const contributionFrameworkGenerator = new ContributionFrameworkGenerator( this._file );
-            contributionFrameworkGenerator.generatePdf();
+            if ( this._file.partner === 'obj_eco_energie' ) {
+                const contributionFrameworkGenerator = new ObjEcoEnergie( this._file );
+                contributionFrameworkGenerator.generatePdf();
+            } else {
+                const contributionFrameworkGenerator = new ContributionFrameworkGenerator( this._file );
+                contributionFrameworkGenerator.generatePdf();
+            }
         }
 
         // Génération du mandat de maPrimeRenov
