@@ -2,7 +2,9 @@
     <div class="w-100">
         <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit"
                       :price="price"
-                      :lists="lists"></step4-header>
+                      :lists="lists"
+                      :file="fileData"
+                      @bonusAreUpdated="updateBonus"></step4-header>
 
         <div class="row">
             <p>Dimensionnement total chaud 1.20 : <b>{{
@@ -219,6 +221,11 @@ export default defineComponent( {
                                         const assortment = ref<string>( ( props.fileData.quotation.assortment ) );
                                         const rrMulti    = ref<RrMulti>( ( props.fileData.quotation.rrMulti ) );
 
+                                        const disabledBonus             = ref<boolean>( props.fileData.disabledBonus );
+                                        const disabledCeeBonus          = ref<boolean>( props.fileData.disabledCeeBonus );
+                                        const disabledMaPrimeRenovBonus = ref<boolean>( props.fileData.disabledMaPrimeRenovBonus );
+
+
                                         const rrAlgo = new RrAlgo( props.fileData.housing );
 
                                         const generateQuotation = () => {
@@ -236,6 +243,13 @@ export default defineComponent( {
                                         const updateDiscount = ( value ) => {
                                             discount.value = value;
                                         };
+
+                                        const updateBonus = ( data: { bonus: boolean; ceeBonus: boolean; maPrimeRenovBonus: boolean } ) => {
+                                            disabledBonus.value             = data.bonus;
+                                            disabledCeeBonus.value          = data.ceeBonus;
+                                            disabledMaPrimeRenovBonus.value = data.maPrimeRenovBonus;
+                                        };
+
 
                                         // /**
                                         //  * Ajoute ou enlève l'option Wifi selon les PAC
@@ -429,9 +443,9 @@ export default defineComponent( {
                                             const totalTva = tva10 + tva20;
                                             const totalTtc = totalHt + totalTva;
 
-                                            if ( !props.fileData.disabledBonus ) {
+                                            if ( !disabledBonus.value ) {
                                                 // Si la prime CEE est active
-                                                if ( !props.fileData.disabledCeeBonus ) {
+                                                if ( !disabledCeeBonus.value ) {
                                                     // Afin d'avoir les derniers produits pour le calcul de la prime
                                                     const updatedFileData: RrFile = {
                                                         ...props.fileData,
@@ -483,6 +497,7 @@ export default defineComponent( {
                                             updateDiscount,
                                             generateQuotation,
                                             generateAddressCertificate,
+                                            updateBonus,
                                         };
                                     },
                                 } );

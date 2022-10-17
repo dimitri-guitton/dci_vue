@@ -25,6 +25,9 @@ export const defaultInitFormDataStep4 = ( data: AllFile ): BaseStep4 => {
     }
 
     return {
+        bonus:                 data.disabledBonus,
+        ceeBonus:              data.disabledCeeBonus,
+        maPrimeRenovBonus:     data.disabledMaPrimeRenovBonus,
         origin:                data.quotation.origin,
         dateTechnicalVisit:    data.quotation.dateTechnicalVisit,
         executionDelay:        data.quotation.executionDelay,
@@ -94,6 +97,13 @@ const getPriceValue = ( price: Price ) => {
     };
 };
 
+export const defaultGetBonusValueStep4 = ( stepData: BaseStep4 ) => {
+    return {
+        disabledBonus:             stepData.bonus,
+        disabledCeeBonus:          stepData.ceeBonus,
+        disabledMaPrimeRenovBonus: stepData.maPrimeRenovBonus,
+    };
+};
 
 export const defaultGetQuotationValueStep4 = ( stepData: BaseStep4, price: Price ) => {
     const selectedProducts: Product[] = [];

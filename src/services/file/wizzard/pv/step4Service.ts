@@ -5,7 +5,12 @@ import { getCurrentPvFileData, getProductById } from '@/services/data/dataServic
 import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
 import { updateJsonData } from '@/services/folder/folderService';
 import { Price } from '@/types/v2/File/Price';
-import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
+import {
+    defaultGetBonusValueStep4,
+    defaultGetQuotationValueStep4,
+    defaultInitFormDataStep4,
+    defaultYupConfigStep4,
+} from '@/services/file/wizzard/step4Service';
 import { updateTotalTtc } from '@/services/sqliteService';
 import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 import { Product } from '@/types/v2/File/Common/Product';
@@ -56,6 +61,7 @@ export const validatePvStep4 = async ( data: PvFileStep, price: Price ): Promise
 
     fileData = {
         ...fileData,
+        ...defaultGetBonusValueStep4( data ),
         quotation,
     };
 

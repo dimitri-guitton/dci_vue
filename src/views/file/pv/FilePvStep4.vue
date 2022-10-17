@@ -3,7 +3,8 @@
 
         <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit"
                       :price="price"
-                      :lists="lists"></step4-header>
+                      :lists="lists"
+                      :file="fileData"></step4-header>
 
         <step4-quotation-header></step4-quotation-header>
 
@@ -95,6 +96,7 @@ import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year } from '@/services/data/dataService';
 import PvList from '@/types/v2/File/Pv/PvList';
+import { PvFile } from '@/types/v2/File/Pv/PvFile';
 
 export default defineComponent( {
                                     name:       'file-pv-step-4',
@@ -108,7 +110,7 @@ export default defineComponent( {
                                         Field,
                                         ErrorMessage,
                                     },
-                                    props: {
+                                    props:      {
                                         products:         {
                                             type:     Array as () => Product[],
                                             required: true,
@@ -120,7 +122,7 @@ export default defineComponent( {
                                         options:          Array as () => Option[],
                                         blankOptions:     Array as () => BlankOption[],
                                         fileData:         {
-                                            type:     Object,
+                                            type:     Object as () => PvFile,
                                             required: true,
                                         },
                                         forceRefresh:     Boolean,  // Pour focer le compute des prix quand on arrive sur la step4
