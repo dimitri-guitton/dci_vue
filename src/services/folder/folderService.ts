@@ -603,8 +603,8 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
     const codeBonus = getCodeBonus( fileData );
     let assentEmpty: boolean;
 
-    // Si comble en non précaire on demande pas l'avis d'impot OU si PV
-    if ( ( fileType === FILE_COMBLE && codeBonus !== 'GP' && codeBonus !== 'P' ) || fileType === FILE_PV ) {
+    // Si non précaire on demande pas l'avis d'impot OU si PV
+    if ( ( codeBonus !== 'GP' && codeBonus !== 'P' ) || fileType === FILE_PV ) {
         assentEmpty = false;
     } else {
         // Fichier dans le dossier "AVIS"
