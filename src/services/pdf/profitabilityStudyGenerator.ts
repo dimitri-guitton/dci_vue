@@ -150,7 +150,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
                                     width: '33%',
                                     stack: [
                                         {
-                                            text:      this.formatPrice( this._pvAlgo.calclTotalTtcPerPanel() ),
+                                            text:      this.formatPrice( this._quotation.totalTtc ),
                                             alignment: 'center',
                                             bold:      true,
                                             fontSize:  12,
@@ -216,8 +216,8 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
 
             let resaleToEdf = this.formatPrice( benefit.resaleToEdf );
 
-            // Si === -1 pas de valeur pour EDF
-            if ( benefit.resaleToEdf === -1 ) {
+            // Si === 0 pas de valeur pour EDF
+            if ( benefit.resaleToEdf === 0 ) {
                 resaleToEdf = '';
             }
             formattedBody.push( [
@@ -242,15 +242,20 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
             index++;
         }
 
+        const pv         = this._quotation.selectedProducts[ 0 ];
+        const power      = pv.power ?? 0;
+        const totalPower = pv.quantity * power;
+        const title      = `${ pv.label } de ${ pv.quantity } x ${ power }Wc = ${ totalPower }Wc`;
+
         return {
             margin:    [ 0, 15, 0, 0 ],
             style:     [ 'table' ],
             pageBreak: 'after',
             table:     {
-                body:   [
+                body: [
                     [
                         {
-                            text:      this._quotation.selectedProducts[ 0 ].label,
+                            text:      title,
                             alignment: 'center',
                             bold:      true,
                             colSpan:   4,

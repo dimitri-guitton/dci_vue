@@ -39,36 +39,26 @@ export class PvAlgo {
     public productionPerPanelInKWh(): number {
         if ( this.energyZone === 'H1' ) {
             if ( this.worksheet.orientation === 'sud' ) {
-                console.log( 'IN SUD' );
                 return 448;
             } else if ( this.worksheet.orientation === 'sud_ouest' ) {
-                console.log( 'IN SUD OUEST' );
                 return 425;
             } else if ( this.worksheet.orientation === 'sud_est' ) {
-                console.log( 'IN SUD EST' );
                 return 429;
             } else if ( this.worksheet.orientation === 'ouest' ) {
-                console.log( 'IN OUEST' );
                 return 371;
             } else if ( this.worksheet.orientation === 'est' ) {
-                console.log( 'IN EST' );
                 return 387;
             }
         } else {
             if ( this.worksheet.orientation === 'sud' ) {
-                console.log( 'IN SUD' );
                 return 458;
             } else if ( this.worksheet.orientation === 'sud_ouest' ) {
-                console.log( 'IN SUD OUEST' );
                 return 457;
             } else if ( this.worksheet.orientation === 'sud_est' ) {
-                console.log( 'IN SUD EST' );
                 return 458;
             } else if ( this.worksheet.orientation === 'ouest' ) {
-                console.log( 'IN OUEST' );
                 return 395;
             } else if ( this.worksheet.orientation === 'est' ) {
-                console.log( 'IN EST' );
                 return 397;
             }
         }
@@ -152,6 +142,11 @@ export class PvAlgo {
      * Prix de vente moyen du KWh phtovoltaîque en €
      */
     public calcPhotovoltaicAverageSellingPrice(): number {
+        // TODO ajojuter la deperdition sur le temps
+        // Comment est calculer le poucentage sur année 3 = puissance * (annee * coef) ou année n-1 * coef
+        // Année 1 (100% - le coef)
+        // Année 2 (année1 - le coef/24)
+        // Année 3 (année1 - (le coef/24)*2)
         return this.calcTotalTtcWithBonusDeducted() / ( this.calcInstallationProduction() * 25 );
     }
 
@@ -181,19 +176,24 @@ export class PvAlgo {
                 result.push( {
                                  year,
                                  resaleToEdf:      this.calcResalePriceToEdf(),
-                                 savingsOnInvoice: this.savingsOnBill(),
+                                 savingsOnInvoice: this.savingsOnBill() * 1.15,
                                  totalGains:       this.calcResalePriceToEdf() + this.savingsOnBill(),
                              } );
             } else {
-                let resaleToEdf = result[ result.length - 1 ].resaleToEdf * 1.015;
+                let resaleToEdf: number = result[ result.length - 1 ].resaleToEdf * 1.015;
 
                 // La revente avec EDF est sur 20 ans et non 25 ans
                 if ( year > currentYear + 19 ) {
-                    resaleToEdf = -1;
+                    resaleToEdf = 0;
                 }
 
-                const percentage       = 1 + ( this.worksheet.electricityPriceEvolution / 100 );
-                const savingsOnInvoice = result[ result.length - 1 ].savingsOnInvoice * percentage;
+
+                const percentage: number     = 1 + ( this.worksheet.electricityPriceEvolution / 100 );
+                let savingsOnInvoice: number = result[ result.length - 1 ].savingsOnInvoice * percentage;
+
+                resaleToEdf      = Number( resaleToEdf.toFixed( 2 ) );
+                savingsOnInvoice = Number( savingsOnInvoice.toFixed( 2 ) );
+
                 result.push( {
                                  year,
                                  resaleToEdf,

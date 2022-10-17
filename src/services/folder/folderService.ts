@@ -664,7 +664,7 @@ export const openPdf = ( filePath: string ) => {
 };
 
 
-export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) => {
+export const savePdf = ( buffer: Buffer, type: PdfType ) => {
     console.log( '%c ON SAVE PDF', 'background: #fdd835; color: #000000' );
     const folderName = getcurrentFolderName() as string;
     const folderPath = getFolderPath( folderName );
@@ -717,7 +717,6 @@ export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) =
     }
 
     const filePath = `${ folderPath }/${ folder }/${ name }`;
-    // const writer   = fs.createWriteStream( filePath );
 
     try {
         fs.writeFile( filePath, buffer, () => {
@@ -731,15 +730,6 @@ export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) =
                    } );
         console.error( err );
     }
-
-    // writer.write( buffer );
-
-    // if ( openAfterSave ) {
-    //     console.log( '%c IN OPEN', 'background: #fdd835; color: #000000' );
-    //     setTimeout( () => {
-    //         openPdf( filePath );
-    //     }, 500 );
-    // }
 };
 
 export const copyFileFromAssetToDropbox = ( assetPath: string, destinationFolder: string, fileName: string ) => {
