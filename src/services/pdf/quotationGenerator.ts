@@ -1401,13 +1401,9 @@ export class QuotationGenerator extends PdfGenerator {
                                       } );
                     break;
                 case PriceQuotation.CEE:
-                    rightColumn.push( {
-                                          text:       this.formatPrice( quotation.ceeBonus, 1, false ),
-                                          alignment:  'right',
-                                          lineHeight: 2,
-                                      } );
-                    break;
                 case PriceQuotation.CEE_CPC:
+                case PriceQuotation.CEE_EDF:
+                case PriceQuotation.CEE_CPC_EDF:
                     rightColumn.push( {
                                           text:       this.formatPrice( quotation.ceeBonus, 1, false ),
                                           alignment:  'right',
