@@ -25,20 +25,19 @@
             </Field>
             <label class="ms-2" for="r_izolation_zone_2">Vide sanitaire</label>
             <Field name="izolationZone"
-                   id="r_ecs_3"
+                   id="r_izolation_zone_3"
                    class="form-check-input ms-5"
                    type="radio"
                    value="passage_ouvert"
                    v-model="izolationZone"
             >
             </Field>
-            <label class="ms-2" for="r_ecs_3">Passage ouvert</label>
+            <label class="ms-2" for="r_izolation_zone_3">Passage ouvert</label>
         </div>
 
         <step4-quotation-header></step4-quotation-header>
 
-        <selected-product :alert="alert"
-                          :products="products"
+        <selected-product :products="products"
                           :selectedProducts="selectedProducts"
                           :quantity-area="quantityArea"
                           @selectedProductIsUpdated="updateSelectedProduct"></selected-product>

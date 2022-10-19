@@ -4,6 +4,7 @@ import {
     CADRE_CONTRIBUTION_CHECKBOX_EMPTY,
     DARK,
     EA_SIGNATURE,
+    FOOTER_CONTRIBUTION_OBJ_ECO,
     LOGO_CEE,
     LOGO_ECO,
     LOGO_OBJ_ECO_ENERGIE,
@@ -375,76 +376,8 @@ export class ObjEcoEnergie extends PdfGenerator {
                 },
                 {
                     margin: [ 0, 5, 0, 0 ],
-                    table:  {
-                        widths: [ '100%' ],
-                        body:   [
-                            [
-                                {
-                                    margin:     [ 0, 3, 0, 0 ],
-                                    text:       'Où se renseigner pour bénéficier de cette offre ?',
-                                    decoration: 'underline',
-                                    alignment:  'center',
-                                },
-                            ],
-                            [
-                                {
-                                    margin:    [ 0, -3, 0, 0 ],
-                                    text:      [
-                                        'OBJECTIF ECOENERGIE - 3 Avenue de la Résistance - BP 19 - 19201 Ussel cedex',
-                                    ],
-                                    alignment: 'center',
-                                },
-                            ],
-                            [
-                                {
-                                    margin:    [ 0, -2, 0, 0 ],
-                                    text:      [
-                                        'https://primalia.fr/ - 05 55 46 25 79',
-                                    ],
-                                    alignment: 'center',
-                                },
-                            ],
-                            [
-                                {
-                                    margin:     [ 0, 0 ],
-                                    text:       'Où s\'informer sur les aides pour les travaux d\'économies d\'énergie ?',
-                                    decoration: 'underline',
-                                    alignment:  'center',
-                                },
-                            ],
-                            [
-                                {
-                                    margin:    [ 0, 0 ],
-                                    text:      'Site de réseau FAIRE : https://www.faire.gouv.fr',
-                                    alignment: 'center',
-                                },
-                            ],
-                            [
-                                {
-                                    margin:    [ 0, 0, 0, 0 ],
-                                    text:      'Tél :',
-                                    alignment: 'center',
-                                },
-                            ],
-                            [
-                                {
-                                    text:       'En cas de litige avec le porteur de l\'offre ou son partenaire, vous pouvez faire appel gratuiteent au médiateur de la consommation (6 de l\'article L.611-1 du code de la consommation)',
-                                    decoration: 'underline',
-                                    alignment:  'center',
-                                },
-                            ],
-                            [
-                                {
-                                    text:      [
-                                        'Centre de la Médiation et d’Arbitrage de Paris : https://www.economie.gouv.fr/mediation-conso/mediateurs-references\n',
-                                        'Tél. : +33 1 44 95 11 40 – Courriel : cmap@cmap.fr Adresse : CMAP – 39 avenue Franklin D. Roosevelt – 75008 PARIS ',
-                                    ],
-                                    alignment: 'center',
-                                },
-                            ],
-                        ],
-                    },
-                    layout: this._rowLayout,
+                    image:  FOOTER_CONTRIBUTION_OBJ_ECO,
+                    width:  510,
                 },
             ],
         };
