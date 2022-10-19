@@ -36,103 +36,73 @@ export class PvAlgo {
     /**
      * Production par panneau en KWh
      */
-    public productionPerPanelInKWh(): number {
+    public productionPerPanelInKWh( year = 1 ): number {
+        console.log( '%c YEAR --> ' + year, 'background: #fdd835; color: #000000' );
+        let power = 0;
         if ( this.energyZone === 'H1' ) {
             if ( this.worksheet.orientation === 'sud' ) {
-                return 448;
+                power = 448;
             } else if ( this.worksheet.orientation === 'sud_ouest' ) {
-                return 425;
+                power = 425;
             } else if ( this.worksheet.orientation === 'sud_est' ) {
-                return 429;
+                power = 429;
             } else if ( this.worksheet.orientation === 'ouest' ) {
-                return 371;
+                power = 371;
             } else if ( this.worksheet.orientation === 'est' ) {
-                return 387;
+                power = 387;
             }
         } else {
             if ( this.worksheet.orientation === 'sud' ) {
-                return 458;
+                power = 458;
             } else if ( this.worksheet.orientation === 'sud_ouest' ) {
-                return 457;
+                power = 457;
             } else if ( this.worksheet.orientation === 'sud_est' ) {
-                return 458;
+                power = 458;
             } else if ( this.worksheet.orientation === 'ouest' ) {
-                return 395;
+                power = 395;
             } else if ( this.worksheet.orientation === 'est' ) {
-                return 397;
+                power = 397;
             }
         }
 
-        return 0;
-    }
-
-    /**
-     * Prix TTC posé des panneaux
-     */
-    public calclTotalTtcPerPanel(): number {
-        let totalHt    = 0;
-        let totalPower = 0;
-        let nbPanel    = 3;
-        let laying     = 0;
-        let tva        = 10;
-        console.log( this.quotation );
-        for ( const selectedProduct of this.quotation.selectedProducts ) {
-            if ( selectedProduct.productType === 'pv' ) {
-                const power = selectedProduct.power !== undefined
-                              ? selectedProduct.power
-                              : 0;
-                totalPower  = selectedProduct.quantity * power;
-                nbPanel     = selectedProduct.quantity;
-            }
-            totalHt += selectedProduct.pu * selectedProduct.quantity;
-        }
-        console.log( 'Total HT --> ', totalHt );
-        console.log( 'nbPanel --> ', nbPanel );
-        console.log( 'totalPower --> ', totalPower );
-
-        for ( const option of this.quotation.options ) {
-            if ( option.id === 38 ) {
-                if ( nbPanel <= 4 ) {
-                    laying = 800;
-                } else if ( nbPanel === 5 ) {
-                    laying = 1000;
-                } else if ( nbPanel <= 7 ) {
-                    laying = 1100;
-                } else if ( nbPanel <= 10 ) {
-                    laying = 1500;
-                } else if ( nbPanel <= 15 ) {
-                    laying = 2150;
-                } else {
-                    laying = 2500;
+        if ( this.quotation.selectedProducts.length > 0 ) {
+            console.log( 'IN 1' );
+            const product = this.quotation.selectedProducts[ 0 ];
+            if ( year === 1 ) {
+                console.log( 'IN 2' );
+                if ( product.ext1 !== undefined ) {
+                    console.log( 'IN 3' );
+                    const percentage = 1 + ( parseFloat( product.ext1 ) / 100 );
+                    power            = power * percentage;
                 }
             } else {
-                if ( option.number > 0 ) {
-                    totalHt += option.pu * option.number;
+                console.log( 'IN 4' );
+                if ( product.ext1 !== undefined && product.ext2 !== undefined ) {
+                    console.log( 'IN 5' );
+                    const coefYear1     = parseFloat( product.ext1 );
+                    const coefOtherYear = parseFloat( product.ext2 ) / 24;
+
+                    power = power * ( 1 + ( coefYear1 / 100 ) );
+                    power = power * ( 1 + ( ( year * coefOtherYear ) / 100 ) );
                 }
             }
         }
-        console.log( 'Laying --> ', laying );
-
-        if ( totalPower >= 3000 ) {
-            tva = 20;
-        }
-
-        return ( totalHt + laying ) * ( tva / 100 + 1 );
+        return power;
     }
 
     /**
      * Calcul le total TTC avec les montant des primes déduites
      */
     public calcTotalTtcWithBonusDeducted() {
-        return this.calclTotalTtcPerPanel() - this.quotation.selfConsumptionBonus;
+        return this.quotation.totalTtc - this.quotation.selfConsumptionBonus;
     }
 
     /**
      * Production de l'installation en KWh
      */
-    public calcInstallationProduction(): number {
+    public calcInstallationProduction( year = 1 ): number {
         if ( this.quotation.selectedProducts.length > 0 ) {
-            return this.quotation.selectedProducts[ 0 ].quantity * this.productionPerPanelInKWh();
+            return this.quotation.selectedProducts[ 0 ].quantity * this.productionPerPanelInKWh( year );
         }
 
         return 0;
@@ -141,27 +111,22 @@ export class PvAlgo {
     /**
      * Prix de vente moyen du KWh phtovoltaîque en €
      */
-    public calcPhotovoltaicAverageSellingPrice(): number {
-        // TODO ajojuter la deperdition sur le temps
-        // Comment est calculer le poucentage sur année 3 = puissance * (annee * coef) ou année n-1 * coef
-        // Année 1 (100% - le coef)
-        // Année 2 (année1 - le coef/24)
-        // Année 3 (année1 - (le coef/24)*2)
-        return this.calcTotalTtcWithBonusDeducted() / ( this.calcInstallationProduction() * 25 );
+    public calcPhotovoltaicAverageSellingPrice( year = 1 ): number {
+        return this.calcTotalTtcWithBonusDeducted() / ( this.calcInstallationProduction( year ) * 25 );
     }
 
     /**
      * Prix de revente auprès d'EDF en €
      */
-    public calcResalePriceToEdf(): number {
-        return this.calcInstallationProduction() * 0.5 * 0.1;
+    public calcResalePriceToEdf( year = 1 ): number {
+        return this.calcInstallationProduction( year ) * 0.5 * 0.1;
     }
 
     /**
      * Economie sur la facture en €
      */
-    public savingsOnBill(): number {
-        return this.calcInstallationProduction() * this.calcAveragePricePerKWhOnElectricBill() * 0.5;
+    public savingsOnBill( year = 1 ): number {
+        return this.calcInstallationProduction( year ) * this.calcAveragePricePerKWhOnElectricBill() * 0.5;
     }
 
     /**
@@ -171,16 +136,18 @@ export class PvAlgo {
         const currentYear: number            = new Date().getFullYear();
         const result: PhotovoltaicBenefits[] = [];
 
+        let index = 1;
         for ( let year = currentYear; year < currentYear + 25; year++ ) {
             if ( year === currentYear ) {
                 result.push( {
                                  year,
-                                 resaleToEdf:      this.calcResalePriceToEdf(),
-                                 savingsOnInvoice: this.savingsOnBill() * 1.15,
-                                 totalGains:       this.calcResalePriceToEdf() + this.savingsOnBill(),
+                                 resaleToEdf:      this.calcResalePriceToEdf( index ),
+                                 savingsOnInvoice: this.savingsOnBill( index ) * 1.15,
+                                 totalGains:       this.calcResalePriceToEdf( index ) + this.savingsOnBill( index ),
                              } );
             } else {
-                let resaleToEdf: number = result[ result.length - 1 ].resaleToEdf * 1.015;
+                // let resaleToEdf: number = result[ result.length - 1 ].resaleToEdf * 1.015;
+                let resaleToEdf: number = this.calcResalePriceToEdf( index ) * ( 1 + ( 0.15 * index ) );
 
                 // La revente avec EDF est sur 20 ans et non 25 ans
                 if ( year > currentYear + 19 ) {
@@ -188,8 +155,10 @@ export class PvAlgo {
                 }
 
 
-                const percentage: number     = 1 + ( this.worksheet.electricityPriceEvolution / 100 );
-                let savingsOnInvoice: number = result[ result.length - 1 ].savingsOnInvoice * percentage;
+                // const percentage: number     = 1 + ( this.worksheet.electricityPriceEvolution / 100 );
+                const percentage: number     = 1 + ( ( this.worksheet.electricityPriceEvolution / 100 ) * index );
+                // let savingsOnInvoice: number = result[ result.length - 1 ].savingsOnInvoice * percentage;
+                let savingsOnInvoice: number = this.savingsOnBill( index ) * percentage;
 
                 resaleToEdf      = Number( resaleToEdf.toFixed( 2 ) );
                 savingsOnInvoice = Number( savingsOnInvoice.toFixed( 2 ) );
@@ -201,6 +170,8 @@ export class PvAlgo {
                                  totalGains: resaleToEdf + savingsOnInvoice,
                              } );
             }
+
+            index++;
         }
 
         return result;
@@ -213,12 +184,13 @@ export class PvAlgo {
         const currentYear: number      = new Date().getFullYear();
         const result: PriceEvolution[] = [];
 
+        let index = 1;
         for ( let year = currentYear; year < currentYear + 25; year++ ) {
             if ( year === currentYear ) {
                 result.push( {
                                  year,
                                  kwhEdf:          this.calcAveragePricePerKWhOnElectricBill(),
-                                 kwhPhotovoltaic: this.calcPhotovoltaicAverageSellingPrice(),
+                                 kwhPhotovoltaic: this.calcPhotovoltaicAverageSellingPrice( index ),
                              } );
             } else {
                 const percentage = 1 + ( this.worksheet.electricityPriceEvolution / 100 );
@@ -226,9 +198,10 @@ export class PvAlgo {
                 result.push( {
                                  year,
                                  kwhEdf,
-                                 kwhPhotovoltaic: this.calcPhotovoltaicAverageSellingPrice(),
+                                 kwhPhotovoltaic: this.calcPhotovoltaicAverageSellingPrice( index ),
                              } );
             }
+            index++;
         }
 
         return result;

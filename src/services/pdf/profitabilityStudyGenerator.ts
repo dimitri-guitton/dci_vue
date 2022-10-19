@@ -172,7 +172,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
                                     width: '*',
                                     stack: [
                                         {
-                                            text:      this.formatPrice( this._pvAlgo.calcTotalTtcWithBonusDeducted() ),
+                                            text:      this.formatPrice( this._quotation.totalTtc - this._quotation.selfConsumptionBonus ),
                                             alignment: 'center',
                                             bold:      true,
                                             fontSize:  12,
