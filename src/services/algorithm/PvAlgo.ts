@@ -37,7 +37,6 @@ export class PvAlgo {
      * Production par panneau en KWh
      */
     public productionPerPanelInKWh( year = 1 ): number {
-        console.log( '%c YEAR --> ' + year, 'background: #fdd835; color: #000000' );
         let power = 0;
         if ( this.energyZone === 'H1' ) {
             if ( this.worksheet.orientation === 'sud' ) {
@@ -66,24 +65,19 @@ export class PvAlgo {
         }
 
         if ( this.quotation.selectedProducts.length > 0 ) {
-            console.log( 'IN 1' );
             const product = this.quotation.selectedProducts[ 0 ];
             if ( year === 1 ) {
-                console.log( 'IN 2' );
                 if ( product.ext1 !== undefined ) {
-                    console.log( 'IN 3' );
-                    const percentage = 1 + ( parseFloat( product.ext1 ) / 100 );
+                    const percentage = 1 - ( parseFloat( product.ext1 ) / 100 );
                     power            = power * percentage;
                 }
             } else {
-                console.log( 'IN 4' );
                 if ( product.ext1 !== undefined && product.ext2 !== undefined ) {
-                    console.log( 'IN 5' );
                     const coefYear1     = parseFloat( product.ext1 );
                     const coefOtherYear = parseFloat( product.ext2 ) / 24;
 
-                    power = power * ( 1 + ( coefYear1 / 100 ) );
-                    power = power * ( 1 + ( ( year * coefOtherYear ) / 100 ) );
+                    power = power * ( 1 - ( coefYear1 / 100 ) );
+                    power = power * ( 1 - ( ( year * coefOtherYear ) / 100 ) );
                 }
             }
         }
