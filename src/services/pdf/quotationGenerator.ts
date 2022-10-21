@@ -857,6 +857,9 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PAC_RR:
                 text = 'Installation d\'une pompe à chaleur air/air';
                 break;
+            case FILE_PV:
+                text = 'Installation photovoltaïque en autoconsommation avec revente du surplus';
+                break;
         }
 
         if ( text !== '' ) {
