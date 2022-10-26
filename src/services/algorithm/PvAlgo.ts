@@ -74,7 +74,7 @@ export class PvAlgo {
             } else {
                 if ( product.ext1 !== undefined && product.ext2 !== undefined ) {
                     const coefYear1     = parseFloat( product.ext1 );
-                    const coefOtherYear = parseFloat( product.ext2 ) / 24;
+                    const coefOtherYear = ( parseFloat( product.ext2 ) - coefYear1 ) / 24;
 
                     power = power * ( 1 - ( coefYear1 / 100 ) );
                     power = power * ( 1 - ( ( year * coefOtherYear ) / 100 ) );
@@ -113,7 +113,17 @@ export class PvAlgo {
      * Prix de revente auprès d'EDF en €
      */
     public calcResalePriceToEdf( year = 1 ): number {
-        return this.calcInstallationProduction( year ) * 0.5 * 0.1;
+
+
+        // On augmente de 1.5% les (0.1) tout les ans à partir de l'année,
+        // Année 1 10 centimes * 1.5%
+        // Année 2 10.15 centimes * 1.5%
+        // Année 3 10.30225 centimes * 1.5%
+        let ratio = 0.1;
+        for ( let i = 1; i < year; i++ ) {
+            ratio *= 1.015;
+        }
+        return this.calcInstallationProduction( year ) * 0.5 * ratio;
     }
 
     /**
@@ -133,26 +143,34 @@ export class PvAlgo {
         let index = 1;
         for ( let year = currentYear; year < currentYear + 25; year++ ) {
             if ( year === currentYear ) {
+                const savingsOnInvoice = this.savingsOnBill( index ) * 1.15;
                 result.push( {
                                  year,
                                  resaleToEdf:      this.calcResalePriceToEdf( index ),
-                                 savingsOnInvoice: this.savingsOnBill( index ) * 1.15,
-                                 totalGains:       this.calcResalePriceToEdf( index ) + this.savingsOnBill( index ),
+                                 savingsOnInvoice: savingsOnInvoice,
+                                 totalGains:       this.calcResalePriceToEdf( index ) + savingsOnInvoice,
                              } );
             } else {
-                // let resaleToEdf: number = result[ result.length - 1 ].resaleToEdf * 1.015;
-                let resaleToEdf: number = this.calcResalePriceToEdf( index ) * ( 1 + ( 0.15 * index ) );
+                let resaleToEdf: number = this.calcResalePriceToEdf( index ) * ( 1 + ( 0.015 * index ) );
+
 
                 // La revente avec EDF est sur 20 ans et non 25 ans
                 if ( year > currentYear + 19 ) {
                     resaleToEdf = 0;
                 }
 
+                // const percentage: number = 1 + ( ( this.worksheet.electricityPriceEvolution / 100 ) * index );
+                const percentage: number = 1 + ( ( this.worksheet.electricityPriceEvolution / 100 ) );
 
-                // const percentage: number     = 1 + ( this.worksheet.electricityPriceEvolution / 100 );
-                const percentage: number     = 1 + ( ( this.worksheet.electricityPriceEvolution / 100 ) * index );
-                // let savingsOnInvoice: number = result[ result.length - 1 ].savingsOnInvoice * percentage;
-                let savingsOnInvoice: number = this.savingsOnBill( index ) * percentage;
+
+                // Année 1 = 15%
+                // Année 2 = 15% * pourcentage_augmentation
+                // Année 3 = Année * pourcentage_augmentation
+                let ratioSavingOnBill = 1.15;
+                for ( let i = 1; i < index; i++ ) {
+                    ratioSavingOnBill *= percentage;
+                }
+                let savingsOnInvoice: number = this.savingsOnBill( index ) * ratioSavingOnBill;
 
                 resaleToEdf      = Number( resaleToEdf.toFixed( 2 ) );
                 savingsOnInvoice = Number( savingsOnInvoice.toFixed( 2 ) );
