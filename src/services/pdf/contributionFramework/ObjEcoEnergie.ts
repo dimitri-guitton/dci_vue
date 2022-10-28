@@ -278,7 +278,7 @@ export class ObjEcoEnergie extends PdfGenerator {
                             [
                                 work,
                                 `BAR-${ cee }`,
-                                ' ',
+                                'Installateur qualifié «RGE»\nCritères d\'éligibilités de la fiche d’opération standardisée ',
                             ],
                         ],
                     },
@@ -329,13 +329,13 @@ export class ObjEcoEnergie extends PdfGenerator {
                 {
                     // 70 CHARACTERS
                     text:             line1,
-                    absolutePosition: { x: 275, y: 341 },
+                    absolutePosition: { x: 275, y: 363 },
                     style:            'xsText',
                 },
                 {
                     // 150 CHARACTERS
                     text:             line2,
-                    absolutePosition: { x: 30, y: 353 },
+                    absolutePosition: { x: 30, y: 375 },
                     style:            'xsText',
                 },
             ],
@@ -357,14 +357,14 @@ export class ObjEcoEnergie extends PdfGenerator {
             {
                 image:            EA_SIGNATURE,
                 width:            100,
-                absolutePosition: { x: 80, y: 415 },
+                absolutePosition: { x: 80, y: 437 },
             },
         ],
     };
 
     private _generateFooter(): Content {
         return {
-            margin: [ 0, 125, 0, 0 ],
+            margin: [ 0, 100, 0, 0 ],
             style:  [ 'xsText' ],
             stack:  [
                 {
