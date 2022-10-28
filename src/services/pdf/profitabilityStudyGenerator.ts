@@ -30,7 +30,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
         this._file      = file;
         this.type       = PdfType.ProfitabilityStudy;
         this._quotation = ( file.quotation as PvQuotation );
-        this._pvAlgo    = new PvAlgo( ( this._file.quotation as PvQuotation ), ( this._file.worksheet as PvWorkSheet ) );
+        this._pvAlgo    = new PvAlgo( ( this._file.quotation as PvQuotation ), ( this._file.worksheet as PvWorkSheet ), file.energyZone );
         this._chart     = null;
 
         this.docDefinition = this._generateDocDefinition();
@@ -150,7 +150,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
                                     width: '33%',
                                     stack: [
                                         {
-                                            text:      this.formatPrice( this._pvAlgo.calclTotalTtcPerPanel() ),
+                                            text:      this.formatPrice( this._quotation.totalTtc ),
                                             alignment: 'center',
                                             bold:      true,
                                             fontSize:  12,
@@ -172,7 +172,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
                                     width: '*',
                                     stack: [
                                         {
-                                            text:      this.formatPrice( this._pvAlgo.calcTotalTtcWithBonusDeducted() ),
+                                            text:      this.formatPrice( this._quotation.totalTtc - this._quotation.selfConsumptionBonus ),
                                             alignment: 'center',
                                             bold:      true,
                                             fontSize:  12,
@@ -211,17 +211,18 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
         const formattedBody: TableCell[][] = [];
         const data                         = this._pvAlgo.benefitsOver25Years();
 
+        let index = 1;
         for ( const benefit of data ) {
 
             let resaleToEdf = this.formatPrice( benefit.resaleToEdf );
 
-            // Si === -1 pas de valeur pour EDF
-            if ( benefit.resaleToEdf === -1 ) {
+            // Si === 0 pas de valeur pour EDF
+            if ( benefit.resaleToEdf === 0 ) {
                 resaleToEdf = '';
             }
             formattedBody.push( [
                                     {
-                                        text:      benefit.year,
+                                        text:      index,
                                         alignment: 'center',
                                     },
                                     {
@@ -237,17 +238,24 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
                                         alignment: 'center',
                                     },
                                 ] );
+
+            index++;
         }
+
+        const pv         = this._quotation.selectedProducts[ 0 ];
+        const power      = pv.power ?? 0;
+        const totalPower = pv.quantity * power;
+        const title      = `${ pv.label } de ${ pv.quantity } x ${ power }Wc = ${ totalPower }Wc`;
 
         return {
             margin:    [ 0, 15, 0, 0 ],
             style:     [ 'table' ],
             pageBreak: 'after',
             table:     {
-                body:   [
+                body: [
                     [
                         {
-                            text:      this._quotation.selectedProducts[ 0 ].label,
+                            text:      title,
                             alignment: 'center',
                             bold:      true,
                             colSpan:   4,
@@ -482,9 +490,9 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
         );
     }
 
-    public updateChart( quoation: PvQuotation, worksheet: PvWorkSheet ) {
+    public updateChart( quoation: PvQuotation, worksheet: PvWorkSheet, energyZone: string ) {
 
-        this._pvAlgo = new PvAlgo( ( quoation as PvQuotation ), ( worksheet as PvWorkSheet ) );
+        this._pvAlgo = new PvAlgo( ( quoation as PvQuotation ), ( worksheet as PvWorkSheet ), energyZone );
 
         if ( this._chart === null ) {
             return;

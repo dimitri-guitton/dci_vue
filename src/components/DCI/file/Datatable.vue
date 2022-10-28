@@ -395,7 +395,7 @@ export default defineComponent( {
                                                 case 4:
                                                     return 'Manque la fiche de visite';
                                                 case 5:
-                                                    return 'Manque des photos';
+                                                    return 'Manque des photos (minimum 4)';
                                                 case 6:
                                                     return 'Manque l\'attestation sur honneur';
                                                 case 7:

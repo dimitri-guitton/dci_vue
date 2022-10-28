@@ -4,7 +4,12 @@ import { updateJsonData } from '@/services/folder/folderService';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { SolFileStep } from '@/types/v2/Wizzard/FileStep';
 import { SolQuotation } from '@/types/v2/File/Sol/SolQuotation';
-import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
+import {
+    defaultGetBonusValueStep4,
+    defaultGetQuotationValueStep4,
+    defaultInitFormDataStep4,
+    defaultYupConfigStep4,
+} from '@/services/file/wizzard/step4Service';
 import { updateTotalTtc } from '@/services/sqliteService';
 import { SolStep4 } from '@/types/v2/Wizzard/step4/SolStep4';
 import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
@@ -43,6 +48,7 @@ export const validateSolStep4 = async ( data: SolFileStep, price: Price ): Promi
 
     fileData = {
         ...fileData,
+        ...defaultGetBonusValueStep4( data ),
         quotation,
     };
 

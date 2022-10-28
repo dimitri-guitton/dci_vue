@@ -6,7 +6,12 @@ import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { PacRoFileStep } from '@/types/v2/Wizzard/FileStep';
 import { RoQuotation } from '@/types/v2/File/Ro/RoQuotation';
 import { PacRoStep4 } from '@/types/v2/Wizzard/step4/PacRoStep4';
-import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
+import {
+    defaultGetBonusValueStep4,
+    defaultGetQuotationValueStep4,
+    defaultInitFormDataStep4,
+    defaultYupConfigStep4,
+} from '@/services/file/wizzard/step4Service';
 import { updateTotalTtc } from '@/services/sqliteService';
 import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 
@@ -97,6 +102,7 @@ export const validatePacRoStep4 = async ( data: PacRoFileStep, price: Price ): P
 
     fileData = {
         ...fileData,
+        ...defaultGetBonusValueStep4( data ),
         quotation,
     };
 

@@ -982,7 +982,7 @@ export const getCeeBonus = ( data: BaseFile ): number => {
                 if ( energyZone === 'H1' ) {
                     value = 1.7 * 5.7;
                 } else {
-                    value = 1.1 * 5.7;
+                    value = 1.4 * 5.7;
                 }
             } else {
                 // CEE A PARTIR DU 1ER OCTOBRE

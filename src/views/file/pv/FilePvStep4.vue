@@ -3,15 +3,46 @@
 
         <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit"
                       :price="price"
-                      :lists="lists"></step4-header>
+                      :lists="lists"
+                      :file="fileData"></step4-header>
 
         <step4-quotation-header></step4-quotation-header>
 
-        <selected-product :products="products"
-                          :selectedProducts="selectedProducts"
-                          @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
+        <!--        <selected-product :products="products"-->
+        <!--                          :selectedProducts="selectedProducts"-->
+        <!--                          @selectedProductIsUpdated="updateSelectedProduct"></selected-product>-->
 
-        <options @optionsAreUpdated="updateOptions" :options="options"></options>
+        <div class="col-md-6 mb-5">
+            <label for="q_quantity" class="form-label">Nombre de panneaux</label>
+
+            <Field name="q_quantity"
+                   id="q_quantity"
+                   class="form-select"
+                   as="select"
+                   v-model="quantity">
+                <option v-for="index in 22" :key="index+2" :value="index + 2">{{ index + 2 }}</option>
+            </Field>
+        </div>
+
+        <selected-product ref="$selectedPannels"
+                          :products="computedPannels"
+                          :selectedProducts="computedSelectedPannels"
+                          @selectedProductIsUpdated="updateSelectedProduct"
+                          :index="0"></selected-product>
+
+        <selected-product ref="$selectedOnduleurs"
+                          :products="computedOnduleurs"
+                          :selectedProducts="computedSelectedOnduleurs"
+                          @selectedProductIsUpdated="updateSelectedProduct"
+                          :index="1"></selected-product>
+
+        <selected-product ref="$selectedPasserelles"
+                          :products="computedPasserelles"
+                          :selectedProducts="computedSelectedPasserelles"
+                          @selectedProductIsUpdated="updateSelectedProduct"
+                          :index="2"></selected-product>
+
+        <options @optionsAreUpdated="updateOptions" :options="computedOptions"></options>
 
         <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
 
@@ -65,6 +96,7 @@ import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year } from '@/services/data/dataService';
 import PvList from '@/types/v2/File/Pv/PvList';
+import { PvFile } from '@/types/v2/File/Pv/PvFile';
 
 export default defineComponent( {
                                     name:       'file-pv-step-4',
@@ -79,12 +111,18 @@ export default defineComponent( {
                                         ErrorMessage,
                                     },
                                     props:      {
-                                        products:         Array as () => Product[],
-                                        selectedProducts: Array as () => Product[],
+                                        products:         {
+                                            type:     Array as () => Product[],
+                                            required: true,
+                                        },
+                                        selectedProducts: {
+                                            type:     Array as () => Product[],
+                                            required: true,
+                                        },
                                         options:          Array as () => Option[],
                                         blankOptions:     Array as () => BlankOption[],
                                         fileData:         {
-                                            type:     Object,
+                                            type:     Object as () => PvFile,
                                             required: true,
                                         },
                                         forceRefresh:     Boolean,  // Pour focer le compute des prix quand on arrive sur la step4
@@ -95,6 +133,18 @@ export default defineComponent( {
                                         const _options          = ref<Option[]>( ( props.options as Option[] ) );
                                         const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                         const lists             = ref<PvList>( ( props.fileData.lists as PvList ) );
+                                        const quantity          = ref<number>( 3 );
+
+                                        for ( const selectedProduct of _selectedProducts.value ) {
+                                            if ( selectedProduct.productType === 'pv' ) {
+                                                quantity.value = selectedProduct.quantity;
+                                            }
+                                        }
+
+
+                                        const $selectedPannels     = ref( null );
+                                        const $selectedOnduleurs   = ref( null );
+                                        const $selectedPasserelles = ref( null );
 
                                         const generateQuotation = () => {
                                             ctx.emit( 'generateQuotation' );
@@ -104,9 +154,26 @@ export default defineComponent( {
                                             ctx.emit( 'generateAddressCertificate' );
                                         };
 
+                                        // const updateSelectedProduct = ( product ) => {
+                                        //     _selectedProducts.value = [ product ];
+                                        // };
+
                                         const updateSelectedProduct = ( product ) => {
-                                            _selectedProducts.value = [ product ];
+                                            console.log( '%c UPDATE SELECTED PRODUCT ',
+                                                         'background: #FEFF00; color: #000000' );
+                                            console.log( product );
+                                            let index = 0;
+                                            console.log( 'BEFORE -->', _selectedProducts.value );
+                                            for ( const p of _selectedProducts.value ) {
+                                                console.log( '%c ON FOR', 'background: #fdd835; color: #000000' );
+                                                if ( p.productType === product.productType ) {
+                                                    _selectedProducts.value[ index ] = product;
+                                                }
+                                                index++;
+                                            }
+                                            console.log( 'AFTER --> ', _selectedProducts.value );
                                         };
+
 
                                         const updateOptions = ( options ) => {
                                             _options.value = options;
@@ -116,33 +183,176 @@ export default defineComponent( {
                                             _blankOptions.value = blankOptions;
                                         };
 
+                                        const computedPannels = computed<Product[]>( () => {
+                                            const newList                = props.products.filter( p => p.productType === 'pv' );
+                                            const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'pv' );
+
+                                            console.log( '%c KO', 'background: #FF80C7; color: #000000' );
+                                            console.log( '%c KO', 'background: #FF80C7; color: #000000' );
+                                            if ( filterSelectedProducts.length < 1 ) {
+                                                console.log( '$selectedPannels.value' );
+                                                console.log( $selectedPannels.value );
+                                                const newSelectedPannel = ( $selectedPannels.value as any )?.resetSelectedValue(
+                                                    newList );
+                                                console.log( '%c OK', 'background: #6EC600; color: #000000' );
+                                                console.log( '%c OK', 'background: #6EC600; color: #000000' );
+                                                console.log( newSelectedPannel );
+                                                if ( newSelectedPannel !== undefined ) {
+                                                    updateSelectedProduct( newSelectedPannel );
+                                                }
+                                            }
+
+                                            console.log( '%c COMPUTED PANELS', 'background: #0A00FF; color: #000000' );
+                                            console.log( newList );
+                                            return newList;
+                                        } );
+
+                                        const computedOnduleurs = computed<Product[]>( () => {
+                                            const newList                = props.products.filter( p => p.productType === 'onduleur' );
+                                            const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'onduleur' );
+
+                                            console.log( '%c KO 2', 'background: #FF80C7; color: #000000' );
+                                            console.log( '%c KO 2', 'background: #FF80C7; color: #000000' );
+                                            if ( filterSelectedProducts.length < 1 ) {
+                                                console.log( '$selectedOnduleurs.value' );
+                                                console.log( $selectedOnduleurs.value );
+                                                const newSelectedOnduleur = ( $selectedOnduleurs.value as any )?.resetSelectedValue(
+                                                    newList );
+                                                console.log( '%c OK 2', 'background: #6EC600; color: #000000' );
+                                                console.log( '%c OK 2', 'background: #6EC600; color: #000000' );
+                                                console.log( newSelectedOnduleur );
+                                                if ( newSelectedOnduleur !== undefined ) {
+                                                    updateSelectedProduct( newSelectedOnduleur );
+                                                }
+                                            }
+
+                                            console.log( '%c COMPUTED ONDULEURS',
+                                                         'background: #00FF9D; color: #000000' );
+                                            console.log( newList );
+                                            return newList;
+                                        } );
+
+                                        const computedPasserelles = computed<Product[]>( () => {
+                                            const newList                = props.products.filter( p => p.productType === 'passerelle' );
+                                            const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'passerelle' );
+
+                                            console.log( '%c KO 3', 'background: #FF80C7; color: #000000' );
+                                            console.log( '%c KO 3', 'background: #FF80C7; color: #000000' );
+                                            if ( filterSelectedProducts.length < 1 ) {
+                                                console.log( '$selectedPasserelles.value' );
+                                                console.log( $selectedPasserelles.value );
+                                                const newSelectedPassrelle = ( $selectedPasserelles.value as any )?.resetSelectedValue(
+                                                    newList );
+                                                console.log( '%c OK 3', 'background: #6EC600; color: #000000' );
+                                                console.log( '%c OK 3', 'background: #6EC600; color: #000000' );
+                                                console.log( newSelectedPassrelle );
+                                                if ( newSelectedPassrelle !== undefined ) {
+                                                    updateSelectedProduct( newSelectedPassrelle );
+                                                }
+                                            }
+
+                                            console.log( '%c COMPUTED PASSRELLES',
+                                                         'background: #F600FF; color: #000000' );
+                                            console.log( newList );
+                                            return newList;
+                                        } );
+
+                                        const updateLaying = ( qte: number ) => {
+                                            const layingOption = _options.value.find( o => o.id === 38 );
+                                            if ( layingOption === undefined ) {
+                                                return;
+                                            }
+
+                                            // Change le prix de l'option
+                                            _options.value = _options.value.map( o => {
+                                                if ( o.id === 38 ) {
+                                                    let laying: number;
+                                                    if ( qte <= 4 ) {
+                                                        laying = 800;
+                                                    } else if ( qte === 5 ) {
+                                                        laying = 1000;
+                                                    } else if ( qte <= 7 ) {
+                                                        laying = 1100;
+                                                    } else if ( qte <= 10 ) {
+                                                        laying = 1500;
+                                                    } else if ( qte <= 15 ) {
+                                                        laying = 2150;
+                                                    } else {
+                                                        laying = 2500;
+                                                    }
+
+                                                    return { ...o, pu: laying };
+                                                }
+                                                return o;
+                                            } );
+                                        };
+
+
+                                        const computedOptions = computed<Option[]>( () => {
+                                            updateLaying( quantity.value );
+
+                                            return _options.value;
+                                        } );
+
+                                        const computedSelectedPannels = computed<Product[]>( () => {
+                                            console.log( '%c SELECTED PANNELS', 'background: #0A00FF; color: #000000' );
+                                            console.log( _selectedProducts.value.filter( p => p.productType === 'pv' ) );
+
+                                            const list = _selectedProducts.value.filter( p => p.productType === 'pv' );
+                                            for ( const p of list ) {
+                                                p.quantity = quantity.value;
+                                                updateSelectedProduct( p );
+                                            }
+                                            return _selectedProducts.value.filter( p => p.productType === 'pv' );
+                                        } );
+
+                                        const computedSelectedOnduleurs = computed<Product[]>( () => {
+                                            console.log( '%c SELECTED ONDULEURS',
+                                                         'background: #0A0F600FF0FF; color: #000000' );
+                                            console.log( _selectedProducts.value.filter( p => p.productType === 'onduleur' ) );
+                                            return _selectedProducts.value.filter( p => p.productType === 'onduleur' );
+                                        } );
+
+                                        const computedSelectedPasserelles = computed<Product[]>( () => {
+                                            console.log( '%c SELECTED PASSERELLES',
+                                                         'background: #00FF9D; color: #000000' );
+                                            console.log( _selectedProducts.value.filter( p => p.productType === 'passerelle' ) );
+                                            return _selectedProducts.value.filter( p => p.productType === 'passerelle' );
+                                        } );
+
+
                                         const price = computed<Price>( () => {
                                             // On utilise props.forceRefresh pour recalculer les prix
                                             if ( props.forceRefresh ) {
                                                 console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
                                             }
-                                            console.log( '%c IN COMPUTED', 'background: #007C83; color: #FFFFFF' );
+
                                             let totalHt    = 0;
                                             let totalPower = 0;
 
+
                                             console.log( 'Prix par defaut -->', totalHt );
+                                            console.log( _selectedProducts.value );
+
+                                            console.log( '_selectedProducts.value' );
+                                            console.log( _selectedProducts.value );
+                                            console.log( '_selectedProducts.value' );
+
                                             for ( const selectedProduct of _selectedProducts.value ) {
-                                                totalHt += ( selectedProduct.pu * selectedProduct.quantity );
-                                                const power = selectedProduct.power !== undefined
-                                                              ? selectedProduct.power
-                                                              : 0;
-                                                totalPower += selectedProduct.quantity * power;
+
+                                                console.log( selectedProduct );
+                                                if ( selectedProduct.productType === 'pv' ) {
+                                                    const power = selectedProduct.power !== undefined
+                                                                  ? selectedProduct.power
+                                                                  : 0;
+                                                    totalPower = selectedProduct.quantity * power;
+                                                }
+                                                totalHt += selectedProduct.pu * selectedProduct.quantity;
                                             }
                                             console.log( 'Prix avec les produits -->', totalHt );
 
 
                                             for ( const option of _options.value ) {
-                                                if ( option.id === 38 ) {
-                                                    if ( _selectedProducts.value.length > 0 && _selectedProducts.value[ 0 ].laying !== undefined ) {
-                                                        option.pu = _selectedProducts.value[ 0 ].laying;
-                                                    }
-                                                }
-
                                                 if ( option.number > 0 ) {
                                                     totalHt += option.pu * option.number;
                                                 }
@@ -163,16 +373,16 @@ export default defineComponent( {
 
 
                                             let selfConsumptionBonus;
-                                            let tva10    = 0;
-                                            let tva20    = 0;
-                                            let totalTtc = 0;
-                                            if ( lessThan2Year || totalPower > 3000 ) {
+                                            let tva10 = 0;
+                                            let tva20 = 0;
+                                            let totalTtc: number;
+                                            if ( lessThan2Year || totalPower >= 3000 ) {
                                                 tva20                = 20 * totalHt / 100;
-                                                selfConsumptionBonus = ( totalPower / 1000 ) * 290;
+                                                selfConsumptionBonus = ( totalPower / 1000 ) * 430;
                                                 totalTtc             = totalHt + tva20;
                                             } else {
                                                 tva10                = 10 * totalHt / 100;
-                                                selfConsumptionBonus = ( totalPower / 1000 ) * 390;
+                                                selfConsumptionBonus = ( totalPower / 1000 ) * 320;
                                                 totalTtc             = totalHt + tva10;
                                             }
 
@@ -200,6 +410,17 @@ export default defineComponent( {
                                             updateBlankOtions,
                                             generateQuotation,
                                             generateAddressCertificate,
+                                            computedPannels,
+                                            computedPasserelles,
+                                            computedOnduleurs,
+                                            computedSelectedPannels,
+                                            computedSelectedPasserelles,
+                                            computedSelectedOnduleurs,
+                                            computedOptions,
+                                            quantity,
+                                            $selectedPannels,
+                                            $selectedOnduleurs,
+                                            $selectedPasserelles,
                                         };
                                     },
                                 } );

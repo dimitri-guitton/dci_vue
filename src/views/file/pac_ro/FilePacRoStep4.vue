@@ -3,7 +3,9 @@
 
         <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit"
                       :price="price"
-                      :lists="lists"></step4-header>
+                      :lists="lists"
+                      :file="fileData"
+                      @bonusAreUpdated="updateBonus"></step4-header>
 
         <div class="row">
             <div class="col-md-6 mb-5">
@@ -371,10 +373,14 @@ export default defineComponent( {
                                         const _blankOptions = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                         const lists         = ref<RoList>( ( props.fileData.lists as RoList ) );
 
-                                        const deviceToReplace  = ref( props.fileData.quotation.deviceToReplace );
-                                        const discount         = ref<number>( props.fileData.quotation.discount );
+                                        const deviceToReplace = ref( props.fileData.quotation.deviceToReplace );
+                                        const discount        = ref<number>( props.fileData.quotation.discount );
                                         // const isEcsDeporte    = ref<boolean>( props.fileData.quotation.isEcsDeporte );
-                                        const volumeECS        = ref<string>( props.fileData.quotation.volumeECS );
+                                        const volumeECS       = ref<string>( props.fileData.quotation.volumeECS );
+
+                                        const disabledBonus             = ref<boolean>( props.fileData.disabledBonus );
+                                        const disabledCeeBonus          = ref<boolean>( props.fileData.disabledCeeBonus );
+                                        const disabledMaPrimeRenovBonus = ref<boolean>( props.fileData.disabledMaPrimeRenovBonus );
 
                                         // Si on ouvre un dossier avec l'ancien fonctionnement d'ECS
                                         if ( typeof volumeECS.value === 'number' ) {
@@ -432,6 +438,13 @@ export default defineComponent( {
                                         const updateBlankOtions = ( blankOptions ) => {
                                             _blankOptions.value = blankOptions;
                                         };
+
+                                        const updateBonus = ( data: { bonus: boolean; ceeBonus: boolean; maPrimeRenovBonus: boolean } ) => {
+                                            disabledBonus.value             = data.bonus;
+                                            disabledCeeBonus.value          = data.ceeBonus;
+                                            disabledMaPrimeRenovBonus.value = data.maPrimeRenovBonus;
+                                        };
+
 
                                         const updateDiscount = ( value ) => {
                                             console.log( 'updateDiscount' );
@@ -796,10 +809,10 @@ export default defineComponent( {
                                             const totalTtc = totalHt + totalTva;
 
                                             // Si les primes sont actives
-                                            if ( !props.fileData.disabledBonus ) {
+                                            if ( !disabledBonus.value ) {
 
                                                 // Si la prime CEE est active
-                                                if ( !props.fileData.disabledCeeBonus ) {
+                                                if ( !disabledCeeBonus.value ) {
 
                                                     if ( deviceToReplace.value.type !== 'aucun' && deviceToReplace.value.type !== 'autre' ) {
                                                         // Coup de pouce
@@ -825,7 +838,7 @@ export default defineComponent( {
 
                                                 // Si MaprimeRenov est actif
                                                 // TTC - Discount on doit déduire la remise du TTC pour avoir la bonne valeur
-                                                if ( !props.fileData.disabledMaPrimeRenovBonus ) {
+                                                if ( !disabledMaPrimeRenovBonus.value ) {
                                                     maPrimeRenov = getMaPrimeRenov( props.fileData.type,
                                                                                     ( totalTtc - discount.value ),
                                                                                     ceeBonus );
@@ -882,6 +895,7 @@ export default defineComponent( {
                                             generateQuotation,
                                             generateAddressCertificate,
                                             sizingPercentage,
+                                            updateBonus,
                                         };
                                     },
                                 } );

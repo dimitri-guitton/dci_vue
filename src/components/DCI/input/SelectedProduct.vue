@@ -168,6 +168,7 @@ export default defineComponent( {
 
 
                                         const resetSelectedValue = ( products: Product[] ) => {
+                                            console.log( products );
                                             currentProduct.value = products[ 0 ];
                                             selectedId.value     = currentProduct.value?.id;
                                             return currentProduct.value;

@@ -3,7 +3,9 @@
 
         <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit"
                       :price="price"
-                      :lists="lists"></step4-header>
+                      :lists="lists"
+                      :file="fileData"
+                      @bonusAreUpdated="updateBonus"></step4-header>
 
         <div class="row mt-10">
             <div class="col-md-6 mb-5">
@@ -144,6 +146,11 @@ export default defineComponent( {
                                         const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                         const lists             = ref<PbList>( ( props.fileData.lists as PbList ) );
 
+                                        const disabledBonus             = ref<boolean>( props.fileData.disabledBonus );
+                                        const disabledCeeBonus          = ref<boolean>( props.fileData.disabledCeeBonus );
+                                        const disabledMaPrimeRenovBonus = ref<boolean>( props.fileData.disabledMaPrimeRenovBonus );
+
+
                                         console.log( '%c SET UP', 'background: #fdd835; color: #000000' );
                                         console.log( '%c SET UP', 'background: #fdd835; color: #000000' );
                                         console.log( '%c SET UP', 'background: #fdd835; color: #000000' );
@@ -187,6 +194,13 @@ export default defineComponent( {
                                         const updateBlankOtions = ( blankOptions ) => {
                                             _blankOptions.value = blankOptions;
                                         };
+
+                                        const updateBonus = ( data: { bonus: boolean; ceeBonus: boolean; maPrimeRenovBonus: boolean } ) => {
+                                            disabledBonus.value             = data.bonus;
+                                            disabledCeeBonus.value          = data.ceeBonus;
+                                            disabledMaPrimeRenovBonus.value = data.maPrimeRenovBonus;
+                                        };
+
 
                                         /**
                                          * Ajoute ou enlève l'option Porte basse pour les pôeles NORDRÏ
@@ -321,15 +335,15 @@ export default defineComponent( {
                                             if ( !lessThan2Year ) {
 
                                                 // Si les primes sont actives
-                                                if ( !props.fileData.disabledBonus ) {
+                                                if ( !disabledBonus.value ) {
 
                                                     // Si la prime CEE est active
-                                                    if ( !props.fileData.disabledCeeBonus ) {
+                                                    if ( !disabledCeeBonus.value ) {
                                                         ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) );
                                                     }
 
                                                     // Si MaprimeRenov est actif
-                                                    if ( !props.fileData.disabledMaPrimeRenovBonus ) {
+                                                    if ( !disabledMaPrimeRenovBonus.value ) {
                                                         maPrimeRenov = getMaPrimeRenov( props.fileData.type );
                                                     }
                                                 }
@@ -365,6 +379,7 @@ export default defineComponent( {
                                             generateQuotation,
                                             generateAddressCertificate,
                                             filteredOptions,
+                                            updateBonus,
                                         };
                                     },
                                 } );

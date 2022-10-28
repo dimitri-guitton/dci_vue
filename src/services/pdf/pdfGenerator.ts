@@ -101,17 +101,17 @@ export class PdfGenerator {
     /**
      * Génère le PDF
      */
-    public generatePdf( openAfterGenerate = true ) {
-        this.downloadPdf( this.buildPdf(), openAfterGenerate );
+    public generatePdf() {
+        this.downloadPdf( this.buildPdf() );
     }
 
     public previewPdf() {
         this.buildPdf().open();
     }
 
-    private downloadPdf( pdf: TCreatedPdf, openAfterGenerate = true ) {
+    private downloadPdf( pdf: TCreatedPdf ) {
         pdf.getBuffer( ( buffer ) => {
-            savePdf( buffer, this.type, openAfterGenerate );
+            savePdf( buffer, this.type );
         } );
     }
 

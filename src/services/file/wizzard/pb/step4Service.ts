@@ -6,7 +6,12 @@ import { PbQuotation } from '@/types/v2/File/Pb/PbQuotation';
 import { updateJsonData } from '@/services/folder/folderService';
 import { Price } from '@/types/v2/File/Price';
 import { PbStep4 } from '@/types/v2/Wizzard/step4/PbStep4';
-import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
+import {
+    defaultGetBonusValueStep4,
+    defaultGetQuotationValueStep4,
+    defaultInitFormDataStep4,
+    defaultYupConfigStep4,
+} from '@/services/file/wizzard/step4Service';
 import { updateTotalTtc } from '@/services/sqliteService';
 import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 
@@ -47,6 +52,7 @@ export const validatePbStep4 = async ( data: PbFileStep, price: Price ): Promise
 
     fileData = {
         ...fileData,
+        ...defaultGetBonusValueStep4( data ),
         quotation,
     };
 

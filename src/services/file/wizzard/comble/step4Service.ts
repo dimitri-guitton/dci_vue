@@ -4,7 +4,12 @@ import { Price } from '@/types/v2/File/Price';
 import { getCurrentCombleFileData } from '@/services/data/dataService';
 import { CombleQuotation } from '@/types/v2/File/Comble/CombleQuotation';
 import { updateJsonData } from '@/services/folder/folderService';
-import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
+import {
+    defaultGetBonusValueStep4,
+    defaultGetQuotationValueStep4,
+    defaultInitFormDataStep4,
+    defaultYupConfigStep4,
+} from '@/services/file/wizzard/step4Service';
 import { BaseStep4 } from '@/types/v2/Wizzard/step4/BaseStep4';
 import { updateTotalTtc } from '@/services/sqliteService';
 import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
@@ -39,6 +44,7 @@ export const validateCombleStep4 = async ( data: CombleFileStep, price: Price ):
 
     fileData = {
         ...fileData,
+        ...defaultGetBonusValueStep4( data ),
         quotation,
     };
 

@@ -573,8 +573,15 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
     const quotationEmpty       = !folderContainFiles( path.join( folderPath, FoldersNames.DEVIS ) );
     // Fichier dans le dossier "DEVIS SIGNE"
     const signedQuotationEmpty = !folderContainFiles( path.join( folderPath, FoldersNames.DEVIS_SIGNE ) );
+
+    let worksheetEmpty;
     // Fichier dans le dossier "FICHE"
-    const worksheetEmpty       = !folderContainFiles( path.join( folderPath, FoldersNames.FICHE ) );
+    // Pas de fiche poir la panneaux photovoltaïques
+    if ( fileType === FILE_PV ) {
+        worksheetEmpty = false;
+    } else {
+        worksheetEmpty = !folderContainFiles( path.join( folderPath, FoldersNames.FICHE ) );
+    }
 
 
     let photoEmpty;
@@ -596,8 +603,8 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
     const codeBonus = getCodeBonus( fileData );
     let assentEmpty: boolean;
 
-    // Si comble en non précaire on demande pas l'avis d'impot
-    if ( fileType === FILE_COMBLE && codeBonus !== 'GP' && codeBonus !== 'P' ) {
+    // Si non précaire on demande pas l'avis d'impot OU si PV
+    if ( ( codeBonus !== 'GP' && codeBonus !== 'P' ) || fileType === FILE_PV ) {
         assentEmpty = false;
     } else {
         // Fichier dans le dossier "AVIS"
@@ -657,7 +664,7 @@ export const openPdf = ( filePath: string ) => {
 };
 
 
-export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) => {
+export const savePdf = ( buffer: Buffer, type: PdfType ) => {
     console.log( '%c ON SAVE PDF', 'background: #fdd835; color: #000000' );
     const folderName = getcurrentFolderName() as string;
     const folderPath = getFolderPath( folderName );
@@ -710,7 +717,6 @@ export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) =
     }
 
     const filePath = `${ folderPath }/${ folder }/${ name }`;
-    // const writer   = fs.createWriteStream( filePath );
 
     try {
         fs.writeFile( filePath, buffer, () => {
@@ -724,15 +730,6 @@ export const savePdf = ( buffer: Buffer, type: PdfType, openAfterSave = true ) =
                    } );
         console.error( err );
     }
-
-    // writer.write( buffer );
-
-    // if ( openAfterSave ) {
-    //     console.log( '%c IN OPEN', 'background: #fdd835; color: #000000' );
-    //     setTimeout( () => {
-    //         openPdf( filePath );
-    //     }, 500 );
-    // }
 };
 
 export const copyFileFromAssetToDropbox = ( assetPath: string, destinationFolder: string, fileName: string ) => {
