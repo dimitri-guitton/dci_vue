@@ -685,10 +685,6 @@ export class QuotationGenerator extends PdfGenerator {
                             value: this.getValueInList( list.batimentNatureList, housing.buildingNature ),
                         },
                         {
-                            label: 'Surface à chauffer (m2)',
-                            value: housing.area.toString(),
-                        },
-                        {
                             label: 'Ce logement à moins de 2 ans',
                             value: this.yesOrNo( housing.lessThan2Years ),
                         },

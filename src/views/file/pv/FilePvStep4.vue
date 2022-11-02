@@ -139,6 +139,10 @@ export default defineComponent( {
                                             if ( selectedProduct.productType === 'pv' ) {
                                                 quantity.value = selectedProduct.quantity;
                                             }
+
+                                            if ( selectedProduct.productType === 'onduleur' ) {
+                                                quantity.value = selectedProduct.quantity;
+                                            }
                                         }
 
 
@@ -310,6 +314,12 @@ export default defineComponent( {
                                             console.log( '%c SELECTED ONDULEURS',
                                                          'background: #0A0F600FF0FF; color: #000000' );
                                             console.log( _selectedProducts.value.filter( p => p.productType === 'onduleur' ) );
+
+                                            const list = _selectedProducts.value.filter( p => p.productType === 'onduleur' );
+                                            for ( const p of list ) {
+                                                p.quantity = quantity.value;
+                                                updateSelectedProduct( p );
+                                            }
                                             return _selectedProducts.value.filter( p => p.productType === 'onduleur' );
                                         } );
 

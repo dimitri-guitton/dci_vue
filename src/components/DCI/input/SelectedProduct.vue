@@ -91,6 +91,7 @@ import { computed, defineComponent, ref, toRef } from 'vue';
 import { Product } from '@/types/v2/File/Common/Product';
 import { ErrorMessage, Field } from 'vee-validate';
 import { numberToPrice } from '@/services/commonService';
+import { ElMessage } from 'element-plus';
 
 export default defineComponent( {
                                     name:       'selected-product',
@@ -135,13 +136,26 @@ export default defineComponent( {
                                         console.log( 'products IN SelectedProduct.vue -->', props.products );
                                         console.log( 'INDEX -->', props.index );
                                         console.log( props.selectedProducts[ props.index ] );
-                                        if ( props.selectedProducts.length > 0 && props.selectedProducts[ props.index ] !== undefined ) {
-                                            console.log( 'IF' );
-                                            currentProduct = ref( props.selectedProducts[ props.index ] );
-                                        } else {
-                                            console.log( 'ELSE' );
-                                            currentProduct = ref( props.products[ 0 ] );
-                                            onChangeProduct( props.products[ 0 ].id );
+
+                                        try {
+                                            if ( props.selectedProducts.length > 0 && props.selectedProducts[ props.index ] !== undefined ) {
+                                                console.log( 'IF' );
+                                                currentProduct = ref( props.selectedProducts[ props.index ] );
+                                            } else {
+                                                console.log( 'ELSE' );
+                                                currentProduct = ref( props.products[ 0 ] );
+                                                onChangeProduct( props.products[ 0 ].id );
+                                            }
+                                        } catch ( e ) {
+                                            console.warn( e );
+                                            ElMessage( {
+                                                           showClose:                true,
+                                                           duration:                 5000,
+                                                           dangerouslyUseHTMLString: true,
+                                                           message:                  `<strong>Malheureusement, ce dossier n'est plus à jour :(<br>Merci d'en créer un nouveau</strong>`,
+                                                           center:                   true,
+                                                           type:                     'error',
+                                                       } );
                                         }
 
 
