@@ -382,11 +382,12 @@ export default defineComponent( {
                                             console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
 
+                                            console.log( 'total power', totalPower );
                                             let selfConsumptionBonus;
                                             let tva10 = 0;
                                             let tva20 = 0;
                                             let totalTtc: number;
-                                            if ( lessThan2Year || totalPower >= 3000 ) {
+                                            if ( lessThan2Year || totalPower > 3000 ) {
                                                 tva20                = 20 * totalHt / 100;
                                                 selfConsumptionBonus = ( totalPower / 1000 ) * 430;
                                                 totalTtc             = totalHt + tva20;
