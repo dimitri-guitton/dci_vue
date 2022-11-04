@@ -131,17 +131,33 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
 /**
  * Coup de pouce
  */
-export const getHelpingHandRo = ( codeBonus ): number => {
-    if ( codeBonus === 'GP' ) {
-        if ( new Date() >= new Date( '2022/10/01 00:00:01' ) ) {
-            console.log( '%c PRIME A PARTIR DU 1ER OCTOBRE', 'background: #00FF2E; color: #000000' );
-            return 4000;
+export const getHelpingHandRo = ( codeBonus, deviceToReplace ): number => {
+    codeBonus = codeBonus.toUpperCase();
+    console.log( '%c KO', 'background: #fdd835; color: #000000' );
+    console.log( '%c KO', 'background: #fdd835; color: #000000' );
+    console.log( '%c KO', 'background: #fdd835; color: #000000' );
+    console.log( '%c KO', 'background: #fdd835; color: #000000' );
+    console.log( '%c KO', 'background: #fdd835; color: #000000' );
+    console.log( '%c KO', 'background: #fdd835; color: #000000' );
+    console.log( deviceToReplace );
+
+    if ( codeBonus === 'GP' || codeBonus === 'P' ) {
+        // chaudière fioul
+        if ( deviceToReplace === 'CFHC' ) {
+            console.log( '%c IN', 'background: #00FF2E; color: #000000' );
+            return 5000;
         }
-        console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
-        return 4200;
-    } else if ( codeBonus === 'P' ) {
+        console.log( '%c ELSE', 'background: #7F4CFF; color: #000000' );
+
         return 4000;
     } else {
+        // chaudière fioul
+        if ( deviceToReplace === 'CFHC' ) {
+            console.log( '%c IN', 'background: #00FF2E; color: #000000' );
+            return 4000;
+        }
+        console.log( '%c ELSE', 'background: #7F4CFF; color: #000000' );
+
         return 2500;
     }
 };
