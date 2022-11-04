@@ -389,11 +389,11 @@ export default defineComponent( {
                                             let totalTtc: number;
                                             if ( lessThan2Year || totalPower > 3000 ) {
                                                 tva20                = 20 * totalHt / 100;
-                                                selfConsumptionBonus = ( totalPower / 1000 ) * 430;
+                                                selfConsumptionBonus = ( totalPower / 1000 ) * 320;
                                                 totalTtc             = totalHt + tva20;
                                             } else {
                                                 tva10                = 10 * totalHt / 100;
-                                                selfConsumptionBonus = ( totalPower / 1000 ) * 320;
+                                                selfConsumptionBonus = ( totalPower / 1000 ) * 430;
                                                 totalTtc             = totalHt + tva10;
                                             }
 
