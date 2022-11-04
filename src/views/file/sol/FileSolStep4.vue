@@ -187,8 +187,12 @@ export default defineComponent( {
                                             }
                                             console.log( 'Prix avec les produits -->', totalHt );
 
-                                            // TODO UPDATE THE OVERRIDE POSE
-                                            const laying = props.quantityArea * ( props.fileData as SolFile ).quotation.overrideLaying;
+                                            let laying = props.quantityArea * ( props.fileData as SolFile ).quotation.overrideLaying;
+
+                                            // supplément de 785 € HT pour toute surface inférieure à 65m2
+                                            if ( props.quantityArea < 65 ) {
+                                                laying += 785;
+                                            }
 
                                             totalHt += laying;
 
