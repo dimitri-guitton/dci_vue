@@ -887,8 +887,8 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_COMBLE:
                 text = 'Pas de mise en place de pare-vapeur';
                 break;
-            case FILE_PV:
-                text = 'Démarches administratives incluses (déclaration préalable de travaux, demande de raccordement et CONSUEL)';
+            // case FILE_PV:
+            //     text = 'Démarches administratives incluses (déclaration préalable de travaux, demande de raccordement et CONSUEL)';
         }
 
         if ( text !== '' ) {
