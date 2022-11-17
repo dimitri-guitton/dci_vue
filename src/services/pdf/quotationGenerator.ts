@@ -37,6 +37,7 @@ import { CityHallManadateGenerator } from '@/services/pdf/cityHallManadateGenera
 import { EnedisMandateGenerator } from '@/services/pdf/enedisMandateGenerator';
 import { MaPrimeRenovGeneratorV2 } from '@/services/pdf/maPrimeRenovGeneratorV2';
 import { ObjEcoEnergie } from '@/services/pdf/contributionFramework/ObjEcoEnergie';
+import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 
 enum PriceQuotation {
     HT           = 'Total HT',
@@ -522,10 +523,11 @@ export class QuotationGenerator extends PdfGenerator {
                     ],
                 };
             case FILE_PAC_RO:
+                const pacHousing = this._file.housing as PacHousing;
                 list              = ( this._file.lists as RoList );
                 const roQuotation = ( this._file.quotation as RoQuotation );
                 return {
-                    left:  [
+                    left: [
                         {
                             label: 'Local',
                             value: this.getValueInList( list.batimentNatureList, housing.buildingNature ),
@@ -533,6 +535,10 @@ export class QuotationGenerator extends PdfGenerator {
                         {
                             label: 'Surface à chauffer (m2)',
                             value: housing.area.toString(),
+                        },
+                        {
+                            label: 'Radiateurs',
+                            value: this.getValueInList( list.heatersList, pacHousing.heaters ),
                         },
                         {
                             label: 'Ce logement à moins de 2 ans',
