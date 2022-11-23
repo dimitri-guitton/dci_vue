@@ -413,7 +413,7 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'TYPE CHARPENTE',
-                                value: this.getValueInList( list.chantierTypeList, worksheet.charpenteType ),
+                                value: this.getValueInList( list.charpenteTypeList, worksheet.charpenteType ),
                             },
                             {
                                 label: 'NOMBRE COMPARTIMENTS COMBLES',
