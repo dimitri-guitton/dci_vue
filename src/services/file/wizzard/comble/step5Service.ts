@@ -43,9 +43,11 @@ export const combleWorksheetBuilder = (): WorksheetBuilder => {
                         label: 'Grande échelle nécessaire',
                     },
                     {
-                        type:  WorksheetBuilderItemType.Text,
-                        name:  'partieAisoler',
-                        label: 'Partie à isoler',
+                        type:       WorksheetBuilderItemType.Select,
+                        name:       'partieAisoler',
+                        label:      'Partie à isoler',
+                        selectList: 'partieAIsolerList',
+
                     },
                     {
                         type:       WorksheetBuilderItemType.Select,
@@ -90,6 +92,11 @@ export const combleWorksheetBuilder = (): WorksheetBuilder => {
                         type:  WorksheetBuilderItemType.Number,
                         name:  'nbCompartimentComble',
                         label: 'Nombre de compartiments',
+                    },
+                    {
+                        type:  WorksheetBuilderItemType.Checkbox,
+                        name:  'volige',
+                        label: 'Présence de volige',
                     },
                     {
                         type:  WorksheetBuilderItemType.Checkbox,

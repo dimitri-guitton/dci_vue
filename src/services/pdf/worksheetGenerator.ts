@@ -207,7 +207,7 @@ export class WorksheetGenerator extends PdfGenerator {
                 body:   [
                     [
                         {
-                            text:    'CHANTIER NOM ET PRÉNOM DU CLIENT FINAL :',
+                            text:    `CHANTIER NOM ET PRÉNOM DU CLIENT FINAL : ${ beneficiary.lastName } ${ beneficiary.firstName }`,
                             colSpan: 2,
                         },
                         {},
