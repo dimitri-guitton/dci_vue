@@ -297,12 +297,12 @@ export class RoAlgo extends PacAlgo {
                         40: {
                             '-15': 11.08,
                             '-13': 11.45,
-                            '-11': 11.81,
-                            '-9':  12.18,
-                            '-8':  12.37,
-                            '-7':  12.55,
-                            '-6':  12.13,
-                            '-5':  11.71,
+                            '-11': 11.86,
+                            '-9':  12.32,
+                            '-8':  12.55,
+                            '-7':  12.78,
+                            '-6':  12.26,
+                            '-5':  11.74,
                             '-4':  11.28,
                         },
                     },
@@ -425,123 +425,123 @@ export class RoAlgo extends PacAlgo {
                         },
                     },
                 },
-                {
-                    ref:    'EPGA11DV',
-                    size:   11,
-                    output: {
-                        65: {
-                            '-15': 0,
-                            '-13': 0,
-                            '-11': 0,
-                            '-9':  0,
-                            '-8':  0,
-                            '-7':  0,
-                            '-6':  0,
-                            '-5':  0,
-                            '-4':  0,
-                        },
-                        55: {
-                            '-15': 8.71,
-                            '-13': 9.06,
-                            '-11': 9.42,
-                            '-9':  9.77,
-                            '-8':  9.94,
-                            '-7':  10.12,
-                            '-6':  10.18,
-                            '-5':  10.24,
-                            '-4':  10.30,
-                        },
-                        40: {
-                            '-15': 10.96,   // TODO CHANGER AVEC LES VRAIES VALEURS
-                            '-13': 10.96,
-                            '-11': 10.96,
-                            '-9':  10.96,
-                            '-8':  10.96,
-                            '-7':  10.86,
-                            '-6':  10.86,
-                            '-5':  10.86,
-                            '-4':  10.86,
-                        },
-                    },
-                },
-                {
-                    ref:    'EPGA14DV',
-                    size:   14,
-                    output: {
-                        65: {
-                            '-15': 0,
-                            '-13': 0,
-                            '-11': 0,
-                            '-9':  0,
-                            '-8':  0,
-                            '-7':  0,
-                            '-6':  0,
-                            '-5':  0,
-                            '-4':  0,
-                        },
-                        55: {
-                            '-15': 9.80,
-                            '-13': 10.20,
-                            '-11': 10.59,
-                            '-9':  10.99,
-                            '-8':  11.18,
-                            '-7':  11.38,
-                            '-6':  11.45,
-                            '-5':  11.52,
-                            '-4':  11.59,
-                        },
-                        40: {
-                            '-15': 12.33,   // TODO CHANGER AVEC LES VRAIES VALEURS
-                            '-13': 12.33,
-                            '-11': 12.33,
-                            '-9':  12.33,
-                            '-8':  12.33,
-                            '-7':  12.22,
-                            '-6':  12.22,
-                            '-5':  12.22,
-                            '-4':  12.22,
-                        },
-                    },
-                },
-                {
-                    ref:    'EPGA16DV',
-                    size:   16,
-                    output: {
-                        65: {
-                            '-15': 0,
-                            '-13': 0,
-                            '-11': 0,
-                            '-9':  0,
-                            '-8':  0,
-                            '-7':  0,
-                            '-6':  0,
-                            '-5':  0,
-                            '-4':  0,
-                        },
-                        55: {
-                            '-15': 10.89,
-                            '-13': 11.33,
-                            '-11': 11.77,
-                            '-9':  12.21,
-                            '-8':  12.43,
-                            '-7':  12.65,
-                            '-6':  12.73,
-                            '-5':  12.80,
-                            '-4':  12.88,
-                        },
-                        40: {
-                            '-15': 13.70,   // TODO CHANGER AVEC LES VRAIES VALEURS
-                            '-13': 13.70,
-                            '-11': 13.70,
-                            '-9':  13.70,
-                            '-8':  13.70,
-                            '-7':  13.57,
-                            '-6':  13.57,
-                            '-5':  13.57,
-                            '-4':  13.57,
-                        },
-                    },
-                },
+                // {
+                //     ref:    'EPGA11DV',
+                //     size:   11,
+                //     output: {
+                //         65: {
+                //             '-15': 0,
+                //             '-13': 0,
+                //             '-11': 0,
+                //             '-9':  0,
+                //             '-8':  0,
+                //             '-7':  0,
+                //             '-6':  0,
+                //             '-5':  0,
+                //             '-4':  0,
+                //         },
+                //         55: {
+                //             '-15': 8.71,
+                //             '-13': 9.06,
+                //             '-11': 9.42,
+                //             '-9':  9.77,
+                //             '-8':  9.94,
+                //             '-7':  10.12,
+                //             '-6':  10.18,
+                //             '-5':  10.24,
+                //             '-4':  10.30,
+                //         },
+                //         40: {
+                //             '-15': 10.96,   // TODO CHANGER AVEC LES VRAIES VALEURS
+                //             '-13': 10.96,
+                //             '-11': 10.96,
+                //             '-9':  10.96,
+                //             '-8':  10.96,
+                //             '-7':  10.86,
+                //             '-6':  10.86,
+                //             '-5':  10.86,
+                //             '-4':  10.86,
+                //         },
+                //     },
+                // },
+                // {
+                //     ref:    'EPGA14DV',
+                //     size:   14,
+                //     output: {
+                //         65: {
+                //             '-15': 0,
+                //             '-13': 0,
+                //             '-11': 0,
+                //             '-9':  0,
+                //             '-8':  0,
+                //             '-7':  0,
+                //             '-6':  0,
+                //             '-5':  0,
+                //             '-4':  0,
+                //         },
+                //         55: {
+                //             '-15': 9.80,
+                //             '-13': 10.20,
+                //             '-11': 10.59,
+                //             '-9':  10.99,
+                //             '-8':  11.18,
+                //             '-7':  11.38,
+                //             '-6':  11.45,
+                //             '-5':  11.52,
+                //             '-4':  11.59,
+                //         },
+                //         40: {
+                //             '-15': 12.33,   // TODO CHANGER AVEC LES VRAIES VALEURS
+                //             '-13': 12.33,
+                //             '-11': 12.33,
+                //             '-9':  12.33,
+                //             '-8':  12.33,
+                //             '-7':  12.22,
+                //             '-6':  12.22,
+                //             '-5':  12.22,
+                //             '-4':  12.22,
+                //         },
+                //     },
+                // },
+                // {
+                //     ref:    'EPGA16DV',
+                //     size:   16,
+                //     output: {
+                //         65: {
+                //             '-15': 0,
+                //             '-13': 0,
+                //             '-11': 0,
+                //             '-9':  0,
+                //             '-8':  0,
+                //             '-7':  0,
+                //             '-6':  0,
+                //             '-5':  0,
+                //             '-4':  0,
+                //         },
+                //         55: {
+                //             '-15': 10.89,
+                //             '-13': 11.33,
+                //             '-11': 11.77,
+                //             '-9':  12.21,
+                //             '-8':  12.43,
+                //             '-7':  12.65,
+                //             '-6':  12.73,
+                //             '-5':  12.80,
+                //             '-4':  12.88,
+                //         },
+                //         40: {
+                //             '-15': 13.70,   // TODO CHANGER AVEC LES VRAIES VALEURS
+                //             '-13': 13.70,
+                //             '-11': 13.70,
+                //             '-9':  13.70,
+                //             '-8':  13.70,
+                //             '-7':  13.57,
+                //             '-6':  13.57,
+                //             '-5':  13.57,
+                //             '-4':  13.57,
+                //         },
+                //     },
+                // },
             ],
             triphase:  [
                 {
@@ -881,41 +881,41 @@ export class RoAlgo extends PacAlgo {
                     bizone:          true,
                     highTemperature: false,
                 },
-                {
-                    ref:             'EABH16D6V',
-                    sizes:           [ 11, 14, 16 ],
-                    hotWaterTank:    0,
-                    bizone:          false,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'EAVH16S18D6V',
-                    sizes:           [ 11, 14, 16 ],
-                    hotWaterTank:    180,
-                    bizone:          false,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'EAVH16S23D6V',
-                    sizes:           [ 11, 14, 16 ],
-                    hotWaterTank:    230,
-                    bizone:          false,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'EAVZ16S18D6V',
-                    sizes:           [ 11, 14, 16 ],
-                    hotWaterTank:    180,
-                    bizone:          true,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'EAVZ16S23D6V',
-                    sizes:           [ 11, 14, 16 ],
-                    hotWaterTank:    230,
-                    bizone:          true,
-                    highTemperature: false,
-                },
+                // {
+                //     ref:             'EABH16D6V',
+                //     sizes:           [ 11, 14, 16 ],
+                //     hotWaterTank:    0,
+                //     bizone:          false,
+                //     highTemperature: false,
+                // },
+                // {
+                //     ref:             'EAVH16S18D6V',
+                //     sizes:           [ 11, 14, 16 ],
+                //     hotWaterTank:    180,
+                //     bizone:          false,
+                //     highTemperature: false,
+                // },
+                // {
+                //     ref:             'EAVH16S23D6V',
+                //     sizes:           [ 11, 14, 16 ],
+                //     hotWaterTank:    230,
+                //     bizone:          false,
+                //     highTemperature: false,
+                // },
+                // {
+                //     ref:             'EAVZ16S18D6V',
+                //     sizes:           [ 11, 14, 16 ],
+                //     hotWaterTank:    180,
+                //     bizone:          true,
+                //     highTemperature: false,
+                // },
+                // {
+                //     ref:             'EAVZ16S23D6V',
+                //     sizes:           [ 11, 14, 16 ],
+                //     hotWaterTank:    230,
+                //     bizone:          true,
+                //     highTemperature: false,
+                // },
                 {
                     ref:             'ETBH12E6V',
                     sizes:           [ 8, 10, 12 ],
@@ -1166,11 +1166,14 @@ export class RoAlgo extends PacAlgo {
             // Donc highTemperature = reférence == EPRA
 
             const highTemperature = heaterValue === 65;
+            console.log( 'highTemperature', highTemperature );
 
             console.log( '---' );
             console.log( '---' );
             console.log( `${ unit.hotWaterTank } --- ${ hotWater }` );
-            if ( highTemperature === unit.highTemperature ) {
+
+            // Si non aute température on ne check pas la si c'est égale
+            if ( !highTemperature || highTemperature === unit.highTemperature ) {
                 console.log( 'BONNE TEMPÉRATURE' );
                 if ( unit.sizes.includes( size ) ) {
                     console.log( 'BONNE TAILLE' );
@@ -1192,7 +1195,7 @@ export class RoAlgo extends PacAlgo {
             // console.log( 'highTemperature === unit.highTemperature', highTemperature === unit.highTemperature );
 
 
-            return unit.hotWaterTank === hotWater && unit.bizone === bizone && unit.sizes.includes( size ) && highTemperature === unit.highTemperature;
+            return unit.hotWaterTank === hotWater && unit.bizone === bizone && unit.sizes.includes( size ) && ( !highTemperature || highTemperature === unit.highTemperature );
         } );
         console.log( 'filteredUnitInt', filteredUnitInt );
 
