@@ -687,9 +687,11 @@ export class WorksheetGenerator extends PdfGenerator {
 
                 if ( roQuotation.selectedProducts.length > 0 ) {
                     for ( const product of roQuotation.selectedProducts ) {
-                        selectedProduct = `${ product.label } / `;
+                        selectedProduct += `- ${ product.label } \n`;
                     }
                 }
+                console.log( '%c DATA RO FICHE', 'background: #fdd835; color: #000000' );
+                console.log( roQuotation.selectedProducts );
 
                 data = [
                     {
@@ -889,7 +891,7 @@ export class WorksheetGenerator extends PdfGenerator {
 
                 if ( rrQuotation.selectedProducts.length > 0 ) {
                     for ( const product of rrQuotation.selectedProducts ) {
-                        selectedProduct = `${ product.label } / `;
+                        selectedProduct += `- ${ product.label } \n`;
                     }
                 }
 
