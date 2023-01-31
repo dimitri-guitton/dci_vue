@@ -36,6 +36,8 @@ import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { CityHallManadateGenerator } from '@/services/pdf/cityHallManadateGenerator';
 import { EnedisMandateGenerator } from '@/services/pdf/enedisMandateGenerator';
 import { MaPrimeRenovGeneratorV2 } from '@/services/pdf/maPrimeRenovGeneratorV2';
+import { ObjEcoEnergie } from '@/services/pdf/contributionFramework/ObjEcoEnergie';
+import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 
 enum PriceQuotation {
     HT           = 'Total HT',
@@ -43,8 +45,10 @@ enum PriceQuotation {
     TVA          = 'TVA 5.5%',
     TVA10        = 'TVA 10%',
     TVA20        = 'TVA 20%',
-    CEE          = 'PRIME CEE EDF SIREN 552 081 317',
-    CEE_CPC      = 'PRIME CEE EDF SIREN 552 081 317', // Coup de pouce chauffage
+    CEE          = 'PRIME CEE',
+    CEE_EDF      = 'PRIME CEE EDF SIREN 552 081 317',
+    CEE_CPC      = 'PRIME CEE', // Coup de pouce chauffage
+    CEE_CPC_EDF  = 'PRIME CEE EDF SIREN 552 081 317', // Coup de pouce chauffage
     maPrimeRenov = 'Estimation MaPrimeRenov',
     discount     = 'Remise',
     laying       = 'Pose',
@@ -53,12 +57,15 @@ enum PriceQuotation {
 export class QuotationGenerator extends PdfGenerator {
     private _file: AllFile;
 
+    private _ceeText: string;
+    private _ceeCpcText: string;
+
     private _style: StyleDictionary = {
-        header:      {
+        header:          {
             fontSize: 10,
             bold:     true,
         },
-        tableHeader: {
+        tableHeader:     {
             bold:      true,
             fontSize:  9,
             alignment: 'center',
@@ -74,6 +81,14 @@ export class QuotationGenerator extends PdfGenerator {
         super();
         this._file = file;
         this.type  = PdfType.Quotation;
+
+        if ( this._file.partner === 'obj_eco_energie' ) {
+            this._ceeText    = PriceQuotation.CEE;
+            this._ceeCpcText = PriceQuotation.CEE_CPC;
+        } else {
+            this._ceeText    = PriceQuotation.CEE_EDF;
+            this._ceeCpcText = PriceQuotation.CEE_CPC_EDF;
+        }
 
         this.docDefinition = this._generateDocDefinition();
     }
@@ -93,8 +108,13 @@ export class QuotationGenerator extends PdfGenerator {
         // Génération du cadre de contribution
         // Pour les pompes à chaleur quand la prime CEE est > à 0
         if ( this._file.quotation.ceeBonus > 0 ) {
-            const contributionFrameworkGenerator = new ContributionFrameworkGenerator( this._file );
-            contributionFrameworkGenerator.generatePdf();
+            if ( this._file.partner === 'obj_eco_energie' ) {
+                const contributionFrameworkGenerator = new ObjEcoEnergie( this._file );
+                contributionFrameworkGenerator.generatePdf();
+            } else {
+                const contributionFrameworkGenerator = new ContributionFrameworkGenerator( this._file );
+                contributionFrameworkGenerator.generatePdf();
+            }
         }
 
         // Génération du mandat de maPrimeRenov
@@ -503,10 +523,11 @@ export class QuotationGenerator extends PdfGenerator {
                     ],
                 };
             case FILE_PAC_RO:
+                const pacHousing = this._file.housing as PacHousing;
                 list              = ( this._file.lists as RoList );
                 const roQuotation = ( this._file.quotation as RoQuotation );
                 return {
-                    left:  [
+                    left: [
                         {
                             label: 'Local',
                             value: this.getValueInList( list.batimentNatureList, housing.buildingNature ),
@@ -514,6 +535,10 @@ export class QuotationGenerator extends PdfGenerator {
                         {
                             label: 'Surface à chauffer (m2)',
                             value: housing.area.toString(),
+                        },
+                        {
+                            label: 'Radiateurs',
+                            value: this.getValueInList( list.heatersList, pacHousing.heaters ),
                         },
                         {
                             label: 'Ce logement à moins de 2 ans',
@@ -664,10 +689,6 @@ export class QuotationGenerator extends PdfGenerator {
                         {
                             label: 'Local',
                             value: this.getValueInList( list.batimentNatureList, housing.buildingNature ),
-                        },
-                        {
-                            label: 'Surface à chauffer (m2)',
-                            value: housing.area.toString(),
                         },
                         {
                             label: 'Ce logement à moins de 2 ans',
@@ -838,6 +859,9 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PAC_RR:
                 text = 'Installation d\'une pompe à chaleur air/air';
                 break;
+            case FILE_PV:
+                text = 'Installation photovoltaïque en autoconsommation avec revente du surplus';
+                break;
         }
 
         if ( text !== '' ) {
@@ -869,8 +893,8 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_COMBLE:
                 text = 'Pas de mise en place de pare-vapeur';
                 break;
-            case FILE_PV:
-                text = 'Démarches administratives incluses (déclaration préalable de travaux, demande de raccordement et CONSUEL)';
+            // case FILE_PV:
+            //     text = 'Démarches administratives incluses (déclaration préalable de travaux, demande de raccordement et CONSUEL)';
         }
 
         if ( text !== '' ) {
@@ -912,13 +936,13 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PAC_RR:
                 const rrQuotation = ( this._file.quotation as RrQuotation );
                 if ( rrQuotation.rrType === 'mono' && rrQuotation.assortment === 'sensira' ) {
-                    text = 'GARANTIE DAIKIN 3 ANS PIECES ET 5ANS COMPRESSEUR';
+                    text = 'GARANTIE DAIKIN 3 ANS PIECES ET 5 ANS COMPRESSEUR';
                 } else {
-                    text = 'GARANTIE DAIKIN 3 ANS PIECES ET 5ANS COMPRESSEUR';
+                    text = 'GARANTIE DAIKIN 3 ANS PIECES ET 5 ANS COMPRESSEUR';
                 }
                 break;
             case FILE_PAC_RO:
-                text = 'GARANTIE DAIKIN 3ANS PIECES ET 5ANS COMPRESSEUR';
+                text = 'GARANTIE DAIKIN 3ANS PIECES ET 5 ANS COMPRESSEUR';
                 break;
         }
 
@@ -1203,7 +1227,7 @@ export class QuotationGenerator extends PdfGenerator {
                 items.push( PriceQuotation.TTC );
 
                 if ( this._file.quotation.ceeBonus > 0 ) {
-                    items.push( PriceQuotation.CEE );
+                    items.push( this._ceeText );
                 }
 
                 if ( ( this._file.quotation as CetQuotation | PgQuotation | PbQuotation ).maPrimeRenovBonus > 0 ) {
@@ -1232,12 +1256,12 @@ export class QuotationGenerator extends PdfGenerator {
 
                 if ( roQuotation.deviceToReplace.type === 'aucun' || roQuotation.deviceToReplace.type === 'autre' ) {
                     if ( this._file.quotation.ceeBonus > 0 ) {
-                        items.push( PriceQuotation.CEE );
+                        items.push( this._ceeText );
                     }
 
                 } else {
                     if ( this._file.quotation.ceeBonus > 0 ) {
-                        items.push( PriceQuotation.CEE_CPC );
+                        items.push( this._ceeCpcText );
                     }
                 }
 
@@ -1280,7 +1304,7 @@ export class QuotationGenerator extends PdfGenerator {
 
 
                 if ( this._file.quotation.ceeBonus > 0 ) {
-                    items.push( PriceQuotation.CEE );
+                    items.push( this._ceeText );
                 }
 
                 if ( rrQuotation.maPrimeRenovBonus > 0 ) {
@@ -1321,7 +1345,7 @@ export class QuotationGenerator extends PdfGenerator {
                 items.push( PriceQuotation.TTC );
 
                 if ( !this._file.housing.lessThan2Years && !this._file.disabledBonus && this._file.quotation.ceeBonus > 0 ) {
-                    items.push( PriceQuotation.CEE );
+                    items.push( this._ceeText );
                 }
                 break;
             default:
@@ -1382,13 +1406,9 @@ export class QuotationGenerator extends PdfGenerator {
                                       } );
                     break;
                 case PriceQuotation.CEE:
-                    rightColumn.push( {
-                                          text:       this.formatPrice( quotation.ceeBonus, 1, false ),
-                                          alignment:  'right',
-                                          lineHeight: 2,
-                                      } );
-                    break;
                 case PriceQuotation.CEE_CPC:
+                case PriceQuotation.CEE_EDF:
+                case PriceQuotation.CEE_CPC_EDF:
                     rightColumn.push( {
                                           text:       this.formatPrice( quotation.ceeBonus, 1, false ),
                                           alignment:  'right',
@@ -1407,8 +1427,7 @@ export class QuotationGenerator extends PdfGenerator {
                     break;
                 case PriceQuotation.laying:
                     rightColumn.push( {
-                                          text:       this.formatPrice( ( quotation as CombleQuotation | SolQuotation ).overrideLaying,
-                                                                        this._file.housing.area ),
+                                          text:       this.formatPrice( ( quotation as CombleQuotation | SolQuotation ).laying ),
                                           alignment:  'right',
                                           lineHeight: 2,
                                       } );

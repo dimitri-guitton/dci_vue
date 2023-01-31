@@ -1,6 +1,9 @@
 import { PaymentOnCredit } from '@/types/v2/File/Common/paymentOnCredit';
 
 export interface BaseStep4 {
+    bonus: boolean;
+    ceeBonus: boolean;
+    maPrimeRenovBonus: boolean;
     origin: string;
     dateTechnicalVisit: string;
     executionDelay: string;
@@ -23,4 +26,5 @@ export interface StepOption {
 export interface StepProduct {
     id: number;
     pu: number;
+    quantity: number;
 }

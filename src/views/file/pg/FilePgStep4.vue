@@ -3,7 +3,10 @@
 
         <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit"
                       :price="price"
-                      :lists="lists"></step4-header>
+                      :lists="lists"
+                      :file="fileData"
+                      @bonusAreUpdated="updateBonus"
+        ></step4-header>
 
         <div class="row mt-10">
             <div class="col-md-6 mb-5">
@@ -178,15 +181,6 @@ export default defineComponent( {
                                     emits:      [ 'generateQuotation', 'generateAddressCertificate', 'calculedPrice' ],
                                     setup( props, ctx ) {
                                         console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
                                         const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
                                         const _options          = ref<Option[]>( ( props.options as Option[] ) );
                                         const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
@@ -200,6 +194,11 @@ export default defineComponent( {
                                         const color         = ref<string>( 'blanc_creme' );
                                         const outsideSocket = ref<boolean>( props.fileData.quotation.outsideSocket );
                                         const smoke         = ref<string>( props.fileData.quotation.smoke );
+
+                                        const disabledBonus             = ref<boolean>( props.fileData.disabledBonus );
+                                        const disabledCeeBonus          = ref<boolean>( props.fileData.disabledCeeBonus );
+                                        const disabledMaPrimeRenovBonus = ref<boolean>( props.fileData.disabledMaPrimeRenovBonus );
+
 
                                         console.log( 'outsideSocket', outsideSocket.value );
                                         console.log( 'smoke', smoke.value );
@@ -244,6 +243,13 @@ export default defineComponent( {
                                         const updateBlankOtions = ( blankOptions ) => {
                                             _blankOptions.value = blankOptions;
                                         };
+
+                                        const updateBonus = ( data: { bonus: boolean; ceeBonus: boolean; maPrimeRenovBonus: boolean } ) => {
+                                            disabledBonus.value             = data.bonus;
+                                            disabledCeeBonus.value          = data.ceeBonus;
+                                            disabledMaPrimeRenovBonus.value = data.maPrimeRenovBonus;
+                                        };
+
 
                                         const computedFumisteries = computed<Product[]>( () => {
                                             console.log( '%c IN COMPUTED FUMISTERIE',
@@ -412,15 +418,15 @@ export default defineComponent( {
 
                                             if ( !lessThan2Year ) {
                                                 // Si les primes sont actives
-                                                if ( !props.fileData.disabledBonus ) {
+                                                if ( !disabledBonus.value ) {
 
                                                     // Si la prime CEE est active
-                                                    if ( !props.fileData.disabledCeeBonus ) {
+                                                    if ( !disabledCeeBonus.value ) {
                                                         ceeBonus = getCeeBonus( ( props.fileData as BaseFile ) );
                                                     }
 
                                                     // Si MaprimeRenov est actif
-                                                    if ( !props.fileData.disabledMaPrimeRenovBonus ) {
+                                                    if ( !disabledMaPrimeRenovBonus.value ) {
                                                         maPrimeRenov = getMaPrimeRenov( props.fileData.type );
                                                     }
                                                 }
@@ -470,6 +476,7 @@ export default defineComponent( {
                                             computedSelectedPg,
                                             computedFumisteries,
                                             computedSelectedFumisteries,
+                                            updateBonus,
                                         };
                                     },
                                 } );

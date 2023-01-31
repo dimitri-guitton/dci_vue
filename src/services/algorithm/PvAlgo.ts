@@ -17,11 +17,13 @@ interface PriceEvolution {
 export class PvAlgo {
     private quotation: PvQuotation;
     private worksheet: PvWorkSheet;
+    private energyZone: string;
 
 
-    constructor( quotation: PvQuotation, worksheet: PvWorkSheet ) {
-        this.quotation = quotation;
-        this.worksheet = worksheet;
+    constructor( quotation: PvQuotation, worksheet: PvWorkSheet, energyZone: string ) {
+        this.quotation  = quotation;
+        this.worksheet  = worksheet;
+        this.energyZone = energyZone;
     }
 
     /**
@@ -34,57 +36,67 @@ export class PvAlgo {
     /**
      * Production par panneau en KWh
      */
-    public productionPerPanelInKWh(): number {
-        if ( this.worksheet.orientation === 'sud' ) {
-            console.log( 'IN SUD' );
-            return 456.25;
-        } else if ( this.worksheet.orientation === 'est_ouest' ) {
-            console.log( 'IN EST OUEST' );
-            return 406.25;
-        } else if ( this.worksheet.orientation === 'sud_est_sud_ouest' ) {
-            console.log( 'IN SUD EST SUD OUEST' );
-            return 431.25;
-        }
-
-        return 0;
-    }
-
-    /**
-     * Prix TTC posé des panneaux
-     */
-    public calclTotalTtcPerPanel(): number {
-        if ( this.quotation.selectedProducts.length > 0 ) {
-            const selectedProduct    = this.quotation.selectedProducts[ 0 ];
-            const power: number      = selectedProduct.power !== undefined ? selectedProduct.power : 0;
-            const laying: number     = selectedProduct.laying !== undefined ? selectedProduct.laying : 0;
-            const totalPower: number = power * selectedProduct.quantity;
-            let tva                  = 10;
-
-            if ( totalPower > 3000 ) {
-                tva = 20;
+    public productionPerPanelInKWh( year = 1 ): number {
+        let power = 0;
+        if ( this.energyZone === 'H1' ) {
+            if ( this.worksheet.orientation === 'sud' ) {
+                power = 448;
+            } else if ( this.worksheet.orientation === 'sud_ouest' ) {
+                power = 425;
+            } else if ( this.worksheet.orientation === 'sud_est' ) {
+                power = 429;
+            } else if ( this.worksheet.orientation === 'ouest' ) {
+                power = 371;
+            } else if ( this.worksheet.orientation === 'est' ) {
+                power = 387;
             }
-
-            const priceHt = selectedProduct.quantity * selectedProduct.pu + laying;
-
-            return priceHt * ( tva / 100 + 1 );
+        } else {
+            if ( this.worksheet.orientation === 'sud' ) {
+                power = 458;
+            } else if ( this.worksheet.orientation === 'sud_ouest' ) {
+                power = 457;
+            } else if ( this.worksheet.orientation === 'sud_est' ) {
+                power = 458;
+            } else if ( this.worksheet.orientation === 'ouest' ) {
+                power = 395;
+            } else if ( this.worksheet.orientation === 'est' ) {
+                power = 397;
+            }
         }
 
-        return 0;
+        if ( this.quotation.selectedProducts.length > 0 ) {
+            const product = this.quotation.selectedProducts[ 0 ];
+            if ( year === 1 ) {
+                if ( product.ext1 !== undefined ) {
+                    const percentage = 1 - ( parseFloat( product.ext1 ) / 100 );
+                    power            = power * percentage;
+                }
+            } else {
+                if ( product.ext1 !== undefined && product.ext2 !== undefined ) {
+                    const coefYear1     = parseFloat( product.ext1 );
+                    const coefOtherYear = ( parseFloat( product.ext2 ) - coefYear1 ) / 24;
+
+                    power = power * ( 1 - ( coefYear1 / 100 ) );
+                    power = power * ( 1 - ( ( year * coefOtherYear ) / 100 ) );
+                }
+            }
+        }
+        return power;
     }
 
     /**
      * Calcul le total TTC avec les montant des primes déduites
      */
     public calcTotalTtcWithBonusDeducted() {
-        return this.calclTotalTtcPerPanel() - this.quotation.selfConsumptionBonus;
+        return this.quotation.totalTtc - this.quotation.selfConsumptionBonus;
     }
 
     /**
      * Production de l'installation en KWh
      */
-    public calcInstallationProduction(): number {
+    public calcInstallationProduction( year = 1 ): number {
         if ( this.quotation.selectedProducts.length > 0 ) {
-            return this.quotation.selectedProducts[ 0 ].quantity * this.productionPerPanelInKWh();
+            return this.quotation.selectedProducts[ 0 ].quantity * this.productionPerPanelInKWh( year );
         }
 
         return 0;
@@ -93,22 +105,32 @@ export class PvAlgo {
     /**
      * Prix de vente moyen du KWh phtovoltaîque en €
      */
-    public calcPhotovoltaicAverageSellingPrice(): number {
-        return this.calcTotalTtcWithBonusDeducted() / ( this.calcInstallationProduction() * 25 );
+    public calcPhotovoltaicAverageSellingPrice( year = 1 ): number {
+        return this.calcTotalTtcWithBonusDeducted() / ( this.calcInstallationProduction( year ) * 25 );
     }
 
     /**
      * Prix de revente auprès d'EDF en €
      */
-    public calcResalePriceToEdf(): number {
-        return this.calcInstallationProduction() * 0.5 * 0.1;
+    public calcResalePriceToEdf( year = 1 ): number {
+
+
+        // On augmente de 1.5% les (0.1) tout les ans à partir de l'année,
+        // Année 1 10 centimes * 1.5%
+        // Année 2 10.15 centimes * 1.5%
+        // Année 3 10.30225 centimes * 1.5%
+        let ratio = 0.1;
+        for ( let i = 1; i < year; i++ ) {
+            ratio *= 1.015;
+        }
+        return this.calcInstallationProduction( year ) * 0.5 * ratio;
     }
 
     /**
      * Economie sur la facture en €
      */
-    public savingsOnBill(): number {
-        return this.calcInstallationProduction() * this.calcAveragePricePerKWhOnElectricBill() * 0.5;
+    public savingsOnBill( year = 1 ): number {
+        return this.calcInstallationProduction( year ) * this.calcAveragePricePerKWhOnElectricBill() * 0.5;
     }
 
     /**
@@ -118,23 +140,41 @@ export class PvAlgo {
         const currentYear: number            = new Date().getFullYear();
         const result: PhotovoltaicBenefits[] = [];
 
+        let index = 1;
         for ( let year = currentYear; year < currentYear + 25; year++ ) {
             if ( year === currentYear ) {
+                const savingsOnInvoice = this.savingsOnBill( index ) * 1.15;
                 result.push( {
                                  year,
-                                 resaleToEdf:      this.calcResalePriceToEdf(),
-                                 savingsOnInvoice: this.savingsOnBill(),
-                                 totalGains:       this.calcResalePriceToEdf() + this.savingsOnBill(),
+                                 resaleToEdf:      this.calcResalePriceToEdf( index ),
+                                 savingsOnInvoice: savingsOnInvoice,
+                                 totalGains:       this.calcResalePriceToEdf( index ) + savingsOnInvoice,
                              } );
             } else {
-                let resaleToEdf = result[ result.length - 1 ].resaleToEdf * 1.02;
+                let resaleToEdf: number = this.calcResalePriceToEdf( index ) * ( 1 + ( 0.015 * index ) );
+
 
                 // La revente avec EDF est sur 20 ans et non 25 ans
                 if ( year > currentYear + 19 ) {
-                    resaleToEdf = -1;
+                    resaleToEdf = 0;
                 }
 
-                const savingsOnInvoice = result[ result.length - 1 ].savingsOnInvoice * 1.030925266;
+                // const percentage: number = 1 + ( ( this.worksheet.electricityPriceEvolution / 100 ) * index );
+                const percentage: number = 1 + ( ( this.worksheet.electricityPriceEvolution / 100 ) );
+
+
+                // Année 1 = 15%
+                // Année 2 = 15% * pourcentage_augmentation
+                // Année 3 = Année * pourcentage_augmentation
+                let ratioSavingOnBill = 1.15;
+                for ( let i = 1; i < index; i++ ) {
+                    ratioSavingOnBill *= percentage;
+                }
+                let savingsOnInvoice: number = this.savingsOnBill( index ) * ratioSavingOnBill;
+
+                resaleToEdf      = Number( resaleToEdf.toFixed( 2 ) );
+                savingsOnInvoice = Number( savingsOnInvoice.toFixed( 2 ) );
+
                 result.push( {
                                  year,
                                  resaleToEdf,
@@ -142,6 +182,8 @@ export class PvAlgo {
                                  totalGains: resaleToEdf + savingsOnInvoice,
                              } );
             }
+
+            index++;
         }
 
         return result;
@@ -154,21 +196,24 @@ export class PvAlgo {
         const currentYear: number      = new Date().getFullYear();
         const result: PriceEvolution[] = [];
 
+        let index = 1;
         for ( let year = currentYear; year < currentYear + 25; year++ ) {
             if ( year === currentYear ) {
                 result.push( {
                                  year,
                                  kwhEdf:          this.calcAveragePricePerKWhOnElectricBill(),
-                                 kwhPhotovoltaic: this.calcPhotovoltaicAverageSellingPrice(),
+                                 kwhPhotovoltaic: this.calcPhotovoltaicAverageSellingPrice( index ),
                              } );
             } else {
-                const kwhEdf = result[ result.length - 1 ].kwhEdf * 1.030925266;
+                const percentage = 1 + ( this.worksheet.electricityPriceEvolution / 100 );
+                const kwhEdf     = result[ result.length - 1 ].kwhEdf * percentage;
                 result.push( {
                                  year,
                                  kwhEdf,
-                                 kwhPhotovoltaic: this.calcPhotovoltaicAverageSellingPrice(),
+                                 kwhPhotovoltaic: this.calcPhotovoltaicAverageSellingPrice( index ),
                              } );
             }
+            index++;
         }
 
         return result;

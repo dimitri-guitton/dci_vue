@@ -21,10 +21,13 @@ export const defaultInitFormDataStep4 = ( data: AllFile ): BaseStep4 => {
 
     const selectedProducts: StepProduct[] = [];
     for ( const sp of data.quotation.selectedProducts ) {
-        selectedProducts.push( { id: sp.id, pu: sp.pu } );
+        selectedProducts.push( { id: sp.id, pu: sp.pu, quantity: sp.quantity } );
     }
 
     return {
+        bonus:                 data.disabledBonus,
+        ceeBonus:              data.disabledCeeBonus,
+        maPrimeRenovBonus:     data.disabledMaPrimeRenovBonus,
         origin:                data.quotation.origin,
         dateTechnicalVisit:    data.quotation.dateTechnicalVisit,
         executionDelay:        data.quotation.executionDelay,
@@ -58,19 +61,16 @@ export const defaultYupConfigStep4 = () => {
                                    Yup.object().shape( {
                                                            pu: Yup.number()
                                                                   .required()
-                                                                  .min( 0,
-                                                                        'Le montant doit être supérieur ou égal à 0' ),
+                                                                  .min( 0, 'Le montant doit être supérieur ou égal à 0' ),
                                                        } ),
                                ),
         options:            Yup.array()
                                .of(
                                    Yup.object().shape( {
                                                            pu:     Yup.number()
-                                                                      .min( 0,
-                                                                            'Le montant doit être supérieur ou égal à 0' ),
+                                                                      .min( 0, 'Le montant doit être supérieur ou égal à 0' ),
                                                            number: Yup.number()
-                                                                      .min( 0,
-                                                                            'Le nombre doit être supérieur ou égal à 0' ),
+                                                                      .min( 0, 'Le nombre doit être supérieur ou égal à 0' ),
                                                        } ),
                                ),
 
@@ -94,6 +94,13 @@ const getPriceValue = ( price: Price ) => {
     };
 };
 
+export const defaultGetBonusValueStep4 = ( stepData: BaseStep4 ) => {
+    return {
+        disabledBonus:             stepData.bonus,
+        disabledCeeBonus:          stepData.ceeBonus,
+        disabledMaPrimeRenovBonus: stepData.maPrimeRenovBonus,
+    };
+};
 
 export const defaultGetQuotationValueStep4 = ( stepData: BaseStep4, price: Price ) => {
     const selectedProducts: Product[] = [];

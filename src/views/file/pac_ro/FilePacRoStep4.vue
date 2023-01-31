@@ -3,7 +3,9 @@
 
         <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit"
                       :price="price"
-                      :lists="lists"></step4-header>
+                      :lists="lists"
+                      :file="fileData"
+                      @bonusAreUpdated="updateBonus"></step4-header>
 
         <div class="row">
             <div class="col-md-6 mb-5">
@@ -154,6 +156,7 @@
             <div class="col-md-12 mb-5">
                 <!--        <h1>VOLUME ECS SÉLECTIONNÉ {{ volumeECS }}</h1>-->
                 <h6 class="mb-5">Volume ECS : </h6>
+
                 <Field name="volumeECS"
                        id="r_ecs_1"
                        class="form-check-input ms-5"
@@ -163,6 +166,7 @@
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_1">0L</label>
+
                 <Field name="volumeECS"
                        id="r_ecs_2"
                        class="form-check-input ms-5"
@@ -172,6 +176,7 @@
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_2">180L</label>
+
                 <Field name="volumeECS"
                        id="r_ecs_3"
                        class="form-check-input ms-5"
@@ -181,6 +186,7 @@
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_3">230L</label>
+
                 <Field name="volumeECS"
                        id="r_ecs_4"
                        class="form-check-input ms-5"
@@ -190,6 +196,7 @@
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_4">150L Déporté</label>
+
                 <Field name="volumeECS"
                        id="r_ecs_5"
                        class="form-check-input ms-5"
@@ -199,6 +206,7 @@
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_5">200L Déporté</label>
+
                 <Field name="volumeECS"
                        id="r_ecs_6"
                        class="form-check-input ms-5"
@@ -365,10 +373,34 @@ export default defineComponent( {
                                         const _blankOptions = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                         const lists         = ref<RoList>( ( props.fileData.lists as RoList ) );
 
-                                        const deviceToReplace  = ref( props.fileData.quotation.deviceToReplace );
-                                        const discount         = ref<number>( props.fileData.quotation.discount );
+                                        const deviceToReplace = ref( props.fileData.quotation.deviceToReplace );
+                                        const discount        = ref<number>( props.fileData.quotation.discount );
                                         // const isEcsDeporte    = ref<boolean>( props.fileData.quotation.isEcsDeporte );
-                                        const volumeECS        = ref<string>( props.fileData.quotation.volumeECS );
+                                        const volumeECS       = ref<string>( props.fileData.quotation.volumeECS );
+
+                                        const disabledBonus             = ref<boolean>( props.fileData.disabledBonus );
+                                        const disabledCeeBonus          = ref<boolean>( props.fileData.disabledCeeBonus );
+                                        const disabledMaPrimeRenovBonus = ref<boolean>( props.fileData.disabledMaPrimeRenovBonus );
+
+                                        // Si on ouvre un dossier avec l'ancien fonctionnement d'ECS
+                                        if ( typeof volumeECS.value === 'number' ) {
+                                            if ( volumeECS.value === 0 ) {
+                                                volumeECS.value = 'ecs_1';
+                                            } else if ( volumeECS.value === 150 ) {
+                                                volumeECS.value = 'ecs_4';
+                                            } else if ( volumeECS.value === 180 ) {
+                                                volumeECS.value = 'ecs_2';
+                                            } else if ( volumeECS.value === 200 ) {
+                                                volumeECS.value = 'ecs_5';
+                                            } else if ( volumeECS.value === 230 ) {
+                                                volumeECS.value = 'ecs_3';
+                                            } else if ( volumeECS.value === 300 ) {
+                                                volumeECS.value = 'ecs_6';
+                                            } else {
+                                                volumeECS.value = 'ecs_1';
+                                            }
+                                        }
+
                                         const sizingPercentage = ref<number>( props.fileData.quotation.sizingPercentage ?? 80 );
                                         console.log( '__ecs Volume ECS on Setup -->', volumeECS.value );
                                         // const volumeECSDeporte     = ref<number>( +props.fileData.quotation.volumeECSDeporte );
@@ -406,6 +438,13 @@ export default defineComponent( {
                                         const updateBlankOtions = ( blankOptions ) => {
                                             _blankOptions.value = blankOptions;
                                         };
+
+                                        const updateBonus = ( data: { bonus: boolean; ceeBonus: boolean; maPrimeRenovBonus: boolean } ) => {
+                                            disabledBonus.value             = data.bonus;
+                                            disabledCeeBonus.value          = data.ceeBonus;
+                                            disabledMaPrimeRenovBonus.value = data.maPrimeRenovBonus;
+                                        };
+
 
                                         const updateDiscount = ( value ) => {
                                             console.log( 'updateDiscount' );
@@ -640,13 +679,11 @@ export default defineComponent( {
                                                 return;
                                             }
 
-                                            // Change le nombre de l'option Forfait ballon tampon pour l'activer ou non
+                                            // Change le nombre de l'option Forfait mitigeur thermostatique pour l'activer ou non
                                             _options.value = _options.value.map( o => {
                                                 if ( enabled && o.label.includes( 'Forfait mitigeur' ) ) {
-                                                    console.log( '%c ENABLED', 'background: #00FF2E; color: #000000' );
                                                     return { ...o, number: 1 };
                                                 } else if ( !enabled && o.label.includes( 'Forfait mitigeur' ) ) {
-                                                    console.log( '%c DISABMED', 'background: #FF000A; color: #000000' );
                                                     return { ...o, number: 0 };
                                                 }
                                                 return o;
@@ -693,7 +730,7 @@ export default defineComponent( {
                                                 }
 
                                                 if ( option.label.includes( 'Forfait ballon tampon' ) ) {
-                                                    props.fileData.housing.heaters;
+                                                    // props.fileData.housing.heaters;
                                                     console.log( props.fileData.housing.heaters );
                                                     if ( props.fileData.housing.heaters === 'r_fonte' || props.fileData.housing.heaters === 'r_fonte_p_chauffant' || props.fileData.housing.heaters === 'r_autre' || props.fileData.housing.heaters === 'r_autre_p_chauffant' ) {
                                                         enabledBallonTamponOption( true );
@@ -703,7 +740,7 @@ export default defineComponent( {
                                                 }
 
                                                 if ( option.label.includes( 'Forfait mitigeur' ) ) {
-                                                    props.fileData.housing.heaters;
+                                                    // props.fileData.housing.heaters;
                                                     console.log( volumeECS.value );
                                                     if ( volumeECS.value === 'ecs_1' ) {
                                                         enabledMitigeurOption( false );
@@ -712,7 +749,6 @@ export default defineComponent( {
                                                     }
                                                 }
                                             }
-
 
                                             return _options.value;
                                         } );
@@ -770,14 +806,15 @@ export default defineComponent( {
                                             const totalTtc = totalHt + totalTva;
 
                                             // Si les primes sont actives
-                                            if ( !props.fileData.disabledBonus ) {
+                                            if ( !disabledBonus.value ) {
 
                                                 // Si la prime CEE est active
-                                                if ( !props.fileData.disabledCeeBonus ) {
+                                                if ( !disabledCeeBonus.value ) {
 
                                                     if ( deviceToReplace.value.type !== 'aucun' && deviceToReplace.value.type !== 'autre' ) {
                                                         // Coup de pouce
-                                                        ceeBonus = getHelpingHandRo( codeBonus );
+                                                        ceeBonus = getHelpingHandRo( codeBonus,
+                                                                                     deviceToReplace.value.type );
                                                     } else {
                                                         // Afin d'avoir les derniers produits pour le calcul de la prime
                                                         const updatedFileData: RoFile = {
@@ -799,7 +836,7 @@ export default defineComponent( {
 
                                                 // Si MaprimeRenov est actif
                                                 // TTC - Discount on doit déduire la remise du TTC pour avoir la bonne valeur
-                                                if ( !props.fileData.disabledMaPrimeRenovBonus ) {
+                                                if ( !disabledMaPrimeRenovBonus.value ) {
                                                     maPrimeRenov = getMaPrimeRenov( props.fileData.type,
                                                                                     ( totalTtc - discount.value ),
                                                                                     ceeBonus );
@@ -856,6 +893,7 @@ export default defineComponent( {
                                             generateQuotation,
                                             generateAddressCertificate,
                                             sizingPercentage,
+                                            updateBonus,
                                         };
                                     },
                                 } );

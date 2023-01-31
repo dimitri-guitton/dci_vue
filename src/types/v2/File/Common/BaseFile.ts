@@ -7,6 +7,7 @@ import { Technician } from '@/types/v2/File/Common/Technician';
 export interface BaseFile {
     version: string;
     type: string;
+    partner: string;
     ref: string;
     folderName: string;
     createdAt: string;

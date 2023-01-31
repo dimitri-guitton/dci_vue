@@ -69,8 +69,8 @@ export const validateStepOne = async ( data, assentOnJson: Assent[] ): Promise<{
     data.assents.forEach( assent => {
         if ( assent.numFiscal !== '' && assent.refAvis !== '' ) {
 
-            // On check si l'avis existe déja dans le Json et si il à des données de Datagouv
-            // Si c'est le cas on ne fait pas la requete API
+            // On check si l'avis existe déja dans le Json et s'il a des données de Datagouv
+            // Si c'est le cas, on ne fait pas la requete API.
             const assentAlreadyExist = assentOnJson.find( ( a ) => a.refAvis === assent.refAvis && a.numFiscal === assent.numFiscal && Object.keys(
                 a.datagouv ).length > 0 );
 
@@ -117,13 +117,13 @@ export const validateStepOne = async ( data, assentOnJson: Assent[] ): Promise<{
                 error:     !isResolved,
             };
 
-            // Par défaut le premier avis d'impot est sélectionner
+            // Par défaut le premier avis d'impot est sélectionné
             let isBeneficiary = false;
             if ( index === 0 ) {
                 isBeneficiary = true;
             }
 
-            // Ajooute l'avis dans le json si il n'existe pas
+            // Ajooute l'avis dans le json s'il n'existe pas
             const newAssent = addAssent( response.result.resp, datagouv, isBeneficiary );
 
             assents.push( newAssent );

@@ -6,7 +6,12 @@ import { PacRrFileStep } from '@/types/v2/Wizzard/FileStep';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { RrQuotation } from '@/types/v2/File/Rr/RrQuotation';
 import { updateTotalTtc } from '@/services/sqliteService';
-import { defaultGetQuotationValueStep4, defaultInitFormDataStep4, defaultYupConfigStep4 } from '@/services/file/wizzard/step4Service';
+import {
+    defaultGetBonusValueStep4,
+    defaultGetQuotationValueStep4,
+    defaultInitFormDataStep4,
+    defaultYupConfigStep4,
+} from '@/services/file/wizzard/step4Service';
 import { PacRrStep4 } from '@/types/v2/Wizzard/step4/PacRrStep4';
 import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 
@@ -108,6 +113,7 @@ export const validatePacRrStep4 = async ( data: PacRrFileStep, price: Price ): P
 
     fileData = {
         ...fileData,
+        ...defaultGetBonusValueStep4( data ),
         quotation,
     };
 

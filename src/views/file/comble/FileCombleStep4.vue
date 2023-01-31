@@ -1,52 +1,54 @@
 <template>
-  <div class="w-100">
+    <div class="w-100">
 
-    <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit" :price="price" :lists="lists"></step4-header>
+        <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit" :price="price" :lists="lists"
+                      :file="fileData" @bonusAreUpdated="updateBonus"></step4-header>
 
-    <step4-quotation-header></step4-quotation-header>
+        <step4-quotation-header></step4-quotation-header>
 
-    <selected-product :alert="alert"
-                      :products="products"
-                      :selectedProducts="selectedProducts"
-                      :quantity-area="quantityArea"
-                      @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
+        <selected-product :alert="alert"
+                          :products="products"
+                          :selectedProducts="selectedProducts"
+                          :quantity-area="quantityArea"
+                          @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
 
-    <options @optionsAreUpdated="updateOptions" :options="options"></options>
+        <options @optionsAreUpdated="updateOptions" :options="options"></options>
 
-    <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
+        <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
 
-    <wizzard-file-price :price="price"></wizzard-file-price>
+        <wizzard-file-price :price="price"></wizzard-file-price>
 
-    <div class="row mt-10">
-      <div class="col-md-12 fv-row">
-        <label class="form-label mb-3">Commentaire</label>
-        <Field
-            as="textarea"
-            class="form-control form-control-lg"
-            name="commentary"
-            placeholder="RAS"
-            value=""
-        />
-        <ErrorMessage
-            name="commentary"
-            class="fv-plugins-message-container invalid-feedback"
-        ></ErrorMessage>
-      </div>
+        <div class="row mt-10">
+            <div class="col-md-12 fv-row">
+                <label class="form-label mb-3">Commentaire</label>
+                <Field
+                    as="textarea"
+                    class="form-control form-control-lg"
+                    name="commentary"
+                    placeholder="RAS"
+                    value=""
+                />
+                <ErrorMessage
+                    name="commentary"
+                    class="fv-plugins-message-container invalid-feedback"
+                ></ErrorMessage>
+            </div>
+        </div>
+
+        <el-divider class="mb-10"></el-divider>
+
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3 d-flex justify-content-around">
+                <button type="button" @click="generateAddressCertificate" class="btn btn-outline btn-outline-info">
+                    Générer
+                    l'attestation
+                    d'adresse
+                </button>
+                <button type="button" @click="generateQuotation" class="btn btn-info">Générer le devis</button>
+            </div>
+        </div>
+
     </div>
-
-    <el-divider class="mb-10"></el-divider>
-
-    <div class="row mt-5">
-      <div class="col-md-6 offset-md-3 d-flex justify-content-around">
-        <button type="button" @click="generateAddressCertificate" class="btn btn-outline btn-outline-info">Générer
-                                                                                                           l'attestation
-                                                                                                           d'adresse
-        </button>
-        <button type="button" @click="generateQuotation" class="btn btn-info">Générer le devis</button>
-      </div>
-    </div>
-
-  </div>
 </template>
 
 <script lang="ts">
@@ -63,167 +65,181 @@ import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
 import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
-import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { getCeeBonus, roundCeeBonus } from '@/services/file/fileCommonService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 import CombleList from '@/types/v2/File/Comble/CombleList';
+import { CombleFile } from '@/types/v2/File/Comble/CombleFile';
 
 export default defineComponent( {
-                                  name:       'file-comble-step-4',
-                                  components: {
-                                    Step4Header,
-                                    WizzardFilePrice,
-                                    BlankOptions,
-                                    Options,
-                                    Step4QuotationHeader,
-                                    SelectedProduct,
-                                    Field,
-                                    ErrorMessage,
-                                  },
-                                  props:      {
-                                    products:         Array as () => Product[],
-                                    selectedProducts: Array as () => Product[],
-                                    options:          Array as () => Option[],
-                                    blankOptions:     Array as () => BlankOption[],
-                                    quantityArea:     {
-                                      type:     Number,
-                                      required: true,
+                                    name:       'file-comble-step-4',
+                                    components: {
+                                        Step4Header,
+                                        WizzardFilePrice,
+                                        BlankOptions,
+                                        Options,
+                                        Step4QuotationHeader,
+                                        SelectedProduct,
+                                        Field,
+                                        ErrorMessage,
                                     },
-                                    fileData:         {
-                                      type:     Object,
-                                      required: true,
+                                    props:      {
+                                        products:         Array as () => Product[],
+                                        selectedProducts: Array as () => Product[],
+                                        options:          Array as () => Option[],
+                                        blankOptions:     Array as () => BlankOption[],
+                                        quantityArea:     {
+                                            type:     Number,
+                                            required: true,
+                                        },
+                                        fileData:         {
+                                            type:     Object as () => CombleFile,
+                                            required: true,
+                                        },
+                                        forceRefresh:     Boolean,  // Pour focer le compute des prix quand on arrive sur la step4
                                     },
-                                    forceRefresh:     Boolean,  // Pour focer le compute des prix quand on arrive sur la step4
-                                  },
-                                  emits:      [ 'generateQuotation', 'generateAddressCertificate', 'calculedPrice' ],
-                                  setup( props, ctx ) {
-                                    const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
-                                    const _options          = ref<Option[]>( ( props.options as Option[] ) );
-                                    const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
-                                    const lists             = ref<CombleList>( ( props.fileData.lists as CombleList ) );
+                                    emits:      [ 'generateQuotation', 'generateAddressCertificate', 'calculedPrice' ],
+                                    setup( props, ctx ) {
+                                        const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
+                                        const _options          = ref<Option[]>( ( props.options as Option[] ) );
+                                        const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
+                                        const lists             = ref<CombleList>( ( props.fileData.lists as CombleList ) );
 
-                                    const generateQuotation = () => {
-                                      ctx.emit( 'generateQuotation' );
-                                    };
+                                        const disabledBonus             = ref<boolean>( props.fileData.disabledBonus );
+                                        const disabledCeeBonus          = ref<boolean>( props.fileData.disabledCeeBonus );
+                                        const disabledMaPrimeRenovBonus = ref<boolean>( props.fileData.disabledMaPrimeRenovBonus );
 
-                                    const generateAddressCertificate = () => {
-                                      ctx.emit( 'generateAddressCertificate' );
-                                    };
+                                        const generateQuotation = () => {
+                                            ctx.emit( 'generateQuotation' );
+                                        };
 
-                                    const updateSelectedProduct = ( product ) => {
-                                      _selectedProducts.value = [ product ];
-                                    };
+                                        const generateAddressCertificate = () => {
+                                            ctx.emit( 'generateAddressCertificate' );
+                                        };
 
-                                    const updateOptions = ( options ) => {
-                                      _options.value = options;
-                                    };
+                                        const updateSelectedProduct = ( product ) => {
+                                            _selectedProducts.value = [ product ];
+                                        };
 
-                                    const updateBlankOtions = ( blankOptions ) => {
-                                      _blankOptions.value = blankOptions;
-                                    };
+                                        const updateOptions = ( options ) => {
+                                            _options.value = options;
+                                        };
 
-                                    const price = computed<Price>( () => {
-                                      // On utilise props.forceRefresh pour recalculer les prix
-                                      if ( props.forceRefresh ) {
-                                        console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
-                                      }
-                                      console.log( '%c IN COMPUTED', 'background: #007C83; color: #FFFFFF' );
-                                      let totalHt  = 0;
-                                      let ceeBonus = 0;
+                                        const updateBlankOtions = ( blankOptions ) => {
+                                            _blankOptions.value = blankOptions;
+                                        };
 
-                                      console.log( '%c AREA', 'background: #61C60B; color: #000000' );
-                                      console.log( 'area', props.quantityArea );
-
-                                      console.log( 'Prix par defaut -->', totalHt );
-                                      console.log( 'Prix par defaut -->', totalHt );
-                                      console.log( 'Prix par defaut -->', totalHt );
-                                      for ( const selectedProduct of _selectedProducts.value ) {
-                                        totalHt += selectedProduct.pu * props.quantityArea;
-                                      }
-                                      console.log( 'Prix avec les produits -->', totalHt );
-
-                                      // TODO UPDATE THE OVERRIDE POSE
-                                      const laying = props.quantityArea * ( props.fileData as SolFile ).quotation.overrideLaying;
-
-                                      totalHt += laying;
-                                      console.log( 'Prix apres la poses', totalHt );
+                                        const updateBonus = ( data: { bonus: boolean; ceeBonus: boolean; maPrimeRenovBonus: boolean } ) => {
+                                            disabledBonus.value             = data.bonus;
+                                            disabledCeeBonus.value          = data.ceeBonus;
+                                            disabledMaPrimeRenovBonus.value = data.maPrimeRenovBonus;
+                                        };
 
 
-                                      for ( const option of _options.value ) {
-                                        if ( option.number > 0 ) {
-                                          totalHt += option.pu * option.number;
-                                        }
-                                      }
-                                      console.log( 'Prix avec les options -->', totalHt );
+                                        const price = computed<Price>( () => {
+                                            // On utilise props.forceRefresh pour recalculer les prix
+                                            if ( props.forceRefresh ) {
+                                                console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
+                                            }
+                                            console.log( '%c IN COMPUTED', 'background: #007C83; color: #FFFFFF' );
+                                            let totalHt  = 0;
+                                            let ceeBonus = 0;
 
-                                      for ( const option of _blankOptions.value ) {
-                                        if ( option.number > 0 && option.label !== '' ) {
-                                          totalHt += option.pu * option.number;
-                                        }
-                                      }
-                                      console.log( 'Prix avec les options vides -->', totalHt );
+                                            console.log( '%c AREA', 'background: #61C60B; color: #000000' );
+                                            console.log( 'area', props.quantityArea );
 
-                                      const codeBonus = getCodeBonus();
-                                      console.log( 'Code prime --> ', codeBonus );
-                                      const lessThan2Year = getLessThan2Year();
-                                      console.log( 'Moins de 2 ans --> ', lessThan2Year );
+                                            console.log( 'Prix par defaut -->', totalHt );
+                                            console.log( 'Prix par defaut -->', totalHt );
+                                            console.log( 'Prix par defaut -->', totalHt );
+                                            for ( const selectedProduct of _selectedProducts.value ) {
+                                                totalHt += selectedProduct.pu * props.quantityArea;
+                                            }
+                                            console.log( 'Prix avec les produits -->', totalHt );
 
-                                      let tva = getTva();
-                                      if ( lessThan2Year ) {
-                                        tva = 20;
-                                      } else {
-                                        // Si les primes sont actives
-                                        if ( !props.fileData.disabledBonus ) {
-                                          // Si la prime CEE est active
-                                          if ( !props.fileData.disabledCeeBonus ) {
-                                            console.log( '%c CEE ---', 'background: #fdd835; color: #000000' );
-                                            console.log( getCeeBonus( ( props.fileData as BaseFile ) ) );
-                                            console.log( props.quantityArea );
-                                            console.log( '%c FIN CEE ---', 'background: #fdd835; color: #000000' );
-                                            ceeBonus = roundCeeBonus( getCeeBonus( ( props.fileData as BaseFile ) ) * props.quantityArea );
-                                          }
-                                        }
-                                      }
+                                            // TODO UPDATE THE OVERRIDE POSE
+                                            const laying = props.quantityArea * props.fileData.quotation.overrideLaying;
+
+                                            totalHt += laying;
+                                            console.log( 'Prix apres la poses', totalHt );
 
 
-                                      const totalTva = tva * totalHt / 100;
-                                      const totalTtc = totalHt + totalTva;
+                                            for ( const option of _options.value ) {
+                                                if ( option.number > 0 ) {
+                                                    totalHt += option.pu * option.number;
+                                                }
+                                            }
+                                            console.log( 'Prix avec les options -->', totalHt );
 
-                                      const remainderToPay = totalTtc - ceeBonus;
+                                            for ( const option of _blankOptions.value ) {
+                                                if ( option.number > 0 && option.label !== '' ) {
+                                                    totalHt += option.pu * option.number;
+                                                }
+                                            }
+                                            console.log( 'Prix avec les options vides -->', totalHt );
 
-                                      const price: Price = {
-                                        laying,
-                                        HT:    totalHt,
-                                        TVA:   lessThan2Year ? 0 : totalTva,
-                                        TVA20: lessThan2Year ? totalTva : 0,
-                                        TTC:   totalTtc,
-                                        remainderToPay,
-                                        CEE:   ceeBonus,
-                                      };
+                                            const codeBonus = getCodeBonus();
+                                            console.log( 'Code prime --> ', codeBonus );
+                                            const lessThan2Year = getLessThan2Year();
+                                            console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
-                                      console.log( 'PRICE -->', price );
+                                            let tva = getTva();
+                                            if ( lessThan2Year ) {
+                                                tva = 20;
+                                            } else {
+                                                // Si les primes sont actives
+                                                if ( !disabledBonus.value ) {
+                                                    // Si la prime CEE est active
+                                                    if ( !disabledCeeBonus.value ) {
+                                                        console.log( '%c CEE ---',
+                                                                     'background: #fdd835; color: #000000' );
+                                                        console.log( getCeeBonus( ( props.fileData as BaseFile ) ) );
+                                                        console.log( props.quantityArea );
+                                                        console.log( '%c FIN CEE ---',
+                                                                     'background: #fdd835; color: #000000' );
+                                                        ceeBonus = roundCeeBonus( getCeeBonus( ( props.fileData as BaseFile ) ) * props.quantityArea );
+                                                    }
+                                                }
+                                            }
 
-                                      ctx.emit( 'calculedPrice', price );
+
+                                            const totalTva = tva * totalHt / 100;
+                                            const totalTtc = totalHt + totalTva;
+
+                                            const remainderToPay = totalTtc - ceeBonus;
+
+                                            const price: Price = {
+                                                laying,
+                                                HT:    totalHt,
+                                                TVA:   lessThan2Year ? 0 : totalTva,
+                                                TVA20: lessThan2Year ? totalTva : 0,
+                                                TTC:   totalTtc,
+                                                remainderToPay,
+                                                CEE:   ceeBonus,
+                                            };
+
+                                            console.log( 'PRICE -->', price );
+
+                                            ctx.emit( 'calculedPrice', price );
 
 
-                                      return price;
-                                    } );
+                                            return price;
+                                        } );
 
-                                    return {
-                                      price,
-                                      lists,
-                                      updateSelectedProduct,
-                                      updateOptions,
-                                      updateBlankOtions,
-                                      generateQuotation,
-                                      generateAddressCertificate,
-                                    };
-                                  },
+                                        return {
+                                            price,
+                                            lists,
+                                            updateSelectedProduct,
+                                            updateOptions,
+                                            updateBlankOtions,
+                                            generateQuotation,
+                                            generateAddressCertificate,
+                                            updateBonus,
+                                        };
+                                    },
                                 } );
 </script>
 
 <style>
 textarea {
-  resize : none;
+    resize : none;
 }
 </style>
