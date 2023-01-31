@@ -1161,11 +1161,14 @@ export class RoAlgo extends PacAlgo {
         // On récupère le model intérieur selon les infos renseignées
         const filteredUnitInt = this.unitIntList[ this.housing.availableVoltage ].filter( ( unit: UnitInt ) => {
 
-            // TODO highTemperature
-            // Les highTemperature pas que 65°C mais que pour les Unité EPRA qui font de la haute température
-            // Donc highTemperature = reférence == EPRA
+            // Les highTemperature pas qu'à 65°C mais que pour toutes les unites EPRA qui font de la haute température
 
-            const highTemperature = heaterValue === 65;
+            // const highTemperature = heaterValue === 65;
+
+            let highTemperature = false;
+            if ( selectedUnitExt !== null ) {
+                highTemperature = selectedUnitExt.ref.includes( 'EPRA' );
+            }
             console.log( 'highTemperature', highTemperature );
 
             console.log( '---' );
@@ -1186,14 +1189,6 @@ export class RoAlgo extends PacAlgo {
                     }
                 }
             }
-
-            // console.log( 'unit.sizes', unit.sizes );
-            // console.log( 'size', size );
-            // console.log( 'unit.hotWaterTank === hotWater', unit.hotWaterTank === hotWater );
-            // console.log( 'unit.bizone === bizone', unit.bizone === bizone );
-            // console.log( 'unit.sizes.includes(size)', unit.sizes.includes( size ) );
-            // console.log( 'highTemperature === unit.highTemperature', highTemperature === unit.highTemperature );
-
 
             return unit.hotWaterTank === hotWater && unit.bizone === bizone && unit.sizes.includes( size ) && ( !highTemperature || highTemperature === unit.highTemperature );
         } );
