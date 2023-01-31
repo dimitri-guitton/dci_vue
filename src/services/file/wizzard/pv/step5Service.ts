@@ -44,6 +44,7 @@ export const initPvFormDataStep5 = ( worksheet: PvWorkSheet ) => {
             electricityPriceEvolution: worksheet.electricityPriceEvolution,
             totalKwhFactureElectrique: worksheet.totalKwhFactureElectrique,
             orientation:               worksheet.orientation,
+            ratioResaleToEDF:          worksheet.ratioResaleToEDF,
         },
     };
 };

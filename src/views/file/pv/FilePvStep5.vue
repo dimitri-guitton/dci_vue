@@ -72,6 +72,20 @@
                     <item-list :lists="lists.electricityPriceEvolutionList"></item-list>
                 </Field>
             </div>
+
+            <div class="col-md-6 mb-5">
+                <label for="electricityPriceEvolution" class="form-label">Ratio de revente auprès d'EDF</label>
+                <Field
+                    v-model.number="ratioResaleToEDF"
+                    name="worksheet.ratioResaleToEDF"
+                    id="ratioResaleToEDF"
+                    class="form-select"
+                    as="select"
+                    @change="updateWorksheet"
+                >
+                    <item-list :lists="lists.ratioResaleToEDFList"></item-list>
+                </Field>
+            </div>
         </div>
 
         <!-- Graphique (caché) pour le PDF sur l'étude de rentabilité-->
@@ -131,6 +145,7 @@ export default defineComponent( {
                                         const pdfGenerator              = new ProfitabilityStudyGenerator( props.fileData );
                                         const orientation               = ref( props.fileData.worksheet.orientation );
                                         const electricityPriceEvolution = ref( props.fileData.worksheet.electricityPriceEvolution );
+                                        const ratioResaleToEDF          = ref( props.fileData.worksheet.ratioResaleToEDF );
 
                                         const generateWorksheet = () => {
                                             ctx.emit( 'generateWorksheet' );
@@ -151,6 +166,7 @@ export default defineComponent( {
                                             console.log( 'totalKwhFactureElectrique', totalKwhFactureElectrique.value );
                                             console.log( 'orientation', orientation.value );
                                             console.log( 'electricityPriceEvolution', electricityPriceEvolution.value );
+                                            console.log( 'ratioResaleToEDF', ratioResaleToEDF.value );
 
                                             const newWoksheet = {
                                                 ...props.fileData.worksheet,
@@ -158,6 +174,7 @@ export default defineComponent( {
                                                 totalKwhFactureElectrique: totalKwhFactureElectrique.value,
                                                 orientation:               orientation.value,
                                                 electricityPriceEvolution: electricityPriceEvolution.value,
+                                                ratioResaleToEDF:          ratioResaleToEDF.value,
                                             };
 
                                             pdfGenerator.updateChart( props.fileData.quotation,
@@ -186,6 +203,7 @@ export default defineComponent( {
                                             totalKwhFactureElectrique,
                                             orientation,
                                             electricityPriceEvolution,
+                                            ratioResaleToEDF,
                                             updateWorksheet,
                                         };
                                     },
