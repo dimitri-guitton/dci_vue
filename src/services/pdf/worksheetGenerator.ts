@@ -69,7 +69,11 @@ export class WorksheetGenerator extends PdfGenerator {
         if ( this._file.type === FILE_PV ) {
             const profitabilityStudyGenerator = new ProfitabilityStudyGenerator( this._file );
             profitabilityStudyGenerator.generatePdf();
-            return;
+
+            // On génère une fiche que si infoSup n'est pas vide et différent de RAS
+            if ( !( this._file.worksheet.infosSup !== '' && this._file.worksheet.infosSup.toUpperCase() !== 'RAS' ) ) {
+                return;
+            }
         }
 
         super.generatePdf();
