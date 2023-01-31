@@ -37,7 +37,7 @@ interface UnitExt {
 }
 
 /**
- * List des unités extérieurs par tension
+ * List des unités extérieures par tension
  */
 interface UnitExtList {
     monophase: UnitExt[];
@@ -45,7 +45,7 @@ interface UnitExtList {
 }
 
 /**
- * Unité intérieurs
+ * Unité intérieure
  */
 interface UnitInt {
     ref: string;
@@ -56,7 +56,7 @@ interface UnitInt {
 }
 
 /**
- * Les des unités intérieurs par tension
+ * Les unités intérieures par tension
  */
 interface UnitIntList {
     monophase: UnitInt[];
@@ -1083,19 +1083,19 @@ export class RoAlgo extends PacAlgo {
                          'valeur_radiateurs':        heaterValue,
                      } );
 
-        // Si on ne trouve pas dans la liste la tension souhaité on retourne null
+        // Si on ne trouve pas dans la liste la tension souhaitée on retourne null
         if ( this.unitExtList[ this.housing.availableVoltage ] === undefined ) {
             return null;
         }
 
         // On filtre la liste pour trouver la PAC souhaité
         const filterredUnitExt: UnitExt[] = this.unitExtList[ this.housing.availableVoltage ].filter( ( pac: UnitExt ) => {
-            // Si valeur de chauffage n'est pas défini
+            // Si valeur de chauffage n'est pas définie
             if ( pac.output[ heaterValue ] === undefined ) {
                 return false;
             }
 
-            // On retourne la PAC que si sont output est supérieur à la puissance requise
+            // On retourne la PAC que si son output est supérieur à la puissance requise
             return pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower * ( sizingPercentage / 100 );
         } );
 
@@ -1106,7 +1106,7 @@ export class RoAlgo extends PacAlgo {
         } else {
             console.log( 'filterredUnitExt -->', filterredUnitExt );
 
-            // Si il y a plus de 1 PAC on parcours les pacs et on récupère la moins chère
+            // S'il y a plus de 1 PAC on parcourt les pacs et on récupère la moins chère
             for ( const unitExt of filterredUnitExt ) {
                 console.log( unitExt );
                 console.log( 's1 ->', selectedUnitExt );
@@ -1134,7 +1134,7 @@ export class RoAlgo extends PacAlgo {
             return null;
         }
 
-        // Si on ne trouve pas dans la liste la tension souhaité on retourne null
+        // Si on ne trouve pas dans la liste la tension souhaitée on retourne null
         if ( this.unitIntList[ this.housing.availableVoltage ] === undefined ) {
             return null;
         }
@@ -1150,7 +1150,7 @@ export class RoAlgo extends PacAlgo {
                          'size':       size,
                      } );
 
-        // Pompe à chaleur bi-zone avec ECS n'existe pas, on doit rajouter un KIT-Bi-Zone
+        // Pompe à chaleur bizone avec ECS n'existe pas, on doit rajouter un KIT-Bi-Zone
         // On passe donc bizone à false
         let needBiZoneSupplement = false;
         if ( bizone && hotWater === 0 ) {
@@ -1158,7 +1158,7 @@ export class RoAlgo extends PacAlgo {
             needBiZoneSupplement = true;
         }
 
-        // On récupère le model intérieur selon les infos renseigné
+        // On récupère le model intérieur selon les infos renseignées
         const filteredUnitInt = this.unitIntList[ this.housing.availableVoltage ].filter( ( unit: UnitInt ) => {
 
             // TODO highTemperature
@@ -1172,7 +1172,7 @@ export class RoAlgo extends PacAlgo {
             console.log( '---' );
             console.log( `${ unit.hotWaterTank } --- ${ hotWater }` );
 
-            // Si non aute température on ne check pas la si c'est égale
+            // Sinon aute température on ne check pas la si c'est égal
             if ( !highTemperature || highTemperature === unit.highTemperature ) {
                 console.log( 'BONNE TEMPÉRATURE' );
                 if ( unit.sizes.includes( size ) ) {
@@ -1237,7 +1237,7 @@ export class RoAlgo extends PacAlgo {
     }
 
     /**
-     * Retourne la puissance réel d'une unité extérieur selon la zone climatique
+     * Retourne la puissance réelle d'une unité extérieure selon la zone climatique
      */
     public getRealPowerUnitExt( sizingPercentage: number ): number {
         const requiredPower: number = this.calcRequiredPower( this.housing );
@@ -1257,19 +1257,19 @@ export class RoAlgo extends PacAlgo {
             formatedBaseTemp = baseTemp.toString();
         }
 
-        // Si on ne trouve pas dans la liste la tension souhaité on retourne null
+        // Si on ne trouve pas dans la liste la tension souhaitée on retourne null
         if ( this.unitExtList[ this.housing.availableVoltage ] === undefined ) {
             return 0;
         }
 
         // On filtre la liste pour trouver la PAC souhaité
         const filterredUnitExt: UnitExt[] = this.unitExtList[ this.housing.availableVoltage ].filter( ( pac: UnitExt ) => {
-            // Si valeur de chauffage n'est pas défini
+            // Si valeur de chauffage n'est pas définie
             if ( pac.output[ heaterValue ] === undefined ) {
                 return false;
             }
 
-            // On retourne la PAC que si sont output est supérieur à la puissance requise
+            // On retourne la PAC que si son output est supérieur à la puissance requise
             return pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower * ( sizingPercentage / 100 );
         } );
 
@@ -1278,8 +1278,8 @@ export class RoAlgo extends PacAlgo {
         if ( filterredUnitExt.length === 1 ) {
             selectedUnitExt = filterredUnitExt[ 0 ];
         } else {
-            // Si il y a plus de 1 PAC on parcours les pacs et on récupère celle à la plus faible puissance (la plus proche de la puissance requise)
-            // Si Même puissance la moins chère
+            // S'il y a plus de 1 PAC on parcourt les pacs et on récupère celle à la plus faible puissance (la plus proche de la puissance requise)
+            // Si Même puissance la moins chère.
             for ( const unitExt of filterredUnitExt ) {
                 if ( selectedUnitExt === null ) {
                     selectedUnitExt = unitExt;
