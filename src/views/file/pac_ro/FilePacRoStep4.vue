@@ -679,13 +679,11 @@ export default defineComponent( {
                                                 return;
                                             }
 
-                                            // Change le nombre de l'option Forfait ballon tampon pour l'activer ou non
+                                            // Change le nombre de l'option Forfait mitigeur thermostatique pour l'activer ou non
                                             _options.value = _options.value.map( o => {
                                                 if ( enabled && o.label.includes( 'Forfait mitigeur' ) ) {
-                                                    console.log( '%c ENABLED', 'background: #00FF2E; color: #000000' );
                                                     return { ...o, number: 1 };
                                                 } else if ( !enabled && o.label.includes( 'Forfait mitigeur' ) ) {
-                                                    console.log( '%c DISABMED', 'background: #FF000A; color: #000000' );
                                                     return { ...o, number: 0 };
                                                 }
                                                 return o;
@@ -732,7 +730,7 @@ export default defineComponent( {
                                                 }
 
                                                 if ( option.label.includes( 'Forfait ballon tampon' ) ) {
-                                                    props.fileData.housing.heaters;
+                                                    // props.fileData.housing.heaters;
                                                     console.log( props.fileData.housing.heaters );
                                                     if ( props.fileData.housing.heaters === 'r_fonte' || props.fileData.housing.heaters === 'r_fonte_p_chauffant' || props.fileData.housing.heaters === 'r_autre' || props.fileData.housing.heaters === 'r_autre_p_chauffant' ) {
                                                         enabledBallonTamponOption( true );
@@ -742,7 +740,7 @@ export default defineComponent( {
                                                 }
 
                                                 if ( option.label.includes( 'Forfait mitigeur' ) ) {
-                                                    props.fileData.housing.heaters;
+                                                    // props.fileData.housing.heaters;
                                                     console.log( volumeECS.value );
                                                     if ( volumeECS.value === 'ecs_1' ) {
                                                         enabledMitigeurOption( false );
@@ -751,7 +749,6 @@ export default defineComponent( {
                                                     }
                                                 }
                                             }
-
 
                                             return _options.value;
                                         } );
