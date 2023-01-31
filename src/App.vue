@@ -31,31 +31,31 @@ import { useStore } from 'vuex';
 import { Mutations } from '@/store/enums/StoreEnums';
 
 import {
-  ArcElement,
-  BarController,
-  BarElement,
-  BubbleController,
-  CategoryScale,
-  Chart,
-  Decimation,
-  DoughnutController,
-  Filler,
-  Legend,
-  LinearScale,
-  LineController,
-  LineElement,
-  LogarithmicScale,
-  PieController,
-  PointElement,
-  PolarAreaController,
-  RadarController,
-  RadialLinearScale,
-  ScatterController,
-  SubTitle,
-  TimeScale,
-  TimeSeriesScale,
-  Title,
-  Tooltip,
+    ArcElement,
+    BarController,
+    BarElement,
+    BubbleController,
+    CategoryScale,
+    Chart,
+    Decimation,
+    DoughnutController,
+    Filler,
+    Legend,
+    LinearScale,
+    LineController,
+    LineElement,
+    LogarithmicScale,
+    PieController,
+    PointElement,
+    PolarAreaController,
+    RadarController,
+    RadialLinearScale,
+    ScatterController,
+    SubTitle,
+    TimeScale,
+    TimeSeriesScale,
+    Title,
+    Tooltip,
 } from 'chart.js';
 import { getConnectedToInternet, setConnectedToInternet } from '@/services/data/dataService';
 import { ElMessage, ElNotification } from 'element-plus';
@@ -111,7 +111,6 @@ export default defineComponent( {
                                                        } );
                                           }
                                           setConnectedToInternet( true );
-
                                         } else {
                                           setConnectedToInternet( false );
                                           ElMessage( {
@@ -119,8 +118,6 @@ export default defineComponent( {
                                                        type:    'warning',
                                                      } );
                                         }
-
-
                                       };
 
                                       ipcRenderer.on( 'download_update', () => {
@@ -147,18 +144,20 @@ export default defineComponent( {
                                                           dangerouslyUseHTMLString: true,
                                                           message:                  `<p class="mb-5">Mise à jour téléchargée. Elle sera installée au redémarrage de l'application. Redémarrer maintenant ?</p><button id="restart_btn" class="btn btn-success">Redémarrer</button>`,
                                                           position:                 'bottom-left',
-                                                          offset:                   25,
-                                                          duration:                 0,
+                                                            offset:                 25,
+                                                            duration:               0,
                                                         } );
 
-                                        const btn = document.getElementById( 'restart_btn' );
-                                        if ( btn !== null ) {
-                                          btn.addEventListener( 'click', restartApp );
-                                        }
+                                          const btn = document.getElementById( 'restart_btn' );
+                                          if ( btn !== null ) {
+                                              btn.addEventListener( 'click', restartApp );
+                                          }
                                       } );
 
-                                      window.addEventListener( 'online', updateOnlineStatus );
-                                      window.addEventListener( 'offline', updateOnlineStatus );
+                                        // Mise à jour du status au lancement du DCI
+                                        updateOnlineStatus();
+                                        window.addEventListener( 'online', updateOnlineStatus );
+                                        window.addEventListener( 'offline', updateOnlineStatus );
                                     } );
                                   },
                                 } );
