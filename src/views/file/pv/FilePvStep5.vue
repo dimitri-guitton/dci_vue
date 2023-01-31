@@ -20,31 +20,18 @@
 
         <div class="row mt-10">
             <div class="col-md-6 mb-5">
-                <label for="montantFactureElectrique" class="form-label mb-3">Montant facture électrique
-                    <sup>€</sup></label>
+                <label for="orientation" class="form-label">Prix moyen du kWh en France</label>
                 <Field
-                    v-model.number="montantFactureElectrique"
-                    type="number"
-                    name="worksheet.montantFactureElectrique"
-                    id="montantFactureElectrique"
-                    class="form-control"
+                    v-model.number="averagePricePerKWhInFrance"
+                    name="worksheet.averagePricePerKWhInFrance"
+                    id="averagePricePerKWhInFrance"
+                    class="form-select"
+                    as="select"
+                    @change="updateWorksheet"
                 >
+                    <item-list :lists="lists.averagePricePerKWhInFranceList"></item-list>
                 </Field>
             </div>
-
-            <div class="col-md-6 mb-5">
-                <label for="totalKwhFactureElectrique" class="form-label mb-3">Total kwh sur facture électrique
-                    <sup><var>KWh</var></sup></label>
-                <Field
-                    v-model.number="totalKwhFactureElectrique"
-                    type="number"
-                    name="worksheet.totalKwhFactureElectrique"
-                    id="totalKwhFactureElectrique"
-                    class="form-control"
-                >
-                </Field>
-            </div>
-
             <div class="col-md-6 mb-5">
                 <label for="orientation" class="form-label">Orientation</label>
                 <Field
@@ -119,13 +106,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import PvList from '@/types/v2/File/Pv/PvList';
 import { Field } from 'vee-validate';
 import ItemList from '@/components/DCI/input/ItemList.vue';
 import { PvFile } from '@/types/v2/File/Pv/PvFile';
 import { ProfitabilityStudyGenerator } from '@/services/pdf/profitabilityStudyGenerator';
-import useDebouncedRef from '@/services/useDebouncedRef';
 
 export default defineComponent( {
                                     name:       'file-pv-step-5',
@@ -142,10 +128,11 @@ export default defineComponent( {
                                     },
                                     emits:      [ 'generateWorksheet' ],
                                     setup( props, ctx ) {
-                                        const pdfGenerator              = new ProfitabilityStudyGenerator( props.fileData );
-                                        const orientation               = ref( props.fileData.worksheet.orientation );
-                                        const electricityPriceEvolution = ref( props.fileData.worksheet.electricityPriceEvolution );
-                                        const ratioResaleToEDF          = ref( props.fileData.worksheet.ratioResaleToEDF );
+                                        const pdfGenerator               = new ProfitabilityStudyGenerator( props.fileData );
+                                        const averagePricePerKWhInFrance = ref( props.fileData.worksheet.averagePricePerKWhInFrance );
+                                        const orientation                = ref( props.fileData.worksheet.orientation );
+                                        const electricityPriceEvolution  = ref( props.fileData.worksheet.electricityPriceEvolution );
+                                        const ratioResaleToEDF           = ref( props.fileData.worksheet.ratioResaleToEDF );
 
                                         const generateWorksheet = () => {
                                             ctx.emit( 'generateWorksheet' );
@@ -155,26 +142,20 @@ export default defineComponent( {
                                             pdfGenerator.createChart();
                                         } );
 
-                                        const montantFactureElectrique  = useDebouncedRef( props.fileData.worksheet.montantFactureElectrique,
-                                                                                           400 );
-                                        const totalKwhFactureElectrique = useDebouncedRef( props.fileData.worksheet.totalKwhFactureElectrique,
-                                                                                           400 );
-
                                         const updateWorksheet = () => {
 
-                                            console.log( 'montantFactureElectrique', montantFactureElectrique.value );
-                                            console.log( 'totalKwhFactureElectrique', totalKwhFactureElectrique.value );
                                             console.log( 'orientation', orientation.value );
                                             console.log( 'electricityPriceEvolution', electricityPriceEvolution.value );
                                             console.log( 'ratioResaleToEDF', ratioResaleToEDF.value );
+                                            console.log( 'averagePricePerKWhInFrance',
+                                                         averagePricePerKWhInFrance.value );
 
                                             const newWoksheet = {
                                                 ...props.fileData.worksheet,
-                                                montantFactureElectrique:  montantFactureElectrique.value,
-                                                totalKwhFactureElectrique: totalKwhFactureElectrique.value,
-                                                orientation:               orientation.value,
-                                                electricityPriceEvolution: electricityPriceEvolution.value,
-                                                ratioResaleToEDF:          ratioResaleToEDF.value,
+                                                orientation:                orientation.value,
+                                                electricityPriceEvolution:  electricityPriceEvolution.value,
+                                                ratioResaleToEDF:           ratioResaleToEDF.value,
+                                                averagePricePerKWhInFrance: averagePricePerKWhInFrance.value,
                                             };
 
                                             pdfGenerator.updateChart( props.fileData.quotation,
@@ -186,24 +167,12 @@ export default defineComponent( {
                                         };
 
 
-                                        watch( montantFactureElectrique, newQuery => {
-                                            console.log( { newQuery } );
-                                            updateWorksheet();
-                                        } );
-
-                                        watch( totalKwhFactureElectrique, newQuery => {
-                                            console.log( { newQuery } );
-                                            updateWorksheet();
-                                        } );
-
-
                                         return {
                                             generateWorksheet,
-                                            montantFactureElectrique,
-                                            totalKwhFactureElectrique,
                                             orientation,
                                             electricityPriceEvolution,
                                             ratioResaleToEDF,
+                                            averagePricePerKWhInFrance,
                                             updateWorksheet,
                                         };
                                     },

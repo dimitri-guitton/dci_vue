@@ -38,13 +38,12 @@ export const yupPvConfigStep5 = () => {
 export const initPvFormDataStep5 = ( worksheet: PvWorkSheet ) => {
     return {
         worksheet: {
-            period:                    worksheet.period,
-            infosSup:                  worksheet.infosSup,
-            montantFactureElectrique:  worksheet.montantFactureElectrique,
-            electricityPriceEvolution: worksheet.electricityPriceEvolution,
-            totalKwhFactureElectrique: worksheet.totalKwhFactureElectrique,
-            orientation:               worksheet.orientation,
-            ratioResaleToEDF:          worksheet.ratioResaleToEDF,
+            period:                     worksheet.period,
+            infosSup:                   worksheet.infosSup,
+            electricityPriceEvolution:  worksheet.electricityPriceEvolution,
+            orientation:                worksheet.orientation,
+            ratioResaleToEDF:           worksheet.ratioResaleToEDF,
+            averagePricePerKWhInFrance: worksheet.averagePricePerKWhInFrance,
         },
     };
 };
