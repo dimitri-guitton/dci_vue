@@ -1,7 +1,7 @@
 import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { AllFile } from '@/types/v2/File/All';
-import { MA_PRIME_RENOV_V2_PAGE_1, MA_PRIME_RENOV_V2_PAGE_2 } from '@/services/pdf/pdfVariable';
+import { MA_PRIME_RENOV_V2_PAGE_1, MA_PRIME_RENOV_V2_PAGE_1_WITHOUT_C2, MA_PRIME_RENOV_V2_PAGE_2 } from '@/services/pdf/pdfVariable';
 import { getAddress } from '@/services/data/dataService';
 
 export class MaPrimeRenovGeneratorV2 extends PdfGenerator {
@@ -36,12 +36,17 @@ export class MaPrimeRenovGeneratorV2 extends PdfGenerator {
 
 
     private _generateDocDefinition(): TDocumentDefinitions {
+        let page1 = MA_PRIME_RENOV_V2_PAGE_1;
+        if ( this._file.disabledMaPrimeRenovBonus ) {
+            page1 = MA_PRIME_RENOV_V2_PAGE_1_WITHOUT_C2;
+        }
+
         return {
             pageMargins: [ 0, 0, 0, 0 ],
             content:     [
                 {
                     margin: [ 0, 0, 0, 0 ],
-                    image:  MA_PRIME_RENOV_V2_PAGE_1,
+                    image:  page1,
                     fit:    [ 830, 830 ],
                 },
                 this._addDataPage1(),

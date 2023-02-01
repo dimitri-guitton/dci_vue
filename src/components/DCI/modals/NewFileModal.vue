@@ -118,6 +118,7 @@
                                             v-model="newFolderData.disabledMaPrimeRenovBonus"
                                             type="checkbox"
                                             :value="true"
+                                            :disabled="disabledMaPrimeRenovCheckbox"
                                         />
                                         <span class="form-check-label">Désactiver MaPrimeRenov</span>
                                     </label>
@@ -179,9 +180,10 @@ export default defineComponent( {
                                     },
                                     emits:      [ 'hideModal' ],
                                     setup( props, ctx ) {
-                                        const submitButtonRef     = ref<null | HTMLButtonElement>( null );
-                                        const listFolderType      = LIST_FILE_TYPE;
-                                        const disabledCeeCheckbox = ref<boolean>( false );
+                                        const submitButtonRef              = ref<null | HTMLButtonElement>( null );
+                                        const listFolderType               = LIST_FILE_TYPE;
+                                        const disabledCeeCheckbox          = ref<boolean>( false );
+                                        const disabledMaPrimeRenovCheckbox = ref<boolean>( false );
 
                                         const newFolderData = ref<NewFolderData>( {
                                                                                       type:                      '',
@@ -199,6 +201,9 @@ export default defineComponent( {
                                                                                                       .required()
                                                                                                       .label( 'Client' ),
                                                                                      } );
+
+                                        newFolderData.value.disabledMaPrimeRenovBonus = true;
+                                        disabledMaPrimeRenovCheckbox.value            = true;
 
 
                                         const typeIsUpdate = () => {
@@ -253,6 +258,7 @@ export default defineComponent( {
                                             listFolderType,
                                             typeIsUpdate,
                                             disabledCeeCheckbox,
+                                            disabledMaPrimeRenovCheckbox,
                                         };
                                     },
                                 } );
