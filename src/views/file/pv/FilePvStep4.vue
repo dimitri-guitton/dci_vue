@@ -270,19 +270,14 @@ export default defineComponent( {
                                             // Change le prix de l'option
                                             _options.value = _options.value.map( o => {
                                                 if ( o.id === 38 ) {
-                                                    let laying: number;
-                                                    if ( qte <= 4 ) {
-                                                        laying = 800;
-                                                    } else if ( qte === 5 ) {
-                                                        laying = 1000;
-                                                    } else if ( qte <= 7 ) {
-                                                        laying = 1100;
-                                                    } else if ( qte <= 10 ) {
-                                                        laying = 1500;
-                                                    } else if ( qte <= 15 ) {
-                                                        laying = 2150;
-                                                    } else {
-                                                        laying = 2500;
+                                                    let laying = o.defaultPu;
+
+                                                    if ( qte >= 6 && qte <= 8 ) {
+                                                        laying += 500;
+                                                    } else if ( qte >= 9 && qte <= 13 ) {
+                                                        laying += 1000;
+                                                    } else if ( qte >= 14 ) {
+                                                        laying += 1500;
                                                     }
 
                                                     return { ...o, pu: laying };
