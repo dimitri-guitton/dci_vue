@@ -288,6 +288,10 @@
 
         <wizzard-file-price :price="price"></wizzard-file-price>
 
+        <template v-if="fileData.disabledMaPrimeRenovBonus">
+            <p>Estimation de MaPrimeRénov : {{ estimateMaPrimeRenov }}€</p>
+        </template>
+
         <div class="row mt-10">
             <div class="col-md-12 fv-row">
                 <label class="form-label mb-3">Commentaire</label>
@@ -381,6 +385,8 @@ export default defineComponent( {
                                         const disabledBonus             = ref<boolean>( props.fileData.disabledBonus );
                                         const disabledCeeBonus          = ref<boolean>( props.fileData.disabledCeeBonus );
                                         const disabledMaPrimeRenovBonus = ref<boolean>( props.fileData.disabledMaPrimeRenovBonus );
+
+                                        const estimateMaPrimeRenov = ref<number>( 0 );
 
                                         // Si on ouvre un dossier avec l'ancien fonctionnement d'ECS
                                         if ( typeof volumeECS.value === 'number' ) {
@@ -841,6 +847,11 @@ export default defineComponent( {
                                                                                     ( totalTtc - discount.value ),
                                                                                     ceeBonus );
 
+                                                } else {
+                                                    // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+                                                    estimateMaPrimeRenov.value = getMaPrimeRenov( props.fileData.type,
+                                                                                                  ( totalTtc - discount.value ),
+                                                                                                  ceeBonus );
                                                 }
                                             }
 
@@ -887,6 +898,7 @@ export default defineComponent( {
                                             needBiZoneSupplement,
                                             discount,
                                             roAlgo,
+                                            estimateMaPrimeRenov,
                                             updateOptions,
                                             updateBlankOtions,
                                             updateDiscount,

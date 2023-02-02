@@ -17,6 +17,10 @@
 
         <wizzard-file-price :price="price"></wizzard-file-price>
 
+        <template v-if="fileData.disabledMaPrimeRenovBonus">
+            <p>Estimation de MaPrimeRénov : {{ estimateMaPrimeRenov }}€</p>
+        </template>
+
         <div class="row mt-10">
             <div class="col-md-12 fv-row">
                 <label class="form-label mb-3">Commentaire</label>
@@ -103,6 +107,8 @@ export default defineComponent( {
                                         const disabledCeeBonus          = ref<boolean>( props.fileData.disabledCeeBonus );
                                         const disabledMaPrimeRenovBonus = ref<boolean>( props.fileData.disabledMaPrimeRenovBonus );
 
+                                        const estimateMaPrimeRenov = ref<number>( 0 );
+
                                         const generateQuotation = () => {
                                             ctx.emit( 'generateQuotation' );
                                         };
@@ -176,6 +182,9 @@ export default defineComponent( {
                                                     // Si MaprimeRenov est actif
                                                     if ( !disabledMaPrimeRenovBonus.value ) {
                                                         maPrimeRenov = getMaPrimeRenov( props.fileData.type );
+                                                    } else {
+                                                        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+                                                        estimateMaPrimeRenov.value = getMaPrimeRenov( props.fileData.type );
                                                     }
                                                 }
                                             }
@@ -211,6 +220,7 @@ export default defineComponent( {
                                         return {
                                             price,
                                             lists,
+                                            estimateMaPrimeRenov,
                                             updateSelectedProduct,
                                             updateOptions,
                                             updateBlankOtions,

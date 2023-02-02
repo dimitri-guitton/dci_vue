@@ -118,8 +118,7 @@ export class QuotationGenerator extends PdfGenerator {
         }
 
         // Génération du mandat de maPrimeRenov
-        if ( ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PB || this._file.type === FILE_PAC_RO ) && ( this._file.quotation as CetQuotation | PgQuotation | PbQuotation | RoQuotation ).maPrimeRenovBonus > 0 ) {
-            // const maPrimeRenovGenerator = new MaPrimeRenovGenerator( this._file );
+        if ( ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PB || this._file.type === FILE_PAC_RO ) ) {
             const maPrimeRenovGenerator = new MaPrimeRenovGeneratorV2( this._file );
             maPrimeRenovGenerator.generatePdf();
         }
