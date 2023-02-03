@@ -329,7 +329,6 @@ export class QuotationGenerator extends PdfGenerator {
      */
     private _generateCommercialHeader(): Content {
         const technician = this._file.technician;
-        console.log( 'technician', technician );
         return {
             margin: [ 0, 3 ],
             style:  [ 'table', 'commercialTable' ],
@@ -724,7 +723,6 @@ export class QuotationGenerator extends PdfGenerator {
      */
     private _generateHousingInfo(): Content {
         const data = this._getHousingData();
-        console.log( data );
 
         const tableBody: ContentText[][] = [];
         let rowTable: ContentText[]      = [];
@@ -780,8 +778,6 @@ export class QuotationGenerator extends PdfGenerator {
                 row.push( { text: ' ' } );
             }
         }
-
-        console.log( 'Table body ->', tableBody );
 
         return {
             margin: [ 0, 3 ],
@@ -1016,7 +1012,6 @@ export class QuotationGenerator extends PdfGenerator {
 
                 break;
             default:
-                console.log( 'PDF SELECTED PRODUCTS', this._file.quotation.selectedProducts );
                 for ( const product of this._file.quotation.selectedProducts ) {
                     const totalPrice = this.formatPrice( product.pu, product.quantity );
                     const quantity   = `${ product.quantity }u`;
@@ -1646,13 +1641,7 @@ export class QuotationGenerator extends PdfGenerator {
             const tmpAdvancePayment = remainderToPay - paymentOnCredit.amount;
             advancePayment          = this.formatPrice( tmpAdvancePayment, 1, true, false );
 
-            console.log( 'Acompte -->', this._file.quotation.remainderToPay );
-            console.log( 'Acompte -->', remainderToPay );
-            console.log( 'Acompte -->', paymentOnCredit.amount );
-            console.log( 'Acompte -->', tmpAdvancePayment );
-            // advancePayment2 = paymentOnCredit.amount;
             advancePayment2 = remainderToPay - tmpAdvancePayment - paymentOnCredit.amount;
-            console.log( 'Solde fin de chantier -->', advancePayment );
 
             paymentText = [
                 {

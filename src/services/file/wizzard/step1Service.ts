@@ -83,8 +83,6 @@ export const validateStepOne = async ( data, assentOnJson: Assent[] ): Promise<{
         }
     } );
 
-    console.log( 'assentAlreadyExistList', assentAlreadyExistList );
-
     if ( assentsToSvair.length === 0 ) {
         return {
             assents:  assentAlreadyExistList,

@@ -145,7 +145,7 @@ export const addJsonData = ( type: string, parent: string, reference: string, fo
                disabledMaPrimeRenovBonus: newFolder.disabledMaPrimeRenovBonus,
                statusInDci:               2,
                errorsStatusInDci:         [],
-               quotation: {
+               quotation:                 {
                    ...fileData.quotation,
                    executionDelay:     toEnglishDate( new Date( today.setMonth( today.getMonth() + 5 ) ).toString() ),
                    dateTechnicalVisit: toEnglishDate( new Date().toString() ),
@@ -153,8 +153,6 @@ export const addJsonData = ( type: string, parent: string, reference: string, fo
                technician:                getCommercialInfo(),
            };
 
-           console.log( `${ parent }/${ process.env.VUE_APP_FILENAME_DATA }.json` );
-           console.log( fileData );
            fs.writeFileSync( `${ parent }/${ process.env.VUE_APP_FILENAME_DATA }.json`, JSON.stringify( fileData ) );
            setCurrentFileData( JSON.stringify( fileData ) );
 
@@ -208,7 +206,6 @@ export const createAFolder = async ( newFolder: NewFolderData ): Promise<{ refer
 export const getFileJson = () => {
     const app            = remote.app;
     const downloadFolder = `${ app.getPath( 'userData' ) }/files`;
-    console.log( 'downloadFolder-->', downloadFolder );
 
     const urls: string[] = [];
     for ( const file of LIST_FILE_TYPE ) {
@@ -221,7 +218,6 @@ export const getFileJson = () => {
                                            background: 'rgba(0, 0, 0, 0.7)',
                                        } );
 
-    console.log( '%c SEND DOWNLOAD', 'background: #fdd835; color: #000000' );
     ipcRenderer.send( 'download', {
         payload: {
             urls,
@@ -230,13 +226,6 @@ export const getFileJson = () => {
             },
         },
     } );
-
-
-    // TODO FAIRE BARRE DE PROGRESSION DU TÉLÉCHARGELENT
-    // ipcRenderer.on( 'download-complete', ( event, args ) => {
-    //     console.log( event );
-    //     console.log( args );
-    // } );
 
 
     ipcRenderer.on( 'all-download-complete', () => {
@@ -273,34 +262,24 @@ export const convertAllOldjsonToNewJson = async () => {
     await sqliteService.openDb();
     await sqliteService.initDb();
 
-    console.log( '%c CONVERT ALL JSON TO DB', 'background: #35D452; color: #000000' );
     const dropboxPath = store.get( 'dropboxPath' );
 
     const oldFolderPath = `${ dropboxPath }/DCI/data.json`;
-    console.log( oldFolderPath );
+
     if ( !fs.existsSync( oldFolderPath ) ) {
-        console.log( '%c IN', 'background: #fdd835; color: #000000' );
         return;
-    } else {
-        console.log( '%c ELSE', 'background: #fdd835; color: #000000' );
     }
 
     const oldFolderData = JSON.parse( fs.readFileSync( oldFolderPath, 'utf8' ) );
     // TODO FAIRE LA RECUP DES TODOS
 
-    console.log( oldFolderData );
-
     let nbFileNotExist = 0;
     let nbErrorConvert = 0;
     for ( const folder of oldFolderData[ 'dossiers' ] ) {
         if ( !fs.existsSync( `${ dropboxPath }/DCI/${ folder[ 'folderName' ] }` ) ) {
-            console.log( '%c NOT EXISTS', 'background: #fdd835; color: #000000' );
-            console.log( `${ dropboxPath }/DCI/${ folder[ 'folderName' ] }` );
             nbFileNotExist++;
-            // fs.mkdirSync( `${ dropboxPath }/DCI/${ folder[ 'folderName' ] }` );
             continue;
         }
-        console.log( 'folder -->', folder );
 
         let type = '';
         switch ( folder[ 'dossierType' ] ) {
@@ -324,9 +303,6 @@ export const convertAllOldjsonToNewJson = async () => {
                 break;
         }
 
-        console.log( 'TYPE -->', type );
-
-        console.log( folder[ 'sentAt' ], folder[ 'sentAt' ] );
         await addFile( folder[ 'dossierRef' ],
                        folder[ 'folderName' ],
                        type,
@@ -380,7 +356,6 @@ export const convertAllOldjsonToNewJson = async () => {
             }
 
 
-            console.log( 'NEW JSON', newJson );
             const parent = `${ dropboxPath }/DCI/${ folder[ 'folderName' ] }`;
             fs.writeFileSync( `${ parent }/${ process.env.VUE_APP_FILENAME_DATA }.json`, JSON.stringify( newJson ) );
             createSubFolders( type, `${ dropboxPath }/DCI/${ folder[ 'folderName' ] }` );
@@ -437,16 +412,14 @@ export const removeFolder = async ( folder: DatatableFile ): Promise<boolean> =>
 };
 
 export const updateJsonData = ( fileData ) => {
-    console.log( '%c UPDATE JSON DATA', 'background: #35D452; color: #000000' );
     const name = getcurrentFolderName() as string;
     const path = `${ getFolderPath( name ) }/${ process.env.VUE_APP_FILENAME_DATA }.json`;
-    console.log( path );
+
     if ( fs.existsSync( path ) ) {
-        console.log( 'File data -->', fileData );
         fs.writeFileSync( path, JSON.stringify( fileData, null, 2 ) );
         setCurrentFileData( JSON.stringify( fileData ) );
     } else {
-        console.log( `'%c LE FICHIER (${ path }) n'existe pas'`, 'background: #FF0017; color: #000000' );
+        console.warn( `LE FICHIER (${ path }) n'existe pas` );
     }
 };
 
@@ -466,7 +439,6 @@ const folderContainFiles = ( folderPath: string, nbFile = 1 ): boolean => {
             files.splice( 0, 1 );
         }
 
-        console.log( 'files.length -->', files.length );
         if ( files.length >= nbFile ) {
             return true;
         }
@@ -477,9 +449,6 @@ const folderContainFiles = ( folderPath: string, nbFile = 1 ): boolean => {
 };
 
 export const checkFolder = async ( folderName: string, fileType: string ) => {
-    console.log( '%c IN CHECK FOLDER', 'background: #BCBE9D; color: #000000' );
-    console.log( folderName );
-
     const folderPath       = getFolderPath( folderName );
     const errors: number[] = [];
 
@@ -511,9 +480,6 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
 
     setcurrentFolderName( folderName );
     const fileData: AllFile = getCurrentFileData();
-    console.log( 'fileData.quotation.ceeBonus', fileData.quotation.ceeBonus );
-
-
     const codeBonus = getCodeBonus( fileData );
     let assentEmpty: boolean;
 
@@ -532,16 +498,6 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
     }
 
     resetCurrentFileData();
-
-    console.log( '%c ', 'background: #fdd835; color: #000000' );
-    console.log( quotationEmpty );
-    console.log( signedQuotationEmpty );
-    console.log( assentEmpty );
-    console.log( worksheetEmpty );
-    console.log( photoEmpty );
-    // console.log( attestEmpty );
-    console.log( ceeEmpty );
-    console.log( '%c ', 'background: #fdd835; color: #000000' );
 
     if ( quotationEmpty ) {
         errors.push( 1 );
@@ -566,20 +522,16 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
         errors.push( 7 );
     }
 
-    console.log( 'ERRRORS', errors );
     await setErrorsStatusInDci( errors, folderName );
 };
 
 
 export const openPdf = ( filePath: string ) => {
-    console.log( '%c OPEN PDF', 'background: #FF0007; color: #000000' );
-    console.log( filePath );
-    shell.openPath( filePath ).then( response => console.log( 'After open', response ) );
+    shell.openPath( filePath ).then( response => console.log( 'After open PDF', response ) );
 };
 
 
 export const savePdf = ( buffer: Buffer, type: PdfType ) => {
-    console.log( '%c ON SAVE PDF', 'background: #fdd835; color: #000000' );
     const folderName = getcurrentFolderName() as string;
     const folderPath = getFolderPath( folderName );
 
@@ -627,14 +579,13 @@ export const savePdf = ( buffer: Buffer, type: PdfType ) => {
             name   = 'mandat_enedis.pdf';
             break;
         default:
-            console.log( '%c ERROR', 'background: #fdd835; color: #000000' );
+            console.warn(`Type (${type}) non pris en charge pour les PDF`)
     }
 
     const filePath = `${ folderPath }/${ folder }/${ name }`;
 
     try {
         fs.writeFile( filePath, buffer, () => {
-            console.log( '%c AFTER WRITE FILE', 'background: #fdd835; color: #000000' );
             openPdf( filePath );
         } );
     } catch ( err ) {
@@ -647,7 +598,6 @@ export const savePdf = ( buffer: Buffer, type: PdfType ) => {
 };
 
 export const copyFileFromAssetToDropbox = ( assetPath: string, destinationFolder: string, fileName: string ) => {
-    console.log( '%c IN copyFileFromAssetToDropbox', 'background: #fdd835; color: #000000' );
     fs.copyFile( assetPath, `${ getFolderPath( getcurrentFolderName() ) }/${ destinationFolder }/${ fileName }`, ( err ) => {
         if ( err ) {
             throw err;

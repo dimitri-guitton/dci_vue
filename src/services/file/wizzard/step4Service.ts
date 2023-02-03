@@ -78,7 +78,6 @@ export const defaultYupConfigStep4 = () => {
 };
 
 const getPriceValue = ( price: Price ) => {
-    console.log( '%c IN PRICE VALUE', 'background: #35D452; color: #000000' );
     return {
         totalHt:              price.HT,
         totalTtc:             price.TTC,
@@ -106,9 +105,6 @@ export const defaultGetQuotationValueStep4 = ( stepData: BaseStep4, price: Price
     const selectedProducts: Product[] = [];
     const options: Option[]           = [];
     const blankOptions: BlankOption[] = [];
-
-    console.log( '%c DATA STEP 4', 'background: #fdd835; color: #000000' );
-    console.log( stepData );
 
     for ( const option of stepData.options ) {
         const jsonOption = getOptionById( option.id );

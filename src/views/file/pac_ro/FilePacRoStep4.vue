@@ -1,23 +1,23 @@
 <template>
     <div class="w-100">
 
-        <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit"
-                      :price="price"
+        <step4-header :file="fileData"
                       :lists="lists"
-                      :file="fileData"
+                      :payment-on-credit="fileData.quotation.paymentOnCredit"
+                      :price="price"
                       @bonusAreUpdated="updateBonus"></step4-header>
 
         <div class="row">
             <div class="col-md-6 mb-5">
-                <label for="sizingPercentage" class="form-label">La pompe à chaleur doit couvrir au minimum 60% et au
+                <label class="form-label" for="sizingPercentage">La pompe à chaleur doit couvrir au minimum 60% et au
                                                                  maximum 110% des déperditions de la maison à la
                                                                  température de base.<br><b>Quelle pourcentage voulez
                                                                                             choisir ?</b></label>
-                <Field name="sizingPercentage"
-                       id="sizingPercentage"
-                       class="form-select"
-                       as="select"
+                <Field id="sizingPercentage"
                        v-model="sizingPercentage"
+                       as="select"
+                       class="form-select"
+                       name="sizingPercentage"
                 >
                     <template-item-list :lists="[
                         {
@@ -70,37 +70,37 @@
 
         <div class="row mt-10">
             <div class="col-md-6 mb-5">
-                <label for="deviceToReplaceType" class="form-label">Appareil à remplacer</label>
-                <Field name="deviceToReplaceType"
-                       id="deviceToReplaceType"
-                       class="form-select"
-                       as="select"
+                <label class="form-label" for="deviceToReplaceType">Appareil à remplacer</label>
+                <Field id="deviceToReplaceType"
                        v-model="deviceToReplace.type"
+                       as="select"
+                       class="form-select"
+                       name="deviceToReplaceType"
                 >
                     <item-list :lists="lists.typeChaudiereList"></item-list>
                 </Field>
             </div>
             <template v-if="deviceToReplace.type !== 'aucun'">
                 <div class="col-md-3 mb-5">
-                    <label for="deviceToReplaceBrand" class="form-label mb-3">Marque</label>
+                    <label class="form-label mb-3" for="deviceToReplaceBrand">Marque</label>
                     <Field
-                        type="text"
-                        name="deviceToReplaceBrand"
                         id="deviceToReplaceBrand"
-                        class="form-control"
                         v-model="deviceToReplace.brand"
+                        class="form-control"
+                        name="deviceToReplaceBrand"
+                        type="text"
 
                     >
                     </Field>
                 </div>
                 <div class="col-md-3 mb-5">
-                    <label for="deviceToReplaceModel" class="form-label mb-3">Modèle</label>
+                    <label class="form-label mb-3" for="deviceToReplaceModel">Modèle</label>
                     <Field
-                        type="text"
-                        name="deviceToReplaceModel"
                         id="deviceToReplaceModel"
-                        class="form-control"
                         v-model="deviceToReplace.model"
+                        class="form-control"
+                        name="deviceToReplaceModel"
+                        type="text"
                     >
                     </Field>
                 </div>
@@ -157,62 +157,62 @@
                 <!--        <h1>VOLUME ECS SÉLECTIONNÉ {{ volumeECS }}</h1>-->
                 <h6 class="mb-5">Volume ECS : </h6>
 
-                <Field name="volumeECS"
-                       id="r_ecs_1"
+                <Field id="r_ecs_1"
+                       v-model="volumeECS"
                        class="form-check-input ms-5"
+                       name="volumeECS"
                        type="radio"
                        value="ecs_1"
-                       v-model="volumeECS"
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_1">0L</label>
 
-                <Field name="volumeECS"
-                       id="r_ecs_2"
+                <Field id="r_ecs_2"
+                       v-model="volumeECS"
                        class="form-check-input ms-5"
+                       name="volumeECS"
                        type="radio"
                        value="ecs_2"
-                       v-model="volumeECS"
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_2">180L</label>
 
-                <Field name="volumeECS"
-                       id="r_ecs_3"
+                <Field id="r_ecs_3"
+                       v-model="volumeECS"
                        class="form-check-input ms-5"
+                       name="volumeECS"
                        type="radio"
                        value="ecs_3"
-                       v-model="volumeECS"
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_3">230L</label>
 
-                <Field name="volumeECS"
-                       id="r_ecs_4"
+                <Field id="r_ecs_4"
+                       v-model="volumeECS"
                        class="form-check-input ms-5"
+                       name="volumeECS"
                        type="radio"
                        value="ecs_4"
-                       v-model="volumeECS"
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_4">150L Déporté</label>
 
-                <Field name="volumeECS"
-                       id="r_ecs_5"
+                <Field id="r_ecs_5"
+                       v-model="volumeECS"
                        class="form-check-input ms-5"
+                       name="volumeECS"
                        type="radio"
                        value="ecs_5"
-                       v-model="volumeECS"
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_5">200L Déporté</label>
 
-                <Field name="volumeECS"
-                       id="r_ecs_6"
+                <Field id="r_ecs_6"
+                       v-model="volumeECS"
                        class="form-check-input ms-5"
+                       name="volumeECS"
                        type="radio"
                        value="ecs_6"
-                       v-model="volumeECS"
                 >
                 </Field>
                 <label class="ms-2" for="r_ecs_6">300L Déporté</label>
@@ -265,26 +265,26 @@
         <!-- Formualaire caché afin de binder les values au formulaire comme la sélection des produits se fait via l'algo-->
         <template v-for="(p, index) in allProducts" v-bind:key="`val_${p.reference}_${p.id}`">
             <div class="row d-none">
-                <Field type="number"
+                <Field v-model.number="p.id"
                        :name="`selectedProducts[${index}].id`"
                        class="form-control"
-                       v-model.number="p.id" />
-                <Field type="number"
+                       type="number" />
+                <Field v-model.number="p.quantity"
                        :name="`selectedProducts[${index}].quantity`"
                        class="form-control"
-                       v-model.number="p.quantity" />
-                <Field type="number"
+                       type="number" />
+                <Field v-model.number="p.pu"
                        :name="`selectedProducts[${index}].pu`"
                        class="form-control"
-                       v-model.number="p.pu" />
+                       type="number" />
             </div>
         </template>
 
-        <options @optionsAreUpdated="updateOptions" :options="filteredOptions"></options>
+        <options :options="filteredOptions" @optionsAreUpdated="updateOptions"></options>
 
-        <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
+        <blank-options :options="blankOptions" @optionsAreUpdated="updateBlankOtions"></blank-options>
 
-        <input-discount @discountUpdated="updateDiscount" :discount="discount"></input-discount>
+        <input-discount :discount="discount" @discountUpdated="updateDiscount"></input-discount>
 
         <wizzard-file-price :price="price"></wizzard-file-price>
 
@@ -303,8 +303,8 @@
                     value=""
                 />
                 <ErrorMessage
-                    name="commentary"
                     class="fv-plugins-message-container invalid-feedback"
+                    name="commentary"
                 ></ErrorMessage>
             </div>
         </div>
@@ -313,12 +313,12 @@
 
         <div class="row mt-5">
             <div class="col-md-6 offset-md-3 d-flex justify-content-around">
-                <button type="button" @click="generateAddressCertificate" class="btn btn-outline btn-outline-info">
+                <button class="btn btn-outline btn-outline-info" type="button" @click="generateAddressCertificate">
                     Générer
                     l'attestation
                     d'adresse
                 </button>
-                <button type="button" @click="generateQuotation" class="btn btn-info">Générer le devis</button>
+                <button class="btn btn-info" type="button" @click="generateQuotation">Générer le devis</button>
             </div>
         </div>
 
@@ -407,22 +407,8 @@ export default defineComponent( {
                                             }
                                         }
 
-                                        const sizingPercentage = ref<number>( props.fileData.quotation.sizingPercentage ?? 80 );
-                                        console.log( '__ecs Volume ECS on Setup -->', volumeECS.value );
-                                        // const volumeECSDeporte     = ref<number>( +props.fileData.quotation.volumeECSDeporte );
+                                        const sizingPercentage     = ref<number>( props.fileData.quotation.sizingPercentage ?? 80 );
                                         const needBiZoneSupplement = ref<boolean>( false );
-
-                                        // if ( volumeECS.value !== 180 && volumeECS.value !== 230 ) {
-                                        //   console.log( 'Volume ECS IN IF OTHER 180/230', volumeECS );
-                                        //   // SI pas 180 ou 230 FORCE à 1
-                                        //   // HACK QUAND VALUE à 0 BUG
-                                        //   volumeECS.value = 1;
-                                        //   console.log( 'Volume ECS IN IF AFTER SET TO 1', volumeECS );
-                                        // }
-                                        //
-                                        // if ( volumeECSDeporte.value !== 150 && volumeECSDeporte.value !== 200 && volumeECSDeporte.value !== 300 ) {
-                                        //   volumeECSDeporte.value = 150;
-                                        // }
 
                                         const roAlgo = new RoAlgo( props.fileData.housing );
 
@@ -453,7 +439,6 @@ export default defineComponent( {
 
 
                                         const updateDiscount = ( value ) => {
-                                            console.log( 'updateDiscount' );
                                             discount.value = value;
                                         };
 
@@ -462,20 +447,8 @@ export default defineComponent( {
                                         // };
 
                                         const updateNeedBiZone = ( value: boolean ) => {
-                                            console.log( 'IN update -->', value );
                                             needBiZoneSupplement.value = value;
                                         };
-
-                                        // const resetVolumeECS = ( isEcsDeporte: boolean ) => {
-                                        //   console.log( 'Volume ECS IN RESET', volumeECS );
-                                        //   if ( isEcsDeporte ) {
-                                        //     // HACK QUAND VALUE à 0 BUG
-                                        //     volumeECS.value = 1;
-                                        //   } else {
-                                        //     volumeECSDeporte.value = 150;
-                                        //   }
-                                        //   console.log( 'Volume ECS AFTER RESET', volumeECS );
-                                        // };
 
                                         const ecsDeporte = props.fileData.quotation.products.filter( p => p.productType === 'ecs' );
                                         // const kitCascade = props.fileData.quotation.products.filter( p => p.productType === 'kit_cascade' );
@@ -484,11 +457,6 @@ export default defineComponent( {
                                         const selectedEcsDeportes = computed<Product[]>( () => {
                                             // Reset le volume si jamais on switch en ECS et ECSDeporté
                                             // resetVolumeECS( isEcsDeporte.value );
-
-                                            console.log( '%c COMPUTED ECS DEPORTE',
-                                                         'background: #fdd835; color: #000000' );
-                                            console.log( '__ecs volumeECS.value IN selectedEcsDeportes computed',
-                                                         volumeECS.value );
 
                                             if ( volumeECS.value === 'ecs_4' ) {
                                                 return ecsDeporte.filter( ecs => ecs.volume === 150 );
@@ -506,40 +474,15 @@ export default defineComponent( {
                                         } );
 
                                         const selectedKitBiZone = computed<Product[]>( () => {
-                                            console.log( '%c IN COMPUTED SELECT KIT BI ZONE',
-                                                         'background: #DAFF83; color: #000000' );
                                             if ( !needBiZoneSupplement.value ) {
                                                 return [];
                                             }
                                             return kitBiZone;
                                         } );
 
-                                        // const selectedKitCascade = computed<Product[]>( () => {
-                                        //   console.log( '%c KIT CASCADE', 'background: #fdd835; color: #000000' );
-                                        //   console.log( cascadeSystem );
-                                        //   if ( !cascadeSystem.value ) {
-                                        //     return [];
-                                        //   }
-                                        //   return kitCascade;
-                                        // } );
-
                                         const products = computed<Product[]>(
                                             () => {
-                                                console.log( '%c COMPUTED PRODUCTS',
-                                                             'background: #0094BE; color: #000000' );
                                                 roAlgo.updateHousing( props.fileData.housing );
-
-                                                console.log( 'Volume ECS IN COMPUTED PRODUCT', volumeECS.value );
-                                                console.log( '__ecs Volume ECS IN COMPUTED PRODUCT', volumeECS.value );
-
-                                                // if ( volumeECS.value === undefined ) {
-                                                //   console.log( 'Volume ECS IS UNDEFINED', volumeECS );
-                                                //   // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-                                                //   volumeECS.value = 0;
-                                                // }
-                                                console.log( 'Volume ECS IN COMPUTED PRODUCT AFTER UNDEFINED',
-                                                             volumeECS.value );
-
                                                 let response;
 
                                                 if ( volumeECS.value === 'ecs_1' ) {
@@ -552,7 +495,6 @@ export default defineComponent( {
                                                     // ECS DEPORTÉ DONC ECS = 0
                                                     response = roAlgo.getUnitsRo( 0, sizingPercentage.value );
                                                 }
-                                                console.log( 'Response', response );
 
                                                 if ( response === null ) {
                                                     return [];
@@ -560,74 +502,26 @@ export default defineComponent( {
 
                                                 const productExt: Product | undefined = getProductByRef( response.unitExt.ref );
                                                 const productInt: Product | undefined = getProductByRef( response.unitInt.ref );
-                                                console.log( 'Need biZone Value', needBiZoneSupplement.value );
                                                 updateNeedBiZone( response.needBiZoneSupplement );
-                                                console.log( 'Need biZone Value', needBiZoneSupplement.value );
 
                                                 if ( productExt === undefined || productInt === undefined ) {
                                                     return [];
                                                 }
                                                 return [ productExt, productInt ];
-                                                // const response = getPacRo( props.fileData.quotation.ceilingHeight,
-                                                //                            props.fileData.housing.area,
-                                                //                            props.fileData.energyZone,
-                                                //                            props.fileData.housing.buildingCoefficient,
-                                                //                            ( props.fileData.housing.availableVoltage as string ),
-                                                //                            volumeECS.value );
-                                                //
-                                                //
-                                                // const productInt = getProductByRef( response.productInt );
-                                                // const productExt = getProductByRef( response.productExt );
-                                                //
-                                                // if ( productInt === undefined || productExt === undefined ) {
-                                                //   console.log( '%c NOT FOUD', 'background: #FF0017; color: #000000' );
-                                                //   return [];
-                                                // }
-                                                //
-                                                // // Système cascade  = 2 produits
-                                                // if ( response.cascadeSystem ) {
-                                                //   productInt.quantity = 2;
-                                                //   productExt.quantity = 2;
-                                                // } else {
-                                                //   productInt.quantity = 1;
-                                                //   productExt.quantity = 1;
-                                                // }
-                                                //
-                                                // updateCascadeSystem( response.cascadeSystem );
-                                                //
-                                                // return [ productInt, productExt ];
                                             } );
 
                                         const allProducts = computed<Product[]>( () => {
-                                            console.log( '%c COMPUTED ALLPRoducts',
-                                                         'background: #FF0017; color: #000000' );
-
-                                            const allProducts = [
+                                            return [
                                                 ...products.value,
-                                                // ...selectedKitCascade.value,
                                                 ...selectedKitBiZone.value,
                                                 ...selectedEcsDeportes.value,
                                             ];
-                                            console.log( products.value );
-                                            // console.log( selectedKitCascade.value );
-                                            console.log( selectedKitBiZone.value );
-                                            console.log( selectedEcsDeportes.value );
-
-                                            console.log( allProducts );
-                                            for ( const p of allProducts ) {
-                                                console.log( `${ p.id } - ${ p.label } - ${ p.quantity } - ${ p.pu }` );
-                                            }
-
-                                            return allProducts;
                                         } );
 
                                         /**
                                          * Ajoute ou enlève l'option Soupape antigel selon les PAC
                                          */
                                         const enabledSoupageOption = ( enabled: boolean ) => {
-                                            console.log( '%c enabledSoupageOption',
-                                                         'background: #F600FF; color: #000000' );
-                                            console.log( enabled );
                                             const soupapeOption = _options.value.find( o => o.label === 'Soupape antigel' );
                                             if ( soupapeOption === undefined ) {
                                                 return;
@@ -636,10 +530,8 @@ export default defineComponent( {
                                             // Change le nombre de l'option Soupape antigel pour l'activer ou non
                                             _options.value = _options.value.map( o => {
                                                 if ( enabled && o.label === 'Soupape antigel' ) {
-                                                    console.log( '%c ENABLED', 'background: #00FF2E; color: #000000' );
                                                     return { ...o, number: 2 };
                                                 } else if ( !enabled && o.label === 'Soupape antigel' ) {
-                                                    console.log( '%c DISABMED', 'background: #FF000A; color: #000000' );
                                                     return { ...o, number: 0 };
                                                 }
                                                 return o;
@@ -650,9 +542,6 @@ export default defineComponent( {
                                          * Ajoute ou enlève l'option Forfait ballon tampon
                                          */
                                         const enabledBallonTamponOption = ( enabled: boolean ) => {
-                                            console.log( '%c enabledBallonTamponOption',
-                                                         'background: #F600FF; color: #000000' );
-                                            console.log( enabled );
                                             const ballonTamponOption = _options.value.find( o => o.label.includes(
                                                 'Forfait ballon tampon' ) );
                                             if ( ballonTamponOption === undefined ) {
@@ -662,10 +551,8 @@ export default defineComponent( {
                                             // Change le nombre de l'option Forfait ballon tampon pour l'activer ou non
                                             _options.value = _options.value.map( o => {
                                                 if ( enabled && o.label.includes( 'Forfait ballon tampon' ) ) {
-                                                    console.log( '%c ENABLED', 'background: #00FF2E; color: #000000' );
                                                     return { ...o, number: 1 };
                                                 } else if ( !enabled && o.label.includes( 'Forfait ballon tampon' ) ) {
-                                                    console.log( '%c DISABMED', 'background: #FF000A; color: #000000' );
                                                     return { ...o, number: 0 };
                                                 }
                                                 return o;
@@ -676,9 +563,6 @@ export default defineComponent( {
                                          * Ajoute ou enlève l'option Mitigeur
                                          */
                                         const enabledMitigeurOption = ( enabled: boolean ) => {
-                                            console.log( '%c enabledMitigeurOption',
-                                                         'background: #F600FF; color: #000000' );
-                                            console.log( enabled );
                                             const mitigeurOption = _options.value.find( o => o.label.includes(
                                                 'Forfait ballon tampon' ) );
                                             if ( mitigeurOption === undefined ) {
@@ -698,28 +582,16 @@ export default defineComponent( {
 
 
                                         const filteredOptions = computed<Option[]>( () => {
-                                            console.log( '%c FILTERED OPTION', 'background: #FF0007; color: #000000' );
-                                            console.log( _options.value );
-
                                             for ( const option of _options.value ) {
 
                                                 if ( props.fileData.housing.availableVoltage === 'triphase' && option.id === 24 ) {
-                                                    console.log( '%c OPTION ID 24',
-                                                                 'background: #fdd835; color: #000000' );
-                                                    console.log( option.pu );
-                                                    console.log( option.defaultPu );
-
                                                     // Si le PU n'a pas déja été augmenté
                                                     if ( option.pu === option.defaultPu ) {
-                                                        console.log( '%c PU + 400',
-                                                                     'background: #fdd835; color: #000000' );
                                                         option.pu += 400;
                                                     }
                                                 } else if ( option.id === 24 ) {
                                                     // Si le PU a été modifié
                                                     if ( option.pu !== option.defaultPu ) {
-                                                        console.log( '%c PU - 400',
-                                                                     'background: #fdd835; color: #000000' );
                                                         option.pu -= 400;
                                                     }
                                                 }
@@ -737,7 +609,6 @@ export default defineComponent( {
 
                                                 if ( option.label.includes( 'Forfait ballon tampon' ) ) {
                                                     // props.fileData.housing.heaters;
-                                                    console.log( props.fileData.housing.heaters );
                                                     if ( props.fileData.housing.heaters === 'r_fonte' || props.fileData.housing.heaters === 'r_fonte_p_chauffant' || props.fileData.housing.heaters === 'r_autre' || props.fileData.housing.heaters === 'r_autre_p_chauffant' ) {
                                                         enabledBallonTamponOption( true );
                                                     } else {
@@ -747,7 +618,6 @@ export default defineComponent( {
 
                                                 if ( option.label.includes( 'Forfait mitigeur' ) ) {
                                                     // props.fileData.housing.heaters;
-                                                    console.log( volumeECS.value );
                                                     if ( volumeECS.value === 'ecs_1' ) {
                                                         enabledMitigeurOption( false );
                                                     } else {
@@ -765,12 +635,9 @@ export default defineComponent( {
                                             let maPrimeRenov = 0;
                                             let ceeBonus     = 0;
 
-                                            console.log( 'Prix par defaut -->', totalHt );
-
                                             for ( const product of products.value ) {
                                                 totalHt += product.pu * product.quantity;
                                             }
-                                            console.log( 'Prix avec les produits -->', totalHt );
 
                                             for ( const product of selectedEcsDeportes.value ) {
                                                 totalHt += product.pu * product.quantity;
@@ -790,19 +657,13 @@ export default defineComponent( {
                                                 }
                                             }
 
-                                            console.log( 'Prix avec les options -->', totalHt );
-
                                             for ( const option of _blankOptions.value ) {
                                                 if ( option.number > 0 && option.label !== '' ) {
                                                     totalHt += option.pu * option.number;
                                                 }
                                             }
-                                            console.log( 'Prix avec les options vides -->', totalHt );
-
-                                            const codeBonus = getCodeBonus();
-                                            console.log( 'Code prime --> ', codeBonus );
+                                            const codeBonus     = getCodeBonus();
                                             const lessThan2Year = getLessThan2Year();
-                                            console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
                                             let tva = getTva();
                                             if ( lessThan2Year ) {
@@ -830,15 +691,9 @@ export default defineComponent( {
                                                                 selectedProducts: products.value,
                                                             },
                                                         };
-                                                        console.log( '%c BEFORE CEE',
-                                                                     'background: #fdd835; color: #000000' );
-                                                        console.log( 'Products -->', products.value );
-                                                        ceeBonus = getCeeBonus( updatedFileData );
+                                                        ceeBonus                      = getCeeBonus( updatedFileData );
                                                     }
                                                 }
-
-                                                console.log( '%c CEE BONUS', 'background: #7950FF; color: #000000' );
-                                                console.log( ceeBonus );
 
                                                 // Si MaprimeRenov est actif
                                                 // TTC - Discount on doit déduire la remise du TTC pour avoir la bonne valeur
@@ -857,7 +712,6 @@ export default defineComponent( {
 
                                             const totalPrime = maPrimeRenov + ceeBonus;
 
-                                            console.log( 'tva', totalTva );
                                             const price: Price = {
                                                 HT:             totalHt,
                                                 TVA:            lessThan2Year ? 0 : totalTva,
@@ -874,12 +728,6 @@ export default defineComponent( {
 
                                             return price;
                                         } );
-
-                                        console.log( '%c END SET UP', 'background: #fdd835; color: #000000' );
-                                        console.log( ecsDeporte );
-                                        // console.log( kitCascade );
-                                        console.log( products );
-                                        console.log( '%c END SET UP', 'background: #fdd835; color: #000000' );
 
                                         return {
                                             allProducts,

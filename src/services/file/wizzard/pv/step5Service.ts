@@ -33,8 +33,6 @@ export const initPvFormDataStep5 = ( worksheet: PvWorkSheet ) => {
 
 export const savePvWorksheet = ( data: PvFileStep ): PvFile => {
     let fileData = getCurrentPvFileData();
-    console.log( 'File data', fileData );
-    console.log( 'data', data );
 
     let worksheet: PvWorkSheet = fileData.worksheet;
 

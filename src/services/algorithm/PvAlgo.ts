@@ -117,7 +117,6 @@ export class PvAlgo {
             ratio *= 1.015;
         }
 
-        console.log( 'Ratio de revente -> ', this.worksheet.ratioResaleToEDF );
         return this.calcInstallationProduction( year ) * this.worksheet.ratioResaleToEDF * ratio;
     }
 

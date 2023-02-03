@@ -47,11 +47,6 @@ export const validatePgStep4 = async ( data: PgFileStep, price: Price ): Promise
         updateFileReference = true;
     }
 
-    console.log( data );
-    console.log( '%c SAVE PG 4', 'background: #fdd835; color: #000000' );
-    console.log( data.outsideSocket );
-    console.log( data.smoke );
-
     quotation = {
         ...quotation,
         ...defaultGetQuotationValueStep4( data, price ),

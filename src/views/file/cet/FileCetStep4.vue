@@ -1,8 +1,8 @@
 <template>
     <div class="w-100">
 
-        <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit" :price="price" :lists="lists"
-                      :file="fileData" @bonusAreUpdated="updateBonus"></step4-header>
+        <step4-header :file="fileData" :lists="lists" :payment-on-credit="fileData.quotation.paymentOnCredit"
+                      :price="price" @bonusAreUpdated="updateBonus"></step4-header>
 
         <step4-quotation-header></step4-quotation-header>
 
@@ -11,9 +11,9 @@
                           :selectedProducts="selectedProducts"
                           @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
 
-        <options @optionsAreUpdated="updateOptions" :options="options"></options>
+        <options :options="options" @optionsAreUpdated="updateOptions"></options>
 
-        <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
+        <blank-options :options="blankOptions" @optionsAreUpdated="updateBlankOtions"></blank-options>
 
         <wizzard-file-price :price="price"></wizzard-file-price>
 
@@ -32,8 +32,8 @@
                     value=""
                 />
                 <ErrorMessage
-                    name="commentary"
                     class="fv-plugins-message-container invalid-feedback"
+                    name="commentary"
                 ></ErrorMessage>
             </div>
         </div>
@@ -42,12 +42,12 @@
 
         <div class="row mt-5">
             <div class="col-md-6 offset-md-3 d-flex justify-content-around">
-                <button type="button" @click="generateAddressCertificate" class="btn btn-outline btn-outline-info">
+                <button class="btn btn-outline btn-outline-info" type="button" @click="generateAddressCertificate">
                     Générer
                     l'attestation
                     d'adresse
                 </button>
-                <button type="button" @click="generateQuotation" class="btn btn-info">Générer le devis</button>
+                <button class="btn btn-info" type="button" @click="generateQuotation">Générer le devis</button>
             </div>
         </div>
 
@@ -67,7 +67,7 @@ import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
-import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
+import { getLessThan2Year, getTva } from '@/services/data/dataService';
 import { getCeeBonus, getMaPrimeRenov } from '@/services/file/fileCommonService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 import { CetList } from '@/types/v2/File/Cet/CetList';
@@ -139,36 +139,27 @@ export default defineComponent( {
                                             if ( props.forceRefresh ) {
                                                 console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
                                             }
-                                            console.log( '%c IN COMPUTED', 'background: #007C83; color: #FFFFFF' );
                                             let totalHt      = 0;
                                             let maPrimeRenov = 0;
                                             let ceeBonus     = 0;
 
-                                            console.log( 'Prix par defaut -->', totalHt );
                                             for ( const selectedProduct of _selectedProducts.value ) {
                                                 totalHt += +selectedProduct.pu;
                                             }
-                                            console.log( 'Prix avec les produits -->', totalHt );
 
                                             for ( const option of _options.value ) {
                                                 if ( option.number > 0 ) {
                                                     totalHt += option.pu * option.number;
                                                 }
                                             }
-                                            console.log( 'Prix avec les options -->', totalHt );
 
                                             for ( const option of _blankOptions.value ) {
                                                 if ( option.number > 0 && option.label !== '' ) {
                                                     totalHt += option.pu * option.number;
                                                 }
                                             }
-                                            console.log( 'Prix avec les options vides -->', totalHt );
 
-                                            const codeBonus = getCodeBonus();
-                                            console.log( 'Code prime --> ', codeBonus );
                                             const lessThan2Year = getLessThan2Year();
-                                            console.log( 'Moins de 2 ans --> ', lessThan2Year );
-
 
                                             if ( !lessThan2Year ) {
                                                 // Si les primes sont actives
@@ -188,9 +179,6 @@ export default defineComponent( {
                                                     }
                                                 }
                                             }
-
-
-                                            console.log( 'maPrimeRenov --> ', maPrimeRenov );
 
                                             let tva = getTva();
                                             if ( lessThan2Year ) {

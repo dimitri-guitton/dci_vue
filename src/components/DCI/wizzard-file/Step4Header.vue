@@ -251,7 +251,6 @@ export default defineComponent( {
                                     },
                                     emits:      [ 'bonusAreUpdated' ],
                                     setup( props, ctx ) {
-                                        console.log( 'props header-->', props );
                                         const paymentOnCreditIsActive = ref<boolean>( props.paymentOnCredit.active );
                                         const cashPrice               = ref<number>( props.price.TTC );
                                         const amount                  = ref<number>( props.paymentOnCredit.amount );
@@ -260,12 +259,6 @@ export default defineComponent( {
                                         const bonus             = ref<boolean>( props.file.disabledBonus );
                                         const ceeBonus          = ref<boolean>( props.file.disabledCeeBonus );
                                         const maPrimeRenovBonus = ref<boolean>( props.file.disabledMaPrimeRenovBonus );
-
-                                        console.log( '%c IN HEADER', 'background: #FF000A; color: #000000' );
-                                        console.log( bonus.value );
-                                        console.log( ceeBonus.value );
-                                        console.log( maPrimeRenovBonus.value );
-                                        console.log( '%c IN HEADER', 'background: #FF000A; color: #000000' );
 
                                         watch( deposit, newValue => {
                                             amount.value = +( cashPrice.value - newValue ).toFixed( 2 );

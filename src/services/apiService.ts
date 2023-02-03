@@ -61,7 +61,6 @@ export const fetchCommercialData = () => {
         } )
             .then( response => response.json() )
             .then( response => {
-                console.log( 'response -->', response );
                 let phone = response.phone;
                 if ( phone === null ) {
                     phone = '';
@@ -95,11 +94,9 @@ export const fetchDossierState = () => {
         } )
             .then( response => response.json() )
             .then( response => {
-                console.log( 'response -->', response );
                 const files = response.files;
 
                 for ( const file of files ) {
-                    console.log( 'FILE -->', file.isClosed );
                     closeFile( file.ref, file.isClosed );
 
 
@@ -128,7 +125,6 @@ export const postFileToERP = async ( folderName: string ) => {
     const fileData: AllFile = getCurrentFileData();
 
     const todos = await getTodoByFile( fileData.ref );
-    console.log( 'TODO BEFORE SEND -->', todos );
 
     if ( checkInternet() ) {
         const response = await fetch( `${ API_URL }/api/dossier`, {
@@ -156,32 +152,5 @@ export const postFileToERP = async ( folderName: string ) => {
         }
         await sendAt( fileData.ref, new Date() );
         resetCurrentFileData();
-
-
-        // fetch( `${ API_URL }/api/dossier`, {
-        //     method:  'POST',
-        //     headers: defaultHeader(),
-        //     body:    JSON.stringify( { ...fileData, todos } ),
-        // } )
-        //     .then( response => response.json() )
-        //     .then( response => {
-        //         console.log( 'response -->', response );
-        //         ElMessage( {
-        //                        message: 'Dossier transféré avec succès',
-        //                        type:    'success',
-        //                    } );
-        //
-        //         if ( response.allTodosAreDone ) {
-        //             setStatusFile( fileData.ref, FILE_COMPLETE_STATUS.code );
-        //         } else {
-        //             setStatusFile( fileData.ref, FILE_TO_CORRECT_STATUS.code );
-        //         }
-        //         sendAt( fileData.ref, new Date() );
-        //         resetCurrentFileData();
-        //     } )
-        //     .catch( error => {
-        //         ElMessage.error( 'Une erreur est survenue lors de la transmission à l\'ERP' );
-        //         console.error( error );
-        //     } );
     }
 };

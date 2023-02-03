@@ -357,8 +357,6 @@ export class WorksheetGenerator extends PdfGenerator {
                 list      = ( this._file.lists as CombleList );
                 quotation = ( this._file.quotation as CombleQuotation );
 
-                console.log( 'Options -->', quotation.options );
-
                 if ( quotation.selectedProducts.length > 0 ) {
                     selectedProduct = quotation.selectedProducts[ 0 ].label;
                 }
@@ -694,8 +692,6 @@ export class WorksheetGenerator extends PdfGenerator {
                         selectedProduct += `- ${ product.label } \n`;
                     }
                 }
-                console.log( '%c DATA RO FICHE', 'background: #fdd835; color: #000000' );
-                console.log( roQuotation.selectedProducts );
 
                 data = [
                     {

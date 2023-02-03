@@ -72,11 +72,9 @@ async function createWindow() {
         // Load the index.html when not in development
         mainWindow.loadURL( 'app://./index.html' );
         const response = await autoUpdater.checkForUpdatesAndNotify();
-        console.log( 'Response ', response );
-        console.log( response );
+
         if ( response?.downloadPromise !== undefined ) {
             setTimeout( () => {
-                console.log( '%c IN TIME OUT', 'background: #FF0017; color: #000000' );
                 mainWindow.webContents.send( 'download_update' );
             }, 5000 );
         }
@@ -149,23 +147,13 @@ const { download } = require( 'electron-dl' );
 
 ipcMain.on( 'download', async ( event, { payload } ) => {
     // Handle dowload
-    console.log( 'HANDLE DOWNLOAD' );
-
     if ( store.get( 'connectedToInternet' ) ) {
         try {
             for ( const url of payload.urls ) {
-                console.log( 'URL -->', url );
-
                 await download( BrowserWindow.getFocusedWindow(), url, {
                     directory: payload.properties.directory,
                     saveAs:    false,
                     overwrite: true,
-                    // onProgress:  ( progress ) => {
-                    //     mainWindow.webContents.send( 'download-progress', progress );
-                    // },
-                    // onCompleted: ( item ) => {
-                    //     mainWindow.webContents.send( 'download-complete', item );
-                    // },
                 } );
             }
         } catch ( e ) {
@@ -191,11 +179,9 @@ ipcMain.on( 'save-screenshot', ( event, data ) => {
 } );
 
 autoUpdater.on( 'update-downloaded', () => {
-    console.log( 'SEND EVENT update-downloaded' );
     mainWindow.webContents.send( 'update_downloaded' );
 } );
 
 ipcMain.on( 'restart_app', () => {
-    console.log( 'ON RESTART APP' );
     autoUpdater.quitAndInstall();
 } );

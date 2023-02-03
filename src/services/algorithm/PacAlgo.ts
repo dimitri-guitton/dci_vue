@@ -102,19 +102,6 @@ export class PacAlgo {
         // Puissance en watt
         const power: number = +( volume * deltaT * housing.buildingCoefficient ).toFixed( 4 );
 
-
-        console.log( {
-                         'area':                 housing.area,
-                         'hauteur_sous_plafond': housing.ceilingHeight,
-                         'volume':               volume,
-                         'temperature_consigne': housing.setPointTemperature,
-                         'zone_climatique':      housing.climaticZone,
-                         'altitude':             housing.altitude,
-                         'delta_t':              deltaT,
-                         'coef_construction':    housing.buildingCoefficient,
-                         'puissance_w':          power,
-                     } );
-
         // Retourne la puissance en KW
         return power / 1000;
     };

@@ -1,9 +1,9 @@
 <template>
     <div class="w-100">
-        <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit"
-                      :price="price"
+        <step4-header :file="fileData"
                       :lists="lists"
-                      :file="fileData"
+                      :payment-on-credit="fileData.quotation.paymentOnCredit"
+                      :price="price"
                       @bonusAreUpdated="updateBonus"></step4-header>
 
         <div class="row">
@@ -20,12 +20,12 @@
 
         <div class="row mt-10">
             <div class="col-md-6 mb-5">
-                <label for="pacType" class="form-label">Type de pompe à chaleur</label>
-                <Field name="pacType"
-                       id="pacType"
-                       class="form-select"
-                       as="select"
+                <label class="form-label" for="pacType">Type de pompe à chaleur</label>
+                <Field id="pacType"
                        v-model="rrType"
+                       as="select"
+                       class="form-select"
+                       name="pacType"
                 >
                     <template-item-list :lists="lists.rrTypeList"></template-item-list>
                 </Field>
@@ -36,15 +36,15 @@
             <div class="col-md-6 fv-row">
                 <label class="form-label mb-3">Nombre de pièces</label>
                 <Field
-                    type="number"
+                    v-model.number="rrMulti.roomNumber"
                     class="form-control"
                     name="housingRoomNumber"
                     placeholder="1"
-                    v-model.number="rrMulti.roomNumber"
+                    type="number"
                 />
                 <ErrorMessage
-                    name="housingRoomNumber"
                     class="fv-plugins-message-container invalid-feedback"
+                    name="housingRoomNumber"
                 ></ErrorMessage>
             </div>
 
@@ -54,11 +54,11 @@
                         <div class="col-md-2">
                             <label class="form-label mb-3">Pièce n°{{ index }} <sup><var>m2</var></sup></label>
                             <Field
-                                type="number"
-                                class="form-control"
-                                :name="`housingAreaP${index}`"
-                                placeholder="1"
                                 v-model.number="rrMulti[`areaP${index}`]"
+                                :name="`housingAreaP${index}`"
+                                class="form-control"
+                                placeholder="1"
+                                type="number"
                             />
                         </div>
                         <div class="col-md-3">
@@ -96,31 +96,31 @@
         <selected-product :index="0"
                           :products="extProducts"
                           :selectedProducts="selectedProducts"
-                          @selectedProductIsUpdated="updateSelectedProduct($event, 0)"
-                          :show-reference="true"></selected-product>
+                          :show-reference="true"
+                          @selectedProductIsUpdated="updateSelectedProduct($event, 0)"></selected-product>
 
         <template v-if="rrType === 'mono'">
             <selected-product :index="1"
                               :products="intProducts"
                               :selectedProducts="selectedProducts"
-                              @selectedProductIsUpdated="updateSelectedProduct($event, 1)"
-                              :show-reference="true"></selected-product>
+                              :show-reference="true"
+                              @selectedProductIsUpdated="updateSelectedProduct($event, 1)"></selected-product>
         </template>
         <template v-else>
             <template v-for="index in rrMulti.roomNumber" v-bind:key="`select_int_product_${index}`">
                 <selected-product :index="index"
                                   :products="intProducts"
                                   :selectedProducts="selectedProducts"
-                                  @selectedProductIsUpdated="updateSelectedProduct($event, index)"
-                                  :show-reference="true"></selected-product>
+                                  :show-reference="true"
+                                  @selectedProductIsUpdated="updateSelectedProduct($event, index)"></selected-product>
             </template>
         </template>
 
-        <options @optionsAreUpdated="updateOptions" :options="filteredOptions"></options>
+        <options :options="filteredOptions" @optionsAreUpdated="updateOptions"></options>
 
-        <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
+        <blank-options :options="blankOptions" @optionsAreUpdated="updateBlankOtions"></blank-options>
 
-        <input-discount @discountUpdated="updateDiscount" :discount="discount"></input-discount>
+        <input-discount :discount="discount" @discountUpdated="updateDiscount"></input-discount>
 
         <wizzard-file-price :price="price"></wizzard-file-price>
 
@@ -135,8 +135,8 @@
                     value=""
                 />
                 <ErrorMessage
-                    name="commentary"
                     class="fv-plugins-message-container invalid-feedback"
+                    name="commentary"
                 ></ErrorMessage>
             </div>
         </div>
@@ -145,12 +145,12 @@
 
         <div class="row mt-5">
             <div class="col-md-6 offset-md-3 d-flex justify-content-around">
-                <button type="button" @click="generateAddressCertificate" class="btn btn-outline btn-outline-info">
+                <button class="btn btn-outline btn-outline-info" type="button" @click="generateAddressCertificate">
                     Générer
                     l'attestation
                     d'adresse
                 </button>
-                <button type="button" @click="generateQuotation" class="btn btn-info">Générer le devis</button>
+                <button class="btn btn-info" type="button" @click="generateQuotation">Générer le devis</button>
             </div>
         </div>
 
@@ -169,7 +169,7 @@ import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
-import { getCodeBonus, getLessThan2Year } from '@/services/data/dataService';
+import { getLessThan2Year } from '@/services/data/dataService';
 import TemplateItemList from '@/components/DCI/input/ItemList.vue';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import RrList from '@/types/v2/File/Rr/RrList';
@@ -212,9 +212,8 @@ export default defineComponent( {
                                     setup( props, ctx ) {
                                         const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
                                         const _options          = ref<Option[]>( ( props.options as Option[] ) );
-                                        console.log( 'OPTIONS -->', _options );
-                                        const _blankOptions = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
-                                        const lists         = ref<RrList>( ( props.fileData.lists as RrList ) );
+                                        const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
+                                        const lists             = ref<RrList>( ( props.fileData.lists as RrList ) );
 
                                         const discount   = ref<number>( props.fileData.quotation.discount );
                                         const rrType     = ref<string>( ( props.fileData.quotation.rrType ) );
@@ -250,32 +249,6 @@ export default defineComponent( {
                                             disabledMaPrimeRenovBonus.value = data.maPrimeRenovBonus;
                                         };
 
-
-                                        // /**
-                                        //  * Ajoute ou enlève l'option Wifi selon les PAC
-                                        //  */
-                                        // const enabledWifiOption = ( enabled: boolean ) => {
-                                        //     console.log( '%c ENABLED WIFI', 'background: #fdd835; color: #000000' );
-                                        //     console.log( enabled );
-                                        //     console.log( _options.value );
-                                        //     const wifiOption = _options.value.find( o => o.label === 'Wifi' );
-                                        //     if ( wifiOption === undefined ) {
-                                        //         console.log( '%c WIFI OPTION UNDEFINED',
-                                        //                      'background: #fdd835; color: #000000' );
-                                        //         return;
-                                        //     }
-                                        //
-                                        //     // Change le nombre de l'option WIFI pour l'activer ou non
-                                        //     _options.value = _options.value.map( o => {
-                                        //         if ( enabled && o.label === 'Wifi' ) {
-                                        //             return { ...o, number: 1 };
-                                        //         } else if ( !enabled && o.label === 'Wifi' ) {
-                                        //             return { ...o, number: 0 };
-                                        //         }
-                                        //         return o;
-                                        //     } );
-                                        // };
-
                                         const updateNbLayingOption = ( nbLaying: number ) => {
                                             const layingOption = _options.value.find( o => o.label.includes(
                                                 'Forfait pose' ) );
@@ -308,19 +281,6 @@ export default defineComponent( {
                                                 updateNbLayingOption( rrMulti.value.roomNumber );
                                             }
 
-                                            const sensiraSelected = _selectedProducts.value.length > 0 && _selectedProducts.value[ 0 ].label.toLowerCase()
-                                                                                                                                      .includes(
-                                                                                                                                          'sensira' );
-                                            console.log( 'WIFI' );
-                                            console.log( 'Sensira selected', sensiraSelected );
-
-                                            // if ( rrType.value === 'multi' || !sensiraSelected ) {
-                                            //     enabledWifiOption( false );
-                                            //     return _options.value.filter( o => o.label !== 'Wifi' );
-                                            // }
-
-
-                                            // enabledWifiOption( true );
                                             return _options.value;
                                         } );
 
@@ -400,8 +360,6 @@ export default defineComponent( {
                                                 totalHt += selectedProduct.pu;
                                             }
 
-                                            console.log( 'Prix avec les produits -->', totalHt );
-
                                             for ( const option of _options.value ) {
                                                 if ( option.number > 0 ) {
                                                     totalHt += option.pu * option.number;
@@ -412,30 +370,20 @@ export default defineComponent( {
                                                 }
                                             }
 
-                                            console.log( 'Prix avec les options -->', totalHt );
-
                                             for ( const option of _blankOptions.value ) {
                                                 if ( option.number > 0 && option.label !== '' ) {
                                                     totalHt += option.pu * option.number;
                                                 }
                                             }
-                                            console.log( 'Prix avec les options vides -->', totalHt );
 
-                                            const codeBonus = getCodeBonus();
-                                            console.log( 'Code prime --> ', codeBonus );
                                             const lessThan2Year = getLessThan2Year();
-                                            console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
 
                                             // SI plus de 2 ans
                                             if ( !lessThan2Year ) {
-                                                console.log( 'sumForTva10', sumForTva10 );
                                                 tva10 = sumForTva10 * 0.1;
-                                                console.log( 'TVA 20 -->', tva10 );
                                                 tva20 = ( totalHt - sumForTva10 ) * 0.2;
-                                                console.log( 'TVA 20 -->', tva20 );
                                             } else {
-                                                console.log( '%c TVA 10 = 0', 'background: #fdd835; color: #000000' );
                                                 tva10 = 0;
                                                 tva20 = totalHt * 0.2;
                                             }

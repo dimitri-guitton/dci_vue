@@ -33,7 +33,6 @@ export const yupSolConfigStep3 = () => {
 export const validateSolStep3 = async ( data: SolFileStep ) => {
     let fileData = getCurrentSolFileData();
 
-    console.log( data );
     const housing: Housing = {
         ...fileData.housing,
         ...defaultGetHoussingValueStep3( fileData, data ),

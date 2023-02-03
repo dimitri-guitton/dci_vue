@@ -136,7 +136,6 @@ export class PgConverter extends BaseConverter {
 
         // Récupération de nouveau JSON
         let fileData = this.getNewJson( FILE_PG );
-        console.log( 'NEW FILE DATA', fileData );
 
         fileData = {
             ...fileData,

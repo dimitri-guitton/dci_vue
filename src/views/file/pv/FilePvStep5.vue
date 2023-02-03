@@ -9,10 +9,10 @@
             <div class="col-md-4 offset-8 fv-row">
                 <label class="form-label mb-3">Période de pose souhaité</label>
                 <Field
-                    type="date"
                     class="form-control"
                     name="worksheet.period"
                     placeholder="01/01/1970"
+                    type="date"
                     value=""
                 />
             </div>
@@ -20,26 +20,26 @@
 
         <div class="row mt-10">
             <div class="col-md-6 mb-5">
-                <label for="orientation" class="form-label">Prix moyen du kWh en France</label>
+                <label class="form-label" for="orientation">Prix moyen du kWh en France</label>
                 <Field
-                    v-model.number="averagePricePerKWhInFrance"
-                    name="worksheet.averagePricePerKWhInFrance"
                     id="averagePricePerKWhInFrance"
-                    class="form-select"
+                    v-model.number="averagePricePerKWhInFrance"
                     as="select"
+                    class="form-select"
+                    name="worksheet.averagePricePerKWhInFrance"
                     @change="updateWorksheet"
                 >
                     <item-list :lists="lists.averagePricePerKWhInFranceList"></item-list>
                 </Field>
             </div>
             <div class="col-md-6 mb-5">
-                <label for="orientation" class="form-label">Orientation</label>
+                <label class="form-label" for="orientation">Orientation</label>
                 <Field
-                    v-model.number="orientation"
-                    name="worksheet.orientation"
                     id="orientation"
-                    class="form-select"
+                    v-model.number="orientation"
                     as="select"
+                    class="form-select"
+                    name="worksheet.orientation"
                     @change="updateWorksheet"
                 >
                     <item-list :lists="lists.orientationList"></item-list>
@@ -47,13 +47,13 @@
             </div>
 
             <div class="col-md-6 mb-5">
-                <label for="electricityPriceEvolution" class="form-label">Évolution du prix de l'électricité</label>
+                <label class="form-label" for="electricityPriceEvolution">Évolution du prix de l'électricité</label>
                 <Field
-                    v-model.number="electricityPriceEvolution"
-                    name="worksheet.electricityPriceEvolution"
                     id="electricityPriceEvolution"
-                    class="form-select"
+                    v-model.number="electricityPriceEvolution"
                     as="select"
+                    class="form-select"
+                    name="worksheet.electricityPriceEvolution"
                     @change="updateWorksheet"
                 >
                     <item-list :lists="lists.electricityPriceEvolutionList"></item-list>
@@ -61,13 +61,13 @@
             </div>
 
             <div class="col-md-6 mb-5">
-                <label for="electricityPriceEvolution" class="form-label">Ratio de revente auprès d'EDF</label>
+                <label class="form-label" for="electricityPriceEvolution">Ratio de revente auprès d'EDF</label>
                 <Field
-                    v-model.number="ratioResaleToEDF"
-                    name="worksheet.ratioResaleToEDF"
                     id="ratioResaleToEDF"
-                    class="form-select"
+                    v-model.number="ratioResaleToEDF"
                     as="select"
+                    class="form-select"
+                    name="worksheet.ratioResaleToEDF"
                     @change="updateWorksheet"
                 >
                     <item-list :lists="lists.ratioResaleToEDFList"></item-list>
@@ -97,7 +97,7 @@
 
         <div class="row mt-5">
             <div class="col-md-6 offset-md-3 d-flex justify-content-around">
-                <button type="button" @click="generateWorksheet" class="btn btn-info">Générer la fiche
+                <button class="btn btn-info" type="button" @click="generateWorksheet">Générer la fiche
                 </button>
             </div>
         </div>
@@ -143,13 +143,6 @@ export default defineComponent( {
                                         } );
 
                                         const updateWorksheet = () => {
-
-                                            console.log( 'orientation', orientation.value );
-                                            console.log( 'electricityPriceEvolution', electricityPriceEvolution.value );
-                                            console.log( 'ratioResaleToEDF', ratioResaleToEDF.value );
-                                            console.log( 'averagePricePerKWhInFrance',
-                                                         averagePricePerKWhInFrance.value );
-
                                             const newWoksheet = {
                                                 ...props.fileData.worksheet,
                                                 orientation:                orientation.value,
@@ -161,9 +154,6 @@ export default defineComponent( {
                                             pdfGenerator.updateChart( props.fileData.quotation,
                                                                       newWoksheet,
                                                                       props.fileData.energyZone );
-
-
-                                            console.log( newWoksheet );
                                         };
 
 

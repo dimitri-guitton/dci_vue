@@ -1,20 +1,20 @@
 <template>
     <div class="w-100">
 
-        <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit" :price="price" :lists="lists"
-                      :file="fileData" @bonusAreUpdated="updateBonus"></step4-header>
+        <step4-header :file="fileData" :lists="lists" :payment-on-credit="fileData.quotation.paymentOnCredit"
+                      :price="price" @bonusAreUpdated="updateBonus"></step4-header>
 
         <step4-quotation-header></step4-quotation-header>
 
         <selected-product :alert="alert"
                           :products="products"
-                          :selectedProducts="selectedProducts"
                           :quantity-area="quantityArea"
+                          :selectedProducts="selectedProducts"
                           @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
 
-        <options @optionsAreUpdated="updateOptions" :options="options"></options>
+        <options :options="options" @optionsAreUpdated="updateOptions"></options>
 
-        <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
+        <blank-options :options="blankOptions" @optionsAreUpdated="updateBlankOtions"></blank-options>
 
         <wizzard-file-price :price="price"></wizzard-file-price>
 
@@ -29,8 +29,8 @@
                     value=""
                 />
                 <ErrorMessage
-                    name="commentary"
                     class="fv-plugins-message-container invalid-feedback"
+                    name="commentary"
                 ></ErrorMessage>
             </div>
         </div>
@@ -39,12 +39,12 @@
 
         <div class="row mt-5">
             <div class="col-md-6 offset-md-3 d-flex justify-content-around">
-                <button type="button" @click="generateAddressCertificate" class="btn btn-outline btn-outline-info">
+                <button class="btn btn-outline btn-outline-info" type="button" @click="generateAddressCertificate">
                     Générer
                     l'attestation
                     d'adresse
                 </button>
-                <button type="button" @click="generateQuotation" class="btn btn-info">Générer le devis</button>
+                <button class="btn btn-info" type="button" @click="generateQuotation">Générer le devis</button>
             </div>
         </div>
 
@@ -64,7 +64,7 @@ import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
-import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
+import { getLessThan2Year, getTva } from '@/services/data/dataService';
 import { getCeeBonus, roundCeeBonus } from '@/services/file/fileCommonService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
 import CombleList from '@/types/v2/File/Comble/CombleList';
@@ -140,46 +140,31 @@ export default defineComponent( {
                                             if ( props.forceRefresh ) {
                                                 console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
                                             }
-                                            console.log( '%c IN COMPUTED', 'background: #007C83; color: #FFFFFF' );
                                             let totalHt  = 0;
                                             let ceeBonus = 0;
 
-                                            console.log( '%c AREA', 'background: #61C60B; color: #000000' );
-                                            console.log( 'area', props.quantityArea );
-
-                                            console.log( 'Prix par defaut -->', totalHt );
-                                            console.log( 'Prix par defaut -->', totalHt );
-                                            console.log( 'Prix par defaut -->', totalHt );
                                             for ( const selectedProduct of _selectedProducts.value ) {
                                                 totalHt += selectedProduct.pu * props.quantityArea;
                                             }
-                                            console.log( 'Prix avec les produits -->', totalHt );
 
                                             // TODO UPDATE THE OVERRIDE POSE
                                             const laying = props.quantityArea * props.fileData.quotation.overrideLaying;
 
                                             totalHt += laying;
-                                            console.log( 'Prix apres la poses', totalHt );
-
 
                                             for ( const option of _options.value ) {
                                                 if ( option.number > 0 ) {
                                                     totalHt += option.pu * option.number;
                                                 }
                                             }
-                                            console.log( 'Prix avec les options -->', totalHt );
 
                                             for ( const option of _blankOptions.value ) {
                                                 if ( option.number > 0 && option.label !== '' ) {
                                                     totalHt += option.pu * option.number;
                                                 }
                                             }
-                                            console.log( 'Prix avec les options vides -->', totalHt );
 
-                                            const codeBonus = getCodeBonus();
-                                            console.log( 'Code prime --> ', codeBonus );
                                             const lessThan2Year = getLessThan2Year();
-                                            console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
                                             let tva = getTva();
                                             if ( lessThan2Year ) {
@@ -189,12 +174,6 @@ export default defineComponent( {
                                                 if ( !disabledBonus.value ) {
                                                     // Si la prime CEE est active
                                                     if ( !disabledCeeBonus.value ) {
-                                                        console.log( '%c CEE ---',
-                                                                     'background: #fdd835; color: #000000' );
-                                                        console.log( getCeeBonus( ( props.fileData as BaseFile ) ) );
-                                                        console.log( props.quantityArea );
-                                                        console.log( '%c FIN CEE ---',
-                                                                     'background: #fdd835; color: #000000' );
                                                         ceeBonus = roundCeeBonus( getCeeBonus( ( props.fileData as BaseFile ) ) * props.quantityArea );
                                                     }
                                                 }
@@ -216,10 +195,7 @@ export default defineComponent( {
                                                 CEE:   ceeBonus,
                                             };
 
-                                            console.log( 'PRICE -->', price );
-
                                             ctx.emit( 'calculedPrice', price );
-
 
                                             return price;
                                         } );

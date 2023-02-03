@@ -1057,7 +1057,6 @@ export class RoAlgo extends PacAlgo {
 
     public getUnitsRo( volumeECS: number,
                        sizingPercentage: number ): { unitExt: UnitExt; unitInt: UnitInt; needBiZoneSupplement: boolean } | null {
-        console.log( '%c GET UNITS RO', 'background: #5ADFFF; color: #000000' );
         const requiredPower: number = this.calcRequiredPower( this.housing );
         const baseTemp: number      = this.getBaseTemperature( this.housing.climaticZone, this.housing.altitude );
         const heaterValue: number   = this.heaterToValue( this.housing.heaters );
@@ -1074,14 +1073,6 @@ export class RoAlgo extends PacAlgo {
         } else {
             formatedBaseTemp = baseTemp.toString();
         }
-
-        console.log( {
-                         'puissance_requise':        requiredPower,
-                         'temperature_base':         baseTemp,
-                         'temperature_base_formate': formatedBaseTemp,
-                         'radiateurs':               this.housing.heaters,
-                         'valeur_radiateurs':        heaterValue,
-                     } );
 
         // Si on ne trouve pas dans la liste la tension souhaitée on retourne null
         if ( this.unitExtList[ this.housing.availableVoltage ] === undefined ) {
@@ -1104,12 +1095,8 @@ export class RoAlgo extends PacAlgo {
         if ( filterredUnitExt.length === 1 ) {
             selectedUnitExt = filterredUnitExt[ 0 ];
         } else {
-            console.log( 'filterredUnitExt -->', filterredUnitExt );
-
             // S'il y a plus de 1 PAC on parcourt les pacs et on récupère la moins chère
             for ( const unitExt of filterredUnitExt ) {
-                console.log( unitExt );
-                console.log( 's1 ->', selectedUnitExt );
                 if ( selectedUnitExt === null ) {
                     selectedUnitExt = unitExt;
                 } else {
@@ -1123,12 +1110,9 @@ export class RoAlgo extends PacAlgo {
                         }
                     }
                 }
-
-                console.log( 's2 ->', selectedUnitExt );
             }
         }
 
-        console.log( 's finale -->', selectedUnitExt );
         if ( selectedUnitExt === null ) {
             console.warn( 'Impossible de trouvé une unité extérieur' );
             return null;
@@ -1139,16 +1123,9 @@ export class RoAlgo extends PacAlgo {
             return null;
         }
 
-        console.log( `%c VOLUME ECS IN ALGO --> ${ volumeECS }`, 'background: #fdd835; color: #000000' );
         const hotWater = volumeECS;
         let bizone     = this.isBiZone( this.housing.heaters );
         const size     = selectedUnitExt.size;
-
-        console.log( {
-                         'volume_ECS': hotWater,
-                         'bizone':     bizone,
-                         'size':       size,
-                     } );
 
         // Pompe à chaleur bizone avec ECS n'existe pas, on doit rajouter un KIT-Bi-Zone
         // On passe donc bizone à false
@@ -1169,30 +1146,10 @@ export class RoAlgo extends PacAlgo {
             if ( selectedUnitExt !== null ) {
                 highTemperature = selectedUnitExt.ref.includes( 'EPRA' );
             }
-            console.log( 'highTemperature', highTemperature );
-
-            console.log( '---' );
-            console.log( '---' );
-            console.log( `${ unit.hotWaterTank } --- ${ hotWater }` );
 
             // Sinon aute température on ne check pas la si c'est égal
-            if ( !highTemperature || highTemperature === unit.highTemperature ) {
-                console.log( 'BONNE TEMPÉRATURE' );
-                if ( unit.sizes.includes( size ) ) {
-                    console.log( 'BONNE TAILLE' );
-                    if ( unit.hotWaterTank === hotWater ) {
-                        console.log( 'BON BALLON EAU CHAUDE' );
-                        if ( unit.bizone === bizone ) {
-                            console.log( 'BIZONE OK' );
-                            console.log( unit );
-                        }
-                    }
-                }
-            }
-
             return unit.hotWaterTank === hotWater && unit.bizone === bizone && unit.sizes.includes( size ) && ( !highTemperature || highTemperature === unit.highTemperature );
         } );
-        console.log( 'filteredUnitInt', filteredUnitInt );
 
         let selectedUnitInt: UnitInt | null = null;
         for ( const unitInt of filteredUnitInt ) {
@@ -1205,25 +1162,11 @@ export class RoAlgo extends PacAlgo {
             }
         }
 
-        console.log( 'selectedUnitInt -->', selectedUnitInt );
         if ( selectedUnitInt === null ) {
             console.warn( 'Impossible de trouvé une unité intérieur' );
             return null;
         }
 
-
-        // let selectedUnitInt: UnitInt;
-        // if ( filteredUnitInt.length === 0 ) {
-        //     console.warn( 'Impossible de trouvé une unité intérieur' );
-        //     return null;
-        // } else {
-        //     selectedUnitInt = filteredUnitInt[ 0 ];
-        // }
-
-        console.log( 'PAC RO ->', {
-            unitExt: selectedUnitExt,
-            unitInt: selectedUnitInt,
-        } );
         return {
             unitExt: selectedUnitExt,
             unitInt: selectedUnitInt,

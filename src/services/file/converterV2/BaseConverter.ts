@@ -92,8 +92,6 @@ export class BaseConverter {
 
 
     public convertJsonFile() {
-        console.log( '%c CONVERT JSON FILE', 'background: #35D452; color: #000000' );
-
         return {
             ...this.getOldGlobalInfo(),
             assents:           this.getOldAssents(),
