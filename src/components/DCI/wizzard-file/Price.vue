@@ -73,7 +73,7 @@ export default defineComponent( {
                                             },
                                         },
                                     },
-                                    setup( props ) {
+                                    setup() {
                                         return {
                                             numberToPrice,
                                         };

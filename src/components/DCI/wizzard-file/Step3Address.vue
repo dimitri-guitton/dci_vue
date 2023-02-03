@@ -161,8 +161,6 @@ export default defineComponent( {
                                   },
                                   setup( props ) {
 
-                                    // const isDevelopment = process.env.NODE_ENV !== 'production';
-                                    const isDevelopment   = false;
                                     const isLoading       = ref<boolean>( false );
                                     const map             = ref();
                                     const mapHasBeenHover = ref<boolean>( false );
@@ -217,7 +215,7 @@ export default defineComponent( {
                                      **/
                                     const initMap = async ( coordinate: number[] | null = null ) => {
 
-                                      // On s'assure que la map est Init qu'une seul fois
+                                      // On s'assure que la map est Init qu'une seule fois
                                       if ( mapHasBeenHover.value ) {
                                         return;
                                       }
@@ -242,7 +240,7 @@ export default defineComponent( {
                                       }
 
 
-                                      // Charge la map si elle est pas déja chargé
+                                        // Charge la map si elle n'est pas déja chargé
                                       if ( map.value === undefined ) {
                                         map.value = Gp.Map.load(
                                             'map', // html div
