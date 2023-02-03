@@ -38,7 +38,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
     private _generateDocDefinition(): TDocumentDefinitions {
         return {
             content: [
-                this._createTitle( 'Étude de rentabilité' ),
+                this._createTitle( 'Estimation de prodution' ),
                 this._customerInfo(),
                 this._photovoltaicInfo(),
                 this._benefitsOver25Years(),

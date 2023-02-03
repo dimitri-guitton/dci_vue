@@ -20,7 +20,7 @@
 
         <div class="row mt-10">
             <div class="col-md-6 mb-5">
-                <label class="form-label" for="orientation">Prix moyen du kWh en France</label>
+                <label class="form-label" for="orientation">Prix moyen du kWh en France en cts</label>
                 <Field
                     id="averagePricePerKWhInFrance"
                     v-model.number="averagePricePerKWhInFrance"

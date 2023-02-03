@@ -124,7 +124,8 @@ export class PvAlgo {
      * Economie sur la facture en €
      */
     public savingsOnBill( year = 1 ): number {
-        return this.calcInstallationProduction( year ) * this.worksheet.averagePricePerKWhInFrance * 0.5;
+        const ratio = 1 - this.worksheet.ratioResaleToEDF;
+        return this.calcInstallationProduction( year ) * this.worksheet.averagePricePerKWhInFrance * ratio;
     }
 
     /**
