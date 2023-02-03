@@ -4,6 +4,7 @@
 export interface Option {
     id: number;
     fileType: string;
+    slug: string;
     label: string;
     unit: string;
     defaultPu: number;

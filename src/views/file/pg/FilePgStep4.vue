@@ -326,7 +326,7 @@ export default defineComponent( {
 
 
                                                 // Kit pour sortie de fumée supérieur PGI intégré
-                                                if ( option.id === 39 ) {
+                                                if ( option.slug === `option-39` ) {
                                                     let enabled = false;
                                                     if ( outsideSocket.value === false && smoke.value === 'top' ) {
                                                         enabled = true;
@@ -335,7 +335,7 @@ export default defineComponent( {
                                                 }
 
                                                 // Kit pour sortie de fumée supérieur simple paroi
-                                                if ( option.id === 40 ) {
+                                                if ( option.slug === `option-40` ) {
                                                     let enabled = false;
                                                     if ( outsideSocket.value === true && smoke.value === 'top' ) {
                                                         enabled = true;
@@ -344,7 +344,7 @@ export default defineComponent( {
                                                 }
 
                                                 // Kit télécommande easy
-                                                if ( option.id === 41 ) {
+                                                if ( option.slug === `option-41` ) {
                                                     let enabled = false;
                                                     if ( type.value === 'superior' ) {
                                                         enabled = true;

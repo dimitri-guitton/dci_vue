@@ -504,12 +504,12 @@ export default defineComponent( {
                                         const filteredOptions = computed<Option[]>( () => {
                                             for ( const option of _options.value ) {
 
-                                                if ( props.fileData.housing.availableVoltage === 'triphase' && option.id === 24 ) {
+                                                if ( props.fileData.housing.availableVoltage === 'triphase' && option.slug === `option-24` ) {
                                                     // Si le PU n'a pas déja été augmenté
                                                     if ( option.pu === option.defaultPu ) {
                                                         option.pu += 400;
                                                     }
-                                                } else if ( option.id === 24 ) {
+                                                } else if ( option.slug === `option-24` ) {
                                                     // Si le PU a été modifié
                                                     if ( option.pu !== option.defaultPu ) {
                                                         option.pu -= 400;
