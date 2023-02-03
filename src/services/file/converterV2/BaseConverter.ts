@@ -310,6 +310,7 @@ export class BaseConverter {
             newOptions.push( {
                                  id:            option[ 'id' ],
                                  fileType,
+                                 slug:          `option-${ option[ 'id' ] }`,
                                  label:         option[ 'label' ],
                                  unit:          option[ 'unit' ],
                                  defaultPu:     option[ 'pu' ][ 'default' ],
