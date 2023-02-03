@@ -68,7 +68,7 @@ const schema = {
         type:    'boolean',
         default: false,
     },
-    apiTokenIsValid:     { // Pour savoir si toute les infos nécessaire au fonctionnement du DCI sont présentes
+    apiTokenIsValid: { // Pour savoir si toutes les infos nécessaires au fonctionnement du DCI sont présentes
         type:    'boolean',
         default: false,
     },
@@ -172,7 +172,7 @@ export const getCurrentFileData = (): AllFile => {
         const path = `${ getFolderPath( name ) }/${ process.env.VUE_APP_FILENAME_DATA }.json`;
         console.log( 'GET FILE DATA PATH -->', path );
 
-        // TODO faire la verif si la path existe, si il n'existe pas créer le .json
+        // TODO faire la verif si la path existe, s'il n'existe pas créer le .json
         // if ( fs.existsSync( path ) ) {
         const rawdata  = fs.readFileSync( path ).toString( 'utf8' );
         const fileData = JSON.parse( rawdata );
@@ -284,7 +284,7 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficia
 };
 
 /**
- * Retourne le palier selon les revenues et le nombre d'occupant d'un logement
+ * Retourne le palier selon les revenus et le nombre d'occupants d'un logement
  * @param stages
  * @param occupant
  * @param revenu
@@ -318,7 +318,7 @@ export const getCodeBonus = ( fileData: BaseFile | null = null ) => {
     console.log( '%c GET CODE BONUS', 'background: #0094BE; color: #000000' );
     console.log( 'TotalRevenu -->', totalRevenu );
 
-    // Quand la prime est désactivé retourne 'CL'
+    // Quand la prime est désactivée retourne 'CL'
     if ( fileData.disabledBonus ) {
         return 'CL';
     }

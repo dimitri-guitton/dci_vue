@@ -40,8 +40,6 @@ import { RrConverter } from '@/services/file/converterV2/RrConverter';
 import { PgConverter } from '@/services/file/converterV2/PgConverter';
 import { AllFile } from '@/types/v2/File/All';
 
-declare const __static: string;
-
 const schema = {
     dropboxPath: {
         type:    'string',
@@ -52,7 +50,7 @@ const schema = {
 const store = new Store( { schema } );
 
 /**
- * Créé le dossier DCI si il n'exsite pas
+ * Créé le dossier DCI s'il n'existe pas
  */
 export const createDciFolderIfNotExist = () => {
     const dropboxPath = store.get( 'dropboxPath' );
@@ -104,7 +102,7 @@ const Folders = [
 ];
 
 /**
- * Créer les sous dossier dans un dossier principale
+ * Créer les sous dossier dans un dossier principal
  * @param type
  * @param parent
  */
@@ -126,9 +124,6 @@ const createSubFolders   = ( type: string, parent: string ) => {
 // TODO argument inutile comme type qui est déja dans NewFolderData
 export const addJsonData = ( type: string, parent: string, reference: string, folderName: string, newFolder: NewFolderData ) => {
 
-           // const jsonPath = path.join( __static, `examples/empty_new_data_${ type }.json` );
-           // const jsonPath       = path.join( __static, `config_json/empty_new_data_${ type }.json` );
-
            const app            = remote.app;
            const downloadFolder = `${ app.getPath( 'userData' ) }/files`;
            const jsonPath       = path.join( downloadFolder, `config_${ type }.json` );
@@ -138,7 +133,6 @@ export const addJsonData = ( type: string, parent: string, reference: string, fo
            let fileData = JSON.parse( rawdata );
 
            const today = new Date();
-           // console.log( '+5 MONTH', new Date( today.setMonth( today.getMonth() + 5 ) ) );
 
            fileData = {
                ...fileData,
@@ -207,86 +201,6 @@ export const createAFolder = async ( newFolder: NewFolderData ): Promise<{ refer
         folderName,
     };
 };
-
-// /**
-//  * Convertie les anciens JSON
-//  */
-// export const convertAllOldJsonToNewJson = () => {
-//     console.log( '%c CONVERT', 'background: #fdd835; color: #000000' );
-//     // const dropboxPath        = store.get( 'dropboxPath' );
-//     const oldDatas: object[] = [];
-//     const jsonFolder         = path.join( __static, 'examples' );
-//     console.log( 'JSON FOLDER', jsonFolder );
-//     console.log( `${ jsonFolder }/old_data_cet.json` );
-//
-//     if ( fs.existsSync( `${ jsonFolder }/old_data_cet.json` ) ) {
-//         console.log( '%c CONVERT OLD CET', 'background: #4CD439; color: #000000' );
-//         oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_cet.json`, 'utf8' ) ) );
-//     }
-//     if ( fs.existsSync( `${ jsonFolder }/old_data_pg.json` ) ) {
-//         console.log( '%c CONVERT OLD PG', 'background: #4CD439; color: #000000' );
-//         oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_pg.json`, 'utf8' ) ) );
-//     }
-//     if ( fs.existsSync( `${ jsonFolder }/old_data_sol.json` ) ) {
-//         console.log( '%c CONVERT OLD SOL', 'background: #4CD439; color: #000000' );
-//         oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_sol.json`, 'utf8' ) ) );
-//     }
-//     if ( fs.existsSync( `${ jsonFolder }/old_data_comble.json` ) ) {
-//         console.log( '%c CONVERT OLD COMBLE', 'background: #4CD439; color: #000000' );
-//         oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_comble.json`, 'utf8' ) ) );
-//     }
-//     if ( fs.existsSync( `${ jsonFolder }/old_data_pac_ro.json` ) ) {
-//         console.log( '%c CONVERT OLD PAC RO', 'background: #4CD439; color: #000000' );
-//         oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_pac_ro.json`, 'utf8' ) ) );
-//     }
-//     if ( fs.existsSync( `${ jsonFolder }/old_data_pac_rr.json` ) ) {
-//         console.log( '%c CONVERT OLD PAC RR', 'background: #4CD439; color: #000000' );
-//         oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_pac_rr.json`, 'utf8' ) ) );
-//     }
-//     if ( fs.existsSync( `${ jsonFolder }/old_data_pb.json` ) ) {
-//         console.log( '%c CONVERT OLD PB', 'background: #4CD439; color: #000000' );
-//         oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_pb.json`, 'utf8' ) ) );
-//     }
-//     if ( fs.existsSync( `${ jsonFolder }/old_data_pv.json` ) ) {
-//         console.log( '%c CONVERT OLD PV', 'background: #4CD439; color: #000000' );
-//         oldDatas.push( JSON.parse( fs.readFileSync( `${ jsonFolder }/old_data_pv.json`, 'utf8' ) ) );
-//     }
-//
-//     for ( const oldData of oldDatas ) {
-//         let data = '';
-//
-//         let type = oldData[ 'type' ].toLowerCase();
-//
-//         if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'ro' ) {
-//             data = JSON.stringify( convertOldRoFile( oldData ), null, 4 );
-//             type += '_ro';
-//         } else if ( type === 'pac' && oldData[ 'pacType' ].toLowerCase() === 'rr' ) {
-//             data = JSON.stringify( convertOldRrFile( oldData ), null, 4 );
-//             type += '_rr';
-//         } else if ( type === 'cet' ) {
-//             data = JSON.stringify( convertOldCetFile( oldData ), null, 4 );
-//         } else if ( type === 'poele' ) {
-//             data = JSON.stringify( convertOldPgFile( oldData ), null, 4 );
-//             type = 'pg';
-//         } else if ( type === 'comble' ) {
-//             data = JSON.stringify( convertOldCombleFile( oldData ), null, 4 );
-//         } else if ( type === 'sol' ) {
-//             data = JSON.stringify( convertOldSolFile( oldData ), null, 4 );
-//         } else if ( type === 'pb' ) {
-//             data = JSON.stringify( convertOldPbFile( oldData ), null, 4 );
-//         } else if ( type === 'pv' ) {
-//             data = JSON.stringify( convertOldPvFile( oldData ), null, 4 );
-//         } else {
-//             console.log( '%c RETURN FALSE', 'background: #fdd835; color: #000000' );
-//             return false;
-//         }
-//
-//         const path = `${ jsonFolder }/empty_new_data_${ type }.json`;
-//         fs.writeFileSync( path, data );
-//     }
-//
-//     return true;
-// };
 
 /**
  * Retourne les données des json sur l'ERP
@@ -537,7 +451,7 @@ export const updateJsonData = ( fileData ) => {
 };
 
 /**
- * Check si un dossier contient le bon nombre de fichier
+ * Check si un dossier contient le bon nombre de fichiers
  * @param folderPath
  * @param nbFile
  */
@@ -547,7 +461,7 @@ const folderContainFiles = ( folderPath: string, nbFile = 1 ): boolean => {
 
         const files = fs.readdirSync( folderPath );
 
-        // Suppression du .DS_Store sous MAC
+        // Suppression du ".DS_Store" sous MAC
         if ( files[ 0 ] == '.DS_Store' ) {
             files.splice( 0, 1 );
         }
@@ -576,7 +490,7 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
 
     let worksheetEmpty;
     // Fichier dans le dossier "FICHE"
-    // Pas de fiche poir la panneaux photovoltaïques
+    // Pas de fiche poir les panneaux photovoltaïques
     if ( fileType === FILE_PV ) {
         worksheetEmpty = false;
     } else {
@@ -603,7 +517,7 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
     const codeBonus = getCodeBonus( fileData );
     let assentEmpty: boolean;
 
-    // Si non précaire on demande pas l'avis d'impot OU si PV
+    // Si non précaire on ne demande pas l'avis d'impot OU si PV
     if ( ( codeBonus !== 'GP' && codeBonus !== 'P' ) || fileType === FILE_PV ) {
         assentEmpty = false;
     } else {

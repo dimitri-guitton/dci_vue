@@ -1,26 +1,9 @@
-import { WorksheetBuilder } from '@/types/v2/Wizzard/WorksheetBuilder';
 import * as Yup from 'yup';
 import { updateJsonData } from '@/services/folder/folderService';
 import { PvWorkSheet } from '@/types/v2/File/Pv/PvWorkSheet';
 import { PvFileStep } from '@/types/v2/Wizzard/FileStep';
 import { PvFile } from '@/types/v2/File/Pv/PvFile';
 import { getCurrentPvFileData } from '@/services/data/dataService';
-
-/**
- * Création du formualaire pour la fiche d'info
- */
-export const pvWorksheetBuilder = (): WorksheetBuilder => {
-    return {
-        steps: [
-            {
-                items: [],
-            },
-            {
-                items: [],
-            },
-        ],
-    };
-};
 
 export const yupPvConfigStep5 = () => {
     return Yup.object( {

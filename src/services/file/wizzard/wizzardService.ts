@@ -4,7 +4,7 @@ import { AssentForm } from '@/types/v2/Wizzard/AssentForm';
 import { AssentDataForm } from '@/types/v2/Wizzard/AssentDataForm';
 
 /**
- * Initialisation de avis d'impot déja présents
+ * Initialisation de l'avis d'impot déja présent
  * @param assents
  * @param beneficiary
  */
@@ -61,7 +61,7 @@ const initDefaultAssents = ( assents: Assent[], beneficiary: Beneficiary ): {
 };
 
 /**
- * Retourne les valeurs du formulaire pour les étapes 1 et 2
+ * Retourne les valeurs du formulaire pour les étapes 1 et 2.
  * @param assents
  * @param beneficiary
  */

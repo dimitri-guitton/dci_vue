@@ -172,7 +172,7 @@ export const yupCombleConfigStep5 = () => {
  * @param worksheet
  */
 export const initCombleFormDataStep5 = ( worksheet: CombleWorkSheet ) => {
-    const data = {
+    return {
         worksheet: {
             period:                    worksheet.period,
             infosSup:                  worksheet.infosSup,
@@ -200,8 +200,6 @@ export const initCombleFormDataStep5 = ( worksheet: CombleWorkSheet ) => {
             desencombrement:           worksheet.desencombrement,
         },
     };
-
-    return data;
 };
 
 export const saveCombleWorksheet = ( data: CombleFileStep ): CombleFile => {

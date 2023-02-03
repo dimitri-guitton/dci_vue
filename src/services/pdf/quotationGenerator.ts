@@ -35,7 +35,7 @@ import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { CityHallManadateGenerator } from '@/services/pdf/cityHallManadateGenerator';
 import { EnedisMandateGenerator } from '@/services/pdf/enedisMandateGenerator';
-import { MaPrimeRenovGeneratorV2 } from '@/services/pdf/maPrimeRenovGeneratorV2';
+import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
 import { ObjEcoEnergie } from '@/services/pdf/contributionFramework/ObjEcoEnergie';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 
@@ -106,7 +106,7 @@ export class QuotationGenerator extends PdfGenerator {
         }
 
         // Génération du cadre de contribution
-        // Pour les pompes à chaleur quand la prime CEE est > à 0
+        // Pour les pompes à chaleur quand la prime CEE est > à 0.
         if ( this._file.quotation.ceeBonus > 0 ) {
             if ( this._file.partner === 'obj_eco_energie' ) {
                 const contributionFrameworkGenerator = new ObjEcoEnergie( this._file );
@@ -119,7 +119,7 @@ export class QuotationGenerator extends PdfGenerator {
 
         // Génération du mandat de maPrimeRenov
         if ( ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PB || this._file.type === FILE_PAC_RO ) ) {
-            const maPrimeRenovGenerator = new MaPrimeRenovGeneratorV2( this._file );
+            const maPrimeRenovGenerator = new MaPrimeRenovGenerator( this._file );
             maPrimeRenovGenerator.generatePdf();
         }
 
@@ -375,7 +375,7 @@ export class QuotationGenerator extends PdfGenerator {
     }
 
     /**
-     * Génère les infos du clients
+     * Génère les infos du client
      * @private
      */
     private _generateCustomerInfo(): Content {
@@ -719,7 +719,7 @@ export class QuotationGenerator extends PdfGenerator {
     }
 
     /**
-     * Génère les infos du logements
+     * Génère les infos du logement
      * @private
      */
     private _generateHousingInfo(): Content {
@@ -758,7 +758,7 @@ export class QuotationGenerator extends PdfGenerator {
                 rowTable.push( { text: `${ item.label } :`, bold: true } );
                 rowTable.push( { text: item.value } );
 
-                // Si il y a plus de valeur à droite qu'a gauche on ajouter des valeur vide à gauche
+                // S'il y a plus de valeur à droite qu'à gauche on ajoute des valeurs vides à gauche
                 if ( tableBody[ index ] === undefined ) {
                     tableBody[ index ] = [ { text: ' ' }, { text: ' ' } ];
                 }
@@ -774,7 +774,7 @@ export class QuotationGenerator extends PdfGenerator {
             }
         }
 
-        // Ajoute des champs vide pour que la tableau est toujours 4 colonnes
+        // Ajoute des champs vide pour que le tableau soit toujours de 4 colonnes
         for ( const row of tableBody ) {
             while ( row.length < 4 ) {
                 row.push( { text: ' ' } );
@@ -813,7 +813,7 @@ export class QuotationGenerator extends PdfGenerator {
     }
 
     /**
-     * Retourne un sous titre dans le corp du devis si il y en à un
+     * Retourne un sous titre dans le corp du devis s'il y en a un
      * @private
      */
     private _getQuotationSubTitle(): TableCell[] {
@@ -1827,7 +1827,7 @@ export class QuotationGenerator extends PdfGenerator {
     }
 
     /**
-     * Retourne la layout pour les tableau bordures vertes + header bleu
+     * Retourne la layout pour les tableaus avec bordures vertes + header bleu
      * @private
      */
     private _getTableLayout(): CustomTableLayout {
@@ -1878,7 +1878,7 @@ export class QuotationGenerator extends PdfGenerator {
     }
 
     /**
-     * Retourne la layout pour les tableau bordures vertes
+     * Retourne la layout pour les tableaux avec bordures vertes
      * @private
      */
     private _getBorderLayout(): CustomTableLayout {
