@@ -564,7 +564,7 @@ export const savePdf = ( buffer: Buffer, type: PdfType ) => {
             break;
         case PdfType.ProfitabilityStudy:
             folder = FoldersNames.ETUDE_RENTABILITE;
-            name   = 'etude_rentabilite.pdf';
+            name   = 'estimation_production.pdf';
             break;
         case PdfType.SizingPac:
             folder = FoldersNames.DIMENSIONNEMENT_PAC;
