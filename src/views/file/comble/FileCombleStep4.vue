@@ -140,15 +140,16 @@ export default defineComponent( {
                                             if ( props.forceRefresh ) {
                                                 console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
                                             }
-                                            let totalHt  = 0;
-                                            let ceeBonus = 0;
+                                            let totalHt      = 0;
+                                            let ceeBonus     = 0;
+                                            let priceProduct = 0;
 
                                             for ( const selectedProduct of _selectedProducts.value ) {
-                                                totalHt += selectedProduct.pu * props.quantityArea;
+                                                priceProduct = selectedProduct.pu * props.quantityArea;
+                                                totalHt += priceProduct;
                                             }
 
-                                            // TODO UPDATE THE OVERRIDE POSE
-                                            const laying = props.quantityArea * props.fileData.quotation.overrideLaying;
+                                            let laying = props.quantityArea * props.fileData.quotation.overrideLaying;
 
                                             totalHt += laying;
 
@@ -185,6 +186,13 @@ export default defineComponent( {
 
                                             const remainderToPay = totalTtc - ceeBonus;
 
+                                            // Surcharge de la pose si le prix HT est inférieur à 850€
+                                            if ( totalHt < 850 ) {
+                                                const missing = ( 850 - ( totalHt - priceProduct ) ) - priceProduct;
+                                                laying += missing;
+                                                totalHt += missing;
+                                            }
+
                                             const price: Price = {
                                                 laying,
                                                 HT:    totalHt,
@@ -194,6 +202,7 @@ export default defineComponent( {
                                                 remainderToPay,
                                                 CEE:   ceeBonus,
                                             };
+
 
                                             ctx.emit( 'calculedPrice', price );
 
