@@ -246,6 +246,8 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
         const totalPower = pv.quantity * power;
         const title      = `${ pv.label } de ${ pv.quantity } x ${ power }Wc = ${ totalPower }Wc`;
 
+        const worksheet = ( this._file.worksheet as PvWorkSheet );
+
         return {
             margin:    [ 0, 15, 0, 0 ],
             style:     [ 'table' ],
@@ -255,6 +257,17 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
                     [
                         {
                             text:      title,
+                            alignment: 'center',
+                            bold:      true,
+                            colSpan:   4,
+                        },
+                        {},
+                        {},
+                        {},
+                    ],
+                    [
+                        {
+                            text:      `Orientation : ${ worksheet.orientation } | Production : ${ this._pvAlgo.productionPerPanelInKWh() } kwh`,
                             alignment: 'center',
                             bold:      true,
                             colSpan:   4,
