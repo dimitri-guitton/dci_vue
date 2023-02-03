@@ -139,6 +139,7 @@ export default defineComponent( {
                                             if ( props.forceRefresh ) {
                                                 console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
                                             }
+
                                             let totalHt      = 0;
                                             let maPrimeRenov = 0;
                                             let ceeBonus     = 0;

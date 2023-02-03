@@ -8,10 +8,6 @@
 
         <step4-quotation-header></step4-quotation-header>
 
-        <!--        <selected-product :products="products"-->
-        <!--                          :selectedProducts="selectedProducts"-->
-        <!--                          @selectedProductIsUpdated="updateSelectedProduct"></selected-product>-->
-
         <div class="col-md-6 mb-5">
             <label class="form-label" for="q_quantity">Nombre de panneaux</label>
 
@@ -145,7 +141,6 @@ export default defineComponent( {
                                             }
                                         }
 
-
                                         const $selectedPannels     = ref( null );
                                         const $selectedOnduleurs   = ref( null );
                                         const $selectedPasserelles = ref( null );
@@ -157,10 +152,6 @@ export default defineComponent( {
                                         const generateAddressCertificate = () => {
                                             ctx.emit( 'generateAddressCertificate' );
                                         };
-
-                                        // const updateSelectedProduct = ( product ) => {
-                                        //     _selectedProducts.value = [ product ];
-                                        // };
 
                                         const updateSelectedProduct = ( product ) => {
                                             let index = 0;

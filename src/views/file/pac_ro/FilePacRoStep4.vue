@@ -107,54 +107,7 @@
             </template>
         </div>
         <div class="row mt-10 d-flex align-items-end">
-            <!--      <div class="col-md-6 mb-5">-->
-            <!--        <label for="isEcsDeporte" class="form-check form-switch form-check-custom">-->
-            <!--          <Field-->
-            <!--              type="checkbox"-->
-            <!--              class="form-check-input h-30px w-55px"-->
-            <!--              name="isEcsDeporte"-->
-            <!--              id="isEcsDeporte"-->
-            <!--              :value="true"-->
-            <!--              v-model="isEcsDeporte"-->
-            <!--          />-->
-            <!--          <span class="form-check-label fw-bold text-gray-600 me-5">Volume ECS déporté</span>-->
-            <!--        </label>-->
-            <!--      </div>-->
-            <!--      <template v-if="isEcsDeporte">-->
-            <!--        <div class="col-md-6 mb-5">-->
-            <!--          <label for="volumeECSDeporte" class="form-label">Volume ECS déporté</label>-->
-
-            <!--          <Field name="volumeECSDeporte"-->
-            <!--                 id="volumeECSDeporte"-->
-            <!--                 class="form-select"-->
-            <!--                 as="select"-->
-            <!--                 v-model.number="volumeECSDeporte"-->
-
-            <!--          >-->
-            <!--            <option :value="150">150</option>-->
-            <!--            <option :value="200">200</option>-->
-            <!--            <option :value="300">300</option>-->
-            <!--          </Field>-->
-            <!--        </div>-->
-            <!--      </template>-->
-            <!--      <div class="col-md-6 mb-5">-->
-            <!--        <label for="volumeECS" class="form-label">Volume ECS</label>-->
-            <!--        <Field name="volumeECS"-->
-            <!--               id="volumeECS"-->
-            <!--               class="form-select"-->
-            <!--               as="select"-->
-            <!--               v-model.number="volumeECS"-->
-            <!--        >-->
-            <!--          <option value="ecs_1">0L</option>-->
-            <!--          <option value="ecs_2">180L</option>-->
-            <!--          <option value="ecs_3">230L</option>-->
-            <!--          <option value="ecs_4">150L Déporté</option>-->
-            <!--          <option value="ecs_5">200L Déporté</option>-->
-            <!--          <option value="ecs_6">300L Déporté</option>-->
-            <!--        </Field>-->
-            <!--      </div>-->
             <div class="col-md-12 mb-5">
-                <!--        <h1>VOLUME ECS SÉLECTIONNÉ {{ volumeECS }}</h1>-->
                 <h6 class="mb-5">Volume ECS : </h6>
 
                 <Field id="r_ecs_1"
@@ -236,10 +189,6 @@
             </div>
         </template>
 
-        <!--    <template v-for="kit in selectedKitCascade" v-bind:key="kit.reference">-->
-        <!--      <row-price :product="kit"></row-price>-->
-        <!--    </template>-->
-
         <template v-for="ecs in selectedEcsDeportes" v-bind:key="ecs.reference">
             <row-price :product="ecs"></row-price>
         </template>
@@ -247,20 +196,6 @@
         <template v-for="kitBiZone in selectedKitBiZone" v-bind:key="kitBiZone.reference">
             <row-price :product="kitBiZone"></row-price>
         </template>
-
-        <!-- Formualaire caché afin de binder les values au formulaire comme la sélection des produits se fait via l'algo-->
-        <!--    <div class="row d-none">-->
-        <!--      <label for="cascadeSystem" class="form-check form-switch form-check-custom">-->
-        <!--        <Field-->
-        <!--            type="checkbox"-->
-        <!--            class="form-check-input h-30px w-55px"-->
-        <!--            name="cascadeSystem"-->
-        <!--            id="cascadeSystem"-->
-        <!--            :value="true"-->
-        <!--            v-model="cascadeSystem"-->
-        <!--        />-->
-        <!--      </label>-->
-        <!--    </div>-->
 
         <!-- Formualaire caché afin de binder les values au formulaire comme la sélection des produits se fait via l'algo-->
         <template v-for="(p, index) in allProducts" v-bind:key="`val_${p.reference}_${p.id}`">
@@ -379,7 +314,6 @@ export default defineComponent( {
 
                                         const deviceToReplace = ref( props.fileData.quotation.deviceToReplace );
                                         const discount        = ref<number>( props.fileData.quotation.discount );
-                                        // const isEcsDeporte    = ref<boolean>( props.fileData.quotation.isEcsDeporte );
                                         const volumeECS       = ref<string>( props.fileData.quotation.volumeECS );
 
                                         const disabledBonus             = ref<boolean>( props.fileData.disabledBonus );
@@ -412,9 +346,6 @@ export default defineComponent( {
 
                                         const roAlgo = new RoAlgo( props.fileData.housing );
 
-                                        // TODO REVOIR LE SYSTEME DE CASCADE
-                                        // const cascadeSystem = ref<boolean>( props.fileData.quotation.cascadeSystem );
-
                                         const generateQuotation = () => {
                                             ctx.emit( 'generateQuotation' );
                                         };
@@ -442,22 +373,15 @@ export default defineComponent( {
                                             discount.value = value;
                                         };
 
-                                        // const updateCascadeSystem = ( value: boolean ) => {
-                                        //   cascadeSystem.value = value;
-                                        // };
-
                                         const updateNeedBiZone = ( value: boolean ) => {
                                             needBiZoneSupplement.value = value;
                                         };
 
                                         const ecsDeporte = props.fileData.quotation.products.filter( p => p.productType === 'ecs' );
-                                        // const kitCascade = props.fileData.quotation.products.filter( p => p.productType === 'kit_cascade' );
                                         const kitBiZone  = props.fileData.quotation.products.filter( p => p.productType === 'kit_bi_zone' );
 
                                         const selectedEcsDeportes = computed<Product[]>( () => {
                                             // Reset le volume si jamais on switch en ECS et ECSDeporté
-                                            // resetVolumeECS( isEcsDeporte.value );
-
                                             if ( volumeECS.value === 'ecs_4' ) {
                                                 return ecsDeporte.filter( ecs => ecs.volume === 150 );
                                             } else if ( volumeECS.value === 'ecs_5' ) {
@@ -465,10 +389,6 @@ export default defineComponent( {
                                             } else if ( volumeECS.value === 'ecs_6' ) {
                                                 return ecsDeporte.filter( ecs => ecs.volume === 300 );
                                             }
-
-                                            // if ( volumeECS.value === 150 || volumeECS.value === 200 || volumeECS.value === 300 ) {
-                                            //   return ecsDeporte.filter( ecs => ecs.volume === volumeECS.value );
-                                            // }
 
                                             return [];
                                         } );
@@ -643,10 +563,6 @@ export default defineComponent( {
                                                 totalHt += product.pu * product.quantity;
                                             }
 
-                                            // for ( const product of selectedKitCascade.value ) {
-                                            //   totalHt += product.pu * product.quantity;
-                                            // }
-
                                             for ( const product of selectedKitBiZone.value ) {
                                                 totalHt += product.pu * product.quantity;
                                             }
@@ -725,7 +641,6 @@ export default defineComponent( {
 
                                             ctx.emit( 'calculedPrice', price );
 
-
                                             return price;
                                         } );
 
@@ -733,12 +648,8 @@ export default defineComponent( {
                                             allProducts,
                                             deviceToReplace,
                                             selectedEcsDeportes,
-                                            // selectedKitCascade,
                                             selectedKitBiZone,
-                                            // isEcsDeporte,
                                             volumeECS,
-                                            // volumeECSDeporte,
-                                            // cascadeSystem,
                                             lists,
                                             price,
                                             filteredOptions,
