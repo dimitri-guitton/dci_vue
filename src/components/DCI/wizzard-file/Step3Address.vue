@@ -161,8 +161,6 @@ export default defineComponent( {
                                   },
                                   setup( props ) {
 
-                                    // const isDevelopment = process.env.NODE_ENV !== 'production';
-                                    const isDevelopment   = false;
                                     const isLoading       = ref<boolean>( false );
                                     const map             = ref();
                                     const mapHasBeenHover = ref<boolean>( false );
@@ -183,9 +181,6 @@ export default defineComponent( {
                                     } );
 
                                     const setDataGeoportal = ( data ) => {
-                                      console.log( '%c IN SET DATA GEOPORTAIL', 'background: #fdd835; color: #000000' );
-                                      console.log( data );
-
                                       if ( data.locations.length > 0 ) {
                                         const location = data.locations[ 0 ];
                                         switch ( location.type ) {
@@ -220,15 +215,12 @@ export default defineComponent( {
                                      **/
                                     const initMap = async ( coordinate: number[] | null = null ) => {
 
-                                      // On s'assure que la map est Init qu'une seul fois
+                                      // On s'assure que la map est Init qu'une seule fois
                                       if ( mapHasBeenHover.value ) {
                                         return;
                                       }
                                       mapHasBeenHover.value = true;
 
-                                      console.log( '%c __ Initialisation de la carte',
-                                                   'background: #D43FC8; color: #000000' );
-                                      console.log( ' __ coordonées', coordinate );
                                       isLoading.value = true;
 
                                       // Si pas de coordonnées en parametre, on récupère les coordonnées de l'adresse du Beneficiaire
@@ -248,9 +240,8 @@ export default defineComponent( {
                                       }
 
 
-                                      // Charge la map si elle est pas déja chargé
+                                        // Charge la map si elle n'est pas déja chargé
                                       if ( map.value === undefined ) {
-                                        console.log( '%c __ BEFORE MAP LOAD', 'background: #fdd835; color: #000000' );
                                         map.value = Gp.Map.load(
                                             'map', // html div
                                             {
@@ -276,32 +267,13 @@ export default defineComponent( {
                                                 'drawing':       {},
                                                 'length':        {},
                                                 'area':          {},
-                                                // 'search':        { TODO Utiliser le systeme natif, le pb impossible de recupérer le callback du OnSuccess
-                                                //   resources:           {
-                                                //     autocomplete: [ 'StreetAddress' ],
-                                                //   },
-                                                //   autocompleteOptions: {
-                                                //     serviceOptions: {
-                                                //       maximumResponses: 5,
-                                                //       onSuccess:        ( value ) => {
-                                                //         for ( let i = 0; i < 50; i++ ) {
-                                                //           console.log( '%c OK', 'background: #00D4C7; color: #000000' );
-                                                //         }
-                                                //         console.log( value );
-                                                //       },
-                                                //     },
-                                                //   },
-                                                // },
                                                 'reversesearch': {
                                                   resources:             [ 'CadastralParcel' ],
                                                   delimitations:         [ 'Point' ],
                                                   reverseGeocodeOptions: {
                                                     maximumResponses: 1,
                                                     onSuccess:        ( value ) => {
-                                                      console.log( '%c OK', 'background: #00FF55; color: #000000' );
-                                                      console.log( value );
                                                       if ( value.length > 0 ) {
-                                                        console.log( '> 0' );
                                                         const {
                                                                 absorbedCity,
                                                                 section,
@@ -310,7 +282,6 @@ export default defineComponent( {
                                                         geoportail.value.plot = `${ absorbedCity } / ${ section } / ${ number }`;
 
                                                         // récupère l'address depuis les coordonées
-                                                        console.log( value[ 0 ].position );
                                                         getGeoportalAddress( [
                                                                                value[ 0 ].position.x,
                                                                                value[ 0 ].position.y,
@@ -324,9 +295,6 @@ export default defineComponent( {
                                                 // when map has finished to initialize and to render
                                                 'mapLoaded': function () {
                                                   isLoading.value = false;
-                                                  console.log( '%c MAP CHARGÉ AVEC SUCCÈS',
-                                                               'background: #35D452; color: #000000' );
-
                                                   const measureBtn = document.querySelector(
                                                       '[id^="GPtoolbox-measure-button-"]' );
                                                   if ( measureBtn !== null ) {
@@ -345,10 +313,8 @@ export default defineComponent( {
                                      * Prend un screen de l'application et sauvegarde dans le dossier map
                                      */
                                     const takeScreenshot = () => {
-                                      console.log( '%c TAKE screen', 'background: #fdd835; color: #000000' );
                                       const folderName = getcurrentFolderName() as string;
                                       const path       = `${ getFolderPath( folderName ) }/${ FoldersNames.MAP }/carte.png`;
-                                      console.log( path );
                                       ipcRenderer.send( 'save-screenshot', { target: path } );
 
                                       ElMessage( {
@@ -379,11 +345,8 @@ export default defineComponent( {
                                      */
                                     const findAddressOnMap = async ( address: string ) => {
                                       isLoading.value = true;
-                                      console.log( '%c FIND ADDRESS ON MAP', 'background: #fdd835; color: #000000' );
                                       const coordinate = await geocodingAddress( address );
-                                      console.log( coordinate );
                                       if ( coordinate !== null ) {
-                                        console.log( map.value );
                                         getGeoportalAddress( coordinate, setDataGeoportal );
                                         getGeoportalPlot( coordinate, setDataGeoportal );
                                         if ( map.value !== undefined ) {
@@ -403,7 +366,6 @@ export default defineComponent( {
 
                                     const findAddress = useDebouncedRef( '', 1000 );
                                     watch( findAddress, newQuery => {
-                                      console.log( { newQuery } );
                                       if ( newQuery !== '' ) {
                                         findAddressOnMap( newQuery );
                                       }

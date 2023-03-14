@@ -48,13 +48,9 @@ export const validateCombleStep4 = async ( data: CombleFileStep, price: Price ):
         quotation,
     };
 
-    console.log( 'updateFileReference', updateFileReference );
-    console.log( 'data.requestTechnicalVisit', data.requestTechnicalVisit );
     if ( updateFileReference ) {
         fileData = updateFileReferenceTechnicalVisit( fileData, data.requestTechnicalVisit === true ) as CombleFile;
     }
-    console.log( 'File data before update', fileData );
-
     updateJsonData( fileData );
     updateTotalTtc( fileData.ref, fileData.quotation.totalTtc );
 

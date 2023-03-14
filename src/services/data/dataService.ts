@@ -68,7 +68,7 @@ const schema = {
         type:    'boolean',
         default: false,
     },
-    apiTokenIsValid:     { // Pour savoir si toute les infos nécessaire au fonctionnement du DCI sont présentes
+    apiTokenIsValid: { // Pour savoir si toutes les infos nécessaires au fonctionnement du DCI sont présentes
         type:    'boolean',
         default: false,
     },
@@ -129,7 +129,6 @@ export const setcurrentFolderName = ( folderName: string ) => {
 // };
 
 export const setCurrentFileData = ( fileData: string ) => {
-    console.log( '%c SET CURRENT FILE DATA', 'background: #fdd835; color: #000000' );
     store.set( 'currentFileData', fileData );
 };
 
@@ -163,16 +162,12 @@ export const getCommercialInfo = (): Technician => {
 export const getCurrentFileData = (): AllFile => {
     const currentFile = store.get( 'currentFileData' ) as string;
     if ( currentFile !== '' ) {
-        console.log( '%c CURRENT FILE NOT EMPTY', 'background: #fdd835; color: #000000' );
         return JSON.parse( currentFile );
     } else {
-        console.log( '%c CURRENT FILE EMPTY', 'background: #fdd835; color: #000000' );
         const name = getcurrentFolderName() as string;
-        console.log( 'GET FILE DATA NAME -->', name );
         const path = `${ getFolderPath( name ) }/${ process.env.VUE_APP_FILENAME_DATA }.json`;
-        console.log( 'GET FILE DATA PATH -->', path );
 
-        // TODO faire la verif si la path existe, si il n'existe pas créer le .json
+        // TODO faire la verif si la path existe, s'il n'existe pas créer le .json
         // if ( fs.existsSync( path ) ) {
         const rawdata  = fs.readFileSync( path ).toString( 'utf8' );
         const fileData = JSON.parse( rawdata );
@@ -221,13 +216,9 @@ export const resetCurrentFileData = () => {
 
 export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficiary = false ): Assent => {
     let fileData = getCurrentFileData();
-    console.log( 'FILE DATA', fileData );
 
-
-    console.log( fileData.assents );
     if ( fileData.assents.length > 0 ) {
         const find = fileData.assents.find( f => f.refAvis === dataGouv.refAvis && f.numFiscal === dataGouv.numFiscal );
-        console.log( 'FIND --> ', find );
 
         if ( find !== undefined ) {
             return find;
@@ -238,7 +229,6 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficia
     let city    = '';
     const regex = /^(([0-8][0-9]|9[0-5])[0-9]{3}) (.*)$/;
     let m;
-    console.log( 'VILLE ', data.foyerFiscal.ville );
     if ( ( m = regex.exec( data.foyerFiscal.ville ) ) !== null ) {
         // The result can be accessed through the `m`-variable.
         zipCode = m[ 0 ];
@@ -246,10 +236,8 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficia
         m.forEach( ( match, groupIndex ) => {
             if ( groupIndex === 1 ) {
                 zipCode = match;
-                console.log( 'ZIP CODE -->', zipCode );
             } else if ( groupIndex === 3 ) {
                 city = match;
-                console.log( 'CITY -->', city );
             }
         } );
     }
@@ -276,15 +264,13 @@ export const addAssent = ( data: SvairAvisImpot, dataGouv: DataGouv, isBeneficia
         assents: assents,
     };
 
-    console.log( '%c NEW FILE DATA', 'background: #fdd835; color: #000000' );
-    console.log( fileData );
     updateJsonData( fileData );
 
     return assent;
 };
 
 /**
- * Retourne le palier selon les revenues et le nombre d'occupant d'un logement
+ * Retourne le palier selon les revenus et le nombre d'occupants d'un logement
  * @param stages
  * @param occupant
  * @param revenu
@@ -313,21 +299,14 @@ export const getCodeBonus = ( fileData: BaseFile | null = null ) => {
         totalRevenu += +assent.revenu;
     }
 
-    console.log( '%c GET CODE BONUS', 'background: #0094BE; color: #000000' );
-    console.log( '%c GET CODE BONUS', 'background: #0094BE; color: #000000' );
-    console.log( '%c GET CODE BONUS', 'background: #0094BE; color: #000000' );
-    console.log( 'TotalRevenu -->', totalRevenu );
-
-    // Quand la prime est désactivé retourne 'CL'
+    // Quand la prime est désactivée retourne 'CL'
     if ( fileData.disabledBonus ) {
         return 'CL';
     }
 
-    console.log( 'Scales -->', fileData.scales );
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     const scales = fileData.scales.filter( ( scale ) => filterScale( scale.stages, fileData.housing.nbOccupant, totalRevenu ).length > 0 );
-    console.log( 'filtered Scale -->', scales );
     return ( scales.length > 0 ? scales[ 0 ].code : 'CL' ).toUpperCase();
 };
 
@@ -407,13 +386,11 @@ export const updateBeneficiary = ( data ): AllFile => {
 
 export const getProductById = ( id: number ): Product | undefined => {
     const fileData = getCurrentFileData();
-    console.log( 'file data', fileData );
 
     return fileData.quotation.products.find( ( p: Product ) => p.id === id );
 };
 
 export const getProductByRef = ( ref: string ): Product | undefined => {
-    console.log( 'Get product by ref -->', ref );
     const fileData = getCurrentFileData();
 
     return fileData.quotation.products.find( ( p: Product ) => p.reference === ref );
@@ -421,14 +398,12 @@ export const getProductByRef = ( ref: string ): Product | undefined => {
 
 export const getOptionById = ( id: number ): Option | undefined => {
     const fileData = getCurrentFileData();
-    console.log( 'file data', fileData );
 
     return fileData.quotation.options.find( ( o: Option ) => o.id === id );
 };
 
 export const getBlankOptionById = ( id: number ): BlankOption | undefined => {
     const fileData = getCurrentFileData();
-    console.log( 'file data', fileData );
 
     return fileData.quotation.blankOptions.find( ( bo: BlankOption ) => bo.id === id );
 };

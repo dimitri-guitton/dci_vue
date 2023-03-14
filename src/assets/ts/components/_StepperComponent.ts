@@ -1,12 +1,12 @@
 import {
-  getElementIndex,
-  getUniqueIdWithPrefix,
-  ElementAnimateUtil,
-  EventHandlerUtil,
   DataUtil,
   DOMEventHandlerUtil,
+  ElementAnimateUtil,
   ElementStyleUtil,
-} from '../_utils/index'
+  EventHandlerUtil,
+  getElementIndex,
+  getUniqueIdWithPrefix,
+} from '../_utils/index';
 
 export interface IStepperOptions {
   startIndex: number
@@ -277,7 +277,7 @@ class StepperComponent {
   }
 
   public destroy = () => {
-    console.log('destroy stepper')
+    console.log('Destroy stepper')
   }
 
   public trigger = (name: string, event: Event) => {

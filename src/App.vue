@@ -132,12 +132,10 @@ export default defineComponent( {
                                       } );
 
                                       const restartApp = () => {
-                                        console.log( 'restart_app' );
                                         ipcRenderer.send( 'restart_app' );
                                       };
 
                                       ipcRenderer.on( 'update_downloaded', () => {
-                                        console.log( '%c update_downloaded', 'background: #fdd835; color: #000000' );
                                         ElNotification( {
                                                           type:                     'success',
                                                           title:                    'Mise à jour',

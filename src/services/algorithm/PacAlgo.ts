@@ -1,7 +1,7 @@
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 
 /**
- * Altitude suivi de la température de base
+ * Altitude suivie de la température de base
  */
 interface CoefTemperatureItem {
     0: number;
@@ -67,7 +67,7 @@ export class PacAlgo {
             return coef[ climaticZone ][ altitude ];
         }
 
-        // Par défaut on retourne -7
+        // Par défaut, on retourne -7
         console.warn( 'Coef non trouvé utilisation de la température par defaut -7' );
         return -7;
     };
@@ -99,21 +99,8 @@ export class PacAlgo {
 
         const deltaT: number = this.calcDeltaT( housing.setPointTemperature, housing.climaticZone, housing.altitude );
 
-        // Puissance en W
+        // Puissance en watt
         const power: number = +( volume * deltaT * housing.buildingCoefficient ).toFixed( 4 );
-
-
-        console.log( {
-                         'area':                 housing.area,
-                         'hauteur_sous_plafond': housing.ceilingHeight,
-                         'volume':               volume,
-                         'temperature_consigne': housing.setPointTemperature,
-                         'zone_climatique':      housing.climaticZone,
-                         'altitude':             housing.altitude,
-                         'delta_t':              deltaT,
-                         'coef_construction':    housing.buildingCoefficient,
-                         'puissance_w':          power,
-                     } );
 
         // Retourne la puissance en KW
         return power / 1000;

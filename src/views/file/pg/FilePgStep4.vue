@@ -1,72 +1,72 @@
 <template>
     <div class="w-100">
 
-        <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit"
-                      :price="price"
+        <step4-header :file="fileData"
                       :lists="lists"
-                      :file="fileData"
+                      :payment-on-credit="fileData.quotation.paymentOnCredit"
+                      :price="price"
                       @bonusAreUpdated="updateBonus"
         ></step4-header>
 
         <div class="row mt-10">
             <div class="col-md-6 mb-5">
-                <label for="outsideSocket" class="form-label">Installation sur prise d'air</label>
+                <label class="form-label" for="outsideSocket">Installation sur prise d'air</label>
 
-                <Field name="outsideSocket"
-                       id="outsideSocket"
-                       class="form-select"
+                <Field id="outsideSocket"
+                       v-model="outsideSocket"
                        as="select"
-                       v-model="outsideSocket">
+                       class="form-select"
+                       name="outsideSocket">
                     <option :value="true">OUI</option>
                     <option :value="false">NON</option>
                 </Field>
             </div>
             <div class="col-md-6 mb-5">
-                <label for="q_type" class="form-label">Marque</label>
+                <label class="form-label" for="q_type">Marque</label>
 
-                <Field name="q_type"
-                       id="q_type"
-                       class="form-select"
+                <Field id="q_type"
+                       v-model="type"
                        as="select"
-                       v-model="type">
+                       class="form-select"
+                       name="q_type">
                     <option value="red">Red</option>
                     <option value="jm">Jolly Mec</option>
                     <option value="superior">Superior</option>
                 </Field>
             </div>
             <div class="col-md-6 mb-5">
-                <label for="q_power" class="form-label">Puissance (<var>KW</var>)</label>
+                <label class="form-label" for="q_power">Puissance (<var>KW</var>)</label>
 
-                <Field name="q_power"
-                       id="q_power"
-                       class="form-select"
+                <Field id="q_power"
+                       v-model.number="power"
                        as="select"
-                       v-model.number="power">
+                       class="form-select"
+                       name="q_power">
                     <item-list :lists="lists.puissancePoeleList"></item-list>
                 </Field>
             </div>
             <template v-if="power === 9 && type === 'jm'">
                 <div class="col-md-6 mb-5">
-                    <label for="q_color" class="form-label">Couleur profile</label>
+                    <label class="form-label" for="q_color">Couleur profile</label>
 
-                    <Field name="q_color"
-                           id="q_color"
-                           class="form-select"
+                    <Field id="q_color"
+                           v-model="color"
                            as="select"
-                           v-model="color">
+                           class="form-select"
+                           name="q_color">
                         <item-list :lists="lists.couleurProfileList"></item-list>
                     </Field>
                 </div>
             </template>
             <template v-if="type === 'superior'">
                 <div class="col-md-6 mb-5">
-                    <label for="smoke" class="form-label">Sorite fumée</label>
+                    <label class="form-label" for="smoke">Sorite fumée</label>
 
-                    <Field name="smoke"
-                           id="smoke"
-                           class="form-select"
+                    <Field id="smoke"
+                           v-model="smoke"
                            as="select"
-                           v-model="smoke">
+                           class="form-select"
+                           name="smoke">
                         <option value="back">Arrière</option>
                         <option value="top">Supérieure</option>
                     </Field>
@@ -83,15 +83,15 @@
                           @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
 
         <selected-product ref="$selectedFumisterie"
+                          :index="1"
                           :products="computedFumisteries"
                           :selectedProducts="computedSelectedFumisteries"
-                          :index="1"
                           @selectedProductIsUpdated="updateSelectedProduct"
         ></selected-product>
 
-        <options @optionsAreUpdated="updateOptions" :options="filteredOptions"></options>
+        <options :options="filteredOptions" @optionsAreUpdated="updateOptions"></options>
 
-        <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
+        <blank-options :options="blankOptions" @optionsAreUpdated="updateBlankOtions"></blank-options>
 
         <wizzard-file-price :price="price"></wizzard-file-price>
 
@@ -110,8 +110,8 @@
                     value=""
                 />
                 <ErrorMessage
-                    name="commentary"
                     class="fv-plugins-message-container invalid-feedback"
+                    name="commentary"
                 ></ErrorMessage>
             </div>
         </div>
@@ -120,12 +120,12 @@
 
         <div class="row mt-5">
             <div class="col-md-6 offset-md-3 d-flex justify-content-around">
-                <button type="button" @click="generateAddressCertificate" class="btn btn-outline btn-outline-info">
+                <button class="btn btn-outline btn-outline-info" type="button" @click="generateAddressCertificate">
                     Générer
                     l'attestation
                     d'adresse
                 </button>
-                <button type="button" @click="generateQuotation" class="btn btn-info">Générer le devis</button>
+                <button class="btn btn-info" type="button" @click="generateQuotation">Générer le devis</button>
             </div>
         </div>
 
@@ -145,7 +145,7 @@ import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
-import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
+import { getLessThan2Year, getTva } from '@/services/data/dataService';
 import ItemList from '@/components/DCI/input/ItemList.vue';
 import PgList from '@/types/v2/File/Pg/PgList';
 import { PgFile } from '@/types/v2/File/Pg/PgFile';
@@ -184,14 +184,12 @@ export default defineComponent( {
                                     },
                                     emits:      [ 'generateQuotation', 'generateAddressCertificate', 'calculedPrice' ],
                                     setup( props, ctx ) {
-                                        console.log( '%c IN SET UP', 'background: #FF000A; color: #000000' );
                                         const _selectedProducts = ref<Product[]>( ( props.selectedProducts as Product[] ) );
                                         const _options          = ref<Option[]>( ( props.options as Option[] ) );
                                         const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                         const lists             = ref<PgList>( ( props.fileData.lists as PgList ) );
 
                                         const currentPoele = _selectedProducts.value.find( p => p.productType === 'pg' );
-                                        console.log( 'currentPoele -->', currentPoele );
 
                                         const power         = ref<number>( 6 );
                                         const type          = ref<string>( 'red' );
@@ -206,8 +204,6 @@ export default defineComponent( {
                                         const estimateMaPrimeRenov = ref<number>( 0 );
 
 
-                                        console.log( 'outsideSocket', outsideSocket.value );
-                                        console.log( 'smoke', smoke.value );
                                         if ( currentPoele !== undefined ) {
                                             power.value = currentPoele.power === undefined
                                                           ? power.value
@@ -258,14 +254,7 @@ export default defineComponent( {
 
 
                                         const computedFumisteries = computed<Product[]>( () => {
-                                            console.log( '%c IN COMPUTED FUMISTERIE',
-                                                         'background: #00FFD8; color: #000000' );
-
                                             const newList                = props.products.filter( p => {
-                                                if ( p.productType === 'fumisterie' ) {
-                                                    console.log( p.air );
-                                                    console.log( outsideSocket.value );
-                                                }
                                                 return p.productType === 'fumisterie' && p.air === outsideSocket.value;
                                             } );
                                             const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'fumisterie' && p.air === outsideSocket.value );
@@ -277,8 +266,6 @@ export default defineComponent( {
                                                     updateSelectedProduct( newSelectedFumisterie );
                                                 }
                                             }
-
-                                            console.log( newList );
 
                                             return newList;
                                         } );
@@ -293,8 +280,6 @@ export default defineComponent( {
                                             if ( !outsideSocket.value ) {
                                                 // Si pas de prise d'air, sélection impossible de la gamme AMBRIA2
                                                 newList = newList.filter( p => {
-                                                    console.log( 'P -->', p );
-                                                    console.log( 'Ref -->', p.reference );
                                                     return !p.reference.toString().toUpperCase().includes( 'AMBRIA2' );
                                                 } );
                                             }
@@ -337,14 +322,11 @@ export default defineComponent( {
 
 
                                         const filteredOptions = computed<Option[]>( () => {
-                                            console.log( '%c FILTERED OPTION', 'background: #FF0007; color: #000000' );
-                                            console.log( _options.value );
-
                                             for ( const option of _options.value ) {
 
 
                                                 // Kit pour sortie de fumée supérieur PGI intégré
-                                                if ( option.id === 39 ) {
+                                                if ( ( option.slug === undefined && option.id === 39 ) || option.slug === `option-39` ) {
                                                     let enabled = false;
                                                     if ( outsideSocket.value === false && smoke.value === 'top' ) {
                                                         enabled = true;
@@ -353,7 +335,7 @@ export default defineComponent( {
                                                 }
 
                                                 // Kit pour sortie de fumée supérieur simple paroi
-                                                if ( option.id === 40 ) {
+                                                if ( ( option.slug === undefined && option.id === 40 ) || option.slug === `option-40` ) {
                                                     let enabled = false;
                                                     if ( outsideSocket.value === true && smoke.value === 'top' ) {
                                                         enabled = true;
@@ -362,7 +344,7 @@ export default defineComponent( {
                                                 }
 
                                                 // Kit télécommande easy
-                                                if ( option.id === 41 ) {
+                                                if ( ( option.slug === undefined && option.id === 41 ) || option.slug === `option-41` ) {
                                                     let enabled = false;
                                                     if ( type.value === 'superior' ) {
                                                         enabled = true;
@@ -385,33 +367,22 @@ export default defineComponent( {
                                             let maPrimeRenov = 0;
                                             let ceeBonus     = 0;
 
-                                            console.log( 'Prix par defaut -->', totalHt );
-                                            console.log( _selectedProducts );
-                                            console.log( _selectedProducts.value );
                                             for ( const selectedProduct of _selectedProducts.value ) {
-                                                console.log( 'SL ->', selectedProduct );
                                                 totalHt += +selectedProduct.pu;
                                             }
-                                            console.log( 'Prix avec les produits -->', totalHt );
 
                                             for ( const option of _options.value ) {
                                                 if ( option.number > 0 ) {
                                                     totalHt += option.pu * option.number;
                                                 }
                                             }
-                                            console.log( 'Prix avec les options -->', totalHt );
-
                                             for ( const option of _blankOptions.value ) {
                                                 if ( option.number > 0 && option.label !== '' ) {
                                                     totalHt += option.pu * option.number;
                                                 }
                                             }
-                                            console.log( 'Prix avec les options vides -->', totalHt );
 
-                                            const codeBonus = getCodeBonus();
-                                            console.log( 'Code prime --> ', codeBonus );
                                             const lessThan2Year = getLessThan2Year();
-                                            console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
                                             let tva = getTva();
                                             if ( lessThan2Year ) {
@@ -442,8 +413,6 @@ export default defineComponent( {
                                             }
 
 
-                                            console.log( 'maPrimeRenov --> ', maPrimeRenov );
-
                                             const totalPrime = maPrimeRenov + ceeBonus;
 
                                             const price: Price = {
@@ -461,9 +430,6 @@ export default defineComponent( {
 
                                             return price;
                                         } );
-
-                                        console.log( 'Smoke ===', smoke.value );
-                                        console.log( 'Fum ===', computedFumisteries.value );
 
                                         return {
                                             $selectedPoele,

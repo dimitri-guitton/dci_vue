@@ -27,13 +27,6 @@ export class PvAlgo {
     }
 
     /**
-     * Prix moyen du kWh sur la facture électrique
-     */
-    public calcAveragePricePerKWhOnElectricBill(): number {
-        return this.worksheet.montantFactureElectrique / this.worksheet.totalKwhFactureElectrique;
-    }
-
-    /**
      * Production par panneau en kWh
      */
     public productionPerPanelInKWh( year = 1 ): number {
@@ -123,14 +116,22 @@ export class PvAlgo {
         for ( let i = 1; i < year; i++ ) {
             ratio *= 1.015;
         }
-        return this.calcInstallationProduction( year ) * 0.5 * ratio;
+
+        // Ajout de la prime à l'autoconsommation
+        let bonus = 0;
+        if ( year <= 5 ) {
+            bonus = this.quotation.selfConsumptionBonus / 5;
+        }
+
+        return this.calcInstallationProduction( year ) * this.worksheet.ratioResaleToEDF * ratio + bonus;
     }
 
     /**
      * Economie sur la facture en €
      */
     public savingsOnBill( year = 1 ): number {
-        return this.calcInstallationProduction( year ) * this.calcAveragePricePerKWhOnElectricBill() * 0.5;
+        const ratio = 1 - this.worksheet.ratioResaleToEDF;
+        return this.calcInstallationProduction( year ) * this.worksheet.averagePricePerKWhInFrance * ratio;
     }
 
     /**
@@ -201,7 +202,7 @@ export class PvAlgo {
             if ( year === currentYear ) {
                 result.push( {
                                  year,
-                                 kwhEdf:          this.calcAveragePricePerKWhOnElectricBill(),
+                                 kwhEdf:          this.worksheet.averagePricePerKWhInFrance,
                                  kwhPhotovoltaic: this.calcPhotovoltaicAverageSellingPrice( index ),
                              } );
             } else {

@@ -1,30 +1,33 @@
 <template>
-  <Suspense>
-    <template #default>
-      <template v-if="apiTokenIsValid">
-        <div class="row gy-5">
-          <NewFolderModal @hideModal="onHideModal"></NewFolderModal>
-          <FolderDatatable></FolderDatatable>
-          <el-affix position="bottom" :offset="25">
-            <button ref="btnModal" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#kt_modal_new_folder">
-              Nouveau Dossier
-            </button>
-          </el-affix>
-        </div>
-      </template>
-      <template v-else>
-        <div class="alert alert-warning d-flex align-items-center p-5 mb-10">
-          <div class="d-flex flex-column">
-            <h4 class="mb-1 text-warning">Informations manquantes</h4>
-            <span>Veuillez indiquer votre clé Api et votre dossier Dropbox dans l'onglet paramètres</span>
-          </div>
-        </div>
-      </template>
-    </template>
-    <template #fallback>
-      <span>Chargement...</span>
-    </template>
-  </Suspense>
+    <Suspense>
+        <template #default>
+            <template v-if="apiTokenIsValid">
+                <div class="row gy-5">
+                    <NewFolderModal @hideModal="onHideModal"></NewFolderModal>
+                    <FolderDatatable></FolderDatatable>
+                    <el-affix :offset="25" position="bottom">
+                        <button ref="btnModal"
+                                class="btn btn-info"
+                                data-bs-target="#kt_modal_new_folder"
+                                data-bs-toggle="modal">
+                            Nouveau Dossier
+                        </button>
+                    </el-affix>
+                </div>
+            </template>
+            <template v-else>
+                <div class="alert alert-warning d-flex align-items-center p-5 mb-10">
+                    <div class="d-flex flex-column">
+                        <h4 class="mb-1 text-warning">Informations manquantes</h4>
+                        <span>Veuillez indiquer votre clé Api et votre dossier Dropbox dans l'onglet paramètres</span>
+                    </div>
+                </div>
+            </template>
+        </template>
+        <template #fallback>
+            <span>Chargement...</span>
+        </template>
+    </Suspense>
 </template>
 
 <script lang="ts">
@@ -37,38 +40,36 @@ import { fetchDossierState } from '@/services/apiService';
 
 
 export default defineComponent( {
-                                  name:       'file-list',
-                                  components: {
-                                    FolderDatatable,
-                                    NewFolderModal,
-                                  },
-                                  setup() {
-                                    const btnModal        = ref<null | { click: () => null }>( null );
-                                    const apiTokenIsValid = ref<boolean>( getApiTokenIsValid() );
+                                    name:       'file-list',
+                                    components: {
+                                        FolderDatatable,
+                                        NewFolderModal,
+                                    },
+                                    setup() {
+                                        const btnModal        = ref<null | { click: () => null }>( null );
+                                        const apiTokenIsValid = ref<boolean>( getApiTokenIsValid() );
 
-                                    folderService.createDciFolderIfNotExist();
+                                        folderService.createDciFolderIfNotExist();
 
-                                    onMounted( () => {
-                                      resetCurrentFileData();
+                                        onMounted( () => {
+                                            resetCurrentFileData();
 
-                                      // TODO FAIRE LA LOGIQUE APRES LA RECUPE DES TODOS
-                                      if ( apiTokenIsValid.value ) {
-                                        fetchDossierState();
-                                      }
-                                    } );
+                                            // TODO FAIRE LA LOGIQUE APRES LA RECUPE DES TODOS
+                                            if ( apiTokenIsValid.value ) {
+                                                fetchDossierState();
+                                            }
+                                        } );
 
-                                    const onHideModal = () => {
-                                      console.log( '%c HIDE MODAL', 'background: #fdd835; color: #000000' );
-                                      console.log( btnModal.value );
-                                      if ( btnModal.value ) {
-                                        btnModal.value.click();
-                                      }
-                                    };
-                                    return {
-                                      onHideModal,
-                                      btnModal,
-                                      apiTokenIsValid,
-                                    };
-                                  },
+                                        const onHideModal = () => {
+                                            if ( btnModal.value ) {
+                                                btnModal.value.click();
+                                            }
+                                        };
+                                        return {
+                                            onHideModal,
+                                            btnModal,
+                                            apiTokenIsValid,
+                                        };
+                                    },
                                 } );
 </script>

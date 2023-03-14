@@ -29,10 +29,6 @@ export const yupPvConfigStep4 = () => {
 
 
 export const validatePvStep4 = async ( data: PvFileStep, price: Price ): Promise<PvFile> => {
-    console.log( '%c IN validatePvStep4', 'background: #FEFF00; color: #000000' );
-    console.log( '%c IN validatePvStep4', 'background: #FEFF00; color: #000000' );
-    console.log( '%c IN validatePvStep4', 'background: #FEFF00; color: #000000' );
-    console.log( '%c IN validatePvStep4', 'background: #FEFF00; color: #000000' );
     let fileData               = getCurrentPvFileData();
     let quotation: PvQuotation = fileData.quotation;
 
@@ -44,7 +40,6 @@ export const validatePvStep4 = async ( data: PvFileStep, price: Price ): Promise
 
     const selectedProducts: Product[] = [];
     for ( const selectedProduct of data.selectedProducts ) {
-        console.log( 'selectedProduct', selectedProduct );
         const jsonSelectedProduct = getProductById( selectedProduct.id );
 
         if ( jsonSelectedProduct !== undefined ) {
@@ -72,10 +67,6 @@ export const validatePvStep4 = async ( data: PvFileStep, price: Price ): Promise
     updateJsonData( fileData );
     updateTotalTtc( fileData.ref, fileData.quotation.totalTtc );
 
-    console.log( '%c END validatePvStep4', 'background: #000000; color: #FFFFFF' );
-    console.log( '%c END validatePvStep4', 'background: #000000; color: #FFFFFF' );
-    console.log( '%c END validatePvStep4', 'background: #000000; color: #FFFFFF' );
-    console.log( '%c END validatePvStep4', 'background: #000000; color: #FFFFFF' );
     return fileData;
 };
 

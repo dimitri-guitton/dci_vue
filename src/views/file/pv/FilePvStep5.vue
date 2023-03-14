@@ -9,10 +9,10 @@
             <div class="col-md-4 offset-8 fv-row">
                 <label class="form-label mb-3">Période de pose souhaité</label>
                 <Field
-                    type="date"
                     class="form-control"
                     name="worksheet.period"
                     placeholder="01/01/1970"
+                    type="date"
                     value=""
                 />
             </div>
@@ -20,39 +20,26 @@
 
         <div class="row mt-10">
             <div class="col-md-6 mb-5">
-                <label for="montantFactureElectrique" class="form-label mb-3">Montant facture électrique
-                    <sup>€</sup></label>
+                <label class="form-label" for="orientation">Prix moyen du kWh en France en cts</label>
                 <Field
-                    v-model.number="montantFactureElectrique"
-                    type="number"
-                    name="worksheet.montantFactureElectrique"
-                    id="montantFactureElectrique"
-                    class="form-control"
-                >
-                </Field>
-            </div>
-
-            <div class="col-md-6 mb-5">
-                <label for="totalKwhFactureElectrique" class="form-label mb-3">Total kwh sur facture électrique
-                    <sup><var>KWh</var></sup></label>
-                <Field
-                    v-model.number="totalKwhFactureElectrique"
-                    type="number"
-                    name="worksheet.totalKwhFactureElectrique"
-                    id="totalKwhFactureElectrique"
-                    class="form-control"
-                >
-                </Field>
-            </div>
-
-            <div class="col-md-6 mb-5">
-                <label for="orientation" class="form-label">Orientation</label>
-                <Field
-                    v-model.number="orientation"
-                    name="worksheet.orientation"
-                    id="orientation"
-                    class="form-select"
+                    id="averagePricePerKWhInFrance"
+                    v-model.number="averagePricePerKWhInFrance"
                     as="select"
+                    class="form-select"
+                    name="worksheet.averagePricePerKWhInFrance"
+                    @change="updateWorksheet"
+                >
+                    <item-list :lists="lists.averagePricePerKWhInFranceList"></item-list>
+                </Field>
+            </div>
+            <div class="col-md-6 mb-5">
+                <label class="form-label" for="orientation">Orientation</label>
+                <Field
+                    id="orientation"
+                    v-model.number="orientation"
+                    as="select"
+                    class="form-select"
+                    name="worksheet.orientation"
                     @change="updateWorksheet"
                 >
                     <item-list :lists="lists.orientationList"></item-list>
@@ -60,16 +47,30 @@
             </div>
 
             <div class="col-md-6 mb-5">
-                <label for="electricityPriceEvolution" class="form-label">Évolution du prix de l'électricité</label>
+                <label class="form-label" for="electricityPriceEvolution">Évolution du prix de l'électricité</label>
                 <Field
-                    v-model.number="electricityPriceEvolution"
-                    name="worksheet.electricityPriceEvolution"
                     id="electricityPriceEvolution"
-                    class="form-select"
+                    v-model.number="electricityPriceEvolution"
                     as="select"
+                    class="form-select"
+                    name="worksheet.electricityPriceEvolution"
                     @change="updateWorksheet"
                 >
                     <item-list :lists="lists.electricityPriceEvolutionList"></item-list>
+                </Field>
+            </div>
+
+            <div class="col-md-6 mb-5">
+                <label class="form-label" for="electricityPriceEvolution">Ratio de revente auprès d'EDF</label>
+                <Field
+                    id="ratioResaleToEDF"
+                    v-model.number="ratioResaleToEDF"
+                    as="select"
+                    class="form-select"
+                    name="worksheet.ratioResaleToEDF"
+                    @change="updateWorksheet"
+                >
+                    <item-list :lists="lists.ratioResaleToEDFList"></item-list>
                 </Field>
             </div>
         </div>
@@ -96,7 +97,7 @@
 
         <div class="row mt-5">
             <div class="col-md-6 offset-md-3 d-flex justify-content-around">
-                <button type="button" @click="generateWorksheet" class="btn btn-info">Générer la fiche
+                <button class="btn btn-info" type="button" @click="generateWorksheet">Générer la fiche
                 </button>
             </div>
         </div>
@@ -105,13 +106,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import PvList from '@/types/v2/File/Pv/PvList';
 import { Field } from 'vee-validate';
 import ItemList from '@/components/DCI/input/ItemList.vue';
 import { PvFile } from '@/types/v2/File/Pv/PvFile';
 import { ProfitabilityStudyGenerator } from '@/services/pdf/profitabilityStudyGenerator';
-import useDebouncedRef from '@/services/useDebouncedRef';
 
 export default defineComponent( {
                                     name:       'file-pv-step-5',
@@ -128,9 +128,11 @@ export default defineComponent( {
                                     },
                                     emits:      [ 'generateWorksheet' ],
                                     setup( props, ctx ) {
-                                        const pdfGenerator              = new ProfitabilityStudyGenerator( props.fileData );
-                                        const orientation               = ref( props.fileData.worksheet.orientation );
-                                        const electricityPriceEvolution = ref( props.fileData.worksheet.electricityPriceEvolution );
+                                        const pdfGenerator               = new ProfitabilityStudyGenerator( props.fileData );
+                                        const averagePricePerKWhInFrance = ref( props.fileData.worksheet.averagePricePerKWhInFrance );
+                                        const orientation                = ref( props.fileData.worksheet.orientation );
+                                        const electricityPriceEvolution  = ref( props.fileData.worksheet.electricityPriceEvolution );
+                                        const ratioResaleToEDF           = ref( props.fileData.worksheet.ratioResaleToEDF );
 
                                         const generateWorksheet = () => {
                                             ctx.emit( 'generateWorksheet' );
@@ -140,52 +142,27 @@ export default defineComponent( {
                                             pdfGenerator.createChart();
                                         } );
 
-                                        const montantFactureElectrique  = useDebouncedRef( props.fileData.worksheet.montantFactureElectrique,
-                                                                                           400 );
-                                        const totalKwhFactureElectrique = useDebouncedRef( props.fileData.worksheet.totalKwhFactureElectrique,
-                                                                                           400 );
-
                                         const updateWorksheet = () => {
-
-                                            console.log( 'montantFactureElectrique', montantFactureElectrique.value );
-                                            console.log( 'totalKwhFactureElectrique', totalKwhFactureElectrique.value );
-                                            console.log( 'orientation', orientation.value );
-                                            console.log( 'electricityPriceEvolution', electricityPriceEvolution.value );
-
                                             const newWoksheet = {
                                                 ...props.fileData.worksheet,
-                                                montantFactureElectrique:  montantFactureElectrique.value,
-                                                totalKwhFactureElectrique: totalKwhFactureElectrique.value,
-                                                orientation:               orientation.value,
-                                                electricityPriceEvolution: electricityPriceEvolution.value,
+                                                orientation:                orientation.value,
+                                                electricityPriceEvolution:  electricityPriceEvolution.value,
+                                                ratioResaleToEDF:           ratioResaleToEDF.value,
+                                                averagePricePerKWhInFrance: averagePricePerKWhInFrance.value,
                                             };
 
                                             pdfGenerator.updateChart( props.fileData.quotation,
                                                                       newWoksheet,
                                                                       props.fileData.energyZone );
-
-
-                                            console.log( newWoksheet );
                                         };
-
-
-                                        watch( montantFactureElectrique, newQuery => {
-                                            console.log( { newQuery } );
-                                            updateWorksheet();
-                                        } );
-
-                                        watch( totalKwhFactureElectrique, newQuery => {
-                                            console.log( { newQuery } );
-                                            updateWorksheet();
-                                        } );
 
 
                                         return {
                                             generateWorksheet,
-                                            montantFactureElectrique,
-                                            totalKwhFactureElectrique,
                                             orientation,
                                             electricityPriceEvolution,
+                                            ratioResaleToEDF,
+                                            averagePricePerKWhInFrance,
                                             updateWorksheet,
                                         };
                                     },

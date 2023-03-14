@@ -382,19 +382,4 @@ export class ObjEcoEnergie extends PdfGenerator {
             ],
         };
     }
-
-    private _rowLayout = {
-        hLineWidth: function ( i, node ) {
-            return ( i === 0 || i === node.table.body.length ) ? 1 : 0;
-        },
-        vLineWidth: function ( i, node ) {
-            return ( i === 0 || i === node.table.widths.length ) ? 1 : 0;
-        },
-        hLineColor: function ( i, node ) {
-            return ( i === 0 || i === node.table.body.length ) ? DARK : 'white';
-        },
-        vLineColor: function ( i, node ) {
-            return ( i === 0 || i === node.table.widths.length ) ? DARK : 'white';
-        },
-    };
 }

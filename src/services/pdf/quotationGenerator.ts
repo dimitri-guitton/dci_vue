@@ -35,7 +35,7 @@ import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
 import { CityHallManadateGenerator } from '@/services/pdf/cityHallManadateGenerator';
 import { EnedisMandateGenerator } from '@/services/pdf/enedisMandateGenerator';
-import { MaPrimeRenovGeneratorV2 } from '@/services/pdf/maPrimeRenovGeneratorV2';
+import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
 import { ObjEcoEnergie } from '@/services/pdf/contributionFramework/ObjEcoEnergie';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 
@@ -100,10 +100,10 @@ export class QuotationGenerator extends PdfGenerator {
         // Génération de l'attestation de TVA simplifé
         // Pour les devis CET, Poele, PAC RR, PAC RO et PV quand puissance <= 3000Kw
         // TODO PV SEULEMENT QUAND <= 3000Kw
-        // if ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR || this._file.type === FILE_PV ) {
-        const tvaGenerator = new TvaCertificateGenerator( this._file );
-        tvaGenerator.generatePdf();
-        // }
+        if ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PAC_RO || this._file.type === FILE_PAC_RR || this._file.type === FILE_PV ) {
+            const tvaGenerator = new TvaCertificateGenerator( this._file );
+            tvaGenerator.generatePdf();
+        }
 
         // Génération du cadre de contribution
         // Pour les pompes à chaleur quand la prime CEE est > à 0.
@@ -119,7 +119,7 @@ export class QuotationGenerator extends PdfGenerator {
 
         // Génération du mandat de maPrimeRenov
         if ( ( this._file.type === FILE_CET || this._file.type === FILE_PG || this._file.type === FILE_PB || this._file.type === FILE_PAC_RO ) ) {
-            const maPrimeRenovGenerator = new MaPrimeRenovGeneratorV2( this._file );
+            const maPrimeRenovGenerator = new MaPrimeRenovGenerator( this._file );
             maPrimeRenovGenerator.generatePdf();
         }
 
@@ -329,7 +329,6 @@ export class QuotationGenerator extends PdfGenerator {
      */
     private _generateCommercialHeader(): Content {
         const technician = this._file.technician;
-        console.log( 'technician', technician );
         return {
             margin: [ 0, 3 ],
             style:  [ 'table', 'commercialTable' ],
@@ -724,7 +723,6 @@ export class QuotationGenerator extends PdfGenerator {
      */
     private _generateHousingInfo(): Content {
         const data = this._getHousingData();
-        console.log( data );
 
         const tableBody: ContentText[][] = [];
         let rowTable: ContentText[]      = [];
@@ -780,8 +778,6 @@ export class QuotationGenerator extends PdfGenerator {
                 row.push( { text: ' ' } );
             }
         }
-
-        console.log( 'Table body ->', tableBody );
 
         return {
             margin: [ 0, 3 ],
@@ -1016,7 +1012,6 @@ export class QuotationGenerator extends PdfGenerator {
 
                 break;
             default:
-                console.log( 'PDF SELECTED PRODUCTS', this._file.quotation.selectedProducts );
                 for ( const product of this._file.quotation.selectedProducts ) {
                     const totalPrice = this.formatPrice( product.pu, product.quantity );
                     const quantity   = `${ product.quantity }u`;
@@ -1646,13 +1641,7 @@ export class QuotationGenerator extends PdfGenerator {
             const tmpAdvancePayment = remainderToPay - paymentOnCredit.amount;
             advancePayment          = this.formatPrice( tmpAdvancePayment, 1, true, false );
 
-            console.log( 'Acompte -->', this._file.quotation.remainderToPay );
-            console.log( 'Acompte -->', remainderToPay );
-            console.log( 'Acompte -->', paymentOnCredit.amount );
-            console.log( 'Acompte -->', tmpAdvancePayment );
-            // advancePayment2 = paymentOnCredit.amount;
             advancePayment2 = remainderToPay - tmpAdvancePayment - paymentOnCredit.amount;
-            console.log( 'Solde fin de chantier -->', advancePayment );
 
             paymentText = [
                 {
@@ -1827,7 +1816,7 @@ export class QuotationGenerator extends PdfGenerator {
     }
 
     /**
-     * Retourne la layout pour les tableaux bordures vertes + header bleu
+     * Retourne la layout pour les tableaus avec bordures vertes + header bleu
      * @private
      */
     private _getTableLayout(): CustomTableLayout {
@@ -1878,7 +1867,7 @@ export class QuotationGenerator extends PdfGenerator {
     }
 
     /**
-     * Retourne la layout pour les tableaux bordures vertes
+     * Retourne la layout pour les tableaux avec bordures vertes
      * @private
      */
     private _getBorderLayout(): CustomTableLayout {

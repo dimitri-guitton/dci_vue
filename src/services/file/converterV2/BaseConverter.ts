@@ -92,8 +92,6 @@ export class BaseConverter {
 
 
     public convertJsonFile() {
-        console.log( '%c CONVERT JSON FILE', 'background: #35D452; color: #000000' );
-
         return {
             ...this.getOldGlobalInfo(),
             assents:           this.getOldAssents(),
@@ -312,6 +310,7 @@ export class BaseConverter {
             newOptions.push( {
                                  id:            option[ 'id' ],
                                  fileType,
+                                 slug:          `option-${ option[ 'id' ] }`,
                                  label:         option[ 'label' ],
                                  unit:          option[ 'unit' ],
                                  defaultPu:     option[ 'pu' ][ 'default' ],

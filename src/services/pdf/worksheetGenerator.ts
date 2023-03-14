@@ -69,7 +69,11 @@ export class WorksheetGenerator extends PdfGenerator {
         if ( this._file.type === FILE_PV ) {
             const profitabilityStudyGenerator = new ProfitabilityStudyGenerator( this._file );
             profitabilityStudyGenerator.generatePdf();
-            return;
+
+            // On génère une fiche que si infoSup n'est pas vide et différent de RAS
+            if ( !( this._file.worksheet.infosSup !== '' && this._file.worksheet.infosSup.toUpperCase() !== 'RAS' ) ) {
+                return;
+            }
         }
 
         super.generatePdf();
@@ -352,8 +356,6 @@ export class WorksheetGenerator extends PdfGenerator {
                 worksheet = ( this._file.worksheet as CombleWorkSheet );
                 list      = ( this._file.lists as CombleList );
                 quotation = ( this._file.quotation as CombleQuotation );
-
-                console.log( 'Options -->', quotation.options );
 
                 if ( quotation.selectedProducts.length > 0 ) {
                     selectedProduct = quotation.selectedProducts[ 0 ].label;
@@ -690,8 +692,6 @@ export class WorksheetGenerator extends PdfGenerator {
                         selectedProduct += `- ${ product.label } \n`;
                     }
                 }
-                console.log( '%c DATA RO FICHE', 'background: #fdd835; color: #000000' );
-                console.log( roQuotation.selectedProducts );
 
                 data = [
                     {

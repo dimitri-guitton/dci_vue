@@ -248,7 +248,6 @@ export async function addFile( reference: string,
     const strTodos     = convertToStringIfNotNull( todos );
     const strCreatedAt = dateToString( createdAt );
     const strUpdatedAt = dateToString( updatedAt );
-    console.log( 'SEND AT -->', sendAt );
     const strSendAt = dateToString( sendAt );
 
     const query = `INSERT INTO file (reference, folderName, fileTypes, customer, totalTTC, isProspect, isClosed,
@@ -268,8 +267,6 @@ export async function addFile( reference: string,
                            ${ strSendAt })
     `;
 
-    console.log( '%c BEFORE EXECUTE QUERY', 'background: #fdd835; color: #000000' );
-    console.log( query );
     await db.exec( query );
 }
 
@@ -283,10 +280,8 @@ export async function getAllFiles(): Promise<DatatableFile[]> {
                    ORDER BY createdAt DESC;`;
 
     const queryResult = await db.all( query );
-    console.log( 'queryResult', queryResult );
 
     const result = await convertDbFileToFileItem( queryResult );
-    console.log( 'result', result );
     return result;
 }
 
@@ -299,7 +294,6 @@ export async function setFileProspect( fileId: number, value: boolean ) {
 }
 
 export async function deleteFile( fileId: number ): Promise<RunResult> {
-    console.log( '%c ON DELETE', 'background: #fdd835; color: #000000' );
     const query = `DELETE
                    FROM file
                    WHERE id = ${ fileId }`;
@@ -320,9 +314,7 @@ async function getFileByReference( reference: string ) {
 }
 
 export async function updateTotalTtc( referene: string, value: number ) {
-    console.log( '%c UPDATE TOTAL TTC BDD', 'background: #CEFF00; color: #000000' );
     const res = await getFileByReference( referene );
-    console.log( 'RES -->', res );
     let fileId = 0;
     if ( res.length > 0 ) {
         fileId = res[ 0 ].id;
@@ -336,10 +328,6 @@ export async function updateTotalTtc( referene: string, value: number ) {
 }
 
 export async function updateReference( oldReferene: string, newReference: string ) {
-    console.log( '%c UPD REF', 'background: #fdd835; color: #000000' );
-    console.log( oldReferene );
-    console.log( newReference );
-
     const query = `UPDATE file
                    SET reference = '${ newReference }'
                    WHERE reference = '${ oldReferene }'`;
@@ -387,7 +375,6 @@ export async function closeFile( reference: string, isClosed: boolean ) {
                        statusInDCI = ${ status }
                    WHERE reference = '${ reference }'`;
 
-    console.log( query );
     await db.run( query );
 }
 
@@ -399,8 +386,6 @@ export async function addTodo( serverId: number,
 
     const strReceivedAt = dateToString( receivedAt );
     const strDoneAt     = dateToString( doneAt );
-    console.log( 'receivedAt', receivedAt );
-    console.log( strReceivedAt );
     const query = `INSERT INTO fileTodo (serverId, label, isDone, receivedAt, donedAt)
                    VALUES (${ serverId },
                            "${ label }",
@@ -409,7 +394,6 @@ export async function addTodo( serverId: number,
                            ${ strDoneAt })
     `;
 
-    console.log( query );
     await db.exec( query );
 }
 
@@ -423,7 +407,6 @@ export async function addTodoToFile( todosId: number[],
                        statusInDCI = ${ FILE_TO_CORRECT_STATUS.code }
                    WHERE reference = '${ fileReference }'`;
 
-    console.log( query );
     await db.run( query );
 }
 
@@ -432,7 +415,6 @@ export async function sendAt( reference: string, sendAt: Date ) {
                    SET sendAt = ${ dateToString( sendAt ) }
                    WHERE reference = '${ reference }'`;
 
-    console.log( query );
     await db.run( query );
 }
 
@@ -441,24 +423,20 @@ export async function updateDbTodo( id: number, isDone: boolean ) {
     if ( isDone ) {
         date = dateToString( new Date() );
     }
-    console.log( 'Date of is done', date );
     const query = `UPDATE fileTodo
                    SET isDone  = ${ isDone },
                        donedAt = ${ date }
                    WHERE serverId = ${ id }`;
 
-    console.log( query );
     await db.run( query );
 }
 
 export async function getTodoByFile( reference: string ) {
-    console.log( '%c GETTODO BY FILE', 'background: #fdd835; color: #000000' );
     const query = `SELECT todos
                    from file
                    WHERE reference = '${ reference }';`;
 
     const queryResult = await db.all( query );
-    console.log( 'queryResult', queryResult );
 
     let todos: DbFileTodo[] = [];
     if ( queryResult.length > 0 ) {
@@ -474,7 +452,6 @@ export async function setStatusFile( reference: string, status: number ) {
                    SET statusInDCI = ${ status }
                    WHERE reference = '${ reference }'`;
 
-    console.log( query );
     await db.run( query );
 }
 

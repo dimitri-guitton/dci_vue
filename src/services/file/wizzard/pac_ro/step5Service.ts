@@ -210,7 +210,7 @@ export const yupPacRoConfigStep5 = () => {
  * @param worksheet
  */
 export const initPacRoFormDataStep5 = ( worksheet: RoWorkSheet ) => {
-    const data = {
+    return {
         worksheet: {
             period:                    worksheet.period,
             infosSup:                  worksheet.infosSup,
@@ -244,8 +244,6 @@ export const initPacRoFormDataStep5 = ( worksheet: RoWorkSheet ) => {
             tensionDisponible:         worksheet.tensionDisponible,
         },
     };
-
-    return data;
 };
 
 export const savePacRoWorksheet = ( data: PacRoFileStep ): RoFile => {

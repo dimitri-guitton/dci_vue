@@ -215,7 +215,7 @@ export const yupCetConfigStep5 = () => {
  * @param worksheet
  */
 export const initCetFormDataStep5 = ( worksheet: CetWorkSheet ) => {
-    const data = {
+    return {
         worksheet: {
             period:                  worksheet.period,
             infosSup:                worksheet.infosSup,
@@ -247,8 +247,6 @@ export const initCetFormDataStep5 = ( worksheet: CetWorkSheet ) => {
             distanceBallonUnitExt:   worksheet.distanceBallonUnitExt,
         },
     };
-
-    return data;
 };
 
 export const saveCetWorksheet = ( data: CetFileStep ): CetFile => {

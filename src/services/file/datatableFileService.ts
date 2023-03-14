@@ -2,7 +2,6 @@ import { DatatableFileType } from '@/types/v2/DatatableFile/DatatableFileType';
 import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 
 export const datatableFileTypesToString = ( types: DatatableFileType[] ): string => {
-    console.log( types );
     let allType = '';
     types.forEach( ( type ) => {
         if ( allType === '' ) {

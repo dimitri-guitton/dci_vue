@@ -247,14 +247,9 @@ export default defineComponent( {
                                             numberOfItems.value = nbItems;
                                         };
 
-                                        // Fonction appelé quand un filtre est modifié ou la pagination
+                                        // Fonction appelée quand un filtre est modifié ou la pagination
                                         const filterData = computed<DatatableFile[]>( () => {
-                                            console.log( '%c IN FILTER DATA COMPUTED',
-                                                         'background: #5ADFFF; color: #000000' );
-                                            console.log( '%c IN FILTER DATA COMPUTED',
-                                                         'background: #5ADFFF; color: #000000' );
                                             let tempData: DatatableFile[] = tableData.value;
-                                            console.log( tableData.value );
 
                                             // Filtre sur la barre de recherche
                                             if ( filterSearch.value !== '' ) {
@@ -300,8 +295,6 @@ export default defineComponent( {
                                             const trimEnd   = trimStart + numberPerPage;
                                             tempData        = tempData.slice( trimStart, trimEnd );
 
-
-                                            console.log( 'FILTER DATA -->', tempData );
                                             return tempData;
                                         } );
 
@@ -317,7 +310,7 @@ export default defineComponent( {
                                                     if ( command.folder.types.length > 0 ) {
                                                         type = command.folder.types[ 0 ].slug;
                                                     }
-                                                    console.log( 'TYPE -->', type );
+
                                                     await checkFolder( command.folder.folderName, type );
                                                     tableData.value = ( await sqliteService.getAllFiles() );
                                                     break;
@@ -366,11 +359,8 @@ export default defineComponent( {
                                                     }
                                                     break;
                                                 case 'send':
-                                                    console.log( '%c ON SEND', 'background: #fdd835; color: #000000' );
                                                     await postFileToERP( command.folder.folderName );
-                                                    console.log( 'AFTER AWAIT postFileToERP' );
                                                     tableData.value = ( await sqliteService.getAllFiles() );
-                                                    console.log( 'AFTER AWAIT getAllFiles' );
                                                     break;
                                             }
                                         };
@@ -407,8 +397,6 @@ export default defineComponent( {
                                         };
 
                                         const updateTodo = ( todo: DbFileTodo ) => {
-                                            console.log( '%c UPDATE TODO', 'background: #fdd835; color: #000000' );
-                                            console.log( todo );
                                             updateDbTodo( todo.serverId, todo.isDone );
                                         };
                                         return {

@@ -1,35 +1,35 @@
 <template>
     <div class="w-100">
 
-        <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit" :price="price" :lists="lists"
-                      :file="fileData" @bonusAreUpdated="updateBonus"></step4-header>
+        <step4-header :file="fileData" :lists="lists" :payment-on-credit="fileData.quotation.paymentOnCredit"
+                      :price="price" @bonusAreUpdated="updateBonus"></step4-header>
 
         <div class="col-md-12 mb-15">
             <h6 class="mb-5">Isolation d’un plancher bas situé entre un volume chauffé et un ...</h6>
-            <Field name="izolationZone"
-                   id="r_izolation_zone_1"
+            <Field id="r_izolation_zone_1"
+                   v-model="izolationZone"
                    class="form-check-input ms-5"
+                   name="izolationZone"
                    type="radio"
                    value="sous_sol"
-                   v-model="izolationZone"
             >
             </Field>
             <label class="ms-2" for="r_izolation_zone_1">Sous-sol non chauffé</label>
-            <Field name="izolationZone"
-                   id="r_izolation_zone_2"
+            <Field id="r_izolation_zone_2"
+                   v-model="izolationZone"
                    class="form-check-input ms-5"
+                   name="izolationZone"
                    type="radio"
                    value="vide_sanitaire"
-                   v-model="izolationZone"
             >
             </Field>
             <label class="ms-2" for="r_izolation_zone_2">Vide sanitaire</label>
-            <Field name="izolationZone"
-                   id="r_izolation_zone_3"
+            <Field id="r_izolation_zone_3"
+                   v-model="izolationZone"
                    class="form-check-input ms-5"
+                   name="izolationZone"
                    type="radio"
                    value="passage_ouvert"
-                   v-model="izolationZone"
             >
             </Field>
             <label class="ms-2" for="r_izolation_zone_3">Passage ouvert</label>
@@ -38,13 +38,13 @@
         <step4-quotation-header></step4-quotation-header>
 
         <selected-product :products="products"
-                          :selectedProducts="selectedProducts"
                           :quantity-area="quantityArea"
+                          :selectedProducts="selectedProducts"
                           @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
 
-        <options @optionsAreUpdated="updateOptions" :options="options"></options>
+        <options :options="options" @optionsAreUpdated="updateOptions"></options>
 
-        <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
+        <blank-options :options="blankOptions" @optionsAreUpdated="updateBlankOtions"></blank-options>
 
         <wizzard-file-price :price="price"></wizzard-file-price>
 
@@ -59,8 +59,8 @@
                     value=""
                 />
                 <ErrorMessage
-                    name="commentary"
                     class="fv-plugins-message-container invalid-feedback"
+                    name="commentary"
                 ></ErrorMessage>
             </div>
         </div>
@@ -69,12 +69,12 @@
 
         <div class="row mt-5">
             <div class="col-md-6 offset-md-3 d-flex justify-content-around">
-                <button type="button" @click="generateAddressCertificate" class="btn btn-outline btn-outline-info">
+                <button class="btn btn-outline btn-outline-info" type="button" @click="generateAddressCertificate">
                     Générer
                     l'attestation
                     d'adresse
                 </button>
-                <button type="button" @click="generateQuotation" class="btn btn-info">Générer le devis</button>
+                <button class="btn btn-info" type="button" @click="generateQuotation">Générer le devis</button>
             </div>
         </div>
 
@@ -94,7 +94,7 @@ import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
-import { getCodeBonus, getLessThan2Year, getTva } from '@/services/data/dataService';
+import { getLessThan2Year, getTva } from '@/services/data/dataService';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { getCeeBonus, roundCeeBonus } from '@/services/file/fileCommonService';
 import { BaseFile } from '@/types/v2/File/Common/BaseFile';
@@ -172,20 +172,12 @@ export default defineComponent( {
                                             if ( props.forceRefresh ) {
                                                 console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
                                             }
-                                            console.log( '%c IN COMPUTED', 'background: #007C83; color: #FFFFFF' );
                                             let totalHt  = 0;
                                             let ceeBonus = 0;
 
-                                            console.log( '%c AREA', 'background: #61C60B; color: #000000' );
-                                            console.log( 'area', props.quantityArea );
-
-                                            console.log( 'Prix par defaut -->', totalHt );
-                                            console.log( 'Prix par defaut -->', totalHt );
-                                            console.log( 'Prix par defaut -->', totalHt );
                                             for ( const selectedProduct of _selectedProducts.value ) {
                                                 totalHt += selectedProduct.pu * props.quantityArea;
                                             }
-                                            console.log( 'Prix avec les produits -->', totalHt );
 
                                             let laying = props.quantityArea * ( props.fileData as SolFile ).quotation.overrideLaying;
 
@@ -201,19 +193,14 @@ export default defineComponent( {
                                                     totalHt += option.pu * option.number;
                                                 }
                                             }
-                                            console.log( 'Prix avec les options -->', totalHt );
 
                                             for ( const option of _blankOptions.value ) {
                                                 if ( option.number > 0 && option.label !== '' ) {
                                                     totalHt += option.pu * option.number;
                                                 }
                                             }
-                                            console.log( 'Prix avec les options vides -->', totalHt );
 
-                                            const codeBonus = getCodeBonus();
-                                            console.log( 'Code prime --> ', codeBonus );
                                             const lessThan2Year = getLessThan2Year();
-                                            console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
                                             let tva = getTva();
                                             if ( lessThan2Year ) {
@@ -243,10 +230,7 @@ export default defineComponent( {
                                                 CEE:   ceeBonus,
                                             };
 
-                                            console.log( 'PRICE -->', price );
-
                                             ctx.emit( 'calculedPrice', price );
-
 
                                             return price;
                                         } );
