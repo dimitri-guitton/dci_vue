@@ -1459,9 +1459,7 @@ export class QuotationGenerator extends PdfGenerator {
         switch ( this._file.type ) {
             case FILE_PV:
                 const selfConsumptionBonus = ( quotation as PvQuotation ).selfConsumptionBonus;
-                const year                 = 5;
-                addedCommentary            = `Prime à l’autoconsommation versée pendant ${ year } ans :
-                ${ this.formatPrice( selfConsumptionBonus / 5 ) } / an soit ${ this.formatPrice( selfConsumptionBonus ) }`;
+                addedCommentary = `Prime à l’autoconsommation : ${ this.formatPrice( selfConsumptionBonus ) }`;
                 break;
         }
 

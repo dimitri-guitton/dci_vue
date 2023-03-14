@@ -267,7 +267,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
                     ],
                     [
                         {
-                            text:      `Orientation : ${ worksheet.orientation } | Production : ${ this._pvAlgo.productionPerPanelInKWh() } kwh`,
+                            text:      `Orientation : ${ worksheet.orientation } | Production : ${ this._pvAlgo.calcInstallationProduction() } kwh`,
                             alignment: 'center',
                             bold:      true,
                             colSpan:   4,

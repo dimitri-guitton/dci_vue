@@ -117,10 +117,9 @@ export class PvAlgo {
             ratio *= 1.015;
         }
 
-        // Ajout de la prime à l'autoconsommation
         let bonus = 0;
-        if ( year <= 5 ) {
-            bonus = this.quotation.selfConsumptionBonus / 5;
+        if ( year === 1 ) {
+            bonus = this.quotation.selfConsumptionBonus;
         }
 
         return this.calcInstallationProduction( year ) * this.worksheet.ratioResaleToEDF * ratio + bonus;
