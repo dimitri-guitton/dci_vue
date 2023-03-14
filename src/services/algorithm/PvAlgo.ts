@@ -119,7 +119,7 @@ export class PvAlgo {
         // Année 1 10 centimes * 1.5%
         // Année 2 10.15 centimes * 1.5%
         // Année 3 10.30225 centimes * 1.5%
-        let ratio = 0.1;
+        let ratio = 0.1313;
         for ( let i = 1; i < year; i++ ) {
             ratio *= 1.015;
         }

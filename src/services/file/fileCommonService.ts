@@ -121,7 +121,7 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
         ceeBonus = +ceeBonus;
     }
 
-    // On fix à 4 chiffre apres la virgule avant de faire l'arrondi car on peut avoir des erreur sur certain chiffre
+    // On fix à 4 chiffre apres la virgule avant de faire l'arrondi, car on peut avoir des erreurs sur certain chiffre
     // Exemple 8.05 * 66 = 531.3000000000001 et donc l'arrondi est 531.31 et non 531.3
     ceeBonus = +ceeBonus.toFixed( 4 );
 
@@ -1123,7 +1123,7 @@ export const getCeeBonus = ( data: BaseFile ): number => {
 
     }
 
-    // Si de type COMBLE OU SOL on arrondie après car on miltiplie la prime par la surface
+    // Si de type COMBLE OU SOL on arrondit après car on multiplie la prime par la surface
     switch ( type ) {
         case FILE_COMBLE:
         case FILE_SOL:
