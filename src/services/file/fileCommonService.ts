@@ -995,10 +995,19 @@ export const getCeeBonus = ( data: BaseFile ): number => {
             break;
         case FILE_COMBLE:
             if ( data.partner === 'obj_eco_energie' ) {
-                if ( energyZone === 'H1' ) {
-                    value = 1.7 * 5.7;
+                // CEE A PARTIR DU 15 MARS 2023
+                if ( new Date() > new Date( '2023/03/15 00:00:01' ) ) {
+                    if ( energyZone === 'H1' ) {
+                        value = 1.7 * 6;
+                    } else {
+                        value = 1.4 * 6;
+                    }
                 } else {
-                    value = 1.4 * 5.7;
+                    if ( energyZone === 'H1' ) {
+                        value = 1.7 * 5.7;
+                    } else {
+                        value = 1.4 * 5.7;
+                    }
                 }
             } else {
                 // CEE A PARTIR DU 1ER OCTOBRE
