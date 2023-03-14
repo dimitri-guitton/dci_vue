@@ -27,14 +27,14 @@ export class PvAlgo {
     }
 
     /**
-     * Prix moyen du KWh sur la facture électrique
+     * Prix moyen du kWh sur la facture électrique
      */
     public calcAveragePricePerKWhOnElectricBill(): number {
         return this.worksheet.montantFactureElectrique / this.worksheet.totalKwhFactureElectrique;
     }
 
     /**
-     * Production par panneau en KWh
+     * Production par panneau en kWh
      */
     public productionPerPanelInKWh( year = 1 ): number {
         let power = 0;
@@ -85,14 +85,14 @@ export class PvAlgo {
     }
 
     /**
-     * Calcul le total TTC avec les montant des primes déduites
+     * Calcul le total TTC avec les montants des primes déduites
      */
     public calcTotalTtcWithBonusDeducted() {
         return this.quotation.totalTtc - this.quotation.selfConsumptionBonus;
     }
 
     /**
-     * Production de l'installation en KWh
+     * Production de l'installation en kWh
      */
     public calcInstallationProduction( year = 1 ): number {
         if ( this.quotation.selectedProducts.length > 0 ) {
@@ -115,7 +115,7 @@ export class PvAlgo {
     public calcResalePriceToEdf( year = 1 ): number {
 
 
-        // On augmente de 1.5% les (0.1) tout les ans à partir de l'année,
+        // On augmente de 1.5% les (0.1) tous les ans à partir de l'année,
         // Année 1 10 centimes * 1.5%
         // Année 2 10.15 centimes * 1.5%
         // Année 3 10.30225 centimes * 1.5%
@@ -190,7 +190,7 @@ export class PvAlgo {
     }
 
     /**
-     * Evolution du prix de KWh sur 25 ans
+     * Evolution du prix de kWh sur 25 ans
      */
     public priceEvolutionOver25Years(): PriceEvolution[] {
         const currentYear: number      = new Date().getFullYear();
