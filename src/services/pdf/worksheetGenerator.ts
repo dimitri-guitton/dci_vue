@@ -361,6 +361,8 @@ export class WorksheetGenerator extends PdfGenerator {
                     selectedProduct = quotation.selectedProducts[ 0 ].label;
                 }
 
+                console.log( 'Options : ', quotation.options );
+
                 data = [
                     {
                         title: 'CARACTERISTIQUES DU CHANTIER',
