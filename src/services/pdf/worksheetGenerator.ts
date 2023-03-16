@@ -353,8 +353,6 @@ export class WorksheetGenerator extends PdfGenerator {
                 list      = ( this._file.lists as CombleList );
                 quotation = ( this._file.quotation as CombleQuotation );
 
-                console.log( 'Options -->', quotation.options );
-
                 if ( quotation.selectedProducts.length > 0 ) {
                     selectedProduct = quotation.selectedProducts[ 0 ].label;
                 }
@@ -478,50 +476,50 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'REHAUSSE DE TRAPPE',
-                                value: quotation.options[ 6 ].number,
+                                value: quotation.options[ 4 ].number,
                             },
                             {
                                 label: 'TYPE DE TRAPPE',
                                 value: this.getValueInList( list.rehausseTrappeTypeList, worksheet.rehausseTrappeType ),
                             }, {
                                 label: 'ISOLATION DE LA TRAPPE',
-                                value: quotation.options[ 7 ].number,
+                                value: quotation.options[ 5 ].number,
                             },
                             {
                                 label: 'ENTOURAGE CHEMINEE',
-                                value: quotation.options[ 8 ].number,
+                                value: quotation.options[ 6 ].number,
                             },
                             {
                                 label: 'PROTECTION DES SPOTS',
-                                value: this.yesOrNo( quotation.options[ 9 ].number > 0 ),
+                                value: this.yesOrNo( quotation.options[ 7 ].number > 0 ),
                             },
                             {
                                 label: 'NBRE DE SPOTS',
-                                value: quotation.options[ 9 ].number,
+                                value: quotation.options[ 7 ].number,
                             },
-                            {
-                                label: 'ENTOURAGE VOLETS ROULANTS',
-                                value: this.yesOrNo( quotation.options[ 3 ].number > 0 || quotation.options[ 3 ].number > 0 ),
-                            },
-                            {
-                                label: 'LONG < 1.50m',
-                                value: quotation.options[ 3 ].number,
-                            },
-                            {
-                                label: 'LONG > 1.50m',
-                                value: quotation.options[ 4 ].number,
-                            },
+                            // {
+                            //     label: 'ENTOURAGE VOLETS ROULANTS',
+                            //     value: this.yesOrNo( quotation.options[ 3 ].number > 0 || quotation.options[ 4 ].number > 0 ),
+                            // },
+                            // {
+                            //     label: 'LONG < 1.50m',
+                            //     value: quotation.options[ 3 ].number,
+                            // },
+                            // {
+                            //     label: 'LONG > 1.50m',
+                            //     value: quotation.options[ 4 ].number,
+                            // },
                             {
                                 label: 'DESENCOMBREMENT COMBLES',
                                 value: this.yesOrNo( worksheet.desencombrement ),
                             },
                             {
-                                label: 'ENTOURAGE VMC',
-                                value: quotation.options[ 5 ].number,
+                                label: 'Entourage (volets roulants, VMC, etc...)',
+                                value: quotation.options[ 3 ].number,
                             },
                             {
-                                label: 'ARRÊTOIRAS EN POLYRO',
-                                value: quotation.options[ 11 ].number,
+                                label: 'ARRÊTOIRES EN POLYPRO',
+                                value: quotation.options[ 10 ].number,
                             },
                         ],
                     },
