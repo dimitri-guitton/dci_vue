@@ -60,7 +60,7 @@ export class PdfGenerator {
      * @private
      */
     private buildPdf(): TCreatedPdf {
-        // Parametre par défaut de tout les PDF
+        // Parametre par défaut de tous les PDF
         this._docDefinition = {
             ...this._defaultDocDefinition,
             ...this._docDefinition,
@@ -126,7 +126,7 @@ export class PdfGenerator {
     }
 
     /**
-     * Retourne la valeur sélectionné du list
+     * Retourne la valeur sélectionnée du list
      * @param list
      * @param value
      * @protected

@@ -21,13 +21,6 @@ import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5
  */
 export const initPacRoFormDataStep4 = ( fileData: RoFile ): PacRoStep4 => {
 
-    console.log( '%c IN', 'background: #fdd835; color: #000000' );
-    console.log( '%c IN', 'background: #fdd835; color: #000000' );
-    console.log( '%c IN', 'background: #fdd835; color: #000000' );
-    console.log( '%c IN', 'background: #fdd835; color: #000000' );
-    console.log( '%c IN', 'background: #fdd835; color: #000000' );
-    console.log( '%c IN', 'background: #fdd835; color: #000000' );
-    console.log( 'fileData.quotation.sizingPercentage', fileData.quotation.sizingPercentage );
     return {
         ...defaultInitFormDataStep4( fileData ),
         deviceToReplaceType:  fileData.quotation.deviceToReplace.type === undefined ? '' : fileData.quotation.deviceToReplace.type,
@@ -62,22 +55,6 @@ export const validatePacRoStep4 = async ( data: PacRoFileStep, price: Price ): P
     let fileData = getCurrentRoFileData();
 
     let quotation: RoQuotation = fileData.quotation;
-
-    console.log( '%c ECS', 'background: #fdd835; color: #000000' );
-    console.log( '%c ECS', 'background: #fdd835; color: #000000' );
-    console.log( '%c ECS', 'background: #fdd835; color: #000000' );
-    console.log( '%c ECS', 'background: #fdd835; color: #000000' );
-    console.log( data.volumeECS );
-
-    // let volumeECS = data.volumeECS;
-    // if ( data.volumeECS === undefined || data.volumeECS === null ) {
-    //     volumeECS = 0;
-    // }
-
-    // let volumeECSDeporte = data.volumeECSDeporte;
-    // if ( data.volumeECSDeporte === undefined || data.volumeECSDeporte === null ) {
-    //     volumeECSDeporte = 150;
-    // }
 
     // Si modification de visite technique
     let updateFileReference = false;

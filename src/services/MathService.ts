@@ -4,7 +4,7 @@
  * @param type      Le type d'arrondi.
  * @param value     Le nombre à arrondir.
  * @param exp       L'exposant (le logarithme en base 10 de la base pour l'arrondi).
- * @returns value   La valeur arrondie.
+ * @returns value La valeur arrondie.
  */
 export const decimalAdjust = ( type, value, exp ) => {
     // Si l'exposant vaut undefined ou zero...

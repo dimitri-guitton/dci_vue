@@ -389,7 +389,7 @@ export const yupPgConfigStep5 = () => {
  * @param worksheet
  */
 export const initPgFormDataStep5 = ( worksheet: PgWorkSheet ) => {
-    const data = {
+    return {
         worksheet: {
             period:                      worksheet.period,
             infosSup:                    worksheet.infosSup,
@@ -452,8 +452,6 @@ export const initPgFormDataStep5 = ( worksheet: PgWorkSheet ) => {
             creation:                    worksheet.creation,
         },
     };
-
-    return data;
 };
 
 export const savePgWorksheet = ( data: PgFileStep ): PgFile => {

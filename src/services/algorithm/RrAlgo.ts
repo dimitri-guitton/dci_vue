@@ -43,7 +43,7 @@ export class RrAlgo extends PacAlgo {
                 break;
         }
 
-        // Puissance en W
+        // Puissance en Watt
         const power: number = +( volume * coef ).toFixed( 4 );
 
         // Retourne la puissance en KW

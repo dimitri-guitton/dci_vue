@@ -45,8 +45,6 @@ export const validateCombleStep3 = async ( data: CombleFileStep ) => {
         housing: housing,
     };
 
-    console.log( 'FILE DATA -->', fileData );
-
     const codeBonus = getCodeBonus( fileData );
     fileData        = {
         ...fileData,

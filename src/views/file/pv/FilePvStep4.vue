@@ -1,50 +1,46 @@
 <template>
     <div class="w-100">
 
-        <step4-header :payment-on-credit="fileData.quotation.paymentOnCredit"
-                      :price="price"
+        <step4-header :file="fileData"
                       :lists="lists"
-                      :file="fileData"></step4-header>
+                      :payment-on-credit="fileData.quotation.paymentOnCredit"
+                      :price="price"></step4-header>
 
         <step4-quotation-header></step4-quotation-header>
 
-        <!--        <selected-product :products="products"-->
-        <!--                          :selectedProducts="selectedProducts"-->
-        <!--                          @selectedProductIsUpdated="updateSelectedProduct"></selected-product>-->
-
         <div class="col-md-6 mb-5">
-            <label for="q_quantity" class="form-label">Nombre de panneaux</label>
+            <label class="form-label" for="q_quantity">Nombre de panneaux</label>
 
-            <Field name="q_quantity"
-                   id="q_quantity"
-                   class="form-select"
+            <Field id="q_quantity"
+                   v-model="quantity"
                    as="select"
-                   v-model="quantity">
+                   class="form-select"
+                   name="q_quantity">
                 <option v-for="index in 22" :key="index+2" :value="index + 2">{{ index + 2 }}</option>
             </Field>
         </div>
 
         <selected-product ref="$selectedPannels"
+                          :index="0"
                           :products="computedPannels"
                           :selectedProducts="computedSelectedPannels"
-                          @selectedProductIsUpdated="updateSelectedProduct"
-                          :index="0"></selected-product>
+                          @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
 
         <selected-product ref="$selectedOnduleurs"
+                          :index="1"
                           :products="computedOnduleurs"
                           :selectedProducts="computedSelectedOnduleurs"
-                          @selectedProductIsUpdated="updateSelectedProduct"
-                          :index="1"></selected-product>
+                          @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
 
         <selected-product ref="$selectedPasserelles"
+                          :index="2"
                           :products="computedPasserelles"
                           :selectedProducts="computedSelectedPasserelles"
-                          @selectedProductIsUpdated="updateSelectedProduct"
-                          :index="2"></selected-product>
+                          @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
 
-        <options @optionsAreUpdated="updateOptions" :options="computedOptions"></options>
+        <options :options="computedOptions" @optionsAreUpdated="updateOptions"></options>
 
-        <blank-options @optionsAreUpdated="updateBlankOtions" :options="blankOptions"></blank-options>
+        <blank-options :options="blankOptions" @optionsAreUpdated="updateBlankOtions"></blank-options>
 
         <wizzard-file-price :price="price"></wizzard-file-price>
 
@@ -59,8 +55,8 @@
                     value=""
                 />
                 <ErrorMessage
-                    name="commentary"
                     class="fv-plugins-message-container invalid-feedback"
+                    name="commentary"
                 ></ErrorMessage>
             </div>
         </div>
@@ -69,12 +65,12 @@
 
         <div class="row mt-5">
             <div class="col-md-6 offset-md-3 d-flex justify-content-around">
-                <button type="button" @click="generateAddressCertificate" class="btn btn-outline btn-outline-info">
+                <button class="btn btn-outline btn-outline-info" type="button" @click="generateAddressCertificate">
                     Générer
                     l'attestation
                     d'adresse
                 </button>
-                <button type="button" @click="generateQuotation" class="btn btn-info">Générer le devis</button>
+                <button class="btn btn-info" type="button" @click="generateQuotation">Générer le devis</button>
             </div>
         </div>
 
@@ -94,7 +90,7 @@ import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
-import { getCodeBonus, getLessThan2Year } from '@/services/data/dataService';
+import { getLessThan2Year } from '@/services/data/dataService';
 import PvList from '@/types/v2/File/Pv/PvList';
 import { PvFile } from '@/types/v2/File/Pv/PvFile';
 
@@ -145,7 +141,6 @@ export default defineComponent( {
                                             }
                                         }
 
-
                                         const $selectedPannels     = ref( null );
                                         const $selectedOnduleurs   = ref( null );
                                         const $selectedPasserelles = ref( null );
@@ -158,24 +153,14 @@ export default defineComponent( {
                                             ctx.emit( 'generateAddressCertificate' );
                                         };
 
-                                        // const updateSelectedProduct = ( product ) => {
-                                        //     _selectedProducts.value = [ product ];
-                                        // };
-
                                         const updateSelectedProduct = ( product ) => {
-                                            console.log( '%c UPDATE SELECTED PRODUCT ',
-                                                         'background: #FEFF00; color: #000000' );
-                                            console.log( product );
                                             let index = 0;
-                                            console.log( 'BEFORE -->', _selectedProducts.value );
                                             for ( const p of _selectedProducts.value ) {
-                                                console.log( '%c ON FOR', 'background: #fdd835; color: #000000' );
                                                 if ( p.productType === product.productType ) {
                                                     _selectedProducts.value[ index ] = product;
                                                 }
                                                 index++;
                                             }
-                                            console.log( 'AFTER --> ', _selectedProducts.value );
                                         };
 
 
@@ -191,23 +176,14 @@ export default defineComponent( {
                                             const newList                = props.products.filter( p => p.productType === 'pv' );
                                             const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'pv' );
 
-                                            console.log( '%c KO', 'background: #FF80C7; color: #000000' );
-                                            console.log( '%c KO', 'background: #FF80C7; color: #000000' );
                                             if ( filterSelectedProducts.length < 1 ) {
-                                                console.log( '$selectedPannels.value' );
-                                                console.log( $selectedPannels.value );
                                                 const newSelectedPannel = ( $selectedPannels.value as any )?.resetSelectedValue(
                                                     newList );
-                                                console.log( '%c OK', 'background: #6EC600; color: #000000' );
-                                                console.log( '%c OK', 'background: #6EC600; color: #000000' );
-                                                console.log( newSelectedPannel );
                                                 if ( newSelectedPannel !== undefined ) {
                                                     updateSelectedProduct( newSelectedPannel );
                                                 }
                                             }
 
-                                            console.log( '%c COMPUTED PANELS', 'background: #0A00FF; color: #000000' );
-                                            console.log( newList );
                                             return newList;
                                         } );
 
@@ -215,24 +191,14 @@ export default defineComponent( {
                                             const newList                = props.products.filter( p => p.productType === 'onduleur' );
                                             const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'onduleur' );
 
-                                            console.log( '%c KO 2', 'background: #FF80C7; color: #000000' );
-                                            console.log( '%c KO 2', 'background: #FF80C7; color: #000000' );
                                             if ( filterSelectedProducts.length < 1 ) {
-                                                console.log( '$selectedOnduleurs.value' );
-                                                console.log( $selectedOnduleurs.value );
                                                 const newSelectedOnduleur = ( $selectedOnduleurs.value as any )?.resetSelectedValue(
                                                     newList );
-                                                console.log( '%c OK 2', 'background: #6EC600; color: #000000' );
-                                                console.log( '%c OK 2', 'background: #6EC600; color: #000000' );
-                                                console.log( newSelectedOnduleur );
                                                 if ( newSelectedOnduleur !== undefined ) {
                                                     updateSelectedProduct( newSelectedOnduleur );
                                                 }
                                             }
 
-                                            console.log( '%c COMPUTED ONDULEURS',
-                                                         'background: #00FF9D; color: #000000' );
-                                            console.log( newList );
                                             return newList;
                                         } );
 
@@ -240,24 +206,14 @@ export default defineComponent( {
                                             const newList                = props.products.filter( p => p.productType === 'passerelle' );
                                             const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'passerelle' );
 
-                                            console.log( '%c KO 3', 'background: #FF80C7; color: #000000' );
-                                            console.log( '%c KO 3', 'background: #FF80C7; color: #000000' );
                                             if ( filterSelectedProducts.length < 1 ) {
-                                                console.log( '$selectedPasserelles.value' );
-                                                console.log( $selectedPasserelles.value );
                                                 const newSelectedPassrelle = ( $selectedPasserelles.value as any )?.resetSelectedValue(
                                                     newList );
-                                                console.log( '%c OK 3', 'background: #6EC600; color: #000000' );
-                                                console.log( '%c OK 3', 'background: #6EC600; color: #000000' );
-                                                console.log( newSelectedPassrelle );
                                                 if ( newSelectedPassrelle !== undefined ) {
                                                     updateSelectedProduct( newSelectedPassrelle );
                                                 }
                                             }
 
-                                            console.log( '%c COMPUTED PASSRELLES',
-                                                         'background: #F600FF; color: #000000' );
-                                            console.log( newList );
                                             return newList;
                                         } );
 
@@ -294,9 +250,6 @@ export default defineComponent( {
                                         } );
 
                                         const computedSelectedPannels = computed<Product[]>( () => {
-                                            console.log( '%c SELECTED PANNELS', 'background: #0A00FF; color: #000000' );
-                                            console.log( _selectedProducts.value.filter( p => p.productType === 'pv' ) );
-
                                             const list = _selectedProducts.value.filter( p => p.productType === 'pv' );
                                             for ( const p of list ) {
                                                 p.quantity = quantity.value;
@@ -306,10 +259,6 @@ export default defineComponent( {
                                         } );
 
                                         const computedSelectedOnduleurs = computed<Product[]>( () => {
-                                            console.log( '%c SELECTED ONDULEURS',
-                                                         'background: #0A0F600FF0FF; color: #000000' );
-                                            console.log( _selectedProducts.value.filter( p => p.productType === 'onduleur' ) );
-
                                             const list = _selectedProducts.value.filter( p => p.productType === 'onduleur' );
                                             for ( const p of list ) {
                                                 p.quantity = quantity.value;
@@ -319,9 +268,6 @@ export default defineComponent( {
                                         } );
 
                                         const computedSelectedPasserelles = computed<Product[]>( () => {
-                                            console.log( '%c SELECTED PASSERELLES',
-                                                         'background: #00FF9D; color: #000000' );
-                                            console.log( _selectedProducts.value.filter( p => p.productType === 'passerelle' ) );
                                             return _selectedProducts.value.filter( p => p.productType === 'passerelle' );
                                         } );
 
@@ -336,59 +282,42 @@ export default defineComponent( {
                                             let totalPower = 0;
 
 
-                                            console.log( 'Prix par defaut -->', totalHt );
-                                            console.log( _selectedProducts.value );
-
-                                            console.log( '_selectedProducts.value' );
-                                            console.log( _selectedProducts.value );
-                                            console.log( '_selectedProducts.value' );
-
                                             for ( const selectedProduct of _selectedProducts.value ) {
-
-                                                console.log( selectedProduct );
                                                 if ( selectedProduct.productType === 'pv' ) {
                                                     const power = selectedProduct.power !== undefined
                                                                   ? selectedProduct.power
                                                                   : 0;
-                                                    totalPower = selectedProduct.quantity * power;
+                                                    totalPower  = selectedProduct.quantity * power;
                                                 }
                                                 totalHt += selectedProduct.pu * selectedProduct.quantity;
                                             }
-                                            console.log( 'Prix avec les produits -->', totalHt );
-
 
                                             for ( const option of _options.value ) {
                                                 if ( option.number > 0 ) {
                                                     totalHt += option.pu * option.number;
                                                 }
                                             }
-                                            console.log( 'Prix avec les options -->', totalHt );
 
                                             for ( const option of _blankOptions.value ) {
                                                 if ( option.number > 0 && option.label !== '' ) {
                                                     totalHt += option.pu * option.number;
                                                 }
                                             }
-                                            console.log( 'Prix avec les options vides -->', totalHt );
 
-                                            const codeBonus = getCodeBonus();
-                                            console.log( 'Code prime --> ', codeBonus );
                                             const lessThan2Year = getLessThan2Year();
-                                            console.log( 'Moins de 2 ans --> ', lessThan2Year );
 
 
-                                            console.log( 'total power', totalPower );
                                             let selfConsumptionBonus;
                                             let tva10 = 0;
                                             let tva20 = 0;
                                             let totalTtc: number;
                                             if ( lessThan2Year || totalPower > 3000 ) {
                                                 tva20                = 20 * totalHt / 100;
-                                                selfConsumptionBonus = ( totalPower / 1000 ) * 320;
+                                                selfConsumptionBonus = ( totalPower / 1000 ) * 370;
                                                 totalTtc             = totalHt + tva20;
                                             } else {
                                                 tva10                = 10 * totalHt / 100;
-                                                selfConsumptionBonus = ( totalPower / 1000 ) * 430;
+                                                selfConsumptionBonus = ( totalPower / 1000 ) * 500;
                                                 totalTtc             = totalHt + tva10;
                                             }
 

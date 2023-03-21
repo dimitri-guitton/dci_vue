@@ -133,16 +133,10 @@ export default defineComponent( {
                                             ctx.emit( 'selectedProductIsUpdated', currentProduct.value, 'product' );
                                         };
 
-                                        console.log( 'products IN SelectedProduct.vue -->', props.products );
-                                        console.log( 'INDEX -->', props.index );
-                                        console.log( props.selectedProducts[ props.index ] );
-
                                         try {
                                             if ( props.selectedProducts.length > 0 && props.selectedProducts[ props.index ] !== undefined ) {
-                                                console.log( 'IF' );
                                                 currentProduct = ref( props.selectedProducts[ props.index ] );
                                             } else {
-                                                console.log( 'ELSE' );
                                                 currentProduct = ref( props.products[ 0 ] );
                                                 onChangeProduct( props.products[ 0 ].id );
                                             }
@@ -182,7 +176,6 @@ export default defineComponent( {
 
 
                                         const resetSelectedValue = ( products: Product[] ) => {
-                                            console.log( products );
                                             currentProduct.value = products[ 0 ];
                                             selectedId.value     = currentProduct.value?.id;
                                             return currentProduct.value;

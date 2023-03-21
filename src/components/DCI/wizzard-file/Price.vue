@@ -73,8 +73,7 @@ export default defineComponent( {
                                             },
                                         },
                                     },
-                                    setup( props ) {
-                                        console.log( 'PROPS WIZZARD FILE', props );
+                                    setup() {
                                         return {
                                             numberToPrice,
                                         };

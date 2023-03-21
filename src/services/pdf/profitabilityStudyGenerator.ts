@@ -26,7 +26,6 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
 
     constructor( file: AllFile ) {
         super();
-        console.log( 'FILE IN CONSTRUCTOR -->', file );
         this._file      = file;
         this.type       = PdfType.ProfitabilityStudy;
         this._quotation = ( file.quotation as PvQuotation );
@@ -39,7 +38,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
     private _generateDocDefinition(): TDocumentDefinitions {
         return {
             content: [
-                this._createTitle( 'Étude de rentabilité' ),
+                this._createTitle( 'Estimation de prodution' ),
                 this._customerInfo(),
                 this._photovoltaicInfo(),
                 this._benefitsOver25Years(),
@@ -247,6 +246,8 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
         const totalPower = pv.quantity * power;
         const title      = `${ pv.label } de ${ pv.quantity } x ${ power }Wc = ${ totalPower }Wc`;
 
+        const worksheet = ( this._file.worksheet as PvWorkSheet );
+
         return {
             margin:    [ 0, 15, 0, 0 ],
             style:     [ 'table' ],
@@ -256,6 +257,17 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
                     [
                         {
                             text:      title,
+                            alignment: 'center',
+                            bold:      true,
+                            colSpan:   4,
+                        },
+                        {},
+                        {},
+                        {},
+                    ],
+                    [
+                        {
+                            text:      `Orientation : ${ worksheet.orientation } | Production : ${ this._pvAlgo.calcInstallationProduction() } kwh`,
                             alignment: 'center',
                             bold:      true,
                             colSpan:   4,
@@ -359,17 +371,8 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
 
         const chart = Chart.getChart( 'my_chart' );
         if ( chart === undefined ) {
-            console.log( 'Chart is undefined' );
             return '';
         }
-        console.log( 'CHART -->', chart );
-        // if ( this._chart === null ) {
-        //     console.log( '%c CHART IS NULL', 'background: #fdd835; color: #000000' );
-        //     return '';
-        // }
-
-        // return this._createTitle('TEST');
-
         return {
             stack: [
                 {
@@ -424,8 +427,6 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
     }
 
     public createChart() {
-        console.log( '%c ON CREATE CHART', 'background: #fdd835; color: #000000' );
-
         const data                           = this._pvAlgo.priceEvolutionOver25Years();
         const labels: string[]               = [];
         const datasetsEdf: number[]          = [];

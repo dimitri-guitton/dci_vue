@@ -121,7 +121,7 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
         ceeBonus = +ceeBonus;
     }
 
-    // On fix à 4 chiffre apres la virgule avant de faire l'arrondi car on peut avoir des erreur sur certain chiffre
+    // On fix à 4 chiffre apres la virgule avant de faire l'arrondi, car on peut avoir des erreurs sur certain chiffre
     // Exemple 8.05 * 66 = 531.3000000000001 et donc l'arrondi est 531.31 et non 531.3
     ceeBonus = +ceeBonus.toFixed( 4 );
 
@@ -133,30 +133,19 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
  */
 export const getHelpingHandRo = ( codeBonus, deviceToReplace ): number => {
     codeBonus = codeBonus.toUpperCase();
-    console.log( '%c KO', 'background: #fdd835; color: #000000' );
-    console.log( '%c KO', 'background: #fdd835; color: #000000' );
-    console.log( '%c KO', 'background: #fdd835; color: #000000' );
-    console.log( '%c KO', 'background: #fdd835; color: #000000' );
-    console.log( '%c KO', 'background: #fdd835; color: #000000' );
-    console.log( '%c KO', 'background: #fdd835; color: #000000' );
-    console.log( deviceToReplace );
 
     if ( codeBonus === 'GP' || codeBonus === 'P' ) {
         // chaudière fioul
         if ( deviceToReplace === 'CFHC' ) {
-            console.log( '%c IN', 'background: #00FF2E; color: #000000' );
             return 5000;
         }
-        console.log( '%c ELSE', 'background: #7F4CFF; color: #000000' );
 
         return 4000;
     } else {
         // chaudière fioul
         if ( deviceToReplace === 'CFHC' ) {
-            console.log( '%c IN', 'background: #00FF2E; color: #000000' );
             return 4000;
         }
-        console.log( '%c ELSE', 'background: #7F4CFF; color: #000000' );
 
         return 2500;
     }
@@ -170,15 +159,10 @@ const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: strin
 
     let etas = 0;
     for ( const pac of pacs ) {
-        console.log( 'PAC -->', pac );
         if ( pac.etas !== undefined && pac.etas > 0 ) {
             etas = pac.etas;
         }
     }
-
-    console.log( 'PACS -->', pacs );
-    console.log( 'ETAS -->', etas );
-    console.log( 'formatedEtas', formatedEtas );
 
     if ( etas >= 110 && etas < 120 ) {
         formatedEtas = 110;
@@ -215,9 +199,6 @@ const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: strin
     if ( area > 130 ) {
         formatedArea = 130;
     }
-
-    console.log( 'formatedArea', formatedArea );
-
 
     if ( codeBonus !== null && codeBonus.toUpperCase() === 'GP' ) {
         formatedCodeBonus = 'GP';
@@ -450,11 +431,6 @@ const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: strin
     };
 
     try {
-        console.log( listBonus );
-        console.log( listBonus[ zone ] );
-        console.log( listBonus[ zone ][ localType ] );
-        console.log( listBonus[ zone ][ localType ][ formatedEtas ] );
-        console.log( formatedEtas );
         return listBonus[ zone ][ localType ][ formatedEtas ][ formatedArea ][ formatedCodeBonus ];
     } catch ( e ) {
         console.warn( 'Prime CEE non trouvé ', e );
@@ -472,12 +448,10 @@ const getCeeRr = ( pacs: Product[], localType: string, area: number, zone: strin
     let formatedCodeBonus;
 
     let scop = 0;
-    console.log( 'PACS -->', pacs );
     for ( const pac of pacs ) {
         if ( pac === undefined ) {
             continue;
         }
-        console.log( 'PAC -->', pac );
         if ( pac.scop !== undefined && pac.scop > 0 ) {
             scop = pac.scop;
         }
@@ -517,7 +491,6 @@ const getCeeRr = ( pacs: Product[], localType: string, area: number, zone: strin
     if ( area > 130 ) {
         formatedArea = 130;
     }
-    console.log( 'CODE BONUS -->', codeBonus );
 
     if ( codeBonus !== null && codeBonus.toUpperCase() === 'GP' ) {
         formatedCodeBonus = 'GP';
@@ -723,7 +696,6 @@ const getCeeRr = ( pacs: Product[], localType: string, area: number, zone: strin
             },
         };
     } else {
-        console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
         listBonus = {
             H1: {
                 appartement:           {
@@ -922,16 +894,6 @@ const getCeeRr = ( pacs: Product[], localType: string, area: number, zone: strin
 
 
     try {
-        console.log( zone );
-        console.log( localType );
-        console.log( formatedScop );
-        console.log( formatedArea );
-        console.log( formatedCodeBonus );
-        console.log( listBonus );
-        console.log( listBonus[ zone ] );
-        console.log( listBonus[ zone ][ localType ] );
-        console.log( listBonus[ zone ][ localType ][ formatedScop ] );
-        console.log( formatedScop );
         return listBonus[ zone ][ localType ][ formatedScop ][ formatedArea ][ formatedCodeBonus ];
     } catch ( e ) {
         console.warn( 'Prime CEE non trouvé ', e );
@@ -945,14 +907,6 @@ export const getCeeBonus = ( data: BaseFile ): number => {
     const codeBonus   = getCodeBonus();
     const housingType = data.housing.type;
     const energyZone  = data.energyZone;
-    console.log( '%c TYPE', 'background: #5ADFFF; color: #000000' );
-    console.log( type );
-    console.log( '%c BUILD NATURE', 'background: #5ADFFF; color: #000000' );
-    console.log( housingType );
-    console.log( '%c CODE BONUS', 'background: #5ADFFF; color: #000000' );
-    console.log( codeBonus );
-    console.log( '%c ENERGY ZONE', 'background: #5ADFFF; color: #000000' );
-    console.log( energyZone );
     let value = 0;
 
     switch ( type ) {
@@ -975,7 +929,6 @@ export const getCeeBonus = ( data: BaseFile ): number => {
                 }
 
             } else {
-                console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
                 if ( housingType === 'appartement' ) {
                     if ( codeBonus === 'GP' ) {
                         value = 68.425;
@@ -1028,7 +981,6 @@ export const getCeeBonus = ( data: BaseFile ): number => {
                     }
 
                 } else {
-                    console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
                     if ( energyZone === 'H1' ) {
                         if ( codeBonus === 'GP' ) {
                             value = 9.775;
@@ -1071,7 +1023,6 @@ export const getCeeBonus = ( data: BaseFile ): number => {
                         }
                     }
                 } else {
-                    console.log( '%c IN CEE BEFORE 01/10/22', 'background: #00FF9D; color: #000000' );
                     if ( energyZone === 'H1' ) {
                         if ( codeBonus === 'GP' ) {
                             value = 6.325;
@@ -1123,7 +1074,7 @@ export const getCeeBonus = ( data: BaseFile ): number => {
 
     }
 
-    // Si de type COMBLE OU SOL on arrondie après car on miltiplie la prime par la surface
+    // Si de type COMBLE OU SOL on arrondit après car on multiplie la prime par la surface
     switch ( type ) {
         case FILE_COMBLE:
         case FILE_SOL:

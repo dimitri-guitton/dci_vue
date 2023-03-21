@@ -5,7 +5,6 @@ import { SolWorkSheet } from '@/types/v2/File/Sol/SolWorkSheet';
 import { SolFileStep } from '@/types/v2/Wizzard/FileStep';
 import { SolFile } from '@/types/v2/File/Sol/SolFile';
 import { getCurrentSolFileData } from '@/services/data/dataService';
-import { SolStep5 } from '@/types/v2/Wizzard/step5/SolStep5';
 
 
 /**
@@ -198,7 +197,7 @@ export const yupSolConfigStep5 = () => {
  * @param worksheet
  */
 export const initSolFormDataStep5 = ( worksheet: SolWorkSheet ) => {
-    const data: SolStep5 = {
+    return {
         worksheet: {
             period:                  worksheet.period,
             infosSup:                worksheet.infosSup,
@@ -222,8 +221,6 @@ export const initSolFormDataStep5 = ( worksheet: SolWorkSheet ) => {
             nbrPorteGarage:          worksheet.nbrPorteGarage,
         },
     };
-
-    return data;
 };
 
 export const saveSolWorksheet = ( data: SolFileStep ): SolFile => {

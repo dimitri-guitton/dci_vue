@@ -272,7 +272,7 @@ export const yupPacRrConfigStep5 = () => {
  * @param worksheet
  */
 export const initPacRrFormDataStep5 = ( worksheet: RrWorkSheet ) => {
-    const data = {
+    return {
         worksheet: {
             period:               worksheet.period,
             infosSup:             worksheet.infosSup,
@@ -313,8 +313,6 @@ export const initPacRrFormDataStep5 = ( worksheet: RrWorkSheet ) => {
             hauteurDuSol:         worksheet.hauteurDuSol,
         },
     };
-
-    return data;
 };
 
 export const savePacRrWorksheet = ( data: PacRrFileStep ): RrFile => {

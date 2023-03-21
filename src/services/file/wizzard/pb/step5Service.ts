@@ -389,7 +389,7 @@ export const yupPbConfigStep5 = () => {
  * @param worksheet
  */
 export const initPbFormDataStep5 = ( worksheet: PbWorkSheet ) => {
-    const data = {
+    return {
         worksheet: {
             period:                      worksheet.period,
             infosSup:                    worksheet.infosSup,
@@ -452,8 +452,6 @@ export const initPbFormDataStep5 = ( worksheet: PbWorkSheet ) => {
             creation:                    worksheet.creation,
         },
     };
-
-    return data;
 };
 
 export const savePbWorksheet = ( data: PbFileStep ): PbFile => {

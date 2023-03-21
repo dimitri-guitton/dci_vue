@@ -27,14 +27,7 @@ export class PvAlgo {
     }
 
     /**
-     * Prix moyen du KWh sur la facture électrique
-     */
-    public calcAveragePricePerKWhOnElectricBill(): number {
-        return this.worksheet.montantFactureElectrique / this.worksheet.totalKwhFactureElectrique;
-    }
-
-    /**
-     * Production par panneau en KWh
+     * Production par panneau en kWh
      */
     public productionPerPanelInKWh( year = 1 ): number {
         let power = 0;
@@ -85,14 +78,14 @@ export class PvAlgo {
     }
 
     /**
-     * Calcul le total TTC avec les montant des primes déduites
+     * Calcul le total TTC avec les montants des primes déduites
      */
     public calcTotalTtcWithBonusDeducted() {
         return this.quotation.totalTtc - this.quotation.selfConsumptionBonus;
     }
 
     /**
-     * Production de l'installation en KWh
+     * Production de l'installation en kWh
      */
     public calcInstallationProduction( year = 1 ): number {
         if ( this.quotation.selectedProducts.length > 0 ) {
@@ -115,22 +108,29 @@ export class PvAlgo {
     public calcResalePriceToEdf( year = 1 ): number {
 
 
-        // On augmente de 1.5% les (0.1) tout les ans à partir de l'année,
+        // On augmente de 1.5% les (0.1) tous les ans à partir de l'année,
         // Année 1 10 centimes * 1.5%
         // Année 2 10.15 centimes * 1.5%
         // Année 3 10.30225 centimes * 1.5%
-        let ratio = 0.1;
+        let ratio = 0.1313;
         for ( let i = 1; i < year; i++ ) {
             ratio *= 1.015;
         }
-        return this.calcInstallationProduction( year ) * 0.5 * ratio;
+
+        let bonus = 0;
+        if ( year === 1 ) {
+            bonus = this.quotation.selfConsumptionBonus;
+        }
+
+        return this.calcInstallationProduction( year ) * this.worksheet.ratioResaleToEDF * ratio + bonus;
     }
 
     /**
      * Economie sur la facture en €
      */
     public savingsOnBill( year = 1 ): number {
-        return this.calcInstallationProduction( year ) * this.calcAveragePricePerKWhOnElectricBill() * 0.5;
+        const ratio = 1 - this.worksheet.ratioResaleToEDF;
+        return this.calcInstallationProduction( year ) * this.worksheet.averagePricePerKWhInFrance * ratio;
     }
 
     /**
@@ -190,7 +190,7 @@ export class PvAlgo {
     }
 
     /**
-     * Evolution du prix de KWh sur 25 ans
+     * Evolution du prix de kWh sur 25 ans
      */
     public priceEvolutionOver25Years(): PriceEvolution[] {
         const currentYear: number      = new Date().getFullYear();
@@ -201,7 +201,7 @@ export class PvAlgo {
             if ( year === currentYear ) {
                 result.push( {
                                  year,
-                                 kwhEdf:          this.calcAveragePricePerKWhOnElectricBill(),
+                                 kwhEdf:          this.worksheet.averagePricePerKWhInFrance,
                                  kwhPhotovoltaic: this.calcPhotovoltaicAverageSellingPrice( index ),
                              } );
             } else {
