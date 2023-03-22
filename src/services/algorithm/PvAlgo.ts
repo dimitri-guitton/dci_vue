@@ -46,11 +46,11 @@ export class PvAlgo {
             }
         } else {
             if ( this.worksheet.orientation === 'sud' ) {
-                powerFor375 = 458;
+                powerFor375 = 463;
             } else if ( this.worksheet.orientation === 'sud_ouest' ) {
                 powerFor375 = 457;
             } else if ( this.worksheet.orientation === 'sud_est' ) {
-                powerFor375 = 458;
+                powerFor375 = 459;
             } else if ( this.worksheet.orientation === 'ouest' ) {
                 powerFor375 = 395;
             } else if ( this.worksheet.orientation === 'est' ) {
@@ -60,9 +60,6 @@ export class PvAlgo {
 
         const ratio         = powerFor375 / 375;
         let calculatedPower = 0;
-        // TODO calculer le ratio = H2 SUD = 458/375 =  1.221233
-        // Puissance du panneau * le ratio
-        // La puissance se trouve dans les panneaux à l'unité
 
         if ( this.quotation.selectedProducts.length > 0 ) {
             const product = this.quotation.selectedProducts[ 0 ];

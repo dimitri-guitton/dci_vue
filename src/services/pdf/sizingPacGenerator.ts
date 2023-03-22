@@ -114,11 +114,11 @@ export class SizingPacGenerator extends PdfGenerator {
                 }
 
                 if ( ( this._file as RoFile ).quotation.selectedProducts[ 1 ] ) {
-                    labelP2 = ( this._file as RoFile ).quotation.selectedProducts[ 0 ].label;
+                    labelP2 = ( this._file as RoFile ).quotation.selectedProducts[ 1 ].label;
 
                 }
 
-                additionnalInfoText = `Informations sur la pompe à chaleaur : ${ labelP1.toLowerCase() } + ${ labelP2.toLowerCase() } \n`;
+                additionnalInfoText = `Informations sur la pompe à chaleur : ${ labelP1 } + ${ labelP2 } \n`;
 
             }
 
@@ -130,8 +130,6 @@ export class SizingPacGenerator extends PdfGenerator {
                 heaterText,
                 powerPacText,
             ];
-            // TODO: Après entre les 2 premières lignes, il faut ajouter marque + modèle unit Int + unit Ext
-            // TODO: Mettre la première ligne du produit = nom
 
         } else {
             finalText = [
