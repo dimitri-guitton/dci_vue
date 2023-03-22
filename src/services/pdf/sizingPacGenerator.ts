@@ -104,13 +104,34 @@ export class SizingPacGenerator extends PdfGenerator {
                     break;
             }
 
+            let additionnalInfoText = '';
+
+            if ( ( this._file as RoFile ).quotation.selectedProducts.length > 0 ) {
+                let labelP1 = '';
+                let labelP2 = '';
+                if ( ( this._file as RoFile ).quotation.selectedProducts[ 0 ] ) {
+                    labelP1 = ( this._file as RoFile ).quotation.selectedProducts[ 0 ].label;
+                }
+
+                if ( ( this._file as RoFile ).quotation.selectedProducts[ 1 ] ) {
+                    labelP2 = ( this._file as RoFile ).quotation.selectedProducts[ 0 ].label;
+
+                }
+
+                additionnalInfoText = `Informations sur la pompe à chaleaur : ${ labelP1.toLowerCase() } + ${ labelP2.toLowerCase() } \n`;
+
+            }
+
             finalText = [
                 'La pompe à chaleur doit couvrir au minimum 60 % et au maximum 110 % des déperditions de la maison à la température de base. Elle doit couvrir au moins 120 % des déperditions avec les appoints électriques.\n\n',
+                additionnalInfoText,
                 'Température d\'arrêt de la PAC : -25°c\n',
                 'Les déperditions concernent les pièces du logement desservies par le réseau de chauffage.\n',
                 heaterText,
                 powerPacText,
             ];
+            // TODO: Après entre les 2 premières lignes, il faut ajouter marque + modèle unit Int + unit Ext
+            // TODO: Mettre la première ligne du produit = nom
 
         } else {
             finalText = [
@@ -185,7 +206,7 @@ export class SizingPacGenerator extends PdfGenerator {
                         {
                             lineHeight: 1.2,
                             margin:     [ 48, -20, 0, 0 ],
-                            fontSize:   10,
+                            fontSize:   8,
                             color:      '#323232',
                             text:       finalText,
                         },
