@@ -30,51 +30,65 @@ export class PvAlgo {
      * Production par panneau en kWh
      */
     public productionPerPanelInKWh( year = 1 ): number {
-        let power = 0;
+        let powerFor375 = 0;
+
         if ( this.energyZone === 'H1' ) {
             if ( this.worksheet.orientation === 'sud' ) {
-                power = 448;
+                powerFor375 = 448;
             } else if ( this.worksheet.orientation === 'sud_ouest' ) {
-                power = 425;
+                powerFor375 = 425;
             } else if ( this.worksheet.orientation === 'sud_est' ) {
-                power = 429;
+                powerFor375 = 429;
             } else if ( this.worksheet.orientation === 'ouest' ) {
-                power = 371;
+                powerFor375 = 371;
             } else if ( this.worksheet.orientation === 'est' ) {
-                power = 387;
+                powerFor375 = 387;
             }
         } else {
             if ( this.worksheet.orientation === 'sud' ) {
-                power = 458;
+                powerFor375 = 458;
             } else if ( this.worksheet.orientation === 'sud_ouest' ) {
-                power = 457;
+                powerFor375 = 457;
             } else if ( this.worksheet.orientation === 'sud_est' ) {
-                power = 458;
+                powerFor375 = 458;
             } else if ( this.worksheet.orientation === 'ouest' ) {
-                power = 395;
+                powerFor375 = 395;
             } else if ( this.worksheet.orientation === 'est' ) {
-                power = 397;
+                powerFor375 = 397;
             }
         }
+
+        const ratio         = powerFor375 / 375;
+        let calculatedPower = 0;
+        // TODO calculer le ratio = H2 SUD = 458/375 =  1.221233
+        // Puissance du panneau * le ratio
+        // La puissance se trouve dans les panneaux à l'unité
 
         if ( this.quotation.selectedProducts.length > 0 ) {
             const product = this.quotation.selectedProducts[ 0 ];
             if ( year === 1 ) {
                 if ( product.ext1 !== undefined ) {
                     const percentage = 1 - ( parseFloat( product.ext1 ) / 100 );
-                    power            = power * percentage;
+                    if ( product.power !== undefined ) {
+                        const power     = product.power * ratio;
+                        calculatedPower = power * percentage;
+                    }
                 }
             } else {
                 if ( product.ext1 !== undefined && product.ext2 !== undefined ) {
                     const coefYear1     = parseFloat( product.ext1 );
                     const coefOtherYear = ( parseFloat( product.ext2 ) - coefYear1 ) / 24;
+                    if ( product.power !== undefined ) {
+                        const power     = product.power * ratio;
+                        calculatedPower = power * ( 1 - ( coefYear1 / 100 ) );
+                        calculatedPower = calculatedPower * ( 1 - ( ( year * coefOtherYear ) / 100 ) );
+                    }
 
-                    power = power * ( 1 - ( coefYear1 / 100 ) );
-                    power = power * ( 1 - ( ( year * coefOtherYear ) / 100 ) );
                 }
             }
         }
-        return power;
+
+        return calculatedPower;
     }
 
     /**
