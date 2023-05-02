@@ -259,10 +259,14 @@ export default defineComponent( {
                                             // Change le prix de la pose
                                             _options.value = _options.value.map( o => {
                                                 if ( o.label.includes( 'Forfait pose' ) ) {
-                                                    if ( nbLaying === 1 || nbLaying === 2 ) {
+                                                    if ( nbLaying === 1 ) {
                                                         return { ...o, pu: 600 };
-                                                    } else if ( nbLaying === 3 || nbLaying === 4 ) {
+                                                    } else if ( nbLaying === 2 ) {
+                                                        return { ...o, pu: 900 };
+                                                    } else if ( nbLaying === 3 ) {
                                                         return { ...o, pu: 1200 };
+                                                    } else if ( nbLaying === 4 ) {
+                                                        return { ...o, pu: 1500 };
                                                     } else if ( nbLaying === 5 ) {
                                                         return { ...o, pu: 1800 };
                                                     }
