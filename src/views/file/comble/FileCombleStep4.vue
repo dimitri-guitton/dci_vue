@@ -180,18 +180,18 @@ export default defineComponent( {
                                                 }
                                             }
 
-
-                                            const totalTva = tva * totalHt / 100;
-                                            const totalTtc = totalHt + totalTva;
-
-                                            const remainderToPay = totalTtc - ceeBonus;
-
                                             // Surcharge de la pose si le prix HT est inférieur à 850€
                                             if ( totalHt < 850 ) {
                                                 const missing = ( 850 - ( totalHt - priceProduct ) ) - priceProduct;
                                                 laying += missing;
                                                 totalHt += missing;
                                             }
+
+                                            const totalTva = tva * totalHt / 100;
+                                            const totalTtc = totalHt + totalTva;
+
+                                            const remainderToPay = totalTtc - ceeBonus;
+
 
                                             const price: Price = {
                                                 laying,
