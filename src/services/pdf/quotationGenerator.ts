@@ -927,7 +927,7 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PAC_RR:
                 const rrQuotation = ( this._file.quotation as RrQuotation );
                 if ( rrQuotation.rrType === 'mono' && rrQuotation.assortment === 'sensira' ) {
-                    text = 'GARANTIE DAIKIN 3 ANS PIECES ET 5 ANS COMPRESSEUR';
+                    text = 'GARANTIE DAIKIN 3 ANS PIECES ET 3 ANS COMPRESSEUR';
                 } else {
                     text = 'GARANTIE DAIKIN 3 ANS PIECES ET 5 ANS COMPRESSEUR';
                 }
