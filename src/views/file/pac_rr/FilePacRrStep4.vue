@@ -36,15 +36,15 @@
             <div class="col-md-6 fv-row">
                 <label class="form-label mb-3">Nombre de pièces</label>
                 <Field
-                    v-model.number="rrMulti.roomNumber"
-                    class="form-control"
-                    name="housingRoomNumber"
-                    placeholder="1"
-                    type="number"
+                        v-model.number="rrMulti.roomNumber"
+                        class="form-control"
+                        name="housingRoomNumber"
+                        placeholder="1"
+                        type="number"
                 />
                 <ErrorMessage
-                    class="fv-plugins-message-container invalid-feedback"
-                    name="housingRoomNumber"
+                        class="fv-plugins-message-container invalid-feedback"
+                        name="housingRoomNumber"
                 ></ErrorMessage>
             </div>
 
@@ -54,11 +54,11 @@
                         <div class="col-md-2">
                             <label class="form-label mb-3">Pièce n°{{ index }} <sup><var>m2</var></sup></label>
                             <Field
-                                v-model.number="rrMulti[`areaP${index}`]"
-                                :name="`housingAreaP${index}`"
-                                class="form-control"
-                                placeholder="1"
-                                type="number"
+                                    v-model.number="rrMulti[`areaP${index}`]"
+                                    :name="`housingAreaP${index}`"
+                                    class="form-control"
+                                    placeholder="1"
+                                    type="number"
                             />
                         </div>
                         <div class="col-md-3">
@@ -89,9 +89,10 @@
 
         <step4-quotation-header></step4-quotation-header>
 
-        <template v-for="p in selectedProducts" v-bind:key="`select_product_${p.id}`">
-            <p>{{ p.id }} - {{ p.reference }} - {{ p.label }}</p>
-        </template>
+        <!-- Formualaire caché afin de binder la value pour la gamme-->
+        <div class="row d-none">
+            <Field v-model="assortment" name="assortment" class="form-control" type="text" />
+        </div>
 
         <selected-product :index="0"
                           :products="extProducts"
@@ -128,15 +129,15 @@
             <div class="col-md-12 fv-row">
                 <label class="form-label mb-3">Commentaire</label>
                 <Field
-                    as="textarea"
-                    class="form-control form-control-lg"
-                    name="commentary"
-                    placeholder="RAS"
-                    value=""
+                        as="textarea"
+                        class="form-control form-control-lg"
+                        name="commentary"
+                        placeholder="RAS"
+                        value=""
                 />
                 <ErrorMessage
-                    class="fv-plugins-message-container invalid-feedback"
-                    name="commentary"
+                        class="fv-plugins-message-container invalid-feedback"
+                        name="commentary"
                 ></ErrorMessage>
             </div>
         </div>
@@ -243,7 +244,11 @@ export default defineComponent( {
                                             discount.value = value;
                                         };
 
-                                        const updateBonus = ( data: { bonus: boolean; ceeBonus: boolean; maPrimeRenovBonus: boolean } ) => {
+                                        const updateBonus = ( data: {
+                                            bonus: boolean;
+                                            ceeBonus: boolean;
+                                            maPrimeRenovBonus: boolean;
+                                        } ) => {
                                             disabledBonus.value             = data.bonus;
                                             disabledCeeBonus.value          = data.ceeBonus;
                                             disabledMaPrimeRenovBonus.value = data.maPrimeRenovBonus;
@@ -290,6 +295,23 @@ export default defineComponent( {
 
 
                                         const updateSelectedProduct = ( product, index ) => {
+                                            // Mise à jour de l'unité extérieure
+                                            if ( index === 0 ) {
+                                                // Mise à jour du type de produit
+                                                if ( product.label.toUpperCase().includes( 'SENSIRA' ) ) {
+                                                    assortment.value = 'sensira';
+                                                } else if ( product.label.toUpperCase().includes( 'EMURA' ) ) {
+                                                    assortment.value = 'emura';
+                                                } else if ( product.label.toUpperCase().includes( 'STYLISH' ) ) {
+                                                    assortment.value = 'stylish';
+                                                } else if ( product.label.toUpperCase().includes( 'PERFERA' ) ) {
+                                                    assortment.value = 'perfera';
+                                                } else if ( product.label.toUpperCase().includes( 'COMFORA' ) ) {
+                                                    assortment.value = 'comfora';
+                                                } else {
+                                                    assortment.value = 'undefined';
+                                                }
+                                            }
                                             _selectedProducts.value[ index ] = product;
                                         };
 
