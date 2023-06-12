@@ -453,11 +453,11 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'ENLEVEMENT DE L\'EXISTANT',
-                                value: this.yesOrNo( this.getNumberOfOptionBySlug( 'option-0', quotation.options ) > 0 ),
+                                value: this.yesOrNo( this.getNumberOfOptionBySlug( 'option-5', quotation.options ) > 0 ),
                             },
                             {
                                 label: 'SURFACE À RETIRER',
-                                value: this.getNumberOfOptionBySlug( 'option-0', quotation.options ),
+                                value: this.getNumberOfOptionBySlug( 'option-5', quotation.options ),
                             },
                             {
                                 label: 'Nbre de couches',
@@ -465,11 +465,11 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'REMISE DE L\'EXISTANT',
-                                value: this.yesOrNo( this.getNumberOfOptionBySlug( 'option-1', quotation.options ) > 0 ),
+                                value: this.yesOrNo( this.getNumberOfOptionBySlug( 'option-6', quotation.options ) > 0 ),
                             },
                             {
                                 label: 'SURFACE À REMETTRE',
-                                value: this.getNumberOfOptionBySlug( 'option-1', quotation.options ),
+                                value: this.getNumberOfOptionBySlug( 'option-6', quotation.options ),
                             },
                             {
                                 label: 'LARDAGE PARE VAPEUR',
@@ -477,11 +477,11 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'CREATION TROU D\'HOMME',
-                                value: this.getNumberOfOptionBySlug( 'option-2', quotation.options ),
+                                value: this.getNumberOfOptionBySlug( 'option-7', quotation.options ),
                             },
                             {
                                 label: 'REHAUSSE DE TRAPPE',
-                                value: this.getNumberOfOptionBySlug( 'option-4', quotation.options ),
+                                value: this.getNumberOfOptionBySlug( 'option-11', quotation.options ),
                             },
                             {
                                 label: 'TYPE DE TRAPPE',
@@ -489,19 +489,19 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'ISOLATION DE LA TRAPPE',
-                                value: this.getNumberOfOptionBySlug( 'option-5', quotation.options ),
+                                value: this.getNumberOfOptionBySlug( 'option-12', quotation.options ),
                             },
                             {
                                 label: 'ENTOURAGE CHEMINEE',
-                                value: this.getNumberOfOptionBySlug( 'option-6', quotation.options ),
+                                value: this.getNumberOfOptionBySlug( 'option-13', quotation.options ),
                             },
                             {
                                 label: 'PROTECTION DES SPOTS',
-                                value: this.yesOrNo( this.getNumberOfOptionBySlug( 'option-7', quotation.options ) > 0 ),
+                                value: this.yesOrNo( this.getNumberOfOptionBySlug( 'option-14', quotation.options ) > 0 ),
                             },
                             {
                                 label: 'NBRE DE SPOTS',
-                                value: this.getNumberOfOptionBySlug( 'option-7', quotation.options ),
+                                value: this.getNumberOfOptionBySlug( 'option-14', quotation.options ),
                             },
                             // {
                             //     label: 'ENTOURAGE VOLETS ROULANTS',
@@ -521,11 +521,11 @@ export class WorksheetGenerator extends PdfGenerator {
                             },
                             {
                                 label: 'Entourage (volets roulants, VMC, etc...)',
-                                value: this.getNumberOfOptionBySlug( 'option-3', quotation.options ),
+                                value: this.getNumberOfOptionBySlug( 'option-8', quotation.options ),
                             },
                             {
                                 label: 'ARRÊTOIRES EN POLYPRO',
-                                value: this.getNumberOfOptionBySlug( 'option-10', quotation.options ),
+                                value: this.getNumberOfOptionBySlug( 'option-17', quotation.options ),
                             },
                         ],
                     },
