@@ -60,6 +60,7 @@ async function processData() {
                         if ( ref ) {
                             ref.output[ csvFile.temp.toString() ][ temperature ] = val;
                         } else {
+                            // TODO ERREUR : 18 n'est pas pris en compte car il y à 8 avant
                             // Si la référence contient un des nombres suivants, c'est la taille
                             const availableSizes = [ 4, 6, 8, 10, 12, 14, 16, 18 ];
                             let size             = availableSizes.find( ( size ) => key.includes( size.toString() ) );
