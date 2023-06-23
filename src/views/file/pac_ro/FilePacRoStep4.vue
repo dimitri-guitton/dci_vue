@@ -9,8 +9,8 @@
 
         <div class="row">
             <div class="col-md-6 mb-5">
-                <label class="form-label" for="sizingPercentage">La pompe à chaleur doit couvrir au minimum 60% et au
-                                                                 maximum 110% des déperditions de la maison à la
+                <label class="form-label" for="sizingPercentage">La pompe à chaleur doit couvrir au minimum 70% et au
+                                                                 maximum 100% des déperditions de la maison à la
                                                                  température de base.<br><b>Quelle pourcentage voulez
                                                                                             choisir ?</b></label>
                 <Field id="sizingPercentage"
@@ -20,10 +20,6 @@
                        name="sizingPercentage"
                 >
                     <template-item-list :lists="[
-                        {
-                            slug:'65',
-                            value: 65
-                        },
                          {
                             slug:'70',
                             value: 70
@@ -52,11 +48,6 @@
                             slug:'100',
                             value: 100
                         },
-                         {
-                            slug:'105',
-                            value: 105
-                        },
-
                     ]"></template-item-list>
                 </Field>
             </div>
@@ -84,11 +75,11 @@
                 <div class="col-md-3 mb-5">
                     <label class="form-label mb-3" for="deviceToReplaceBrand">Marque</label>
                     <Field
-                        id="deviceToReplaceBrand"
-                        v-model="deviceToReplace.brand"
-                        class="form-control"
-                        name="deviceToReplaceBrand"
-                        type="text"
+                            id="deviceToReplaceBrand"
+                            v-model="deviceToReplace.brand"
+                            class="form-control"
+                            name="deviceToReplaceBrand"
+                            type="text"
 
                     >
                     </Field>
@@ -96,11 +87,11 @@
                 <div class="col-md-3 mb-5">
                     <label class="form-label mb-3" for="deviceToReplaceModel">Modèle</label>
                     <Field
-                        id="deviceToReplaceModel"
-                        v-model="deviceToReplace.model"
-                        class="form-control"
-                        name="deviceToReplaceModel"
-                        type="text"
+                            id="deviceToReplaceModel"
+                            v-model="deviceToReplace.model"
+                            class="form-control"
+                            name="deviceToReplaceModel"
+                            type="text"
                     >
                     </Field>
                 </div>
@@ -128,7 +119,7 @@
                        value="ecs_2"
                 >
                 </Field>
-                <label class="ms-2" for="r_ecs_2">180L</label>
+                <label class="ms-2" for="r_ecs_2">180L / 190L</label>
 
                 <Field id="r_ecs_3"
                        v-model="volumeECS"
@@ -231,15 +222,15 @@
             <div class="col-md-12 fv-row">
                 <label class="form-label mb-3">Commentaire</label>
                 <Field
-                    as="textarea"
-                    class="form-control form-control-lg"
-                    name="commentary"
-                    placeholder="RAS"
-                    value=""
+                        as="textarea"
+                        class="form-control form-control-lg"
+                        name="commentary"
+                        placeholder="RAS"
+                        value=""
                 />
                 <ErrorMessage
-                    class="fv-plugins-message-container invalid-feedback"
-                    name="commentary"
+                        class="fv-plugins-message-container invalid-feedback"
+                        name="commentary"
                 ></ErrorMessage>
             </div>
         </div>
@@ -362,7 +353,11 @@ export default defineComponent( {
                                             _blankOptions.value = blankOptions;
                                         };
 
-                                        const updateBonus = ( data: { bonus: boolean; ceeBonus: boolean; maPrimeRenovBonus: boolean } ) => {
+                                        const updateBonus = ( data: {
+                                            bonus: boolean;
+                                            ceeBonus: boolean;
+                                            maPrimeRenovBonus: boolean;
+                                        } ) => {
                                             disabledBonus.value             = data.bonus;
                                             disabledCeeBonus.value          = data.ceeBonus;
                                             disabledMaPrimeRenovBonus.value = data.maPrimeRenovBonus;
@@ -400,6 +395,7 @@ export default defineComponent( {
                                             return kitBiZone;
                                         } );
 
+                                        console.log( '%c BEFORE', 'background: #fdd835; color: #000000' );
                                         const products = computed<Product[]>(
                                             () => {
                                                 roAlgo.updateHousing( props.fileData.housing );
@@ -413,22 +409,29 @@ export default defineComponent( {
                                                     response = roAlgo.getUnitsRo( 230, sizingPercentage.value );
                                                 } else {
                                                     // ECS DEPORTÉ DONC ECS = 0
-                                                    response = roAlgo.getUnitsRo( 0, sizingPercentage.value );
+                                                    response = roAlgo.getUnitsRo( 0, sizingPercentage.value, true );
                                                 }
 
+                                                console.log( 'Response', response );
                                                 if ( response === null ) {
                                                     return [];
                                                 }
 
+                                                console.log( 'Ext ref', response.unitExt.ref );
+                                                console.log( 'Int ref', response.unitInt.ref );
                                                 const productExt: Product | undefined = getProductByRef( response.unitExt.ref );
                                                 const productInt: Product | undefined = getProductByRef( response.unitInt.ref );
                                                 updateNeedBiZone( response.needBiZoneSupplement );
 
+                                                console.log( 'Products', [ productExt, productInt ] );
                                                 if ( productExt === undefined || productInt === undefined ) {
+                                                    console.warn( 'Product not found' );
                                                     return [];
                                                 }
+                                                console.log( 'In computed products : ', [ productExt, productInt ] );
                                                 return [ productExt, productInt ];
                                             } );
+                                        console.log( 'Products', products.value );
 
                                         const allProducts = computed<Product[]>( () => {
                                             return [
@@ -530,10 +533,21 @@ export default defineComponent( {
                                                 if ( option.label.includes( 'Forfait ballon tampon' ) ) {
                                                     // props.fileData.housing.heaters;
                                                     if ( props.fileData.housing.heaters === 'r_fonte' || props.fileData.housing.heaters === 'r_fonte_p_chauffant' || props.fileData.housing.heaters === 'r_autre' || props.fileData.housing.heaters === 'r_autre_p_chauffant' ) {
-                                                        enabledBallonTamponOption( true );
+                                                        console.log( '%c IN', 'background: #15FF5E; color: #000000' );
+                                                        let enabled = true;
+                                                        for ( const product of products.value ) {
+                                                            if ( product.reference.includes( 'A.I' ) ) {
+                                                                console.log( '%c ENABLED FALSE',
+                                                                             'background: #FF8100; color: #000000' );
+                                                                enabled = false;
+                                                            }
+                                                        }
+
+                                                        enabledBallonTamponOption( enabled );
                                                     } else {
                                                         enabledBallonTamponOption( false );
                                                     }
+
                                                 }
 
                                                 if ( option.label.includes( 'Forfait mitigeur' ) ) {
