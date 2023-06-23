@@ -927,13 +927,20 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PAC_RR:
                 const rrQuotation = ( this._file.quotation as RrQuotation );
 
-                // Si le produit sélectionné contient le mot ATLANTIC
+                // Si le produit sélectionné contient le mot "ATLANTIC"
                 const hasAtlanticProduct = this._file.quotation.selectedProducts.some(
                     ( product ) => product.label.toUpperCase().includes( 'ATLANTIC' ),
                 );
 
+                // Si le produit sélectionné contient le mot "Altech"
+                const hasAltechProduct = this._file.quotation.selectedProducts.some(
+                    ( product ) => product.label.toUpperCase().includes( 'ALTECH' ),
+                );
+
                 if ( hasAtlanticProduct ) {
                     text = 'GARANTIE ATLANTIC 2 ANS PIECES ET 5 ANS COMPRESSEUR';
+                } else if ( hasAltechProduct ) {
+                    text = 'GARANTIE ALTECH 3 ANS PIECES ET 5 ANS COMPRESSEUR';
                 } else if ( rrQuotation.rrType === 'mono' && rrQuotation.assortment === 'sensira' ) {
                     text = 'GARANTIE DAIKIN 3 ANS PIECES ET 3 ANS COMPRESSEUR';
                 } else {
