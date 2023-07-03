@@ -610,8 +610,7 @@ export default defineComponent( {
 
                                                     if ( deviceToReplace.value.type !== 'aucun' && deviceToReplace.value.type !== 'autre' ) {
                                                         // Coup de pouce
-                                                        ceeBonus = getHelpingHandRo( codeBonus,
-                                                                                     deviceToReplace.value.type );
+                                                        ceeBonus = getHelpingHandRo( codeBonus );
                                                     } else {
                                                         // Afin d'avoir les derniers produits pour le calcul de la prime
                                                         const updatedFileData: RoFile = {
