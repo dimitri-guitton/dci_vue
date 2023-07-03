@@ -131,24 +131,18 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
 /**
  * Coup de pouce
  */
-export const getHelpingHandRo = ( codeBonus, deviceToReplace ): number => {
+export const getHelpingHandRo = ( codeBonus ): number => {
     codeBonus = codeBonus.toUpperCase();
 
-    if ( codeBonus === 'GP' || codeBonus === 'P' ) {
-        // chaudière fioul
-        if ( deviceToReplace === 'CFHC' ) {
-            return 5000;
-        }
-
-        return 4000;
-    } else {
-        // chaudière fioul
-        if ( deviceToReplace === 'CFHC' ) {
-            return 4000;
-        }
-
-        return 2500;
+    if ( codeBonus === 'GP' ) {
+        return 4500;
     }
+
+    if ( codeBonus === 'GP' ) {
+        return 4000;
+    }
+
+    return 2500;
 };
 
 const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: string ): number => {
@@ -907,44 +901,24 @@ export const getCeeBonus = ( data: BaseFile ): number => {
     const codeBonus   = getCodeBonus();
     const housingType = data.housing.type;
     const energyZone  = data.energyZone;
-    let value = 0;
+    let value         = 0;
 
     switch ( type ) {
         case FILE_CET:
-            // CEE A PARTIR DU 1ER OCTOBRE
-            if ( new Date() > new Date( '2022/10/01 00:00:01' ) ) {
-                if ( housingType === 'appartement' ) {
-                    if ( codeBonus === 'GP' ) {
-                        value = 49.98;
-                    } else {
-                        value = 45.22;
-                    }
-
+            if ( housingType === 'appartement' ) {
+                if ( codeBonus === 'GP' ) {
+                    value = 86.87;
                 } else {
-                    if ( codeBonus === 'GP' ) {
-                        value = 65.52;
-                    } else {
-                        value = 59.28;
-                    }
+                    value = 71.40;
                 }
 
             } else {
-                if ( housingType === 'appartement' ) {
-                    if ( codeBonus === 'GP' ) {
-                        value = 68.425;
-                    } else {
-                        value = 64.26;
-                    }
-
+                if ( codeBonus === 'GP' ) {
+                    value = 113.88;
                 } else {
-                    if ( codeBonus === 'GP' ) {
-                        value = 89.7;
-                    } else {
-                        value = 84.24;
-                    }
+                    value = 71.40;
                 }
             }
-
             break;
         case FILE_COMBLE:
             if ( data.partner === 'obj_eco_energie' ) {
