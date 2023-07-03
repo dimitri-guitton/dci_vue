@@ -270,7 +270,7 @@ export class RoAlgo extends PacAlgo {
                 hotWaterTank:    0,
                 bizone:          false,
                 highTemperature: true,
-            }
+            },
         ];
 
         this.unitIntList = {
@@ -521,7 +521,7 @@ export class RoAlgo extends PacAlgo {
         return heater === 'r_autre_p_chauffant' || heater === 'r_fonte_p_chauffant' || heater === 'p_chauffant_p_chauffant';
     }
 
-    public getUnitsRo( volumeECS: number, sizingPercentage: number, ecsIsDeporte = false ): {
+    public getUnitsRo( volumeECS: number, sizingPercentage: number, model: string, ecsIsDeporte = false ): {
         unitExt: UnitExt;
         unitInt: UnitInt;
         needBiZoneSupplement: boolean;
@@ -561,35 +561,33 @@ export class RoAlgo extends PacAlgo {
                 return false;
             }
 
+            // 'A.I' c'est pour les PAC Atlantic
+            if ( model === 'daikin' && pac.ref.includes( 'A.I' ) ) {
+                return false;
+            } else if ( model === 'atlantic' && !pac.ref.includes( 'A.I' ) ) {
+                console.log( '%c IN FALSE', 'background: #fdd835; color: #000000' );
+                return false;
+            }
+
+            console.log( 'Val : ', pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower * ( sizingPercentage / 100 ) );
+
             // On retourne la PAC que si son output est supérieur à la puissance requise
             return pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower * ( sizingPercentage / 100 );
         } );
 
-        console.log( 'filterredUnitExt', filterredUnitExt );
-        // if ( filterredUnitExt.length === 1 ) {
-        //     selectedUnitExt = filterredUnitExt[ 0 ];
-        // } else {
-        // // S'il y a plus de 1 PAC on parcourt les pacs et on récupère la moins chère
-        // for ( const unitExt of filterredUnitExt ) {
-        //     if ( selectedUnitExt === null ) {
-        //         selectedUnitExt = unitExt;
-        //     } else {
-        //         const p1: Product | undefined = getProductByRef( selectedUnitExt.ref );
-        //         const p2: Product | undefined = getProductByRef( unitExt.ref );
-        //
-        //         // On check les prix et assigne la moins chère
-        //         if ( p1 !== undefined && p2 !== undefined ) {
-        //             if ( p1.pu > p2.pu ) {
-        //                 selectedUnitExt = unitExt;
-        //             }
-        //         }
-        //     }
-        // }
+        if ( filterredUnitExt.length === 0 ) {
+            console.warn( 'Impossible de trouvé une unité extérieur' );
+            return null;
+        }
 
         // S'il y a plus de 1 PAC on les trie de la moins chère à la plus chère
         filterredUnitExt.sort( ( a: UnitExt, b: UnitExt ) => {
             const p1: Product | undefined = getProductByRef( a.ref );
             const p2: Product | undefined = getProductByRef( b.ref );
+
+            if ( p1 === undefined ) {
+                console.warn( 'Impossible de trouvé le produit : ' + a.ref );
+            }
 
             // Si un produit n'est pas trouvé, on le met à la fin
             if ( p1 === undefined && p2 === undefined ) {
@@ -609,12 +607,6 @@ export class RoAlgo extends PacAlgo {
                 return 0;
             }
         } );
-        // }
-
-        if ( filterredUnitExt.length === 0 ) {
-            console.warn( 'Impossible de trouvé une unité extérieur' );
-            return null;
-        }
 
         let selectedUnitExt: UnitExt | null = null;
         let selectedUnitInt: UnitInt | null = null;

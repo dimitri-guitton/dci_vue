@@ -99,67 +99,94 @@
         </div>
         <div class="row mt-10 d-flex align-items-end">
             <div class="col-md-12 mb-5">
-                <h6 class="mb-5">Volume ECS : </h6>
+                <h6 class="mb-5">Choix de la marque : </h6>
+                <div class="mb-5">
+                    Daikin :
 
-                <Field id="r_ecs_1"
-                       v-model="volumeECS"
-                       class="form-check-input ms-5"
-                       name="volumeECS"
-                       type="radio"
-                       value="ecs_1"
-                >
-                </Field>
-                <label class="ms-2" for="r_ecs_1">0L</label>
+                    <Field id="r_ecs_1"
+                           v-model="volumeECS"
+                           class="form-check-input ms-5"
+                           name="volumeECS"
+                           type="radio"
+                           value="ecs_1"
+                    >
+                    </Field>
+                    <label class="ms-2" for="r_ecs_1">0L</label>
 
-                <Field id="r_ecs_2"
-                       v-model="volumeECS"
-                       class="form-check-input ms-5"
-                       name="volumeECS"
-                       type="radio"
-                       value="ecs_2"
-                >
-                </Field>
-                <label class="ms-2" for="r_ecs_2">180L / 190L</label>
+                    <Field id="r_ecs_2"
+                           v-model="volumeECS"
+                           class="form-check-input ms-5"
+                           name="volumeECS"
+                           type="radio"
+                           value="ecs_2"
+                    >
+                    </Field>
+                    <label class="ms-2" for="r_ecs_2">180L</label>
 
-                <Field id="r_ecs_3"
-                       v-model="volumeECS"
-                       class="form-check-input ms-5"
-                       name="volumeECS"
-                       type="radio"
-                       value="ecs_3"
-                >
-                </Field>
-                <label class="ms-2" for="r_ecs_3">230L</label>
+                    <Field id="r_ecs_3"
+                           v-model="volumeECS"
+                           class="form-check-input ms-5"
+                           name="volumeECS"
+                           type="radio"
+                           value="ecs_3"
+                    >
+                    </Field>
+                    <label class="ms-2" for="r_ecs_3">230L</label>
 
-                <Field id="r_ecs_4"
-                       v-model="volumeECS"
-                       class="form-check-input ms-5"
-                       name="volumeECS"
-                       type="radio"
-                       value="ecs_4"
-                >
-                </Field>
-                <label class="ms-2" for="r_ecs_4">150L Déporté</label>
+                    <Field id="r_ecs_4"
+                           v-model="volumeECS"
+                           class="form-check-input ms-5"
+                           name="volumeECS"
+                           type="radio"
+                           value="ecs_4"
+                    >
+                    </Field>
+                    <label class="ms-2" for="r_ecs_4">150L Déporté</label>
 
-                <Field id="r_ecs_5"
-                       v-model="volumeECS"
-                       class="form-check-input ms-5"
-                       name="volumeECS"
-                       type="radio"
-                       value="ecs_5"
-                >
-                </Field>
-                <label class="ms-2" for="r_ecs_5">200L Déporté</label>
+                    <Field id="r_ecs_5"
+                           v-model="volumeECS"
+                           class="form-check-input ms-5"
+                           name="volumeECS"
+                           type="radio"
+                           value="ecs_5"
+                    >
+                    </Field>
+                    <label class="ms-2" for="r_ecs_5">200L Déporté</label>
 
-                <Field id="r_ecs_6"
-                       v-model="volumeECS"
-                       class="form-check-input ms-5"
-                       name="volumeECS"
-                       type="radio"
-                       value="ecs_6"
-                >
-                </Field>
-                <label class="ms-2" for="r_ecs_6">300L Déporté</label>
+                    <Field id="r_ecs_6"
+                           v-model="volumeECS"
+                           class="form-check-input ms-5"
+                           name="volumeECS"
+                           type="radio"
+                           value="ecs_6"
+                    >
+                    </Field>
+                    <label class="ms-2" for="r_ecs_6">300L Déporté</label>
+                </div>
+
+                <div>
+                    Atlantic :
+
+                    <Field id="r_ecs_7"
+                           v-model="volumeECS"
+                           class="form-check-input ms-5"
+                           name="volumeECS"
+                           type="radio"
+                           value="ecs_atl_1"
+                    >
+                    </Field>
+                    <label class="ms-2" for="r_ecs_7">0L</label>
+
+                    <Field id="r_ecs_8"
+                           v-model="volumeECS"
+                           class="form-check-input ms-5"
+                           name="volumeECS"
+                           type="radio"
+                           value="ecs_atl_2"
+                    >
+                    </Field>
+                    <label class="ms-2" for="r_ecs_8">190L</label>
+                </div>
             </div>
 
         </div>
@@ -401,15 +428,28 @@ export default defineComponent( {
                                                 roAlgo.updateHousing( props.fileData.housing );
                                                 let response;
 
+                                                let model = 'daikin';
+
+                                                if ( volumeECS.value.includes( '_atl_' ) ) {
+                                                    model = 'atlantic';
+                                                }
+
                                                 if ( volumeECS.value === 'ecs_1' ) {
-                                                    response = roAlgo.getUnitsRo( 0, sizingPercentage.value );
+                                                    response = roAlgo.getUnitsRo( 0, sizingPercentage.value, model );
                                                 } else if ( volumeECS.value === 'ecs_2' ) {
-                                                    response = roAlgo.getUnitsRo( 180, sizingPercentage.value );
+                                                    response = roAlgo.getUnitsRo( 180, sizingPercentage.value, model );
                                                 } else if ( volumeECS.value === 'ecs_3' ) {
-                                                    response = roAlgo.getUnitsRo( 230, sizingPercentage.value );
+                                                    response = roAlgo.getUnitsRo( 230, sizingPercentage.value, model );
+                                                } else if ( volumeECS.value === 'ecs_atl_1' ) {
+                                                    response = roAlgo.getUnitsRo( 0, sizingPercentage.value, model );
+                                                } else if ( volumeECS.value === 'ecs_atl_2' ) {
+                                                    response = roAlgo.getUnitsRo( 180, sizingPercentage.value, model );
                                                 } else {
                                                     // ECS DEPORTÉ DONC ECS = 0
-                                                    response = roAlgo.getUnitsRo( 0, sizingPercentage.value, true );
+                                                    response = roAlgo.getUnitsRo( 0,
+                                                                                  sizingPercentage.value,
+                                                                                  model,
+                                                                                  true );
                                                 }
 
                                                 console.log( 'Response', response );
