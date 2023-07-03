@@ -32,12 +32,12 @@ async function processData() {
     
     try {
         const csvFiles = [
-            { type: 'mono', path: 'src/command/65_mono.csv', temp: 65 },
-            { type: 'mono', path: 'src/command/55_mono.csv', temp: 55 },
-            { type: 'mono', path: 'src/command/40_mono.csv', temp: 40 },
-            { type: 'tri', path: 'src/command/65_tri.csv', temp: 65 },
-            { type: 'tri', path: 'src/command/55_tri.csv', temp: 55 },
-            { type: 'tri', path: 'src/command/40_tri.csv', temp: 40 },
+            { type: 'mono', path: 'src/commands/import_pac_ext_products/values/65_mono.csv', temp: 65 },
+            { type: 'mono', path: 'src/commands/import_pac_ext_products/values/55_mono.csv', temp: 55 },
+            { type: 'mono', path: 'src/commands/import_pac_ext_products/values/40_mono.csv', temp: 40 },
+            { type: 'tri', path: 'src/commands/import_pac_ext_products/values/65_tri.csv', temp: 65 },
+            { type: 'tri', path: 'src/commands/import_pac_ext_products/values/55_tri.csv', temp: 55 },
+            { type: 'tri', path: 'src/commands/import_pac_ext_products/values/40_tri.csv', temp: 40 },
         ];
         
         for ( const csvFile of csvFiles ) {
@@ -95,7 +95,7 @@ async function processData() {
             response,
             null,
             2 ) };`;
-        fs.writeFileSync( 'src/command/unitExtList.ts', jsCode );
+        fs.writeFileSync( 'src/commands/import_pac_ext_products/dist/unitExtList.ts', jsCode );
     }
     catch ( error ) {
         console.error( 'An error occurred:', error );

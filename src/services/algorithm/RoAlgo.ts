@@ -2,7 +2,7 @@ import { PacAlgo } from '@/services/algorithm/PacAlgo';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 import { getProductByRef } from '@/services/data/dataService';
 import { Product } from '@/types/v2/File/Common/Product';
-import { generatedUnitExtList } from '@/command/unitExtList';
+import { generatedUnitExtList } from '@/commands/import_pac_ext_products/dist/unitExtList';
 
 /**
  * Sortie en KW de la PAC
