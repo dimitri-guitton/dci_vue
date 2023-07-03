@@ -1,7 +1,7 @@
 {
     "name": "eco-atl-dci",
     "productName": "DCI",
-    "version": "3.7.10",
+    "version": "3.7.11",
     "private": true,
     "description": "Logiciel de devis",
     "author": {
