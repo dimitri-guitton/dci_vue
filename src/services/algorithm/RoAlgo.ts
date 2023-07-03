@@ -160,46 +160,6 @@ export class RoAlgo extends PacAlgo {
 
         const atlanticMonophase = [
             {
-                ref:             'AS 018 NB.UI',
-                label:           'UNITE INTERIEURE MURALE ATLANTIC ZENKEO 5,2 kW',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             'GWH12AFB-K6DNA3A/I',
-                label:           'UNITE INTERIEURE MONOSPLIT GREE - MUSE 12 - 3,5 kW',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '4210294',
-                label:           'UNITE INTERIEURE ATLANTIC 300 4,6 kW',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '4210292',
-                label:           'UNITE INTERIEURE ATLANTIC 300 3,2 kW',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '4210290',
-                label:           'UNITE INTERIEURE ATLANTIC 300 2,5 kW',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
                 ref:             '526 344',
                 label:           'UNITE INTERIEURE ATLANTIC ALFEA EXTENSA DUO A.I 10 - ECS',
                 sizes:           [],
@@ -310,39 +270,7 @@ export class RoAlgo extends PacAlgo {
                 hotWaterTank:    0,
                 bizone:          false,
                 highTemperature: true,
-            },
-            {
-                ref:             'AS 018 DBB.UI',
-                label:           'UNITE INTERIEURE MURALE ATLANTIC DOJO',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             'AS 012 DBB.UI',
-                label:           'UNITE INTERIEURE MURALE ATLANTIC DOJO',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             'AS 009 DBB.UI',
-                label:           'UNITE INTERIEURE MURALE ATLANTIC DOJO',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             'AS 007 DBB.UI',
-                label:           'UNITE INTERIEURE MURALE ATLANTIC DOJO',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
+            }
         ];
 
         this.unitIntList = {
