@@ -140,7 +140,7 @@ export const getHelpingHandRo = ( codeBonus ): number => {
         return 4500;
     }
 
-    if ( codeBonus === 'GP' ) {
+    if ( codeBonus === 'P' ) {
         return 4000;
     }
 
