@@ -304,7 +304,7 @@ export const getCeeBonus = ( data: BaseFile ): number => {
                 if ( codeBonus === 'GP' ) {
                     value = 113.88;
                 } else {
-                    value = 71.40;
+                    value = 93.60;
                 }
             }
             break;
