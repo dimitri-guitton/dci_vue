@@ -408,13 +408,6 @@ export class RoAlgo extends PacAlgo {
                     bizone:          true,
                     highTemperature: true,
                 },
-                {
-                    ref:             'XXX',
-                    sizes:           [],
-                    hotWaterTank:    180,
-                    bizone:          true,
-                    highTemperature: true,
-                },
                 ...atlanticMonophase,
             ],
             triphase:  [
@@ -528,7 +521,9 @@ export class RoAlgo extends PacAlgo {
     } | null {
         console.log( '%c GET UNIT RO', 'background: #0056FF; color: #000000' );
         const requiredPower: number = this.calcRequiredPower( this.housing );
+        console.log( 'Puissance requise : ' + requiredPower );
         const baseTemp: number      = this.getBaseTemperature( this.housing.climaticZone, this.housing.altitude );
+        console.log( 'Température de base : ' + baseTemp );
         const heaterValue: number   = this.heaterToValue( this.housing.heaters );
 
         let formatedBaseTemp: string;
@@ -565,15 +560,13 @@ export class RoAlgo extends PacAlgo {
             if ( model === 'daikin' && pac.ref.includes( 'A.I' ) ) {
                 return false;
             } else if ( model === 'atlantic' && !pac.ref.includes( 'A.I' ) ) {
-                console.log( '%c IN FALSE', 'background: #fdd835; color: #000000' );
                 return false;
             }
-
-            console.log( 'Val : ', pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower * ( sizingPercentage / 100 ) );
 
             // On retourne la PAC que si son output est supérieur à la puissance requise
             return pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower * ( sizingPercentage / 100 );
         } );
+        console.log( 'filterredUnitExt', filterredUnitExt );
 
         if ( filterredUnitExt.length === 0 ) {
             console.warn( 'Impossible de trouvé une unité extérieur' );
@@ -600,13 +593,17 @@ export class RoAlgo extends PacAlgo {
 
             // Ordre des prix croissants
             if ( p1.pu > p2.pu ) {
+                console.log( `P1 (${ p1.reference }) plus cher que P2 (${ p2.reference })` );
                 return 1;
             } else if ( p1.pu < p2.pu ) {
+                console.log( `P1 (${ p1.reference }) moins cher que P2 (${ p2.reference })` );
                 return -1;
             } else {
                 return 0;
             }
         } );
+        console.log( 'filterredUnitExt', filterredUnitExt );
+
 
         let selectedUnitExt: UnitExt | null = null;
         let selectedUnitInt: UnitInt | null = null;
@@ -614,6 +611,7 @@ export class RoAlgo extends PacAlgo {
 
 
         for ( const unitExt of filterredUnitExt ) {
+            console.log( 'IN FOR LINE 621' );
             const isAtlantic     = unitExt.ref.includes( 'A.I' );
             needBiZoneSupplement = false;
             // Si on ne trouve pas dans la liste la tension souhaitée on retourne null
