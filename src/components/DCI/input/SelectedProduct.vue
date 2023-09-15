@@ -142,13 +142,8 @@ export default defineComponent( {
                                             if ( props.selectedProducts.length > 0 && props.selectedProducts[ props.index ] !== undefined ) {
                                                 currentProduct = ref( props.selectedProducts[ props.index ] );
                                                 console.log( '%c IN IF', 'background: #D1FFFA; color: #000000' );
-                                                console.log( '%c IN IF', 'background: #D1FFFA; color: #000000' );
-                                                console.log( '%c IN IF', 'background: #D1FFFA; color: #000000' );
-                                                console.log( '%c IN IF', 'background: #D1FFFA; color: #000000' );
                                                 console.log( 'Current product', currentProduct.value );
                                             } else {
-                                                console.log( '%c IN ELSE', 'background: #FF3C2F; color: #000000' );
-                                                console.log( '%c IN ELSE', 'background: #FF3C2F; color: #000000' );
                                                 console.log( '%c IN ELSE', 'background: #FF3C2F; color: #000000' );
                                                 currentProduct = ref( props.products[ 0 ] );
                                                 onChangeProduct( props.products[ 0 ].id );

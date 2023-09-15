@@ -126,7 +126,6 @@ export class PacAlgo {
     };
 
     public updateHousing( value: PacHousing ) {
-        console.log( '%c UPDATE HOUSING', 'background: #fdd835; color: #000000' );
         this.housing = value;
     }
 }

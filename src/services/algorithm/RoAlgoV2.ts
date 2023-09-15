@@ -95,33 +95,33 @@ export class RoAlgoV2 extends PacAlgo {
     }
 
     /**
-     * Retourne le niveau de tempéature que peut gérer le type de radiateur
+     * Retourne le niveau de température que peut gérer le type de radiateur
      *
      * @param heater Type de radiateur
      */
     private heaterToValue( heater: string ): number {
-        if ( heater === 'r_fonte' || heater === 'r_fonte_p_chauffant' ) {
-            return 65;
-        }
+        const heaterTypes: Record<string, number> = {
+            'r_fonte':                 65,
+            'r_fonte_p_chauffant':     65,
+            'r_autre':                 55,
+            'r_autre_p_chauffant':     55,
+            'p_chauffant':             40,
+            'p_chauffant_p_chauffant': 40,
+        };
 
-        if ( heater === 'r_autre' || heater === 'r_autre_p_chauffant' ) {
-            return 55;
-        }
-
-        if ( heater === 'p_chauffant' || heater === 'p_chauffant_p_chauffant' ) {
-            return 40;
-        }
-
-        return 0;
+        // Utilise la valeur par défaut de 65 si le type de radiateur n'est pas trouvé dans la liste
+        return heaterTypes[ heater ] || 65;
     }
 
     /**
-     * Retourne si oui ou non la PAC doit être Bi Zone selon les radiatieurs
+     * Retourne si oui ou non la PAC doit être Bi Zone selon les radiateurs
      *
      * @param heater Type de radiateur
      */
     private isBiZone( heater: string ): boolean {
-        return heater === 'r_autre_p_chauffant' || heater === 'r_fonte_p_chauffant' || heater === 'p_chauffant_p_chauffant';
+        const biZoneHeaters: string[] = [ 'r_autre_p_chauffant', 'r_fonte_p_chauffant', 'p_chauffant_p_chauffant' ];
+
+        return biZoneHeaters.includes( heater );
     }
 
     /**
@@ -135,7 +135,6 @@ export class RoAlgoV2 extends PacAlgo {
     }
 
     public getExternalProducts( sizingPercentage: number, model: string, ecsIsDeporte = false ): Product[] {
-        console.log( '%c IN ALGO V2', 'background: #FF61C7; color: #000000' );
         model                          = model.toUpperCase();
         // Puissance requise
         const requiredPower: number    = this.calcRequiredPower( this.housing );
@@ -148,7 +147,6 @@ export class RoAlgoV2 extends PacAlgo {
 
         // Vérification s'il y a des produits avec la tension souhaitée
         if ( !this.voltageIsAvailable( this.housing.availableVoltage ) ) {
-            console.log( '%c STOP', 'background: #FF002B; color: #000000' );
             return [];
         }
 
@@ -184,8 +182,6 @@ export class RoAlgoV2 extends PacAlgo {
             return product.output[ heaterValue ][ formatedBaseTemp ] >= requiredPower * ( sizingPercentage / 100 );
         } );
 
-        console.log( 'Produits filtrés', filteredProducts );
-
         // Trie les produits par ordre croissant de prix
         filteredProducts.sort( ( a: UnitExt, b: UnitExt ) => {
             const p1: Product | undefined = getProductByRef( a.ref );
@@ -205,11 +201,9 @@ export class RoAlgoV2 extends PacAlgo {
             }
 
             // Ordre des prix croissants
-            if ( p1.pu > p2.pu ) {
-                // console.log( `P1 (${ p1.reference }) plus cher que P2 (${ p2.reference })` );
+            if ( p1.pu > p2.pu ) { // Si le prix de P1 est plus grand que le prix de P2
                 return 1;
-            } else if ( p1.pu < p2.pu ) {
-                // console.log( `P1 (${ p1.reference }) moins cher que P2 (${ p2.reference })` );
+            } else if ( p1.pu < p2.pu ) {   // Si le prix de P1 est plus petit que le prix de P2
                 return -1;
             } else {
                 return 0;
@@ -231,8 +225,6 @@ export class RoAlgoV2 extends PacAlgo {
             return p;
         } );
 
-        console.log( 'Produits', products );
-
         return products;
     }
 
@@ -247,8 +239,6 @@ export class RoAlgoV2 extends PacAlgo {
         produits.forEach( ( produit ) => {
             // Extrait la gamme à partir de la référence en utilisant les gammes spécifiées
             const gamme = AVAILABLE_RANGE.find( ( g ) => produit.ref.includes( g ) );
-            console.log( 'Gamme', gamme );
-
             // Si la gamme n'est pas déjà dans la carte, on l'ajoute
             if ( gamme && !gammeMap.has( gamme ) ) {
                 gammeMap.set( gamme, produit );
@@ -265,35 +255,25 @@ export class RoAlgoV2 extends PacAlgo {
         let bizone                     = this.isBiZone( this.housing.heaters );
         const size                     = unitExt.size;
         const isAtlantic               = unitExt.model === MODEL_ATLANTIC;
-        let needBiZoneSupplement       = false;
 
 
         // Pompe à chaleur bizone avec ECS n'existe pas, on doit rajouter un KIT-Bi-Zone
         // On passe donc bizone à false
-        // console.log( 'needBiZoneSupplement : getInternalProducts', needBiZoneSupplement );
         if ( isAtlantic && bizone ) {
-            needBiZoneSupplement = true;
             bizone               = false;
         } else {
             if ( bizone && volumeECS === 0 ) {
                 bizone               = false;
-                needBiZoneSupplement = true;
             }
         }
-        // console.log( 'needBiZoneSupplement : getInternalProducts - after', needBiZoneSupplement );
 
         if ( isAtlantic ) {
             // On récupère le model intérieur selon les infos renseignées
             filteredUnitInt = this.unitIntList[ this.housing.availableVoltage ].filter( ( unit: UnitInt ) => {
-                // console.log( '---' );
-                // console.log( 'Sizes available', unit.sizes );
-                // console.log( 'Size', size );
                 return unit.model === MODEL_ATLANTIC && unit.hotWaterTank === volumeECS && unit.bizone === bizone && unit.sizes.includes(
                     size );
             } );
         } else {
-            // console.log( 'unitIntList', this.unitIntList );
-            // console.log( 'this.unitIntList[ this.housing.availableVoltage ]', this.unitIntList[ this.housing.availableVoltage ] );
             // On récupère le model intérieur selon les infos renseignées
             filteredUnitInt = this.unitIntList[ this.housing.availableVoltage ].filter( ( unit: UnitInt ) => {
                 // Les highTemperature pas qu'à 65°C mais que pour les unites EPRA qui font de la haute température
@@ -304,27 +284,12 @@ export class RoAlgoV2 extends PacAlgo {
                 }
 
                 // Sinon aute température on ne check pas la si c'est égal
-                // console.log( '---' );
-                // console.log( 'Sizes available', unit.sizes );
-                // console.log( 'Size', size );
-                // console.log( 'unit.model', unit.model );
-                // console.log( 'unit.hotWaterTank === volumeECS', unit.hotWaterTank === volumeECS );
-                // console.log( 'unit.bizone === bizone', unit.bizone === bizone );
-                // console.log( 'unit.sizes.includes( size )', unit.sizes.includes( size ) );
-                // console.log( '( !highTemperature || highTemperature === unit.highTemperature )',
-                //              ( !highTemperature || highTemperature === unit.highTemperature ) );
-                // console.log( '---' );
                 return unit.model === MODEL_DAIKIN && unit.hotWaterTank === volumeECS && unit.bizone === bizone && unit.sizes.includes( size ) && ( !highTemperature || highTemperature === unit.highTemperature );
             } );
         }
-        console.log( 'filteredUnitInt', filteredUnitInt );
-
-        // console.log( '%c BEFORE', 'background: #fdd835; color: #000000' );
         // Récupère les vrais produits
         const products: Product[] = filteredUnitInt.map( ( product ) => {
             const p: Product | undefined = getProductByRef( product.ref );
-            // console.log( '%c OK', 'background: #fdd835; color: #000000' );
-            // console.log( 'P INT', p );
 
             if ( p === undefined ) {
                 throw new Error( 'Impossible de trouvé le produit : ' + product.ref );
@@ -333,10 +298,6 @@ export class RoAlgoV2 extends PacAlgo {
             return p;
         } );
 
-        console.log( 'Produits', products );
-
-        // TODO Gérer les filtes
-        // retourne le 1er element
         if ( products.length > 0 ) {
             return products[ 0 ];
         }
