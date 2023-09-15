@@ -2,7 +2,8 @@ import { PacAlgo } from '@/services/algorithm/PacAlgo';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 import { getProductByRef } from '@/services/data/dataService';
 import { Product } from '@/types/v2/File/Common/Product';
-import { generatedUnitExtList } from '@/commands/import_pac_ext_products/dist/unitExtList';
+import { generatedUnitExtList } from '@/commands/import_pac_ro_products/dist/unitExtList';
+import { generatedUnitIntList } from '@/commands/import_pac_ro_products/dist/unitIntList';
 
 /**
  * Sortie en KW de la PAC
@@ -35,6 +36,8 @@ interface UnitExt {
         55: UnitExtOutput;
         40: UnitExtOutput;
     };
+    power: string;
+    model: string;
 }
 
 /**
@@ -55,12 +58,14 @@ interface UnitInt {
     highTemperature: boolean;
     hotWaterTank: number;
     bizone: boolean;
+    power: string;
+    model: string;
 }
 
 /**
  * Les unités intérieures par tension
  */
-interface UnitIntList {
+export interface UnitIntList {
     monophase: UnitInt[];
     triphase: UnitInt[];
 }
@@ -74,416 +79,7 @@ export class RoAlgo extends PacAlgo {
         super( housing );
 
         this.unitExtList = generatedUnitExtList;
-
-        const atlanticTriphase = [
-            {
-                ref:             '526 323',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA DUO A.I TRI 11 - ECS',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 324',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA DUO A.I TRI 14 - ECS',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 325',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA DUO A.I TRI 16 - ECS',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 643',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA DUO A.I TRI 17 - ECS',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 642',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA DUO A.I TRI 15 - ECS',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 633',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA HP A.I TRI 17',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 632',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA HP A.I TRI 15',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 304',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA A.I TRI 16',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 303',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA A.I TRI 14',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 302',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA A.I TRI 11',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-        ];
-
-        const atlanticMonophase = [
-            {
-                ref:             '526 344',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXTENSA DUO A.I 10 - ECS',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 343',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXTENSA DUO A.I 8 - ECS',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 342',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXTENSA DUO A.I 8 - ECS',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 341',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXTENSA DUO A.I 5 - ECS',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 321',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA DUO A.I 11 - ECS',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 322',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA DUO A.I 14 - ECS',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 641',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA HP DUO A.I 16 - ECS',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 631',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA HP DUO A.I 16 - ECS',
-                sizes:           [],
-                hotWaterTank:    180,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 300',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA A.I 11',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 301',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXCELLIA A.I 14',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 334',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXTENSA A.I 10',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 333',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXTENSA A.I 8',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 332',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXTENSA A.I 6',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-            {
-                ref:             '526 331',
-                label:           'UNITE INTERIEURE ATLANTIC ALFEA EXTENSA A.I 5',
-                sizes:           [],
-                hotWaterTank:    0,
-                bizone:          false,
-                highTemperature: true,
-            },
-        ];
-
-        this.unitIntList = {
-            monophase: [
-                {
-                    ref:             'ETBH16E6V',
-                    sizes:           [ 14, 16, 18 ],
-                    hotWaterTank:    0,
-                    bizone:          false,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVH16S18E6V',
-                    sizes:           [ 14, 16, 18 ],
-                    hotWaterTank:    180,
-                    bizone:          false,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVH16S23E6V',
-                    sizes:           [ 14, 16, 18 ],
-                    hotWaterTank:    230,
-                    bizone:          false,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVZ16S18E6V',
-                    sizes:           [ 14, 16, 18 ],
-                    hotWaterTank:    180,
-                    bizone:          true,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVZ16S23E6V',
-                    sizes:           [ 14, 16, 18 ],
-                    hotWaterTank:    230,
-                    bizone:          true,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'EHBH04E6V',
-                    sizes:           [ 4 ],
-                    hotWaterTank:    0,
-                    bizone:          false,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'EHBH08E6V',
-                    sizes:           [ 6, 8 ],
-                    hotWaterTank:    0,
-                    bizone:          false,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'EHVH04S18E6V',
-                    sizes:           [ 4 ],
-                    hotWaterTank:    180,
-                    bizone:          false,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'EHVH08S18E6V',
-                    sizes:           [ 6, 8 ],
-                    hotWaterTank:    180,
-                    bizone:          false,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'EHVH04S23E6V',
-                    sizes:           [ 4 ],
-                    hotWaterTank:    230,
-                    bizone:          false,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'EHVH08S23E6V',
-                    sizes:           [ 6, 8 ],
-                    hotWaterTank:    230,
-                    bizone:          false,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'EHVZ04S18E6V',
-                    sizes:           [ 4 ],
-                    hotWaterTank:    180,
-                    bizone:          true,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'EHVZ08S18E6V',
-                    sizes:           [ 6, 8 ],
-                    hotWaterTank:    180,
-                    bizone:          true,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'EHVZ08S23E6V',
-                    sizes:           [ 6, 8 ],
-                    hotWaterTank:    230,
-                    bizone:          true,
-                    highTemperature: false,
-                },
-                {
-                    ref:             'ETBH12E6V',
-                    sizes:           [ 8, 10, 12 ],
-                    hotWaterTank:    0,
-                    bizone:          false,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVH12S18E6V',
-                    sizes:           [ 8, 10, 12 ],
-                    hotWaterTank:    180,
-                    bizone:          false,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVH12S23E6V',
-                    sizes:           [ 8, 10, 12 ],
-                    hotWaterTank:    230,
-                    bizone:          false,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVZ12S18E6V',
-                    sizes:           [ 8, 10, 12 ],
-                    hotWaterTank:    180,
-                    bizone:          true,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVZ12S23E6V',
-                    sizes:           [ 8, 10, 12 ],
-                    hotWaterTank:    230,
-                    bizone:          true,
-                    highTemperature: true,
-                },
-                ...atlanticMonophase,
-            ],
-            triphase:  [
-                {
-                    ref:             'ETBH16E9W',
-                    sizes:           [ 14, 16, 18 ],
-                    hotWaterTank:    0,
-                    bizone:          false,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVH16S18E9W',
-                    sizes:           [ 14, 16, 18 ],
-                    hotWaterTank:    180,
-                    bizone:          false,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVH16S23E9W',
-                    sizes:           [ 14, 16, 18 ],
-                    hotWaterTank:    230,
-                    bizone:          false,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVZ16S18E9W',
-                    sizes:           [ 14, 16, 18 ],
-                    hotWaterTank:    180,
-                    bizone:          true,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVZ16S23E9W',
-                    sizes:           [ 14, 16, 18 ],
-                    hotWaterTank:    230,
-                    bizone:          true,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETBH12E9W',
-                    sizes:           [ 8, 10, 12 ],
-                    hotWaterTank:    0,
-                    bizone:          false,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVH12S18E9W',
-                    sizes:           [ 8, 10, 12 ],
-                    hotWaterTank:    180,
-                    bizone:          false,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVH12S23E9W',
-                    sizes:           [ 8, 10, 12 ],
-                    hotWaterTank:    230,
-                    bizone:          false,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVZ12S18E9W',
-                    sizes:           [ 8, 10, 12 ],
-                    hotWaterTank:    180,
-                    bizone:          true,
-                    highTemperature: true,
-                },
-                {
-                    ref:             'ETVZ12S23E9W',
-                    sizes:           [ 8, 10, 12 ],
-                    hotWaterTank:    230,
-                    bizone:          true,
-                    highTemperature: true,
-                },
-                ...atlanticTriphase,
-            ],
-        };
+        this.unitIntList = generatedUnitIntList;
     }
 
     /**
@@ -522,9 +118,9 @@ export class RoAlgo extends PacAlgo {
         console.log( '%c GET UNIT RO', 'background: #0056FF; color: #000000' );
         const requiredPower: number = this.calcRequiredPower( this.housing );
         console.log( 'Puissance requise : ' + requiredPower );
-        const baseTemp: number      = this.getBaseTemperature( this.housing.climaticZone, this.housing.altitude );
+        const baseTemp: number = this.getBaseTemperature( this.housing.climaticZone, this.housing.altitude );
         console.log( 'Température de base : ' + baseTemp );
-        const heaterValue: number   = this.heaterToValue( this.housing.heaters );
+        const heaterValue: number = this.heaterToValue( this.housing.heaters );
 
         let formatedBaseTemp: string;
         if ( baseTemp > -4 ) {

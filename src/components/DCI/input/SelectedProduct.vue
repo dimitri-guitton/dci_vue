@@ -48,12 +48,13 @@
             </div>
             <div class="col-md-2 fv-row">
                 <Field
-                    v-model.number="currentProduct.pu"
-                    type="number"
-                    class="form-control"
-                    :name="`selectedProducts[${index}].pu`"
-                    placeholder="100"
-                    @change="onChangeProduct(selectedId)"
+                        v-model.number="currentProduct.pu"
+                        type="number"
+                        class="form-control"
+                        :name="`selectedProducts[${index}].pu`"
+                        :disabled="disabledPrice"
+                        placeholder="100"
+                        @change="onChangeProduct(selectedId)"
                 />
                 <ErrorMessage
                     :name="`selectedProducts[${index}].pu`"
@@ -99,7 +100,7 @@ export default defineComponent( {
                                         Field,
                                         ErrorMessage,
                                     },
-                                    props:      {
+                                    props: {
                                         index:            {
                                             type:    Number,
                                             default: 0,
@@ -107,6 +108,10 @@ export default defineComponent( {
                                         quantityArea:     { // Quantité au metre carré
                                             type:    Number,
                                             default: 0,
+                                        },
+                                        disabledPrice:    { // Quantité au metre carré
+                                            type:    Boolean,
+                                            default: false,
                                         },
                                         selectedProducts: {
                                             type:    Array as () => Product[],
@@ -136,7 +141,15 @@ export default defineComponent( {
                                         try {
                                             if ( props.selectedProducts.length > 0 && props.selectedProducts[ props.index ] !== undefined ) {
                                                 currentProduct = ref( props.selectedProducts[ props.index ] );
+                                                console.log( '%c IN IF', 'background: #D1FFFA; color: #000000' );
+                                                console.log( '%c IN IF', 'background: #D1FFFA; color: #000000' );
+                                                console.log( '%c IN IF', 'background: #D1FFFA; color: #000000' );
+                                                console.log( '%c IN IF', 'background: #D1FFFA; color: #000000' );
+                                                console.log( 'Current product', currentProduct.value );
                                             } else {
+                                                console.log( '%c IN ELSE', 'background: #FF3C2F; color: #000000' );
+                                                console.log( '%c IN ELSE', 'background: #FF3C2F; color: #000000' );
+                                                console.log( '%c IN ELSE', 'background: #FF3C2F; color: #000000' );
                                                 currentProduct = ref( props.products[ 0 ] );
                                                 onChangeProduct( props.products[ 0 ].id );
                                             }
@@ -146,7 +159,7 @@ export default defineComponent( {
                                                            showClose:                true,
                                                            duration:                 5000,
                                                            dangerouslyUseHTMLString: true,
-                                                           message:                  `<strong>Malheureusement, ce dossier n'est plus à jour :(<br>Merci d'en créer un nouveau</strong>`,
+                                                           message:                  `<strong>Malheureusement, ce dossier n'est plus à jour. <br>Merci d'en créer un nouveau</strong>`,
                                                            center:                   true,
                                                            type:                     'error',
                                                        } );

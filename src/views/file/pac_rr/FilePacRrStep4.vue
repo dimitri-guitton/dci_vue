@@ -100,6 +100,12 @@
                           :show-reference="true"
                           @selectedProductIsUpdated="updateSelectedProduct($event, 0)"></selected-product>
 
+        <selected-product :index="1"
+                          :products="intProducts"
+                          :selectedProducts="selectedProducts"
+                          :show-reference="true"
+                          @selectedProductIsUpdated="updateSelectedProduct($event, 1)"></selected-product>
+
         <template v-if="rrType === 'mono'">
             <selected-product :index="1"
                               :products="intProducts"
