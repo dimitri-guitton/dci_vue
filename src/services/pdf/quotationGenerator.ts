@@ -851,7 +851,7 @@ export class QuotationGenerator extends PdfGenerator {
                 text = 'Installation d\'une pompe à chaleur air/air';
                 break;
             case FILE_PV:
-                text = 'Installation photovoltaïque en autoconsommation avec revente du surplus';
+                text = 'Installation photovoltaïque en autoconsommation';
                 break;
         }
 
@@ -1661,7 +1661,7 @@ export class QuotationGenerator extends PdfGenerator {
                 },
                 {
                     text: [
-                        'Etablissement financier : DOMOFINANCE\n',
+                        'Etablissement financier : FRANFINANCE\n',
                         `Prix au comptant : ${ numberToPrice( paymentOnCredit.cashPrice, 1, false ) }\n`,
                         `Apport : ${ paymentOnCredit.deposit } €\n`,
                         `Montant crédit : ${ numberToPrice( paymentOnCredit.amount, 1, false ) }\n`,
