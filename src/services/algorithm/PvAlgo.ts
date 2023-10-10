@@ -123,9 +123,9 @@ export class PvAlgo {
         // Année 1 10 centimes * 1.5%
         // Année 2 10.15 centimes * 1.5%
         // Année 3 10.30225 centimes * 1.5%
-        let ratio = 0.1313;
+        let price = 0.1339; // 13.39 centimes
         for ( let i = 1; i < year; i++ ) {
-            ratio *= 1.015;
+            price *= 1.015;
         }
 
         let bonus = 0;
@@ -133,7 +133,7 @@ export class PvAlgo {
             bonus = this.quotation.selfConsumptionBonus;
         }
 
-        return this.calcInstallationProduction( year ) * this.worksheet.ratioResaleToEDF * ratio + bonus;
+        return this.calcInstallationProduction( year ) * this.worksheet.ratioResaleToEDF * price + bonus;
     }
 
     /**
