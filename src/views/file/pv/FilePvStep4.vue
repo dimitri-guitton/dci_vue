@@ -307,18 +307,32 @@ export default defineComponent( {
                                             const lessThan2Year = getLessThan2Year();
 
 
-                                            let selfConsumptionBonus;
-                                            let tva10 = 0;
-                                            let tva20 = 0;
+                                            let selfConsumptionBonus = 0;
+                                            let tva10                = 0;
+                                            let tva20                = 0;
                                             let totalTtc: number;
-                                            if ( lessThan2Year || totalPower > 3000 ) {
-                                                tva20                = 20 * totalHt / 100;
-                                                selfConsumptionBonus = ( totalPower / 1000 ) * 370;
-                                                totalTtc             = totalHt + tva20;
+
+                                            // Inférieur ou égal à 3kwc : 510€ par kwc
+                                            // Supérieur a 3kwc jusqu à 9kwc inclus : 380€ par kwc
+                                            // Au dessus 9 kwc jusqu à 36 kwc : 210 € par kwc
+
+                                            if ( totalPower <= 3000 ) {
+                                                selfConsumptionBonus = ( totalPower / 1000 ) * 510;
+                                            } else if ( totalPower > 3000 && totalPower <= 9000 ) {
+                                                selfConsumptionBonus = ( totalPower / 1000 ) * 380;
                                             } else {
-                                                tva10                = 10 * totalHt / 100;
-                                                selfConsumptionBonus = ( totalPower / 1000 ) * 500;
-                                                totalTtc             = totalHt + tva10;
+                                                selfConsumptionBonus = ( totalPower / 1000 ) * 210;
+                                            }
+                                            console.log( 'totalPower', totalPower );
+                                            console.log( 'selfConsumptionBonus', selfConsumptionBonus );
+
+                                            // Modification de la TVA en fonction de l'ancienneté de la maison et de la puissance
+                                            if ( lessThan2Year || totalPower > 3000 ) {
+                                                tva20    = 20 * totalHt / 100;
+                                                totalTtc = totalHt + tva20;
+                                            } else {
+                                                tva10    = 10 * totalHt / 100;
+                                                totalTtc = totalHt + tva10;
                                             }
 
                                             const price: Price = {

@@ -132,6 +132,7 @@ export class PvAlgo {
         if ( year === 1 ) {
             bonus = this.quotation.selfConsumptionBonus;
         }
+        console.log( 'bonus', bonus );
 
         return this.calcInstallationProduction( year ) * this.worksheet.ratioResaleToEDF * price + bonus;
     }
