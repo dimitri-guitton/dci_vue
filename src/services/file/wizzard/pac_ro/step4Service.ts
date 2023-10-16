@@ -54,6 +54,12 @@ export const yupPacRoConfigStep4 = () => {
 export const validatePacRoStep4 = async ( data: PacRoFileStep, price: Price ): Promise<RoFile> => {
     let fileData = getCurrentRoFileData();
 
+    console.log( 'fileData.quotation' );
+    console.log( 'fileData.quotation' );
+    console.log( 'fileData.quotation' );
+    console.log( 'fileData.quotation' );
+    console.log( fileData.quotation );
+    console.log( data );
     let quotation: RoQuotation = fileData.quotation;
 
     // Si modification de visite technique

@@ -73,6 +73,25 @@ export class PacAlgo {
     };
 
     /**
+     * Formate la température de base en string
+     *
+     * @param baseTemp
+     */
+    public formatBaseTemperature = ( baseTemp: number ): string => {
+        if ( baseTemp > -4 ) {
+            return '-4';
+        } else if ( baseTemp === -10 ) {
+            return '-11';
+        } else if ( baseTemp === -12 ) {
+            return '-13';
+        } else if ( baseTemp === -14 ) {
+            return '-15';
+        } else {
+            return baseTemp.toString();
+        }
+    };
+
+    /**
      * Retourne le delta de la température
      * Correspond à la différence entre la température de consigne et la température de base
      * @param setPointTemperature

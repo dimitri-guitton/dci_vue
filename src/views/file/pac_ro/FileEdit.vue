@@ -177,13 +177,15 @@ export default defineComponent( {
 
 
                                         // Initialisation des variables
-                                        const stepForm            = ref();
-                                        const currentStepIndex    = ref( 0 );
+                                        const stepForm         = ref();
+                                        const currentStepIndex = ref( 0 );
                                         // Récupération des données du fichier JSON
-                                        const fileData            = ref<RoFile>( getCurrentRoFileData() );
-                                        const lists               = fileData.value.lists;
-                                        const products            = fileData.value.quotation.products;
-                                        const selectedProducts    = fileData.value.quotation.selectedProducts;
+                                        const fileData         = ref<RoFile>( getCurrentRoFileData() );
+                                        const lists            = fileData.value.lists;
+                                        const products         = fileData.value.quotation.products;
+                                        const selectedProducts = fileData.value.quotation.selectedProducts;
+                                        console.log( 'fileData', fileData.value );
+                                        console.log( 'selectedProducts', selectedProducts );
                                         const options             = fileData.value.quotation.options;
                                         const blankOptions        = fileData.value.quotation.blankOptions;
                                         const assents             = ref<Assent[]>( fileData.value.assents );

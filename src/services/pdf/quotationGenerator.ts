@@ -917,6 +917,17 @@ export class QuotationGenerator extends PdfGenerator {
      */
     private _getQuotationGuarantee(): TableCell[] {
         let text = '';
+
+        // Si le produit sélectionné contient le mot "ATLANTIC"
+        const hasAtlanticProduct = this._file.quotation.selectedProducts.some(
+            ( product ) => product.label.toUpperCase().includes( 'ATLANTIC' ),
+        );
+
+        // Si le produit sélectionné contient le mot "Altech"
+        const hasAltechProduct = this._file.quotation.selectedProducts.some(
+            ( product ) => product.label.toUpperCase().includes( 'ALTECH' ),
+        );
+
         switch ( this._file.type ) {
             case FILE_PG:
                 text = 'GARANTIE 2 ANS PIECES';
@@ -926,17 +937,6 @@ export class QuotationGenerator extends PdfGenerator {
                 break;
             case FILE_PAC_RR:
                 const rrQuotation = ( this._file.quotation as RrQuotation );
-
-                // Si le produit sélectionné contient le mot "ATLANTIC"
-                const hasAtlanticProduct = this._file.quotation.selectedProducts.some(
-                    ( product ) => product.label.toUpperCase().includes( 'ATLANTIC' ),
-                );
-
-                // Si le produit sélectionné contient le mot "Altech"
-                const hasAltechProduct = this._file.quotation.selectedProducts.some(
-                    ( product ) => product.label.toUpperCase().includes( 'ALTECH' ),
-                );
-
                 if ( hasAtlanticProduct ) {
                     text = 'GARANTIE ATLANTIC 2 ANS PIECES ET 5 ANS COMPRESSEUR';
                 } else if ( hasAltechProduct ) {
@@ -948,7 +948,11 @@ export class QuotationGenerator extends PdfGenerator {
                 }
                 break;
             case FILE_PAC_RO:
-                text = 'GARANTIE DAIKIN 3ANS PIECES ET 5 ANS COMPRESSEUR';
+                if ( hasAtlanticProduct ) {
+                    text = 'GARANTIE ATLANTIC 2 ANS PIECES ET 5 ANS COMPRESSEUR';
+                } else {
+                    text = 'GARANTIE DAIKIN 3ANS PIECES ET 5 ANS COMPRESSEUR';
+                }
                 break;
         }
 
