@@ -55,5 +55,4 @@ OLD_PACKAGE_VERSION=$(cat package.json |
 
 echo "Version précédente : $OLD_PACKAGE_VERSION"
 
-echo "CHECK LE PACKAGE JSON"
-#start
+start
