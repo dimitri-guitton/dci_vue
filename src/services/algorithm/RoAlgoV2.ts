@@ -365,4 +365,75 @@ export class RoAlgoV2 extends PacAlgo {
 
         return needBiZoneSupplement;
     }
+
+    /**
+     * Retourne la puissance réelle d'une unité extérieure selon la zone climatique
+     */
+    public getRealPowerUnitExt( sizingPercentage: number ): number {
+        const requiredPower: number = this.calcRequiredPower( this.housing );
+        const baseTemp: number      = this.getBaseTemperature( this.housing.climaticZone, this.housing.altitude );
+        const heaterValue: number   = this.heaterToValue( this.housing.heaters );
+
+        let formatedBaseTemp: string;
+        if ( baseTemp > -4 ) {
+            formatedBaseTemp = '-4';
+        } else if ( baseTemp === -10 ) {
+            formatedBaseTemp = '-11';
+        } else if ( baseTemp === -12 ) {
+            formatedBaseTemp = '-13';
+        } else if ( baseTemp === -14 ) {
+            formatedBaseTemp = '-15';
+        } else {
+            formatedBaseTemp = baseTemp.toString();
+        }
+
+        // Si on ne trouve pas dans la liste la tension souhaitée on retourne null
+        if ( this.unitExtList[ this.housing.availableVoltage ] === undefined ) {
+            return 0;
+        }
+
+        // On filtre la liste pour trouver la PAC souhaité
+        const filterredUnitExt: UnitExt[] = this.unitExtList[ this.housing.availableVoltage ].filter( ( pac: UnitExt ) => {
+            // Si valeur de chauffage n'est pas définie
+            if ( pac.output[ heaterValue ] === undefined ) {
+                return false;
+            }
+
+            // On retourne la PAC que si son output est supérieur à la puissance requise
+            return pac.output[ heaterValue ][ formatedBaseTemp ] > requiredPower * ( sizingPercentage / 100 );
+        } );
+
+        let selectedUnitExt: UnitExt | null = null;
+
+        if ( filterredUnitExt.length === 1 ) {
+            selectedUnitExt = filterredUnitExt[ 0 ];
+        } else {
+            // S'il y a plus de 1 PAC on parcourt les pacs et on récupère celle à la plus faible puissance (la plus proche de la puissance requise)
+            // Si Même puissance la moins chère.
+            for ( const unitExt of filterredUnitExt ) {
+                if ( selectedUnitExt === null ) {
+                    selectedUnitExt = unitExt;
+                } else if ( selectedUnitExt.output[ heaterValue ][ formatedBaseTemp ] > unitExt.output[ heaterValue ][ formatedBaseTemp ] ) {
+                    selectedUnitExt = unitExt;
+                } else if ( selectedUnitExt.output[ heaterValue ][ formatedBaseTemp ] === unitExt.output[ heaterValue ][ formatedBaseTemp ] ) {
+                    const p1: Product | undefined = getProductByRef( selectedUnitExt.ref );
+                    const p2: Product | undefined = getProductByRef( unitExt.ref );
+
+                    // On check les prix et assigne la moins chère
+                    if ( p1 !== undefined && p2 !== undefined ) {
+                        if ( p1.pu > p2.pu ) {
+                            selectedUnitExt = unitExt;
+                        }
+                    }
+                }
+            }
+        }
+
+        if ( selectedUnitExt === null ) {
+            return 0;
+        }
+
+
+        return selectedUnitExt.output[ heaterValue ][ formatedBaseTemp ];
+    }
 }

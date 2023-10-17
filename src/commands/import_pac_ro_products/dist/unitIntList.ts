@@ -1,4 +1,4 @@
-import { UnitIntList } from '@/services/algorithm/RoAlgo';
+import { UnitIntList } from '@/services/algorithm/RoAlgoV2';
 
 export const generatedUnitIntList: UnitIntList = {
     'monophase': [

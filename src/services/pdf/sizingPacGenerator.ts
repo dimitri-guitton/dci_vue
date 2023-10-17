@@ -5,9 +5,9 @@ import { getAddress } from '@/services/data/dataService';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
-import { RoAlgo } from '@/services/algorithm/RoAlgo';
 import { PacAlgo } from '@/services/algorithm/PacAlgo';
 import { FILE_PAC_RO } from '@/services/constantService';
+import { RoAlgoV2 } from '@/services/algorithm/RoAlgoV2';
 
 export class SizingPacGenerator extends PdfGenerator {
     private readonly _file: RoFile | RrFile;
@@ -38,7 +38,7 @@ export class SizingPacGenerator extends PdfGenerator {
     private _generateDocDefinition(): TDocumentDefinitions {
         const housing: PacHousing = this._file.housing as PacHousing;
         const pacAlgo             = new PacAlgo( housing );
-        const roAlgo              = new RoAlgo( housing );
+        const roAlgo = new RoAlgoV2( housing );
 
         const { address, zipCode, city } = getAddress( this._file );
 
