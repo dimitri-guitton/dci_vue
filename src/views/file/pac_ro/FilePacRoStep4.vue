@@ -388,7 +388,7 @@ export default defineComponent( {
 
                                             return {
                                                 'exts':                 response.externals,
-                                                'ints':                 [ response.internal ],
+                                                'ints': response.internals,
                                                 'needBiZoneSupplement': response.needBiZoneSupplement,
                                             };
                                         } );

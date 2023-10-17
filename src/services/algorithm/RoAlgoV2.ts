@@ -260,10 +260,10 @@ export class RoAlgoV2 extends PacAlgo {
         // Pompe à chaleur bizone avec ECS n'existe pas, on doit rajouter un KIT-Bi-Zone
         // On passe donc bizone à false
         if ( isAtlantic && bizone ) {
-            bizone               = false;
+            bizone = false;
         } else {
             if ( bizone && volumeECS === 0 ) {
-                bizone               = false;
+                bizone = false;
             }
         }
 
@@ -324,10 +324,12 @@ export class RoAlgoV2 extends PacAlgo {
             return [];
         }
 
+        const internalProducts: Product[] = [];
         // Parcours les produits extérieurs, si on ne trouve pas de produit intérieur compatible, on le retire de la liste
-        extProducts = extProducts.filter( ( extProduct ) => {
+        extProducts                       = extProducts.filter( ( extProduct ) => {
             try {
-                this.getInternalProducts( volumeECS, extProduct );
+                const p = this.getInternalProducts( volumeECS, extProduct );
+                internalProducts.push( p );
                 return true;
             } catch ( e ) {
                 return false;
@@ -340,8 +342,8 @@ export class RoAlgoV2 extends PacAlgo {
         }
 
         return {
-            'externals':            extProducts,
-            'internal':             this.getInternalProducts( volumeECS, extProducts[ 0 ] ),
+            'externals': extProducts,
+            'internals': internalProducts,
             'needBiZoneSupplement': this.needBiZoneSupplement( model, volumeECS ),
         };
 
