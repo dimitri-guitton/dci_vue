@@ -249,7 +249,7 @@ export class RoAlgoV2 extends PacAlgo {
         return Array.from( gammeMap.values() );
     }
 
-    public getInternalProducts( volumeECS: number, externalProduct: Product ): Product {
+    public getInternalProducts( volumeECS: number, externalProduct: Product ): Product[] {
         const unitExt: UnitExt         = this.getUnitExtWithRealProduct( externalProduct );
         let filteredUnitInt: UnitInt[] = [];
         let bizone                     = this.isBiZone( this.housing.heaters );
@@ -299,7 +299,7 @@ export class RoAlgoV2 extends PacAlgo {
         } );
 
         if ( products.length > 0 ) {
-            return products[ 0 ];
+            return products;
         }
 
         throw new Error( 'Impossible de trouvé des produits ' );
@@ -324,12 +324,12 @@ export class RoAlgoV2 extends PacAlgo {
             return [];
         }
 
-        const internalProducts: Product[] = [];
+        let internalProducts: Product[] = [];
         // Parcours les produits extérieurs, si on ne trouve pas de produit intérieur compatible, on le retire de la liste
-        extProducts                       = extProducts.filter( ( extProduct ) => {
+        extProducts                     = extProducts.filter( ( extProduct ) => {
             try {
-                const p = this.getInternalProducts( volumeECS, extProduct );
-                internalProducts.push( p );
+                const productsFound = this.getInternalProducts( volumeECS, extProduct );
+                internalProducts.push( ...productsFound );
                 return true;
             } catch ( e ) {
                 return false;
@@ -337,9 +337,14 @@ export class RoAlgoV2 extends PacAlgo {
         } );
 
         // Si aucun produit n'est compatible, on retourne une liste vide
-        if ( extProducts.length === 0 ) {
+        if ( extProducts.length === 0 || internalProducts.length === 0 ) {
             return [];
         }
+
+        // Supprime les doublons dans les produits internes, en fonction de l'id
+        internalProducts = internalProducts.filter( ( product, index, self ) => {
+            return self.findIndex( ( p ) => p.id === product.id ) === index;
+        } );
 
         return {
             'externals': extProducts,
