@@ -46,11 +46,11 @@
                 <div class="col-md-3 mb-5">
                     <label class="form-label mb-3" for="deviceToReplaceBrand">Marque</label>
                     <Field
-                            id="deviceToReplaceBrand"
-                            v-model="deviceToReplace.brand"
-                            class="form-control"
-                            name="deviceToReplaceBrand"
-                            type="text"
+                        id="deviceToReplaceBrand"
+                        v-model="deviceToReplace.brand"
+                        class="form-control"
+                        name="deviceToReplaceBrand"
+                        type="text"
 
                     >
                     </Field>
@@ -58,11 +58,11 @@
                 <div class="col-md-3 mb-5">
                     <label class="form-label mb-3" for="deviceToReplaceModel">Modèle</label>
                     <Field
-                            id="deviceToReplaceModel"
-                            v-model="deviceToReplace.model"
-                            class="form-control"
-                            name="deviceToReplaceModel"
-                            type="text"
+                        id="deviceToReplaceModel"
+                        v-model="deviceToReplace.model"
+                        class="form-control"
+                        name="deviceToReplaceModel"
+                        type="text"
                     >
                     </Field>
                 </div>
@@ -172,11 +172,13 @@
                           :show-reference="true"
                           @selectedProductIsUpdated="updateSelectedProduct($event, 0)"></selected-product>
 
-        <selected-product :index="1"
-                          :products="computedProducts.ints"
-                          :selectedProducts="selectedProducts"
-                          :show-reference="true"
-                          @selectedProductIsUpdated="updateSelectedProduct($event, 1)"></selected-product>
+        <template v-if="!edlaSelected">
+            <selected-product :index="1"
+                              :products="computedProducts.ints"
+                              :selectedProducts="selectedProducts"
+                              :show-reference="true"
+                              @selectedProductIsUpdated="updateSelectedProduct($event, 1)"></selected-product>
+        </template>
 
         <template v-for="ecs in computedEcsDeportes" v-bind:key="ecs.reference">
             <row-price :product="ecs"></row-price>
@@ -220,15 +222,15 @@
             <div class="col-md-12 fv-row">
                 <label class="form-label mb-3">Commentaire</label>
                 <Field
-                        as="textarea"
-                        class="form-control form-control-lg"
-                        name="commentary"
-                        placeholder="RAS"
-                        value=""
+                    as="textarea"
+                    class="form-control form-control-lg"
+                    name="commentary"
+                    placeholder="RAS"
+                    value=""
                 />
                 <ErrorMessage
-                        class="fv-plugins-message-container invalid-feedback"
-                        name="commentary"
+                    class="fv-plugins-message-container invalid-feedback"
+                    name="commentary"
                 ></ErrorMessage>
             </div>
         </div>
@@ -347,7 +349,11 @@ export default defineComponent( {
                                         const disabledBonus             = ref<boolean>( props.fileData.disabledBonus );
                                         const disabledCeeBonus          = ref<boolean>( props.fileData.disabledCeeBonus );
                                         const disabledMaPrimeRenovBonus = ref<boolean>( props.fileData.disabledMaPrimeRenovBonus );
+                                        const edlaSelected = ref<boolean>( false );
 
+                                        if ( _selectedProducts.value[ 0 ] !== undefined ) {
+                                            edlaSelected.value = _selectedProducts.value[ 0 ].reference.includes( 'EDLA' );
+                                        }
 
                                         const computedProducts = computed<{
                                             'exts': Product[];
@@ -640,6 +646,16 @@ export default defineComponent( {
 
                                         const updateSelectedProduct = ( product, index ) => {
                                             _selectedProducts.value[ index ] = product;
+
+                                            // Les EDLA n'ont pas d'unité intérieur
+                                            if ( product.reference.includes( 'EDLA' ) ) {
+                                                _selectedProducts.value.splice( 1, 1 );
+                                                edlaSelected.value = true;
+
+                                            } else {
+                                                edlaSelected.value = false;
+                                            }
+
                                         };
 
                                         const updateOptions = ( options ) => {
@@ -679,6 +695,7 @@ export default defineComponent( {
                                             sizingPercentageList,
                                             sizingPercentage,
                                             deviceToReplace,
+                                            edlaSelected,
                                             volumeECS,
                                             discount,
                                             estimateMaPrimeRenov,
