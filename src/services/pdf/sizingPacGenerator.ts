@@ -59,10 +59,11 @@ export class SizingPacGenerator extends PdfGenerator {
                 break;
         }
 
-        let heaterText   = '';
-        let powerPacText = '';
-        let finalText;
+        let heaterText          = '';
+        let powerPacText        = '';
+        let finalText: string[] = [];
 
+        const baseTemperature = pacAlgo.getBaseTemperature( housing.climaticZone, housing.altitude );
         if ( this._file.type === FILE_PAC_RO ) {
 
             const prefix = `${ this.getValueInList( this._file.lists.heatersList, housing.heaters ) } :`;
@@ -83,24 +84,19 @@ export class SizingPacGenerator extends PdfGenerator {
 
             heaterText = `${ prefix } ${ heaterText }`;
 
+            const realPowerUnitExt = roAlgo.getRealPowerUnitExt( ( this._file as RoFile ).quotation.sizingPercentage ?? 80 );
             switch ( housing.heaters ) {
                 case 'r_fonte':
                 case 'r_fonte_p_chauffant':
-                    powerPacText = `Départ d’eau 65°C -> Puissance calorifique à ${ pacAlgo.getBaseTemperature( housing.climaticZone,
-                                                                                                                housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt(
-                        ( this._file as RoFile ).quotation.sizingPercentage ?? 80 ) }KW`;
+                    powerPacText = `Température d’eau 65°C -> Puissance calorifique à ${ baseTemperature }°C : ${ realPowerUnitExt }KW`;
                     break;
                 case 'r_autre':
                 case 'r_autre_p_chauffant':
-                    powerPacText = `Départ d’eau 55°C -> Puissance calorifique à ${ pacAlgo.getBaseTemperature( housing.climaticZone,
-                                                                                                                housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt(
-                        ( this._file as RoFile ).quotation.sizingPercentage ?? 80 ) }KW`;
+                    powerPacText = `Température d’eau 55°C -> Puissance calorifique à ${ baseTemperature }°C : ${ realPowerUnitExt }KW`;
                     break;
                 case 'p_chauffant':
                 case 'p_chauffant_p_chauffant':
-                    powerPacText = `Départ d’eau 40°C -> Puissance calorifique à ${ pacAlgo.getBaseTemperature( housing.climaticZone,
-                                                                                                                housing.altitude ) }°C : ${ roAlgo.getRealPowerUnitExt(
-                        ( this._file as RoFile ).quotation.sizingPercentage ?? 80 ) }KW`;
+                    powerPacText = `Température d’eau 40°C -> Puissance calorifique à ${ baseTemperature }°C : ${ realPowerUnitExt }KW`;
                     break;
             }
 
@@ -138,58 +134,65 @@ export class SizingPacGenerator extends PdfGenerator {
             ];
         }
 
+        const isRrMulti = this._file.type === 'pac_rr' && ( this._file as RrFile ).quotation.rrType === 'multi';
         return {
             content: [
                 {
                     // unbreakable: true,
                     stack: [
                         {
-                            margin:    [ 0, 5, 0, 5 ],
+                            margin:    [ 0, 5, 0, 2 ],
+                            text:      `POMPE À CHALEUR ${ this._file.type === 'pac_rr' ? 'AIR/AIR' : 'AIR/EAU' }`,
+                            bold:      false,
+                            fontSize:  14,
+                            alignment: 'center',
+                        },
+                        {
+                            margin:   [ 0, 2, 0, 5 ],
                             text:      'Note de dimensionnement',
                             bold:      true,
-                            fontSize:  16,
+                            fontSize: 14,
                             alignment: 'center',
                         },
                         {
                             text:      `${ this._file.beneficiary.lastName } ${ this._file.beneficiary.firstName }`,
-                            fontSize:  12,
+                            fontSize: 11,
                             alignment: 'center',
                         },
                         {
                             text:      `${ address } ${ zipCode } ${ city }`,
-                            fontSize:  12,
+                            fontSize: 11,
                             alignment: 'center',
                         },
                         {
                             margin:    [ 0, 10, 0, 5 ],
                             text:      'Déperdition = G x V x Delta T',
-                            fontSize:  18,
+                            fontSize: 16,
                             bold:      true,
                             alignment: 'center',
                         },
                         {
                             text:      `Température de consigne : ${ housing.setPointTemperature }°c`,
                             italics:   true,
-                            fontSize:  10,
+                            fontSize: 9,
                             alignment: 'center',
                         },
                         {
                             text:      `Zone climatique: ${ housing.climaticZone }`,
                             italics:   true,
-                            fontSize:  10,
+                            fontSize: 9,
                             alignment: 'center',
                         },
                         {
                             text:      `Altitude: ${ altitudeText }`,
                             italics:   true,
-                            fontSize:  10,
+                            fontSize: 9,
                             alignment: 'center',
                         },
                         {
-                            text:      `Donc le delta T est de : ${ housing.setPointTemperature } - (${ pacAlgo.getBaseTemperature( housing.climaticZone,
-                                                                                                                                    housing.altitude ) })`,
+                            text:     `Donc le delta T est de : ${ housing.setPointTemperature } - (${ baseTemperature })`,
                             italics:   true,
-                            fontSize:  10,
+                            fontSize: 9,
                             alignment: 'center',
                         },
                         {
@@ -201,6 +204,11 @@ export class SizingPacGenerator extends PdfGenerator {
                         },
                         this._addMultiSizingData(),
                         this._addPages,
+                        {
+                            text:             ` : ${ baseTemperature } °C`,
+                            absolutePosition: { x: 152, y: isRrMulti ? 512 : 502 },
+                            fontSize:         12,
+                        },
                         {
                             lineHeight: 1.2,
                             margin:     [ 48, -20, 0, 0 ],
@@ -219,7 +227,7 @@ export class SizingPacGenerator extends PdfGenerator {
         {
             margin: [ 0, 0, 0, 0 ],
             image:  PAC_DIMENSION,
-            fit:    [ 575, 575 ],
+            fit: [ 550, 550 ],
         },
     ];
 
@@ -233,6 +241,7 @@ export class SizingPacGenerator extends PdfGenerator {
 
         const columns: Content[] = [];
 
+        let fontSize = 8;
         if ( this._file.type === 'pac_rr' && ( this._file as RrFile ).quotation.rrType === 'multi' ) {
             for ( let i = 1; i <= rrMulti.roomNumber; i++ ) {
                 columns.push(
@@ -243,12 +252,14 @@ export class SizingPacGenerator extends PdfGenerator {
                     },
                 );
             }
+            fontSize = rrMulti.roomNumber > 3 ? 7 : 8;
         }
 
+
         return {
-            margin:   [ 0, 0, 0, 0 ],
-            fontSize: 8,
-            columns:  columns,
+            margin:  [ 0, 0, 0, 0 ],
+            fontSize,
+            columns: columns,
         };
     };
 }
