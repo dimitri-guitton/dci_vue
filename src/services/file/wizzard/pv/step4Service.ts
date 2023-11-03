@@ -1,6 +1,5 @@
 import { PvFile } from '@/types/v2/File/Pv/PvFile';
 import { PvFileStep } from '@/types/v2/Wizzard/FileStep';
-import { BaseStep4 } from '@/types/v2/Wizzard/step4/BaseStep4';
 import { getCurrentPvFileData, getProductById } from '@/services/data/dataService';
 import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
 import { updateJsonData } from '@/services/folder/folderService';
@@ -14,13 +13,18 @@ import {
 import { updateTotalTtc } from '@/services/sqliteService';
 import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 import { Product } from '@/types/v2/File/Common/Product';
+import { PvStep4 } from '@/types/v2/Wizzard/step4/PVStep4';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4
  * @param fileData
  */
-export const initPvFormDataStep4 = ( fileData: PvFile ): BaseStep4 => {
-    return defaultInitFormDataStep4( fileData );
+export const initPvFormDataStep4 = ( fileData: PvFile ): PvStep4 => {
+    return {
+        ...defaultInitFormDataStep4( fileData ),
+        resaleOfSurplus: fileData.quotation.resaleOfSurplus ?? true,
+    };
+
 };
 
 export const yupPvConfigStep4 = () => {
@@ -47,11 +51,11 @@ export const validatePvStep4 = async ( data: PvFileStep, price: Price ): Promise
         }
     }
 
-
     quotation = {
         ...quotation,
         ...defaultGetQuotationValueStep4( data, price ),
         selectedProducts,
+        resaleOfSurplus: data.resaleOfSurplus ?? false,
     };
 
     fileData = {

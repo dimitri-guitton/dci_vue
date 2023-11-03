@@ -6,6 +6,25 @@
                       :payment-on-credit="fileData.quotation.paymentOnCredit"
                       :price="price"></step4-header>
 
+        <div class="row mt-10">
+            <div class="col-md-12 mb-5">
+                <label class="form-check form-switch form-check-custom" for="resaleOfSurplus">
+                    <Field
+                        id="resaleOfSurplus"
+                        v-model="isResaleOfSurplus"
+                        :value="true"
+                        class="form-check-input h-30px w-55px"
+                        name="resaleOfSurplus"
+                        type="checkbox"
+                    />
+                    <span class="form-check-label fw-bold text-gray-600 me-5">Installation photovoltaïque en autoconsommation avec revente du surplus</span>
+                </label>
+            </div>
+        </div>
+
+        <el-divider class="mb-10"></el-divider>
+
+
         <step4-quotation-header></step4-quotation-header>
 
         <div class="col-md-6 mb-5">
@@ -130,6 +149,8 @@ export default defineComponent( {
                                         const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                         const lists             = ref<PvList>( ( props.fileData.lists as PvList ) );
                                         const quantity          = ref<number>( 3 );
+
+                                        const isResaleOfSurplus = ref<boolean>( props.fileData.quotation.resaleOfSurplus );
 
                                         for ( const selectedProduct of _selectedProducts.value ) {
                                             if ( selectedProduct.productType === 'pv' ) {
@@ -367,6 +388,7 @@ export default defineComponent( {
                                             computedSelectedOnduleurs,
                                             computedOptions,
                                             quantity,
+                                            isResaleOfSurplus,
                                             $selectedPannels,
                                             $selectedOnduleurs,
                                             $selectedPasserelles,

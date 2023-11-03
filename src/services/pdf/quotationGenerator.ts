@@ -851,7 +851,12 @@ export class QuotationGenerator extends PdfGenerator {
                 text = 'Installation d\'une pompe à chaleur air/air';
                 break;
             case FILE_PV:
+                const pvQuotation: PvQuotation = this._file.quotation as PvQuotation;
+
                 text = 'Installation photovoltaïque en autoconsommation';
+                if ( pvQuotation.resaleOfSurplus ) {
+                    text = 'Installation photovoltaïque en autoconsommation avec revente du surplus';
+                }
                 break;
         }
 
