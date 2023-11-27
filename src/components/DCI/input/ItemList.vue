@@ -8,7 +8,7 @@ import { ItemList } from '@/types/v2/File/Common/ItemList';
 export default defineComponent( {
                                   name:  'item-list',
                                   props: {
-                                    lists: Object as () => ItemList,
+                                      lists: Object as () => ItemList[],
                                   },
                                 } );
 </script>

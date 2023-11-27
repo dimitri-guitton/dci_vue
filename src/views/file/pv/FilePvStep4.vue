@@ -7,23 +7,22 @@
                       :price="price"></step4-header>
 
         <div class="row mt-10">
-            <div class="col-md-12 mb-5">
-                <label class="form-check form-switch form-check-custom" for="resaleOfSurplus">
-                    <Field
-                        id="resaleOfSurplus"
-                        v-model="isResaleOfSurplus"
-                        :value="true"
-                        class="form-check-input h-30px w-55px"
-                        name="resaleOfSurplus"
-                        type="checkbox"
-                    />
-                    <span class="form-check-label fw-bold text-gray-600 me-5">Installation photovoltaïque en autoconsommation avec revente du surplus</span>
-                </label>
+            <div class="col-md-4 fv-row">
+                <label class="form-label mb-3">Revente</label>
+                <!--            v-model.number="averagePricePerKWhInFrance"     -->
+                <Field
+                    v-model="resaleType"
+                    id="resaleType"
+                    as="select"
+                    class="form-select"
+                    name="resaleType"
+                >
+                    <item-list :lists="resaleTypeList"></item-list>
+                </Field>
             </div>
         </div>
 
         <el-divider class="mb-10"></el-divider>
-
 
         <step4-quotation-header></step4-quotation-header>
 
@@ -112,10 +111,12 @@ import { Price } from '@/types/v2/File/Price';
 import { getLessThan2Year } from '@/services/data/dataService';
 import PvList from '@/types/v2/File/Pv/PvList';
 import { PvFile } from '@/types/v2/File/Pv/PvFile';
+import ItemList from '@/components/DCI/input/ItemList.vue';
 
 export default defineComponent( {
                                     name:       'file-pv-step-4',
                                     components: {
+                                        ItemList,
                                         Step4Header,
                                         WizzardFilePrice,
                                         BlankOptions,
@@ -150,7 +151,7 @@ export default defineComponent( {
                                         const lists             = ref<PvList>( ( props.fileData.lists as PvList ) );
                                         const quantity          = ref<number>( 3 );
 
-                                        const isResaleOfSurplus = ref<boolean>( props.fileData.quotation.resaleOfSurplus );
+                                        const resaleType = ref<string>( props.fileData.quotation.resaleType );
 
                                         for ( const selectedProduct of _selectedProducts.value ) {
                                             if ( selectedProduct.productType === 'pv' ) {
@@ -388,10 +389,25 @@ export default defineComponent( {
                                             computedSelectedOnduleurs,
                                             computedOptions,
                                             quantity,
-                                            isResaleOfSurplus,
                                             $selectedPannels,
                                             $selectedOnduleurs,
                                             $selectedPasserelles,
+                                            resaleType,
+                                            resaleTypeList: [
+                                                {
+                                                    slug:  'surplusResale',
+                                                    value: 'Revente du surplus',
+                                                },
+                                                {
+                                                    slug:  'totalResale',
+                                                    value: 'Revente totale',
+                                                },
+                                                {
+                                                    slug:  'sufficiency',
+                                                    value: 'Autoconsommation',
+                                                },
+
+                                            ],
                                         };
                                     },
                                 } );

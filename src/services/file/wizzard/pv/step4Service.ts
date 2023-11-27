@@ -22,7 +22,7 @@ import { PvStep4 } from '@/types/v2/Wizzard/step4/PVStep4';
 export const initPvFormDataStep4 = ( fileData: PvFile ): PvStep4 => {
     return {
         ...defaultInitFormDataStep4( fileData ),
-        resaleOfSurplus: fileData.quotation.resaleOfSurplus ?? true,
+        resaleType: fileData.quotation.resaleType ?? 'surplusResale',
     };
 
 };
@@ -55,7 +55,7 @@ export const validatePvStep4 = async ( data: PvFileStep, price: Price ): Promise
         ...quotation,
         ...defaultGetQuotationValueStep4( data, price ),
         selectedProducts,
-        resaleOfSurplus: data.resaleOfSurplus ?? false,
+        resaleType: data.resaleType,
     };
 
     fileData = {

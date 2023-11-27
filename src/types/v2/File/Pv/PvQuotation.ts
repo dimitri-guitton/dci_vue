@@ -4,5 +4,5 @@ export interface PvQuotation extends BaseQuotation {
     tva20: number;
     tva10: number;
     selfConsumptionBonus: number;
-    resaleOfSurplus: boolean;
+    resaleType: string;
 }
