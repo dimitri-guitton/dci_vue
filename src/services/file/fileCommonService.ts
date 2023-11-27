@@ -303,6 +303,7 @@ export const getCeeBonus = ( data: BaseFile ): number => {
     let value         = 0;
 
     switch ( type ) {
+        // Chauffe eau thermodynamique
         case FILE_CET:
             if ( housingType === 'appartement' ) {
                 if ( codeBonus === 'GP' ) {
@@ -313,12 +314,15 @@ export const getCeeBonus = ( data: BaseFile ): number => {
 
             } else {
                 if ( codeBonus === 'GP' ) {
-                    value = 113.88;
+                    // value = 113.88;
+                    value = 118.56;
                 } else {
-                    value = 93.60;
+                    // value = 93.60;
+                    value = 98.28;
                 }
             }
             break;
+        // Comble
         case FILE_COMBLE:
             if ( data.partner === 'obj_eco_energie' ) {
                 // CEE A PARTIR DU 15 MARS 2023
