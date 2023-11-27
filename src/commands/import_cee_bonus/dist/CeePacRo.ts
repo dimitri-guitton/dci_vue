@@ -27,7 +27,7 @@ export const CeePacRoValues = {
                 '0':   {
                     'other': 239.7,
                     'GP':    291.63,
-                },
+        },
                 '70':  {
                     'other': 335.58,
                     'GP':    408.29,
@@ -44,7 +44,7 @@ export const CeePacRoValues = {
                     'other': 767.04,
                     'GP':    933.23,
                 },
-            },
+            }
         },
         'appartement':         {
             '110': {
@@ -101,13 +101,13 @@ export const CeePacRoValues = {
                 '110': {
                     'other': 452.58,
                     'GP':    550.64,
-                },
+        },
                 '130': {
                     'other': 595.5,
                     'GP':    724.52,
                 },
-            },
-        },
+            }
+        }
     },
     'H2': {
         'maison_individuelle': {
@@ -169,7 +169,7 @@ export const CeePacRoValues = {
                 '60':  {
                     'other': 158.4,
                     'GP':    192.72,
-                },
+        },
                 '70':  {
                     'other': 190.08,
                     'GP':    231.26,
@@ -217,6 +217,6 @@ export const CeePacRoValues = {
                     'GP':    593.12,
                 },
             },
-        },
-    },
+        }
+    }
 };
