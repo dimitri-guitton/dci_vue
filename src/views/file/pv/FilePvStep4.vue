@@ -8,7 +8,7 @@
 
         <div class="row mt-10">
             <div class="col-md-4 fv-row">
-                <label class="form-label mb-3">Revente</label>
+                <label class="form-label mb-3">Type d'installation</label>
                 <!--            v-model.number="averagePricePerKWhInFrance"     -->
                 <Field
                     v-model="resaleType"

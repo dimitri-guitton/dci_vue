@@ -853,13 +853,11 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PV:
                 const pvQuotation: PvQuotation = this._file.quotation as PvQuotation;
 
-                console.log( '%c RESALET TYPE', 'background: #00FF9F; color: #000000' );
-                console.log( pvQuotation.resaleType );
-                text = 'Installation photovoltaïque en autoconsommation';
+                text = 'Installation photovoltaïque en autoconsommation sans revente du surplus.';
                 if ( pvQuotation.resaleType === 'surplusResale' ) {
                     text = 'Installation photovoltaïque en autoconsommation avec revente du surplus';
                 } else if ( pvQuotation.resaleType === 'totalResale' ) {
-                    text = 'Production d\'électricité en revente totale';
+                    text = 'Installation photovoltaïque en revente totale';
                 }
                 break;
         }
