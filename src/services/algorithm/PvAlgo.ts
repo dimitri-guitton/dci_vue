@@ -30,35 +30,48 @@ export class PvAlgo {
      * Production par panneau en kWh
      */
     public productionPerPanelInKWh( year = 1 ): number {
-        let powerFor375 = 0;
+        // Watt crête
+        let wc = 0;
 
         if ( this.energyZone === 'H1' ) {
             if ( this.worksheet.orientation === 'sud' ) {
-                powerFor375 = 448;
+                // powerFor375 = 448;
+                wc = 1190;
             } else if ( this.worksheet.orientation === 'sud_ouest' ) {
-                powerFor375 = 425;
+                // powerFor375 = 425;
+                wc = 1126;
             } else if ( this.worksheet.orientation === 'sud_est' ) {
-                powerFor375 = 429;
+                // powerFor375 = 429;
+                wc = 1127;
             } else if ( this.worksheet.orientation === 'ouest' ) {
-                powerFor375 = 371;
+                // powerFor375 = 371;
+                wc = 964;
             } else if ( this.worksheet.orientation === 'est' ) {
-                powerFor375 = 387;
+                // powerFor375 = 387;
+                wc = 964;
             }
         } else {
             if ( this.worksheet.orientation === 'sud' ) {
-                powerFor375 = 463;
+                // powerFor375 = 463;
+                wc = 1250;
             } else if ( this.worksheet.orientation === 'sud_ouest' ) {
-                powerFor375 = 457;
+                // powerFor375 = 457;
+                wc = 1188;
             } else if ( this.worksheet.orientation === 'sud_est' ) {
-                powerFor375 = 459;
+                // powerFor375 = 459;
+                wc = 1177;
             } else if ( this.worksheet.orientation === 'ouest' ) {
-                powerFor375 = 395;
+                // powerFor375 = 395;
+                wc = 1016;
             } else if ( this.worksheet.orientation === 'est' ) {
-                powerFor375 = 397;
+                // powerFor375 = 397;
+                wc = 1002;
             }
         }
 
-        const ratio         = powerFor375 / 375;
+        // const ratio         = powerFor375 / 375;
+        // Le ratio est en kWc
+        const ratio = wc / 1000;
         let calculatedPower = 0;
 
         if ( this.quotation.selectedProducts.length > 0 ) {
