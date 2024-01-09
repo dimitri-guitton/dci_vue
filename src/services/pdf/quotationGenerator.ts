@@ -942,24 +942,31 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PB:
                 text = 'GARANTIE 5 ANS';
                 break;
+            case FILE_CET:
+                text = 'GARANTIE 1 AN MAIN D\'OEUVRE';
+                break;
             case FILE_PAC_RR:
                 const rrQuotation = ( this._file.quotation as RrQuotation );
                 if ( hasAtlanticProduct ) {
-                    text = 'GARANTIE ATLANTIC 2 ANS PIECES ET 5 ANS COMPRESSEUR';
+                    text = 'ATLANTIC 2 ANS PIECES ET 5 ANS COMPRESSEUR';
                 } else if ( hasAltechProduct ) {
-                    text = 'GARANTIE ALTECH 3 ANS PIECES ET 5 ANS COMPRESSEUR';
+                    text = 'ALTECH 3 ANS PIECES ET 5 ANS COMPRESSEUR';
                 } else if ( rrQuotation.rrType === 'mono' && rrQuotation.assortment === 'sensira' ) {
-                    text = 'GARANTIE DAIKIN 3 ANS PIECES ET 3 ANS COMPRESSEUR';
+                    text = 'DAIKIN 3 ANS PIECES ET 3 ANS COMPRESSEUR';
                 } else {
-                    text = 'GARANTIE DAIKIN 3 ANS PIECES ET 5 ANS COMPRESSEUR';
+                    text = 'DAIKIN 3 ANS PIECES ET 5 ANS COMPRESSEUR';
                 }
+
+                text = 'GARANTIE 1 AN MAIN D\'OEUVRE, ' + text;
                 break;
             case FILE_PAC_RO:
                 if ( hasAtlanticProduct ) {
-                    text = 'GARANTIE ATLANTIC 2 ANS PIECES ET 5 ANS COMPRESSEUR';
+                    text = 'ATLANTIC 2 ANS PIECES ET 5 ANS COMPRESSEUR';
                 } else {
-                    text = 'GARANTIE DAIKIN 3ANS PIECES ET 5 ANS COMPRESSEUR';
+                    text = 'DAIKIN 3 ANS PIECES, 5 ANS COMPRESSEUR';
                 }
+
+                text = 'GARANTIE 1 AN MAIN D\'OEUVRE, ' + text;
                 break;
         }
 
@@ -968,7 +975,7 @@ export class QuotationGenerator extends PdfGenerator {
                 {
                     text,
                     bold:     true,
-                    fontSize: 12,
+                    fontSize: 9,
                     colSpan:  5,
                 },
                 {},
