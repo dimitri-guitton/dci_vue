@@ -1484,13 +1484,16 @@ export class QuotationGenerator extends PdfGenerator {
     private _generateQuotationPrice(): Content {
         const quotation: AllQuotation = this._file.quotation;
 
-        let addedCommentary = '';
-        switch ( this._file.type ) {
-            case FILE_PV:
-                const selfConsumptionBonus = ( quotation as PvQuotation ).selfConsumptionBonus;
-                addedCommentary = `Prime à l’autoconsommation : ${ this.formatPrice( selfConsumptionBonus ) }`;
-                break;
-        }
+        // let addedCommentary = '';
+        const addedCommentary = '';
+
+        // La prime à l'autoconsommation n'est plus utilisée
+        // switch ( this._file.type ) {
+        //     case FILE_PV:
+        //         const selfConsumptionBonus = ( quotation as PvQuotation ).selfConsumptionBonus;
+        //         addedCommentary = `Prime à l’autoconsommation : ${ this.formatPrice( selfConsumptionBonus ) }`;
+        //         break;
+        // }
 
         return {
             margin: [ 0, 0 ],
