@@ -1,5 +1,6 @@
 import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
 import { PvWorkSheet } from '@/types/v2/File/Pv/PvWorkSheet';
+import axios from 'axios';
 
 interface PhotovoltaicBenefits {
     year: number;
@@ -35,41 +36,30 @@ export class PvAlgo {
 
         if ( this.energyZone === 'H1' ) {
             if ( this.worksheet.orientation === 'sud' ) {
-                // powerFor375 = 448;
                 wc = 1190;
             } else if ( this.worksheet.orientation === 'sud_ouest' ) {
-                // powerFor375 = 425;
                 wc = 1126;
             } else if ( this.worksheet.orientation === 'sud_est' ) {
-                // powerFor375 = 429;
                 wc = 1127;
             } else if ( this.worksheet.orientation === 'ouest' ) {
-                // powerFor375 = 371;
                 wc = 964;
             } else if ( this.worksheet.orientation === 'est' ) {
-                // powerFor375 = 387;
                 wc = 964;
             }
         } else {
             if ( this.worksheet.orientation === 'sud' ) {
-                // powerFor375 = 463;
                 wc = 1250;
             } else if ( this.worksheet.orientation === 'sud_ouest' ) {
-                // powerFor375 = 457;
                 wc = 1188;
             } else if ( this.worksheet.orientation === 'sud_est' ) {
-                // powerFor375 = 459;
                 wc = 1177;
             } else if ( this.worksheet.orientation === 'ouest' ) {
-                // powerFor375 = 395;
                 wc = 1016;
             } else if ( this.worksheet.orientation === 'est' ) {
-                // powerFor375 = 397;
                 wc = 1002;
             }
         }
 
-        // const ratio         = powerFor375 / 375;
         // Le ratio est en kWc
         const ratio = wc / 1000;
         let calculatedPower = 0;
@@ -98,8 +88,81 @@ export class PvAlgo {
             }
         }
 
+        // console.log( calculatedPower + ' kWh' );
         return calculatedPower;
     }
+
+    public static async calcInstallationProductionV2( orientation = 'sud' ): Promise<number> {
+        const aspect = {
+            'sud':       0,
+            'sud_ouest': 45,
+            'sud_est':   90,
+            'ouest':     315,
+            'est':       -90,
+        };
+
+        let result: any;
+        try {
+            result = await axios.get( 'https://re.jrc.ec.europa.eu/api/v5_2/PVcalc', {
+                params: {
+                    lat:          46.170360,
+                    lon:          -1.121850,
+                    aspect:       aspect[ orientation ],
+                    peakpower:    3,
+                    loss:         25,
+                    angle:        35,
+                    outputformat: 'json',
+                },
+            } );
+        } catch ( e ) {
+            console.log( '%c IN CATCH', 'background: #fdd835; color: #000000' );
+            return -1;
+        }
+
+        console.log( result );
+
+        const data = result.data;
+
+        console.log( data.outputs.totals.fixed.E_y );
+        return data.outputs.totals.fixed.E_y;
+    }
+
+    public getInstallationProductionV2( year: number ): number {
+        if ( !this.worksheet.installationPower ) {
+            return this.calcInstallationProduction( year );
+        }
+
+
+        const installationPower = this.worksheet.installationPower;
+
+        let calculatedPower = installationPower;
+
+        if ( this.quotation.selectedProducts.length > 0 ) {
+            const product = this.quotation.selectedProducts[ 0 ];
+            if ( year === 1 ) {
+                if ( product.ext1 !== undefined ) {
+                    const percentage = 1 - ( parseFloat( product.ext1 ) / 100 );
+                    if ( product.power !== undefined ) {
+                        calculatedPower = installationPower * percentage;
+                    }
+                }
+            } else {
+                if ( product.ext1 !== undefined && product.ext2 !== undefined ) {
+                    const coefYear1     = parseFloat( product.ext1 );
+                    const coefOtherYear = ( parseFloat( product.ext2 ) - coefYear1 ) / 24;
+                    if ( product.power !== undefined ) {
+                        calculatedPower = installationPower * ( 1 - ( coefYear1 / 100 ) );
+                        calculatedPower = calculatedPower * ( 1 - ( ( year * coefOtherYear ) / 100 ) );
+                    }
+
+                }
+            }
+        }
+
+        return calculatedPower;
+
+    }
+
 
     /**
      * Calcul le total TTC avec les montants des primes déduites
@@ -123,7 +186,7 @@ export class PvAlgo {
      * Prix de vente moyen du KWh phtovoltaîque en €
      */
     public calcPhotovoltaicAverageSellingPrice( year = 1 ): number {
-        return this.calcTotalTtcWithBonusDeducted() / ( this.calcInstallationProduction( year ) * 25 );
+        return this.calcTotalTtcWithBonusDeducted() / ( this.getInstallationProductionV2( year ) * 25 );
     }
 
     /**
@@ -147,7 +210,7 @@ export class PvAlgo {
         }
         console.log( 'bonus', bonus );
 
-        return this.calcInstallationProduction( year ) * this.worksheet.ratioResaleToEDF * price + bonus;
+        return this.getInstallationProductionV2( year ) * this.worksheet.ratioResaleToEDF * price + bonus;
     }
 
     /**
@@ -155,7 +218,7 @@ export class PvAlgo {
      */
     public savingsOnBill( year = 1 ): number {
         const ratio = 1 - this.worksheet.ratioResaleToEDF;
-        return this.calcInstallationProduction( year ) * this.worksheet.averagePricePerKWhInFrance * ratio;
+        return this.getInstallationProductionV2( year ) * this.worksheet.averagePricePerKWhInFrance * ratio;
     }
 
     /**

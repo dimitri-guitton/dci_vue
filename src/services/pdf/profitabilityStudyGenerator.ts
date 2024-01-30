@@ -248,6 +248,8 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
 
         const worksheet = ( this._file.worksheet as PvWorkSheet );
 
+        const installationPower = this._pvAlgo.getInstallationProductionV2( 1 );
+
         return {
             margin:    [ 0, 15, 0, 0 ],
             style:     [ 'table' ],
@@ -267,8 +269,7 @@ export class ProfitabilityStudyGenerator extends PdfGenerator {
                     ],
                     [
                         {
-                            text:      `Orientation : ${ worksheet.orientation } | Production : ${ this._pvAlgo.calcInstallationProduction()
-                                                                                                       .toFixed( 2 ) } kwh`,
+                            text: `Orientation : ${ worksheet.orientation } | Production : ${ installationPower.toFixed( 2 ) } kwh`,
                             alignment: 'center',
                             bold:      true,
                             colSpan:   4,

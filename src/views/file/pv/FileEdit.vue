@@ -155,6 +155,7 @@ import { PvFile } from '@/types/v2/File/Pv/PvFile';
 import { PvStep5 } from '@/types/v2/Wizzard/step5/PvStep5';
 import { BaseStep3 } from '@/types/v2/Wizzard/step3/BaseStep3';
 import FilePvStep3 from '@/views/file/pv/FilePvStep3.vue';
+import { PvAlgo } from '@/services/algorithm/PvAlgo';
 
 setLocale( {
                // use constant translation keys for messages without values
@@ -342,7 +343,12 @@ export default defineComponent( {
                                         } );
 
                                         const onGenerateWorksheet = handleSubmit( async ( values ) => {
+                                            const response                                       = await PvAlgo.calcInstallationProductionV2(
+                                                ( values as PvFileStep ).worksheet.orientation );
+                                            ( values as PvFileStep ).worksheet.installationPower = response;
+
                                             const newFileData: PvFile = savePvWorksheet( ( values as PvFileStep ) );
+
                                             const worksheetGenerator  = new WorksheetGenerator( newFileData );
                                             worksheetGenerator.generatePdf();
                                         } );
