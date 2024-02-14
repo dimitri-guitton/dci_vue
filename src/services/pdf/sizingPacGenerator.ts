@@ -122,6 +122,7 @@ export class SizingPacGenerator extends PdfGenerator {
                 'La pompe à chaleur doit couvrir au minimum 60 % et au maximum 110 % des déperditions de la maison à la température de base. Elle doit couvrir au moins 120 % des déperditions avec les appoints électriques.\n\n',
                 additionnalInfoText,
                 'Température d\'arrêt de la PAC : -25°c\n',
+                'Les déperditions calculées concernent bien uniquement les pièces du logement desservies par le réseau de chauffage.\n',
                 'Les déperditions sont bien calculées sans considération des éventuels autres générateurs présents dans les pièces du logement desservies par le réseau de chauffage.\n',
                 heaterText,
                 powerPacText,
@@ -130,6 +131,7 @@ export class SizingPacGenerator extends PdfGenerator {
         } else {
             finalText = [
                 'La pompe à chaleur doit couvrir au minimum 120 % et au maximum 180 % des déperditions de la maison à la température de base\n',
+                'Les déperditions calculées concernent bien uniquement les pièces du logement desservies par le réseau de chauffage.\n',
                 'Les déperditions sont bien calculées sans considération des éventuels autres générateurs présents dans les pièces du logement desservies par le réseau de chauffage.\n',
             ];
         }
