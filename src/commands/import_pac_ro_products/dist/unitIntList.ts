@@ -391,7 +391,7 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'ATLANTIC',
         },
         {
-            'ref':             'DBBH11E6V',
+            'ref': 'EBBH11E6V',
             'sizes':           [
                 9,
                 11,
@@ -403,7 +403,7 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBBH16E6V',
+            'ref': 'EBBH16E6V',
             'sizes':           [
                 14,
                 16,
@@ -416,7 +416,7 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBVH11S18E6V',
+            'ref': 'EBVH11S18E6V',
             'sizes':           [
                 9,
                 11,
@@ -428,7 +428,7 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBVH11S23E6V',
+            'ref': 'EBVH11S23E6V',
             'sizes':           [
                 9,
                 11,
@@ -440,7 +440,7 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBVH16S18E6V',
+            'ref': 'EBVH16S18E6V',
             'sizes':           [
                 14,
                 16,
@@ -453,7 +453,7 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBVH16S23E6V',
+            'ref': 'EBVH16S23E6V',
             'sizes':           [
                 14,
                 16,
@@ -466,27 +466,27 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBVZ16S18E6V',
+            'ref':    'EBVZ16S18E6V',
             'sizes':           [
                 14,
                 16,
                 18,
             ],
             'hotWaterTank':    180,
-            'bizone':          false,
+            'bizone': true,
             'highTemperature': true,
             'power':           'monophase',
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBVZ16S23E6V',
+            'ref':    'EBVZ16S23E6V',
             'sizes':           [
                 14,
                 16,
                 18,
             ],
             'hotWaterTank':    230,
-            'bizone':          false,
+            'bizone': true,
             'highTemperature': true,
             'power':           'monophase',
             'model':           'DAIKIN',
@@ -734,7 +734,7 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'ATLANTIC',
         },
         {
-            'ref':             'DBBH11E9W',
+            'ref': 'EBBH11E9W',
             'sizes':           [
                 9,
                 11,
@@ -746,7 +746,7 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBBH16E9W',
+            'ref': 'EBBH16E9W',
             'sizes':           [
                 14,
                 16,
@@ -759,7 +759,7 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBVH11S18E9W',
+            'ref': 'EBVH11S18E9W',
             'sizes':           [
                 9,
                 11,
@@ -771,7 +771,7 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBVH11S23E9W',
+            'ref': 'EBVH11S23E9W',
             'sizes':           [
                 9,
                 11,
@@ -783,7 +783,7 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBVH16S18E9W',
+            'ref': 'EBVH16S18E9W',
             'sizes':           [
                 14,
                 16,
@@ -796,7 +796,7 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBVH16S23E9W',
+            'ref': 'EBVH16S23E9W',
             'sizes':           [
                 14,
                 16,
@@ -809,27 +809,27 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBVZ16S18E9W',
+            'ref':    'EBVZ16S18E9W',
             'sizes':           [
                 14,
                 16,
                 18,
             ],
             'hotWaterTank':    180,
-            'bizone':          false,
+            'bizone': true,
             'highTemperature': true,
             'power':           'triphase',
             'model':           'DAIKIN',
         },
         {
-            'ref':             'DBVZ16S23E9W',
+            'ref':    'EBVZ16S23E9W',
             'sizes':           [
                 14,
                 16,
                 18,
             ],
             'hotWaterTank':    230,
-            'bizone':          false,
+            'bizone': true,
             'highTemperature': true,
             'power':           'triphase',
             'model':           'DAIKIN',
