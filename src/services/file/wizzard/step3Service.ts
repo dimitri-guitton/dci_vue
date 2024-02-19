@@ -17,6 +17,10 @@ export const defaultInitFormDataStep3 = ( data: BaseFile ) => {
             address: data.housing.address,
             zipCode: data.housing.zipCode,
             city:    data.housing.city,
+            position: {
+                x: data.housing.position?.x ?? 0,
+                y: data.housing.position?.y ?? 0,
+            },
         },
         area:                    data.housing.area,
         dataGeoportail:          data.housing.dataGeoportail,
@@ -53,6 +57,7 @@ export const defaultGetHoussingValueStep3 = ( fileData: BaseFile, stepData: Base
         zipCode:  stepData.address.zipCode,
         city:     stepData.address.city,
         plot:     stepData.address.plot,
+        position: stepData.address.position,
         location: '',
     };
 

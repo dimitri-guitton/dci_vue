@@ -1,6 +1,7 @@
 import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
 import { PvWorkSheet } from '@/types/v2/File/Pv/PvWorkSheet';
 import axios from 'axios';
+import { Housing } from '@/types/v2/File/Common/Housing';
 
 interface PhotovoltaicBenefits {
     year: number;
@@ -92,7 +93,8 @@ export class PvAlgo {
         return calculatedPower;
     }
 
-    public static async calcInstallationProductionV2( orientation = 'sud' ): Promise<number> {
+    public static async calcInstallationProductionV2( housing: Housing, quotation: PvQuotation, orientation = 'sud' ): Promise<number> {
+        console.log( '%c calcInstallationProductionV2', 'background: #fdd835; color: #000000' );
         const aspect = {
             'sud':       0,
             'sud_ouest': 45,
@@ -101,18 +103,28 @@ export class PvAlgo {
             'est':       -90,
         };
 
+        // Peakpower - puissance crête - 10 panneaux de 300 watt = 3000W donc 3kWc = peakpower = 3
+        const quantity = quotation.selectedProducts[ 0 ].quantity;
+        console.log( 'quantity', quantity );
+        const power = quotation.selectedProducts[ 0 ].power ?? 0;
+        console.log( 'power', power );
+        const peakPower = quantity * power / 1000;
+        console.log( 'peakPower', peakPower );
+
         let result: any;
         try {
+            const params = {
+                lat:          housing.position.y,
+                lon:          housing.position.x,
+                aspect:       aspect[ orientation ],
+                peakpower:    peakPower,
+                loss:         15,
+                angle:        30,
+                outputformat: 'json',
+            };
+            console.log( 'params', params );
             result = await axios.get( 'https://re.jrc.ec.europa.eu/api/v5_2/PVcalc', {
-                params: {
-                    lat:          46.170360,
-                    lon:          -1.121850,
-                    aspect:       aspect[ orientation ],
-                    peakpower:    3,
-                    loss:         25,
-                    angle:        35,
-                    outputformat: 'json',
-                },
+                params: params,
             } );
         } catch ( e ) {
             console.log( '%c IN CATCH', 'background: #fdd835; color: #000000' );
@@ -128,12 +140,15 @@ export class PvAlgo {
     }
 
     public getInstallationProductionV2( year: number ): number {
+        // Si pas de données c'est que pas connecté à Internet
         if ( !this.worksheet.installationPower ) {
+            console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
+            console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
+            console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
             return this.calcInstallationProduction( year );
         }
 
-
-        const installationPower = this.worksheet.installationPower;
+        const installationPower = this.worksheet.installationPower / 1000;
 
         let calculatedPower = installationPower;
 
@@ -159,8 +174,9 @@ export class PvAlgo {
             }
         }
 
-        return calculatedPower;
+        console.log( `Power (${ year })`, calculatedPower );
 
+        return calculatedPower;
     }
 
 

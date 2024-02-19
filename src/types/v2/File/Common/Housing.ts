@@ -14,6 +14,10 @@ export interface Housing {
     city: string;
     plot: string;
     area: number;
+    position: {
+        x: number;
+        y: number;
+    };
     dataGeoportail: DataGeoportail;
     location: string;
     constructionYear: number | null;

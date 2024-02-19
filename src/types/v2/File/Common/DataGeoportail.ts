@@ -2,9 +2,10 @@
  * Interface pour les données du Géoportail
  */
 export interface DataGeoportail {
-    // zoom: number;
-    // center: number[];
-    // position: number[];
+    position: {
+        x: number;
+        y: number;
+    };
     zipCode: string;
     city: string;
     address: string;

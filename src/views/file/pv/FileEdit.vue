@@ -343,13 +343,18 @@ export default defineComponent( {
                                         } );
 
                                         const onGenerateWorksheet = handleSubmit( async ( values ) => {
-                                            const response                                       = await PvAlgo.calcInstallationProductionV2(
+                                            // TODO : Les données ne sont pas à jour après modificatin direct depuis l'étape 4
+                                            // Si j'update la qty des panneaux, il faut que je reload la page
+                                            const calcProduction                                 = await PvAlgo.calcInstallationProductionV2(
+                                                fileData.value.housing,
+                                                fileData.value.quotation,
                                                 ( values as PvFileStep ).worksheet.orientation );
-                                            ( values as PvFileStep ).worksheet.installationPower = response;
+                                            ( values as PvFileStep ).worksheet.installationPower = calcProduction;
+                                            console.log( 'calcProduction', calcProduction );
 
                                             const newFileData: PvFile = savePvWorksheet( ( values as PvFileStep ) );
 
-                                            const worksheetGenerator  = new WorksheetGenerator( newFileData );
+                                            const worksheetGenerator = new WorksheetGenerator( newFileData );
                                             worksheetGenerator.generatePdf();
                                         } );
 

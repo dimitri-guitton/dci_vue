@@ -138,15 +138,12 @@ export default defineComponent( {
                                     emits: [ 'selectedProductIsUpdated', 'quantityIsUpdated' ],
                                     setup( props, ctx ) {
                                         let currentProduct = ref<Product>();
-                                        console.log( 'INIT QTY TO 0' );
                                         const quantity = ref( 0 );
                                         const selectedId   = ref<number>();
 
                                         const onChangeProduct = ( value ) => {
                                             currentProduct.value = props.products.find( p => p.id === value );
                                             if ( currentProduct.value ) {
-                                                console.log( 'SET currentProduct.quantity IN ONCHANGEPRODUCT',
-                                                             quantity.value );
                                                 currentProduct.value.quantity = quantity.value;
                                             }
                                             ctx.emit( 'selectedProductIsUpdated', currentProduct.value, 'product' );
@@ -155,26 +152,17 @@ export default defineComponent( {
                                         const onChangeQuantity = () => {
                                             ctx.emit( 'quantityIsUpdated', quantity.value );
                                             if ( currentProduct.value ) {
-                                                console.log( 'SET currentProduct.quantity IN ONCHANGEQUANTITY',
-                                                             quantity.value );
                                                 currentProduct.value.quantity = quantity.value;
                                             }
                                         };
 
                                         try {
-                                            // console.log(props.selectedProducts[ props.index ]);
-                                            console.log( props.selectedProducts );
                                             if ( props.selectedProducts.length > 0 && props.selectedProducts[ props.index ] !== undefined ) {
                                                 currentProduct = ref( props.selectedProducts[ props.index ] );
-                                                console.log( '%c IN IF', 'background: #D1FFFA; color: #000000' );
-                                                console.log( 'Current product', currentProduct.value );
                                             } else {
-                                                console.log( '%c IN ELSE', 'background: #FF3C2F; color: #000000' );
                                                 currentProduct = ref( props.products[ 0 ] );
                                                 onChangeProduct( props.products[ 0 ].id );
                                             }
-                                            console.log( 'P QTY', currentProduct.value?.quantity );
-                                            console.log( 'SET QTY', currentProduct.value?.quantity );
                                             quantity.value = currentProduct.value?.quantity ?? 0;
                                         } catch ( e ) {
                                             console.warn( e );

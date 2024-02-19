@@ -13,6 +13,10 @@ export interface BaseStep3 {
         address: string;
         zipCode: string;
         city: string;
+        position: {
+            x: number;
+            y: number;
+        };
     };
     dataGeoportail: DataGeoportail;
 }

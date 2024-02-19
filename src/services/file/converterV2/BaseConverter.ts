@@ -228,18 +228,22 @@ export class BaseConverter {
             dataGeoportail = {
                 // zoom:     this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'zoom' ],
                 // center:   this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'center' ],
-                // position: this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'position' ],
-                zipCode: this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'codepostal' ],
-                city:    this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'ville' ],
-                address: this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'adresse' ],
-                plot:    this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'parcelle' ],
+                position: this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'position' ],
+                zipCode:  this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'codepostal' ],
+                city:     this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'ville' ],
+                address:  this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'adresse' ],
+                plot:     this.oldData[ 'logement' ][ 'dataGeoportail' ][ 'parcelle' ],
             };
         } else {
             dataGeoportail = {
-                zipCode: '',
-                city:    '',
-                address: '',
-                plot:    '',
+                position: {
+                    x: 0,
+                    y: 0,
+                },
+                zipCode:  '',
+                city:     '',
+                address:  '',
+                plot:     '',
             };
         }
 
@@ -255,6 +259,10 @@ export class BaseConverter {
         }
 
         return {
+            position: {
+                x: 0,
+                y: 0,
+            },
             nbOccupant:       this.getNumberData( this.oldData[ 'logement' ][ 'occupants' ] ),
             type,
             buildingNature:   this.getObjectData( this.oldData, [ 'logement', 'batimentNature' ] ),
