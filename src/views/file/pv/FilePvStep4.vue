@@ -26,33 +26,28 @@
 
         <step4-quotation-header></step4-quotation-header>
 
-        <div class="col-md-6 mb-5">
-            <label class="form-label" for="q_quantity">Nombre de panneaux</label>
-            <Field id="q_quantity"
-                   name="q_quantity"
-                   v-model.number="quantity"
-                   type="number"
-                   min="3"
-                   class="form-control"
-            />
-        </div>
-
-        <selected-product ref="$selectedPannels"
+        <selected-product ref="selectPannels"
                           :index="0"
+                          :edit-quantity="true"
                           :products="computedPannels"
-                          :selectedProducts="computedSelectedPannels"
-                          @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
+                          :selectedProducts="allSelectedProducts"
+                          @selectedProductIsUpdated="updateSelectedProduct"
+                          @quantityIsUpdated="(v)=>quantity = v"
+        ></selected-product>
 
-        <selected-product ref="$selectedOnduleurs"
+        <selected-product ref="selectOnduleurs"
                           :index="1"
+                          :edit-quantity="true"
                           :products="computedOnduleurs"
-                          :selectedProducts="computedSelectedOnduleurs"
-                          @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
+                          :selectedProducts="allSelectedProducts"
+                          @selectedProductIsUpdated="updateSelectedProduct"
+        ></selected-product>
 
-        <selected-product ref="$selectedPasserelles"
+        <selected-product ref="selectPasserelles"
                           :index="2"
+                          :edit-quantity="true"
                           :products="computedPasserelles"
-                          :selectedProducts="computedSelectedPasserelles"
+                          :selectedProducts="allSelectedProducts"
                           @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
 
         <options :options="computedOptions" @optionsAreUpdated="updateOptions"></options>
@@ -155,16 +150,17 @@ export default defineComponent( {
                                         for ( const selectedProduct of _selectedProducts.value ) {
                                             if ( selectedProduct.productType === 'pv' ) {
                                                 quantity.value = selectedProduct.quantity;
-                                            }
 
-                                            if ( selectedProduct.productType === 'onduleur' ) {
-                                                quantity.value = selectedProduct.quantity;
+                                                if ( quantity.value < 3 ) {
+                                                    quantity.value = 3;
+                                                }
+                                                break;
                                             }
                                         }
 
-                                        const $selectedPannels     = ref( null );
-                                        const $selectedOnduleurs   = ref( null );
-                                        const $selectedPasserelles = ref( null );
+                                        const selectPannels     = ref( null );
+                                        const selectOnduleurs   = ref( null );
+                                        const selectPasserelles = ref( null );
 
                                         const generateQuotation = () => {
                                             ctx.emit( 'generateQuotation' );
@@ -198,7 +194,7 @@ export default defineComponent( {
                                             const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'pv' );
 
                                             if ( filterSelectedProducts.length < 1 ) {
-                                                const newSelectedPannel = ( $selectedPannels.value as any )?.resetSelectedValue(
+                                                const newSelectedPannel = ( selectPannels.value as any )?.resetSelectedValue(
                                                     newList );
                                                 if ( newSelectedPannel !== undefined ) {
                                                     updateSelectedProduct( newSelectedPannel );
@@ -213,7 +209,7 @@ export default defineComponent( {
                                             const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'onduleur' );
 
                                             if ( filterSelectedProducts.length < 1 ) {
-                                                const newSelectedOnduleur = ( $selectedOnduleurs.value as any )?.resetSelectedValue(
+                                                const newSelectedOnduleur = ( selectOnduleurs.value as any )?.resetSelectedValue(
                                                     newList );
                                                 if ( newSelectedOnduleur !== undefined ) {
                                                     updateSelectedProduct( newSelectedOnduleur );
@@ -228,7 +224,7 @@ export default defineComponent( {
                                             const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'passerelle' );
 
                                             if ( filterSelectedProducts.length < 1 ) {
-                                                const newSelectedPassrelle = ( $selectedPasserelles.value as any )?.resetSelectedValue(
+                                                const newSelectedPassrelle = ( selectPasserelles.value as any )?.resetSelectedValue(
                                                     newList );
                                                 if ( newSelectedPassrelle !== undefined ) {
                                                     updateSelectedProduct( newSelectedPassrelle );
@@ -270,27 +266,6 @@ export default defineComponent( {
                                             return _options.value;
                                         } );
 
-                                        const computedSelectedPannels = computed<Product[]>( () => {
-                                            const list = _selectedProducts.value.filter( p => p.productType === 'pv' );
-                                            for ( const p of list ) {
-                                                p.quantity = quantity.value;
-                                                updateSelectedProduct( p );
-                                            }
-                                            return _selectedProducts.value.filter( p => p.productType === 'pv' );
-                                        } );
-
-                                        const computedSelectedOnduleurs = computed<Product[]>( () => {
-                                            const list = _selectedProducts.value.filter( p => p.productType === 'onduleur' );
-                                            for ( const p of list ) {
-                                                p.quantity = quantity.value;
-                                                updateSelectedProduct( p );
-                                            }
-                                            return _selectedProducts.value.filter( p => p.productType === 'onduleur' );
-                                        } );
-
-                                        const computedSelectedPasserelles = computed<Product[]>( () => {
-                                            return _selectedProducts.value.filter( p => p.productType === 'passerelle' );
-                                        } );
 
 
                                         const price = computed<Price>( () => {
@@ -383,14 +358,12 @@ export default defineComponent( {
                                             computedPannels,
                                             computedPasserelles,
                                             computedOnduleurs,
-                                            computedSelectedPannels,
-                                            computedSelectedPasserelles,
-                                            computedSelectedOnduleurs,
+                                            allSelectedProducts: _selectedProducts,
                                             computedOptions,
                                             quantity,
-                                            $selectedPannels,
-                                            $selectedOnduleurs,
-                                            $selectedPasserelles,
+                                            selectPannels,
+                                            selectOnduleurs,
+                                            selectPasserelles,
                                             resaleType,
                                             resaleTypeList: [
                                                 {

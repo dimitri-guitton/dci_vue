@@ -22,6 +22,7 @@
                             class="form-control"
                             :name="`selectedProducts[${index}].quantity`"
                             placeholder="1"
+                            :min="0"
                             v-model="refQuantityArea"
                         />
                         <div class="input-group-append">
@@ -32,12 +33,14 @@
                 <template v-else>
                     <div class="input-group">
                         <Field
-                            :disabled="true"
+                            :disabled="!editQuantity"
                             type="number"
                             class="form-control"
                             :name="`selectedProducts[${index}].quantity`"
                             placeholder="1"
-                            v-model.number="currentProduct.quantity"
+                            :min="0"
+                            v-model.number="quantity"
+                            @change="onChangeQuantity"
                         />
                         <div class="input-group-append">
                             <span class="input-group-text">U</span>
@@ -48,13 +51,13 @@
             </div>
             <div class="col-md-2 fv-row">
                 <Field
-                        v-model.number="currentProduct.pu"
-                        type="number"
-                        class="form-control"
-                        :name="`selectedProducts[${index}].pu`"
-                        :disabled="disabledPrice"
-                        placeholder="100"
-                        @change="onChangeProduct(selectedId)"
+                    v-model.number="currentProduct.pu"
+                    type="number"
+                    class="form-control"
+                    :name="`selectedProducts[${index}].pu`"
+                    :disabled="disabledPrice"
+                    placeholder="100"
+                    @change="onChangeProduct(selectedId)"
                 />
                 <ErrorMessage
                     :name="`selectedProducts[${index}].pu`"
@@ -66,7 +69,7 @@
                     <h5 class="mb-3">{{ numberToPrice( currentProduct.pu, quantityArea ) }}</h5>
                 </template>
                 <template v-else>
-                    <h5 class="mb-3">{{ numberToPrice( currentProduct.pu, currentProduct.quantity ) }}</h5>
+                    <h5 class="mb-3">{{ numberToPrice( currentProduct.pu, quantity ) }}</h5>
                 </template>
 
             </div>
@@ -109,6 +112,10 @@ export default defineComponent( {
                                             type:    Number,
                                             default: 0,
                                         },
+                                        editQuantity: {
+                                            type:    Boolean,
+                                            default: false,
+                                        },
                                         disabledPrice:    { // Quantité au metre carré
                                             type:    Boolean,
                                             default: false,
@@ -128,17 +135,35 @@ export default defineComponent( {
                                         // Affichage du alert en dessous du produit
                                         alert: String,
                                     },
-                                    emits:      [ 'selectedProductIsUpdated' ],
+                                    emits: [ 'selectedProductIsUpdated', 'quantityIsUpdated' ],
                                     setup( props, ctx ) {
                                         let currentProduct = ref<Product>();
+                                        console.log( 'INIT QTY TO 0' );
+                                        const quantity = ref( 0 );
                                         const selectedId   = ref<number>();
 
                                         const onChangeProduct = ( value ) => {
                                             currentProduct.value = props.products.find( p => p.id === value );
+                                            if ( currentProduct.value ) {
+                                                console.log( 'SET currentProduct.quantity IN ONCHANGEPRODUCT',
+                                                             quantity.value );
+                                                currentProduct.value.quantity = quantity.value;
+                                            }
                                             ctx.emit( 'selectedProductIsUpdated', currentProduct.value, 'product' );
                                         };
 
+                                        const onChangeQuantity = () => {
+                                            ctx.emit( 'quantityIsUpdated', quantity.value );
+                                            if ( currentProduct.value ) {
+                                                console.log( 'SET currentProduct.quantity IN ONCHANGEQUANTITY',
+                                                             quantity.value );
+                                                currentProduct.value.quantity = quantity.value;
+                                            }
+                                        };
+
                                         try {
+                                            // console.log(props.selectedProducts[ props.index ]);
+                                            console.log( props.selectedProducts );
                                             if ( props.selectedProducts.length > 0 && props.selectedProducts[ props.index ] !== undefined ) {
                                                 currentProduct = ref( props.selectedProducts[ props.index ] );
                                                 console.log( '%c IN IF', 'background: #D1FFFA; color: #000000' );
@@ -148,6 +173,9 @@ export default defineComponent( {
                                                 currentProduct = ref( props.products[ 0 ] );
                                                 onChangeProduct( props.products[ 0 ].id );
                                             }
+                                            console.log( 'P QTY', currentProduct.value?.quantity );
+                                            console.log( 'SET QTY', currentProduct.value?.quantity );
+                                            quantity.value = currentProduct.value?.quantity ?? 0;
                                         } catch ( e ) {
                                             console.warn( e );
                                             ElMessage( {
@@ -159,7 +187,6 @@ export default defineComponent( {
                                                            type:                     'error',
                                                        } );
                                         }
-
 
                                         const refQuantityArea = toRef( props, 'quantityArea' );
 
@@ -193,12 +220,14 @@ export default defineComponent( {
 
                                         return {
                                             onChangeProduct,
+                                            onChangeQuantity,
                                             resetSelectedValue,
                                             refQuantityArea,
                                             htmlAlert,
                                             selectedId,
                                             currentProduct,
                                             numberToPrice,
+                                            quantity,
                                         };
                                     },
                                 } );
