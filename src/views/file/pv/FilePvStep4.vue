@@ -28,14 +28,13 @@
 
         <div class="col-md-6 mb-5">
             <label class="form-label" for="q_quantity">Nombre de panneaux</label>
-
             <Field id="q_quantity"
-                   v-model="quantity"
-                   as="select"
-                   class="form-select"
-                   name="q_quantity">
-                <option v-for="index in 58" :key="index+2" :value="index + 2">{{ index + 2 }}</option>
-            </Field>
+                   name="q_quantity"
+                   v-model.number="quantity"
+                   type="number"
+                   min="3"
+                   class="form-control"
+            />
         </div>
 
         <selected-product ref="$selectedPannels"
