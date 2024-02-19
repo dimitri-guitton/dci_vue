@@ -192,7 +192,7 @@ export class QuotationGenerator extends PdfGenerator {
             [
                 {
                     image: LOGO_ECO,
-                    width: 190,
+                    width: 65,
                 },
             ],
         ];

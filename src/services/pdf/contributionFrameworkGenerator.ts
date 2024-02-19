@@ -188,7 +188,7 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
                 work = 'Isolation d’un plancher bas';
                 break;
             case FILE_PAC_RO:
-                cee  = 'TH-104';
+                cee = 'TH-171';
                 work = 'Installation d’une pompe à chaleur air / eau';
                 break;
             case FILE_PAC_RR:
