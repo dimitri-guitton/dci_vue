@@ -93,7 +93,7 @@ export class ObjEcoEnergie extends PdfGenerator {
                 stack:  [
                     {
                         image: LOGO_ECO,
-                        width: 140,
+                        width: 75,
                     },
                 ],
             },
