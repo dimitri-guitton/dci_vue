@@ -1,7 +1,7 @@
 {
     "name":            "eco-atl-dci",
     "productName":     "DCI",
-    "version":         "3.2.5",
+    "version":         "3.11.4",
     "private":         true,
     "description":     "Logiciel de devis",
     "author":          {
@@ -10,6 +10,7 @@
         "url":   "https://echo-numeric.com/"
     },
     "scripts":         {
+        "get-ro-products": "NODE_TLS_REJECT_UNAUTHORIZED='0' node src/commands/import_pac_ro_products/algo.js",
         "serve":                   "vue-cli-service serve",
         "build":                   "vue-cli-service build",
         "deploy":                  "./deploy.sh",
@@ -113,10 +114,13 @@
         "sass":                               "1.32.13",
         "sass-loader":                        "^8.0.2",
         "typescript":                         "^3.9.9",
-        "vue-cli-plugin-electron-builder":    "~2.1.1",
+        "vue-cli-plugin-electron-builder": "^2.1.1",
         "vuex-module-decorators":             "^1.0.1"
     },
     "engines":         {
         "node": ">=14.0.0 <15"
+    },
+    "resolutions":     {
+        "vue-cli-plugin-electron-builder/electron-builder": "^23.0.3"
     }
 }
