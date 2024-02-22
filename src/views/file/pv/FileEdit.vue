@@ -343,14 +343,17 @@ export default defineComponent( {
                                         } );
 
                                         const onGenerateWorksheet = handleSubmit( async ( values ) => {
-                                            // TODO : Les données ne sont pas à jour après modificatin direct depuis l'étape 4
-                                            // Si j'update la qty des panneaux, il faut que je reload la page
+                                            console.log( '%c ON GENERATE WOKSHEET',
+                                                         'background: #fdd835; color: #000000' );
+
+                                            const currentFileData = getCurrentPvFileData();
+
                                             const calcProduction                                 = await PvAlgo.calcInstallationProductionV2(
-                                                fileData.value.housing,
-                                                fileData.value.quotation,
+                                                currentFileData.housing,
+                                                currentFileData.quotation,
                                                 ( values as PvFileStep ).worksheet.orientation );
+
                                             ( values as PvFileStep ).worksheet.installationPower = calcProduction;
-                                            console.log( 'calcProduction', calcProduction );
 
                                             const newFileData: PvFile = savePvWorksheet( ( values as PvFileStep ) );
 

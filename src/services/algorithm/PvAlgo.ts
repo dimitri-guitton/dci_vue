@@ -148,7 +148,7 @@ export class PvAlgo {
             return this.calcInstallationProduction( year );
         }
 
-        const installationPower = this.worksheet.installationPower / 1000;
+        const installationPower = this.worksheet.installationPower;
 
         let calculatedPower = installationPower;
 

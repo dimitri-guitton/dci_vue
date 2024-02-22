@@ -68,6 +68,7 @@ export const validatePvStep4 = async ( data: PvFileStep, price: Price ): Promise
         fileData = updateFileReferenceTechnicalVisit( fileData, data.requestTechnicalVisit === true ) as PvFile;
     }
 
+    console.log( 'fileData', fileData );
     updateJsonData( fileData );
     updateTotalTtc( fileData.ref, fileData.quotation.totalTtc );
 
