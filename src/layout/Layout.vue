@@ -18,14 +18,15 @@
       <div id="kt_content" class="content d-flex flex-column flex-column-fluid">
         <!-- begin:: Content Body -->
         <div class="post d-flex flex-column-fluid">
-          <div
-            :class="{
-              'container-fluid': contentWidthFluid,
-              container: !contentWidthFluid
-            }"
-          >
-            <router-view />
-          </div>
+            <!--          <div-->
+            <!--            :class="{-->
+            <!--              'container-fluid': contentWidthFluid,-->
+            <!--              container: !contentWidthFluid-->
+            <!--            }"-->
+            <!--          >-->
+            <div class="container-fluid">
+                <router-view />
+            </div>
         </div>
         <!-- end:: Content Body -->
       </div>
@@ -55,14 +56,14 @@ import { Actions } from '@/store/enums/StoreEnums';
 import { DrawerComponent, MenuComponent } from '@/assets/ts/components/index';
 import { removeModalBackdrop } from '@/core/helpers/dom';
 import {
-  asideEnabled,
-  contentWidthFluid,
-  loaderEnabled,
-  loaderLogo,
-  subheaderDisplay,
-  themeDarkLogo,
-  themeLightLogo,
-  toolbarDisplay,
+    asideEnabled,
+    contentWidthFluid,
+    loaderEnabled,
+    loaderLogo,
+    subheaderDisplay,
+    themeDarkLogo,
+    themeLightLogo,
+    toolbarDisplay,
 } from '@/core/helpers/config';
 
 export default defineComponent({

@@ -229,12 +229,12 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@ignf-geoportal/sdk-2d@^3.3.6":
-  version "3.3.9"
-  resolved "https://registry.yarnpkg.com/@ignf-geoportal/sdk-2d/-/sdk-2d-3.3.9.tgz#d0ab75a4778b20b90fd19eaea122199dbdf6f948"
-  integrity sha512-djjhAfV2HYOPPl6EHdtqHdfyxzImCZmQG8Ti3rj9JPdyRjI/+mesc+cO4RPBX05w2UfXl0ourhynLns8njZtsA==
+"@ignf-geoportal/sdk-2d@^3.4.3":
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/@ignf-geoportal/sdk-2d/-/sdk-2d-3.4.3.tgz#63bd3333520dda02472732cd0b2335c5700129c4"
+  integrity sha512-HjsxAyuIT2mmoHlidjQy/Q6VSVMf9MbjI/8j+sp13dLZ5QEr8WokO7RkrtFyvGg7jLLjssGbmgXQ1OV9rBQRjQ==
   dependencies:
-    geoportal-extensions-openlayers "3.2.8"
+    geoportal-extensions-openlayers "3.3.3"
     node-fetch "^2.6.1"
     ol "6.9.0"
     xmldom "^0.1.27"
@@ -5373,10 +5373,10 @@ generic-names@^4.0.0:
   dependencies:
     loader-utils "^3.2.0"
 
-geoportal-access-lib@3.0.5:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/geoportal-access-lib/-/geoportal-access-lib-3.0.5.tgz#2cde6e6ea689765c25f455fe1109d678a3b5ab2d"
-  integrity sha512-ruj6iXD7XStS1YuwSoTUYyQEsdP5BMLTiz7kS7hLwiB0g42SF4+ALH3aLHpthQOpXcNJb5XsCfS7P8K1BKZOZg==
+geoportal-access-lib@3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/geoportal-access-lib/-/geoportal-access-lib-3.3.3.tgz#33b1dc313ca8aeadd0adebf3bca4ef75ea48c50b"
+  integrity sha512-1S8B84yaU8JrkSxLXVFxqjkL4MMs1RNJwdQQMGjAoH/fXPr3CleoEaoG7z14HgVlWCvdYYqAqQuL6qGVCrlmXQ==
   dependencies:
     es6-promise "^4.2.4"
     node-fetch "^2.6.1"
@@ -5391,20 +5391,19 @@ geoportal-access-lib@^3.1.0:
     node-fetch "^2.6.1"
     xmldom "^0.1.27"
 
-geoportal-extensions-openlayers@3.2.8:
-  version "3.2.8"
-  resolved "https://registry.yarnpkg.com/geoportal-extensions-openlayers/-/geoportal-extensions-openlayers-3.2.8.tgz#8153db67a3bcd6cc765dfb60bf35fd39ab27a502"
-  integrity sha512-zNtCq/fwgzITFsoNcv6JJl5oJxyNqvSA5vWXDv8xrWF4a5rFi6mZy1wqLaI5q8Zuh92sRRGxSh9jZt953Vx2+w==
+geoportal-extensions-openlayers@3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/geoportal-extensions-openlayers/-/geoportal-extensions-openlayers-3.3.3.tgz#4fb1311b508cd9b8059faa036bb811467d0319e0"
+  integrity sha512-fSu3md7R/kB0pVez+HpUdMsajmqsBvGJjKayu3XTW0GPYUpDkTprdNarHsPqXSIwZRMBd63VImIKaVna6rx84g==
   dependencies:
     "@mapbox/mapbox-gl-style-spec" "13.20.1"
     eventbusjs "0.2.0"
-    geoportal-access-lib "3.0.5"
+    geoportal-access-lib "3.3.3"
     loglevel "1.6.6"
     node-fetch "^2.6.1"
     ol "6.9.0"
-    ol-mapbox-style "6.7.0"
-    proj4 "2.7.2"
-    sortablejs "1.8.4"
+    proj4 "2.7.5"
+    sortablejs "1.14.0"
     xmldom "^0.1.27"
 
 geotiff@^1.0.8:
@@ -7349,7 +7348,7 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-mapbox-to-css-font@^2.4.0, mapbox-to-css-font@^2.4.1:
+mapbox-to-css-font@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/mapbox-to-css-font/-/mapbox-to-css-font-2.4.1.tgz#41bf38faed36b7dab069828aa3654e4bd91a1eda"
   integrity sha512-QQ/iKiM43DM9+aujTL45Iz5o7gDeSFmy4LPl3HZmNcwCE++NxGazf+yFpY+wCb+YS23sDa1ghpo3zrNFOcHlow==
@@ -8239,15 +8238,6 @@ obuf@^1.0.0, obuf@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
   integrity sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
-
-ol-mapbox-style@6.7.0:
-  version "6.7.0"
-  resolved "https://registry.yarnpkg.com/ol-mapbox-style/-/ol-mapbox-style-6.7.0.tgz#2a50afc17e0b3318361ff2562e0b6b236a915ed2"
-  integrity sha512-O8Gq3q1CvzklikL0mYVjGGg6xNOlmpOwzemBwXUzTGf9i14G/WVcDo3JSLySedFHekRIpp5vw7gk+FFd21nqVw==
-  dependencies:
-    "@mapbox/mapbox-gl-style-spec" "^13.20.1"
-    mapbox-to-css-font "^2.4.0"
-    webfont-matcher "^1.1.0"
 
 ol-mapbox-style@^6.5.1:
   version "6.9.0"
@@ -9308,13 +9298,13 @@ progress@^2.0.0, progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-proj4@2.7.2:
-  version "2.7.2"
-  resolved "https://registry.yarnpkg.com/proj4/-/proj4-2.7.2.tgz#faa42e5965aa275af5438ba2da8c59d1cc501137"
-  integrity sha512-x/EboBmIq48a9FED0Z9zWCXkd8VIpXHLsyEXljGtsnzeztC41bFjPjJ0S//wBbNLDnDYRe0e6c3FSSiqMCebDA==
+proj4@2.7.5:
+  version "2.7.5"
+  resolved "https://registry.yarnpkg.com/proj4/-/proj4-2.7.5.tgz#46c3ef841a9df57470d791f221160a9d68951945"
+  integrity sha512-5ecXUXbHAfvdhfBQpU7EhUfPCQGUCPmVup/4gnZA3bJY3JcK/xxzm4QQDz1xiXokN6ux65VDczlCtBtKrTSpAQ==
   dependencies:
     mgrs "1.0.0"
-    wkt-parser "^1.2.4"
+    wkt-parser "^1.3.1"
 
 promise-inflight@^1.0.1:
   version "1.0.1"
@@ -10416,10 +10406,10 @@ sort-object@^0.3.2:
     sort-asc "^0.1.0"
     sort-desc "^0.1.1"
 
-sortablejs@1.8.4:
-  version "1.8.4"
-  resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.8.4.tgz#1bbfeafa96d399b83f28e25d8e49d4fbfd867f30"
-  integrity sha512-Brqnzelu1AhFuc0Fn3N/qFex1tlIiuQIUsfu2J8luJ4cRgXYkWrByxa+y5mWEBlj8A0YoABukflIJwvHyrwJ6Q==
+sortablejs@1.14.0:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.14.0.tgz#6d2e17ccbdb25f464734df621d4f35d4ab35b3d8"
+  integrity sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==
 
 source-list-map@^2.0.0:
   version "2.0.1"
@@ -12169,10 +12159,10 @@ wide-align@^1.1.0, wide-align@^1.1.2, wide-align@^1.1.5:
   dependencies:
     string-width "^1.0.2 || 2 || 3 || 4"
 
-wkt-parser@^1.2.4:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/wkt-parser/-/wkt-parser-1.3.2.tgz#deeff04a21edc5b170a60da418e9ed1d1ab0e219"
-  integrity sha512-A26BOOo7sHAagyxG7iuRhnKMO7Q3mEOiOT4oGUmohtN/Li5wameeU4S6f8vWw6NADTVKljBs8bzA8JPQgSEMVQ==
+wkt-parser@^1.3.1:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/wkt-parser/-/wkt-parser-1.3.3.tgz#46b4e3032dd9c86907f7e630b57e3c6ea2bb772b"
+  integrity sha512-ZnV3yH8/k58ZPACOXeiHaMuXIiaTk1t0hSUVisbO0t4RjA5wPpUytcxeyiN2h+LZRrmuHIh/1UlrR9e7DHDvTw==
 
 word-wrap@~1.2.3:
   version "1.2.3"
