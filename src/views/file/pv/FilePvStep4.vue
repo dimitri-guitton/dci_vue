@@ -34,7 +34,7 @@
                    as="select"
                    class="form-select"
                    name="q_quantity">
-                <option v-for="index in 58" :key="index+2" :value="index + 2">{{ index + 2 }}</option>
+                <option v-for="index in 1000" :key="index+2" :value="index + 2">{{ index + 2 }}</option>
             </Field>
         </div>
 
