@@ -141,10 +141,8 @@ export class PvAlgo {
 
     public getInstallationProductionV2( year: number ): number {
         // Si pas de données c'est que pas connecté à Internet
-        if ( !this.worksheet.installationPower ) {
-            // console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
-            // console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
-            // console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
+        if ( !this.worksheet.installationPower || this.worksheet.installationPower <= 0 ) {
+            console.log( '%c PAS DONNÉES, UTILISATION ANCIEN ALGO', 'background: #FF3A44; color: #000000' );
             return this.calcInstallationProduction( year );
         }
 
