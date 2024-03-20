@@ -1042,6 +1042,9 @@ export class QuotationGenerator extends PdfGenerator {
                 break;
             default:
                 for ( const product of this._file.quotation.selectedProducts ) {
+                    if ( product.quantity <= 0 ) {
+                        continue;
+                    }
                     const totalPrice = this.formatPrice( product.pu, product.quantity );
                     const quantity   = `${ product.quantity }u`;
 

@@ -94,7 +94,7 @@ export class PvAlgo {
     }
 
     public static async calcInstallationProductionV2( housing: Housing, quotation: PvQuotation, orientation = 'sud' ): Promise<number> {
-        console.log( '%c calcInstallationProductionV2', 'background: #fdd835; color: #000000' );
+        // console.log( '%c calcInstallationProductionV2', 'background: #fdd835; color: #000000' );
         const aspect = {
             'sud':       0,
             'sud_ouest': 45,
@@ -105,11 +105,11 @@ export class PvAlgo {
 
         // Peakpower - puissance crête - 10 panneaux de 300 watt = 3000W donc 3kWc = peakpower = 3
         const quantity = quotation.selectedProducts[ 0 ].quantity;
-        console.log( 'quantity', quantity );
+        // console.log( 'quantity', quantity );
         const power = quotation.selectedProducts[ 0 ].power ?? 0;
-        console.log( 'power', power );
+        // console.log( 'power', power );
         const peakPower = quantity * power / 1000;
-        console.log( 'peakPower', peakPower );
+        // console.log( 'peakPower', peakPower );
 
         let result: any;
         try {
@@ -122,7 +122,7 @@ export class PvAlgo {
                 angle:        30,
                 outputformat: 'json',
             };
-            console.log( 'params', params );
+            // console.log( 'params', params );
             result = await axios.get( 'https://re.jrc.ec.europa.eu/api/v5_2/PVcalc', {
                 params: params,
             } );
@@ -131,20 +131,20 @@ export class PvAlgo {
             return -1;
         }
 
-        console.log( result );
+        // console.log( result );
 
         const data = result.data;
 
-        console.log( data.outputs.totals.fixed.E_y );
+        // console.log( data.outputs.totals.fixed.E_y );
         return data.outputs.totals.fixed.E_y;
     }
 
     public getInstallationProductionV2( year: number ): number {
         // Si pas de données c'est que pas connecté à Internet
         if ( !this.worksheet.installationPower ) {
-            console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
-            console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
-            console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
+            // console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
+            // console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
+            // console.log( '%c IN IF', 'background: #fdd835; color: #000000' );
             return this.calcInstallationProduction( year );
         }
 
@@ -174,7 +174,7 @@ export class PvAlgo {
             }
         }
 
-        console.log( `Power (${ year })`, calculatedPower );
+        // console.log( `Power (${ year })`, calculatedPower );
 
         return calculatedPower;
     }
@@ -224,7 +224,7 @@ export class PvAlgo {
         if ( year === 1 ) {
             bonus = this.quotation.selfConsumptionBonus;
         }
-        console.log( 'bonus', bonus );
+        // console.log( 'bonus', bonus );
 
         return this.getInstallationProductionV2( year ) * this.worksheet.ratioResaleToEDF * price + bonus;
     }

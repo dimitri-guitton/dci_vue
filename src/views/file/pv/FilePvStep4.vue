@@ -43,12 +43,44 @@
                           @selectedProductIsUpdated="updateSelectedProduct"
         ></selected-product>
 
+        <selected-product ref="selectCables"
+                          :index="3"
+                          :edit-quantity="true"
+                          :products="computedCables"
+                          :selectedProducts="allSelectedProducts"
+                          @selectedProductIsUpdated="updateSelectedProduct"
+        ></selected-product>
+
+        <selected-product ref="selectElectricite"
+                          :index="6"
+                          :edit-quantity="true"
+                          :products="computedElectricites"
+                          :selectedProducts="allSelectedProducts"
+                          @selectedProductIsUpdated="updateSelectedProduct"
+        ></selected-product>
+
         <selected-product ref="selectPasserelles"
                           :index="2"
                           :edit-quantity="true"
                           :products="computedPasserelles"
                           :selectedProducts="allSelectedProducts"
                           @selectedProductIsUpdated="updateSelectedProduct"></selected-product>
+
+        <selected-product ref="selectBatteries"
+                          :index="4"
+                          :edit-quantity="true"
+                          :products="computedBateries"
+                          :selectedProducts="allSelectedProducts"
+                          @selectedProductIsUpdated="updateSelectedProduct"
+        ></selected-product>
+
+        <selected-product ref="selectSupportages"
+                          :index="5"
+                          :edit-quantity="true"
+                          :products="computedSupports"
+                          :selectedProducts="allSelectedProducts"
+                          @selectedProductIsUpdated="updateSelectedProduct"
+        ></selected-product>
 
         <options :options="computedOptions" @optionsAreUpdated="updateOptions"></options>
 
@@ -189,50 +221,42 @@ export default defineComponent( {
                                             _blankOptions.value = blankOptions;
                                         };
 
-                                        const computedPannels = computed<Product[]>( () => {
-                                            const newList                = props.products.filter( p => p.productType === 'pv' );
-                                            const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'pv' );
 
-                                            if ( filterSelectedProducts.length < 1 ) {
-                                                const newSelectedPannel = ( selectPannels.value as any )?.resetSelectedValue(
-                                                    newList );
-                                                if ( newSelectedPannel !== undefined ) {
-                                                    updateSelectedProduct( newSelectedPannel );
+                                        console.log( 'props.products', props.products );
+                                        const generateComputedProducts = ( productType ) => {
+                                            return computed<Product[]>( () => {
+                                                const newList                = props.products.filter( p => p.productType === productType );
+                                                const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === productType );
+
+                                                if ( filterSelectedProducts.length < 1 ) {
+                                                    const newSelectedProduct = ( selectPannels.value as any )?.resetSelectedValue(
+                                                        newList );
+                                                    if ( newSelectedProduct !== undefined ) {
+                                                        updateSelectedProduct( newSelectedProduct );
+                                                    }
                                                 }
-                                            }
 
-                                            return newList;
-                                        } );
+                                                console.log( productType, 'newList', newList );
+                                                return newList;
+                                            } );
+                                        };
 
-                                        const computedOnduleurs = computed<Product[]>( () => {
-                                            const newList                = props.products.filter( p => p.productType === 'onduleur' );
-                                            const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'onduleur' );
-
-                                            if ( filterSelectedProducts.length < 1 ) {
-                                                const newSelectedOnduleur = ( selectOnduleurs.value as any )?.resetSelectedValue(
-                                                    newList );
-                                                if ( newSelectedOnduleur !== undefined ) {
-                                                    updateSelectedProduct( newSelectedOnduleur );
-                                                }
-                                            }
-
-                                            return newList;
-                                        } );
-
-                                        const computedPasserelles = computed<Product[]>( () => {
-                                            const newList                = props.products.filter( p => p.productType === 'passerelle' );
-                                            const filterSelectedProducts = _selectedProducts.value.filter( p => p.productType === 'passerelle' );
-
-                                            if ( filterSelectedProducts.length < 1 ) {
-                                                const newSelectedPassrelle = ( selectPasserelles.value as any )?.resetSelectedValue(
-                                                    newList );
-                                                if ( newSelectedPassrelle !== undefined ) {
-                                                    updateSelectedProduct( newSelectedPassrelle );
-                                                }
-                                            }
-
-                                            return newList;
-                                        } );
+                                        const computedPannels      = generateComputedProducts( 'pv' );
+                                        const computedOnduleurs    = generateComputedProducts( 'onduleur' );
+                                        const computedPasserelles  = generateComputedProducts( 'passerelle' );
+                                        const computedCables       = generateComputedProducts( 'cable' );
+                                        const computedBateries     = generateComputedProducts( 'batterie' );
+                                        const computedSupports     = generateComputedProducts( 'supportage' );
+                                        const computedElectricites = generateComputedProducts( 'electricite' );
+                                        // console.log( 'Computeds products',{
+                                        //     computedPannels,
+                                        //     computedOnduleurs,
+                                        //     computedPasserelles,
+                                        //     computedCables,
+                                        //     computedBateries,
+                                        //     computedSupports,
+                                        //
+                                        // } );
 
                                         const updateLaying = ( qte: number ) => {
                                             const layingOption = _options.value.find( o => o.id === 38 );
@@ -265,7 +289,6 @@ export default defineComponent( {
 
                                             return _options.value;
                                         } );
-
 
 
                                         const price = computed<Price>( () => {
@@ -358,6 +381,10 @@ export default defineComponent( {
                                             computedPannels,
                                             computedPasserelles,
                                             computedOnduleurs,
+                                            computedCables,
+                                            computedBateries,
+                                            computedSupports,
+                                            computedElectricites,
                                             allSelectedProducts: _selectedProducts,
                                             computedOptions,
                                             quantity,
