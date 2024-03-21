@@ -255,6 +255,7 @@ export default defineComponent( {
                                          * Retourne false si la carte existe déja
                                          **/
                                         const initMap = async ( coordinate: number[] | null = null ) => {
+                                            console.log( '%c IN INIT MAP', 'background: #fdd835; color: #000000' );
 
                                             // On s'assure que la map est Init qu'une seule fois
                                             if ( mapHasBeenHover.value ) {
@@ -264,17 +265,32 @@ export default defineComponent( {
 
                                             isLoading.value = true;
 
+                                            console.log( 'COORDINATE', coordinate );
+                                            console.log( 'FORMATTED ADDRESS', formattedAddress.value );
                                             // Si pas de coordonnées en parametre, on récupère les coordonnées de l'adresse du Beneficiaire
                                             if ( coordinate === null ) {
                                                 if ( formattedAddress.value !== '' ) {
-                                                    coordinate = await geocodingAddress( formattedAddress.value );
-                                                    if ( coordinate === null ) {
+                                                    console.log( '%c BEFORE GEOCODING',
+                                                                 'background: #00FF9D; color: #000000' );
+                                                    try {
+                                                        coordinate = await geocodingAddress( formattedAddress.value );
+                                                        if ( coordinate === null ) {
+                                                            ElMessage( {
+                                                                           message: `Impossible de trouver l'adresse : "${ formattedAddress.value }" sur la carte`,
+                                                                           type:    'warning',
+                                                                       } );
+                                                            coordinate = [ -1.1220979, 46.1703322 ];
+
+                                                        }
+                                                    } catch ( e ) {
+                                                        console.error( e );
                                                         ElMessage( {
-                                                                       message: `Impossible de trouver l'adresse : "${ formattedAddress.value }" sur la carte`,
-                                                                       type:    'warning',
+                                                                       message: `Une erreur est suvenue pour se connecter à api.gouv.fr (API Look4 Géoportail)`,
+                                                                       type:    'error',
                                                                    } );
                                                         coordinate = [ -1.1220979, 46.1703322 ];
                                                     }
+
                                                 } else {
                                                     coordinate = [ -1.1220979, 46.1703322 ];
                                                 }
