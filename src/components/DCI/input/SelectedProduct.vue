@@ -114,7 +114,7 @@ export default defineComponent( {
                                         },
                                         editQuantity: {
                                             type:    Boolean,
-                                            default: false,
+                                            default: true,
                                         },
                                         disabledPrice:    { // Quantité au metre carré
                                             type:    Boolean,
@@ -138,7 +138,7 @@ export default defineComponent( {
                                     emits: [ 'selectedProductIsUpdated', 'quantityIsUpdated' ],
                                     setup( props, ctx ) {
                                         let currentProduct = ref<Product>();
-                                        const quantity = ref( 0 );
+                                        const quantity = ref( 1 );
                                         const selectedId   = ref<number>();
 
                                         const onChangeProduct = ( value ) => {
@@ -163,7 +163,7 @@ export default defineComponent( {
                                                 currentProduct = ref( props.products[ 0 ] );
                                                 onChangeProduct( props.products[ 0 ].id );
                                             }
-                                            quantity.value = currentProduct.value?.quantity ?? 0;
+                                            quantity.value = currentProduct.value?.quantity ?? 1;
                                         } catch ( e ) {
                                             console.warn( e );
                                             ElMessage( {
