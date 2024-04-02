@@ -38,6 +38,7 @@ import { EnedisMandateGenerator } from '@/services/pdf/enedisMandateGenerator';
 import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
 import { ObjEcoEnergie } from '@/services/pdf/contributionFramework/ObjEcoEnergie';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
+import { CpvPdfGenerator } from '@/services/pdf/cpvPdfGenerator';
 
 enum PriceQuotation {
     HT           = 'Total HT',
@@ -131,6 +132,12 @@ export class QuotationGenerator extends PdfGenerator {
             const enedisMandateGenerator = new EnedisMandateGenerator( this._file );
             enedisMandateGenerator.generatePdf();
         }
+
+        if ( this._file.type === FILE_CPV ) {
+            const cpvPdf = new CpvPdfGenerator( this._file );
+            cpvPdf.generatePdf();
+        }
+
     }
 
 

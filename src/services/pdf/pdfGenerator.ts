@@ -17,7 +17,8 @@ export enum PdfType {
     ProfitabilityStudy,
     SizingPac,
     CityHallMandate,
-    EnedisMandate
+    EnedisMandate,
+    CpvPdf
 }
 
 export class PdfGenerator {

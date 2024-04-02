@@ -532,6 +532,7 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
 
 
 export const openPdf = ( filePath: string ) => {
+    console.log( filePath );
     shell.openPath( filePath ).then( response => console.log( 'After open PDF', response ) );
 };
 
@@ -582,6 +583,10 @@ export const savePdf = ( buffer: Buffer, type: PdfType ) => {
         case PdfType.EnedisMandate:
             folder = FoldersNames.MANDAT_ENEDIS;
             name   = 'mandat_enedis.pdf';
+            break;
+        case PdfType.CpvPdf:
+            folder = FoldersNames.DEVIS;
+            name   = 'cpv.pdf';
             break;
         default:
             console.warn( `Type (${ type }) non pris en charge pour les PDF` );
