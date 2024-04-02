@@ -1,3 +1,5 @@
+import { ProductColor } from '@/types/v2/File/Common/ProductColor';
+
 /**
  * Interface pour les produits dans les devis
  */
@@ -24,4 +26,9 @@ export interface Product {
     laying?: number;
     ext1?: string;
     ext2?: string;
+    productColors?: ProductColor[];
+    selectedColor?: {
+        name: string;
+        pu: number;
+    };
 }

@@ -157,7 +157,6 @@ import { defineComponent, ref } from 'vue';
 import { ErrorMessage, Field, Form } from 'vee-validate';
 import * as Yup from 'yup';
 import * as folderService from '@/services/folder/folderService';
-import { checkFolder } from '@/services/folder/folderService';
 import { FILE_PB, FILE_PG, LIST_FILE_TYPE } from '@/services/constantService';
 import router from '@/router';
 import { setCurrentFileReference, setcurrentFolderName } from '@/services/data/dataService';
@@ -241,11 +240,11 @@ export default defineComponent( {
                                                     newFolderData.value );
 
                                                 // Check les données dans le dossier
-                                                checkFolder( response.folderName, newFolderData.value.type );
+                                                // TODO : Pourquoi on check les données dans le dossier à la création du dossier ?
+                                                // checkFolder( response.folderName, newFolderData.value.type );
 
                                                 setCurrentFileReference( response.reference );
                                                 setcurrentFolderName( response.folderName );
-                                                // TODO rendre dynamique
                                                 router.push( { name: `file-${ newFolderData.value.type }-edit` } );
                                             }, 200 );
                                         };

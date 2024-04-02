@@ -150,6 +150,7 @@ ipcMain.on( 'download', async ( event, { payload } ) => {
     if ( store.get( 'connectedToInternet' ) ) {
         try {
             for ( const url of payload.urls ) {
+                console.log( 'Downloading: ', url );
                 await download( BrowserWindow.getFocusedWindow(), url, {
                     directory: payload.properties.directory,
                     saveAs:    false,

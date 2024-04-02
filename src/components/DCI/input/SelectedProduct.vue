@@ -82,6 +82,44 @@
                 </div>
             </div>
         </div>
+        <div class="row mb-10" v-if="colors.length > 0">
+            <div class="col-md-6 fv-row">
+                <Field :name="`selectedColors[${index}].name`"
+                       class="form-select"
+                       as="select"
+                       v-model="currentColor"
+                       @change="onChangeColor">
+                    <option v-for="color in colors" :key="color.name" :value="color.name">
+                        {{ color.name }}
+                    </option>
+                </Field>
+            </div>
+            <div class="col-md-2 fv-row">
+                <div class="input-group">
+                    <Field
+                        :disabled="true"
+                        type="number"
+                        class="form-control"
+                        :name="`selectedColors[${index}].quantity`"
+                        v-model.number="quantity"
+                    />
+                    <div class="input-group-append">
+                        <span class="input-group-text">U</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 fv-row">
+                <Field
+                    v-model.number="colorPrice"
+                    type="number"
+                    class="form-control"
+                    :name="`selectedColors[${index}].pu`"
+                />
+            </div>
+            <div class="col-md-2 fv-row d-flex justify-content-end align-items-center">
+                <h5 class="mb-3">{{ numberToPrice( colorPrice, quantity ) }}</h5>
+            </div>
+        </div>
     </template>
     <template v-else>
         <div class="row mb-10">
@@ -96,6 +134,7 @@ import { Product } from '@/types/v2/File/Common/Product';
 import { ErrorMessage, Field } from 'vee-validate';
 import { numberToPrice } from '@/services/commonService';
 import { ElMessage } from 'element-plus';
+import { ProductColor } from '@/types/v2/File/Common/ProductColor';
 
 export default defineComponent( {
                                     name:       'selected-product',
@@ -112,7 +151,7 @@ export default defineComponent( {
                                             type:    Number,
                                             default: 0,
                                         },
-                                        editQuantity: {
+                                        editQuantity:  {
                                             type:    Boolean,
                                             default: true,
                                         },
@@ -132,14 +171,33 @@ export default defineComponent( {
                                             type:    Boolean,
                                             default: false,
                                         },
+                                        selectedColor: {
+                                            type:    String,
+                                            default: '',
+                                        },
                                         // Affichage du alert en dessous du produit
                                         alert: String,
                                     },
-                                    emits: [ 'selectedProductIsUpdated', 'quantityIsUpdated' ],
+                                    emits: [
+                                        'selectedProductIsUpdated',
+                                        'quantityIsUpdated',
+                                        'selectedColorIsUpdated',
+                                    ],
                                     setup( props, ctx ) {
                                         let currentProduct = ref<Product>();
-                                        const quantity = ref( 1 );
+                                        const currentColor = ref<string>();
+                                        const quantity     = ref( 1 );
                                         const selectedId   = ref<number>();
+                                        const colors       = computed<ProductColor[]>( () => {
+                                            console.log( 'COMPUTED COLORS' );
+                                            if ( currentProduct.value?.productColors !== undefined ) {
+                                                return currentProduct.value.productColors.filter( ( color ) => {
+                                                    return color.enabled;
+                                                } );
+                                            }
+                                            return [];
+                                        } );
+
 
                                         const onChangeProduct = ( value ) => {
                                             currentProduct.value = props.products.find( p => p.id === value );
@@ -148,6 +206,38 @@ export default defineComponent( {
                                             }
                                             ctx.emit( 'selectedProductIsUpdated', currentProduct.value, 'product' );
                                         };
+
+
+                                        const colorPrice = computed( () => {
+                                            console.log( 'COMPUTED COLORS PRICE' );
+                                            const color = colors.value.find( c => c.name === currentColor.value );
+                                            let price   = 0;
+
+                                            if ( color ) {
+
+                                                if ( color.relativeAdditionalPrice > 0 ) {
+                                                    const percentage = color.relativeAdditionalPrice / 100;
+                                                    if ( currentProduct.value ) {
+                                                        price = currentProduct.value.pu * percentage;
+                                                    }
+                                                } else if ( color.additionalPrice > 0 ) {
+                                                    price = color.additionalPrice / 100;
+                                                }
+                                            }
+
+                                            ctx.emit( 'selectedColorIsUpdated', price );
+                                            return price;
+                                        } );
+
+                                        const onChangeColor = () => {
+                                            if ( currentProduct.value ) {
+                                                currentProduct.value.selectedColor = {
+                                                    name: currentColor.value ?? '',
+                                                    pu:   colorPrice.value,
+                                                };
+                                            }
+                                        };
+
 
                                         const onChangeQuantity = () => {
                                             ctx.emit( 'quantityIsUpdated', quantity.value );
@@ -164,6 +254,7 @@ export default defineComponent( {
                                                 onChangeProduct( props.products[ 0 ].id );
                                             }
                                             quantity.value = currentProduct.value?.quantity ?? 1;
+                                            currentColor.value = currentProduct.value?.selectedColor?.name ?? '';
                                         } catch ( e ) {
                                             console.warn( e );
                                             ElMessage( {
@@ -208,8 +299,12 @@ export default defineComponent( {
 
                                         return {
                                             onChangeProduct,
+                                            onChangeColor,
                                             onChangeQuantity,
                                             resetSelectedValue,
+                                            colors,
+                                            currentColor,
+                                            colorPrice,
                                             refQuantityArea,
                                             htmlAlert,
                                             selectedId,

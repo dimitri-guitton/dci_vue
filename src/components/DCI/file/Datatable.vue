@@ -232,6 +232,7 @@ export default defineComponent( {
 
                                         const tableData = ref();
                                         tableData.value = ( await sqliteService.getAllFiles() );
+                                        console.log( tableData.value );
 
 
                                         // Init les datas de la pagination
@@ -294,6 +295,7 @@ export default defineComponent( {
                                             const trimStart = ( currentPage.value - 1 ) * numberPerPage;
                                             const trimEnd   = trimStart + numberPerPage;
                                             tempData        = tempData.slice( trimStart, trimEnd );
+                                            console.log( 'data', tempData );
 
                                             return tempData;
                                         } );

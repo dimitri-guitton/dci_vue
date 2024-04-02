@@ -54,7 +54,7 @@ export default defineComponent( {
                                         onMounted( () => {
                                             resetCurrentFileData();
 
-                                            // TODO FAIRE LA LOGIQUE APRES LA RECUPE DES TODOS
+                                            // TODO FAIRE LA LOGIQUE APRES LA RECUP DES TODOS
                                             if ( apiTokenIsValid.value ) {
                                                 fetchDossierState();
                                             }

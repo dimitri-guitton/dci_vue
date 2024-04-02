@@ -8,6 +8,7 @@ import { addFile, deleteFile } from '@/services/sqliteService';
 import {
     FILE_CET,
     FILE_COMBLE,
+    FILE_CPV,
     FILE_PAC_RO,
     FILE_PAC_RR,
     FILE_PB,
@@ -124,11 +125,14 @@ const createSubFolders   = ( type: string, parent: string ) => {
 // TODO argument inutile comme type qui est déja dans NewFolderData
 export const addJsonData = ( type: string, parent: string, reference: string, folderName: string, newFolder: NewFolderData ) => {
 
+    console.log( 'IN ADD JSON DATA' );
            const app            = remote.app;
            const downloadFolder = `${ app.getPath( 'userData' ) }/files`;
            const jsonPath       = path.join( downloadFolder, `config_${ type }.json` );
 
+    console.log( 'jsonPath', jsonPath );
            const rawdata = fs.readFileSync( jsonPath ).toString( 'utf8' );
+    console.log( 'rawdata', rawdata );
 
            let fileData = JSON.parse( rawdata );
 
@@ -211,6 +215,7 @@ export const getFileJson = () => {
     for ( const file of LIST_FILE_TYPE ) {
         urls.push( `${ process.env.VUE_APP_API_URL }/config-file/${ file.slug }` );
     }
+    console.log( 'LISTE DES URLS', urls );
 
     const loading = ElLoading.service( {
                                            lock:       true,
@@ -459,8 +464,8 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
 
     let worksheetEmpty;
     // Fichier dans le dossier "FICHE"
-    // Pas de fiche poir les panneaux photovoltaïques
-    if ( fileType === FILE_PV ) {
+    // Pas de fiche pour les panneaux photovoltaïques
+    if ( fileType === FILE_PV || fileType === FILE_CPV ) {
         worksheetEmpty = false;
     } else {
         worksheetEmpty = !folderContainFiles( path.join( folderPath, FoldersNames.FICHE ) );
@@ -484,7 +489,7 @@ export const checkFolder = async ( folderName: string, fileType: string ) => {
     let assentEmpty: boolean;
 
     // Si non précaire on ne demande pas l'avis d'impot OU si PV
-    if ( ( codeBonus !== 'GP' && codeBonus !== 'P' ) || fileType === FILE_PV ) {
+    if ( ( codeBonus !== 'GP' && codeBonus !== 'P' ) || ( fileType === FILE_PV || fileType === FILE_CPV ) ) {
         assentEmpty = false;
     } else {
         // Fichier dans le dossier "AVIS"
@@ -579,7 +584,7 @@ export const savePdf = ( buffer: Buffer, type: PdfType ) => {
             name   = 'mandat_enedis.pdf';
             break;
         default:
-            console.warn(`Type (${type}) non pris en charge pour les PDF`)
+            console.warn( `Type (${ type }) non pris en charge pour les PDF` );
     }
 
     const filePath = `${ folderPath }/${ folder }/${ name }`;

@@ -1,5 +1,6 @@
 import { PaymentOnCredit } from '@/types/v2/File/Common/paymentOnCredit';
 
+
 export interface BaseStep4 {
     bonus: boolean;
     ceeBonus: boolean;
@@ -10,6 +11,7 @@ export interface BaseStep4 {
     options: StepOption[];
     blankOptions: StepOption[];
     selectedProducts: StepProduct[];
+    selectedColors: StepColor[];
     commentary: string;
     paymentOnCredit: PaymentOnCredit;
     requestTechnicalVisit?: boolean;
@@ -28,3 +30,9 @@ export interface StepProduct {
     pu: number;
     quantity: number;
 }
+
+export type StepColor = {
+    name: string;
+    quantity: number;
+    pu: number;
+};

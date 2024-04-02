@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { BaseStep4, StepOption, StepProduct } from '@/types/v2/Wizzard/step4/BaseStep4';
+import { BaseStep4, StepColor, StepOption, StepProduct } from '@/types/v2/Wizzard/step4/BaseStep4';
 import { AllFile } from '@/types/v2/File/All';
 import { Product } from '@/types/v2/File/Common/Product';
 import { Option } from '@/types/v2/File/Common/Option';
@@ -19,9 +19,16 @@ export const defaultInitFormDataStep4 = ( data: AllFile ): BaseStep4 => {
         blankOptions.push( { id: bo.id, pu: bo.pu, number: bo.number, label: bo.label } );
     }
 
+    console.log( 'DATA', data.quotation );
     const selectedProducts: StepProduct[] = [];
+    const selectedColors: StepColor[] = [];
     for ( const sp of data.quotation.selectedProducts ) {
         selectedProducts.push( { id: sp.id, pu: sp.pu, quantity: sp.quantity } );
+
+        if ( sp.selectedColor ) {
+            selectedColors.push( { name: sp.selectedColor.name, quantity: sp.quantity, pu: sp.selectedColor.pu } );
+        }
+
     }
 
     return {
@@ -38,6 +45,7 @@ export const defaultInitFormDataStep4 = ( data: AllFile ): BaseStep4 => {
         options,
         blankOptions,
         selectedProducts,
+        selectedColors,
     };
 };
 
@@ -122,13 +130,32 @@ export const defaultGetQuotationValueStep4 = ( stepData: BaseStep4, price: Price
         }
     }
 
+    let productIndex = 0;
     for ( const selectedProduct of stepData.selectedProducts ) {
         const jsonSelectedProduct = getProductById( selectedProduct.id );
 
         if ( jsonSelectedProduct !== undefined ) {
-            selectedProducts.push( { ...jsonSelectedProduct, pu: +selectedProduct.pu } );
+            let color = {
+                name: '',
+                pu:   0,
+            };
+
+            if ( stepData.selectedColors && stepData.selectedColors[ productIndex ] ) {
+                console.log( 'color', stepData.selectedColors[ productIndex ] );
+                color = {
+                    name: stepData.selectedColors[ productIndex ].name,
+                    pu:   stepData.selectedColors[ productIndex ].pu,
+                };
+            }
+
+
+            selectedProducts.push( { ...jsonSelectedProduct, pu: +selectedProduct.pu, selectedColor: color } );
         }
+
+        productIndex++;
     }
+
+    console.log( 'step data', stepData );
 
     return {
         ...getPriceValue( price ),

@@ -7,6 +7,7 @@ import {
     FILE_CLOSE_STATUS,
     FILE_COMBLE_TYPE,
     FILE_COMPLETE_STATUS,
+    FILE_CPV_TYPE,
     FILE_INCOMPLETE_STATUS,
     FILE_PAC_RO_TYPE,
     FILE_PAC_RR_TYPE,
@@ -108,6 +109,9 @@ async function convertDbFileToFileItem( items: DbFile[] ) {
                     break;
                 case FILE_PV_TYPE.slug:
                     types.push( FILE_PV_TYPE );
+                    break;
+                case FILE_CPV_TYPE.slug:
+                    types.push( FILE_CPV_TYPE );
                     break;
                 default:
                     console.warn( `Le type (${ type }) n'est pas pris en compte pour MYSQL` );

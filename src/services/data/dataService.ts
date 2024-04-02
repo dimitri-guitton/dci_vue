@@ -22,6 +22,7 @@ import { PvFile } from '@/types/v2/File/Pv/PvFile';
 import { AllFile } from '@/types/v2/File/All';
 import { updateErrorsStatusInDci } from '@/services/sqliteService';
 import { Technician } from '@/types/v2/File/Common/Technician';
+import { CpvFile } from '@/types/v2/File/Cpv/CpvFile';
 
 const schema = {
     dropboxPath:          {
@@ -68,7 +69,7 @@ const schema = {
         type:    'boolean',
         default: false,
     },
-    apiTokenIsValid: { // Pour savoir si toutes les infos nécessaires au fonctionnement du DCI sont présentes
+    apiTokenIsValid:     { // Pour savoir si toutes les infos nécessaires au fonctionnement du DCI sont présentes
         type:    'boolean',
         default: false,
     },
@@ -168,18 +169,20 @@ export const getCurrentFileData = (): AllFile => {
         const path = `${ getFolderPath( name ) }/${ process.env.VUE_APP_FILENAME_DATA }.json`;
 
         // TODO faire la verif si la path existe, s'il n'existe pas créer le .json
-        // if ( fs.existsSync( path ) ) {
         const rawdata  = fs.readFileSync( path ).toString( 'utf8' );
         const fileData = JSON.parse( rawdata );
         setCurrentFileData( JSON.stringify( fileData ) );
 
         return fileData;
-        // }
     }
 };
 
 export const getCurrentCetFileData = (): CetFile => {
     return ( getCurrentFileData() as CetFile );
+};
+
+export const getCurrentCpvFileData = (): CpvFile => {
+    return ( getCurrentFileData() as CpvFile );
 };
 
 export const getCurrentPbFileData = (): PbFile => {

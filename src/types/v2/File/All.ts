@@ -14,8 +14,10 @@ import { CetQuotation } from '@/types/v2/File/Cet/CetQuotation';
 import { PgQuotation } from '@/types/v2/File/Pg/PgQuotation';
 import { PbQuotation } from '@/types/v2/File/Pb/PbQuotation';
 import { PvQuotation } from '@/types/v2/File/Pv/PvQuotation';
+import { CpvFile } from '@/types/v2/File/Cpv/CpvFile';
+import { CpvQuotation } from '@/types/v2/File/Cpv/CpvQuotation';
 
-export type AllFile = CetFile | CombleFile | PbFile | PgFile | PvFile | RoFile | RrFile | SolFile;
+export type AllFile = CetFile | CombleFile | PbFile | PgFile | PvFile | RoFile | RrFile | SolFile | CpvFile;
 
 export type AllQuotation =
     CombleQuotation
@@ -25,4 +27,5 @@ export type AllQuotation =
     | CetQuotation
     | PgQuotation
     | PbQuotation
-    | PvQuotation;
+    | PvQuotation
+    | CpvQuotation;

@@ -10,7 +10,7 @@ import {
     TDocumentDefinitions,
 } from 'pdfmake/interfaces';
 import { BLUE, DARK_GREY, GREEN, LOGO_ECO, LOGO_QUALIBOIS, LOGO_QUALIFELEC } from '@/services/pdf/pdfVariable';
-import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_PV, FILE_SOL } from '@/services/constantService';
+import { FILE_CET, FILE_COMBLE, FILE_CPV, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_PV, FILE_SOL } from '@/services/constantService';
 import CombleList from '@/types/v2/File/Comble/CombleList';
 import SolList from '@/types/v2/File/Sol/SolList';
 import RoList from '@/types/v2/File/Ro/RoList';
@@ -232,6 +232,7 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_COMBLE:
             case FILE_SOL:
             case FILE_PV:
+            case FILE_CPV:
                 text = 'RGE : 09522';
                 break;
             case FILE_PG:
@@ -690,6 +691,20 @@ export class QuotationGenerator extends PdfGenerator {
                         },
                     ],
                 };
+            case FILE_CPV:
+                list = ( this._file.lists as PbList );
+                return {
+                    left: [
+                        {
+                            label: 'Local',
+                            value: this.getValueInList( list.batimentNatureList, housing.buildingNature ),
+                        },
+                        {
+                            label: 'Ce logement à moins de 2 ans',
+                            value: this.yesOrNo( housing.lessThan2Years ),
+                        },
+                    ],
+                };
             case FILE_CET:
                 list = ( this._file.lists as CetList );
                 return {
@@ -1068,6 +1083,28 @@ export class QuotationGenerator extends PdfGenerator {
                                        alignment: 'right',
                                    },
                                ] );
+
+                    if ( product.selectedColor && product.selectedColor.name !== '' ) {
+                        const color = product.selectedColor;
+                        data.push( [
+                                       {},
+                                       {
+                                           text: `Couleur ${ color.name }`,
+                                       },
+                                       {
+                                           text:      quantity,
+                                           alignment: 'right',
+                                       },
+                                       {
+                                           text:      this.formatPrice( color.pu ),
+                                           alignment: 'right',
+                                       },
+                                       {
+                                           text:      this.formatPrice( color.pu * product.quantity ),
+                                           alignment: 'right',
+                                       },
+                                   ] );
+                    }
                 }
         }
 
@@ -1354,6 +1391,13 @@ export class QuotationGenerator extends PdfGenerator {
 
                 items.push( PriceQuotation.TTC );
 
+                break;
+            case FILE_CPV:
+                items = [
+                    PriceQuotation.HT,
+                    PriceQuotation.TVA,
+                    PriceQuotation.TTC,
+                ];
                 break;
             case FILE_COMBLE:
             case FILE_SOL:

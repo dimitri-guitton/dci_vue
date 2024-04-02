@@ -10,13 +10,13 @@
 
     <div class="row d-flex justify-content-center">
         <button class="btn btn-success mx-2 my-2 w-auto" @click="getFileJson">Mettre à jour les ressources</button>
-        <button v-if="!oldJsonAreConverted && dropboxPath !== ''"
-                class="btn btn-warning mx-2 my-2 w-auto"
-                @click="convertAllJson">
-            Récupérer les dossiers de la
-            version
-            précédente
-        </button>
+        <!--        <button v-if="!oldJsonAreConverted && dropboxPath !== ''"-->
+        <!--                class="btn btn-warning mx-2 my-2 w-auto"-->
+        <!--                @click="convertAllJson">-->
+        <!--            Récupérer les dossiers de la-->
+        <!--            version-->
+        <!--            précédente-->
+        <!--        </button>-->
     </div>
 </template>
 
