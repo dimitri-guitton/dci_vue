@@ -17,11 +17,17 @@ jobs:
             -   name: Check out Git repository
                 uses: actions/checkout@v2
             
+            -   name: Copies the .env file
+                run:  cp .env.pre-production .env.production && cp .env.pre-production .env
+            
+            -   name: Copies the package.json file
+                run:  cp package.preprod.json package.json
+            
             -   name: Install Node.js, NPM and Yarn
                 uses: actions/setup-node@v2
                 with:
                     node-version: 14.19.0
-                    
+            
             -   name:  Build Electron app
                 shell: bash
                 env:

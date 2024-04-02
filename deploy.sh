@@ -25,6 +25,9 @@ updateVersion() {
 
 # Lancement du script
 start() {
+  echo "Copies des fichiers .env et package.json"
+  cp .env.production-copy .env.production
+  cp package.prod.json package.json
 
   echo "Changement de version : "
 

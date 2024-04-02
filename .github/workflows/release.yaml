@@ -15,8 +15,8 @@ jobs:
                 os: [ macos-latest, windows-latest ]
         
         steps:
-            -   name: Check out Git repository
-                uses: actions/checkout@v2
+            -   name: Copies the .env file
+                run:  cp .env.example .env
             
             -   name: Install Node.js, NPM and Yarn
                 uses: actions/setup-node@v2
@@ -31,7 +31,7 @@ jobs:
                 run:   |
                        yarn install --network-timeout 1000000
                        yarn electron:build:prod --publish="always"
-                       
+            
             -   name: Upload artifact
                 uses: actions/upload-artifact@v2
                 with:
