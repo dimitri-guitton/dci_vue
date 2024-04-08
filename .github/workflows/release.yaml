@@ -16,7 +16,7 @@ jobs:
         
         steps:
             -   name: Copies the .env file
-                run:  cp .env.example .env
+                run: cp .env.production .env
             
             -   name: Install Node.js, NPM and Yarn
                 uses: actions/setup-node@v2
