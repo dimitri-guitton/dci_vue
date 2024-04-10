@@ -95,7 +95,7 @@ import { StepperComponent } from '@/assets/ts/components';
 import { setCurrentPageBreadcrumbs } from '@/core/helpers/breadcrumb';
 import { setLocale } from 'yup';
 import { useForm } from 'vee-validate';
-import { getCurrentCpvFileData, getCurrentPvFileData, resetCurrentFileData } from '@/services/data/dataService';
+import { getCurrentCpvFileData, resetCurrentFileData } from '@/services/data/dataService';
 import { Assent } from '@/types/v2/File/Common/Assent';
 import CommonStep1 from '@/views/file/wizzard/steps/CommonStep1.vue';
 import CommonStep2 from '@/views/file/wizzard/steps/CommonStep2.vue';
@@ -113,11 +113,10 @@ import { QuotationGenerator } from '@/services/pdf/quotationGenerator';
 import { ElLoading } from 'element-plus';
 import { initCpvFormDataStep3, validateCpvStep3, yupCpvConfigStep3 } from '@/services/file/wizzard/cpv/step3Service';
 import { initCpvFormDataStep4, validateCpvStep4, yupCpvConfigStep4 } from '@/services/file/wizzard/cpv/step4Service';
-import { CpvFileStep, PvFileStep } from '@/types/v2/Wizzard/FileStep';
+import { CpvFileStep } from '@/types/v2/Wizzard/FileStep';
 import { initCpvFormDataStep5, saveCpvWorksheet, yupCpvConfigStep5 } from '@/services/file/wizzard/cpv/step5Service';
 import { PvStep5 } from '@/types/v2/Wizzard/step5/PvStep5';
 import { BaseStep3 } from '@/types/v2/Wizzard/step3/BaseStep3';
-import { PvAlgo } from '@/services/algorithm/PvAlgo';
 import FileCpvStep3 from '@/views/file/cpv/FileCpvStep3.vue';
 import FileCpvStep4 from '@/views/file/cpv/FileCpvStep4.vue';
 import FileCpvStep5 from '@/views/file/cpv/FileCpvStep5.vue';
@@ -291,7 +290,7 @@ export default defineComponent( {
 
 
                                         const onGenerateQuotation = handleSubmit( async ( values ) => {
-                                            const newFileData     = await validateCpvStep4( ( values as PvFileStep ),
+                                            const newFileData = await validateCpvStep4( ( values as CpvFileStep ),
                                                                                             price );
                                             // Loader
                                             const loadingInstance = ElLoading.service( { fullscreen: true } );
@@ -309,21 +308,8 @@ export default defineComponent( {
                                         } );
 
                                         const onGenerateWorksheet = handleSubmit( async ( values ) => {
-                                            console.log( '%c ON GENERATE WOKSHEET',
-                                                         'background: #fdd835; color: #000000' );
-
-                                            const currentFileData = getCurrentPvFileData();
-
-                                            const calcProduction = await PvAlgo.calcInstallationProductionV2(
-                                                currentFileData.housing,
-                                                currentFileData.quotation,
-                                                ( values as PvFileStep ).worksheet.orientation );
-
-                                            ( values as PvFileStep ).worksheet.installationPower = calcProduction;
-
-                                            const newFileData: CpvFile = saveCpvWorksheet( ( values as PvFileStep ) );
-
-                                            const worksheetGenerator = new WorksheetGenerator( newFileData );
+                                            const newFileData: CpvFile = saveCpvWorksheet( ( values as CpvFileStep ) );
+                                            const worksheetGenerator   = new WorksheetGenerator( newFileData );
                                             worksheetGenerator.generatePdf();
                                         } );
 

@@ -8,18 +8,22 @@ import {
     defaultInitFormDataStep4,
     defaultYupConfigStep4,
 } from '@/services/file/wizzard/step4Service';
-import { BaseStep4 } from '@/types/v2/Wizzard/step4/BaseStep4';
 import { updateTotalTtc } from '@/services/sqliteService';
 import { updateFileReferenceTechnicalVisit } from '@/services/file/wizzard/step5Service';
 import { CpvFile } from '@/types/v2/File/Cpv/CpvFile';
 import { CpvQuotation } from '@/types/v2/File/Cpv/CpvQuotation';
+import { CPVStep4 } from '@/types/v2/Wizzard/step4/CPVStep4';
 
 /**
  * Retourne les valeurs du formulaire pour l'etape 4
  * @param fileData
  */
-export const initCpvFormDataStep4 = ( fileData: CpvFile ): BaseStep4 => {
-    return defaultInitFormDataStep4( fileData );
+export const initCpvFormDataStep4 = ( fileData: CpvFile ): CPVStep4 => {
+    return {
+        ...defaultInitFormDataStep4( fileData ),
+        attachedToAHouse: fileData.quotation.attachedToAHouse ?? false,
+    };
+
 };
 
 export const yupCpvConfigStep4 = () => {
@@ -40,6 +44,7 @@ export const validateCpvStep4 = async ( data: CpvFileStep, price: Price ): Promi
     quotation = {
         ...quotation,
         ...defaultGetQuotationValueStep4( data, price ),
+        attachedToAHouse: data.attachedToAHouse,
     };
 
     fileData = {

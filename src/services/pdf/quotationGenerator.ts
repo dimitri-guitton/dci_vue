@@ -39,6 +39,7 @@ import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
 import { ObjEcoEnergie } from '@/services/pdf/contributionFramework/ObjEcoEnergie';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 import { CpvPdfGenerator } from '@/services/pdf/cpvPdfGenerator';
+import { CpvQuotation } from '@/types/v2/File/Cpv/CpvQuotation';
 
 enum PriceQuotation {
     HT           = 'Total HT',
@@ -1400,11 +1401,21 @@ export class QuotationGenerator extends PdfGenerator {
 
                 break;
             case FILE_CPV:
+                const cpvQuotation = ( this._file.quotation as CpvQuotation );
+
                 items = [
                     PriceQuotation.HT,
-                    PriceQuotation.TVA,
-                    PriceQuotation.TTC,
                 ];
+
+                if ( cpvQuotation.tva10 > 0 ) {
+                    items.push( PriceQuotation.TVA10 );
+                }
+
+                if ( cpvQuotation.tva20 > 0 ) {
+                    items.push( PriceQuotation.TVA20 );
+                }
+
+                items.push( PriceQuotation.TTC );
                 break;
             case FILE_COMBLE:
             case FILE_SOL:

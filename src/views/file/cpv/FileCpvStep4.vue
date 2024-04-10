@@ -7,7 +7,20 @@
                       :price="price"></step4-header>
 
         <step4-quotation-header></step4-quotation-header>
-
+        <div class="row mt-10">
+            <div class="col-md-6 mb-5">
+                <label class="form-label" for="outsideSocket">Position du carport</label>
+                <Field
+                    id="attachedToAHouse"
+                    v-model="attachedToAHouse"
+                    as="select"
+                    class="form-select"
+                    name="attachedToAHouse">
+                    <option :value="false">Détacher d'une maison</option>
+                    <option :value="true">Attenant à une maison</option>
+                </Field>
+            </div>
+        </div>
         <div class="row mt-10">
             <div class="col-md-6 mb-5">
                 <label class="form-label" for="outsideSocket">Type de carport</label>
@@ -83,7 +96,6 @@ import { BlankOption } from '@/types/v2/File/Common/BlankOption';
 import WizzardFilePrice from '@/components/DCI/wizzard-file/Price.vue';
 import Step4Header from '@/components/DCI/wizzard-file/Step4Header.vue';
 import { Price } from '@/types/v2/File/Price';
-import { getLessThan2Year } from '@/services/data/dataService';
 import { CpvFile } from '@/types/v2/File/Cpv/CpvFile';
 import { BaseList } from '@/types/v2/File/Common/BaseList';
 import { ProductColor } from '@/types/v2/File/Common/ProductColor';
@@ -125,6 +137,7 @@ export default defineComponent( {
                                         const _options          = ref<Option[]>( ( props.options as Option[] ) );
                                         const _blankOptions     = ref<BlankOption[]>( ( props.blankOptions as BlankOption[] ) );
                                         const lists             = ref<BaseList>( ( props.fileData.lists as BaseList ) );
+                                        const attachedToAHouse = ref<boolean>( props.fileData.quotation.attachedToAHouse );
 
                                         const colorPrice  = ref<number>( 0 );
                                         const carportType = ref<string>( 'toiture_bac_acier' );
@@ -212,17 +225,20 @@ export default defineComponent( {
                                                 }
                                             }
 
-                                            const lessThan2Year = getLessThan2Year();
+                                            let tva = 20;
+                                            if ( attachedToAHouse.value ) {
+                                                tva = 10;
+                                            }
 
-                                            const tva = 20;
 
                                             const totalTva = tva * totalHt / 100;
                                             const totalTtc = totalHt + totalTva;
 
                                             const price: Price = {
                                                 HT:             totalHt,
-                                                TVA:            lessThan2Year ? 0 : totalTva,
-                                                TVA20:          lessThan2Year ? totalTva : 0,
+                                                TVA:   0,
+                                                TVA10: attachedToAHouse.value ? totalTva : 0,
+                                                TVA20: !attachedToAHouse.value ? totalTva : 0,
                                                 TTC:            totalTtc,
                                                 remainderToPay: totalTtc,
                                             };
@@ -239,6 +255,7 @@ export default defineComponent( {
                                             computedProducts,
                                             carportType,
                                             colors,
+                                            attachedToAHouse,
                                             updateSelectedProduct,
                                             updateSelectedColorPrice,
                                             updateOptions,
