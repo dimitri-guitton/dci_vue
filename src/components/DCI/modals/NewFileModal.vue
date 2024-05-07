@@ -157,6 +157,7 @@ import { defineComponent, ref } from 'vue';
 import { ErrorMessage, Field, Form } from 'vee-validate';
 import * as Yup from 'yup';
 import * as folderService from '@/services/folder/folderService';
+import { checkFolder } from '@/services/folder/folderService';
 import { FILE_PB, FILE_PG, LIST_FILE_TYPE } from '@/services/constantService';
 import router from '@/router';
 import { setCurrentFileReference, setcurrentFolderName } from '@/services/data/dataService';
@@ -245,7 +246,8 @@ export default defineComponent( {
 
                                                 setCurrentFileReference( response.reference );
                                                 setcurrentFolderName( response.folderName );
-                                                router.push( { name: `file-${ newFolderData.value.type }-edit` } );
+                                                await checkFolder( response.folderName, newFolderData.value.type );
+                                                await router.push( { name: `file-${ newFolderData.value.type }-edit` } );
                                             }, 200 );
                                         };
 
