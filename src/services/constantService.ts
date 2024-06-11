@@ -9,7 +9,8 @@ export const FILE_PAC_RO = 'pac_ro';
 export const FILE_PG     = 'pg';
 export const FILE_PB     = 'pb';
 export const FILE_PV     = 'pv';
-export const FILE_CPV = 'cpv';
+export const FILE_CPV  = 'cpv';
+export const FILE_BRVE = 'brve';
 
 export const FILE_COMBLE_TYPE: DatatableFileType = {
     slug: FILE_COMBLE,
@@ -56,6 +57,11 @@ export const FILE_CPV_TYPE: DatatableFileType = {
     name: 'Carport photovoltaïques',
 };
 
+export const FILE_BRVE_TYPE: DatatableFileType = {
+    slug: FILE_BRVE,
+    name: 'Borne de recharge VE',
+};
+
 export const LIST_FILE_TYPE: DatatableFileType[] = [
     FILE_COMBLE_TYPE,
     FILE_SOL_TYPE,
@@ -66,6 +72,7 @@ export const LIST_FILE_TYPE: DatatableFileType[] = [
     FILE_PB_TYPE,
     FILE_PV_TYPE,
     FILE_CPV_TYPE,
+    FILE_BRVE_TYPE,
 ];
 
 export const FILE_COMPLETE_STATUS: DatatableFileStatus = {

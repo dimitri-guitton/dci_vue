@@ -10,7 +10,18 @@ import {
     TDocumentDefinitions,
 } from 'pdfmake/interfaces';
 import { BLUE, DARK_GREY, GREEN, LOGO_ECO, LOGO_QUALIBOIS, LOGO_QUALIFELEC } from '@/services/pdf/pdfVariable';
-import { FILE_CET, FILE_COMBLE, FILE_CPV, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_PV, FILE_SOL } from '@/services/constantService';
+import {
+    FILE_BRVE,
+    FILE_CET,
+    FILE_COMBLE,
+    FILE_CPV,
+    FILE_PAC_RO,
+    FILE_PAC_RR,
+    FILE_PB,
+    FILE_PG,
+    FILE_PV,
+    FILE_SOL,
+} from '@/services/constantService';
 import CombleList from '@/types/v2/File/Comble/CombleList';
 import SolList from '@/types/v2/File/Sol/SolList';
 import RoList from '@/types/v2/File/Ro/RoList';
@@ -241,6 +252,7 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_SOL:
             case FILE_PV:
             case FILE_CPV:
+            case FILE_BRVE:
                 text = 'RGE : 09522';
                 break;
             case FILE_PG:
@@ -700,6 +712,7 @@ export class QuotationGenerator extends PdfGenerator {
                     ],
                 };
             case FILE_CPV:
+            case FILE_BRVE:
                 list = ( this._file.lists as PbList );
                 return {
                     left: [
@@ -1383,6 +1396,7 @@ export class QuotationGenerator extends PdfGenerator {
                 }
                 break;
             case FILE_PV:
+            case FILE_BRVE:
                 const pvQuotation = ( this._file.quotation as PvQuotation );
 
                 items = [
