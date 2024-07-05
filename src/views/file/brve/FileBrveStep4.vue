@@ -162,15 +162,15 @@ export default defineComponent( {
                                                 }
                                             }
 
-                                            const tva      = 20;
+                                            const tva = 10;
                                             const totalTva = tva * totalHt / 100;
                                             const totalTtc = totalHt + totalTva;
 
                                             const price: Price = {
                                                 HT:             totalHt,
                                                 TVA:            0,
-                                                TVA10:          0,
-                                                TVA20:          totalTva,
+                                                TVA10: totalTva,
+                                                TVA20: 0,
                                                 TTC:            totalTtc,
                                                 remainderToPay: totalTtc,
                                             };
