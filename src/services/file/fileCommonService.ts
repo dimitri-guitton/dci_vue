@@ -136,6 +136,19 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
 export const getHelpingHandRo = ( codeBonus ): number => {
     codeBonus = codeBonus.toUpperCase();
 
+    // Si la date du jour est supérieur ou égal au 1er septembre 2024 on applique les nouvelles valeurs
+
+    if ( new Date() >= new Date( '2023/11/01 00:00:01' ) ) {
+        if ( codeBonus === 'GP' ) {
+            return 5100;
+        }
+        if ( codeBonus === 'P' ) {
+            return 5000;
+        }
+        return 3500;
+    }
+
+
     // Si la date du jour est supérieur ou égal au 1er novembre 2023 on applique les nouvelles valeurs
     if ( new Date() >= new Date( '2023/11/01 00:00:01' ) ) {
         if ( codeBonus === 'GP' ) {
