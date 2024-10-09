@@ -578,7 +578,7 @@ export const savePdf = ( buffer: Buffer, type: PdfType ) => {
             break;
         case PdfType.CityHallMandate:
             folder = FoldersNames.MANDAT_MAIRIE;
-            name   = 'mandat_mairie.pdf';
+            name = 'mandat.pdf';
             break;
         case PdfType.EnedisMandate:
             folder = FoldersNames.MANDAT_ENEDIS;

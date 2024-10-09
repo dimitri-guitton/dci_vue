@@ -459,6 +459,22 @@ export const getAddress = ( data: BaseFile ): { address: string; zipCode: string
     };
 };
 
+export const getHousingAddress = ( data: BaseFile ): { address: string; zipCode: string; city: string } => {
+    return {
+        address: data.housing.address,
+        zipCode: data.housing.zipCode,
+        city:    data.housing.city,
+    };
+};
+
+export const getBeneficiaryAddress = ( data: BaseFile ): { address: string; zipCode: string; city: string } => {
+    return {
+        address: data.beneficiary.address,
+        zipCode: data.beneficiary.zipCode,
+        city:    data.beneficiary.city,
+    };
+};
+
 export const setErrorsStatusInDci = async ( errors: number[], folderName: string ) => {
     setcurrentFolderName( folderName );
     const fileData: BaseFile = getCurrentFileData();

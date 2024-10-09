@@ -18,7 +18,7 @@ export enum PdfType {
     SizingPac,
     CityHallMandate,
     EnedisMandate,
-    CpvPdf
+    CpvPdf,
 }
 
 export class PdfGenerator {

@@ -44,13 +44,12 @@ import { PbQuotation } from '@/types/v2/File/Pb/PbQuotation';
 import { SizingPacGenerator } from '@/services/pdf/sizingPacGenerator';
 import { RoFile } from '@/types/v2/File/Ro/RoFile';
 import { RrFile } from '@/types/v2/File/Rr/RrFile';
-import { CityHallManadateGenerator } from '@/services/pdf/cityHallManadateGenerator';
-import { EnedisMandateGenerator } from '@/services/pdf/enedisMandateGenerator';
 import { MaPrimeRenovGenerator } from '@/services/pdf/maPrimeRenovGenerator';
 import { ObjEcoEnergie } from '@/services/pdf/contributionFramework/ObjEcoEnergie';
 import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 import { CpvPdfGenerator } from '@/services/pdf/cpvPdfGenerator';
 import { CpvQuotation } from '@/types/v2/File/Cpv/CpvQuotation';
+import { ArtemysManadateGenerator } from '@/services/pdf/ArtemysManadateGenerator';
 
 enum PriceQuotation {
     HT           = 'Total HT',
@@ -138,11 +137,14 @@ export class QuotationGenerator extends PdfGenerator {
         }
 
         if ( this._file.type === FILE_PV ) {
-            const cityHallManadateGenerator = new CityHallManadateGenerator( this._file );
-            cityHallManadateGenerator.generatePdf();
+            // const cityHallManadateGenerator = new CityHallManadateGenerator( this._file );
+            // cityHallManadateGenerator.generatePdf();
 
-            const enedisMandateGenerator = new EnedisMandateGenerator( this._file );
-            enedisMandateGenerator.generatePdf();
+            // const enedisMandateGenerator = new EnedisMandateGenerator( this._file );
+            // enedisMandateGenerator.generatePdf();
+
+            const artemysMandateGenerator = new ArtemysManadateGenerator( this._file );
+            artemysMandateGenerator.generatePdf();
         }
 
         if ( this._file.type === FILE_CPV ) {
