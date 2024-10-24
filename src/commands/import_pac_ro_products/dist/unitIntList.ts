@@ -391,31 +391,6 @@ export const generatedUnitIntList: UnitIntList = {
             'model':           'ATLANTIC',
         },
         {
-            'ref':             'EBBH11E6V',
-            'sizes':           [
-                9,
-                11,
-            ],
-            'hotWaterTank':    0,
-            'bizone':          false,
-            'highTemperature': true,
-            'power':           'monophase',
-            'model':           'DAIKIN',
-        },
-        {
-            'ref':             'EBBH16E6V',
-            'sizes':           [
-                14,
-                16,
-                18,
-            ],
-            'hotWaterTank':    0,
-            'bizone':          false,
-            'highTemperature': true,
-            'power':           'monophase',
-            'model':           'DAIKIN',
-        },
-        {
             'ref':             'EBVH11S18E6V',
             'sizes':           [
                 9,
@@ -732,31 +707,6 @@ export const generatedUnitIntList: UnitIntList = {
             'highTemperature': true,
             'power':           'triphase',
             'model':           'ATLANTIC',
-        },
-        {
-            'ref':             'EBBH11E9W',
-            'sizes':           [
-                9,
-                11,
-            ],
-            'hotWaterTank':    0,
-            'bizone':          false,
-            'highTemperature': true,
-            'power':           'triphase',
-            'model':           'DAIKIN',
-        },
-        {
-            'ref':             'EBBH16E9W',
-            'sizes':           [
-                14,
-                16,
-                18,
-            ],
-            'hotWaterTank':    0,
-            'bizone':          false,
-            'highTemperature': true,
-            'power':           'triphase',
-            'model':           'DAIKIN',
         },
         {
             'ref':             'EBVH11S18E9W',
