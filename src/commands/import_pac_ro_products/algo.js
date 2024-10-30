@@ -9,8 +9,8 @@ const fs    = require( 'fs' );
 
 async function getData() {
     // Requete http
-    const response = await axios.get( 'https://127.0.0.1:8000/data/pac-ro?pass=9AFDC2F8C9BC394E9872B1839FFA4' );
-    // const response = await axios.get( 'https://admin.eco-atl.fr/data/pac-ro?pass=9AFDC2F8C9BC394E9872B1839FFA4' );
+    // const response = await axios.get( 'https://127.0.0.1:8000/data/pac-ro?pass=9AFDC2F8C9BC394E9872B1839FFA4' );
+    const response = await axios.get( 'https://admin.eco-atl.fr/data/pac-ro?pass=9AFDC2F8C9BC394E9872B1839FFA4' );
     
     if ( response.status !== 200 ) {
         throw new Error( 'Error while fetching data' );
