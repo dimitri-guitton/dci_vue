@@ -836,12 +836,14 @@ export const generatedUnitIntList: UnitIntList = {
         },
         {
             'ref':             '526 643',
-            'sizes':           null,
+            'sizes':           [
+                17,
+            ],
             'hotWaterTank':    0,
             'bizone':          false,
-            'highTemperature': false,
+            'highTemperature': true,
             'power':           'triphase',
-            'model':           'ATLANTIC unité intérieur Alféa Excellia DUO AI Tri 17',
+            'model':           'ATLANTIC',
         },
     ],
 };
