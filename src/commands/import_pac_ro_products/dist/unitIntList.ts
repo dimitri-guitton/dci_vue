@@ -834,16 +834,5 @@ export const generatedUnitIntList: UnitIntList = {
             'power':           'triphase',
             'model':           'DAIKIN',
         },
-        {
-            'ref':             '526 643',
-            'sizes':           [
-                17,
-            ],
-            'hotWaterTank':    0,
-            'bizone':          false,
-            'highTemperature': true,
-            'power':           'triphase',
-            'model':           'ATLANTIC',
-        },
     ],
 };
