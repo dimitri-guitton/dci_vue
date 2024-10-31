@@ -250,6 +250,12 @@ const getCeeRr = ( pacs: Product[], localType: string, area: number, zone: strin
         if ( pac === undefined ) {
             continue;
         }
+
+        // Convert "x,xx" to float
+        if ( pac.scop !== undefined && typeof pac.scop === 'string' ) {
+            pac.scop = parseFloat( ( pac.scop as string ).replace( ',', '.' ) );
+        }
+
         if ( pac.scop !== undefined && pac.scop > 0 ) {
             scop = pac.scop;
         }

@@ -187,6 +187,8 @@ export class RoAlgoV2 extends PacAlgo {
             const p1: Product | undefined = getProductByRef( a.ref );
             const p2: Product | undefined = getProductByRef( b.ref );
 
+            console.log( 'a', a );
+            console.log( 'b', b );
             if ( p1 === undefined ) {
                 console.warn( 'Impossible de trouvé le produit : ' + a.ref );
             }
