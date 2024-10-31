@@ -36,15 +36,15 @@
             <div class="col-md-6 fv-row">
                 <label class="form-label mb-3">Nombre de pièces</label>
                 <Field
-                        v-model.number="rrMulti.roomNumber"
-                        class="form-control"
-                        name="housingRoomNumber"
-                        placeholder="1"
-                        type="number"
+                    v-model.number="rrMulti.roomNumber"
+                    class="form-control"
+                    name="housingRoomNumber"
+                    placeholder="1"
+                    type="number"
                 />
                 <ErrorMessage
-                        class="fv-plugins-message-container invalid-feedback"
-                        name="housingRoomNumber"
+                    class="fv-plugins-message-container invalid-feedback"
+                    name="housingRoomNumber"
                 ></ErrorMessage>
             </div>
 
@@ -54,11 +54,11 @@
                         <div class="col-md-2">
                             <label class="form-label mb-3">Pièce n°{{ index }} <sup><var>m2</var></sup></label>
                             <Field
-                                    v-model.number="rrMulti[`areaP${index}`]"
-                                    :name="`housingAreaP${index}`"
-                                    class="form-control"
-                                    placeholder="1"
-                                    type="number"
+                                v-model.number="rrMulti[`areaP${index}`]"
+                                :name="`housingAreaP${index}`"
+                                class="form-control"
+                                placeholder="1"
+                                type="number"
                             />
                         </div>
                         <div class="col-md-3">
@@ -129,15 +129,15 @@
             <div class="col-md-12 fv-row">
                 <label class="form-label mb-3">Commentaire</label>
                 <Field
-                        as="textarea"
-                        class="form-control form-control-lg"
-                        name="commentary"
-                        placeholder="RAS"
-                        value=""
+                    as="textarea"
+                    class="form-control form-control-lg"
+                    name="commentary"
+                    placeholder="RAS"
+                    value=""
                 />
                 <ErrorMessage
-                        class="fv-plugins-message-container invalid-feedback"
-                        name="commentary"
+                    class="fv-plugins-message-container invalid-feedback"
+                    name="commentary"
                 ></ErrorMessage>
             </div>
         </div>
@@ -264,16 +264,30 @@ export default defineComponent( {
                                             // Change le prix de la pose
                                             _options.value = _options.value.map( o => {
                                                 if ( o.label.includes( 'Forfait pose' ) ) {
-                                                    if ( nbLaying === 1 ) {
-                                                        return { ...o, pu: 600 };
-                                                    } else if ( nbLaying === 2 ) {
-                                                        return { ...o, pu: 900 };
-                                                    } else if ( nbLaying === 3 ) {
-                                                        return { ...o, pu: 1200 };
-                                                    } else if ( nbLaying === 4 ) {
-                                                        return { ...o, pu: 1500 };
-                                                    } else if ( nbLaying === 5 ) {
-                                                        return { ...o, pu: 1800 };
+                                                    if ( new Date( props.fileData.createdAt ) > new Date( '2024-10-30' ) ) {
+                                                        if ( nbLaying === 1 ) {
+                                                            return { ...o, pu: 1200 };
+                                                        } else if ( nbLaying === 2 ) {
+                                                            return { ...o, pu: 1500 };
+                                                        } else if ( nbLaying === 3 ) {
+                                                            return { ...o, pu: 1800 };
+                                                        } else if ( nbLaying === 4 ) {
+                                                            return { ...o, pu: 2000 };
+                                                        } else if ( nbLaying === 5 ) {
+                                                            return { ...o, pu: 2300 };
+                                                        }
+                                                    } else {
+                                                        if ( nbLaying === 1 ) {
+                                                            return { ...o, pu: 600 };
+                                                        } else if ( nbLaying === 2 ) {
+                                                            return { ...o, pu: 900 };
+                                                        } else if ( nbLaying === 3 ) {
+                                                            return { ...o, pu: 1200 };
+                                                        } else if ( nbLaying === 4 ) {
+                                                            return { ...o, pu: 1500 };
+                                                        } else if ( nbLaying === 5 ) {
+                                                            return { ...o, pu: 1800 };
+                                                        }
                                                     }
                                                 }
                                                 return o;
