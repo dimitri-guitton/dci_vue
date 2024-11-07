@@ -482,11 +482,8 @@ export const getCeeBonus = ( data: BaseFile ): number => {
 
 const getRoMaPrimeRenov = ( totalTTC: number, cee: number, codeBonus: string ): number => {
     const amountGp = 5000;
-    // const amountGp = 4000;
     const amountP  = 4000;
-    // const amountP  = 3000;
     const amountIt = 3000;
-    // const amountIt = 2000;
 
     if ( totalTTC - amountGp - cee > totalTTC * 0.1 && codeBonus === 'GP' ) {
         return amountGp;
@@ -508,6 +505,7 @@ const getRoMaPrimeRenov = ( totalTTC: number, cee: number, codeBonus: string ): 
     if ( totalTTC - amountIt - cee < totalTTC * 0.4 && codeBonus === 'IT' ) {
         return totalTTC - cee - totalTTC * 0.4;
     }
+
     return 0;
 };
 

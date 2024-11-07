@@ -51,6 +51,12 @@ export class ArtemysManadateGenerator extends PdfGenerator {
         const { address: housingAddress, zipCode: housingZipCode, city: housingCity }             = getHousingAddress( this._file );
         const { address: beneficiaryAddress, zipCode: beneficiaryZipCode, city: beneficiaryCity } = getBeneficiaryAddress( this._file );
 
+        const fullAddress      = `${ beneficiaryAddress }, ${ beneficiaryCity } ${ beneficiaryZipCode }`;
+        let fullHousingAddress = `${ housingAddress }, ${ housingCity } ${ housingZipCode }`;
+        if ( housingAddress === '' ) {
+            fullHousingAddress = fullAddress;
+        }
+
         return {
             fontSize: 10,
             stack:    [
@@ -60,12 +66,12 @@ export class ArtemysManadateGenerator extends PdfGenerator {
                     fontSize:         10,
                 },
                 {
-                    text:             `${ beneficiaryAddress }, ${ beneficiaryCity } ${ beneficiaryZipCode }`,
+                    text: fullAddress,
                     absolutePosition: { x: 82, y: 366 },
                     fontSize:         10,
                 },
                 {
-                    text:             `${ housingAddress }, ${ housingCity } ${ housingZipCode }`,
+                    text: fullHousingAddress,
                     absolutePosition: { x: 82, y: 645 },
                     fontSize:         10,
                 },
