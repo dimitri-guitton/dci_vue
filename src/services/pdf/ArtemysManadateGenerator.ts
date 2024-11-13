@@ -62,17 +62,12 @@ export class ArtemysManadateGenerator extends PdfGenerator {
             stack:    [
                 {
                     text:             `${ this._file.beneficiary.firstName } ${ this._file.beneficiary.lastName }`,
-                    absolutePosition: { x: 150, y: 333 },
+                    absolutePosition: { x: 150, y: 329 },
                     fontSize:         10,
                 },
                 {
-                    text: fullAddress,
-                    absolutePosition: { x: 82, y: 366 },
-                    fontSize:         10,
-                },
-                {
-                    text: fullHousingAddress,
-                    absolutePosition: { x: 82, y: 645 },
+                    text:             fullAddress,
+                    absolutePosition: { x: 82, y: 363 },
                     fontSize:         10,
                 },
             ],
@@ -80,21 +75,29 @@ export class ArtemysManadateGenerator extends PdfGenerator {
     }
 
     private generateDataPage2(): Content {
-        const today                                                                   = new Date();
-        const date                                                                    = `${ today.getDate() }/${ today.getMonth() + 1 }/${ today.getFullYear() }`;
-        const { address: housingAddress, zipCode: housingZipCode, city: housingCity } = getHousingAddress( this._file );
+        const today = new Date();
+        const date  = `${ today.getDate() }/${ today.getMonth() + 1 }/${ today.getFullYear() }`;
+
+        const { address: housingAddress, zipCode: housingZipCode, city: housingCity }             = getHousingAddress( this._file );
+        const { address: beneficiaryAddress, zipCode: beneficiaryZipCode, city: beneficiaryCity } = getBeneficiaryAddress( this._file );
+
+        const fullAddress      = `${ beneficiaryAddress }, ${ beneficiaryCity } ${ beneficiaryZipCode }`;
+        let fullHousingAddress = `${ housingAddress }, ${ housingCity } ${ housingZipCode }`;
+        if ( housingAddress === '' ) {
+            fullHousingAddress = fullAddress;
+        }
 
         return {
             fontSize: 10,
             stack:    [
                 {
-                    text:             `${ date }`,
-                    absolutePosition: { x: 320, y: 187 },
+                    text:             fullHousingAddress,
+                    absolutePosition: { x: 82, y: 125 },
                     fontSize:         10,
                 },
                 {
-                    text:             `${ housingAddress }, ${ housingCity } ${ housingZipCode }`,
-                    absolutePosition: { x: 110, y: 187 },
+                    text:             fullAddress,
+                    absolutePosition: { x: 110, y: 500 },
                     fontSize:         10,
                 },
                 {
