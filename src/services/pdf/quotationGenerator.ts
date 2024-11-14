@@ -988,7 +988,7 @@ export class QuotationGenerator extends PdfGenerator {
                 if ( hasAtlanticProduct ) {
                     text = 'ATLANTIC 2 ANS PIECES ET 5 ANS COMPRESSEUR';
                 } else if ( hasAltechProduct ) {
-                    text = 'ALTECH 3 ANS PIECES ET 5 ANS COMPRESSEUR';
+                    text = 'ALTECH 2 ANS PIECES ET 5 ANS COMPRESSEUR';
                 } else if ( rrQuotation.rrType === 'mono' && rrQuotation.assortment === 'sensira' ) {
                     text = 'DAIKIN 3 ANS PIECES ET 3 ANS COMPRESSEUR';
                 } else {
