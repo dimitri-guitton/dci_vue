@@ -292,12 +292,12 @@ export class QuotationGenerator extends PdfGenerator {
                             },
                         },
                         {
-                            text:      'Siège social : 11 rue Françoise Giroud 17000 La Rochelle. Tél : 05.46.52.95.94',
+                            text: 'Siège social : 3 Rue des palombes 17700 SURGERES. Tél : 05.46.52.95.94',
                             style:     'xsText',
                             alignment: 'center',
                         },
                         {
-                            text:      'RCS LA ROCHELLE 79943519300054',
+                            text: 'RCS LA ROCHELLE 79943519300070',
                             style:     'xsText',
                             alignment: 'center',
                         },
