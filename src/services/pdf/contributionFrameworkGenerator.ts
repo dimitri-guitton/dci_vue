@@ -1,17 +1,9 @@
 import { PdfGenerator, PdfType } from '@/services/pdf/pdfGenerator';
-import {
-    CADRE_CONTRIBUTION_CHECKBOX,
-    DARK,
-    EA_SIGNATURE,
-    LOGO_CEE,
-    LOGO_EDF,
-    ORANGE,
-    TAMPON_ECO,
-    TEL_FRANCE_RENOV,
-} from '@/services/pdf/pdfVariable';
+import { CADRE_CONTRIBUTION_CHECKBOX, DARK, EA_SIGNATURE, LOGO_CEE, LOGO_EDF, ORANGE, TEL_FRANCE_RENOV } from '@/services/pdf/pdfVariable';
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { FILE_CET, FILE_COMBLE, FILE_PAC_RO, FILE_PAC_RR, FILE_PB, FILE_PG, FILE_SOL } from '@/services/constantService';
 import { AllFile } from '@/types/v2/File/All';
+import { encodeImageToBase64 } from '@/services/pdf/encodeToBase64';
 
 export class ContributionFrameworkGenerator extends PdfGenerator {
     private _file: AllFile;
@@ -87,8 +79,8 @@ export class ContributionFrameworkGenerator extends PdfGenerator {
                         margin: [ 30, 5 ],
                         stack:  [
                             {
-                                image:  TAMPON_ECO,
-                                width:  120,
+                                image: encodeImageToBase64( 'static/tampon_eco_atlantique.png' ),
+                                width: 150,
                                 height: 65,
                             },
                         ],
