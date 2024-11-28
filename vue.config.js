@@ -3,14 +3,10 @@ process.env.VUE_APP_VERSION = require( './package.json' ).version;
 module.exports = {
     pluginOptions: {
         electronBuilder: {
+            'files':        [
+                'static/**/*',
+            ],
             builderOptions: {
-                // win:     {
-                //     target:                    [ 'nsis' ],
-                //     verifyUpdateCodeSignature: false,
-                // },
-                // mac:     {
-                //     category: 'public.app-category.productivity',
-                // },
                 publish: [
                     {
                         provider:    'github',

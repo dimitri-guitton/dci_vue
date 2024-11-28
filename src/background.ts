@@ -9,6 +9,8 @@ import fs from 'fs';
 
 ElectronStore.initRenderer();
 
+global.__static = require( 'path' ).join( __dirname, '/static' ).replace( /\\/g, '\\\\' );
+
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const schema = {
