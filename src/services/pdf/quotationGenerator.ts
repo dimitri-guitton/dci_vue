@@ -21,6 +21,7 @@ import {
     FILE_PG,
     FILE_PV,
     FILE_SOL,
+    FILE_VE,
 } from '@/services/constantService';
 import CombleList from '@/types/v2/File/Comble/CombleList';
 import SolList from '@/types/v2/File/Sol/SolList';
@@ -255,6 +256,7 @@ export class QuotationGenerator extends PdfGenerator {
             case FILE_PV:
             case FILE_CPV:
             case FILE_BRVE:
+            case FILE_VE:
                 text = 'RGE : 09522';
                 break;
             case FILE_PG:
@@ -715,6 +717,7 @@ export class QuotationGenerator extends PdfGenerator {
                 };
             case FILE_CPV:
             case FILE_BRVE:
+            case FILE_VE:
                 list = ( this._file.lists as PbList );
                 return {
                     left: [
@@ -1399,6 +1402,7 @@ export class QuotationGenerator extends PdfGenerator {
                 break;
             case FILE_PV:
             case FILE_BRVE:
+            case FILE_VE:
                 const pvQuotation = ( this._file.quotation as PvQuotation );
 
                 items = [

@@ -3,6 +3,7 @@ import { ISqlite, open } from 'sqlite';
 import Store from 'electron-store';
 import { Database } from 'sqlite/build/Database';
 import {
+    FILE_BRVE_TYPE,
     FILE_CET_TYPE,
     FILE_CLOSE_STATUS,
     FILE_COMBLE_TYPE,
@@ -16,6 +17,7 @@ import {
     FILE_PV_TYPE,
     FILE_SOL_TYPE,
     FILE_TO_CORRECT_STATUS,
+    FILE_VE_TYPE,
 } from '@/services/constantService';
 import { toFrenchDate, toFrenchDateWithTime } from '@/services/commonService';
 import { DbFile } from '@/types/v2/Sqlite/DbFile';
@@ -112,6 +114,12 @@ async function convertDbFileToFileItem( items: DbFile[] ) {
                     break;
                 case FILE_CPV_TYPE.slug:
                     types.push( FILE_CPV_TYPE );
+                    break;
+                case FILE_BRVE_TYPE.slug:
+                    types.push( FILE_BRVE_TYPE );
+                    break;
+                case FILE_VE_TYPE.slug:
+                    types.push( FILE_VE_TYPE );
                     break;
                 default:
                     console.warn( `Le type (${ type }) n'est pas pris en compte pour MYSQL` );

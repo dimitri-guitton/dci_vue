@@ -232,7 +232,7 @@ export default defineComponent( {
 
                                         const tableData = ref();
                                         tableData.value = ( await sqliteService.getAllFiles() );
-                                        console.log( tableData.value );
+                                        // console.log( tableData.value );
 
 
                                         // Init les datas de la pagination
@@ -295,7 +295,7 @@ export default defineComponent( {
                                             const trimStart = ( currentPage.value - 1 ) * numberPerPage;
                                             const trimEnd   = trimStart + numberPerPage;
                                             tempData        = tempData.slice( trimStart, trimEnd );
-                                            console.log( 'data', tempData );
+                                            // console.log( 'data', tempData );
 
                                             return tempData;
                                         } );
@@ -373,6 +373,9 @@ export default defineComponent( {
                                             setCurrentFileReference( reference );
                                             setcurrentFolderName( folderName );
 
+                                            // console.log( '%c ROUTE : ', 'background: #fdd835; color: #000000' );
+                                            // console.log( type );
+                                            // console.log( `file-${ type[ 0 ].slug }-edit` );
                                             router.push( { name: `file-${ type[ 0 ].slug }-edit` } );
                                         };
 

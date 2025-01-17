@@ -5,6 +5,8 @@
     * `FILE[slug_devis]`
     * `FILE[slug_devis]_TYPE`
     * `LIST_FILE_TYPE`
+3. Dans le fichier `src/services/sqliteService.ts`
+   * Mettre à jour `fileTypes` en ajoutant le nouveau type de devis
 3. Ajouter une nouvelle interface `[slug]FileStep` dans `src/types/v2/Wizzard/FileStep.ts`
     * Il peut être nécessaire de créer de nouvelles interfaces dans :
         * `src/types/v2/Wizzard/step3`
@@ -21,5 +23,5 @@
 7. Créer la route `/file-[slug_devis]-edit` dans `src/router/index.ts`
 8. Dans `src/services/pdf/quotationGenerator.ts` mettre à jour différentes méthodes:
     * `_getHeaderCertificate`
-    * `__getHousingData`
+   * `_getHousingData`
     * `_getPriceColumn`

@@ -24,6 +24,7 @@ import { updateErrorsStatusInDci } from '@/services/sqliteService';
 import { Technician } from '@/types/v2/File/Common/Technician';
 import { CpvFile } from '@/types/v2/File/Cpv/CpvFile';
 import { BrveFile } from '@/types/v2/File/Brve/BrveFile';
+import { VeFile } from '@/types/v2/File/Ve/VeFile';
 
 const schema = {
     dropboxPath:          {
@@ -186,9 +187,6 @@ export const getCurrentCpvFileData = (): CpvFile => {
     return ( getCurrentFileData() as CpvFile );
 };
 
-export const getCurrentBrveFileData = (): BrveFile => {
-    return ( getCurrentFileData() as BrveFile );
-};
 
 export const getCurrentPbFileData = (): PbFile => {
     return ( getCurrentFileData() as PbFile );
@@ -217,6 +215,15 @@ export const getCurrentCombleFileData = (): CombleFile => {
 export const getCurrentSolFileData = (): SolFile => {
     return ( getCurrentFileData() as SolFile );
 };
+
+export const getCurrentBrveFileData = (): BrveFile => {
+    return ( getCurrentFileData() as BrveFile );
+};
+
+export const getCurrentVeFileData = (): VeFile => {
+    return ( getCurrentFileData() as VeFile );
+};
+
 
 export const resetCurrentFileData = () => {
     store.set( 'currentFileData', '' );

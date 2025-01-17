@@ -18,6 +18,8 @@ import { CpvFile } from '@/types/v2/File/Cpv/CpvFile';
 import { CpvQuotation } from '@/types/v2/File/Cpv/CpvQuotation';
 import { BrveFile } from '@/types/v2/File/Brve/BrveFile';
 import { BrveQuotation } from '@/types/v2/File/Brve/BrveQuotation';
+import { VeFile } from '@/types/v2/File/Ve/VeFile';
+import { VeQuotation } from '@/types/v2/File/Ve/VeQuotation';
 
 export type AllFile =
     CetFile
@@ -29,7 +31,8 @@ export type AllFile =
     | RrFile
     | SolFile
     | CpvFile
-    | BrveFile;
+    | BrveFile
+    | VeFile;
 
 export type AllQuotation =
     CombleQuotation
@@ -41,4 +44,5 @@ export type AllQuotation =
     | PbQuotation
     | PvQuotation
     | CpvQuotation
-    | BrveQuotation;
+    | BrveQuotation
+    | VeQuotation;

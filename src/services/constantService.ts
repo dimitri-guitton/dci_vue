@@ -11,6 +11,7 @@ export const FILE_PB     = 'pb';
 export const FILE_PV     = 'pv';
 export const FILE_CPV  = 'cpv';
 export const FILE_BRVE = 'brve';
+export const FILE_VE   = 've';
 
 export const FILE_COMBLE_TYPE: DatatableFileType = {
     slug: FILE_COMBLE,
@@ -62,6 +63,11 @@ export const FILE_BRVE_TYPE: DatatableFileType = {
     name: 'Borne de recharge VE',
 };
 
+export const FILE_VE_TYPE: DatatableFileType = {
+    slug: FILE_VE,
+    name: 'Ventilation',
+};
+
 export const LIST_FILE_TYPE: DatatableFileType[] = [
     FILE_COMBLE_TYPE,
     FILE_SOL_TYPE,
@@ -73,6 +79,7 @@ export const LIST_FILE_TYPE: DatatableFileType[] = [
     FILE_PV_TYPE,
     FILE_CPV_TYPE,
     FILE_BRVE_TYPE,
+    FILE_VE_TYPE,
 ];
 
 export const FILE_COMPLETE_STATUS: DatatableFileStatus = {
