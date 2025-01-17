@@ -1,6 +1,6 @@
 <template>
   <!--begin::Header-->
-  <div id="kt_header" style="" class="header align-items-stretch">
+    <div class="header align-items-stretch">
     <!--begin::Container-->
     <div
         :class="{
@@ -9,37 +9,16 @@
       }"
         class="d-flex align-items-stretch justify-content-between"
     >
-      <!--begin::Aside mobile toggle-->
-      <div
-          class="d-flex align-items-center d-lg-none ms-n3 me-1"
-          title="Show aside menu"
-      >
-        <div
-            class="btn btn-icon btn-active-light-primary"
-            id="kt_aside_mobile_toggle"
-        >
-          <span class="svg-icon svg-icon-2x mt-1">
-            <inline-svg src="media/icons/duotune/abstract/abs015.svg" />
-          </span>
-        </div>
-      </div>
-      <!--end::Aside mobile toggle-->
-
       <!--begin::Mobile logo-->
-      <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-        <a href="#" class="d-lg-none">
-          <img alt="Logo" src="icon.png" class="h-30px" />
-        </a>
-      </div>
+        <div class="d-flex align-items-center flex-grow-1"></div>
       <!--end::Mobile logo-->
 
       <!--begin::Wrapper-->
-      <div
-          class="
+        <div class="
           d-flex
           align-items-stretch
           justify-content-between
-          flex-lg-grow-1
+          flex-grow-1
         "
       >
         <!--begin::Navbar-->

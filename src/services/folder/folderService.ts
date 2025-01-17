@@ -31,7 +31,6 @@ import {
 import { DatatableFile } from '@/types/v2/DatatableFile/DatatableFile';
 import { PdfType } from '@/services/pdf/pdfGenerator';
 import { ipcRenderer, remote, shell } from 'electron';
-import { NewFolderData } from '@/components/DCI/modals/NewFileModal.vue';
 import { ElLoading, ElMessage, ElNotification } from 'element-plus';
 import { CetConverter } from '@/services/file/converterV2/CetConverter';
 import { CombleConverter } from '@/services/file/converterV2/CombleConverter';
@@ -40,6 +39,7 @@ import { RoConverter } from '@/services/file/converterV2/RoConverter';
 import { RrConverter } from '@/services/file/converterV2/RrConverter';
 import { PgConverter } from '@/services/file/converterV2/PgConverter';
 import { AllFile } from '@/types/v2/File/All';
+import { NewFolderData } from '@/components/DCI/modals/NewFileModal.vue';
 
 const schema = {
     dropboxPath: {
