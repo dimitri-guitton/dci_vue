@@ -84,6 +84,15 @@
 
         <options :options="computedOptions" @optionsAreUpdated="updateOptions"></options>
 
+        <selected-product v-if="resaleType === 'full-sufficiency'"
+                          ref="selectBatteriesVirtuelles"
+                          :index="7"
+                          :edit-quantity="true"
+                          :products="computedBateriesVirtuelles"
+                          :selectedProducts="allSelectedProducts"
+                          @selectedProductIsUpdated="updateSelectedProduct"
+        ></selected-product>
+
         <blank-options :options="blankOptions" @optionsAreUpdated="updateBlankOtions"></blank-options>
 
         <wizzard-file-price :price="price"></wizzard-file-price>
@@ -122,7 +131,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue';
+import { computed, defineComponent, ref, watch } from 'vue';
 import { ErrorMessage, Field } from 'vee-validate';
 import SelectedProduct from '@/components/DCI/input/SelectedProduct.vue';
 import { Product } from '@/types/v2/File/Common/Product';
@@ -179,6 +188,34 @@ export default defineComponent( {
 
                                         const resaleType = ref<string>( props.fileData.quotation.resaleType );
 
+                                        watch( resaleType, ( newValue, oldValue ) => {
+                                            if ( oldValue === 'full-sufficiency' ) {
+                                                console.log( '%c OLD full-sufficiency',
+                                                             'background: #00FF27; color: #000000' );
+                                                const virtualBattery = _selectedProducts.value.find( product => product.productType === 'batterie_virtuelle' );
+                                                if ( virtualBattery ) {
+                                                    virtualBattery.quantity = 0;
+                                                }
+                                                // let index = 0;
+                                                // for ( const p of _selectedProducts.value ) {
+                                                //     if ( p.productType === 'batterie_virtuelle' ) {
+                                                //         // _selectedProducts.value[ index ].quantity = 0;
+                                                //         // _selectedProducts.value[ index ].pu = 0;
+                                                //     }
+                                                //     index++;
+                                                // }
+                                            } else if ( newValue === 'full-sufficiency' ) {
+                                                console.log( '%c NEW full-sufficiency',
+                                                             'background: #00FFD4; color: #000000' );
+                                                const virtualBattery = _selectedProducts.value.find( product => product.productType === 'batterie_virtuelle' );
+                                                if ( virtualBattery ) {
+                                                    virtualBattery.quantity = 1;
+                                                }
+                                            }
+                                            // console.log( `resaleType changed from ${ oldValue } to ${ newValue }` );
+                                            // Ajoutez ici les actions à effectuer en conséquence
+                                        } );
+
                                         for ( const selectedProduct of _selectedProducts.value ) {
                                             if ( selectedProduct.productType === 'pv' ) {
                                                 quantity.value = selectedProduct.quantity;
@@ -203,6 +240,7 @@ export default defineComponent( {
                                         };
 
                                         const updateSelectedProduct = ( product ) => {
+                                            console.log( '%c IN', 'background: #fdd835; color: #000000' );
                                             let index = 0;
                                             for ( const p of _selectedProducts.value ) {
                                                 if ( p.productType === product.productType ) {
@@ -241,22 +279,15 @@ export default defineComponent( {
                                             } );
                                         };
 
-                                        const computedPannels      = generateComputedProducts( 'pv' );
-                                        const computedOnduleurs    = generateComputedProducts( 'onduleur' );
-                                        const computedPasserelles  = generateComputedProducts( 'passerelle' );
-                                        const computedCables       = generateComputedProducts( 'cable' );
-                                        const computedBateries     = generateComputedProducts( 'batterie' );
-                                        const computedSupports     = generateComputedProducts( 'supportage' );
-                                        const computedElectricites = generateComputedProducts( 'electricite' );
-                                        // console.log( 'Computeds products',{
-                                        //     computedPannels,
-                                        //     computedOnduleurs,
-                                        //     computedPasserelles,
-                                        //     computedCables,
-                                        //     computedBateries,
-                                        //     computedSupports,
-                                        //
-                                        // } );
+                                        const computedPannels            = generateComputedProducts( 'pv' );
+                                        const computedOnduleurs          = generateComputedProducts( 'onduleur' );
+                                        const computedPasserelles        = generateComputedProducts( 'passerelle' );
+                                        const computedCables             = generateComputedProducts( 'cable' );
+                                        const computedBateries           = generateComputedProducts( 'batterie' );
+                                        const computedSupports           = generateComputedProducts( 'supportage' );
+                                        const computedElectricites       = generateComputedProducts( 'electricite' );
+                                        const computedBateriesVirtuelles = generateComputedProducts(
+                                            'batterie_virtuelle' );
 
                                         const updateLaying = ( qte: number ) => {
                                             const layingOption = _options.value.find( o => o.id === 38 );
@@ -297,16 +328,36 @@ export default defineComponent( {
                                                 console.log( 'NE PAS SUPPRIMER, POUR FORCER LE COMPUTE DES PRICES' );
                                             }
 
-                                            let totalHt    = 0;
                                             let totalPower = 0;
+                                            _selectedProducts.value.forEach( p => {
+                                                if ( p.productType === 'pv' ) {
+                                                    const power = p.power !== undefined ? p.power : 0;
+                                                    totalPower  = p.quantity * power;
+                                                }
+                                            } );
+
+                                            const lessThan2Year = getLessThan2Year();
+                                            let tvaType         = 10;
+
+                                            // Modification de la TVA en fonction de l'ancienneté de la maison et de la puissance
+                                            if ( lessThan2Year || totalPower > 3000 ) {
+                                                tvaType = 20;
+                                            }
+
+                                            let totalHt = 0;
+                                            let totalTtc: number;
+                                            // Prix de la batterie virtuelle
+                                            let bvPrice = 0;
+
+                                            let tva5  = 0;
+                                            let tva10 = 0;
+                                            let tva20 = 0;
 
 
                                             for ( const selectedProduct of _selectedProducts.value ) {
-                                                if ( selectedProduct.productType === 'pv' ) {
-                                                    const power = selectedProduct.power !== undefined
-                                                                  ? selectedProduct.power
-                                                                  : 0;
-                                                    totalPower  = selectedProduct.quantity * power;
+                                                if ( selectedProduct.productType === 'batterie_virtuelle' ) {
+                                                    bvPrice = selectedProduct.pu * selectedProduct.quantity;
+                                                    tva5    = bvPrice * 5.5 / 100;
                                                 }
                                                 totalHt += selectedProduct.pu * selectedProduct.quantity;
                                             }
@@ -323,18 +374,12 @@ export default defineComponent( {
                                                 }
                                             }
 
-                                            const lessThan2Year = getLessThan2Year();
-
-
-                                            let selfConsumptionBonus = 0;
-                                            let tva10                = 0;
-                                            let tva20                = 0;
-                                            let totalTtc: number;
 
                                             // Inférieur ou égal à 3kwc : 510€ par kwc
                                             // Supérieur a 3kwc jusqu à 9kwc inclus : 380€ par kwc
                                             // Au dessus 9 kwc jusqu à 36 kwc : 210 € par kwc
 
+                                            let selfConsumptionBonus = 0;
                                             if ( totalPower <= 3000 ) {
                                                 selfConsumptionBonus = ( totalPower / 1000 ) * 510;
                                             } else if ( totalPower > 3000 && totalPower <= 9000 ) {
@@ -342,21 +387,20 @@ export default defineComponent( {
                                             } else {
                                                 selfConsumptionBonus = ( totalPower / 1000 ) * 210;
                                             }
-                                            console.log( 'totalPower', totalPower );
-                                            console.log( 'selfConsumptionBonus', selfConsumptionBonus );
 
-                                            // Modification de la TVA en fonction de l'ancienneté de la maison et de la puissance
-                                            if ( lessThan2Year || totalPower > 3000 ) {
-                                                tva20    = 20 * totalHt / 100;
-                                                totalTtc = totalHt + tva20;
+                                            if ( tvaType === 20 ) {
+                                                // On retire le prix de la batterie virtuelle qui est en 5%
+                                                tva20    = 20 * ( totalHt - bvPrice ) / 100;
+                                                totalTtc = totalHt + tva20 + tva5;
                                             } else {
-                                                tva10    = 10 * totalHt / 100;
-                                                totalTtc = totalHt + tva10;
+                                                // On retire le prix de la batterie virtuelle qui est en 5%
+                                                tva10    = 10 * ( totalHt - bvPrice ) / 100;
+                                                totalTtc = totalHt + tva10 + tva5;
                                             }
 
                                             const price: Price = {
                                                 HT:             totalHt,
-                                                TVA:            0,
+                                                TVA: tva5,
                                                 TVA10:          tva10,
                                                 TVA20:          tva20,
                                                 TTC:            totalTtc,
@@ -385,6 +429,7 @@ export default defineComponent( {
                                             computedBateries,
                                             computedSupports,
                                             computedElectricites,
+                                            computedBateriesVirtuelles,
                                             allSelectedProducts: _selectedProducts,
                                             computedOptions,
                                             quantity,

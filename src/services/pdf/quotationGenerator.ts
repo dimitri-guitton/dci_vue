@@ -51,6 +51,8 @@ import { PacHousing } from '@/types/v2/File/Pac/PacHousing';
 import { CpvPdfGenerator } from '@/services/pdf/cpvPdfGenerator';
 import { CpvQuotation } from '@/types/v2/File/Cpv/CpvQuotation';
 import { ArtemysManadateGenerator } from '@/services/pdf/ArtemysManadateGenerator';
+import { BrveQuotation } from '@/types/v2/File/Brve/BrveQuotation';
+import { VeQuotation } from '@/types/v2/File/Ve/VeQuotation';
 
 enum PriceQuotation {
     HT           = 'Total HT',
@@ -1403,19 +1405,38 @@ export class QuotationGenerator extends PdfGenerator {
                 }
                 break;
             case FILE_PV:
-            case FILE_BRVE:
-            case FILE_VE:
                 const pvQuotation = ( this._file.quotation as PvQuotation );
 
                 items = [
                     PriceQuotation.HT,
                 ];
 
+                if ( pvQuotation.tva > 0 ) {
+                    items.push( PriceQuotation.TVA );
+                }
+
                 if ( pvQuotation.tva10 > 0 ) {
                     items.push( PriceQuotation.TVA10 );
                 }
 
                 if ( pvQuotation.tva20 > 0 ) {
+                    items.push( PriceQuotation.TVA20 );
+                }
+
+                items.push( PriceQuotation.TTC );
+
+                break;
+            case FILE_BRVE:
+            case FILE_VE:
+                items = [
+                    PriceQuotation.HT,
+                ];
+
+                if ( ( this._file.quotation as BrveQuotation | VeQuotation ).tva10 > 0 ) {
+                    items.push( PriceQuotation.TVA10 );
+                }
+
+                if ( ( this._file.quotation as BrveQuotation | VeQuotation ).tva20 > 0 ) {
                     items.push( PriceQuotation.TVA20 );
                 }
 
