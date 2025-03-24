@@ -899,6 +899,8 @@ export class QuotationGenerator extends PdfGenerator {
                     text = 'Installation photovoltaïque en autoconsommation avec revente du surplus';
                 } else if ( pvQuotation.resaleType === 'totalResale' ) {
                     text = 'Installation photovoltaïque en revente totale';
+                } else if ( pvQuotation.resaleType === 'full-sufficiency' ) {
+                    text = 'Installation photovoltaïque en autoconsommation Totale avec Batterie Virtuelle';
                 }
                 break;
         }

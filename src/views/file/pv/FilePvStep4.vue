@@ -405,6 +405,10 @@ export default defineComponent( {
                                                     slug:  'sufficiency',
                                                     value: 'Autoconsommation',
                                                 },
+                                                {
+                                                    slug:  'full-sufficiency',
+                                                    value: 'Autoconsommation Totale avec Batterie Virtuelle',
+                                                },
 
                                             ],
                                         };
