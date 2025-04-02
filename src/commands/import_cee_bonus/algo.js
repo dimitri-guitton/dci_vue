@@ -105,6 +105,11 @@ function createCeePacObject( csvData ) {
             return;
         }
         
+        let withEcs = null;
+        if ( row[ 'ecs' ] !== undefined ) {
+            withEcs = row[ 'ecs' ].toLowerCase() === 'oui' ? 'avec_ecs' : 'sans_ecs';
+        }
+        
         let type         = row[ 'type' ].toLowerCase();
         const zone       = row[ 'zone' ].toUpperCase();
         let etas         = row[ 'etas' ];
@@ -138,10 +143,23 @@ function createCeePacObject( csvData ) {
             CeePacRo[ zone ][ type ][ etas ][ surface ] = {};
         }
         
-        CeePacRo[ zone ][ type ][ etas ][ surface ] = {
-            other: primeAutre,
-            GP:    primeGP,
-        };
+        if ( withEcs !== null ) {
+            if ( !CeePacRo[ zone ][ type ][ etas ][ surface ][ withEcs ] ) {
+                CeePacRo[ zone ][ type ][ etas ][ surface ][ withEcs ] = {};
+            }
+            
+            CeePacRo[ zone ][ type ][ etas ][ surface ][ withEcs ] = {
+                other: primeAutre,
+                GP:    primeGP,
+            };
+            
+        } else {
+            
+            CeePacRo[ zone ][ type ][ etas ][ surface ] = {
+                other: primeAutre,
+                GP:    primeGP,
+            };
+        }
     } );
     
     return CeePacRo;

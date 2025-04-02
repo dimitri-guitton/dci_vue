@@ -136,9 +136,19 @@ export const roundCeeBonus = ( ceeBonus: number | string ): number => {
 export const getHelpingHandRo = ( codeBonus ): number => {
     codeBonus = codeBonus.toUpperCase();
 
-    // Si la date du jour est supérieur ou égal au 1er septembre 2024 on applique les nouvelles valeurs
+    // Si la date du jour est supérieur ou égal au 1er avril 2025 on applique les nouvelles valeurs
+    if ( new Date() >= new Date( '2025/04/01 00:00:01' ) ) {
+        if ( codeBonus === 'GP' ) {
+            return 5100;
+        }
+        if ( codeBonus === 'P' ) {
+            return 4300;
+        }
+        return 3000;
+    }
 
-    if ( new Date() >= new Date( '2023/11/01 00:00:01' ) ) {
+    // Si la date du jour est supérieur ou égal au 1er septembre 2024 on applique les nouvelles valeurs
+    if ( new Date() >= new Date( '2024/09/01 00:00:01' ) ) {
         if ( codeBonus === 'GP' ) {
             return 5100;
         }
@@ -171,11 +181,12 @@ export const getHelpingHandRo = ( codeBonus ): number => {
     return 2500;
 };
 
-const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: string ): number => {
+const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: string, hasEcs: boolean ): number => {
     let formatedEtas = 0;
     let formatedArea;
     const codeBonus  = getCodeBonus();
     let formatedCodeBonus;
+    let formatedEcs: string;
 
     let etas = 0;
     for ( const pac of pacs ) {
@@ -200,6 +211,7 @@ const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: strin
             formatedArea = 0;
         }
     }
+
     if ( area >= 60 && area < 70 ) {
         if ( localType === 'appartement' ) {
             formatedArea = 60;
@@ -226,10 +238,16 @@ const getCeeRo = ( pacs: Product[], localType: string, area: number, zone: strin
         formatedCodeBonus = 'other';
     }
 
+    if ( hasEcs ) {
+        formatedEcs = 'avec_ecs';
+    } else {
+        formatedEcs = 'sans_ecs';
+    }
+
     const listBonus: CeePacRo = CeePacRoValues;
 
     try {
-        return listBonus[ zone ][ localType ][ formatedEtas ][ formatedArea ][ formatedCodeBonus ];
+        return listBonus[ zone ][ localType ][ formatedEtas ][ formatedArea ][ formatedEcs ][ formatedCodeBonus ];
     } catch ( e ) {
         console.warn( 'Prime CEE non trouvé ', e );
         return 0;
@@ -337,7 +355,8 @@ export const getCeeBonus = ( data: BaseFile ): number => {
                     value = 118.56;
                 } else {
                     // value = 93.60;
-                    value = 98.28;
+                    // value = 98.28;
+                    value = 109.20;
                 }
             }
             break;
@@ -455,10 +474,13 @@ export const getCeeBonus = ( data: BaseFile ): number => {
             break;
         case FILE_PAC_RO:
             const roData = data as RoFile;
-            value        = getCeeRo( roData.quotation.selectedProducts,
-                                     roData.housing.type,
-                                     roData.housing.area,
-                                     roData.energyZone );
+            const hasEcs = roData.quotation.volumeECS !== 'ecs_1' && roData.quotation.volumeECS !== 'ecs_atl_1';
+
+            value = getCeeRo( roData.quotation.selectedProducts,
+                              roData.housing.type,
+                              roData.housing.area,
+                              roData.energyZone,
+                              hasEcs );
             break;
         case FILE_PAC_RR:
             const rrData = data as RrFile;
@@ -586,6 +608,17 @@ interface CeePacItem {
     GP: number;
 }
 
+interface CeePacRoItem {
+    avec_ecs: {
+        other: number;
+        GP: number;
+    };
+    sans_ecs: {
+        other: number;
+        GP: number;
+    };
+}
+
 interface CeePacArea1 {
     0: CeePacItem;
     35: CeePacItem;
@@ -604,14 +637,32 @@ interface CeePacArea2 {
     130: CeePacItem;
 }
 
+interface CeePacRoArea1 {
+    0: CeePacRoItem;
+    35: CeePacRoItem;
+    60: CeePacRoItem;
+    70: CeePacRoItem;
+    90: CeePacRoItem;
+    110: CeePacRoItem;
+    130: CeePacRoItem;
+}
+
+interface CeePacRoArea2 {
+    0: CeePacRoItem;
+    70: CeePacRoItem;
+    90: CeePacRoItem;
+    110: CeePacRoItem;
+    130: CeePacRoItem;
+}
+
 interface CeePacRoZone {
     appartement: {
-        110: CeePacArea1;
-        120: CeePacArea1;
+        110: CeePacRoArea1;
+        120: CeePacRoArea1;
     };
     maison_individuelle: {
-        110: CeePacArea2;
-        120: CeePacArea2;
+        110: CeePacRoArea2;
+        120: CeePacRoArea2;
     };
 }
 

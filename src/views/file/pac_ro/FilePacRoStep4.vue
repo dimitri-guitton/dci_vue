@@ -599,6 +599,7 @@ export default defineComponent( {
                                                             quotation: {
                                                                 ...props.fileData.quotation,
                                                                 selectedProducts: _selectedProducts.value,
+                                                                volumeECS: volumeECS.value,
                                                             },
                                                         };
                                                         ceeBonus                      = getCeeBonus( updatedFileData );
